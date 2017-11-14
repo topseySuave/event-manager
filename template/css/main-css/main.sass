@@ -1,6 +1,5 @@
 .header
-  width: 100vw
-  height: 50vh
+  height: 60vh
   display: block
   position: relative
   background:
@@ -31,12 +30,19 @@
           background:
             color: rgba(0, 0, 0, .5) !important
 
+    .container .header__detail
+      @include margTop(45px)
+
+      h4
+        font:
+          weight: 100
+          size: 2.5em
+
 .isLoaded
   transform: translateY(0px) !important
   opacity: 1 !important
 
 .popular__events_holdr
-  z-index: 1
   @include margTop(-100px !important)
 
   .popular__events
