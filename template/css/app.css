@@ -6,6 +6,10 @@
 /*padding mixins */
 /*Margin mixins */
 /*overwrites */
+.f15 {
+  margin-top: 5px !important;
+  font-size: 15px !important; }
+
 .card-title {
   padding: 14px !important;
   font-size: 20px !important; }
@@ -29,8 +33,6 @@
     overflow: hidden;
     color: #fff; }
     .header .header__overlay .container nav {
-      transform: translateY(-64px);
-      opacity: 0;
       box-shadow: none;
       background-color: transparent !important;
       -webkit-transition: all 500ms ease-in-out;
