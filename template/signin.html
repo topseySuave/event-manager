@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Event Manager</title>
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/frameworks/ghpages-materialize.css">
+    <!--<link rel="stylesheet" href="css/materialize.min.css">-->
+    <link href="css/frameworks/micon.css" rel="stylesheet">
+    <link href="css/frameworks/animate.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <div class="header__overlay">
+            <div class="container">
+                <nav class="wow fadeInDown">
+                    <div class="nav-wrapper">
+                        <a href="#" class="brand-logo">EM</a>
+                        <ul id="nav-mobile" class="right hide-on-med-and-down">
+                            <li><a href="#"><i class="material-icons">search</i></a></li>
+                            <li><a href="signin.html">Sign In</a></li>
+                            <li><a href="signup.html">Sign Up</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!--End header-->
+
+    <div class="signin__card_holdr">
+        <div class="container">
+            <div class="container white z-depth-2">
+                <ul class="tabs teal">
+                    <li class="tab col s3"><a class="white-text active" href="#login">login</a></li>
+                    <li class="tab col s3"><a class="white-text" href="#register">register</a></li>
+                </ul>
+                <div id="login" class="col s12">
+                    <form class="col s12">
+                        <div class="form-container">
+                            <h3 class="teal-text">Hello</h3>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="email" type="email" class="validate">
+                                    <label for="email">Email</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="password" type="password" class="validate">
+                                    <label for="password">Password</label>
+                                </div>
+                            </div>
+                            <br>
+                            <center>
+                                <button class="btn waves-effect waves-light teal" type="submit" name="action">Connect</button>
+                                <br>
+                                <br>
+                                <a href="">Forgotten password?</a>
+                            </center>
+                        </div>
+                    </form>
+                </div>
+                <div id="register" class="col s12">
+                    <form class="col s12">
+                        <div class="form-container">
+                            <h3 class="teal-text">Welcome</h3>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id="last_name" type="text" class="validate">
+                                    <label for="last_name">First Name</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="last_name" type="text" class="validate">
+                                    <label for="last_name">Last Name</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="email" type="email" class="validate">
+                                    <label for="email">Email</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="email-confirm" type="email" class="validate">
+                                    <label for="email-confirm">Email Confirmation</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="password" type="password" class="validate">
+                                    <label for="password">Password</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="password-confirm" type="password" class="validate">
+                                    <label for="password-confirm">Password Confirmation</label>
+                                </div>
+                            </div>
+                            <center>
+                                <button class="btn waves-effect waves-light teal" type="submit" name="action">Submit</button>
+                            </center>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
