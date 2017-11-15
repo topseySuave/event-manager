@@ -9,3 +9,16 @@ $(window).scroll(function () {
         home__nav.css({'display': 'none'});
     }
 });
+
+$(document).on('click', '#search__view', function () {
+    var modal = $('.modal');
+    modal.addClass('search__pane');
+});
+
+$(document).on('click', '.search__back_btn', function () {
+    var search__back_btn = $('.search__back_btn');
+    $('#search__modal').modal('close');
+    $('.modal-overlay').css({'display': 'none'});
+});
+
+
