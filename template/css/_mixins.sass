@@ -44,7 +44,6 @@
     to
       transform: translateY($val)
 
-
   /* Standard syntax */
   @keyframes fadeIn
     from
@@ -53,5 +52,15 @@
       transform: translateY($val)
 
 @mixin gradient()
-  background-image: linear-gradient(to top left, rgba(72, 132, 179, .7), rgba(144, 236, 146, .7))
-  background-image: -webkit-linear-gradient(to top left, rgba(72, 132, 179, .7), rgba(144, 236, 146, .7))
+  background-image: linear-gradient(to top left, $rgbaBlue, $rgbaGreen)
+  background-image: -webkit-linear-gradient(to top left, $rgbaBlue, $rgbaGreen)
+
+
+@mixin gradientHoriz()
+  background-image: linear-gradient(to left, $rgbaBlue, $rgbaGreen)
+  background-image: -webkit-linear-gradient(to left, $rgbaBlue, $rgbaGreen)
+
+@mixin gradientText()
+  @include gradient()
+  -webkit-background-clip: text
+  -webkit-text-fill-color: transparent
