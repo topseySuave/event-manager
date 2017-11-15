@@ -1,6 +1,5 @@
 .header
   height: 60vh
-  display: block
   position: relative
   background:
     image: url('../image/1.jpg')
@@ -9,24 +8,13 @@
 
   .header__overlay
     width: 100%
-    height: 100%
+    height: 60vh
     position: absolute
     top: 0px
     left: 0px
     @include gradient()
     overflow: hidden
     color: $white
-
-    .container nav
-      box-shadow: none
-      background:
-        color: transparent !important
-      @include transit(500ms)
-
-      ul a
-        &:hover
-          background:
-            color: rgba(0, 0, 0, .5) !important
 
     .container .header__detail
       @include margTop(45px)
@@ -35,6 +23,9 @@
         font:
           weight: 100
           size: 2.5em
+
+.home__nav
+  display: none
 
 .isLoaded
   transform: translateY(0px) !important

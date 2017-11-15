@@ -55,6 +55,11 @@
   background-image: linear-gradient(to top left, $rgbaBlue, $rgbaGreen)
   background-image: -webkit-linear-gradient(to top left, $rgbaBlue, $rgbaGreen)
 
+
+@mixin gradientHoriz()
+  background-image: linear-gradient(to left, $rgbaBlue, $rgbaGreen)
+  background-image: -webkit-linear-gradient(to left, $rgbaBlue, $rgbaGreen)
+
 @mixin gradientText()
   @include gradient()
   -webkit-background-clip: text
