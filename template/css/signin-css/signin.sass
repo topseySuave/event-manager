@@ -15,6 +15,10 @@
 //height: 700px;
 //}
 
+.input-field
+  @include marg(0)
+  @include margTop(10px !important)
+
 .gradient__bg
   @include gradientHoriz()
 
@@ -31,5 +35,13 @@
   position: absolute
 
 .signin__card_holdr
-  width: 60%
-  @include marg(41px auto)
+  width: 50%
+  @include marg(70px auto)
+
+.auth__footer
+  background:
+    color: transparent
+  color: $black
+
+.empty
+  height: 108px

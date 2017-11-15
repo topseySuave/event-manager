@@ -13,58 +13,55 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-    <!--<div class="header">-->
-        <!--<div class="header__overlay">-->
-            <nav class="wow fadeInDown black-text gradient__bg">
-                <div class="container">
-                    <div class="nav-wrapper">
-                        <a href="#" class="brand-logo">EM</a>
-                        <ul id="nav-mobile" class="right hide-on-med-and-down">
-                            <li><a href="#"><i class="material-icons">search</i></a></li>
-                            <li><a href="signin.html">Sign In</a></li>
-                            <li><a href="signup.html">Sign Up</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        <!--</div>-->
-    <!--</div>-->
-    <!--End header-->
+    <nav class="wow fadeInDown black-text gradient__bg">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="index.html" class="brand-logo center">EM</a>
+                <!--<ul id="nav-mobile" class="right hide-on-med-and-down">-->
+                    <!--<li><a href="#"><i class="material-icons">search</i></a></li>-->
+                    <!--<li><a href="signin.html">Sign In</a></li>-->
+                    <!--<li><a href="signup.html">Sign Up</a></li>-->
+                <!--</ul>-->
+            </div>
+        </div>
+    </nav>
+    <!--End nav-->
 
     <div class="signin__card_holdr">
         <div class="container">
-            <div class="container white z-depth-2">
-                <div class="col s12">
-                    <form class="col s12">
-                        <div class="form-container">
-                            <h5 class="teal-text">Sign in to eManager</h5>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input id="email" type="email" class="validate">
-                                    <label for="email">Email</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input id="password" type="password" class="validate">
-                                    <label for="password">Password</label>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="center-align">
-                                <button class="btn waves-effect waves-light teal" type="submit" name="action">Sign In</button>
-                                <br>
-                                <br>
-                                <a href="">Forgotten password?</a>
-                            </div>
+            <div class="row">
+                <form class="col s12" id="signin-form">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="email" type="email" class="validate" required>
+                            <label for="email">Email</label>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="password" type="password" class="validate" minlength="6" required>
+                            <label for="password">Password</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <button class="btn btn-large btn-register waves-effect waves-light" type="submit" name="action">Sign In
+                                <i class="material-icons right">done</i>
+                            </button>
+                        </div>
+
+                        <div class="input-field col s6 right-align">
+                            <a href="signup.html" title="sign up" class="ngl btn-floating btn-large waves-effect waves-light red"><i class="material-icons">input</i></a>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
-    <div class="footer">
+    <div class="empty"></div>
+
+    <div class="auth__footer footer">
         <div class="container">
             <div class="center-align">
                 <p>© 2017, All rights reserved.

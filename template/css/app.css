@@ -94,6 +94,10 @@ nav {
       text-decoration: underline !important; }
 
 /*signin css */
+.input-field {
+  margin: 0;
+  margin-top: 10px !important; }
+
 .gradient__bg {
   background-image: linear-gradient(to left, rgba(72, 132, 179, 0.7), rgba(144, 236, 146, 0.7));
   background-image: -webkit-linear-gradient(to left, rgba(72, 132, 179, 0.7), rgba(144, 236, 146, 0.7)); }
@@ -111,8 +115,15 @@ nav {
   position: absolute; }
 
 .signin__card_holdr {
-  width: 60%;
-  margin: 41px auto; }
+  width: 50%;
+  margin: 70px auto; }
+
+.auth__footer {
+  background-color: transparent;
+  color: #000; }
+
+.empty {
+  height: 108px; }
 
 /*media query */
 
