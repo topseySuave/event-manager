@@ -1,262 +1,273 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Event Manager</title>
-        <link rel="stylesheet" href="css/app.css">
-        <link rel="stylesheet" href="css/frameworks/ghpages-materialize.css">
-        <!--<link rel="stylesheet" href="css/materialize.min.css">-->
-        <link href="css/frameworks/micon.css" rel="stylesheet">
-        <link href="css/frameworks/animate.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    </head>
-    <body>
-        <div class="navbar-fixed home__nav">
-            <nav class="gradient__bg">
-                <div class="container">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Event Manager</title>
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/frameworks/ghpages-materialize.css">
+    <!--<link rel="stylesheet" href="css/materialize.min.css">-->
+    <link href="css/frameworks/micon.css" rel="stylesheet">
+    <link href="css/frameworks/animate.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<div class="body__holdr">
+    <div class="navbar-fixed home__nav">
+        <nav class="gradient__bg">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <a href="index.html" class="brand-logo">Boots EM</a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="#"><i class="material-icons">search</i></a></li>
+                        <li><a href="signin.html">Sign In</a></li>
+                        <li><a href="signup.html">Sign Up</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="header">
+        <div class="header__overlay">
+            <div class="container">
+                <nav class="wow fadeInDown">
                     <div class="nav-wrapper">
-                        <a href="index.html" class="brand-logo">Boots EM</a>
+                        <a href="#" class="brand-logo">Boots EM</a>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
                             <li><a href="#"><i class="material-icons">search</i></a></li>
                             <li><a href="signin.html">Sign In</a></li>
                             <li><a href="signup.html">Sign Up</a></li>
                         </ul>
                     </div>
-                </div>
-            </nav>
-        </div>
+                </nav>
 
-        <div class="header">
-            <div class="header__overlay">
-                <div class="container">
-                    <nav class="wow fadeInDown">
-                        <div class="nav-wrapper">
-                            <a href="#" class="brand-logo">Boots EM</a>
-                            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                                <li><a href="#"><i class="material-icons">search</i></a></li>
-                                <li><a href="signin.html">Sign In</a></li>
-                                <li><a href="signup.html">Sign Up</a></li>
-                            </ul>
-                        </div>
-                    </nav>
-
-                    <div class="center-align header__detail">
-                        <h4 class="wow fadeInLeft">Worlds Leading Startup events</h4>
-                        <p class="wow fadeInLeft">Attend Events around you and Add Events.</p>
-                        <a href="signup.html" class="btn blue lighten-2 waves-effect animated fadeInLeft">Join Boots Events Manager</a>
-                    </div>
+                <div class="center-align header__detail">
+                    <h4 class="wow fadeInLeft">Worlds Leading Startup events</h4>
+                    <p class="wow fadeInLeft">Attend Events around you and Add Events.</p>
+                    <a href="signup.html" class="btn blue lighten-2 waves-effect animated fadeInLeft">Join Boots Events
+                        Manager</a>
                 </div>
             </div>
-            <!--End .header-->
         </div>
+        <!--End .header-->
+    </div>
 
-        <!--begin popular__events-->
-        <div class="popular__events_holdr">
-            <div class="container popular__events">
-                <!--<h3>Latest Events</h3>-->
-                <div class="row">
-                    <div class="col s12 l4">
-                        <div class="card wow fadeInUp">
-                            <div class="card-image">
-                                <img src="image/2.jpg">
-                                <span class="card-title">A title for this event</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light red">
-                                    <i class="material-icons">share</i>
-                                </a>
-                            </div>
-                            <div class="card-content">
-                                <p><i class="material-icons f15">schedule</i> Sat, Nov 25 8:00am</p>
-                                <small><i class="material-icons f15">location_on</i> Muson center, Lagos</small>
-                            </div>
+    <!--begin popular__events-->
+    <div class="popular__events_holdr">
+        <div class="container popular__events">
+            <!--<h3>Latest Events</h3>-->
+            <div class="row">
+                <div class="col s12 l4">
+                    <div class="card wow fadeInUp">
+                        <div class="card-image">
+                            <img src="image/2.jpg">
+                            <span class="card-title">A title for this event</span>
+                            <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="left" data-tooltip="share">
+                                <i class="material-icons">share</i>
+                            </a>
+                        </div>
+                        <div class="card-content">
+                            <p><i class="material-icons f15">schedule</i> Sat, Nov 25 8:00am</p>
+                            <small><i class="material-icons f15">location_on</i> Muson center, Lagos</small>
                         </div>
                     </div>
-                    <div class="col s12 l4">
-                        <div class="card wow fadeInUp">
-                            <div class="card-image">
-                                <img src="image/2.jpg">
-                                <span class="card-title">A title for this event</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light blue">
-                                    <i class="material-icons">share</i>
-                                </a>
-                            </div>
-                            <div class="card-content">
-                                <p><i class="material-icons f15">schedule</i> Sat, Nov 25 8:00am</p>
-                                <small><i class="material-icons f15">location_on</i> Muson center, Lagos</small>
-                            </div>
+                </div>
+                <div class="col s12 l4">
+                    <div class="card wow fadeInUp">
+                        <div class="card-image">
+                            <img src="image/2.jpg">
+                            <span class="card-title">A title for this event</span>
+                            <a class="btn-floating halfway-fab waves-effect waves-light blue tooltipped" data-position="left" data-tooltip="share">
+                                <i class="material-icons">share</i>
+                            </a>
+                        </div>
+                        <div class="card-content">
+                            <p><i class="material-icons f15">schedule</i> Sat, Nov 25 8:00am</p>
+                            <small><i class="material-icons f15">location_on</i> Muson center, Lagos</small>
                         </div>
                     </div>
-                    <div class="col s12 l4">
-                        <div class="card wow fadeInUp">
-                            <div class="card-image">
-                                <img src="image/2.jpg">
-                                <span class="card-title">A title for this event</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light amber">
-                                    <i class="material-icons">share</i>
-                                </a>
-                            </div>
-                            <div class="card-content">
-                                <p><i class="material-icons f15">schedule</i> Sat, Nov 25 8:00am</p>
-                                <small><i class="material-icons f15">location_on</i> Muson center, Lagos</small>
-                            </div>
+                </div>
+                <div class="col s12 l4">
+                    <div class="card wow fadeInUp">
+                        <div class="card-image">
+                            <img src="image/2.jpg">
+                            <span class="card-title">A title for this event</span>
+                            <a class="btn-floating halfway-fab waves-effect waves-light amber tooltipped" data-position="left" data-tooltip="share">
+                                <i class="material-icons">share</i>
+                            </a>
+                        </div>
+                        <div class="card-content">
+                            <p><i class="material-icons f15">schedule</i> Sat, Nov 25 8:00am</p>
+                            <small><i class="material-icons f15">location_on</i> Muson center, Lagos</small>
                         </div>
                     </div>
-                    <div class="col s12 l4">
-                        <div class="card wow fadeInUp">
-                            <div class="card-image">
-                                <img src="image/2.jpg">
-                                <span class="card-title">A title for this event</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light red">
-                                    <i class="material-icons">share</i>
-                                </a>
-                            </div>
-                            <div class="card-content">
-                                <p><i class="material-icons f15">schedule</i> Sat, Nov 25 8:00am</p>
-                                <small><i class="material-icons f15">location_on</i> Muson center, Lagos</small>
-                            </div>
+                </div>
+                <div class="col s12 l4">
+                    <div class="card wow fadeInUp">
+                        <div class="card-image">
+                            <img src="image/2.jpg">
+                            <span class="card-title">A title for this event</span>
+                            <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="left" data-tooltip="share">
+                                <i class="material-icons">share</i>
+                            </a>
+                        </div>
+                        <div class="card-content">
+                            <p><i class="material-icons f15">schedule</i> Sat, Nov 25 8:00am</p>
+                            <small><i class="material-icons f15">location_on</i> Muson center, Lagos</small>
                         </div>
                     </div>
-                    <div class="col s12 l4">
-                        <div class="card wow fadeInUp">
-                            <div class="card-image">
-                                <img src="image/2.jpg">
-                                <span class="card-title">A title for this event</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light blue">
-                                    <i class="material-icons">share</i>
-                                </a>
-                            </div>
-                            <div class="card-content">
-                                <p><i class="material-icons f15">schedule</i> Sat, Nov 25 8:00am</p>
-                                <small><i class="material-icons f15">location_on</i> Muson center, Lagos</small>
-                            </div>
+                </div>
+                <div class="col s12 l4">
+                    <div class="card wow fadeInUp">
+                        <div class="card-image">
+                            <img src="image/2.jpg">
+                            <span class="card-title">A title for this event</span>
+                            <a class="btn-floating halfway-fab waves-effect waves-light blue tooltipped" data-position="left" data-tooltip="share">
+                                <i class="material-icons">share</i>
+                            </a>
+                        </div>
+                        <div class="card-content">
+                            <p><i class="material-icons f15">schedule</i> Sat, Nov 25 8:00am</p>
+                            <small><i class="material-icons f15">location_on</i> Muson center, Lagos</small>
                         </div>
                     </div>
-                    <div class="col s12 l4">
-                        <div class="card wow fadeInUp">
-                            <div class="card-image">
-                                <img src="image/2.jpg">
-                                <span class="card-title">A title for this event</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light amber">
-                                    <i class="material-icons">share</i>
-                                </a>
-                            </div>
-                            <div class="card-content">
-                                <p><i class="material-icons f15">schedule</i> Sat, Nov 25 8:00am</p>
-                                <small><i class="material-icons f15">location_on</i> Muson center, Lagos</small>
-                            </div>
+                </div>
+                <div class="col s12 l4">
+                    <div class="card wow fadeInUp">
+                        <div class="card-image">
+                            <img src="image/2.jpg">
+                            <span class="card-title">A title for this event</span>
+                            <a class="btn-floating halfway-fab waves-effect waves-light amber tooltipped" data-position="left" data-tooltip="share">
+                                <i class="material-icons">share</i>
+                            </a>
+                        </div>
+                        <div class="card-content">
+                            <p><i class="material-icons f15">schedule</i> Sat, Nov 25 8:00am</p>
+                            <small><i class="material-icons f15">location_on</i> Muson center, Lagos</small>
                         </div>
                     </div>
-                    <div class="col s12 l4">
-                        <div class="card wow fadeInUp">
-                            <div class="card-image">
-                                <img src="image/2.jpg">
-                                <span class="card-title">A title for this event</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light red">
-                                    <i class="material-icons">share</i>
-                                </a>
-                            </div>
-                            <div class="card-content">
-                                <p><i class="material-icons f15">schedule</i> Sat, Nov 25 8:00am</p>
-                                <small><i class="material-icons f15">location_on</i> Muson center, Lagos</small>
-                            </div>
+                </div>
+                <div class="col s12 l4">
+                    <div class="card wow fadeInUp">
+                        <div class="card-image">
+                            <img src="image/2.jpg">
+                            <span class="card-title">A title for this event</span>
+                            <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="left" data-tooltip="share">
+                                <i class="material-icons">share</i>
+                            </a>
+                        </div>
+                        <div class="card-content">
+                            <p><i class="material-icons f15">schedule</i> Sat, Nov 25 8:00am</p>
+                            <small><i class="material-icons f15">location_on</i> Muson center, Lagos</small>
                         </div>
                     </div>
-                    <div class="col s12 l4">
-                        <div class="card wow fadeInUp">
-                            <div class="card-image">
-                                <img src="image/2.jpg">
-                                <span class="card-title">A title for this event</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light blue">
-                                    <i class="material-icons">share</i>
-                                </a>
-                            </div>
-                            <div class="card-content">
-                                <p><i class="material-icons f15">schedule</i> Sat, Nov 25 8:00am</p>
-                                <small><i class="material-icons f15">location_on</i> Muson center, Lagos</small>
-                            </div>
+                </div>
+                <div class="col s12 l4">
+                    <div class="card wow fadeInUp">
+                        <div class="card-image">
+                            <img src="image/2.jpg">
+                            <span class="card-title">A title for this event</span>
+                            <a class="btn-floating halfway-fab waves-effect waves-light blue tooltipped" data-position="left" data-tooltip="share">
+                                <i class="material-icons">share</i>
+                            </a>
+                        </div>
+                        <div class="card-content">
+                            <p><i class="material-icons f15">schedule</i> Sat, Nov 25 8:00am</p>
+                            <small><i class="material-icons f15">location_on</i> Muson center, Lagos</small>
                         </div>
                     </div>
-                    <div class="col s12 l4">
-                        <div class="card wow fadeInUp">
-                            <div class="card-image">
-                                <img src="image/2.jpg">
-                                <span class="card-title">A title for this event</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light amber">
-                                    <i class="material-icons">share</i>
-                                </a>
-                            </div>
-                            <div class="card-content">
-                                <p><i class="material-icons f15">schedule</i> Sat, Nov 25 8:00am</p>
-                                <small><i class="material-icons f15">location_on</i> Muson center, Lagos</small>
-                            </div>
+                </div>
+                <div class="col s12 l4">
+                    <div class="card wow fadeInUp">
+                        <div class="card-image">
+                            <img src="image/2.jpg">
+                            <span class="card-title">A title for this event</span>
+                            <a class="btn-floating halfway-fab waves-effect waves-light amber tooltipped" data-position="left" data-tooltip="share">
+                                <i class="material-icons">share</i>
+                            </a>
+                        </div>
+                        <div class="card-content">
+                            <p><i class="material-icons f15">schedule</i> Sat, Nov 25 8:00am</p>
+                            <small><i class="material-icons f15">location_on</i> Muson center, Lagos</small>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!--End popular__event_holdr-->
+    </div>
+    <!--End popular__event_holdr-->
 
 
-        <div class="parallax-container">
-            <div class="parallax"><img src="image/5.jpg"></div>
+    <div class="parallax-container">
+        <div class="parallax">
+            <img src="image/5.jpg">
         </div>
-
-        <!--<div class="middle__info">-->
-            <!--&lt;!&ndash;<div class="bg__overlay">&ndash;&gt;-->
-                <!--&lt;!&ndash;<img src="image/2.jpg" alt="">&ndash;&gt;-->
-            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-            <!--<div class="brief__info">-->
-                <!--<div class="container">-->
-                    <!--<div class="center-align">-->
-                        <!--<p>-->
-                        <!--<h4>Do you want to Manage your Own Event?</h4>-->
-                        <!--<small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab asperiores,-->
-                            <!--at aut consequuntur corporis culpa debitis dolores dolorum ducimus enim-->
-                            <!--eos esse est eveniet excepturi expedita facilis illo incidunt inventore</small>-->
-                        <!--<br />-->
-                        <!--<a href="signup.html" class="btn waves-effect red darken-1">Sign Up</a>-->
-                        <!--</p>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-
-        <div class="fixed-action-btn wow zoomIn">
-            <a class="btn-floating btn-large red" style="position:static;">
-                <i class="large material-icons">mode_edit</i>
-            </a>
-            <ul>
-                <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-                <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-                <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-                <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-            </ul>
-        </div>
-
-        <div class="footer">
-            <div class="container">
-                <div class="center-align">
-                    <p>© 2017, All rights reserved.
-                        <a href="#">Boots Events Manager</a>
-                    </p>
-                </div>
+        <div class="container">
+            <div class="center-align">
+                <p>
+                <h4>Do you want to Manage your Own Event?</h4>
+                <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab asperiores,
+                    at aut consequuntur corporis culpa debitis dolores dolorum ducimus enim
+                    eos esse est eveniet excepturi expedita facilis illo incidunt inventore
+                </small>
+                <br/>
+                <a href="signup.html" class="btn waves-effect red darken-1">Sign Up</a>
+                </p>
             </div>
         </div>
+    </div>
 
-        <script src="js/jquery-3.2.1.min.js"></script>
-        <script src="js/materialize.min.js"></script>
-        <script src="js/wow.min.js"></script>
-        <script src="js/main.js"></script>
-        <script>
-            $(document).ready(function(){
-                new WOW().init();
-                $('.parallax').parallax();
-                $('.fixed-action-btn').openFAB();
-                $('.fixed-action-btn').closeFAB();
-                $('.fixed-action-btn.toolbar').openToolbar();
-                $('.fixed-action-btn.toolbar').closeToolbar();
-            });
-        </script>
-    </body>
+    <div class="fixed-action-btn wow zoomIn">
+        <a class="btn-floating btn-large red" style="position:static;">
+            <i class="large material-icons">mode_edit</i>
+        </a>
+        <ul>
+            <li><a href="#modal1" class="tooltipped modal-trigger btn-floating red" data-position="left" data-tooltip="Add Event"><i class="material-icons">add</i></a></li>
+            <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+            <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+            <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <div class="center-align">
+                <p>© 2017, All rights reserved.
+                    <a href="#">Boots Events Manager</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Modal Header</h4>
+            <p>A bunch of text</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+        </div>
+    </div>
+</div>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/materialize.min.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+    $(document).ready(function () {
+        new WOW().init();
+        $('.modal').modal();
+        $('.parallax').parallax();
+        $('.tooltipped').tooltip({delay: 50});
+        $('.fixed-action-btn').openFAB();
+        $('.fixed-action-btn').closeFAB();
+        $('.fixed-action-btn.toolbar').openToolbar();
+        $('.fixed-action-btn.toolbar').closeToolbar();
+    });
+</script>
+</body>
 </html>

@@ -25,6 +25,14 @@ nav {
   padding: 14px !important;
   font-size: 20px !important; }
 
+.parallax-container {
+  height: auto !important;
+  color: #fff; }
+  .parallax-container .container .center-align p {
+    padding: 15px; }
+  .parallax-container .parallax img {
+    opacity: 1 !important; }
+
 /*main css */
 .header {
   height: 60vh;
