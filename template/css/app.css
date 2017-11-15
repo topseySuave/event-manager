@@ -20,6 +20,10 @@ nav {
 .pointer {
   cursor: pointer !important; }
 
+.search__results {
+  width: 50%;
+  margin: 0 auto; }
+
 .bg__white {
   background-color: #fff; }
 

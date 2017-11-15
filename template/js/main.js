@@ -11,8 +11,8 @@ $(window).scroll(function () {
 });
 
 $(document).on('click', '#search__view', function () {
-    var modal = $('.modal');
-    modal.addClass('search__pane');
+    var search__modal = $('.search__modal');
+    search__modal.addClass('search__pane');
 });
 
 $(document).on('click', '.search__back_btn', function () {
