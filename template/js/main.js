@@ -11,7 +11,7 @@ $(window).scroll(function () {
 });
 
 $(document).on('click', '#search__view', function () {
-    var search__modal = $('.search__modal');
+    var search__modal = $('#search__modal');
     search__modal.addClass('search__pane');
 });
 
