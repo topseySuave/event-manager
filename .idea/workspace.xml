@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f051bbcc-4e3a-4837-a5f5-ffa0a54f7bfb" name="Default" comment="">
+    <list default="true" id="f051bbcc-4e3a-4837-a5f5-ffa0a54f7bfb" name="Default" comment="signin-page-v1 final commit">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/index.html" afterPath="$PROJECT_DIR$/template/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/js/main.js" afterPath="$PROJECT_DIR$/template/js/main.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,8 +21,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/template/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="66" lean-forward="true" selection-start-line="23" selection-start-column="66" selection-end-line="23" selection-end-column="66" />
+            <state relative-caret-position="340">
+              <caret line="224" column="42" lean-forward="true" selection-start-line="224" selection-start-column="42" selection-end-line="224" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -109,7 +108,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="footer-edition" />
+        <entry key="$PROJECT_DIR$" value="create-event-modal" />
       </map>
     </option>
   </component>
@@ -356,7 +355,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1510585765372</updated>
-      <workItem from="1510585767423" duration="45060000" />
+      <workItem from="1510585767423" duration="46506000" />
     </task>
     <task id="LOCAL-00001" summary="project building and first commit">
       <created>1510593022088</created>
@@ -442,11 +441,18 @@
       <option name="project" value="LOCAL" />
       <updated>1510738161097</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="signin-page-v1 final commit">
+      <created>1510743111263</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1510743111263</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45060000" />
+    <option name="totallyTimeSpent" value="46506000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="1" width="1364" height="766" extended-state="0" />
@@ -508,7 +514,8 @@
     <MESSAGE value="signin-page-v1" />
     <MESSAGE value="signin-page-v1.1" />
     <MESSAGE value="signin-page-v1.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="signin-page-v1.2" />
+    <MESSAGE value="signin-page-v1 final commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="signin-page-v1 final commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -672,8 +679,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/template/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="66" lean-forward="true" selection-start-line="23" selection-start-column="66" selection-end-line="23" selection-end-column="66" />
+        <state relative-caret-position="340">
+          <caret line="224" column="42" lean-forward="true" selection-start-line="224" selection-start-column="42" selection-end-line="224" selection-end-column="42" />
           <folding />
         </state>
       </provider>
