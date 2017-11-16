@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f051bbcc-4e3a-4837-a5f5-ffa0a54f7bfb" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/template/js/jquery-2.1.4.min.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/topsey.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/topsey.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/css/app.css" afterPath="$PROJECT_DIR$/template/css/app.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/css/main-css/main.sass" afterPath="$PROJECT_DIR$/template/css/main-css/main.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/css/overwrite/overwrite.sass" afterPath="$PROJECT_DIR$/template/css/overwrite/overwrite.sass" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/index.html" afterPath="$PROJECT_DIR$/template/index.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,8 +21,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/template/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="333" column="58" lean-forward="false" selection-start-line="333" selection-start-column="58" selection-end-line="333" selection-end-column="58" />
+            <state relative-caret-position="350">
+              <caret line="421" column="32" lean-forward="true" selection-start-line="421" selection-start-column="32" selection-end-line="421" selection-end-column="32" />
               <folding>
                 <element signature="n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -200,6 +194,24 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="event-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="event-manager" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="template" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -338,7 +350,7 @@
       <updated>1510585765372</updated>
       <workItem from="1510585767423" duration="70602000" />
       <workItem from="1510849378045" duration="2128000" />
-      <workItem from="1510859023664" duration="8377000" />
+      <workItem from="1510859023664" duration="8442000" />
     </task>
     <task id="LOCAL-00001" summary="project building and first commit">
       <created>1510593022088</created>
@@ -487,11 +499,18 @@
       <option name="project" value="LOCAL" />
       <updated>1510864930881</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="refactor: event form completion.">
+      <created>1510869422149</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1510869422149</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81107000" />
+    <option name="totallyTimeSpent" value="81172000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="1" width="1364" height="766" extended-state="0" />
@@ -561,7 +580,8 @@
     <MESSAGE value="refactor: change to search modal back (close) button." />
     <MESSAGE value="refactor: site logo implementation." />
     <MESSAGE value="refactor: site logo implementation-v0." />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: site logo implementation-v0." />
+    <MESSAGE value="refactor: event form completion." />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: event form completion." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -863,8 +883,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/template/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="333" column="58" lean-forward="false" selection-start-line="333" selection-start-column="58" selection-end-line="333" selection-end-column="58" />
+        <state relative-caret-position="350">
+          <caret line="421" column="32" lean-forward="true" selection-start-line="421" selection-start-column="32" selection-end-line="421" selection-end-column="32" />
           <folding>
             <element signature="n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
