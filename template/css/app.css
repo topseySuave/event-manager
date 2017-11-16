@@ -17,6 +17,21 @@ nav {
   nav ul a:hover {
     background-color: rgba(0, 0, 0, 0.5) !important; }
 
+.logo {
+  width: 250px;
+  background-image: url("../image/logo.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 60%;
+  align-items: -100px; }
+  .logo p {
+    margin: 0;
+    position: relative;
+    top: -1000px; }
+
+.hidden {
+  display: none; }
+
 .pointer {
   cursor: pointer !important; }
 
@@ -54,6 +69,9 @@ nav {
 
 .search__nav {
   background-color: #fff !important; }
+
+#add_event_modal {
+  width: 50% !important; }
 
 /*main css */
 .blur__fits {
@@ -128,6 +146,12 @@ nav {
     -webkit-text-fill-color: transparent; }
     .footer a:hover {
       text-decoration: underline !important; }
+
+.select_img_box {
+  width: 200px;
+  height: 100px;
+  background-color: #f5f5f5;
+  border-radius: 3px; }
 
 /*signin css */
 .input-field {
