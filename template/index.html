@@ -338,9 +338,15 @@
             <form class="col s12" id="add-event-form">
                 <div class="row">
                     <div class="col s6">
-                        <div class="select_img_box"></div>
-                        <input id="first_name" type="file" class="hidden validate" required>
-                        <!--<label for="first_name">First Name</label>-->
+                        <div class="file-field input-field">
+                            <div class="btn">
+                                <span>Upload</span>
+                                <input type="file">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" placeholder="Upload an image here">
+                            </div>
+                        </div>
                     </div>
                     <div class="input-field col s6">
                         <input id="event_title" type="text" class="validate" required>
@@ -354,20 +360,19 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12">
-                        <label for="description">Description</label>
-                        <textarea id="description" type="text" class="materialize-textarea validate" required></textarea>
+                    <div class="input-field col s6">
+                        <input id="date" type="date" class="validate" required>
+                        <label for="date"></label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="time" type="time" class="validate" required>
+                        <label for="time"></label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s6">
-                        <button class="btn btn-large btn-register waves-effect waves-light" type="submit" name="action">Register
-                            <i class="material-icons right">done</i>
-                        </button>
-                    </div>
-
-                    <div class="input-field col s6 right-align">
-                        <a href="signin.html" title="sign in" class="ngl btn-floating btn-large waves-effect waves-light red"><i class="material-icons">input</i></a>
+                    <div class="input-field col s12">
+                        <label for="description">Description</label>
+                        <textarea id="description" type="text" class="materialize-textarea validate" required></textarea>
                     </div>
                 </div>
             </form>
@@ -411,6 +416,7 @@
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/materialize.min.js"></script>
 <script src="js/wow.min.js"></script>
+<script src="js/picker.js"></script>
 <script src="js/main.js"></script>
 <script>
     $(document).ready(function () {
@@ -431,6 +437,10 @@
                 $('.modal-overlay').css({'display': 'none'});
                 this.removeClass('search__pane');
             } // Callback for Modal close
+        });
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15 // Creates a dropdown of 15 years to control year
         });
         $('.parallax').parallax();
         $('.tooltipped').tooltip({delay: 50});

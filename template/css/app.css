@@ -71,7 +71,7 @@ nav {
   background-color: #fff !important; }
 
 #add_event_modal {
-  width: 50% !important; }
+  width: 40% !important; }
 
 /*main css */
 .blur__fits {
@@ -148,7 +148,7 @@ nav {
       text-decoration: underline !important; }
 
 .select_img_box {
-  width: 200px;
+  width: 100px;
   height: 100px;
   background-color: #f5f5f5;
   border-radius: 3px; }
