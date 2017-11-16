@@ -9,6 +9,17 @@ nav
       background:
         color: rgba(0, 0, 0, .5) !important
 
+.pointer
+  cursor: pointer !important
+
+.search__results
+  width: 50%
+  margin: 0 auto
+
+.bg__white
+  background:
+    color: $white
+
 .f15
   @include margTop(5px !important)
   font:
@@ -18,3 +29,31 @@ nav
   @include pad(14px !important)
   font:
     size: 20px !important
+
+.parallax-container
+  height: auto !important
+  color: $white
+
+  .container
+    .center-align
+      p
+        @include pad(15px)
+
+  .parallax
+    img
+      opacity: 1 !important
+
+.search__pane
+  width: 100% !important
+  max-height: 100% !important
+  top: 0 !important
+  bottom: 0
+  @include marg(0 !important)
+  background:
+    color: $white
+  border:
+    radius: 0 !important
+
+.search__nav
+  background:
+    color: $white !important
