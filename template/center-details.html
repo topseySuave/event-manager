@@ -5,9 +5,156 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Centers | Boots Event Manager</title>
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/frameworks/ghpages-materialize.css">
+    <link href="css/frameworks/micon.css" rel="stylesheet">
+    <link href="css/frameworks/animate.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" href="image/fav.ico">
 </head>
 <body>
 
+<div class="body__holdr">
+    <div class="navbar-fixed">
+        <nav class="gradient__bg">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <a href="index.html" class="brand-logo logo">
+                        <p>Boots EM</p>
+                    </a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="#search__modal" class="modal-trigger waves-effect" id="search__view"><i
+                                class="material-icons">search</i></a></li>
+                        <li><a href="signin.html">Sign In</a></li>
+                        <li><a href="signup.html">Sign Up</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <div class="center__holdr">
+            <div class="row">
+                <div class="col s12 l8">
+                    <div class="center__details z-depth-0">
+                        <h4>Lighthouse Event Center Small Hall</h4>
+                        <p><i class="material-icons f15">location_on</i>64, Idimu Road, Opposite Gowon Estate, Mokola Bus Stop, Egbeda, Alimosho, Lagos</p>
+                        <div class="divider"></div>
+                        <section>
+                            <h5>About this Venue</h5>
+                            <p>The Lighthouse Event Center small hall offers a beautiful, spacious, and elegant venue, with seating capacity for 220 guests dinner style. This small hall can serve as a venue for weddings, parties, special events etc.</p>
+                            <div class="divider"></div>
+                            <div class="row">
+                                <div class="col s4">
+                                    <p>Capacity</p>
+                                </div>
+                                <div class="col s8">
+                                    <p>Optimum <span>200</span> - Maximum <span>300</span></p>
+                                </div>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="row">
+                                <div class="col s4">
+                                    <p>Facilities</p>
+                                </div>
+                                <div class="col s8">
+                                    <ul>
+                                        <li><i class="material-icons"></i>Chair</li>
+                                        <li><i class="material-icons"></i>Security</li>
+                                        <li><i class="material-icons"></i>Air</li>
+                                        <li><i class="material-icons"></i>Conditioner</li>
+                                        <li><i class="material-icons"></i>Table</li>
+                                        <li><i class="material-icons"></i>Changing</li>
+                                        <li><i class="material-icons"></i>Room</li>
+                                        <li><i class="material-icons"></i>Parking</li>
+                                        <li><i class="material-icons"></i>Space</li>
+                                        <li><i class="material-icons"></i>Stage</li>
+                                        <li><i class="material-icons"></i>Lighting</li>
+                                        <li><i class="material-icons"></i>Power</li>
+                                        <li><i class="material-icons"></i>Generator</li>
+                                        <li><i class="material-icons"></i>Rest</li>
+                                        <li><i class="material-icons"></i>Room</li>
+                                        <li><i class="material-icons"></i>Television</li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <div class="col s12 l4">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="search__modal" class="modal">
+    <div class="search__nav z-depth-0">
+        <div class="container">
+            <div class="row">
+                <div class="col s1">
+                    <a class="btn btn-flat white waves-effect search__back_btn"
+                       style="height: 64px;padding-top: 12px;padding-bottom: 12px;"><i
+                            class="material-icons">arrow_back</i></a>
+                </div>
+                <div class="col s11">
+                    <nav>
+                        <div class="nav-wrapper">
+                            <form method="post">
+                                <div class="input-field" style="margin-top: 0 !important;">
+                                    <input id="search" type="search" placeholder="Search" required>
+                                    <label class="label-icon" for="search"><i class="material-icons"
+                                                                              style="margin-top: -12px !important;color: #CCC;">search</i></label>
+                                    <i class="material-icons" style="color: #FFF;">close</i>
+                                </div>
+                            </form>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="search__results bg__white z-depth-1">
+        hello w
+    </div>
+</div>
+
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/materialize.min.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+    $(document).ready(function () {
+        var modal = $('.modal');
+        new WOW().init();
+        modal.modal({
+            dismissible: true, // Modal can be dismissed by clicking outside of the modal
+            opacity: .5, // Opacity of modal background
+            inDuration: 300, // Transition in duration
+            outDuration: 200, // Transition out duration
+            startingTop: '4%', // Starting top style attribute
+            endingTop: '10%', // Ending top style attribute
+            ready: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+                $('.body__holdr').addClass('blur__fits');
+            },
+            complete: function () {
+                $('.body__holdr').removeClass('blur__fits');
+                $('.modal-overlay').css({'display': 'none'});
+                this.removeClass('search__pane');
+            } // Callback for Modal close
+        });
+        $('.parallax').parallax();
+        $('.tooltipped').tooltip({delay: 50});
+        $('.fixed-action-btn').openFAB();
+        $('.fixed-action-btn').closeFAB();
+        $('.fixed-action-btn.toolbar').openToolbar();
+        $('.fixed-action-btn.toolbar').closeToolbar();
+    });
+</script>
 </body>
 </html>

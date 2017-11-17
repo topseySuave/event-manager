@@ -156,6 +156,10 @@ nav {
   background-color: #f5f5f5;
   border-radius: 3px; }
 
+/*center details css */
+.center__details {
+  padding: 10px; }
+
 /*signin css */
 .input-field {
   margin: 0;
@@ -189,5 +193,9 @@ nav {
   height: 108px; }
 
 /*media query */
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .signin__card_holdr {
+    width: 100%; } }
 
 /*# sourceMappingURL=app.css.map */
