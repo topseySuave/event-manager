@@ -106,27 +106,34 @@
                 <div class="col s12 l4">
                     <div class="card wow fadeInUp">
                         <div class="card-image">
-                            <img class="activator" src="image/2.jpg">
+                            <img src="image/2.jpg">
                             <span class="card-title">A title for this event</span>
-                            <a class="btn-floating halfway-fab waves-effect waves-light amber tooltipped"
+                            <a class="btn-floating activator halfway-fab waves-effect waves-light amber tooltipped"
                                data-position="bottom" data-tooltip="share">
                                 <i class="material-icons">share</i>
                             </a>
                         </div>
-                        <div class="card-content activator">
+                        <div class="card-content">
                             <p><i class="material-icons f15">schedule</i> Sat, Nov 25 8:00am</p>
-                            <small><i class="material-icons f15">location_on</i> Muson center, Lagos <i
-                                    class="material-icons right pointer">more_vert</i></small>
+                            <div>
+                                <i class="material-icons f15">location_on</i> Muson center, Lagos
+                                <i class="material-icons dropdown-button right pointer" data-activates="dropdown2">more_vert</i>
+                                <!-- Dropdown Structure -->
+                                <ul id="dropdown2" class="dropdown-content">
+                                    <li>
+                                        <a href="#add_event_modal" class="modal-trigger">Edit</a>
+                                    </li>
+                                    <li>
+                                        <a href="#!">Delete</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="card-reveal">
-                                             <span class="card-title grey-text text-darken-4">A title for this event<i
-                                                     class="material-icons right">close</i></span>
+                            <span class="card-title grey-text text-darken-4"><a>A title for this event</a><i
+                                    class="material-icons right">close</i></span>
                             <small>Here is some more information about this product that is only revealed once clicked
                                 on.
-                                <a class="btn-floating right red tooltipped" data-position="left"
-                                   onclick="confirm('Do you really want to Delete this Event..?')"
-                                   data-tooltip="Delete Event"><i class="material-icons">delete</i>
-                                </a>
                             </small>
                         </div>
                     </div>
@@ -134,27 +141,34 @@
                 <div class="col s12 l4">
                     <div class="card wow fadeInUp">
                         <div class="card-image">
-                            <img class="activator" src="image/2.jpg">
+                            <img src="image/2.jpg">
                             <span class="card-title">A title for this event</span>
-                            <a class="btn-floating halfway-fab waves-effect waves-light green lighten-1 tooltipped"
+                            <a class="btn-floating activator halfway-fab waves-effect waves-light green tooltipped"
                                data-position="bottom" data-tooltip="share">
                                 <i class="material-icons">share</i>
                             </a>
                         </div>
-                        <div class="card-content activator">
+                        <div class="card-content">
                             <p><i class="material-icons f15">schedule</i> Sat, Nov 25 8:00am</p>
-                            <small><i class="material-icons f15">location_on</i> Muson center, Lagos <i
-                                    class="material-icons right pointer">more_vert</i></small>
+                            <div>
+                                <i class="material-icons f15">location_on</i> Muson center, Lagos
+                                <i class="material-icons dropdown-button right pointer" data-activates="dropdown3">more_vert</i>
+                                <!-- Dropdown Structure -->
+                                <ul id="dropdown3" class="dropdown-content">
+                                    <li>
+                                        <a href="#add_event_modal" class="modal-trigger">Edit</a>
+                                    </li>
+                                    <li>
+                                        <a href="#!">Delete</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="card-reveal">
-                                             <span class="card-title grey-text text-darken-4">A title for this event<i
-                                                     class="material-icons right">close</i></span>
+                            <span class="card-title grey-text text-darken-4"><a>A title for this event</a><i
+                                    class="material-icons right">close</i></span>
                             <small>Here is some more information about this product that is only revealed once clicked
                                 on.
-                                <a class="btn-floating right red tooltipped" data-position="left"
-                                   onclick="confirm('Do you really want to Delete this Event..?')"
-                                   data-tooltip="Delete Event"><i class="material-icons">delete</i>
-                                </a>
                             </small>
                         </div>
                     </div>
