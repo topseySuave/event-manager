@@ -26,6 +26,7 @@
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li><a href="#search__modal" class="modal-trigger waves-effect" id="search__view"><i
                                 class="material-icons">search</i></a></li>
+                        <li><a href="centers.html">centers</a></li>
                         <li><a href="signin.html">Sign In</a></li>
                         <li><a href="signup.html">Sign Up</a></li>
                     </ul>
@@ -76,7 +77,7 @@
                                 </div>
                                 <div class="col s8">
                                     <ul class="facility__list">
-                                        <li><i class="material-icons"></i>Chair</li>
+                                        <li><i class="material-icons"></i>Chairs</li>
                                         <li><i class="material-icons"></i>Security</li>
                                         <li><i class="material-icons"></i>Air Conditioner</li>
                                         <li><i class="material-icons"></i>Tables</li>
@@ -107,29 +108,34 @@
                             <div class="col s12 l12">
                                 <div class="card wow fadeInUp">
                                     <div class="card-image">
-                                        <a href="">
-                                            <img src="image/2.jpg">
-                                            <span class="card-title">A title for this event</span>
-                                        </a>
-                                        <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped"
+                                        <img src="image/2.jpg">
+                                        <span class="card-title">A title for this event</span>
+                                        <a class="btn-floating activator halfway-fab waves-effect waves-light red tooltipped"
                                            data-position="bottom" data-tooltip="share">
                                             <i class="material-icons">share</i>
                                         </a>
                                     </div>
-                                    <div class="card-content activator">
+                                    <div class="card-content">
                                         <p><i class="material-icons f15">schedule</i> Sat, Nov 25 8:00am</p>
-                                        <small><i class="material-icons f15">location_on</i> Muson center, Lagos <i
-                                                class="material-icons right pointer">more_vert</i></small>
+                                        <div>
+                                            <i class="material-icons f15">location_on</i> Muson center, Lagos
+                                            <i class="material-icons dropdown-button right pointer" data-activates="dropdown1">more_vert</i>
+                                            <!-- Dropdown Structure -->
+                                            <ul id="dropdown1" class="dropdown-content">
+                                                <li>
+                                                    <a href="#add_event_modal" class="modal-trigger">Edit</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#!">Delete</a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                     <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4"><a href="">A title for this event</a><i
+                            <span class="card-title grey-text text-darken-4"><a>A title for this event</a><i
                                     class="material-icons right">close</i></span>
                                         <small>Here is some more information about this product that is only revealed once clicked
                                             on.
-                                            <a class="btn-floating right red tooltipped" data-position="left"
-                                               onclick="confirm('Do you really want to Delete this Event..?')"
-                                               data-tooltip="Delete Event"><i class="material-icons">delete</i>
-                                            </a>
                                         </small>
                                     </div>
                                 </div>
@@ -290,18 +296,67 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
+                        <p>Facilities</p>
+                        <ul class="facility__list">
+                            <li>
+                                <input id="security" name="security" type="checkbox">
+                                <label for="security" style="top: 0;">Security</label>
+                            </li>
+                            <li>
+                                <input id="chairs" name="chairs" type="checkbox">
+                                <label for="chairs" style="top: 0;">Chairs</label>
+                            </li>
+                            <li>
+                                <input id="air_conditioner" name="air_conditioner" type="checkbox">
+                                <label for="air_conditioner" style="top: 0;">Air Conditioner</label>
+                            </li>
+                            <li>
+                                <input id="tables" name="tables" type="checkbox">
+                                <label for="tables" style="top: 0;">Tables</label>
+                            </li>
+                            <li>
+                                <input id="changing_room" name="changing_room" type="checkbox">
+                                <label for="changing_room" style="top: 0;">Changing Room</label>
+                            </li>
+                            <li>
+                                <input id="parking_space" name="parking_space" type="checkbox">
+                                <label for="parking_space" style="top: 0;">Parking Space</label>
+                            </li>
+                            <li>
+                                <input id="stage_lighting" name="stage_lighting" type="checkbox">
+                                <label for="stage_lighting" style="top: 0;">Stage Lighting</label>
+                            </li>
+                            <li>
+                                <input id="power" name="power" type="checkbox">
+                                <label for="power" style="top: 0;">Power</label>
+                            </li>
+                            <li>
+                                <input id="generator" name="generator" type="checkbox">
+                                <label for="generator" style="top: 0;">Generator</label>
+                            </li>
+                            <li>
+                                <input id="rest_room" name="rest_room" type="checkbox">
+                                <label for="rest_room" style="top: 0;">Rest Room</label>
+                            </li>
+                            <li>
+                                <input id="television" name="television" type="checkbox">
+                                <label for="television" style="top: 0;">Television</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="input-field col s12">
                         <input id="location" type="text" class="validate" required>
                         <label for="location">Location</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="date" type="date" class="validate" required>
-                        <label for="date"></label>
+                        <input id="price" type="number" class="validate" required>
+                        <label for="price">Price</label>
                     </div>
                     <div class="input-field col s6">
-                        <input id="time" type="time" class="validate" required>
-                        <label for="time"></label>
+                        <input id="capacity" type="number" class="validate" required>
+                        <label for="capacity">Capacity</label>
                     </div>
                 </div>
                 <div class="row">

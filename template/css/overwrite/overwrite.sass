@@ -81,3 +81,95 @@ nav
 
 .carousel .carousel-item
   visibility: inherit !important
+
+[type="checkbox"]+label
+  position: relative
+  padding-left: 35px
+  cursor: pointer
+  display: inline-block
+  height: 25px
+  line-height: 25px
+  font-size: 1rem
+  -webkit-user-select: none
+  -moz-user-select: none
+  -khtml-user-select: none
+  -ms-user-select: none
+
+[type="checkbox"]:checked+label:before
+  top: -4px
+  left: -5px
+  width: 12px
+  height: 22px
+  border-top: 2px solid transparent
+  border-left: 2px solid transparent
+  border-right: 2px solid #26a69a
+  border-bottom: 2px solid #26a69a
+  -webkit-transform: rotate(40deg)
+  transform: rotate(40deg)
+  -webkit-backface-visibility: hidden
+  backface-visibility: hidden
+  -webkit-transform-origin: 100% 100%
+  transform-origin: 100% 100%
+
+[type="checkbox"].filled-in:checked+label:before
+  top: 0
+  left: 1px
+  width: 8px
+  height: 13px
+  border-top: 2px solid transparent
+  border-left: 2px solid transparent
+  border-right: 2px solid #fff
+  border-bottom: 2px solid #fff
+  -webkit-transform: rotateZ(37deg)
+  transform: rotateZ(37deg)
+  -webkit-transform-origin: 100% 100%
+  transform-origin: 100% 100%
+
+[type="checkbox"]+label:before, [type="checkbox"]:not(.filled-in)+label:after
+  content: ''
+  position: absolute
+  top: 0
+  left: 0
+  width: 18px
+  height: 18px
+  z-index: 0
+  border: 2px solid #5a5a5a
+  border-radius: 1px
+  margin-top: 2px
+  transition: .2s
+
+[type="checkbox"].filled-in:checked+label:after
+  top: 0
+  width: 20px
+  height: 20px
+  border: 2px solid #26a69a
+  background-color: #26a69a
+  z-index: 0
+
+[type="checkbox"]:not(.filled-in)+label:after
+  border: 0
+  -webkit-transform: scale(0)
+  transform: scale(0)
+
+[type="checkbox"].filled-in+label:after
+  border-radius: 2px
+
+[type="checkbox"]+label:before, [type="checkbox"]:not(.filled-in)+label:after
+  content: ''
+  position: absolute
+  top: 0
+  left: 0
+  width: 18px
+  height: 18px
+  z-index: 0
+  border: 2px solid #5a5a5a
+  border-radius: 1px
+  margin-top: 2px
+  transition: .2s
+
+[type="checkbox"].filled-in+label:before, [type="checkbox"].filled-in+label:after
+  content: ''
+  left: 0
+  position: absolute
+  transition: border .25s, background-color .25s, width .20s .1s, height .20s .1s, top .20s .1s, left .20s .1s
+  z-index: 1

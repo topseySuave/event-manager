@@ -26,6 +26,7 @@
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li><a href="#search__modal" class="modal-trigger waves-effect" id="search__view"><i
                                 class="material-icons">search</i></a></li>
+                        <li><a href="centers.html">centers</a></li>
                         <li><a href="signin.html">Sign In</a></li>
                         <li><a href="signup.html">Sign Up</a></li>
                     </ul>
@@ -133,8 +134,11 @@
     </div>
 
     <div class="fixed-action-btn wow zoomIn">
-        <a href="#add_event_modal" class="tooltipped modal-trigger btn-large btn-floating green" data-position="left"
+        <a href="#add_event_modal" class="tooltipped modal-trigger btn-large btn-floating green" data-position="top"
            data-tooltip="Add Event"><i class="material-icons">add</i>
+        </a>
+        <a href="#edit_center_modal" class="tooltipped modal-trigger btn-large btn-floating green lighten-1" data-position="top"
+           data-tooltip="Add Center"><i class="material-icons">add</i>
         </a>
     </div>
 
@@ -204,6 +208,109 @@
     </div>
 </div>
 
+<!-- Modal Structure -->
+<div id="edit_center_modal" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4><span>Create</span> Center</h4>
+        <div class="row">
+            <form class="col s12" id="edit-center-form">
+                <div class="row">
+                    <div class="col s6">
+                        <div class="file-field input-field">
+                            <div class="btn">
+                                <span>Upload</span>
+                                <input type="file">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" placeholder="Upload an image here">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="event_title" type="text" class="validate" required>
+                        <label for="event_title">Title</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <p>Facilities</p>
+                        <ul class="facility__list">
+                            <li>
+                                <input id="security" name="security" type="checkbox">
+                                <label for="security" style="top: 0;">Security</label>
+                            </li>
+                            <li>
+                                <input id="chairs" name="chairs" type="checkbox">
+                                <label for="chairs" style="top: 0;">Chairs</label>
+                            </li>
+                            <li>
+                                <input id="air_conditioner" name="air_conditioner" type="checkbox">
+                                <label for="air_conditioner" style="top: 0;">Air Conditioner</label>
+                            </li>
+                            <li>
+                                <input id="tables" name="tables" type="checkbox">
+                                <label for="tables" style="top: 0;">Tables</label>
+                            </li>
+                            <li>
+                                <input id="changing_room" name="changing_room" type="checkbox">
+                                <label for="changing_room" style="top: 0;">Changing Room</label>
+                            </li>
+                            <li>
+                                <input id="parking_space" name="parking_space" type="checkbox">
+                                <label for="parking_space" style="top: 0;">Parking Space</label>
+                            </li>
+                            <li>
+                                <input id="stage_lighting" name="stage_lighting" type="checkbox">
+                                <label for="stage_lighting" style="top: 0;">Stage Lighting</label>
+                            </li>
+                            <li>
+                                <input id="power" name="power" type="checkbox">
+                                <label for="power" style="top: 0;">Power</label>
+                            </li>
+                            <li>
+                                <input id="generator" name="generator" type="checkbox">
+                                <label for="generator" style="top: 0;">Generator</label>
+                            </li>
+                            <li>
+                                <input id="rest_room" name="rest_room" type="checkbox">
+                                <label for="rest_room" style="top: 0;">Rest Room</label>
+                            </li>
+                            <li>
+                                <input id="television" name="television" type="checkbox">
+                                <label for="television" style="top: 0;">Television</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="input-field col s12">
+                        <input id="location" type="text" class="validate" required>
+                        <label for="location">Location</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="price" type="number" class="validate" required>
+                        <label for="price">Price</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="capacity" type="number" class="validate" required>
+                        <label for="capacity">Capacity</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="description">Description</label>
+                        <textarea id="description" type="text" class="materialize-textarea validate"
+                                  required></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect btn-flat">Cancel</a>
+        <a href="#!" class="btn waves-effect green lighten-1">Create</a>
+    </div>
+</div>
 
 <!-- Modal Structure -->
 <div id="search__modal" class="modal">
