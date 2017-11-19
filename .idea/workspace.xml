@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f051bbcc-4e3a-4837-a5f5-ffa0a54f7bfb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/center-details.html" afterPath="$PROJECT_DIR$/template/center-details.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/centers.html" afterPath="$PROJECT_DIR$/template/centers.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/index.html" afterPath="$PROJECT_DIR$/template/index.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -134,8 +131,8 @@
       <file leaf-file-name="center-details.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/template/center-details.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="516" column="45" lean-forward="true" selection-start-line="516" selection-start-column="45" selection-end-line="516" selection-end-column="45" />
+            <state relative-caret-position="316">
+              <caret line="377" column="24" lean-forward="true" selection-start-line="377" selection-start-column="24" selection-end-line="377" selection-end-column="24" />
               <folding>
                 <element signature="n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -568,7 +565,7 @@
       <workItem from="1510849378045" duration="2128000" />
       <workItem from="1510859023664" duration="13130000" />
       <workItem from="1510930031100" duration="33297000" />
-      <workItem from="1511054095963" duration="7458000" />
+      <workItem from="1511054095963" duration="7757000" />
     </task>
     <task id="LOCAL-00001" summary="project building and first commit">
       <created>1510593022088</created>
@@ -780,11 +777,18 @@
       <option name="project" value="LOCAL" />
       <updated>1511052961782</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="refactor: completed center list fast search form section.&#10;- Capacity input&#10;- Price Input&#10;- Location Input.">
+      <created>1511119404719</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1511119404719</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="126615000" />
+    <option name="totallyTimeSpent" value="126914000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
@@ -853,7 +857,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="landing page commit 1" />
     <MESSAGE value="landing page commit 2" />
     <MESSAGE value="gh-pages-v1" />
     <MESSAGE value="gh-pages-v2 wow integration" />
@@ -878,7 +881,8 @@
     <MESSAGE value="style: completed center-details page, center  listing and center modification form." />
     <MESSAGE value="refactor: changed the input form for the center details.&#10;- Added title input&#10;- Added location input&#10;- Added facilities checkboxes&#10;- Added price and capacity of center&#10;- Added center description" />
     <MESSAGE value="refactor: changed add center button background color." />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: changed add center button background color." />
+    <MESSAGE value="refactor: completed center list fast search form section.&#10;- Capacity input&#10;- Price Input&#10;- Location Input." />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: completed center list fast search form section.&#10;- Capacity input&#10;- Price Input&#10;- Location Input." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1523,8 +1527,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/template/center-details.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="516" column="45" lean-forward="true" selection-start-line="516" selection-start-column="45" selection-end-line="516" selection-end-column="45" />
+        <state relative-caret-position="316">
+          <caret line="377" column="24" lean-forward="true" selection-start-line="377" selection-start-column="24" selection-end-line="377" selection-end-column="24" />
           <folding>
             <element signature="n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
