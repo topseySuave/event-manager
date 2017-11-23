@@ -8,14 +8,22 @@
 /*Margin mixins */
 /*overwrites */
 nav {
+  height: 55px !important;
   box-shadow: none !important;
   background-color: transparent !important;
   -webkit-transition: all 500ms ease-in-out;
   -moz-transition: all 500ms ease-in-out;
   -o-transition: all 500ms ease-in-out;
   transition: all 500ms ease-in-out; }
-  nav ul a:hover {
-    background-color: rgba(0, 0, 0, 0.5) !important; }
+  nav ul {
+    height: 55px; }
+    nav ul li {
+      height: 55px;
+      line-height: 55px !important; }
+      nav ul li a {
+        height: 55px; }
+    nav ul a:hover {
+      background-color: rgba(0, 0, 0, 0.5) !important; }
 
 .logo {
   width: 250px;

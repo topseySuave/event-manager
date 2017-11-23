@@ -1,0 +1,21 @@
+{
+  "development": {
+    "username": "gabmicah",
+    "password": 12345,
+    "database": "boots_em_db",
+    "host": "127.0.0.1",
+    "port": 2000,
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "gabmicah",
+    "password": 12345,
+    "database": "boots_em_test_db",
+    "host": "127.0.0.1",
+    "port": 2000,
+    "dialect": "postgres"
+  },
+  "production": {
+    "dialect": "postgres"
+  }
+}

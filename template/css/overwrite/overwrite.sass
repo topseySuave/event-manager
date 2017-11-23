@@ -1,13 +1,24 @@
 nav
+  height: $height !important
   box-shadow: none !important
   background:
     color: transparent !important
   @include transit(500ms)
 
-  ul a
-    &:hover
-      background:
-        color: rgba(0, 0, 0, .5) !important
+  ul
+    height: $height
+
+    li
+      height: $height
+      line-height: $height !important
+
+      a
+        height: $height
+
+    a
+      &:hover
+        background:
+          color: rgba(0, 0, 0, .5) !important
 
 .logo
   width: 250px
