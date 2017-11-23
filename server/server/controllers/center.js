@@ -1,11 +1,28 @@
 // import Center from '../models/center';
+import {centers} from '../dummy';
 
 module.exports = {
+    getCenters: (req, res) => {
+        res.send(centers);
+    },
 
-    createEvent: (req, res) => {
+    createCenter: (req, res) => {
+        let r = centers.length;
+        centers.push(req.body);
+        res.send(centers[r]);
+    },
+
+    getCenter: (req, res) => {
+        let r = req.params.id;
+        res.send(centers[r]);
+    },
+
+    updateCenter: (req, res) => {
 
     }
 
+
+    // Actual Database Implementation
     // create(req, res) {
     //     return Center
     //         .create({

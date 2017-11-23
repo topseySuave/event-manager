@@ -16,6 +16,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    booked: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
   }, {
     classMethods: {
       associate: (models) => {

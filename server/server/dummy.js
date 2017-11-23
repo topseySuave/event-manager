@@ -1,4 +1,4 @@
-const eve = [
+const events = [
     {
         title: 'Welcome to the beginning of nothingness.',
         img_url: 'images/2.jpg',
@@ -33,4 +33,27 @@ const eve = [
     },
 ];
 
-module.exports = eve;
+const centers = [
+    {
+        title: 'Lighthouse Event Center Small Hall',
+        description: 'The Lighthouse Event Center small hall offers a beautiful, spacious, and elegant venue, with seating capacity for 220 guests dinner style. This small hall can serve as a venue for weddings, parties, special events etc.',
+        location: '64, Idimu Road, Opposite Gowon Estate, Mokola Bus Stop, Egbeda, Alimosho, Lagos',
+        img_url: 'https://api.adorable.io/avatars/285/lighthouse@adorable.png?v=2.0.1',
+        facilities: [],
+        capacity: '2000',
+        price: 'N200,000',
+        booked: false
+    },
+    {
+        title: 'Imperial Event Hall',
+        description: 'Imperial Hall is an indigenous company that specializes in provision of world class event management and hospitality services. We are Indoor Event Center. Located in a tranquil and well secured environment behind Abiola Gardens, Alausa Secretariat Ikeja, Lagos.',
+        location: 'Ikeja, Lagos',
+        img_url: 'https://api.adorable.io/avatars/285/imperial@adorable.png?v=2.0.1',
+        facilities: [],
+        capacity: '1350',
+        price: 'N200,000',
+        booked: false
+    },
+];
+
+module.exports = { events, centers };
