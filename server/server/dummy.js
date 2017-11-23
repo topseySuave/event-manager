@@ -1,5 +1,6 @@
 const events = [
     {
+        id: 1,
         title: 'Welcome to the beginning of nothingness.',
         img_url: 'images/2.jpg',
         location: 'Egbeda, Alimosho, Lagos',
@@ -8,6 +9,7 @@ const events = [
         description: 'The Lighthouse Event Center small hall offers a beautiful, spacious, and elegant venue, with seating capacity for 220 guests dinner style. This small hall can serve as a venue for weddings, parties, special events etc.'
     },
     {
+        id: 2,
         title: 'the beginning of nothingness.',
         img_url: 'images/3.jpg',
         location: 'Mako, Gobe, Abuja',
@@ -16,6 +18,7 @@ const events = [
         description: 'The Lighthouse Event Center small hall offers a beautiful, spacious, and elegant venue, with seating capacity for 220 guests dinner style. This small hall can serve as a venue for weddings, parties, special events etc.'
     },
     {
+        id: 3,
         title: 'Welcome to the beginning of nothingness.',
         img_url: 'images/1.jpg',
         location: '721 road, Festac-town, Lagos',
@@ -24,6 +27,7 @@ const events = [
         description: 'The Lighthouse Event Center small hall offers a beautiful. This small hall can serve as a venue for weddings, parties, special events etc.'
     },
     {
+        id: 4,
         title: 'Welcome to the beginning of nothingness.',
         img_url: 'images/4.jpg',
         location: 'Iba, Ojo, Lagos',
@@ -35,6 +39,7 @@ const events = [
 
 const centers = [
     {
+        id: 1,
         title: 'Lighthouse Event Center Small Hall',
         description: 'The Lighthouse Event Center small hall offers a beautiful, spacious, and elegant venue, with seating capacity for 220 guests dinner style. This small hall can serve as a venue for weddings, parties, special events etc.',
         location: '64, Idimu Road, Opposite Gowon Estate, Mokola Bus Stop, Egbeda, Alimosho, Lagos',
@@ -45,6 +50,7 @@ const centers = [
         booked: false
     },
     {
+        id: 2,
         title: 'Imperial Event Hall',
         description: 'Imperial Hall is an indigenous company that specializes in provision of world class event management and hospitality services. We are Indoor Event Center. Located in a tranquil and well secured environment behind Abiola Gardens, Alausa Secretariat Ikeja, Lagos.',
         location: 'Ikeja, Lagos',

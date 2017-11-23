@@ -10,4 +10,11 @@ describe('Example Node Server', () => {
             done();
         });
     });
+
+    it('should return object', done => {
+        http.get('http://localhost:8000/api/v1/events', res => {
+            assert.equal({}, res.statusCode);
+            done();
+        });
+    });
 });

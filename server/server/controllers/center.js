@@ -7,20 +7,66 @@ module.exports = {
     },
 
     createCenter: (req, res) => {
-        let r = centers.length;
         centers.push(req.body);
-        res.send(centers[r]);
+        return res.send({
+            message: 'Success',
+            error: false
+        });
     },
 
     getCenter: (req, res) => {
-        let r = req.params.id;
-        res.send(centers[r]);
+        let r = parseInt(req.params.id, 10);
+        centers.forEach((i, it) => {
+            if(centers[it].id === r){
+                return res.send({
+                    message: 'Success',
+                    event: i,
+                    error: false
+                });
+            }
+        });
+
+        return res.send({
+            message: 'Event not found',
+            error: true
+        });
     },
 
     updateCenter: (req, res) => {
+        let r = parseInt(req.params.id, 10);
+        centers.forEach((i, it) => {
+            if(centers[it].id == r){
+                centers[it] = req.body;
+                return res.send({
+                    message: 'Success',
+                    event: centers[it],
+                    error: false
+                });
+            }
+        });
+        return res.send({
+            message: 'event not found',
+            error: true
+        });
+    },
 
+    deleteEvent: (req, res) => {
+        let r = parseInt(req.params.id, 10);
+        centers.forEach((i, it) => {
+            if(centers[it].id === r){
+                centers.splice(it, 1);
+                return res.send({
+                    message: 'Success',
+                    event: centers,
+                    error: false
+                });
+            }
+        });
+        return res.send({
+            message: 'Event not found',
+            error: true
+        });
     }
-
 
     // Actual Database Implementation
     // create(req, res) {
