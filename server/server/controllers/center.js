@@ -1,5 +1,4 @@
-// import Center from '../models/center';
-import {centers} from '../dummy';
+import {centers} from '../db';
 
 module.exports = {
     getCenters: (req, res) => {
