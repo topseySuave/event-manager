@@ -12,7 +12,7 @@ module.exports = {
 
     getEvent: (req, res) => {
         let id = parseInt(req.params.id, 10);
-        events.forEach((i, it) => {
+        events.forEach((event, index) => {
             if(events[it].id === id){
                 return res.send({
                     message: 'Success',

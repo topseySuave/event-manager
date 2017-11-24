@@ -14,31 +14,31 @@ module.exports = {
     },
 
     getCenter: (req, res) => {
-        let r = parseInt(req.params.id, 10);
-        centers.forEach((i, it) => {
-            if(centers[it].id === r){
+        let id = parseInt(req.params.id, 10);
+        centers.forEach((center, index) => {
+            if(centers[index].id === id){
                 return res.send({
                     message: 'Success',
-                    event: i,
+                    event: center,
                     error: false
                 });
             }
         });
 
         return res.send({
-            message: 'Event not found',
+            message: 'Center not found',
             error: true
         });
     },
 
     updateCenter: (req, res) => {
         let r = parseInt(req.params.id, 10);
-        centers.forEach((i, it) => {
-            if(centers[it].id == r){
-                centers[it] = req.body;
+        centers.forEach((center, index) => {
+            if(centers[index].id == r){
+                centers[index] = req.body;
                 return res.send({
                     message: 'Success',
-                    event: centers[it],
+                    event: center,
                     error: false
                 });
             }

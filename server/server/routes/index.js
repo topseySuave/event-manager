@@ -10,3 +10,29 @@ module.exports = (app) => {
         .post('/api/v1/centers', data.center.createCenter)
         .put('/api/v1/centers/:id', data.center.updateCenter);
 };
+
+//correct readMe
+
+//heading nasme of app
+// what project do
+// what it is build with
+
+// sub- features
+    //what feature sso of the app
+// why the proj is useful
+// app requirement
+
+//CLI installation
+//how to start the project.
+// sub - testing
+// heading - Api documentation
+
+//status
+// sub - contributing to project
+
+//limitation
+// state limitations
+
+//Deployment
+
+//License
