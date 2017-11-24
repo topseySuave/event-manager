@@ -1,4 +1,5 @@
-import {events} from '../dummy';
+import {events} from '../db';
+
 
 module.exports = {
     createEvent: (req, res) => {
@@ -10,9 +11,9 @@ module.exports = {
     },
 
     getEvent: (req, res) => {
-        let r = parseInt(req.params.id, 10);
+        let id = parseInt(req.params.id, 10);
         events.forEach((i, it) => {
-            if(events[it].id === r){
+            if(events[it].id === id){
                 return res.send({
                     message: 'Success',
                     event: i,
@@ -28,9 +29,9 @@ module.exports = {
     },
 
     updateEvent: (req, res) => {
-        let r = parseInt(req.params.id, 10);
+        let id = parseInt(req.params.id, 10);
         events.forEach((i, it) => {
-            if(events[it].id == r){
+            if(events[it].id == id){
                 events[it] = req.body;
                 return res.send({
                     message: 'Success',
@@ -46,9 +47,9 @@ module.exports = {
     },
 
     deleteEvent: (req, res) => {
-        let r = parseInt(req.params.id, 10);
+        let id = parseInt(req.params.id, 10);
         events.forEach((i, it) => {
-            if(events[it].id === r){
+            if(events[it].id === id){
                 events.splice(it, 1);
                 return res.send({
                     message: 'Success',
