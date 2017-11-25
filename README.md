@@ -16,8 +16,9 @@
    - Enables user Manager and Easily Attend Events.
 
  ### Get Started
-  ### Requirements
- - Clone the Application by running ``$ git clone https://github.com/topseySuave/event-manager.git``
+    Clone the Application by running
+    $ git clone https://github.com/topseySuave/event-manager.git``
+    
  - Change your directory ``cd`` into the newly created folder ``cd event-manager``
  - Install Dependencies by running ``npm install``
  - Run test ``npm test``
