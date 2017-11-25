@@ -2,11 +2,11 @@
   "name": "boots-event-manager",
   "version": "1.0.0",
   "description": "An Event Manager application to create and manage your own event.",
-  "main": "app.js",
+  "main": "server/app.js",
   "scripts": {
-    "start": "nodemon ./bin/www --exec babel-node --presets es2015,stage-2",
+    "start": "nodemon ./server/bin/www --exec babel-node --presets es2015,stage-2",
     "build": "babel server",
-    "test": "mocha --compilers js:babel-register"
+    "test": "mocha ./server/test/ --compilers js:babel-register"
   },
   "author": "Gabriel Micah",
   "license": "ISC",

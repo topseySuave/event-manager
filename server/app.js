@@ -12,8 +12,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-import event from './server/routes/events';
-import center from './server/routes/centers';
+import event from './routes/events';
+import center from './routes/centers';
 
 center(app);
 event(app);

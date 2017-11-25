@@ -2,6 +2,7 @@
   <dictionary name="topsey">
     <words>
       <w>alimosho</w>
+      <w>andela</w>
       <w>datepicker</w>
       <w>egbeda</w>
       <w>festac</w>
@@ -11,6 +12,8 @@
       <w>horiz</w>
       <w>idimu</w>
       <w>ikeja</w>
+      <w>ipsum</w>
+      <w>lorem</w>
       <w>mako</w>
       <w>micon</w>
       <w>mixins</w>
@@ -20,6 +23,7 @@
       <w>signin</w>
       <w>tooltipped</w>
       <w>vert</w>
+      <w>yaba</w>
     </words>
   </dictionary>
 </component>
