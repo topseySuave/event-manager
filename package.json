@@ -7,6 +7,7 @@
     "start": "nodemon ./server/bin/www --exec babel-node --presets es2015,stage-2",
     "build": "babel server",
     "test": "nyc --reporter=html --reporter=text mocha ./server/test/ --compilers js:babel-register",
+    "test:dev": "./node_modules/.bin/mocha --timeout 15000 --compilers js:babel-core/register server/test/*.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test"
   },
