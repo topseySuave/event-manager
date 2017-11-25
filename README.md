@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/topseySuave/event-manager.svg?branch=develop)](https://travis-ci.org/topseySuave/event-manager)
+[![Coverage Status](https://coveralls.io/repos/github/topseySuave/event-manager/badge.svg?branch=develop)](https://coveralls.io/github/topseySuave/event-manager?branch=develop)
 [![npm (tag)](https://img.shields.io/npm/v/npm/next.svg)]()
 
 
@@ -12,7 +13,7 @@
    - View Center details
 
  ### Why this App is Useful
-   - Enables user Manager and Easily Attend Events.  
+   - Enables user Manager and Easily Attend Events.
 
  ### Get Started
   ### Requirements
