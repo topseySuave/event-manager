@@ -1,13 +1,13 @@
 language: node_js
 node_js:
   - 9
-  - "stable"
+  - 6
 env:
   global:
     - export NODE_ENV=test
   script:
   - npm test
-  - npm run coverage
+  - travis_wait npm run coverage
   - npm install
 
   after_success: 'npm run coveralls'
