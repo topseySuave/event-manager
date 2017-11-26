@@ -1,8 +1,0 @@
-{
-  "name": "Boots Event Manager Application",
-  "description": "An Event Manager application build for creating, managing and attending events",
-  "repository": "https://github.com/topseySuave/event-manager",
-  "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/master/public/node.svg",
-  "keywords": ["boots", "events", "manager", "node", "express", "heroku"],
-  "image": "heroku/nodejs"
-}
