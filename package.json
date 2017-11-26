@@ -4,8 +4,8 @@
   "description": "An Event Manager application to create and manage your own event.",
   "main": "server/app.js",
   "scripts": {
-    "start": "babel-node ./server/bin/www",
-    "start:dev": "nodemon ./server/bin/www --exec --presets es2015,stage-2",
+    "start": "babel-node ./server/app.js",
+    "start:dev": "nodemon ./server/app.js --exec --presets es2015,stage-2",
     "build": "babel server",
     "test": "nyc --reporter=html --reporter=text mocha ./server/test/ --compilers js:babel-register",
     "test:dev": "./node_modules/.bin/mocha --timeout 15000 --compilers js:babel-core/register server/test/*.js",
