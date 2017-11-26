@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 
 // Set up the express app
 const app = express();
-const router = app.Router();
+const router = express.Router();
 
 app.use('/api/v1', router);
 
