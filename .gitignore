@@ -1,5 +1,5 @@
 node_modules/
-.github
-.idea
+.github/
+.idea/
 coverage/
 .nyc_output/
