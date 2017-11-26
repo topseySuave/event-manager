@@ -24,6 +24,7 @@
     
  - Change your directory ``cd`` into the newly created folder ``cd event-manager``
  - Install Dependencies by running ``npm install``
+ - To Start the server run ```npm start```
  - Run test ``npm test``
 
 ### License
