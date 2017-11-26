@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f051bbcc-4e3a-4837-a5f5-ffa0a54f7bfb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.hound.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.hound.yml" afterPath="$PROJECT_DIR$/.hound.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,7 +35,7 @@
         <entry file="file://$PROJECT_DIR$/.hound.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
-              <caret line="2" column="24" lean-forward="true" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+              <caret line="2" column="27" lean-forward="true" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -376,7 +376,7 @@
       <workItem from="1511521602008" duration="8231000" />
       <workItem from="1511555893588" duration="6229000" />
       <workItem from="1511602249473" duration="19659000" />
-      <workItem from="1511657252352" duration="6618000" />
+      <workItem from="1511657252352" duration="7890000" />
     </task>
     <task id="LOCAL-00001" summary="project building and first commit">
       <created>1510593022088</created>
@@ -679,11 +679,18 @@
       <option name="project" value="LOCAL" />
       <updated>1511666750184</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="feat: hound setup">
+      <created>1511696830325</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1511696830325</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="171271000" />
+    <option name="totallyTimeSpent" value="172543000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1370" height="772" extended-state="0" />
@@ -752,7 +759,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor: change to search modal back (close) button." />
     <MESSAGE value="refactor: site logo implementation." />
     <MESSAGE value="refactor: site logo implementation-v0." />
     <MESSAGE value="refactor: event form completion." />
@@ -777,7 +783,8 @@
     <MESSAGE value="docs: hound-ci, code-climate badge obtainability" />
     <MESSAGE value="docs: README.md update" />
     <MESSAGE value="fix: Server update for travis error" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: Server update for travis error" />
+    <MESSAGE value="feat: hound setup" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: hound setup" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1077,7 +1084,7 @@
     <entry file="file://$PROJECT_DIR$/.hound.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="2" column="24" lean-forward="true" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+          <caret line="2" column="27" lean-forward="true" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
           <folding />
         </state>
       </provider>
