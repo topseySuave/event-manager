@@ -6,8 +6,8 @@ env:
   global:
     - export NODE_ENV=test
   script:
-  - travis_wait 20 npm test
-  - travis_wait 20 npm run coverage
+  - travis_wait npm test
+  - travis_wait npm run coverage
   - travis_wait npm install
 
   after_success: 'npm run coveralls'

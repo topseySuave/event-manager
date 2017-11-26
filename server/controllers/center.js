@@ -16,7 +16,7 @@ module.exports = {
     getCenter: (req, res) => {
         let id = parseInt(req.params.id, 10);
         centers.forEach((center, index) => {
-            if(centers[index].id === id){
+            if(center.id === id){
                 return res.send({
                     message: 'Success',
                     event: center,
@@ -34,7 +34,7 @@ module.exports = {
     updateCenter: (req, res) => {
         let r = parseInt(req.params.id, 10);
         centers.forEach((center, index) => {
-            if(centers[index].id == r){
+            if(center.id == r){
                 centers[index] = req.body;
                 return res.send({
                     message: 'Success',
@@ -51,12 +51,12 @@ module.exports = {
 
     deleteEvent: (req, res) => {
         let r = parseInt(req.params.id, 10);
-        centers.forEach((i, it) => {
-            if(centers[it].id === r){
-                centers.splice(it, 1);
+        centers.forEach((center, index) => {
+            if(center.id === r){
+                centers.splice(index, 1);
                 return res.send({
                     message: 'Success',
-                    event: centers,
+                    event: center,
                     error: false
                 });
             }

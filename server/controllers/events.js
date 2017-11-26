@@ -13,10 +13,10 @@ module.exports = {
     getEvent: (req, res) => {
         let id = parseInt(req.params.id, 10);
         events.forEach((event, index) => {
-            if(events[it].id === id){
+            if(event.id === id){
                 return res.send({
                     message: 'Success',
-                    event: i,
+                    event: event,
                     error: false
                 });
             }
@@ -30,12 +30,12 @@ module.exports = {
 
     updateEvent: (req, res) => {
         let id = parseInt(req.params.id, 10);
-        events.forEach((i, it) => {
-            if(events[it].id == id){
+        events.forEach((event, index) => {
+            if(event.id == id){
                 events[it] = req.body;
                 return res.send({
                     message: 'Success',
-                    event: events[it],
+                    event: event,
                     error: false
                 });
             }
@@ -48,12 +48,12 @@ module.exports = {
 
     deleteEvent: (req, res) => {
         let id = parseInt(req.params.id, 10);
-        events.forEach((i, it) => {
-            if(events[it].id === id){
-                events.splice(it, 1);
+        events.forEach((event, index) => {
+            if(event.id === id){
+                events.splice(index, 1);
                 return res.send({
                     message: 'Success',
-                    event: events,
+                    event: event,
                     error: false
                 });
             }
