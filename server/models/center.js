@@ -1,31 +1,20 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   let Center = sequelize.define('Center', {
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    img_url: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    facility: DataTypes.ENUM,
-    price: DataTypes.INTEGER,
+    title: DataTypes.TEXT,
+    img_url: DataTypes.TEXT,
+    location: DataTypes.TEXT,
+    description: DataTypes.TEXT,
+    facilities: DataTypes.ARRAY(DataTypes.TEXT),
     capacity: DataTypes.INTEGER,
-    description: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    booked: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-    },
+    price: DataTypes.DOUBLE,
+    eventId: DataTypes.INTEGER
   }, {
     classMethods: {
-      associate: (models) => {
+      associate: function(models) {
         // associations can be defined here
         Center.hasMany(models.Events, {
-          foreignKey: 'eventId',
+          foreignKey: 'eventId'
         });
       }
     }

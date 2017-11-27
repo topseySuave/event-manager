@@ -32,7 +32,7 @@ module.exports = {
         let id = parseInt(req.params.id, 10);
         events.forEach((event, index) => {
             if(event.id == id){
-                events[it] = req.body;
+                events[index] = req.body;
                 return res.send({
                     message: 'Success',
                     event: event,

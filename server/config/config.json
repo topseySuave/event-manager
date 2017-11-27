@@ -1,16 +1,16 @@
 {
   "development": {
-    "username": "gabmicah",
+    "username": "postgres",
     "password": "gabmicah",
-    "database": "boots_em_db",
+    "database": "boots",
     "host": "localhost",
-    "port": 5342,
+    "port": 5432,
     "dialect": "postgres"
   },
   "test": {
-    "username": "gabmicah",
+    "username": "postgres",
     "password": "gabmicah",
-    "database": "boots_em_test_db",
+    "database": "boots",
     "host": "localhost",
     "port": 5342,
     "dialect": "postgres"
