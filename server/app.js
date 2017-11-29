@@ -2,10 +2,13 @@ import express from 'express';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
 import http from 'http';
+import config from './config/config';
 
 // Set up the express app
 const app = express();
 const router = express.Router();
+
+app.set('superSecret', config.secret); // secret variable
 
 app.use('/api/v1', router);
 

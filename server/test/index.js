@@ -9,30 +9,30 @@ const expect = chai.expect;
 
 describe('Test API', () => {
     describe('GET /', () => {
-        it('Should return 200 for getting all centers', (done) => {
-            chai.request(app)
-                .get('/api/v1/centers')
-                .end((err, res) => {
-                    expect(res.status).to.equal(200);
-                    done();
-                });
-        });
-        it('Should return 200 for getting individual center', (done) => {
-            chai.request(app)
-                .get('/api/v1/centers/1')
-                .end((err, res) => {
-                    expect(res.status).to.equal(200);
-                    done();
-                });
-        });
-        it('Should return an object', (done) => {
-            chai.request(app)
-                .get('/api/v1/centers')
-                .end((err, res) => {
-                    expect(res.body[0]).to.have.property('id');
-                    done();
-                });
-        });
+    //     it('Should return 200 for getting all centers', (done) => {
+    //         chai.request(app)
+    //             .get('/api/v1/centers')
+    //             .end((err, res) => {
+    //                 expect(res.status).to.equal(200);
+    //                 done();
+    //             });
+    //     });
+    //     it('Should return 200 for getting individual center', (done) => {
+    //         chai.request(app)
+    //             .get('/api/v1/centers/1')
+    //             .end((err, res) => {
+    //                 expect(res.status).to.equal(200);
+    //                 done();
+    //             });
+    //     });
+    //     it('Should return an object', (done) => {
+    //         chai.request(app)
+    //             .get('/api/v1/centers')
+    //             .end((err, res) => {
+    //                 expect(res.body[0]).to.have.property('id');
+    //                 done();
+    //             });
+    //     });
 
         it('Should return 200 for the default route', (done) => {
             chai.request(app)
@@ -54,25 +54,25 @@ describe('Test API', () => {
                 });
         });
     });
-    describe('API to update center', () => {
-        it('Should return 200 if successful', (done) => {
-            chai.request(app)
-                .put('/api/v1/centers/1')
-                .send({
-                    id: 1,
-                    title: "This is Andela",
-                    capacity: 500,
-                    location: 'Lagos',
-                    features: 'some feature',
-                    description: 'Lorem Ipsum Dolor'
-                })
-                .end((err, res) => {
-                    expect(res.status).to.equal(200);
-                    expect(res.body).to.have.property('message').equal('Success');
-                    done();
-                });
-        });
-    });
+    // describe('API to update center', () => {
+    //     it('Should return 200 if successful', (done) => {
+    //         chai.request(app)
+    //             .put('/api/v1/centers/1')
+    //             .send({
+    //                 id: 1,
+    //                 title: "This is Andela",
+    //                 capacity: 500,
+    //                 location: 'Lagos',
+    //                 features: 'some feature',
+    //                 description: 'Lorem Ipsum Dolor'
+    //             })
+    //             .end((err, res) => {
+    //                 expect(res.status).to.equal(200);
+    //                 expect(res.body).to.have.property('message').equal('Success');
+    //                 done();
+    //             });
+    //     });
+    // });
     describe('POST event', () => {
         it('Should return 400 for post without event title', (done) => {
             chai.request(app)

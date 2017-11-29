@@ -1,25 +1,39 @@
 'use strict';
-module.exports = (sequelize, DataTypes) => {
-  let Events = sequelize.define('Events', {
+const Events = (sequelize, DataTypes) => {
+  let EventsModel = sequelize.define('Events', {
     title: DataTypes.TEXT,
-    description: DataTypes.TEXT,
     img_url: DataTypes.TEXT,
-    date: DataTypes.DATE,
-    time: DataTypes.TIME,
-    centerId: DataTypes.INTEGER,
-    userId: DataTypes.INTEGER
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-        Events.belongsTo(models.Center, {
-          foreignKey: 'centerId'
-        });
-        Events.belongsTo(models.User, {
-            foreignKey: 'userId'
-        });
+    description: DataTypes.TEXT,
+    date: DataTypes.TEXT,
+    centerId: {
+      type: DataTypes.INTEGER,
+      references: {
+          model: 'Centers',
+          key: 'id',
+          as: 'centerId',
+      }
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      reference: {
+        model: 'User',
+        key: 'id',
+        as: 'userId'
       }
     }
   });
-  return Events;
+
+  EventsModel.associate = (models) => {
+      EventsModel.belongsTo(models.Centers, {
+          foreignKey: 'centerId',
+          onDelete: 'CASCADE',
+      });
+      EventsModel.belongsTo(models.User, {
+          foreignKey: 'userId',
+          onDelete: 'CASCADE',
+      });
+  };
+  return EventsModel;
 };
+
+export default Events;

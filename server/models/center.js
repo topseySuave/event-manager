@@ -1,6 +1,6 @@
 'use strict';
-module.exports = (sequelize, DataTypes) => {
-  let Center = sequelize.define('Center', {
+const Centers = (sequelize, DataTypes) => {
+  let CentersModel = sequelize.define('Centers', {
     title: DataTypes.TEXT,
     img_url: DataTypes.TEXT,
     location: DataTypes.TEXT,
@@ -8,16 +8,18 @@ module.exports = (sequelize, DataTypes) => {
     facilities: DataTypes.ARRAY(DataTypes.TEXT),
     capacity: DataTypes.INTEGER,
     price: DataTypes.DOUBLE,
-    eventId: DataTypes.INTEGER
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-        Center.hasMany(models.Events, {
-          foreignKey: 'eventId'
-        });
-      }
-    }
+    booked: DataTypes.BOOLEAN
   });
-  return Center;
+
+  CentersModel.associate = (models) => {
+    CentersModel.hasMany(models.Events, {
+        foreignKey: 'id',
+        as: 'events',
+        onDelete: 'CASCADE',
+    });
+  };
+
+  return CentersModel;
 };
+
+export default Centers;
