@@ -8,7 +8,7 @@ const Events = models.Events;
 const centerRules = {
     title: 'required|string',
     location: 'required|string',
-    description: 'required'
+    description: 'required|string'
 };
 
 /**
@@ -27,15 +27,15 @@ export class Centers {
     createCenter(req, res) {
         const validate = new Validator(req.body, centerRules);
         if(validate.passes()){
+            console.log(typeof req.body.booked);
             return center.create({
                 title: req.body.title,
                 img_url: req.body.img_url,
                 location: req.body.location,
                 description: req.body.description,
-                facilities: req.body.facilities,
-                capacity: req.body.capacity,
-                price: req.body.price,
-                booked: req.body.booked
+                facilities: req.body.facilities.split(','),
+                capacity: parseInt(req.body.capacity),
+                price: parseInt(req.body.price)
             })
             .then((center) => {
                 res.status(201).json({ statusCode: 201, message: 'Center has been created', center });
@@ -84,14 +84,12 @@ export class Centers {
                         img_url: req.body.img_url || center.img_url,
                         location: req.body.location || center.location,
                         description: req.body.description || center.description,
-                        facilities: req.body.facilities || center.facilities,
-                        capacity: req.body.capacity || center.capacity,
-                        price: req.body.price || center.price,
-                        createdAt: center.createdAt,
-                        updatedAt: Date.now(),
+                        facilities: req.body.facilities.split(',') || center.facilities,
+                        capacity: parseInt(req.body.capacity) || center.capacity,
+                        price: parseInt(req.body.price) || center.price,
                     })
-                        .then(() => res.status(201).json({ statusCode: 201, center }))
-                        .catch(error => res.status(500).json(error));
+                    .then(() => res.status(201).json({ statusCode: 201, center }))
+                    .catch(error => res.status(500).json(error));
                 })
                 .catch(error => res.status(500).json(error));
             return this;
@@ -110,16 +108,17 @@ export class Centers {
      */
     getCenter (req, res) {
         const centerId = parseInt(req.params.id);
-        center.findById(centerId, {
+        center.findOne({
+            where: {
+                id: centerId
+            },
             include: [{
                 model: Events,
-                as: 'events',
-                where: {
-                    centerId: centerId
-                }
+                as: 'events'
             }],
         })
         .then((centr) => {
+            console.log(centr);
             if (!centr) {
                 return res.status(404).json({
                     statusCode: 404,

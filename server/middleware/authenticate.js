@@ -3,30 +3,40 @@ import dotenv from 'dotenv';
 import model from '../models';
 
 dotenv.config();
-const user = model.User;
+const User = model.User;
 
 const authenticate = (req, res, next) => {
-    // check header or url parameters or post parameters for token
+
+    /***
+     * Check if token is provided in request body or query param or request Headers
+     ***/
     const token = req.body.token || req.query.token || req.headers['x-access-token'] || req.headers['authorization'];
 
     if (!token) {
-        return res.status(401).json({
+        return res.json({
             success: false,
             message: 'Unauthorized user, You need to sign in.'
         });
     }
 
-    // verifies secret and checks exp
+    /**
+     * verify secret and checks expiry time**/
     return jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
         if (err) {
-            return res.status(403).json({success: false, message: 'Failed to authenticate token'});
+            return res
+                .send({
+                    success: false,
+                    message: 'Failed to authenticate token'
+                });
         }
-        user.findById(decoded.id).then(user => {
+        User.findById(decoded.id).then(user => {
             if(!user) {
-                return res.status(401).json({error: 'User cannot be verified' });
+                return res.send({
+                    error: 'User Not Found..!!!'
+                });
             }
             req.currentUser = user;
-            next()
+            next();
         });
     });
 };

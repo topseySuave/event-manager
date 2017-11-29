@@ -144,17 +144,15 @@ export class Events {
         if (!title){
             return res.status(400).json({ statusCode: 400, error: 'You need to fill in a Title for the Event' });
         }
-        console.log(req.body);
+
         return event.create({
             title: req.body.title,
             img_url: req.body.img_url,
             location: req.body.location,
             description: req.body.description,
             date: req.body.date,
-            centerId: req.body.centerId,
-            userId: req.body.userId,
-            createdAt: Date.now(),
-            updatedAt: Date.now(),
+            centerId: parseInt(req.body.centerId),
+            userId: parseInt(req.body.userId),
         })
         .then((event) => {
             res.status(201).json({ statusCode: 201, message: 'Event has been created', event });
@@ -192,15 +190,14 @@ export class Events {
                         message: `Event not Found with ${eventId}`
                     });
                 }
+
                 event.update({
                     title: req.body.title || event.title,
                     img_url: req.body.img_url || event.img_url,
                     description: req.body.description || event.description,
                     date: req.body.date || event.date,
-                    centerId: req.body.centerId || event.centerId,
-                    userId: req.currentUser || event.userId,
-                    createdAt: event.createdAt,
-                    updatedAt: Date.now(),
+                    centerId: parseInt(req.body.centerId) || event.centerId,
+                    userId: parseInt(req.currentUser) || event.userId,
                 })
                 .then(() => res.status(201).json({ statusCode: 201, event }))
                 .catch(error => res.status(500).json(error));

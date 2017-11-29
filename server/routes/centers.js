@@ -1,7 +1,5 @@
 import Center from '../controllers/center';
 
-import authenticate from '../middleware/authenticate';
-
 const centersController = new Center();
 
 module.exports = (app) => {
