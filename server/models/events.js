@@ -4,7 +4,8 @@ const Events = (sequelize, DataTypes) => {
     title: DataTypes.TEXT,
     img_url: DataTypes.TEXT,
     description: DataTypes.TEXT,
-    date: DataTypes.TEXT,
+    startDate: DataTypes.DATE,
+    endDate: DataTypes.DATE,
     centerId: {
       type: DataTypes.INTEGER,
       references: {

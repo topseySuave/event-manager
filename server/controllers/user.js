@@ -76,7 +76,6 @@ export default class Users {
                 .catch(err => res.status(400).json(err));
             })
             .catch(error => res.status(400).json(error));
-            return this;
         }else{
             res.status(400).send(validate.errors);
         }

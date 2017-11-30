@@ -7,8 +7,7 @@ const Centers = (sequelize, DataTypes) => {
     description: DataTypes.TEXT,
     facilities: DataTypes.ARRAY(DataTypes.TEXT),
     capacity: DataTypes.INTEGER,
-    price: DataTypes.DOUBLE,
-    booked: DataTypes.BOOLEAN
+    price: DataTypes.DOUBLE
   });
 
   CentersModel.associate = (models) => {

@@ -1,7 +1,26 @@
-// import {events} from '../db';
 import models from '../models';
+import multer from 'multer';
+import Validator from 'validatorjs';
 
-const event = models.Events;
+let event = models.Events;
+let validation = {
+    title: 'required|string',
+    description: 'required|string',
+    img_url: 'string',
+    startDate: 'required|date',
+    endDate: 'required|date',
+    centerId: 'required|integer',
+    userId: 'required|integer'
+};
+
+// let storage = multer.diskStorage({
+//     destination: '../server/public/images/uploads',
+//     filename: (req, file, cb) => {
+//         cb(null, file.fieldname + '-' + Date.now() + path.extname())
+//     }
+// });
+//
+// let upload = multer({ storage: storage }).array('photos', 5);
 
 /**
  * @export
@@ -17,15 +36,21 @@ export class Events {
      * @memberof Events
      */
     getEvent(req, res){
-        const eventId = parseInt(req.params.id);
+        let eventId = parseInt(req.params.id);
         event.findById(eventId)
             .then((event) => {
                 if (!event) {
-                    return res.status(404).json({ statusCode: 404, message: `Event with id: ${eventId} does not exist` });
+                    return res.status(404).send({
+                        statusCode: 404,
+                        message: `Event with id: ${eventId} does not exist`
+                    });
                 }
-                return res.status(200).json({ statusCode: 200, message: `Event with id: ${eventId} was found`, event });
+                return res.status(200).send({
+                    statusCode: 200,
+                    message: `Event with id: ${eventId} was found`,
+                    event
+                });
             });
-        return this;
     }
 
     /**
@@ -46,22 +71,30 @@ export class Events {
                 })
                 .then((returnedEvent) => {
                     if (!returnedEvent) {
-                        return res.status(400).json({ statusCode: 400, message: 'No Event found' });
+                        return res.status(400).send({
+                            statusCode: 400,
+                            message: 'No Event found'
+                        });
                     }
-                    return res.status(201).json({
-                        statusCode: 201,
+
+                    return res.status(200).send({
+                        statusCode: 200,
                         message: 'Event(s) found',
                         center: returnedEvent
                     });
                 })
-                .catch(() => res.status(500).json({ statusCode: 500, message: 'Error sorting Events' }));
+                .catch(() => res.status(500).send({
+                    statusCode: 500,
+                    message: 'Error searching for Events'
+                }));
             }
         } else if (req.query.search && req.query.limit) {
-            const limitValue = parseInt(req.query.limit) || 10;
-            const search = req.query.search.split(' ');
+            let limitValue = parseInt(req.query.limit) || 10;
+            let search = req.query.search.split(' ');
 
-            //Search with Title
-            const titleResp = search.map((value) => {
+            /**
+             * Search with Title But Map first**/
+            let titleResp = search.map((value) => {
                 return {
                     title: {
                         $iLike: `%${value}%`
@@ -71,7 +104,7 @@ export class Events {
 
             event.findAll({
                 where: {
-                    title: titleResp
+                    titleResp
                 },
                 order: [
                     ['id', 'ASC']
@@ -80,20 +113,20 @@ export class Events {
             })
             .then((searchResults) => {
                 if (searchResults.length <= 0) {
-                    return res.status(400).json({
+                    return res.status(400).send({
                         statusCode: 400,
                         message: 'Event(s) do not match your search result'
                     });
                 }
-                return res.status(200).json({
+                return res.status(200).send({
                     statusCode: 200,
                     message: 'The Events found',
                     searchResults
                 });
             });
         } else {
-            const limitValue = parseInt(req.query.limit) || 10;
-            const pageValue = req.query.next - 1 || 0;
+            let limitValue = 10;
+            let pageValue = req.query.next - 1 || 0;
 
             event.findAndCountAll({
                 limit: limitValue,
@@ -101,7 +134,7 @@ export class Events {
             })
             .then((event) => {
                 if (event.length === 0) {
-                    return res.status(404).json({
+                    return res.status(404).send({
                         statusCode: 404,
                         message: 'No result found',
                     });
@@ -109,16 +142,15 @@ export class Events {
                 res.status(200).json({
                     statusCode: 200,
                     message: 'Successful Events!',
-                    page: pageValue + 1,
+                    pageSize: parseInt(event.rows.length, 10),
                     totalCount: event.count,
                     pageCount: Math.ceil(event.count / limitValue),
-                    pageSize: parseInt(event.rows.length, 10),
+                    page: pageValue + 1,
                     events: event.rows,
                 });
             })
             .catch(err => res.status(500).send(err));
         }
-        return this;
     }
 
     /**
@@ -130,39 +162,94 @@ export class Events {
      * @memberof Events
      */
     createEvent (req, res) {
-        let title,
-            date_time;
+        let validate = new Validator(req.body, validation);
+        if(validate.passes()) {
 
-        if (req.body.title !== null) {
-            title = req.body.title;
-            // title = req.body.title.trim().toLowerCase();
-        }
-        if (req.body.dateTime !== '') {
-            date_time = req.body.dateTime;
-        }
+            // console.log('body' + req.body);
+            //
+            // upload(req, res, (err) => {
+            //
+            //     console.log('file: ' + req.file);
+            //
+            //     if(err){
+            //         res.send({
+            //             statusCode: 400,
+            //             message: 'Upload Unsuccessful',
+            //             error: err
+            //         });
+            //     }else{
+            //         res.send({
+            //             statusCode: 200,
+            //             message: 'Upload successful..!!',
+            //         });
+            //     }
+            // });
 
-        if (!title){
-            return res.status(400).json({ statusCode: 400, error: 'You need to fill in a Title for the Event' });
-        }
+            let startDate = new Date(req.body.startDate);
+            let endDate = new Date(req.body.endDate);
 
-        return event.create({
-            title: req.body.title,
-            img_url: req.body.img_url,
-            location: req.body.location,
-            description: req.body.description,
-            date: req.body.date,
-            centerId: parseInt(req.body.centerId),
-            userId: parseInt(req.body.userId),
-        })
-        .then((event) => {
-            res.status(201).json({ statusCode: 201, message: 'Event has been created', event });
-        })
-        .catch((err) => res.status(500).json({
-            statusCode: 500,
-            success: false,
-            message: 'Event cannot be created',
-            error: err
-        }));
+            event.findOne({
+                where: {
+                    centerId: req.body.centerId,
+                    $and: [
+                        {
+                            startDate: {
+                                $gte: startDate,
+                                $lte: startDate
+                            }
+                        },
+                        {
+                            endDate: {
+                                $gte: endDate,
+                                $lte: endDate
+                            }
+                        }
+                    ]
+                }
+            })
+            .then((result) => {
+                if(!result){
+                    return res.send({
+                        message: `Event center has been booked already, please specify a date after ${result} `,
+                        statusCode: 400,
+                        error: true
+                    });
+                }else{
+                    return event.create({
+                        title: req.body.title,
+                        img_url: req.file,
+                        location: req.body.location,
+                        description: req.body.description,
+                        startDate: startDate,
+                        endDate: endDate,
+                        centerId: parseInt(req.body.centerId),
+                        userId: parseInt(req.body.userId),
+                    })
+                        .then((event) => {
+                            res.status(201).send({
+                                statusCode: 201,
+                                message: 'Event has been created',
+                                event
+                            });
+                        })
+                        .catch((err) => res.status(500).send({
+                            statusCode: 500,
+                            success: false,
+                            message: 'Event cannot be created',
+                            error: err
+                        }));
+                }
+            })
+            .catch(err => {res.status(500).send({
+                statusCode: 500,
+                success: false,
+                message: 'Event cannot be created',
+                error: err
+            })});
+
+        }else{
+            res.send(validate.errors);
+        }
     }
 
     /**
@@ -174,36 +261,43 @@ export class Events {
      * @memberof Events
      */
     updateEvent(req, res){
-        const eventId = parseInt(req.params.id);
+        let eventId = parseInt(req.params.id);
         if (isNaN(eventId)) {
-            return res.status(400).json({
+            return res.status(400).send({
                 message: 'Event id is not a number' ,
                 error: true
             });
         }
 
-        event.findById(eventId)
-            .then((event) => {
-                if (!event) {
-                    return res.status(400).json({
-                        statusCode: 400,
-                        message: `Event not Found with ${eventId}`
-                    });
-                }
+        let validate = new Validator(req.body, validation);
+        if(validate.passes()) {
+            event.findById(eventId)
+                .then((event) => {
+                    if (!event) {
+                        return res.status(400).send({
+                            statusCode: 400,
+                            message: `Event not Found with ${eventId}`
+                        });
+                    }
 
-                event.update({
-                    title: req.body.title || event.title,
-                    img_url: req.body.img_url || event.img_url,
-                    description: req.body.description || event.description,
-                    date: req.body.date || event.date,
-                    centerId: parseInt(req.body.centerId) || event.centerId,
-                    userId: parseInt(req.currentUser) || event.userId,
+                    event.update({
+                        title: req.body.title || event.title,
+                        img_url: req.body.img_url || event.img_url,
+                        description: req.body.description || event.description,
+                        date: req.body.date || event.date,
+                        centerId: parseInt(req.body.centerId) || event.centerId,
+                        userId: parseInt(req.currentUser) || event.userId,
+                    })
+                        .then(() => res.status(201).send({
+                            statusCode: 201,
+                            event
+                        }))
+                        .catch(error => res.status(500).send(error));
                 })
-                .then(() => res.status(201).json({ statusCode: 201, event }))
-                .catch(error => res.status(500).json(error));
-            })
-            .catch(error => res.status(500).json(error));
-        return this;
+                .catch(error => res.status(500).send(error));
+        }else{
+            res.send(validate.errors);
+        }
 
     }
 
@@ -216,14 +310,17 @@ export class Events {
      * @memberof Events
      */
     deleteEvent(req, res){
-        const eventId = parseInt(req.params.id);
+        let eventId = parseInt(req.params.id);
         if (isNaN(eventId)) {
-            return res.status(400).json({ statusCode: 400, message: 'Event id is not a number' });
+            return res.status(400).send({
+                statusCode: 400,
+                message: 'Event id is not a number'
+            });
         }
         event.findById(eventId)
             .then((deletedEvent) => {
                 if (!deletedEvent) {
-                    return res.status(400).json({
+                    return res.status(400).send({
                         statusCode: 400,
                         message: `Event not found with id : ${eventId}`
                     });
@@ -233,10 +330,15 @@ export class Events {
                         id: eventId,
                     }
                 })
-                .then(() => res.status(200).json({ statusCode: 200, message: 'This Event has been deleted' }));
+                .then(() => res.status(200).send({
+                    statusCode: 200,
+                    message: 'This Event has been deleted'
+                }));
             })
-            .catch(() => res.status(500).json({ statusCode: 500, message: 'Error deleting Event' }));
-        return this;
+            .catch(() => res.status(500).send({
+                statusCode: 500,
+                message: 'Error deleting Event'
+            }));
     }
 }
 

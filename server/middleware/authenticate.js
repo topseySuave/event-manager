@@ -13,7 +13,7 @@ const authenticate = (req, res, next) => {
     const token = req.body.token || req.query.token || req.headers['x-access-token'] || req.headers['authorization'];
 
     if (!token) {
-        return res.json({
+        return res.send({
             success: false,
             message: 'Unauthorized user, You need to sign in.'
         });
