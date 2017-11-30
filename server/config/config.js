@@ -1,3 +1,4 @@
+require('dotenv').config();
 module.exports = {
   secret: '#(@#GYzU#EWERGFXTSWEW(@#YW($EW(',
   development: {
@@ -17,7 +18,7 @@ module.exports = {
     dialect: "postgres"
   },
   production : {
-    use_env_variable: "DATABASE_URL_PRODUCTION",
+    use_env_variable: process.env.DATABASE_URL_PRODUCTION,
     dialect: "postgres"
   }
 };
