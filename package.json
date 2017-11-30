@@ -4,13 +4,13 @@
   "description": "An Event Manager application to create and manage your own event.",
   "main": "server/app.js",
   "scripts": {
-    "start": "babel-node ./server/app.js --compilers js:babel-register",
-    "start:dev": "nodemon ./server/app.js --exec babel-node --presets es2015,stage-2",
-    "build": "babel-node server/app.js",
-    "test": "nyc --reporter=html --reporter=text mocha ./server/test/ --compilers js:babel-register",
-    "test:dev": "./node_modules/.bin/mocha --exit --compilers js:babel-core/register server/test/*.js",
+    "build": "babel-node ./server/app.js",
+    "test": " nyc --reporter=html --reporter=text mocha ./server/tests/* --exit --require babel-register --reporter spec",
+    "babel-node": "babel-node --preset=es2015",
+    "start": "nodemon --exec npm run babel-node -- ./server/app.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test"
+    "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
+    "test:dev": "npm run test && npm run coverage"
   },
   "author": "Gabriel Micah",
   "license": "ISC",
