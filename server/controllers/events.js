@@ -191,20 +191,14 @@ export class Events {
             event.findOne({
                 where: {
                     centerId: req.body.centerId,
-                    $and: [
-                        {
-                            startDate: {
-                                $gte: startDate,
-                                $lte: startDate
-                            }
-                        },
-                        {
-                            endDate: {
-                                $gte: endDate,
-                                $lte: endDate
-                            }
-                        }
-                    ]
+                    startDate: {
+                        $gte: startDate,
+                        $lte: endDate
+                    },
+                    endDate: {
+                        $gte: startDate,
+                        $lte: endDate
+                    }
                 }
             })
             .then((result) => {
@@ -225,19 +219,19 @@ export class Events {
                         centerId: parseInt(req.body.centerId),
                         userId: parseInt(req.body.userId),
                     })
-                        .then((event) => {
-                            res.status(201).send({
-                                statusCode: 201,
-                                message: 'Event has been created',
-                                event
-                            });
-                        })
-                        .catch((err) => res.status(500).send({
-                            statusCode: 500,
-                            success: false,
-                            message: 'Event cannot be created',
-                            error: err
-                        }));
+                    .then((event) => {
+                        res.status(201).send({
+                            statusCode: 201,
+                            message: 'Event has been created',
+                            event
+                        });
+                    })
+                    .catch((err) => res.status(500).send({
+                        statusCode: 500,
+                        success: false,
+                        message: 'Event cannot be created',
+                        error: err
+                    }));
                 }
             })
             .catch(err => {res.status(500).send({
