@@ -1,15 +1,8 @@
 import models from '../models';
-import Validator from 'validatorjs';
 
 // dotenv.config();
-const center = models.Centers;
+const Center = models.Centers;
 const Events = models.Events;
-
-const centerRules = {
-    title: 'required|string',
-    location: 'required|string',
-    description: 'required|string'
-};
 
 /**
  * @export
@@ -25,31 +18,24 @@ export class Centers {
      * @memberof Center
      */
     createCenter(req, res) {
-        let validate = new Validator(req.body, centerRules);
-        if(validate.passes()){
-            console.log(typeof req.body.booked);
-            return center.create({
-                title: req.body.title,
-                img_url: req.body.img_url,
-                location: req.body.location,
-                description: req.body.description,
-                facilities: req.body.facilities.split(','),
-                capacity: parseInt(req.body.capacity),
-                price: parseInt(req.body.price)
-            })
-            .then((center) => {
-                res.status(201).json({ statusCode: 201, message: 'Center has been created', center });
-            })
-            .catch((err) => res.status(500).send({
-                statusCode: 500,
-                success: false,
-                message: 'Center cannot be created',
-                error: err
-            }));
-        }
-        else{
-            res.status(400).send(validate.errors);
-        }
+        return Center.create({
+            title: req.body.title,
+            img_url: req.body.img_url,
+            location: req.body.location,
+            description: req.body.description,
+            facilities: req.body.facilities.split(','),
+            capacity: parseInt(req.body.capacity),
+            price: parseInt(req.body.price)
+        })
+        .then((center) => {
+            return res.status(201).send({ statusCode: 201, message: 'Center has been created', center });
+        })
+        .catch((err) => res.status(500).send({
+            statusCode: 500,
+            success: false,
+            message: 'Center cannot be created',
+            error: err
+        }));
     }
 
     /**
@@ -69,36 +55,32 @@ export class Centers {
             });
         }
 
-        let validate = new Validator(req.body, centerRules);
-        if(validate.passes()){
-            center.findById(centerId)
-            .then((center) => {
-                if (!center) {
-                    return res.status(400).send({
-                        statusCode: 400,
-                        message: `Center not Found with ${centerId}`
-                    });
-                }
+        Center.findById(centerId)
+        .then((center) => {
+            if (!center) {
+                return res.status(404).send({
+                    statusCode: 404,
+                    message: `Center not Found with ${centerId}`
+                });
+            }
 
-                center.update({
-                    title: req.body.title || center.title,
-                    img_url: req.body.img_url || center.img_url,
-                    location: req.body.location || center.location,
-                    description: req.body.description || center.description,
-                    facilities: req.body.facilities.split(',') || center.facilities,
-                    capacity: parseInt(req.body.capacity) || center.capacity,
-                    price: parseInt(req.body.price) || center.price,
-                })
-                .then(() => res.status(201).send({
-                    statusCode: 201,
-                    center
-                }))
-                .catch(error => res.status(500).send(error));
+            Center.update({
+                title: req.body.title || center.title,
+                img_url: req.body.img_url || center.img_url,
+                location: req.body.location || center.location,
+                description: req.body.description || center.description,
+                facilities: req.body.facilities.split(',') || center.facilities,
+                capacity: parseInt(req.body.capacity) || center.capacity,
+                price: parseInt(req.body.price) || center.price,
             })
+            .then((centerCreated) => res.status(200).send({
+                statusCode: 200,
+                message: 'Center has been created',
+                centerCreated
+            }))
             .catch(error => res.status(500).send(error));
-        }else{
-            res.status(400).send(validate.errors);
-        }
+        })
+        .catch(error => res.status(500).send(error));
     }
 
     /**
@@ -111,7 +93,7 @@ export class Centers {
      */
     getCenter (req, res) {
         let centerId = parseInt(req.params.id);
-        center.findOne({
+        Center.findOne({
             where: {
                 id: centerId
             },
@@ -148,7 +130,7 @@ export class Centers {
         let pageValue = req.query.next - 1 || 0;
         if (req.query && req.query.sort) {
             if (req.query.order && req.query.order === 'desc') {
-                center.findAll({
+                Center.findAll({
                     order: [
                         ['id', 'DESC']
                     ]
@@ -191,7 +173,7 @@ export class Centers {
                 };
             });
 
-            center.findAll({
+            Center.findAll({
                 where: {
                     $or:
                         locationResp.concat(respTitle)
@@ -215,18 +197,18 @@ export class Centers {
                 });
             });
         } else {
-            center.findAndCountAll({
+            Center.findAndCountAll({
                 limit: limitValue,
                 offset: pageValue * limitValue
             })
             .then((center) => {
-                if (center.length === 0) {
+                if (!center) {
                     return res.status(404).send({
                         statusCode: 404,
                         message: 'No result found',
                     });
                 }
-                res.status(200).send({
+                return res.status(200).send({
                     statusCode: 200,
                     message: 'Successful Centers!',
                     page: pageValue + 1,
@@ -252,7 +234,7 @@ export class Centers {
      * @returns {object} Class instance
      * @memberof Center
      */
-    deleteEvent (req, res) {
+    deleteCenter (req, res) {
         const centerId = parseInt(req.params.id);
         if (isNaN(centerId)) {
             return res.status(400).send({
@@ -260,7 +242,7 @@ export class Centers {
                 message: 'Center id is not a number'
             });
         }
-        center.findById(centerId)
+        Center.findById(centerId)
             .then((deletedCenter) => {
                 if (!deletedCenter) {
                     return res.status(400).send({
@@ -268,7 +250,7 @@ export class Centers {
                         message: `Center not found with id : ${centerId}`
                     });
                 }
-                center
+                Center
                     .destroy({
                         where: {
                             id: centerId,
@@ -283,10 +265,6 @@ export class Centers {
                 statusCode: 500,
                 message: 'Error deleting Center'
             }));
-    }
-
-    bookCenter(){
-
     }
 }
 

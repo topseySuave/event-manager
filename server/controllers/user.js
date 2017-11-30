@@ -8,17 +8,6 @@ const User = models.User;
 
 dotenv.config();
 
-let validation = {
-    firstName: 'required|string',
-    lastName: 'required|string',
-    email: 'required|email',
-    password: 'required|string'
-};
-let validateLogin = {
-    email: 'required|email',
-    password: 'required|string'
-};
-
 /**
  * @export
  * @class Events
@@ -38,54 +27,45 @@ export default class Users {
         /***Encrypt Password***/
         let salt = bcrypt.genSaltSync(Math.floor(Math.random() * 31));
 
-        let validate = new Validator(req.body, validation); //Validate all Request
-
         let { firstName, lastName, email, password } = req.body;
         password = bcrypt.hashSync(req.body.password, salt);
 
-        if( validate.passes()) {
-            User.findOne({
-                where: {
-                    email: {
-                        $like: email
-                    }
+        User.findOne({
+            where: {
+                email: {
+                    $like: email
                 }
+            }
+        })
+        .then((foundUser) => {
+            if (foundUser) {
+                return res.status(400).json({
+                    statusCode: 400,
+                    message: 'Email has been taken, Please Choose another',
+                    error: true
+                });
+            }
+            return User.create({
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: password
             })
-            .then((foundUser) => {
-                if (foundUser) {
-                    return res.status(400).json({
-                        statusCode: 400,
-                        message: 'Email has been taken, Please Choose another',
-                        error: true
+            .then((user) => {
+                return res.status(201)
+                    .json({
+                        statusCode: 201,
+                        message: `Account Created for ${user.firstName} ${user.lastName}`,
+                        User
                     });
-                }
-                return User.create({
-                    firstName: firstName,
-                    lastName: lastName,
-                    email: email,
-                    password: password
-                })
-                .then((user) => {
-                    return res.status(201)
-                        .json({
-                            statusCode: 201,
-                            message: `Account Created for ${user.firstName} ${user.lastName}`,
-                            User
-                        });
-                })
-                .catch(err => res.status(400).json(err));
             })
-            .catch(error => res.status(400).json(error));
-        }else{
-            res.status(400).send(validate.errors);
-        }
+            .catch(err => res.status(400).json(err));
+        })
+        .catch(error => res.status(400).json(error));
     }
 
     loginUser(req, res){
         let { email, password } = req.body;
-        let validate = new Validator(req.body, validateLogin);
-
-        if(validate.passes()){
             User.findOne({
                 where: {
                     email: {
@@ -107,18 +87,20 @@ export default class Users {
                         message: 'Here your Token',
                         token: jwt.sign({
                             id: foundUser.id
+                        }, process.env.SECRET_KEY, { expiresIn: '1mon' })
+                    });
+                }else{
+                    return res.status(200).send({
+                        statusCode: 200,
+                        message: 'Signed In ..! And here`s your token',
+                        token: jwt.sign({
+                            id: foundUser.id
                         }, process.env.SECRET_KEY, { expiresIn: '24h' })
                     });
                 }
 
-                return res.status(200).send({
-                    statusCode: 200,
-                    message: 'Signed In ..!',
-                    error: false
-                });
             })
             .catch(error => res.status(400).send(error));
-        }
     }
 
     currUser (req, res){

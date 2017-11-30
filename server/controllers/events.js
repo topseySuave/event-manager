@@ -162,9 +162,6 @@ export class Events {
      * @memberof Events
      */
     createEvent (req, res) {
-        let validate = new Validator(req.body, validation);
-        if(validate.passes()) {
-
             // console.log('body' + req.body);
             //
             // upload(req, res, (err) => {
@@ -185,65 +182,61 @@ export class Events {
             //     }
             // });
 
-            let startDate = new Date(req.body.startDate);
-            let endDate = new Date(req.body.endDate);
+        let startDate = new Date(req.body.startDate);
+        let endDate = new Date(req.body.endDate);
 
-            event.findOne({
-                where: {
-                    centerId: req.body.centerId,
-                    startDate: {
-                        $gte: startDate,
-                        $lte: endDate
-                    },
-                    endDate: {
-                        $gte: startDate,
-                        $lte: endDate
-                    }
+        event.findOne({
+            where: {
+                centerId: req.body.centerId,
+                startDate: {
+                    $lte: startDate,
+                    $lte: endDate
+                },
+                endDate: {
+                    $gte: startDate,
+                    $gte: endDate
                 }
-            })
-            .then((result) => {
-                if(!result){
-                    return res.send({
-                        message: `Event center has been booked already, please specify a date after ${result} `,
-                        statusCode: 400,
-                        error: true
+            }
+        })
+        .then((result) => {
+            if(result !== null){
+                return res.send({
+                    message: `Event does not exist or center has been booked already, please specify a date after ${result} `,
+                    statusCode: 400,
+                    error: true
+                });
+            }else{
+                return event.create({
+                    title: req.body.title,
+                    img_url: req.file,
+                    location: req.body.location,
+                    description: req.body.description,
+                    startDate: startDate,
+                    endDate: endDate,
+                    centerId: parseInt(req.body.centerId),
+                    userId: parseInt(req.body.userId),
+                })
+                .then((event) => {
+                    res.status(200).send({
+                        statusCode: 200,
+                        message: 'Event has been created',
+                        event
                     });
-                }else{
-                    return event.create({
-                        title: req.body.title,
-                        img_url: req.file,
-                        location: req.body.location,
-                        description: req.body.description,
-                        startDate: startDate,
-                        endDate: endDate,
-                        centerId: parseInt(req.body.centerId),
-                        userId: parseInt(req.body.userId),
-                    })
-                    .then((event) => {
-                        res.status(201).send({
-                            statusCode: 201,
-                            message: 'Event has been created',
-                            event
-                        });
-                    })
-                    .catch((err) => res.status(500).send({
-                        statusCode: 500,
-                        success: false,
-                        message: 'Event cannot be created',
-                        error: err
-                    }));
-                }
-            })
-            .catch(err => {res.status(500).send({
-                statusCode: 500,
-                success: false,
-                message: 'Event cannot be created',
-                error: err
-            })});
-
-        }else{
-            res.send(validate.errors);
-        }
+                })
+                .catch((err) => res.status(500).send({
+                    statusCode: 500,
+                    success: false,
+                    message: 'Event cannot be created',
+                    error: err
+                }));
+            }
+        })
+        .catch(err => {res.status(500).send({
+            statusCode: 500,
+            success: false,
+            message: 'Event cannot be created',
+            error: err
+        })});
     }
 
     /**
@@ -263,35 +256,30 @@ export class Events {
             });
         }
 
-        let validate = new Validator(req.body, validation);
-        if(validate.passes()) {
-            event.findById(eventId)
-                .then((event) => {
-                    if (!event) {
-                        return res.status(400).send({
-                            statusCode: 400,
-                            message: `Event not Found with ${eventId}`
-                        });
-                    }
+        event.findById(eventId)
+            .then((event) => {
+                if (!event) {
+                    return res.status(400).send({
+                        statusCode: 400,
+                        message: `Event not Found with ${eventId}`
+                    });
+                }
 
-                    event.update({
-                        title: req.body.title || event.title,
-                        img_url: req.body.img_url || event.img_url,
-                        description: req.body.description || event.description,
-                        date: req.body.date || event.date,
-                        centerId: parseInt(req.body.centerId) || event.centerId,
-                        userId: parseInt(req.currentUser) || event.userId,
-                    })
-                        .then(() => res.status(201).send({
-                            statusCode: 201,
-                            event
-                        }))
-                        .catch(error => res.status(500).send(error));
+                event.update({
+                    title: req.body.title || event.title,
+                    img_url: req.body.img_url || event.img_url,
+                    description: req.body.description || event.description,
+                    date: req.body.date || event.date,
+                    centerId: parseInt(req.body.centerId) || event.centerId,
+                    userId: parseInt(req.currentUser) || event.userId,
                 })
-                .catch(error => res.status(500).send(error));
-        }else{
-            res.send(validate.errors);
-        }
+                    .then(() => res.status(201).send({
+                        statusCode: 201,
+                        event
+                    }))
+                    .catch(error => res.status(500).send(error));
+            })
+            .catch(error => res.status(500).send(error));
 
     }
 

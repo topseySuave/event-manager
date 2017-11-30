@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import http from 'http';
 import swagger from 'swagger-ui-express';
 import swaggerDoc from './docs/swagger.json';
-import config from './config/config';
+import config from './config/config.json';
 import event from './routes/events';
 import center from './routes/centers';
 import users from './routes/users';
