@@ -1,17 +1,6 @@
 import models from '../models';
-import multer from 'multer';
-import Validator from 'validatorjs';
 
 let event = models.Events;
-let validation = {
-    title: 'required|string',
-    description: 'required|string',
-    img_url: 'string',
-    startDate: 'required|date',
-    endDate: 'required|date',
-    centerId: 'required|integer',
-    userId: 'required|integer'
-};
 
 // let storage = multer.diskStorage({
 //     destination: '../server/public/images/uploads',

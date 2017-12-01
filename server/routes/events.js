@@ -2,7 +2,7 @@ import Events from '../controllers/events';
 import authenticate from '../middleware/authenticate';
 import Validation from '../middleware/validator';
 
-const validate = new Validator();
+const validate = new Validation();
 const eventController = new Events();
 
 module.exports = (app) => {
