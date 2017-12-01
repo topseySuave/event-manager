@@ -1,35 +1,37 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es6": true
+    extends: "airbnb",
+    env: {
+        node: true,
+        es6: true,
+        mocha: true
     },
-    "extends": "eslint:recommended",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "experimentalObjectRestSpread": true,
-            "jsx": true
-        },
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react"
-    ],
-    "rules": {
-        "indent": [
-            "error",
-            "tab"
-        ],
-        "linebreak-style": [
-            "error",
-            "windows"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ]
+    rules: {
+        "one-var": 0,
+        "one-var-declaration-per-line": 0,
+        "new-cap": 0,
+        "no-console": "off",
+        "consistent-return": 0,
+        "no-param-reassign": 0,
+        "comma-dangle": 0,
+        curly: ["error", "multi-line"],
+        "import/no-unresolved": [2, {
+            commonjs: true
+        }],
+        "no-shadow": ["error", {
+            allow: ["req", "res", "err"]
+        }],
+        "valid-jsdoc": ["error", {
+            requireReturn: true,
+            requireReturnType: true,
+            requireParamDescription: false,
+            requireReturnDescription: true
+        }],
+        "require-jsdoc": ["error", {
+            require: {
+                FunctionDeclaration: false,
+                MethodDefinition: false,
+                ClassDeclaration: true
+            }
+        }]
     }
 };
