@@ -93,12 +93,20 @@ export class Centers {
      */
     getCenter (req, res) {
         let centerId = parseInt(req.params.id);
+        if(isNaN(centerId)){
+            return res.status(400).send({
+                message: 'Center id is not a number' ,
+                error: true
+            });
+        }
+
         Center.findOne({
             where: {
                 id: centerId
             },
             include: [{
                 model: Events,
+                centerId: centerId,
                 as: 'events'
             }],
         })

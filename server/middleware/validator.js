@@ -10,12 +10,12 @@ export class Validation {
             description: 'required|string',
             facilities: 'required|string',
             capacity: 'required|integer',
-            price: 'required|double'
+            price: 'required|integer'
         };
 
         let validate = new Validator(req.body, centerRules);
         if(validate.passes()) {
-            return next();
+            next();
         } else {
             return res.status(400).send(validate.errors);
         }
@@ -35,7 +35,7 @@ export class Validation {
 
         let validate = new Validator(req.body, eventRules);
         if(validate.passes()) {
-            return next();
+            next();
         } else {
             return res.status(400).send(validate.errors);
         }
@@ -49,7 +49,7 @@ export class Validation {
         let validate = new Validator(req.body, validateLogin);
 
         if(validate.passes()){
-            return next();
+           next();
         }else{
             return res.send(validate.errors);
         }
@@ -67,7 +67,7 @@ export class Validation {
         let validate = new Validator(req.body, validation);
 
         if(validate.passes()){
-            return next();
+            next();
         }else{
             return res.send(validate.errors);
         }

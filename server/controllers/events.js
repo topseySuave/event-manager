@@ -26,6 +26,13 @@ export class Events {
      */
     getEvent(req, res){
         let eventId = parseInt(req.params.id);
+        if(isNaN(eventId)){
+            return res.status(400).send({
+                message: 'Event id is not a number' ,
+                error: true
+            });
+        }
+
         event.findById(eventId)
             .then((event) => {
                 if (!event) {

@@ -28,7 +28,7 @@ export default class Users {
         let salt = bcrypt.genSaltSync(Math.floor(Math.random() * 31));
 
         let { firstName, lastName, email, password } = req.body;
-        password = bcrypt.hashSync(req.body.password, salt);
+        password = bcrypt.hashSync(password, salt);
 
         User.findOne({
             where: {
@@ -87,18 +87,9 @@ export default class Users {
                         message: 'Here your Token',
                         token: jwt.sign({
                             id: foundUser.id
-                        }, process.env.SECRET_KEY, { expiresIn: '1mon' })
-                    });
-                }else{
-                    return res.status(200).send({
-                        statusCode: 200,
-                        message: 'Signed In ..! And here`s your token',
-                        token: jwt.sign({
-                            id: foundUser.id
                         }, process.env.SECRET_KEY, { expiresIn: '24h' })
                     });
                 }
-
             })
             .catch(error => res.status(400).send(error));
     }
