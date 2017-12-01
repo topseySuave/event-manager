@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "gabmicah",
-    "database": "boots",
-    "host": "localhost",
+    "username": "rbymklmi",
+    "password": "zdD4ebEejyZBWRJLqajpqs0c0OT0lfEl",
+    "database": "rbymklmi",
+    "host": "baasu.db.elephantsql.com",
     "port": 5432,
     "dialect": "postgres"
   },
