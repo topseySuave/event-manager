@@ -6,7 +6,7 @@ const userController = new User();
 const validate = new Validation();
 
 module.exports = (app) => {
-    app.post('/api/v1/users/signup', validate.validateSignUp, userController.createUser)
+    app.post('/api/v1/users', validate.validateSignUp, userController.createUser)
         .post('/api/v1/users/signin', validate.validateLogin, userController.loginUser)
         .get('/api/v1/users/signed', authenticate, userController.currUser);
 };
