@@ -1,10 +1,10 @@
 {
   "development": {
-    "username": "rbymklmi",
-    "password": "zdD4ebEejyZBWRJLqajpqs0c0OT0lfEl",
-    "database": "rbymklmi",
-    "host": "baasu.db.elephantsql.com",
-    "port": 5432,
+    "username": "postgres",
+    "password": "gabmicah",
+    "database": "boots",
+    "host": "localhost",
+    "port": 5342,
     "dialect": "postgres"
   },
   "test": {
@@ -16,6 +16,11 @@
     "dialect": "postgres"
   },
   "production": {
+    "username": "postgres",
+    "password": "gabmicah",
+    "database": "boots",
+    "host": "localhost",
+    "port": 5342,
     "use_env_variable": "DATABASE_URL_PRODUCTION",
     "dialect": "postgres"
   }
