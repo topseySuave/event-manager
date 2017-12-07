@@ -4,20 +4,20 @@ import bodyParser from 'body-parser';
 import http from 'http';
 import swagger from 'swagger-ui-express';
 import swaggerDoc from './docs/swagger.json';
-import config from './config/config.json';
+import dotenv from 'dotenv';
 import event from './routes/events';
 import center from './routes/centers';
 import users from './routes/users';
 import cors from 'cors';
 
-// let limit = 52428800; // for 50mb, this corresponds to the size in bytes
+dotenv.config();
 
 // Set up the express app
 const app = express();
 
 app.use('/docs', swagger.serve, swagger.setup(swaggerDoc));
 
-app.set('superSecret', config.secret); // secret variable
+app.set('superSecret', process.env.SECRET_KEY); // secret variable
 
 app.use(cors());
 

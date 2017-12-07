@@ -46,10 +46,11 @@ export class Validation {
             email: 'required|email',
             password: 'required|string'
         };
+
         let validate = new Validator(req.body, validateLogin);
 
         if(validate.passes()){
-           next();
+           return next();
         }else{
             return res.send(validate.errors);
         }

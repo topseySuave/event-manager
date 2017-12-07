@@ -28,7 +28,11 @@ export class Centers {
             price: parseInt(req.body.price)
         })
         .then((center) => {
-            return res.status(201).send({ statusCode: 201, message: 'Center has been created', center });
+            return res.status(201).send({
+                statusCode: 201,
+                message: 'Center has been created',
+                center
+            });
         })
         .catch((err) => res.status(500).send({
             statusCode: 500,
@@ -183,8 +187,7 @@ export class Centers {
 
             Center.findAll({
                 where: {
-                    $or:
-                        locationResp.concat(respTitle)
+                    $or: locationResp.concat(respTitle)
                 },
                 order: [
                     ['id', 'ASC']
@@ -228,7 +231,7 @@ export class Centers {
             })
             .catch(err => res.status(500).send({
                 statusCode: 500,
-                message: 'Internal server Error !',
+                message: 'Internal server Error!',
                 error: err
             }));
         }
@@ -250,7 +253,7 @@ export class Centers {
                 message: 'Center id is not a number'
             });
         }
-        Center.findById(centerId)
+        Center.findOne(centerId)
             .then((deletedCenter) => {
                 if (!deletedCenter) {
                     return res.status(400).send({
