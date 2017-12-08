@@ -52,9 +52,12 @@
       transform: translateY($val)
 
 @mixin gradient()
-  background-image: linear-gradient(to top left, $rgbaBlue, $rgbaGreen)
-  background-image: -webkit-linear-gradient(to top left, $rgbaBlue, $rgbaGreen)
+  background-image: linear-gradient(to top left, $rgbaBlueTrans, $rgbaGreenTrans)
+  background-image: -webkit-linear-gradient(to top left, $rgbaBlueTrans, $rgbaGreenTrans)
 
+@mixin gradientHorizTrans()
+  background-image: linear-gradient(to left, $rgbaBlueTrans, $rgbaGreenTrans)
+  background-image: -webkit-linear-gradient(to left, $rgbaBlueTrans, $rgbaGreenTrans)
 
 @mixin gradientHoriz()
   background-image: linear-gradient(to left, $rgbaBlue, $rgbaGreen)

@@ -37,11 +37,37 @@
 
     <div class="container">
         <div class="center__holdr">
-            <h4 class="center-align">Boots Centers</h4>
-            <div class="row">
-                <div class="col s12 l8">
+            <div class="row relative">
+                <div class="col s12 l12 fixed bg__white hide-on-med-and-down">
+                    <form action="">
+                        <div class="row">
+                            <div class="input-field col s12 l2">
+                                <h6 class="center-align">Search Faster</h6>
+                            </div>
+                            <div class="input-field col s12 l2">
+                                <input id="fast_price" type="number" min="100" class="validate">
+                                <label for="fast_price">Price</label>
+                            </div>
+                            <div class="input-field col s12 l4">
+                                <input id="fast_capacity" type="range" min="0" max="1000000" class="validate">
+                                <label for="fast_capacity">Capacity</label>
+                            </div>
+                            <div class="input-field col s12 l4">
+                                <select id="center-filter">
+                                    <option value="" disabled selected>Choose a Center</option>
+                                    <option value="1">Muson Center</option>
+                                    <option value="2">Boots Center</option>
+                                    <option value="3">Ojo events Center</option>
+                                </select>
+                                <!--<label for="center-filter">Center</label>-->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col s12 l12" style="margin-bottom: 60px;">
+                    <h4 class="center-align">Boots Centers</h4>
                     <div class="row">
-                        <div class="col s12 l6">
+                        <div class="col s12 l4">
                             <a href="center-details.html">
                                 <div class="card">
                                     <div class="card-image">
@@ -56,7 +82,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col s12 l6">
+                        <div class="col s12 l4">
                             <a href="center-details.html">
                                 <div class="card">
                                     <div class="card-image">
@@ -71,7 +97,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col s12 l6">
+                        <div class="col s12 l4">
                             <a href="center-details.html">
                                 <div class="card">
                                     <div class="card-image">
@@ -86,7 +112,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col s12 l6">
+                        <div class="col s12 l4">
                             <a href="center-details.html">
                                 <div class="card">
                                     <div class="card-image">
@@ -101,7 +127,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col s12 l6">
+                        <div class="col s12 l4">
                             <a href="center-details.html">
                                 <div class="card">
                                     <div class="card-image">
@@ -116,7 +142,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col s12 l6">
+                        <div class="col s12 l4">
                             <a href="center-details.html">
                                 <div class="card">
                                     <div class="card-image">
@@ -131,7 +157,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col s12 l6">
+                        <div class="col s12 l4">
                             <a href="center-details.html">
                                 <div class="card">
                                     <div class="card-image">
@@ -148,28 +174,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col s12 l4">
-                    <h5 class="center-align">Search Faster</h5>
-                    <form action="">
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input id="fast_price" type="number" class="validate">
-                                <label for="fast_price">Price</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <input id="fast_capacity" type="number" class="validate">
-                                <label for="fast_capacity">Capacity</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <input id="fast_location" type="text" class="validate">
-                                <label for="fast_location">Location</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <input id="fast_submit" class="btn" type="submit" value="search faster">
-                            </div>
-                        </div>
-                    </form>
-                </div>
             </div>
         </div>
     </div>
@@ -183,15 +187,15 @@
         </a>
     </div>
 
-    <div class="footer">
-        <div class="container">
-            <div class="center-align">
-                <p>© 2017, All rights reserved.
-                    <a href="#">Boots Events Manager</a>
-                </p>
-            </div>
-        </div>
-    </div>
+    <!--<div class="footer">-->
+        <!--<div class="container">-->
+            <!--<div class="center-align">-->
+                <!--<p>© 2017, All rights reserved.-->
+                    <!--<a href="#">Boots Events Manager</a>-->
+                <!--</p>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 </div>
 
 <!-- Modal Structure -->
@@ -518,6 +522,7 @@
         $('.parallax').parallax();
         $('.dropdown-button').dropdown();
         $('.tooltipped').tooltip({delay: 50});
+        $('select').material_select();
         $('.fixed-action-btn').openFAB();
         $('.fixed-action-btn').closeFAB();
         $('.fixed-action-btn.toolbar').openToolbar();

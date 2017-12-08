@@ -26,7 +26,6 @@ nav
     image: url("../image/logo.png")
     size: contain
     repeat: no-repeat
-    position: 60%
   align-items: -100px
 
   p
@@ -92,6 +91,16 @@ nav
 
 .carousel .carousel-item
   visibility: inherit !important
+
+.relative
+  position: relative !important
+
+.fixed
+  position: fixed !important
+  bottom: 0px
+  z-index: 1
+  height: 80px
+  width: 70% !important
 
 [type="checkbox"]+label
   position: relative
@@ -184,3 +193,6 @@ nav
   position: absolute
   transition: border .25s, background-color .25s, width .20s .1s, height .20s .1s, top .20s .1s, left .20s .1s
   z-index: 1
+
+input[type=range]
+  margin: 40px 0 !important
