@@ -30,6 +30,7 @@ nav {
   background-image: url("../image/logo2.png");
   background-size: contain;
   background-repeat: no-repeat;
+  background-position: 60%;
   align-items: -100px; }
   .logo p {
     margin: 0;
