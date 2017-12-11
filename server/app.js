@@ -2,6 +2,7 @@ import express from 'express';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
 import http from 'http';
+import path from 'path';
 import swagger from 'swagger-ui-express';
 import swaggerDoc from './docs/swagger.json';
 import dotenv from 'dotenv';
@@ -32,10 +33,20 @@ center(app);
 event(app);
 users(app);
 
-// Setup a default catch-all route that sends back a welcome message in JSON format.
-app.get('/', (req, res) => res.status(200).send({
-    message: 'Welcome to Boots Events Manager.',
-}));
+app.use(express.static(path.join(__dirname, '../client/public')));
+
+// Setup a default catch-all route that sends back the index html file.
+app.get('*', (req, res) => {
+    res.status(200).sendFile(path.join(__dirname, '../client/public/index.html'));
+    // res.status(200).sendFile(path.join(__dirname, '../template/index.html'));
+});
+
+app.use((req, res, next) => {
+    const err = res.status(404).send({
+        error: '404: Sorry Page Not Found!'
+    });
+    next(err);
+});
 
 const port = parseInt(process.env.PORT, 10) || 8000;
 app.set('port', port);

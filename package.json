@@ -7,7 +7,7 @@
     "build": "babel-node ./server/app.js",
     "test": " nyc --reporter=html --reporter=text mocha ./server/test/* --exit --require babel-register --reporter spec",
     "babel-node": "babel-node --preset=es2015",
-    "start": "npm run babel-node -- ./server/app.js",
+    "start": "nodemon --exec babel-node ./server/app.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "test:dev": "npm run test && npm run coverage",
