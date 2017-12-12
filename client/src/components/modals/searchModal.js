@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CenterCard from './../bodyComponents/centerCard/centerCard'
+import CenterCard from '../centerComponent/centerCard/centerCard'
 import EventCard from '../bodyComponents/eventsCard/eventCard'
 
 class SearchModal extends Component {
@@ -45,7 +45,9 @@ class SearchModal extends Component {
                     <h5>Center Results</h5>
 
                     <div className="row">
-                        {this.loopCard(<CenterCard />)}
+                        <div className="col s12 l4">
+                            {this.loopCard(<CenterCard />)}
+                        </div>
                     </div>
 
                     <div className="divider"></div>
@@ -53,7 +55,9 @@ class SearchModal extends Component {
                     <h5>Events Results</h5>
 
                     <div className="row">
-                        {this.loopCard(<EventCard />)}
+                        <div className="col s12 l4">
+                            {this.loopCard(<EventCard />)}
+                        </div>
                     </div>
 
                 </div>

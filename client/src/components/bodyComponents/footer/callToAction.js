@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router'
 
 class CallToAction extends Component {
     render() {
@@ -14,7 +15,7 @@ class CallToAction extends Component {
                                 <h4>Do you want to Manage your Own Event?</h4>
                                 <h5>View All Centers</h5>
                                 <br/>
-                                <a href="centers.html" className="btn waves-effect red darken-1">Centers</a>
+                                <Link to="centers" className="btn waves-effect red darken-1">Centers</Link>
                             </div>
                         </div>
                     </div>

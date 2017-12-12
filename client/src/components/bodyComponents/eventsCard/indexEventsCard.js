@@ -7,7 +7,9 @@ class IndexEventCardHolder extends Component {
             <div className="popular__events_holdr">
                 <div className="container popular__events">
                     <div className="row">
-                        <EventCard />
+                        <div className="col s12 l4">
+                            <EventCard />
+                        </div>
                     </div>
                 </div>
             </div>
