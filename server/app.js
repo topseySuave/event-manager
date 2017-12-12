@@ -10,6 +10,7 @@ import event from './routes/events';
 import center from './routes/centers';
 import users from './routes/users';
 import cors from 'cors';
+import cons from 'consolidate';
 
 dotenv.config();
 
@@ -35,10 +36,13 @@ users(app);
 
 app.use(express.static(path.join(__dirname, '../client/public')));
 
+app.set('views', path.join(__dirname, '..', 'client', 'public'));
+// app.engine('html', cons.jade);
+// app.set('view engine', 'html');
+
 // Setup a default catch-all route that sends back the index html file.
 app.get('*', (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, '../client/public/index.html'));
-    // res.status(200).sendFile(path.join(__dirname, '../template/index.html'));
+    res.status(200).sendFile(path.join(__dirname, '..', 'client/public/index.html'));
 });
 
 app.use((req, res, next) => {
