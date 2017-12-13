@@ -1,17 +1,20 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
-export default class AuthHeader extends Component {
+class AuthHeader extends Component {
     render(){
         return (
             <nav className="wow fadeInDown black-text gradient__bg">
                 <div className="container">
                     <div className="nav-wrapper">
-                        <a href="index.html" className="brand-logo center logo">
+                        <Link to="/" className="brand-logo center logo">
                             <p>Boots EM</p>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </nav>
         );
     }
 }
+
+export default AuthHeader;

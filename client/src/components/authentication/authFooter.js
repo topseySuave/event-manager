@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 
-export default class AuthFooter extends Component {
+class AuthFooter extends Component {
     render() {
         return (
             <div className="auth__footer footer">
                 <div className="container">
                     <div className="center-align">
-                        <p>© 2017, All rights reserved.
-                            <Link to="/">Boots Events Manager</Link>
-                        </p>
+                        <span> © 2017, All rights reserved. <Link to="/">Boots Events Manager</Link></span>
                     </div>
                 </div>
             </div>
         );
     }
 }
+
+export default AuthFooter;

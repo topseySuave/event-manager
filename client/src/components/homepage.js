@@ -1,12 +1,12 @@
-import React, {Component} from 'react'
-import LoadingBar from 'react-redux-loading-bar'
-import Nav from './bodyComponents/headNav/nav'
-import HeaderBanner from './bodyComponents/headNav/headbanner'
-import IndexEventCardHolder from './bodyComponents/eventsCard/indexEventsCard'
-import CallToAction from './bodyComponents/footer/callToAction'
-import FloatingActionButton from './bodyComponents/floatingActionButton/FloatingActionButton'
-import Footer from './bodyComponents/footer/footer'
-import Modals from './modals'
+import React, {Component} from 'react';
+import LoadingBar from 'react-redux-loading-bar';
+import Nav from './bodyComponents/headNav/nav';
+import HeaderBanner from './bodyComponents/headNav/headbanner';
+import IndexEventCardHolder from './bodyComponents/eventsCard/indexEventsCard';
+import CallToAction from './bodyComponents/footer/callToAction';
+import FloatingActionButton from './bodyComponents/floatingActionButton/FloatingActionButton';
+import Footer from './bodyComponents/footer/footer';
+import Modals from './modals';
 
 class HomePage extends Component {
     render() {

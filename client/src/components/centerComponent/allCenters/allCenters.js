@@ -12,9 +12,15 @@ class AllCenters extends Component{
                             <SearchFasterForm />
                         </div>
 
-                        <div className="col s12 l12" style="margin-bottom: 60px;">
+                        <div className="col s12 l12" style={{marginBottom: 60 + 'px'}}>
                             <h4 className="center-align">Boots Centers</h4>
                             <div className="row">
+                                <div className="col s12 l4">
+                                    <CenterCard />
+                                </div>
+                                <div className="col s12 l4">
+                                    <CenterCard />
+                                </div>
                                 <div className="col s12 l4">
                                     <CenterCard />
                                 </div>

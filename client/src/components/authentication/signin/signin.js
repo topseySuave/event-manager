@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import LoadingBar from 'react-redux-loading-bar'
 import AuthHeader from '../AuthHeader'
-import AuthFooter from '../../bodyComponents/footer/authFooter.js'
+import AuthFooter from '../authFooter'
 
 export default class SignIn extends Component {
     render(){
@@ -10,6 +11,7 @@ export default class SignIn extends Component {
                 <LoadingBar style={{ backgroundImage: 'linear-gradient(to top left, rgba(72, 132, 179, 0.7), rgba(144, 236, 146, 0.7))', height: '2px' }} />
 
                 <AuthHeader />
+
                 <div className="signin__card_holdr wow fadeInUp">
                     <div className="container">
                         <div className="row">
@@ -22,7 +24,7 @@ export default class SignIn extends Component {
                                 </div>
                                 <div className="row">
                                     <div className="input-field col s12">
-                                        <input id="password" type="password" className="validate" minlength="5" required />
+                                        <input id="password" type="password" className="validate" minLength="5" required />
                                         <label htmlFor="password">Password</label>
                                     </div>
                                 </div>
@@ -31,14 +33,16 @@ export default class SignIn extends Component {
                                         <button className="btn col s12 gradient__bg btn-register waves-effect waves-light" type="submit" name="action">Sign In</button>
                                     </div>
                                     <p className="center-align">
-                                        <span>Don't Have an Account? Sign Up <a href="signup.html">here</a></span>
+                                        <span>Don't Have an Account? Sign Up <Link to="signup">here</Link></span>
                                     </p>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
+
                 <div className="empty"></div>
+
                 <AuthFooter />
             </div>
         );

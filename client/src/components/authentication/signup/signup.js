@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import LoadingBar from 'react-redux-loading-bar'
 import AuthHeader from '../AuthHeader'
-import AuthFooter from '../../bodyComponents/footer/authFooter.js'
+import AuthFooter from '../authFooter'
 
 export default class SignUp extends Component {
     render(){
@@ -34,7 +35,7 @@ export default class SignUp extends Component {
                                 </div>
                                 <div className="row">
                                     <div className="input-field col s12">
-                                        <input id="password" type="password" className="validate" minlength="6" required />
+                                        <input id="password" type="password" className="validate" minLength="6" required />
                                             <label htmlFor="password">Password</label>
                                     </div>
                                 </div>
@@ -43,14 +44,16 @@ export default class SignUp extends Component {
                                         <button className="col s12 btn waves-effect gradient__bg waves-light" type="submit" name="action">Register</button>
                                     </div>
                                     <p className="center-align">
-                                        <span>Already signed Up? Login <a href="signin.html">here</a></span>
+                                        <span>Already signed Up? Login <Link to="signin">here</Link></span>
                                     </p>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
+
                 <div className="empty"></div>
+
                 <AuthFooter />
             </div>
         );
