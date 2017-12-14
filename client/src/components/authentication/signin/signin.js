@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import LoadingBar from 'react-redux-loading-bar'
+// import LoadingBar from 'react-redux-loading-bar'
 import AuthHeader from '../AuthHeader'
 import AuthFooter from '../authFooter'
 
@@ -8,7 +8,7 @@ export default class SignIn extends Component {
     render(){
         return (
             <div>
-                <LoadingBar style={{ backgroundImage: 'linear-gradient(to top left, rgba(72, 132, 179, 0.7), rgba(144, 236, 146, 0.7))', height: '2px' }} />
+                {/*<LoadingBar style={{ backgroundImage: 'linear-gradient(to top left, rgba(72, 132, 179, 0.7), rgba(144, 236, 146, 0.7))', height: '2px' }} />*/}
 
                 <AuthHeader />
 
