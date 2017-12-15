@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 class CenterCard extends Component {
     render() {
         return (
-            <Link to="center-detail">
+            <Link to="center-detail" key={Math.random() * Math.random() * 999999}>
                 <div className="card">
                     <div className="card-image">
                         <img src="image/1.jpg" />

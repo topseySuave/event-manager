@@ -53,7 +53,7 @@ export default class Users {
             })
             .then((user) => {
                 return res.status(201)
-                    .json({
+                    .send({
                         statusCode: 201,
                         message: `Account Created for ${user.firstName} ${user.lastName}`,
                         User

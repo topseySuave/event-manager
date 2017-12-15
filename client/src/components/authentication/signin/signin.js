@@ -1,50 +1,36 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-// import LoadingBar from 'react-redux-loading-bar'
+import LoadingBar from 'react-redux-loading-bar'
+import DocumentTitle from 'react-document-title'
+import { connect } from 'react-redux'
+import queryString from 'query-string'
 import AuthHeader from '../AuthHeader'
 import AuthFooter from '../authFooter'
+import SignInForm from './signInForm'
 
-export default class SignIn extends Component {
+class SignIn extends Component {
     render(){
         return (
-            <div>
-                {/*<LoadingBar style={{ backgroundImage: 'linear-gradient(to top left, rgba(72, 132, 179, 0.7), rgba(144, 236, 146, 0.7))', height: '2px' }} />*/}
+            <DocumentTitle title="Sign In | Boots Events Manager">
+                <div>
+                    <LoadingBar style={{ backgroundImage: 'linear-gradient(to top left, rgba(72, 132, 179, 0.7), rgba(144, 236, 146, 0.7))', height: '2px' }} />
 
-                <AuthHeader />
+                    <AuthHeader />
 
-                <div className="signin__card_holdr wow fadeInUp">
-                    <div className="container">
-                        <div className="row">
-                            <form className="col s12" id="signin-form" method="post">
-                                <div className="row">
-                                    <div className="input-field col s12">
-                                        <input id="email" type="email" className="validate" required />
-                                        <label htmlFor="email">Email</label>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="input-field col s12">
-                                        <input id="password" type="password" className="validate" minLength="5" required />
-                                        <label htmlFor="password">Password</label>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="input-field col s12 center-align">
-                                        <button className="btn col s12 gradient__bg btn-register waves-effect waves-light" type="submit" name="action">Sign In</button>
-                                    </div>
-                                    <p className="center-align">
-                                        <span>Don't Have an Account? Sign Up <Link to="signup">here</Link></span>
-                                    </p>
-                                </div>
-                            </form>
+                    <div className="signin__card_holdr wow fadeInUp">
+                        <div className="container">
+                            <div className="row">
+                                <SignInForm signedUpAction={queryString.parse(this.props.location.search)} />
+                            </div>
                         </div>
                     </div>
+
+                    <div className="empty"></div>
+
+                    <AuthFooter />
                 </div>
-
-                <div className="empty"></div>
-
-                <AuthFooter />
-            </div>
+            </DocumentTitle>
         );
     }
 }
+
+export default connect(null, {})(SignIn)

@@ -8,7 +8,7 @@ const InputForm = ({fieldId, nameField, value, error, type, onChange, label}) =>
                 id={fieldId}
                 name={nameField}
                 type={type}
-                value={value}
+                defaultValue={value}
                 onChange={onChange}
                 className="validate"
                 required

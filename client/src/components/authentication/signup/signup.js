@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-// import LoadingBar from 'react-redux-loading-bar'
+import LoadingBar from 'react-redux-loading-bar'
+import DocumentTitle from 'react-document-title'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import AuthHeader from '../AuthHeader'
 import AuthFooter from '../authFooter'
@@ -9,28 +11,37 @@ import { userSignupRequest } from '../../../actions/signupActions'
 class SignUp extends Component {
     render(){
         return (
-            <div>
-                {/*<LoadingBar style={{ backgroundImage: 'linear-gradient(to top left, rgba(72, 132, 179, 0.7), rgba(144, 236, 146, 0.7))', height: '2px' }} />*/}
+            <DocumentTitle title="Sign up | Boots Events Manager">
+                <div>
+                    <LoadingBar style={{ backgroundImage: 'linear-gradient(to top left, rgba(72, 132, 179, 0.7), rgba(144, 236, 146, 0.7))', height: '2px' }} />
 
-                <AuthHeader />
-                <div className="signin__card_holdr wow fadeInUp">
-                    <div className="container">
-                        <div className="row">
-                            <SignUpForm  userSignupRequest={userSignupRequest} />
+                    <AuthHeader />
+                    <div className="signin__card_holdr wow fadeInUp">
+                        <div className="container">
+                            <div className="row">
+                                <SignUpForm  userSignupRequest={userSignupRequest} />
+                            </div>
                         </div>
                     </div>
+
+                    <div className="empty"></div>
+
+                    <AuthFooter />
                 </div>
-
-                <div className="empty"></div>
-
-                <AuthFooter />
-            </div>
+            </DocumentTitle>
         );
     }
 }
 
-SignUp.propTypes = {
-    userSignupRequest: userSignupRequest
-};
+// SignUp.propTypes = {
+//     userSignupRequest: userSignupRequest
+// };
 
-export default connect(null, { userSignupRequest})(SignUp)
+const mapDispatchToProps = (dispatch) => ({
+    actions: bindActionCreators({
+        userSignupRequest: userSignupRequest
+    }, dispatch)
+});
+
+
+export default connect(null, { mapDispatchToProps })(SignUp)

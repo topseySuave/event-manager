@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import validateInput from './validateInput';
 import InputForm from '../../form/formInput'
-import { PropTypes } from '../../../../../node_modules/prop-types'
+import { PropTypes } from 'prop-types'
+import classNames from 'classnames'
 
 class SignUpForm extends Component {
     constructor(props) {
@@ -18,95 +19,106 @@ class SignUpForm extends Component {
             redirect: false
         };
 
-        this.onChange = this.onChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    onChange(e) {
+    handleChange(e) {
         this.setState({ [e.target.name]: e.target.value})
     }
 
     isValid() {
         const { errors, isValid } = validateInput(this.state);
-
         if (!isValid) {
             this.setState({ errors });
         }
-
         return isValid;
     }
 
-    onSubmit(e) {
+    handleSubmit(e) {
         e.preventDefault();
-
         if (this.isValid()) {
             this.setState({errors: {}, isLoading: true});
-            this.props.userSignupRequest(this.state).then(
-                this.setState({redirect : true}),
-                (err) => this.setState({ errors: err.response.data, isLoading: false })
-            );
+            this.props.userSignupRequest(this.state)
+            .then((res) => {
+                console.log(res.data);
+                if(res.data.statusCode === 201){
+                    this.setState({
+                        serverRes: JSON.stringify(res.data),
+                        redirect : true,
+                        isLoading: false
+                    });
+                    this.context.router.concat({
+                        state: this.state
+                    })
+                }else{
+                    this.setState({ errors: res.data, isLoading: false })
+                }
+            });
         }
     }
 
     render(){
-        const {errors, redirect} = this.state;
+        const {isLoading, errors, redirect, serverRes} = this.state;
+        let to = (serverRes != null)? `/signin?action=signed-up&obj=${serverRes}`: '/signin';
         if (redirect) {
-            return <Redirect to='/signin' />;
+            return <Redirect to={to} />;
         }
+        let loading = classNames('row', {'isLoading': isLoading});
         return (
-            <form className="col s12" id="reg-form" onSubmit={this.onSubmit}>
-                <div className="row">
+            <form className="col s12" id="reg-form" onSubmit={this.handleSubmit}>
+                <div className={loading}>
                     <InputForm
                         fieldId = "first_name"
-                        nameField = "username"
+                        nameField = "firstName"
                         value = {this.state.firstName}
                         error = {errors.firstName || ''}
                         type="text"
-                        onChange = {this.onChange}
+                        onChange = {this.handleChange}
                         label = "First Name"
                     />
                 </div>
-                <div className="row">
+                <div className={loading}>
                     <InputForm
                         fieldId = "last_name"
                         nameField = "lastName"
                         value = {this.state.lastName}
                         error = {errors.lastName || ''}
                         type="text"
-                        onChange = {this.onChange}
+                        onChange = {this.handleChange}
                         label = "Last Name"
                     />
                 </div>
-                <div className="row">
+                <div className={loading}>
                     <InputForm
                         fieldId = "email"
                         nameField = "email"
                         value = {this.state.email}
                         error = {errors.email || ''}
                         type="email"
-                        onChange = {this.onChange}
+                        onChange = {this.handleChange}
                         label = "Email"
                     />
                 </div>
-                <div className="row">
+                <div className={loading}>
                     <InputForm
                         fieldId = "password"
                         nameField = "password"
                         value = {this.state.password}
                         error = {errors.password || ''}
                         type="password"
-                        onChange = {this.onChange}
+                        onChange = {this.handleChange}
                         label = "Password"
                     />
                 </div>
-                <div className="row">
+                <div className={loading}>
                     <InputForm
                         fieldId = "confirm_password"
                         nameField = "confirmPassword"
                         value = {this.state.confirmPassword}
                         error = {errors.confirmPassword || ''}
                         type="password"
-                        onChange = {this.onChange}
+                        onChange = {this.handleChange}
                         label = "Confirm Password"
                     />
                 </div>
@@ -116,7 +128,8 @@ class SignUpForm extends Component {
                             className="col s12 btn waves-effect gradient__bg waves-light"
                             type="submit"
                             name="action"
-                        >Register</button>
+                            disabled = { isLoading ? 'disabled' : '' }
+                        >{ !isLoading ? "Register" : "Registering..." }</button>
                     </div>
 
                     <p className="center-align">

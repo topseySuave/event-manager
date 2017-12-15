@@ -1,6 +1,6 @@
 /* eslint-disable */
 import isEmpty from 'lodash/isEmpty';
-import Validator from 'validatorjs';
+import isEmail from 'validator/lib/isEmail';
 
 export default function validateInput(data) {
     const errors = {};
@@ -10,9 +10,9 @@ export default function validateInput(data) {
     if (isEmpty(data.email)) {
         errors.email = 'This field is required';
     }
-    // if (!Validator.isEmail(data.email)) {
-    //     errors.email = 'Email is Invalid';
-    // }
+    if (!isEmail(data.email)) {
+        errors.email = 'Email is Invalid';
+    }
 
     if (isEmpty(data.firstName)) {
         errors.firstName = 'This field is required';
