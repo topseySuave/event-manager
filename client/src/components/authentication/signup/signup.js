@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import AuthHeader from '../AuthHeader'
 import AuthFooter from '../authFooter'
 import SignUpForm from './signUpForm'
-import { userSignupRequest } from '../../../actions/signupActions'
+import { userSignupRequest } from '../../../actions/authActions'
 
 class SignUp extends Component {
     render(){

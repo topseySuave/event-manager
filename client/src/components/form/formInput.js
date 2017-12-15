@@ -33,8 +33,4 @@ InputForm.propTypes = {
     label: requiredPropTypeString
 };
 
-// InputForm.defaultProps = {
-//     type: 'text'
-// };
-
 export default InputForm;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
-import validateInput from './validateInput';
+import { validateSignUpInput } from '../validateInput';
 import InputForm from '../../form/formInput'
 import { PropTypes } from 'prop-types'
 import classNames from 'classnames'
@@ -28,7 +28,7 @@ class SignUpForm extends Component {
     }
 
     isValid() {
-        const { errors, isValid } = validateInput(this.state);
+        const { errors, isValid } = validateSignUpInput(this.state);
         if (!isValid) {
             this.setState({ errors });
         }
@@ -48,9 +48,6 @@ class SignUpForm extends Component {
                         redirect : true,
                         isLoading: false
                     });
-                    this.context.router.concat({
-                        state: this.state
-                    })
                 }else{
                     this.setState({ errors: res.data, isLoading: false })
                 }
