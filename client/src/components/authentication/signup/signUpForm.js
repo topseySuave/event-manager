@@ -16,7 +16,8 @@ class SignUpForm extends Component {
             confirmPassword: '',
             errors: {},
             isLoading: false,
-            redirect: false
+            redirect: false,
+            exists: false
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -24,7 +25,16 @@ class SignUpForm extends Component {
     }
 
     handleChange(e) {
-        this.setState({ [e.target.name]: e.target.value})
+        if(!!this.state.errors[e.target.name]){
+            let errors = Object.assign({}, !!this.state.errors);
+            delete errors[e.target.name];
+            this.setState({
+                [e.target.name]: e.target.value,
+                errors
+            })
+        }else{
+            this.setState({ [e.target.name]: e.target.value });
+        }
     }
 
     isValid() {
@@ -37,30 +47,52 @@ class SignUpForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        if (this.isValid()) {
-            this.setState({errors: {}, isLoading: true});
+
+        if (this.isValid())
+        {
+            this.setState({
+                errors: {},
+                isLoading: true
+            });
+
             this.props.userSignupRequest(this.state)
             .then((res) => {
                 console.log(res.data);
-                if(res.data.statusCode === 201){
-                    this.setState({
-                        serverRes: JSON.stringify(res.data),
-                        redirect : true,
-                        isLoading: false
-                    });
-                }else{
-                    this.setState({ errors: res.data, isLoading: false })
+                switch(res.data.statusCode){
+                    case 201:
+                        this.setState({
+                            serverRes: JSON.stringify(res.data),
+                            redirect : true,
+                            isLoading: false
+                        });
+                        break;
+                    case 401:
+                        this.setState({
+                            serverRes: res.data,
+                            errors: res.data.message,
+                            isLoading: false,
+                            exists: true
+                        });
+                        break;
+                    default:
+                        this.setState({
+                            serverRes: res.data,
+                            errors: 'Houston we have a problem...!',
+                            isLoading: false
+                        });
+                        break;
                 }
             });
         }
     }
 
     render(){
-        const {isLoading, errors, redirect, serverRes} = this.state;
+        const {isLoading, errors, redirect, serverRes, exists} = this.state;
         let to = (serverRes != null)? `/signin?action=signed-up&obj=${serverRes}`: '/signin';
         if (redirect) {
             return <Redirect to={to} />;
         }
+
         let loading = classNames('row', {'isLoading': isLoading});
         return (
             <form className="col s12" id="reg-form" onSubmit={this.handleSubmit}>
@@ -91,7 +123,7 @@ class SignUpForm extends Component {
                         fieldId = "email"
                         nameField = "email"
                         value = {this.state.email}
-                        error = {errors.email || ''}
+                        error = {exists ? errors.message : errors.email || ''}
                         type="email"
                         onChange = {this.handleChange}
                         label = "Email"
@@ -126,7 +158,7 @@ class SignUpForm extends Component {
                             type="submit"
                             name="action"
                             disabled = { isLoading ? 'disabled' : '' }
-                        >{ !isLoading ? "Register" : "Registering..." }</button>
+                        >{ !isLoading ? "Register" : <img src="/image/loader/loading.gif"/> }</button>
                     </div>
 
                     <p className="center-align">

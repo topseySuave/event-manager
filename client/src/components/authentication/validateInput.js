@@ -18,19 +18,19 @@ export function validateSignUpInput(data) {
     if (isEmpty(data.firstName)) {
         errors.firstName = 'This field is required';
     } else if (data.firstName.length < minLength) {
-        errors.firstName = 'First Name is too short, Must be more than ' + minLength + 'Characters';
+        errors.firstName = 'First Name is too short, Must be more than ' + minLength + ' Characters';
     }
 
     if (isEmpty(data.lastName)) {
         errors.lastName = 'This field is required';
     } else if (data.lastName.length < minLength) {
-        errors.lastName = 'Last Name is too short, Must be more than ' + minLength + 'Characters';
+        errors.lastName = 'Last Name is too short, Must be more than ' + minLength + ' Characters';
     }
 
     if (isEmpty(data.password)) {
         errors.password = 'This field is required';
     } else if (data.password.length < passMinLength) {
-        errors.password = 'Password is too short, Must be more than ' + passMinLength + 'characters';
+        errors.password = 'Password is too short, Must be more than ' + passMinLength + ' characters';
     }
 
     if (isEmpty(data.confirmPassword)) {
@@ -60,5 +60,10 @@ export function validateSignInInput(data) {
     } else if (data.password.length < passMinLength) {
         errors.password = 'Password is too short, Must be more than ' + passMinLength + 'characters';
     }
+
+    return {
+        errors,
+        isValid: isEmpty(errors)
+    };
 }
 

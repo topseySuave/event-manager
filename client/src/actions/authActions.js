@@ -1,7 +1,16 @@
 import axios from 'axios';
+import { SET_USER } from './index'
+
+const registerSignedUpUser = (data) => {
+    return { type: SET_USER, payload: data }
+};
 
 const userSignupRequest = (userData) => {
-  return axios.post('/api/v1/users', userData);
+    // return dispatch => {
+        return axios.post('/api/v1/users', userData);
+    //         .then(res => res.json())
+    //         .then(res => dispatch(registerSignedUpUser(res.data)));
+    // };
 };
 
 const userSignInRequest = (userData) => {
@@ -10,5 +19,6 @@ const userSignInRequest = (userData) => {
 
 module.exports = {
     userSignupRequest,
-    userSignInRequest
+    userSignInRequest,
+    registerSignedUpUser
 };

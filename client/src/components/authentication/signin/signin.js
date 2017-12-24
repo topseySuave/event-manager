@@ -35,11 +35,10 @@ class SignIn extends Component {
     }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators({
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
         userSignInRequest: userSignInRequest
     }, dispatch)
-});
-
+};
 
 export default connect(null, { mapDispatchToProps })(SignIn)

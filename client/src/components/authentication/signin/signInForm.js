@@ -13,6 +13,7 @@ class SignInForm extends React.Component {
             email: '',
             password: '',
             isAuthenticated: false,
+            errors: {},
             isLoading: false,
             redirect: false,
             justSignedUp: false
@@ -23,7 +24,16 @@ class SignInForm extends React.Component {
     }
 
     handleChange(e) {
-        this.setState({ [e.target.name]: e.target.value})
+        if(!!this.state.errors[e.target.name]){
+            let errors = Object.assign({}, !!this.state.errors);
+            delete errors[e.target.name];
+            this.setState({
+                [e.target.name]: e.target.value,
+                errors
+            })
+        }else{
+            this.setState({ [e.target.name]: e.target.value });
+        }
     }
 
     isValid() {
@@ -55,7 +65,12 @@ class SignInForm extends React.Component {
     }
 
     componentWillMount(){
-        if(Helpers.equals(this.props.signedUpAction.action, 'signed-up')){
+        let helpers = new Helpers();
+        this.justSignedUp = {
+            obj: '{}'
+        };
+
+        if(helpers.equals(this.props.signedUpAction.action, 'signed-up')){
             this.setState({justSignedUp: true});
             this.justSignedUp = this.props.signedUpAction;
             console.log(this.justSignedUp);
@@ -113,7 +128,7 @@ class SignInForm extends React.Component {
                                 type="submit"
                                 name="action"
                                 disabled={ isLoading ? 'disabled' : '' }
-                            >{ !isLoading ? "Sign In" : "signing in..." }</button>
+                            >{ !isLoading ? "Sign In" : <img src="/image/loader/loading.gif"/> }</button>
                         </div>
 
                         <p className="center-align">

@@ -28,19 +28,19 @@ export default class Users {
         let salt = bcrypt.genSaltSync(Math.floor(Math.random() * 31));
 
         let { firstName, lastName, email, password } = req.body;
-        password = bcrypt.hashSync(password, salt);
+        let encryptedPassword = bcrypt.hashSync(password, salt);
 
         User.findOne({
             where: {
                 email: {
-                    $like: email
+                    $ilike: email
                 }
             }
         })
         .then((foundUser) => {
             if (foundUser) {
-                return res.status(400).json({
-                    statusCode: 400,
+                return res.status(401).json({
+                    statusCode: 401,
                     message: 'Email has been taken, Please Choose another',
                     error: true
                 });
@@ -49,19 +49,19 @@ export default class Users {
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
-                password: password
+                password: encryptedPassword
             })
             .then((user) => {
                 return res.status(201)
                     .send({
                         statusCode: 201,
                         message: `Account Created for ${user.firstName} ${user.lastName}`,
-                        User
+                        error: false
                     });
             })
-            .catch(err => res.status(400).json(err));
+            .catch(err => res.status(500).json(err));
         })
-        .catch(error => res.status(400).json(error));
+        .catch(error => res.status(500).json(error));
     }
 
     loginUser(req, res){
@@ -84,14 +84,19 @@ export default class Users {
                 else if(bcrypt.compareSync(password, foundUser.password))
                 {
                     return res.status(200).send({
+                        statusCode: 200,
                         message: 'Here`s your Token',
                         token: jwt.sign({
-                            id: foundUser.id
-                        }, process.env.SECRET_KEY, { expiresIn: '24h' })
+                            id: foundUser.id,
+                            firstName: foundUser.firstName,
+                            lastName: foundUser.lastName,
+                            email: foundUser.email
+                        }, process.env.SECRET_KEY, { expiresIn: '24h' }),
+                        error: false
                     });
                 }
             })
-            .catch(error => res.status(400).send(error));
+            .catch(error => res.status(500).send(error));
     }
 
     currUser (req, res){
