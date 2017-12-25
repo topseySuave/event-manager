@@ -33,15 +33,11 @@ class SignUp extends Component {
     }
 }
 
-// SignUp.propTypes = {
-//     userSignupRequest: userSignupRequest
-// };
-
-const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators({
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
         userSignupRequest: userSignupRequest
-    }, dispatch)
-});
+    }, dispatch);
+};
 
 
-export default connect(null, { mapDispatchToProps })(SignUp)
+export default connect(mapDispatchToProps)(SignUp)

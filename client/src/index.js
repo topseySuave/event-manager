@@ -12,10 +12,7 @@ import rootReducer from './rootReducer'
 
 const store = createStore(
     rootReducer,
-    compose(
-        applyMiddleware(thunk, loadingBarMiddleware()),
-        window.devToolsExtension ? window.devToolsExtension() : f => f
-    )
+    compose(applyMiddleware(thunk, loadingBarMiddleware()))
 );
 
 ReactDOM.render(

@@ -13,9 +13,8 @@ export default (state = initialState, action = {}) => {
 
         case SET_USER:
             return {
-                ...state,
-                isAuthenticated: !isEmpty(action.user),
-                user: action.user
+                isAuthenticated: !isEmpty(action.payload),
+                user: action.payload
             };
         default: return state;
     }

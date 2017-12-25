@@ -1,9 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { PropTypes } from 'prop-types'
 import { validateSignInInput } from '../validateInput';
 import classNames from 'classnames'
-import Helpers from '../../../helpers'
 import InputForm from '../../form/formInput'
 
 class SignInForm extends React.Component {
@@ -14,9 +13,9 @@ class SignInForm extends React.Component {
             password: '',
             isAuthenticated: false,
             errors: {},
+            errored: false,
             isLoading: false,
-            redirect: false,
-            justSignedUp: false
+            redirect: false
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -50,45 +49,49 @@ class SignInForm extends React.Component {
             this.setState({errors: {}, isLoading: true});
             this.props.userSignInRequest(this.state)
                 .then((res) => {
-                    console.log(res.data);
-                    // if(res.data.statusCode === 201){
-                    //     this.setState({
-                    //         serverRes: JSON.stringify(res.data),
-                    //         redirect : true,
-                    //         isLoading: false
-                    //     });
-                    // }else{
-                    //     this.setState({ errors: res.data, isLoading: false })
-                    // }
+                console.log(res);
+                    if(res){
+                        this.setState({
+                            redirect : true,
+                            isLoading: false
+                        });
+                    }else{
+                        //set error message to message from server
+                        this.setState({
+                            isLoading: false,
+                            errored: true,
+                            resMessage: 'Wrong email or password'
+                        });
+                    }
+                })
+                .catch(err => {
+                    //set error message to message from server
+                    this.setState({
+                        isLoading: false,
+                        errored: true,
+                        resMessage: 'Wrong email or password'
+                    });
+                    // console.log(err);
+                    // Materialize.toast('Error In Connection!!!' + err, 5000, 'rounded', ()=>{
+                    //     this.setState({ errors: err, isLoading: false })
+                    // })
                 });
         }
     }
 
-    componentWillMount(){
-        let helpers = new Helpers();
-        this.justSignedUp = {
-            obj: '{}'
-        };
-
-        if(helpers.equals(this.props.signedUpAction.action, 'signed-up')){
-            this.setState({justSignedUp: true});
-            this.justSignedUp = this.props.signedUpAction;
-            console.log(this.justSignedUp);
-        }
-    }
-
     render(){
-        const { isLoading, errors } = this.state;
+        const { isLoading, errors, redirect } = this.state;
         let loading = classNames('row', {'isLoading': isLoading});
+
+        if(redirect){
+            return <Redirect to='/' />;
+        }
 
         return (
             <div>
-                <div className={classNames('col', 's12', {'hidden': !this.state.justSignedUp})}>
-                    <div className="card-panel teal lighten-3">
-                        <h3 className="white-text" style={{marginTop: '0px'}}>You're Welcome!!!</h3>
-                        <span className="white-text">{JSON.parse(this.justSignedUp.obj).message}</span>
-                        <br />
-                        <span className="white-text">Please sign in and obtain your Token</span>
+                <div style={{marginBottom: '20px'}} className={classNames('col', 's12', {'hidden': !this.state.errored})}>
+                    <div className="card-panel red lighten-3">
+                        <span className="white-text">{this.state.resMessage}</span>
                     </div>
                 </div>
 
@@ -124,11 +127,11 @@ class SignInForm extends React.Component {
                     <div className="row">
                         <div className="input-field col s12 center-align">
                             <button
-                                className="btn col s12 gradient__bg btn-register waves-effect waves-light"
+                                className="btn col s12 white-text gradient__bg btn-register waves-effect waves-light"
                                 type="submit"
                                 name="action"
                                 disabled={ isLoading ? 'disabled' : '' }
-                            >{ !isLoading ? "Sign In" : <img src="/image/loader/loading.gif"/> }</button>
+                            >{ !isLoading ? "Sign In" : <img style={{marginTop: "10px"}} src="/image/loader/loading.gif"/> }</button>
                         </div>
 
                         <p className="center-align">
@@ -143,8 +146,7 @@ class SignInForm extends React.Component {
 }
 
 SignInForm.propTypes = {
-    userSignInRequest: PropTypes.func,
-    signedUpAction: PropTypes.object
+    userSignInRequest: PropTypes.func
 };
 
 export default SignInForm;

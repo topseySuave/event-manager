@@ -2,6 +2,40 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class HeaderBanner extends Component {
+    //initialize constructor
+    constructor(props){
+        super(props);
+        //initialize state
+        this.state = {
+            isAuthenticated: false
+        }
+    }
+
+    componentWillMount(){
+        //check if user is signed in with jwt Token
+        if(localStorage.getItem('jwtToken')){
+            //Change state to set isAuthenticated true
+            this.setState({isAuthenticated: true});
+        }
+    }
+
+    showAuthenticationLinks(){
+        // Show Sign-in and Sign-up
+        // links only if user isn't signed in
+        if(!this.state.isAuthenticated){
+            return (
+                <li>
+                    <li><Link to="signin">Sign In</Link></li>
+                    <li><Link to="signup">Sign Up</Link></li>
+                </li>
+            )
+        }else{
+            return (
+                <li><a href="#">Sign Out</a></li>
+            )
+        }
+    }
+
     render() {
         return (
             <div className="header">
@@ -16,8 +50,7 @@ class HeaderBanner extends Component {
                                     <li><a href="#search__modal" className="modal-trigger" id="search__view"><i
                                         className="material-icons">search</i></a></li>
                                     <li><Link to="centers">List of centers</Link></li>
-                                    <li><Link to="signin">Sign In</Link></li>
-                                    <li><Link to="signup">Sign Up</Link></li>
+                                    { this.showAuthenticationLinks() }
                                 </ul>
                             </div>
                         </nav>
@@ -25,8 +58,11 @@ class HeaderBanner extends Component {
                         <div className="center-align header__detail">
                             <h4 className="wow fadeInLeft">Worlds Leading Startup events</h4>
                             <p className="wow fadeInLeft">Attend Events around you and Add Events.</p>
-                            <Link to="signup" className="btn blue lighten-2 waves-effect animated fadeInLeft">Join Boots Events
-                                Manager</Link>
+                            {
+                                !this.state.isAuthenticated ?
+                                    <Link to="signup" className="btn blue lighten-2 waves-effect animated fadeInLeft">Join Boots Events
+                                        Manager</Link> : ''
+                            }
                         </div>
                     </div>
                 </div>

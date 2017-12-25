@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import LoadingBar from 'react-redux-loading-bar'
 import DocumentTitle from 'react-document-title'
 import { connect } from 'react-redux'
-import queryString from 'query-string'
+// import queryString from 'query-string'
 import { bindActionCreators } from 'redux'
 import AuthHeader from '../AuthHeader'
 import AuthFooter from '../authFooter'
@@ -21,7 +21,7 @@ class SignIn extends Component {
                     <div className="signin__card_holdr wow fadeInUp">
                         <div className="container">
                             <div className="row">
-                                <SignInForm userSignInRequest={userSignInRequest} signedUpAction={queryString.parse(this.props.location.search)} />
+                                <SignInForm userSignInRequest = {userSignInRequest} />
                             </div>
                         </div>
                     </div>
@@ -41,4 +41,4 @@ const mapDispatchToProps = (dispatch) => {
     }, dispatch)
 };
 
-export default connect(null, { mapDispatchToProps })(SignIn)
+export default connect(mapDispatchToProps)(SignIn)

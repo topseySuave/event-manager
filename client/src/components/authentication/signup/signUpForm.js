@@ -15,9 +15,11 @@ class SignUpForm extends Component {
             password: '',
             confirmPassword: '',
             errors: {},
+            resMessage: '',
             isLoading: false,
             redirect: false,
-            exists: false
+            exists: false,
+            signedUp: false
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -61,111 +63,140 @@ class SignUpForm extends Component {
                 switch(res.data.statusCode){
                     case 201:
                         this.setState({
-                            serverRes: JSON.stringify(res.data),
-                            redirect : true,
-                            isLoading: false
+                            resMessage: res.data.message,
+                            interval : 5,
+                            isLoading: false,
+                            signedUp: true
                         });
+
+                        setInterval(()=>{
+                            this.setState({interval: this.state.interval - 1});
+                            if(this.state.interval === 0){
+                                this.setState({redirect: true});
+                            }
+                        }, 1000);
+
                         break;
                     case 401:
                         this.setState({
                             serverRes: res.data,
-                            errors: res.data.message,
+                            error: res.data.message,
                             isLoading: false,
-                            exists: true
+                            exists: true,
+                            signedUp: false
                         });
                         break;
                     default:
                         this.setState({
                             serverRes: res.data,
-                            errors: 'Houston we have a problem...!',
-                            isLoading: false
+                            error: 'Houston we have a problem...!',
+                            isLoading: false,
+                            signedUp: false
                         });
                         break;
                 }
+            })
+            .catch((err)=>{
+                Materialize.toast('Error in connection!!!', 5000, 'rounded', () => {
+                    this.setState({
+                        isLoading: false,
+                    });
+                });
             });
         }
     }
 
     render(){
-        const {isLoading, errors, redirect, serverRes, exists} = this.state;
-        let to = (serverRes != null)? `/signin?action=signed-up&obj=${serverRes}`: '/signin';
+        const {isLoading, errors, redirect, exists, interval} = this.state;
+        let to = '/signin';
         if (redirect) {
             return <Redirect to={to} />;
         }
 
         let loading = classNames('row', {'isLoading': isLoading});
         return (
-            <form className="col s12" id="reg-form" onSubmit={this.handleSubmit}>
-                <div className={loading}>
-                    <InputForm
-                        fieldId = "first_name"
-                        nameField = "firstName"
-                        value = {this.state.firstName}
-                        error = {errors.firstName || ''}
-                        type="text"
-                        onChange = {this.handleChange}
-                        label = "First Name"
-                    />
-                </div>
-                <div className={loading}>
-                    <InputForm
-                        fieldId = "last_name"
-                        nameField = "lastName"
-                        value = {this.state.lastName}
-                        error = {errors.lastName || ''}
-                        type="text"
-                        onChange = {this.handleChange}
-                        label = "Last Name"
-                    />
-                </div>
-                <div className={loading}>
-                    <InputForm
-                        fieldId = "email"
-                        nameField = "email"
-                        value = {this.state.email}
-                        error = {exists ? errors.message : errors.email || ''}
-                        type="email"
-                        onChange = {this.handleChange}
-                        label = "Email"
-                    />
-                </div>
-                <div className={loading}>
-                    <InputForm
-                        fieldId = "password"
-                        nameField = "password"
-                        value = {this.state.password}
-                        error = {errors.password || ''}
-                        type="password"
-                        onChange = {this.handleChange}
-                        label = "Password"
-                    />
-                </div>
-                <div className={loading}>
-                    <InputForm
-                        fieldId = "confirm_password"
-                        nameField = "confirmPassword"
-                        value = {this.state.confirmPassword}
-                        error = {errors.confirmPassword || ''}
-                        type="password"
-                        onChange = {this.handleChange}
-                        label = "Confirm Password"
-                    />
-                </div>
-                <div className="row">
-                    <div className="input-field col s12 center-align">
-                        <button
-                            className="col s12 btn waves-effect gradient__bg waves-light"
-                            type="submit"
-                            name="action"
-                            disabled = { isLoading ? 'disabled' : '' }
-                        >{ !isLoading ? "Register" : <img src="/image/loader/loading.gif"/> }</button>
+            <div>
+                <div className={classNames('col', 's12', {'hidden': !this.state.signedUp})}>
+                    <div className="card-panel teal lighten-3">
+                        <h3 className="white-text" style={{marginTop: '0px'}}>You're Welcome!!!</h3>
+                        <span className="white-text">{this.state.resMessage}</span>
+                        <br />
+                        <span className="white-text">Redirecting to signin in {interval} seconds</span>
                     </div>
-
-                    <p className="center-align">
-                        <span>Already signed Up? Login <Link to="signin">here</Link></span>
-                    </p>
                 </div>
-            </form>
+
+                <form className={classNames('col s12', {'hidden': this.state.signedUp})} id="reg-form" onSubmit={this.handleSubmit}>
+                    <div className={loading}>
+                        <InputForm
+                            fieldId = "first_name"
+                            nameField = "firstName"
+                            value = {this.state.firstName}
+                            error = {errors.firstName || ''}
+                            type="text"
+                            onChange = {this.handleChange}
+                            label = "First Name"
+                        />
+                    </div>
+                    <div className={loading}>
+                        <InputForm
+                            fieldId = "last_name"
+                            nameField = "lastName"
+                            value = {this.state.lastName}
+                            error = {errors.lastName || ''}
+                            type="text"
+                            onChange = {this.handleChange}
+                            label = "Last Name"
+                        />
+                    </div>
+                    <div className={loading}>
+                        <InputForm
+                            fieldId = "email"
+                            nameField = "email"
+                            value = {this.state.email}
+                            error = {exists ? errors.message : errors.email || ''}
+                            type="email"
+                            onChange = {this.handleChange}
+                            label = "Email"
+                        />
+                    </div>
+                    <div className={loading}>
+                        <InputForm
+                            fieldId = "password"
+                            nameField = "password"
+                            value = {this.state.password}
+                            error = {errors.password || ''}
+                            type="password"
+                            onChange = {this.handleChange}
+                            label = "Password"
+                        />
+                    </div>
+                    <div className={loading}>
+                        <InputForm
+                            fieldId = "confirm_password"
+                            nameField = "confirmPassword"
+                            value = {this.state.confirmPassword}
+                            error = {errors.confirmPassword || ''}
+                            type="password"
+                            onChange = {this.handleChange}
+                            label = "Confirm Password"
+                        />
+                    </div>
+                    <div className="row">
+                        <div className="input-field col s12 center-align">
+                            <button
+                                className="col s12 white-text btn waves-effect gradient__bg waves-light"
+                                type="submit"
+                                name="action"
+                                disabled = { isLoading ? 'disabled' : '' }
+                            >{ !isLoading ? "Register" : <img src="/image/loader/loading.gif"/> }</button>
+                        </div>
+
+                        <p className="center-align">
+                            <span>Already signed Up? Login <Link to="signin">here</Link></span>
+                        </p>
+                    </div>
+                </form>
+            </div>
         );
     }
 }

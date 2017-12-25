@@ -94,6 +94,12 @@ export default class Users {
                         }, process.env.SECRET_KEY, { expiresIn: '24h' }),
                         error: false
                     });
+                }else{
+                    return res.status(401).send({
+                        statusCode: 401,
+                        message: 'Wrong password',
+                        error: true
+                    });
                 }
             })
             .catch(error => res.status(500).send(error));
