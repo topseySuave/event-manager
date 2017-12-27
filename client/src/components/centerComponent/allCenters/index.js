@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import LoadingBar from 'react-redux-loading-bar'
 import DocumentTitle from 'react-document-title'
-import { FixedNav } from '../../bodyComponents/headNav/nav'
+import FixedNav from '../../bodyComponents/headNav/fixedNav'
 import AllCenters from './allCenters'
 import FloatingActionButton from '../../bodyComponents/floatingActionButton/FloatingActionButton'
 import Modals from '../../modals'

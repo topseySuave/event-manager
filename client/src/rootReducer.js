@@ -4,5 +4,5 @@ import AuthReducer from './reducers/authReducer'
 
 export default combineReducers({
     loadingBar: loadingBarReducer,
-    AuthReducer: AuthReducer
+    authReducer: AuthReducer
 });

@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
 import LoadingBar from 'react-redux-loading-bar'
 import DocumentTitle from 'react-document-title'
-import { connect } from 'react-redux'
-// import queryString from 'query-string'
-import { bindActionCreators } from 'redux'
 import AuthHeader from '../AuthHeader'
 import AuthFooter from '../authFooter'
 import SignInForm from './signInForm'
-import { userSignInRequest } from '../../../actions/authActions'
 
 class SignIn extends Component {
     render(){
+
         return (
             <DocumentTitle title="Sign In | Boots Events Manager">
                 <div>
@@ -21,7 +18,7 @@ class SignIn extends Component {
                     <div className="signin__card_holdr wow fadeInUp">
                         <div className="container">
                             <div className="row">
-                                <SignInForm userSignInRequest = {userSignInRequest} />
+                                <SignInForm />
                             </div>
                         </div>
                     </div>
@@ -35,10 +32,4 @@ class SignIn extends Component {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({
-        userSignInRequest: userSignInRequest
-    }, dispatch)
-};
-
-export default connect(mapDispatchToProps)(SignIn)
+export default SignIn;

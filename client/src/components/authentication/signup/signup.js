@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import LoadingBar from 'react-redux-loading-bar'
 import DocumentTitle from 'react-document-title'
 import { bindActionCreators } from 'redux'
@@ -9,7 +10,23 @@ import SignUpForm from './signUpForm'
 import { userSignupRequest } from '../../../actions/authActions'
 
 class SignUp extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            isAuthenticated: false
+        }
+    }
+
+    componentWillMount(){
+        if(localStorage.getItem('jwtToken')){
+            this.setState({isAuthenticated: true});
+        }
+    }
+
     render(){
+        if(this.state.isAuthenticated){
+            return <Redirect to="/" />
+        }
         return (
             <DocumentTitle title="Sign up | Boots Events Manager">
                 <div>

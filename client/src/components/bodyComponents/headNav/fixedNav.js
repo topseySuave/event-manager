@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 import { signOutRequest } from '../../../actions/authActions'
 
-class Nav extends Component {
+class FixedNav extends Component {
 
     showAuthenticationLinks(){
         // Show Sign-in and Sign-up
@@ -27,7 +27,7 @@ class Nav extends Component {
 
     render() {
         return (
-            <div className="navbar-fixed home__nav">
+            <div className="navbar-fixed">
                 <nav className="gradient__bg">
                     <div className="container">
                         <div className="nav-wrapper">
@@ -59,4 +59,4 @@ const matchDispatchToProps = (dispatch) => {
     return bindActionCreators({signOut: signOutRequest}, dispatch);
 };
 
-export default connect(mapStateToProps, { matchDispatchToProps })(Nav);
+export default connect(mapStateToProps, { matchDispatchToProps })(FixedNav);

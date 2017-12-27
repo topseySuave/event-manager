@@ -1,9 +1,12 @@
 import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
 import { validateSignInInput } from '../validateInput';
 import classNames from 'classnames'
 import InputForm from '../../form/formInput'
+import { userSignInRequest } from '../../../actions/authActions'
 
 class SignInForm extends React.Component {
     constructor(props){
@@ -11,11 +14,9 @@ class SignInForm extends React.Component {
         this.state = {
             email: '',
             password: '',
-            isAuthenticated: false,
             errors: {},
             errored: false,
-            isLoading: false,
-            redirect: false
+            isLoading: false
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -49,10 +50,9 @@ class SignInForm extends React.Component {
             this.setState({errors: {}, isLoading: true});
             this.props.userSignInRequest(this.state)
                 .then((res) => {
-                console.log(res);
+                    // console.log(res);
                     if(res){
                         this.setState({
-                            redirect : true,
                             isLoading: false
                         });
                     }else{
@@ -64,27 +64,23 @@ class SignInForm extends React.Component {
                         });
                     }
                 })
-                .catch(err => {
+                .catch(() => {
                     //set error message to message from server
                     this.setState({
                         isLoading: false,
                         errored: true,
                         resMessage: 'Wrong email or password'
                     });
-                    // console.log(err);
-                    // Materialize.toast('Error In Connection!!!' + err, 5000, 'rounded', ()=>{
-                    //     this.setState({ errors: err, isLoading: false })
-                    // })
                 });
         }
     }
 
     render(){
-        const { isLoading, errors, redirect } = this.state;
+        const { isLoading, errors } = this.state;
         let loading = classNames('row', {'isLoading': isLoading});
 
-        if(redirect){
-            return <Redirect to='/' />;
+        if(this.props.activeState.isAuthenticated){
+            return <Redirect to="/" />
         }
 
         return (
@@ -145,8 +141,14 @@ class SignInForm extends React.Component {
     }
 }
 
-SignInForm.propTypes = {
-    userSignInRequest: PropTypes.func
+const mapStateToProps = (state) => {
+    return {
+        activeState: state.authReducer
+    }
 };
 
-export default SignInForm;
+const matchDispatchToProps = (dispatch) => {
+    return bindActionCreators({userSignInRequest: userSignInRequest}, dispatch);
+};
+
+export default connect(mapStateToProps, matchDispatchToProps)(SignInForm);

@@ -1,38 +1,35 @@
 import React, { Component } from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
+import { signOutRequest } from '../../../actions/authActions'
 
 class HeaderBanner extends Component {
-    //initialize constructor
-    constructor(props){
-        super(props);
-        //initialize state
-        this.state = {
-            isAuthenticated: false
-        }
-    }
-
-    componentWillMount(){
-        //check if user is signed in with jwt Token
-        if(localStorage.getItem('jwtToken')){
-            //Change state to set isAuthenticated true
-            this.setState({isAuthenticated: true});
-        }
-    }
 
     showAuthenticationLinks(){
         // Show Sign-in and Sign-up
         // links only if user isn't signed in
-        if(!this.state.isAuthenticated){
+        if(!this.props.activeState.isAuthenticated){
             return (
-                <li>
+                <div>
                     <li><Link to="signin">Sign In</Link></li>
                     <li><Link to="signup">Sign Up</Link></li>
-                </li>
+                </div>
             )
         }else{
             return (
-                <li><a href="#">Sign Out</a></li>
+                <li onClick={this.props.signOutRequest}>
+                    <a>Sign Out</a>
+                </li>
             )
+        }
+    }
+
+    showSignUpActionButton(){
+        if(!this.props.activeState.isAuthenticated){
+            return (
+                <Link to="signup" className="btn blue lighten-2 waves-effect animated fadeInLeft">Join Boots Events Manager</Link>
+            );
         }
     }
 
@@ -58,11 +55,7 @@ class HeaderBanner extends Component {
                         <div className="center-align header__detail">
                             <h4 className="wow fadeInLeft">Worlds Leading Startup events</h4>
                             <p className="wow fadeInLeft">Attend Events around you and Add Events.</p>
-                            {
-                                !this.state.isAuthenticated ?
-                                    <Link to="signup" className="btn blue lighten-2 waves-effect animated fadeInLeft">Join Boots Events
-                                        Manager</Link> : ''
-                            }
+                            { this.showSignUpActionButton() }
                         </div>
                     </div>
                 </div>
@@ -71,4 +64,14 @@ class HeaderBanner extends Component {
     }
 }
 
-export default HeaderBanner;
+const mapStateToProps = (state) => {
+    return {
+        activeState: state.authReducer
+    }
+};
+
+const matchDispatchToProps = (dispatch) => {
+    return bindActionCreators({signOutRequest: signOutRequest}, dispatch);
+};
+
+export default connect(mapStateToProps, matchDispatchToProps)(HeaderBanner);
