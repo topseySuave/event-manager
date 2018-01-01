@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
-// import { loadingBarMiddleware } from 'react-redux-loading-bar'
+import { loadingBarMiddleware } from 'react-redux-loading-bar'
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { BrowserRouter } from 'react-router-dom';
@@ -14,9 +14,10 @@ import rootReducer from './rootReducer'
 //     compose(applyMiddleware(thunk), window.devToolsExtension ? window.devToolsExtension() : f => f)
 // );
 
-const store = compose(applyMiddleware(thunk),
-            window.devToolsExtension ? window.devToolsExtension() : f => f
-        )(createStore)(rootReducer);
+const store = compose(
+    applyMiddleware(thunk, loadingBarMiddleware()),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+)(createStore)(rootReducer);
 
 ReactDOM.render(
     <Provider store={store}>

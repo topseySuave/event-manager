@@ -23,8 +23,7 @@ const authenticate = (req, res, next) => {
      * verify secret and checks expiry time**/
     return jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
         if (err) {
-            return res
-                .send({
+            return res.send({
                     success: false,
                     message: 'Failed to authenticate token'
                 });

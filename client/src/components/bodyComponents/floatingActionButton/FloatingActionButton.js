@@ -1,33 +1,35 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class FloatingActionButton extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            isAuthenticated: false
-        }
+
+    addEventButton(){
+        return (
+            <a href="#add_event_modal" className="tooltipped modal-trigger btn-large btn-floating green"
+               data-position="top"
+               data-tooltip="Add Event"><i className="material-icons">add</i>
+            </a>
+        );
     }
 
-    componentWillMount(){
-        //check if user is signed in with jwt Token
-        if(localStorage.getItem('jwtToken')){
-            //Change state to set isAuthenticated true
-            this.setState({isAuthenticated: true});
-        }
+    addCenterButton(){
+        return (
+            <a href="#edit_center_modal"
+               className="tooltipped modal-trigger btn-large btn-floating amber lighten-1" data-position="top"
+               data-tooltip="Add Center"><i className="material-icons">add</i>
+            </a>
+        );
     }
 
     render() {
-        if(this.state.isAuthenticated) {
+        if(this.props.activeState.isAuthenticated) {
+            let userObj = this.props.activeState.user;
+            let addCenterButton = (userObj.role) ? this.addCenterButton() : '';
+
             return (
                 <div className="fixed-action-btn wow zoomIn">
-                    <a href="#add_event_modal" className="tooltipped modal-trigger btn-large btn-floating green"
-                       data-position="top"
-                       data-tooltip="Add Event"><i className="material-icons">add</i>
-                    </a>
-                    <a href="#edit_center_modal"
-                       className="tooltipped modal-trigger btn-large btn-floating amber lighten-1" data-position="top"
-                       data-tooltip="Add Center"><i className="material-icons">add</i>
-                    </a>
+                    {this.addEventButton()}
+                    {addCenterButton}
                 </div>
             );
         }else{
@@ -36,4 +38,10 @@ class FloatingActionButton extends Component {
     }
 }
 
-export default FloatingActionButton;
+const mapStateToProps = (state) => {
+    return {
+        activeState: state.authReducer
+    }
+};
+
+export default connect(mapStateToProps)(FloatingActionButton);

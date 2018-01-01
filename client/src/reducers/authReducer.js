@@ -26,6 +26,8 @@ export default (state = initialState, action = {}) => {
             break;
 
         case REMOVE_USER:
+            // let user = state.user;
+            // user.splice(0, state.user.length);
             isAuthenticated = state.isAuthenticated = false;
             return {
                 isAuthenticated,

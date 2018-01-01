@@ -33,7 +33,7 @@ export default class Users {
         User.findOne({
             where: {
                 email: {
-                    $ilike: email
+                    $iLike: email
                 }
             }
         })
@@ -90,7 +90,8 @@ export default class Users {
                             id: foundUser.id,
                             firstName: foundUser.firstName,
                             lastName: foundUser.lastName,
-                            email: foundUser.email
+                            email: foundUser.email,
+                            role: foundUser.role
                         }, process.env.SECRET_KEY, { expiresIn: '24h' }),
                         error: false
                     });

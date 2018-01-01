@@ -23,7 +23,7 @@ export class Centers {
             img_url: req.body.img_url,
             location: req.body.location,
             description: req.body.description,
-            facilities: req.body.facilities.split(','),
+            facilities: req.body.facilities,
             capacity: parseInt(req.body.capacity),
             price: parseInt(req.body.price)
         })

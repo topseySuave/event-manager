@@ -5,10 +5,10 @@ export class Validation {
     validateCenter (req, res, next) {
         const centerRules = {
             title: 'required|string',
-            img_url: 'required|string',
+            img_url: 'string',
             location: 'required|string',
             description: 'required|string',
-            facilities: 'required|string',
+            facilities: 'array',
             capacity: 'required|integer',
             price: 'required|integer'
         };
@@ -25,7 +25,7 @@ export class Validation {
 
         const eventRules = {
             title: 'required|string',
-            img_url: 'required|string',
+            img_url: 'string',
             description: 'required|string',
             startDate: 'required|date',
             endDate: 'required|date',
