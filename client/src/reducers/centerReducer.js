@@ -9,9 +9,7 @@ export default (state = {}, action = {}) => {
             };
             break;
         case FETCH_CENTERS:
-            return {
-                centersData: action.centers
-            };
+            return action.centers;
         default:
             return state;
     }
