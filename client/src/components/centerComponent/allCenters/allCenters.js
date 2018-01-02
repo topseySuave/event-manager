@@ -44,23 +44,21 @@ class AllCenters extends Component{
         return centers.map((center) => {
             let to = `center-detail/${center.id}/${this.helper.sanitizeString(center.title)}`;
             return (
-                <div key={shortid.generate()} className="col s12 l4">
-                    <Link to={to}>
-                        <div className="card">
-                             {
-                                 !!center.img_url
-                                 &&
-                                 <div className="card-image">
-                                     <img src={center.img_url}/>
-                                 </div>
-                             }
-                            <div className="card-content black-text">
-                            <p className="f__size">{center.title}</p>
-                            <p><i className="material-icons f15">location_on</i>{center.location}</p>
-                            </div>
+                <Link key={shortid.generate()} to={to}>
+                    <div className="card">
+                         {
+                             !!center.img_url
+                             &&
+                             <div className="card-image">
+                                 <img src={center.img_url}/>
+                             </div>
+                         }
+                        <div className="card-content black-text">
+                        <p className="f__size">{center.title}</p>
+                        <p><i className="material-icons f15">location_on</i>{center.location}</p>
                         </div>
-                    </Link>
-                </div>
+                    </div>
+                </Link>
             );
         });
     }
@@ -77,7 +75,9 @@ class AllCenters extends Component{
                         <div className="col s12 l12" style={{marginBottom: 60 + 'px'}}>
                             <h4 className="center-align">Boots Centers</h4>
                             <div className="row">
-                                { isLoading ? <CircularLoader /> : this.showCentersCard() }
+                                <div className="col s12 cards-container">
+                                    { isLoading ? <CircularLoader /> : this.showCentersCard() }
+                                </div>
                             </div>
                         </div>
                     </div>

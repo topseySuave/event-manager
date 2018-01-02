@@ -71,3 +71,9 @@
 @mixin blur()
   -webkit-filter: blur(3px) !important
   filter: blur(3px) !important
+
+@mixin column-count($ct)
+  -webkit-column-count: $ct
+  -moz-column-count: $ct
+  column-count: $ct
+

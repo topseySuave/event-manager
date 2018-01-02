@@ -7,6 +7,13 @@
 /*padding mixins */
 /*Margin mixins */
 /*overwrites */
+.cards-container {
+  column-break-inside: avoid; }
+  .cards-container .card {
+    display: inline-block;
+    overflow: visible;
+    width: 100%; }
+
 .input-field {
   margin-top: 0 !important; }
 
@@ -342,5 +349,20 @@ input[type=range] {
   /* For mobile phones: */
   .signin__card_holdr {
     width: 100%; } }
+@media only screen and (max-width: 600px) {
+  .cards-container {
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-count: 1; } }
+@media only screen and (min-width: 601px) {
+  .cards-container {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2; } }
+@media only screen and (min-width: 993px) {
+  .cards-container {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3; } }
 
 /*# sourceMappingURL=app.css.map */
