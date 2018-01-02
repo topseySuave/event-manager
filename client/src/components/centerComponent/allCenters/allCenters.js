@@ -43,9 +43,6 @@ class AllCenters extends Component{
         let centers = this.props.centerStore.centers;
         return centers.map((center) => {
             let to = `center-detail/${center.id}/${this.helper.sanitizeString(center.title)}`;
-            // return (
-            //     // <CenterCard key={shortid.generate()} center={center} />
-            // );
             return (
                 <div key={shortid.generate()} className="col s12 l4">
                     <Link to={to}>
@@ -80,7 +77,7 @@ class AllCenters extends Component{
                         <div className="col s12 l12" style={{marginBottom: 60 + 'px'}}>
                             <h4 className="center-align">Boots Centers</h4>
                             <div className="row">
-                                {isLoading ? <CircularLoader /> : this.showCentersCard()}
+                                { isLoading ? <CircularLoader /> : this.showCentersCard() }
                             </div>
                         </div>
                     </div>
@@ -89,9 +86,5 @@ class AllCenters extends Component{
         );
     }
 }
-
-// AllCenters.propTypes = {
-//     center: PropTypes.object
-// };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllCenters);

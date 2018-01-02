@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-import EventCard from '../../bodyComponents/eventsCard/eventCard'
-import CenterCard from '../centerCard/centerCard'
+// import EventCard from '../../bodyComponents/eventsCard/eventCard'
+// import CenterCard from '../centerCard/centerCard'
+import CurrentEventForCenter from './currentEventForCenter'
+import RecommCenter from './RecommCenter'
 
 class CenterDetail extends Component{
     render(){
@@ -68,25 +70,11 @@ class CenterDetail extends Component{
                                 </section>
                             </div>
                         </div>
-                        <div className="col s12 l4">
-                            <p><h6 className="bold">Events hosted by this center</h6></p>
-                            <section>
-                                <div className="row">
-                                    <div className="col s12 l12">
-                                        <EventCard />
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="divider"></div>
 
-                        <h5>Recommended Center</h5>
-                        <div className="col s12 l12">
-                            <CenterCard />
-                        </div>
+                        <CurrentEventForCenter/>
+
                     </div>
+                    <RecommCenter />
                 </div>
             </div>
         );
