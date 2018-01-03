@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
-// import EventCard from '../../bodyComponents/eventsCard/eventCard'
-// import CenterCard from '../centerCard/centerCard'
+import { PropTypes } from 'prop-types'
 import CurrentEventForCenter from './currentEventForCenter'
 import RecommCenter from './RecommCenter'
 
 class CenterDetail extends Component{
+    componentWillMount(){
+        const params = this.props.params;
+        console.log(params.id, params.title);
+    }
+
     render(){
         return (
             <div className="container">
@@ -71,7 +75,7 @@ class CenterDetail extends Component{
                             </div>
                         </div>
 
-                        <CurrentEventForCenter/>
+                        <CurrentEventForCenter />
 
                     </div>
                     <RecommCenter />
@@ -80,5 +84,9 @@ class CenterDetail extends Component{
         );
     }
 }
+
+CenterDetail.propTypes = {
+    params: PropTypes.object.isRequired
+};
 
 export default CenterDetail;

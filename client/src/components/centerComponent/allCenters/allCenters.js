@@ -10,16 +10,6 @@ import { CircularLoader } from '../../loader'
 import { fetchCentersAction } from '../../../actions/fetchCenterAction'
 import Helpers from '../../../helpers'
 
-const mapStateToProps = (state) => {
-    return {
-        centerStore: state.centerReducer
-    }
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({fetchCentersAction: fetchCentersAction}, dispatch);
-};
-
 class AllCenters extends Component{
     constructor(props){
         super(props);
@@ -75,8 +65,9 @@ class AllCenters extends Component{
                         <div className="col s12 l12" style={{marginBottom: 60 + 'px'}}>
                             <h4 className="center-align">Boots Centers</h4>
                             <div className="row">
+                                { isLoading ? <CircularLoader /> : '' }
                                 <div className="col s12 cards-container">
-                                    { isLoading ? <CircularLoader /> : this.showCentersCard() }
+                                    { isLoading ? '' : this.showCentersCard() }
                                 </div>
                             </div>
                         </div>
@@ -86,5 +77,15 @@ class AllCenters extends Component{
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        centerStore: state.centerReducer
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({fetchCentersAction: fetchCentersAction}, dispatch);
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllCenters);

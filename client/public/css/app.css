@@ -8,7 +8,9 @@
 /*Margin mixins */
 /*overwrites */
 .cards-container {
-  column-break-inside: avoid; }
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  break-inside: avoid; }
   .cards-container .card {
     display: inline-block;
     overflow: visible;

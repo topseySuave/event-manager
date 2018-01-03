@@ -12,8 +12,8 @@ class Nav extends Component {
         if(!this.props.activeState.isAuthenticated){
             return (
                 <div>
-                    <li><Link to="signin">Sign In</Link></li>
-                    <li><Link to="signup">Sign Up</Link></li>
+                    <li><Link to="/signin">Sign In</Link></li>
+                    <li><Link to="/signup">Sign Up</Link></li>
                 </div>
             )
         }else{
@@ -37,7 +37,7 @@ class Nav extends Component {
                             <ul id="nav-mobile" className="right hide-on-med-and-down">
                                 <li><a href="#search__modal" className="modal-trigger" id="search__view"><i
                                     className="material-icons">search</i></a></li>
-                                <li><Link to="centers">List of centers</Link></li>
+                                <li><Link to="/centers">List of centers</Link></li>
 
                                 { this.showAuthenticationLinks() }
                             </ul>
