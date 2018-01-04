@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 import shortid from 'shortid'
 import InputForm from '../../form/formInput'
 import { validateCenterInput } from './validateCenterInput'
@@ -49,15 +51,28 @@ class AddCenterForm extends Component {
         return isValid;
     }
 
-    handleSelectChange(e){
-        let options = e.target.options;
-        let values = [];
-        for (let i = 0, l = options.length; i < l; i++) {
-            if (options[i].selected) {
-                values.push(options[i].value);
-            }
-        }
-        this.setState({ facilities: values });
+    handleSelectChange = (event, index, facilities) => this.setState({facilities});
+    // handleSelectChange(e){
+    //     let options = e.target.options;
+    //     let values = [];
+    //     for (let i = 0, l = options.length; i < l; i++) {
+    //         if (options[i].selected) {
+    //             values.push(options[i].value);
+    //         }
+    //     }
+    //     this.setState({ facilities: values });
+    // }
+
+    menuItems(facilityes) {
+        return facilities().map((name) => (
+            <MenuItem
+                key={shortid.generate()}
+                insetChildren={true}
+                checked={facilityes && facilityes.indexOf(name) > -1}
+                value={name}
+                primaryText={name}
+            />
+        ));
     }
 
     handleCenterSubmit(e) {
@@ -91,7 +106,7 @@ class AddCenterForm extends Component {
     }
 
     render(){
-        const { errors, isLoading } = this.state;
+        const { errors, isLoading, facilities } = this.state;
         return (
             <form className="col s12" id="edit-center-form" onSubmit={this.handleCenterSubmit}>
                 <div className="row">
@@ -120,16 +135,24 @@ class AddCenterForm extends Component {
                 </div>
                 <div className="row">
                     <label htmlFor="facilities">Select Facilities</label>
-                    <select
-                        style={{display: 'block'}}
-                        multiple
-                        name="facilities"
-                        id="facilities"
-                        value={this.state.facilities}
-                        onChange={this.handleSelectChange}>
-                        <option defaultValue="" disabled selected>Choose the facilities for this center</option>
-                        {this.renderFacilities()}
-                    </select>
+                    <SelectField
+                        multiple={true}
+                        hintText="Select Facilities"
+                        value={facilities}
+                        onChange={this.handleSelectChange}
+                    >
+                        {this.menuItems(facilities)}
+                    </SelectField>
+                    {/*<select*/}
+                        {/*style={{display: 'block'}}*/}
+                        {/*multiple*/}
+                        {/*name="facilities"*/}
+                        {/*id="facilities"*/}
+                        {/*value={this.state.facilities}*/}
+                        {/*onChange={this.handleSelectChange}>*/}
+                        {/*<option defaultValue="" disabled selected>Choose the facilities for this center</option>*/}
+                        {/*{this.renderFacilities()}*/}
+                    {/*</select>*/}
 
                     <div className="input-field col s12">
                         <InputForm

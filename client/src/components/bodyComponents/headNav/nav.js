@@ -11,7 +11,7 @@ class Nav extends Component {
         // links only if user isn't signed in
         if(!this.props.activeState.isAuthenticated){
             return (
-                <div>
+                <div style={{float: 'left'}}>
                     <li><Link to="/signin">Sign In</Link></li>
                     <li><Link to="/signup">Sign Up</Link></li>
                 </div>

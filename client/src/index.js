@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { loadingBarMiddleware } from 'react-redux-loading-bar'
 import { Provider } from 'react-redux';
@@ -22,7 +23,9 @@ const store = compose(
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
-            <App />
+            <MuiThemeProvider>
+                <App />
+            </MuiThemeProvider>
         </BrowserRouter>
     </Provider>,
     document.getElementById('root')

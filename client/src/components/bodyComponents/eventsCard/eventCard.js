@@ -5,7 +5,7 @@ class EventCard extends Component {
         return (
             <div className="card wow fadeInUp" key={Math.random() * Math.random() * 999999}>
                 <div className="card-image">
-                    <img src="image/2.jpg" />
+                    <img src="/image/2.jpg" />
                     <span className="card-title">A title for this event</span>
                     <a className="btn-floating activator halfway-fab waves-effect waves-light red tooltipped"
                        data-position="bottom" data-tooltip="share">
