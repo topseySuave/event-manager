@@ -23,8 +23,8 @@ class AllCenters extends Component{
         this.props.fetchCentersAction();
     }
 
-    componentWillReceiveProps(){
-        if(this.props.centerStore){
+    componentWillReceiveProps(newProps){
+        if(newProps){
             this.setState({ isLoading: false });
         }
     }

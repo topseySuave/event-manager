@@ -2,7 +2,7 @@ import axios from 'axios'
 import { FETCH_CENTERS, FETCH_CENTER_DETAIL } from './'
 import { showLoading, hideLoading } from 'react-redux-loading-bar'
 
-const fetchCentersDispatch = (data) => {
+export const fetchCentersDispatch = (data) => {
     return {
         type: FETCH_CENTERS,
         centers: data

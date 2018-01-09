@@ -19,7 +19,7 @@ class Main extends Component {
                 <Route exact path ='/' component={HomePage} />
                 <Route path ='/signup' component={SignUp} />
                 <Route path = '/signin' component={SignIn} />
-                <Route exact={false} path = '/center-detail/:id/:title' component={CenterDetailIndex} />
+                <Route path = '/center-detail/:id/:title' component={CenterDetailIndex} />
                 <Route path = '/centers' component={AllCentersIndex} />
                 <Route path='*' component={NoMatch} />
             </Switch>

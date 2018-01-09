@@ -1,12 +1,29 @@
 import React, { Component } from 'react';
+import { PropTypes } from 'prop-types'
+import shortid from 'shortid'
 
 class EventCard extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            event: {},
+            location: ''
+        }
+    }
+
+    componentWillReceiveProps(newProps){
+        if(newProps){
+            this.setState({ event: newProps });
+        }
+    }
+
     render() {
+        let { id, title, img_url, description } = this.state.event;
         return (
-            <div className="card wow fadeInUp" key={Math.random() * Math.random() * 999999}>
+            <div className="card wow fadeInUp" key={shortid.generate()}>
                 <div className="card-image">
-                    <img src="/image/2.jpg" />
-                    <span className="card-title">A title for this event</span>
+                    <img src={img_url} />
+                    <span className="card-title">{title}</span>
                     <a className="btn-floating activator halfway-fab waves-effect waves-light red tooltipped"
                        data-position="bottom" data-tooltip="share">
                         <i className="material-icons">share</i>
@@ -29,15 +46,17 @@ class EventCard extends Component {
                     </div>
                 </div>
                 <div className="card-reveal">
-                <span className="card-title grey-text text-darken-4"><a>A title for this event</a><i
+                <span className="card-title grey-text text-darken-4"><a>{title}</a><i
                     className="material-icons right">close</i></span>
-                    <small>Here is some more information about this product that is only revealed once clicked
-                        on.
-                    </small>
+                    <small>{description}</small>
                 </div>
             </div>
         );
     }
 }
+
+EventCard.propTypes = {
+    event: PropTypes.object
+};
 
 export default EventCard;

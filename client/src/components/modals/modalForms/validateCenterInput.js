@@ -9,7 +9,6 @@ const errors = {
 };
 
 export function validateEventInput(data) {
-
     if (isEmpty(data.title)) {
         errors.title = 'This field is required';
     }
@@ -39,7 +38,7 @@ export function validateCenterInput(data) {
 
     return {
         errors,
-        isValid: !isEmpty(errors)
+        isValid: isEmpty(errors)
     };
 }
 

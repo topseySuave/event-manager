@@ -11,6 +11,7 @@ const fetchCenterDispatch = (data) => {
 
 export const fetchCenterAction = (id) => {
     if(!id) return 'id is required for the request to be successful';
+
     return dispatch => {
         dispatch(showLoading());
         return axios.get(`/api/v1/centers/${id}`)

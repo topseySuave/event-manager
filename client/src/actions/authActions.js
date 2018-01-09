@@ -19,6 +19,13 @@ const userSignupRequest = (userData) => {
     // };
 };
 
+const setCurrentUser = (token) => {
+    return {
+        type: SET_USER,
+        payload: jwtDecode(token)
+    }
+};
+
 const userSignInRequest = (userData) => {
     return dispatch => {
         return axios.post('/api/v1/users/authentication', userData )
@@ -27,10 +34,7 @@ const userSignInRequest = (userData) => {
                     const token = res.data.token;
                     localStorage.setItem('jwtToken', token);
                     setAuthorizationToken(token);
-                    return dispatch({
-                        type: SET_USER,
-                        payload: jwtDecode(token)
-                    });
+                    return dispatch(setCurrentUser(token));
                 }else if(res.data.statusCode === 404 || res.data.statusCode === 401){
                     return false;
                 }
@@ -42,4 +46,5 @@ module.exports = {
     userSignupRequest,
     userSignInRequest,
     signOutRequest,
+    setCurrentUser
 };

@@ -11,7 +11,6 @@ import { PropTypes } from 'prop-types'
 import { createCenterRequest } from '../../../actions/modalAction'
 
 class AddCenterForm extends Component {
-
     constructor(props){
         super(props);
         this.state = {
@@ -52,16 +51,6 @@ class AddCenterForm extends Component {
     }
 
     handleSelectChange = (event, index, facilities) => this.setState({facilities});
-    // handleSelectChange(e){
-    //     let options = e.target.options;
-    //     let values = [];
-    //     for (let i = 0, l = options.length; i < l; i++) {
-    //         if (options[i].selected) {
-    //             values.push(options[i].value);
-    //         }
-    //     }
-    //     this.setState({ facilities: values });
-    // }
 
     menuItems(facilityes) {
         return facilities().map((name) => (
@@ -95,14 +84,6 @@ class AddCenterForm extends Component {
                     Materialize.toast('Houston, we have a problem! We are working on it');
                 });
         }
-    }
-
-    renderFacilities(){
-        return facilities().map((facility) => {
-            return (
-                <option value={facility} key={shortid.generate()}>{facility}</option>
-            )
-        });
     }
 
     render(){
@@ -143,16 +124,6 @@ class AddCenterForm extends Component {
                     >
                         {this.menuItems(facilities)}
                     </SelectField>
-                    {/*<select*/}
-                        {/*style={{display: 'block'}}*/}
-                        {/*multiple*/}
-                        {/*name="facilities"*/}
-                        {/*id="facilities"*/}
-                        {/*value={this.state.facilities}*/}
-                        {/*onChange={this.handleSelectChange}>*/}
-                        {/*<option defaultValue="" disabled selected>Choose the facilities for this center</option>*/}
-                        {/*{this.renderFacilities()}*/}
-                    {/*</select>*/}
 
                     <div className="input-field col s12">
                         <InputForm

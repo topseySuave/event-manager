@@ -10,12 +10,17 @@ import event from './routes/events';
 import center from './routes/centers';
 import users from './routes/users';
 import cors from 'cors';
-import cons from 'consolidate';
+// import cons from 'consolidate';
+import webpack from 'webpack';
+import webpackMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import config from '../webpack.config';
 
 dotenv.config();
 
 // Set up the express app
 const app = express();
+let compiler = webpack(config);
 
 app.use('/docs', swagger.serve, swagger.setup(swaggerDoc));
 
@@ -30,6 +35,20 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use(webpackHotMiddleware(compiler, {
+    hot: true,
+    publicPath: config.output.publicPath,
+    noInfo: true
+}));
+
+app.use(webpackMiddleware(compiler));
+
+app.use(webpackHotMiddleware(compiler, {
+    log: console.log,
+    path: '/__webpack_hmr',
+    heartbeat: 10 * 1000
+}));
+
 center(app);
 event(app);
 users(app);
@@ -37,8 +56,6 @@ users(app);
 app.use(express.static(path.join(__dirname, '../client/public')));
 
 app.set('views', path.join(__dirname, '..', 'client', 'public'));
-// app.engine('html', cons.jade);
-// app.set('view engine', 'html');
 
 // Setup a default catch-all route that sends back the index html file.
 app.get('*', (req, res) => {

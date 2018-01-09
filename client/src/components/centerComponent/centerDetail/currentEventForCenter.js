@@ -1,7 +1,41 @@
 import React, {Component} from 'react';
+import {PropTypes} from 'prop-types'
+import shortid from 'shortid'
 import EventCard from '../../bodyComponents/eventsCard/eventCard'
 
 class CurrentEventForCenter extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            hasEvent: false,
+            eventArr: []
+        }
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (newProps.event.length > 0) {
+            this.setState({hasEvent: true, eventArr: newProps})
+        }
+    }
+
+    showEventCard() {
+        if (this.state.hasEvent) {
+            let event = this.state.eventArr.event;
+            return event.map((event) => {
+                return (
+                    <EventCard key={shortid.generate()} event={event}/>
+                );
+            });
+        }
+
+        return (
+            <span>
+                <h5>No event for this center</h5>
+                <p>This center is currently open for booking</p>
+            </span>
+        );
+    }
+
     render() {
         return (
             <div className="col s12 l4">
@@ -9,7 +43,7 @@ class CurrentEventForCenter extends Component {
                 <section>
                     <div className="row">
                         <div className="col s12 l12">
-                            <EventCard />
+                            { this.showEventCard() }
                         </div>
                     </div>
                 </section>
@@ -17,5 +51,9 @@ class CurrentEventForCenter extends Component {
         );
     }
 }
+
+CurrentEventForCenter.propTypes = {
+    event: PropTypes.array
+};
 
 export default CurrentEventForCenter;

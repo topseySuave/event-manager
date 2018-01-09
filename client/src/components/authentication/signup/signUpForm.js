@@ -59,7 +59,6 @@ class SignUpForm extends Component {
 
             this.props.userSignupRequest(this.state)
             .then((res) => {
-                console.log(res.data);
                 switch(res.data.statusCode){
                     case 201:
                         this.setState({

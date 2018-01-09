@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
+import shortid from 'shortid'
 import CenterCard from '../centerComponent/centerCard/centerCard'
 import EventCard from '../bodyComponents/eventsCard/eventCard'
 // import uuidV5 from 'uuid/v5'
 
 class SearchModal extends Component {
 
-    loopCard(val){
-        let i = 0;
-        let div = [];
-        for(i; i < 6; i++){
-            div.push(val);
-        }
-        return div;
-    }
+    // loopCard(val){
+    //     let i = 0;
+    //     let div = [];
+    //     for(i; i < 6; i++){
+    //         div.push(val);
+    //     }
+    //     return div;
+    // }
 
     render() {
         return (
@@ -46,11 +47,9 @@ class SearchModal extends Component {
                     <h5>Center Results</h5>
 
                     <div className="row">
-                        {this.loopCard(
-                            <div className="col s12 l4">
-                                <CenterCard/>
-                            </div>
-                        )}
+                        <div key={shortid.generate()} className="col s12 l4">
+                            <CenterCard/>
+                        </div>
                     </div>
 
                     <div className="divider"></div>
@@ -58,11 +57,9 @@ class SearchModal extends Component {
                     <h5>Events Results</h5>
 
                     <div className="row">
-                        {this.loopCard(
-                            <div className="col s12 l4">
-                                <EventCard/>
-                            </div>
-                        )}
+                        <div key={shortid.generate()}  className="col s12 l4">
+                            <EventCard/>
+                        </div>
                     </div>
 
                 </div>

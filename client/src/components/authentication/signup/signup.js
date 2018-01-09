@@ -18,7 +18,7 @@ class SignUp extends Component {
     }
 
     componentWillMount(){
-        if(localStorage.getItem('jwtToken')){
+        if(this.props.activeState.isAuthenticated){
             this.setState({isAuthenticated: true});
         }
     }
@@ -50,6 +50,12 @@ class SignUp extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        activeState: state.authReducer
+    }
+};
+
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         userSignupRequest: userSignupRequest
@@ -57,4 +63,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default connect(mapDispatchToProps)(SignUp)
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
