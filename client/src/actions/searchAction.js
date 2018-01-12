@@ -1,9 +1,11 @@
 import axios from 'axios'
+import {isEmpty} from 'lodash'
 import {showLoading, hideLoading} from 'react-redux-loading-bar'
 import {fetchCentersDispatch} from './fetchCenterAction'
 
-export const searchAction = ({location, price, capacity}) => {
-    let searchApi = `/api/v1/centers?search=${location},${price},${capacity}`;
+export const searchAction = (data) => {
+    let searchApi = validateSearchQuery(data);
+
     return dispatch => {
         dispatch(showLoading());
         return axios.get(searchApi)
@@ -21,4 +23,37 @@ export const searchAction = ({location, price, capacity}) => {
                 dispatch(hideLoading());
             });
     };
+};
+
+const validateSearchQuery = ({filterBy, location, price, capacity, search}) => {
+    let searchApi, api;
+
+    if(filterBy){
+        api = `/api/v1/centers?filter=${filterBy}&search=`;
+    }else{
+        api = `/api/v1/centers?search=`;
+    }
+
+    if (!isEmpty(location) && location !== 'undefined')
+    {
+        searchApi = `${api + location}`;
+    }
+    else if(!isEmpty(price) && price !== 'undefined')
+    {
+        searchApi = `${api + price}`;
+    }
+    else if(!isEmpty(capacity) && capacity !== 'undefined')
+    {
+        searchApi = `${api + capacity}`;
+    }
+    else if (location && price && capacity)
+    {
+        searchApi = `${api + location},${price},${capacity}`;
+    }
+    else
+    {
+        searchApi = `${api + search}`;
+    }
+
+    return searchApi;
 };

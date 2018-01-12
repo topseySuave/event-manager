@@ -3,20 +3,11 @@ import jwtDecode from 'jwt-decode'
 import setAuthorizationToken from '../components/authentication/setAuthenticationToken'
 import { SET_USER, REMOVE_USER } from './index'
 
-const signOutRequest = () =>{
-    localStorage.removeItem('jwtToken');
-    setAuthorizationToken(false);
+const removeCurrentUser = () => {
     return {
         type: REMOVE_USER,
         payload: {}
-    };
-};
-
-const userSignupRequest = (userData) => {
-    // return dispatch => {
-        return axios.post('/api/v1/users', userData);
-            // .then(res => dispatch(registerUser(res.data)));
-    // };
+    }
 };
 
 const setCurrentUser = (token) => {
@@ -24,6 +15,19 @@ const setCurrentUser = (token) => {
         type: SET_USER,
         payload: jwtDecode(token)
     }
+};
+
+const signOutRequest = () =>{
+    localStorage.removeItem('jwtToken');
+    setAuthorizationToken(false);
+    return removeCurrentUser();
+};
+
+const userSignupRequest = (userData) => {
+    // return dispatch => {
+        return axios.post('/api/v1/users', userData);
+            // .then(res => dispatch(registerUser(res.data)));
+    // };
 };
 
 const userSignInRequest = (userData) => {

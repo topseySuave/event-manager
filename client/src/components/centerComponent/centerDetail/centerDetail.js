@@ -65,10 +65,11 @@ class CenterDetail extends Component {
             let {id, title, img_url, location, description, facilities, capacity, price, events} = activeCenter.centr;
 
             let relatedCenterBasedOn = {
-                location: location,
-                facilities: facilities,
-                capacity: capacity,
-                price: price
+                id,
+                location,
+                facilities,
+                capacity,
+                price
             };
 
             return (

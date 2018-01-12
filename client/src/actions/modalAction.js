@@ -1,26 +1,68 @@
 import axios from 'axios'
 // import jwtDecode from 'jwt-decode'
-import { ADD_CENTER_SUCCESS } from './'
+import {ADD_CENTER_SUCCESS, ADD_CENTER_REQUEST, ADD_CENTER_FAlLURE} from './'
 
-const addCenterPayload = (payload)=>{
-    return {
-        type: ADD_CENTER_SUCCESS,
-        center: payload
+const addCenterPayload = (payload, response = null) => {
+    if (response === 'success') {
+        return {
+            type: ADD_CENTER_SUCCESS,
+            center: payload
+        };
+    }else if(response === 'request'){
+        return {
+            type: ADD_CENTER_REQUEST,
+            center: payload
+        };
+    }else{
+        return {
+            type: ADD_CENTER_FAlLURE,
+            center: payload
+        };
     }
 };
 
-export const createCenterRequest = (formData) => {
+export const createCenterRequest = (centerData) => {
     let token = localStorage.getItem('jwtToken');
-    let centerApi = '/api/v1/centers?token=' + token;
+    let centerApi = '/api/v1/centers';
+    let config = { headers: {'x-access-token': token} };
 
     return dispatch => {
-        return axios.post(centerApi, formData)
-            .then((res)=>{
-                if(res.data.statusCode === 201){
-                    return dispatch(addCenterPayload(res.data.center));
-                }else{
-                    return false;
+        dispatch(addCenterPayload(centerData, 'request'));
+        return axios.post(centerApi, centerData, config)
+            .then(({ data }) => {
+                if (data.statusCode === 201) {
+                    return dispatch(addCenterPayload(data.center, 'success'));
+                } else {
+                    return dispatch(addCenterPayload(data, 'failure'));
                 }
+            })
+            .catch((err)=>{
+                return dispatch(addCenterPayload(err, 'failure'));
             });
     };
 };
+
+// let dataToSend = new FormData();
+// dataToSend.append('title', centerData.title);
+// dataToSend.append('location', centerData.location);
+// dataToSend.append('description', centerData.description);
+// dataToSend.append('capacity', centerData.capacity);
+// dataToSend.append('img_url', centerData.img_url);
+// dataToSend.append('facilities', centerData.facilities);
+// dataToSend.append('price', centerData.price);
+
+// console.log(centerData);
+
+// for (let key of dataToSend.entries()) {
+//     console.log(key[0] + ', ' + key[1]);
+// }
+
+// return axios({
+//     method: 'POST',
+//     url: centerApi,
+//     headers: {
+//         'x-access-token': token,
+//         // 'Content-Type': `multipart/form-data boundary=${dataToSend._boundary}`
+//     },
+//     data: dataToSend
+// })

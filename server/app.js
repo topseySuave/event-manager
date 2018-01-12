@@ -10,11 +10,11 @@ import event from './routes/events';
 import center from './routes/centers';
 import users from './routes/users';
 import cors from 'cors';
-// import cons from 'consolidate';
 import webpack from 'webpack';
 import webpackMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import config from '../webpack.config';
+// import cons from 'consolidate';
 
 dotenv.config();
 
@@ -32,22 +32,19 @@ app.use(cors());
 app.use(logger('dev'));
 
 // Parse incoming requests data (https://github.com/expressjs/body-parser)
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({limit: '10mb'}));
+app.use(bodyParser.urlencoded({limit: '10mb', extended: true, parameterLimit: 10000}));
 
 app.use(webpackHotMiddleware(compiler, {
     hot: true,
     publicPath: config.output.publicPath,
-    noInfo: true
-}));
-
-app.use(webpackMiddleware(compiler));
-
-app.use(webpackHotMiddleware(compiler, {
+    noInfo: true,
     log: console.log,
     path: '/__webpack_hmr',
     heartbeat: 10 * 1000
 }));
+
+// app.use(webpackMiddleware(compiler));
 
 center(app);
 event(app);

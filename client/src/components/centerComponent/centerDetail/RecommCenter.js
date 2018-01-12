@@ -19,11 +19,13 @@ class RecommCenter extends Component {
             isLoading: true,
             error: false,
             errorMessage: '',
-            relatedCenters: []
+            relatedCenters: [],
+            currentCenterId: ''
         }
     }
 
     componentWillReceiveProps(newProps) {
+        this.setState({currentCenterId: newProps.relatedCenterBasedOn.id});
         fetchCenterRelatedTo(newProps.relatedCenterBasedOn)
             .then(({data}) => {
                 if (data.statusCode === 200) {
@@ -31,7 +33,15 @@ class RecommCenter extends Component {
                 } else {
                     this.setState({isLoading: false, error: true, errorMessage: 'There are no related centers'});
                 }
+            })
+            .catch((err)=>{
+                // Materialize.toast('Houston we have a problem!! we are working on it', 5000);
+                this.setState({isLoading: false, error: true, errorMessage: 'Houston we have a problem!! we are working on it'});
             });
+    }
+
+    checkOwnCenter(centerId) {
+        return centerId !== this.state.currentCenterId;
     }
 
     render() {
@@ -40,6 +50,8 @@ class RecommCenter extends Component {
 
         if (relatedCenters) {
             relatedCenter = relatedCenters.map((center) => {
+                // relatedCenters.filter(this.checkOwnCenter(center.id));
+
                 let to = `/center-detail/${center.id}/${this.helper.sanitizeString(center.title)}`;
                 return (
                     <div key={shortid.generate()} className="col s12 l4">

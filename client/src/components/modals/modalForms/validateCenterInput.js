@@ -1,14 +1,16 @@
 /* eslint-disable */
 import isEmpty from 'lodash/isEmpty';
 
-const errors = {
-    center_title: '',
-    location: '',
-    description: '',
-    price: ''
-};
+// const errors = {
+//     center_title: '',
+//     location: '',
+//     description: '',
+//     price: ''
+// };
 
 export function validateEventInput(data) {
+    let errors = {};
+
     if (isEmpty(data.title)) {
         errors.title = 'This field is required';
     }
@@ -20,6 +22,8 @@ export function validateEventInput(data) {
 }
 
 export function validateCenterInput(data) {
+    let errors = {};
+
     if (isEmpty(data.title)) {
         errors.title = 'Title field is required';
     }

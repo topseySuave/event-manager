@@ -6,8 +6,9 @@ import shortid from 'shortid'
 import { PropTypes } from 'prop-types'
 // import CenterCard from '../centerCard/centerCard'
 import SearchFasterForm from './searchFasterForm'
-import { CircularLoader } from '../../loader'
 import { fetchCentersAction } from '../../../actions/fetchCenterAction'
+import Pagination from '../../pagination'
+import { CircularLoader } from '../../loader'
 import Helpers from '../../../helpers'
 
 class AllCenters extends Component{
@@ -15,6 +16,7 @@ class AllCenters extends Component{
         super(props);
         this.helper = new Helpers();
         this.state = {
+            pageOfItems: [],
             isLoading: true
         }
     }
@@ -26,6 +28,23 @@ class AllCenters extends Component{
     componentWillReceiveProps(newProps){
         if(newProps){
             this.setState({ isLoading: false });
+        }
+    }
+
+    //TODO: change and modify pageItems for pagination
+    /**
+     *
+     * @param {*} pageOfItems
+     * @returns {*} newPage
+     */
+    onChangePage(pageOfItems) {
+        const { centerStore } = this.props;
+        // update state with new page of items
+        if (pageOfItems) {
+            this.setState({ pageOfItems });
+        } else {
+            this.setState({ pageOfItems: centerStore.centers });
+            console.log('holla');
         }
     }
 
@@ -54,7 +73,7 @@ class AllCenters extends Component{
     }
 
     render(){
-        let { isLoading } = this.state;
+        let { isLoading, pageOfItems } = this.state;
         return (
             <div className="container">
                 <div className="center__holdr">
@@ -69,6 +88,12 @@ class AllCenters extends Component{
                                 <div className="col s12 cards-container">
                                     { isLoading ? '' : this.showCentersCard() }
                                 </div>
+                                {/*<Pagination*/}
+                                    {/*items={*/}
+                                        {/*pageOfItems*/}
+                                    {/*}*/}
+                                    {/*onChangePage={this.onChangePage}*/}
+                                {/*/>*/}
                             </div>
                         </div>
                     </div>

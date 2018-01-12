@@ -5,14 +5,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
-
-import jwtDecode from 'jwt-decode'
-
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
 import App from './components/App';
-import setAuthorizationToken from './components/authentication/setAuthenticationToken'
-import { setCurrentUser } from './actions/authActions'
+import authCheck from './helpers/authCheck'
 import rootReducer from './rootReducer'
 
 import registerServiceWorker from './registerServiceWorker';
@@ -33,14 +28,8 @@ export const store = compose(
     window.devToolsExtension ? window.devToolsExtension() : f => f
 )(createStore)(rootReducer);
 
-if(localStorage.getItem('jwtToken')) {
-    if(jwtDecode(localStorage.getItem('jwtToken')).exp > new Date().now){
-        localStorage.removeItem('jwtToken');
-    }else {
-        setAuthorizationToken(localStorage.getItem('jwtToken'));
-        store.dispatch(setCurrentUser(localStorage.getItem('jwtToken')));
-    }
-}
+const authChecker = new authCheck();
+authChecker.isSignedIn();
 
 ReactDOM.render(
     <Provider store={store}>

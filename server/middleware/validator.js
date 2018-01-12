@@ -1,16 +1,14 @@
 import Validator from 'validatorjs';
 
 export class Validation {
-
     validateCenter (req, res, next) {
         const centerRules = {
             title: 'required|string',
-            img_url: 'string',
             location: 'required|string',
             description: 'required|string',
             facilities: 'array',
-            capacity: 'required|integer',
-            price: 'required|integer'
+            capacity: 'integer',
+            price: 'integer'
         };
 
         let validate = new Validator(req.body, centerRules);
@@ -25,7 +23,6 @@ export class Validation {
 
         const eventRules = {
             title: 'required|string',
-            img_url: 'string',
             description: 'required|string',
             startDate: 'required|date',
             endDate: 'required|date',

@@ -12,7 +12,7 @@ export const fetchCentersDispatch = (data) => {
 export const fetchCentersAction = () => {
     return dispatch => {
         dispatch(showLoading());
-        return axios.get('/api/v1/centers')
+        return axios.get('/api/v1/centers?order=desc')
             .then(( { data } )=>{
                 dispatch(fetchCentersDispatch(data));
                 dispatch(hideLoading());

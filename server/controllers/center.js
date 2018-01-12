@@ -1,8 +1,55 @@
 import models from '../models';
+// import path from 'path';
+// import fs from 'fs';
+// import cloudinary from 'cloudinary';
 
 // dotenv.config();
 const Center = models.Centers;
 const Events = models.Events;
+
+
+const sortSearchRequest = (search, filterBy) => {
+    let reqSearch;
+    //Search with location, title, price, capacity
+    if(filterBy === 'location'){
+        reqSearch = search.map((value) => {
+            if (value !== '')
+                return {
+                    location: {
+                        $iLike: `%${value}%`
+                    }
+                };
+        });
+    }else if(filterBy === 'title'){
+        reqSearch = search.map((value) => {
+            if (value !== '')
+                return {
+                    title: {
+                        $iLike: `%${value}%`
+                    }
+                };
+        });
+    }else if(filterBy === 'price'){
+        reqSearch = search.map((value) => {
+            if (value !== '')
+                return {
+                    price: {
+                        $iLike: `%${value}%`
+                    }
+                };
+        });
+    }else if(filterBy === 'capacity'){
+        reqSearch = search.map((value) => {
+            if (value !== '')
+                return {
+                    capacity: {
+                        $iLike: `%${value}%`
+                    }
+                };
+        });
+    }
+    return reqSearch;
+};
 
 /**
  * @export
@@ -21,28 +68,59 @@ export class Centers {
      * @memberof Center
      */
     createCenter(req, res) {
-        return Center.create({
-            title: req.body.title,
-            img_url: req.body.img_url,
-            location: req.body.location,
-            description: req.body.description,
-            facilities: req.body.facilities,
-            capacity: parseInt(req.body.capacity),
-            price: parseInt(req.body.price)
+        // check if center name already exist
+        return Center.findOne({
+            where: {
+                title: req.body.title,
+                location: req.body.location
+            }
         })
-            .then((center) => {
-                return res.status(201).send({
-                    statusCode: 201,
-                    message: 'Center has been created',
-                    center
-                });
-            })
-            .catch((err) => res.status(500).send({
-                statusCode: 500,
-                success: false,
-                message: 'Center cannot be created',
-                error: err
-            }));
+            .then((centers) => {
+                // return this if  center name is taken
+                if(centers)
+                    if (centers.length > 0) {
+                        return res.status(400).json({
+                            message: 'Center already exist',
+                            statusCode: 400
+                        });
+                    }
+
+                // cloudinary.config({
+                //     cloud_name: 'dcbqn1c10',
+                //     api_key: '441952115171911',
+                //     api_secret: 'RMaPGLJFey85McETvjNUkH_6SyE'
+                // });
+                // cloudinary.uploader.upload(req.files.image.path, (res) => {
+                //     console.log(res);
+                // });
+
+                    return Center.create(
+                        {
+                            title: req.body.title,
+                            img_url: req.body.img_url,
+                            location: req.body.location,
+                            description: req.body.description,
+                            facilities: req.body.facilities,
+                            capacity: parseInt(req.body.capacity),
+                            price: parseInt(req.body.price)
+                        }
+                    )
+                        .then((center) => {
+                            return res.status(201).send({
+                                statusCode: 201,
+                                message: 'Center has been created',
+                                center
+                            });
+                        })
+
+                        .catch((err) => res.status(500).send({
+                            statusCode: 500,
+                            success: false,
+                            message: 'Center cannot be created',
+                            error: err
+                        }));
+            });
+
     }
 
     /**
@@ -78,7 +156,7 @@ export class Centers {
                     img_url: req.body.img_url || center.img_url,
                     location: req.body.location || center.location,
                     description: req.body.description || center.description,
-                    facilities: req.body.facilities.split(',') || center.facilities,
+                    facilities: req.body.facilities || center.facilities,
                     capacity: parseInt(req.body.capacity) || center.capacity,
                     price: parseInt(req.body.price) || center.price,
                 })
@@ -115,6 +193,9 @@ export class Centers {
             where: {
                 id: centerId
             },
+            order: [
+                ['id', 'desc']
+            ],
             include: [{
                 model: Events,
                 centerId: centerId,
@@ -148,50 +229,20 @@ export class Centers {
      * @memberof Centers
      */
     getCenters(req, res) {
-        let limitValue = parseInt(req.query.limit) || 10;
+        let limitValue = parseInt(req.query.limit) || 20;
         let pageValue = req.query.next - 1 || 0;
         let order = (req.query.order === 'desc') ? req.query.order : 'asc';
         if (req.query.search || req.query.limit) {
+            let filterBy, reqSearch;
+            if(req.query.filter){
+                filterBy = req.query.filter;
+            }
             let search = req.query.search.split(',');
 
-            //Search with location, title, price, capacity
-            let locationResp = search.map((value) => {
-                if (value !== '')
-                    return {
-                        location: {
-                            $iLike: `%${value}%`
-                        }
-                    };
-            });
-
-            let respTitle = search.map((value) => {
-                if (value !== '')
-                    return {
-                        title: {
-                            $iLike: `%${value}%`
-                        }
-                    };
-            });
-
-            // let respCapacity = search.map((value) => {
-            //     return {
-            //         capacity: {
-            //             $ilike: `%${value}%`
-            //         }
-            //     }
-            // });
-            //
-            // let respPrice = search.map((value) => {
-            //     return {
-            //         price: {
-            //             $ilike: `%${value}%`
-            //         }
-            //     }
-            // });
-
+            reqSearch = sortSearchRequest(search, filterBy);
             Center.findAll({
                 where: {
-                    $or: locationResp.concat(respTitle)
+                    $or: reqSearch
                 },
                 order: [
                     ['id', order]
@@ -205,8 +256,6 @@ export class Centers {
                             message: 'Center(s) do not match your search result'
                         });
                     }
-
-                    console.log(Math.ceil(searchResults.length / limitValue));
 
                     return res.status(200).send({
                         statusCode: 200,
@@ -293,6 +342,7 @@ export class Centers {
                 message: 'Error deleting Center'
             }));
     }
+
 }
 
 export default Centers;
