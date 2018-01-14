@@ -158,26 +158,6 @@ export class Events {
      * @memberof Events
      */
     createEvent (req, res) {
-            // console.log('body' + req.body);
-            //
-            // upload(req, res, (err) => {
-            //
-            //     console.log('file: ' + req.file);
-            //
-            //     if(err){
-            //         res.send({
-            //             statusCode: 400,
-            //             message: 'Upload Unsuccessful',
-            //             error: err
-            //         });
-            //     }else{
-            //         res.send({
-            //             statusCode: 200,
-            //             message: 'Upload successful..!!',
-            //         });
-            //     }
-            // });
-
         let startDate = new Date(req.body.startDate);
         let endDate = new Date(req.body.endDate);
 
@@ -204,7 +184,7 @@ export class Events {
             }else{
                 return event.create({
                     title: req.body.title,
-                    img_url: req.file,
+                    img_url: req.body.img_url,
                     location: req.body.location,
                     description: req.body.description,
                     startDate: startDate,

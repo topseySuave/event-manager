@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 
 class FloatingActionButton extends Component {
 
-    addEventButton(){
-        return (
-            <a href="#add_event_modal" className="tooltipped modal-trigger btn-large btn-floating green"
-               data-position="top"
-               data-tooltip="Add Event"><i className="material-icons">add</i>
-            </a>
-        );
-    }
+    // addEventButton(){
+    //     return (
+    //         <a href="#add_event_modal" className="tooltipped modal-trigger btn-large btn-floating green"
+    //            data-position="top"
+    //            data-tooltip="Add Event"><i className="material-icons">add</i>
+    //         </a>
+    //     );
+    // }
 
     addCenterButton(){
         return (
@@ -28,7 +28,7 @@ class FloatingActionButton extends Component {
 
             return (
                 <div className="fixed-action-btn wow zoomIn">
-                    {this.addEventButton()}
+                    {/*{this.addEventButton()}*/}
                     {addCenterButton}
                 </div>
             );

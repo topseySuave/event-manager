@@ -80,7 +80,7 @@ class SignInForm extends React.Component {
         let loading = classNames('row', {'isLoading': isLoading});
 
         if(this.props.activeState.isAuthenticated){
-            return <Redirect to="/" />
+            return <Redirect to={window.history.back()} />
         }
 
         return (

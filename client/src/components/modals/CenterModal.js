@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AddCenterForm from './modalForms/addCenterForm'
+import AddCenterForm from './centerModalForms/addCenterForm'
 
 class CenterModal extends Component {
 

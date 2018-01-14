@@ -10,4 +10,5 @@ export const FETCH_CENTER_DETAIL = 'FETCH_CENTER_DETAIL';
 export const FETCH_RELATED_CENTER = 'FETCH_RELATED_CENTER';
 
 export const FETCH_EVENTS = 'FETCH_EVENTS';
-export const ADD_EVENT = 'ADD_CENTER';
+export const ADD_EVENT = 'ADD_EVENT';
+export const EDIT_EVENT = 'EDIT_EVENT';

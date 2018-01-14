@@ -1,31 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f051bbcc-4e3a-4837-a5f5-ffa0a54f7bfb" name="Default" comment="feat: center quick search implementation">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/src/components/pagination/index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/src/helpers/authCheck.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/middleware/imageUploader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/topsey.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/topsey.xml" />
+    <list default="true" id="f051bbcc-4e3a-4837-a5f5-ffa0a54f7bfb" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/src/actions/events-actions/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/src/reducers/eventReducer.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/modals/modalForms/validateCenterInput.js" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/client/src/components/modals/modalForms/addCenterForm.js" afterPath="$PROJECT_DIR$/client/src/components/modals/centerModalForms/addCenterForm.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/public/index.html" afterPath="$PROJECT_DIR$/client/public/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/public/js/app.bundle.js" afterPath="$PROJECT_DIR$/client/public/js/app.bundle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/actions/authActions.js" afterPath="$PROJECT_DIR$/client/src/actions/authActions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/actions/fetchCenterAction.js" afterPath="$PROJECT_DIR$/client/src/actions/fetchCenterAction.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/actions/fetchCenterRelatedTo.js" afterPath="$PROJECT_DIR$/client/src/actions/fetchCenterRelatedTo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/public/js/hot/hot-update.js" afterPath="$PROJECT_DIR$/client/public/js/hot/hot-update.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/public/js/hot/hot-update.json" afterPath="$PROJECT_DIR$/client/public/js/hot/hot-update.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/actions/index.js" afterPath="$PROJECT_DIR$/client/src/actions/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/actions/modalAction.js" afterPath="$PROJECT_DIR$/client/src/actions/modalAction.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/actions/searchAction.js" afterPath="$PROJECT_DIR$/client/src/actions/searchAction.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/centerComponent/allCenters/allCenters.js" afterPath="$PROJECT_DIR$/client/src/components/centerComponent/allCenters/allCenters.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/centerComponent/allCenters/searchFasterForm.js" afterPath="$PROJECT_DIR$/client/src/components/centerComponent/allCenters/searchFasterForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/RecommCenter.js" afterPath="$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/RecommCenter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/authentication/signin/signInForm.js" afterPath="$PROJECT_DIR$/client/src/components/authentication/signin/signInForm.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/bodyComponents/floatingActionButton/FloatingActionButton.js" afterPath="$PROJECT_DIR$/client/src/components/bodyComponents/floatingActionButton/FloatingActionButton.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/centerDetail.js" afterPath="$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/centerDetail.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/modals/modalForms/addCenterForm.js" afterPath="$PROJECT_DIR$/client/src/components/modals/modalForms/addCenterForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/modals/modalForms/validateCenterInput.js" afterPath="$PROJECT_DIR$/client/src/components/modals/modalForms/validateCenterInput.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/index.js" afterPath="$PROJECT_DIR$/client/src/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/app.js" afterPath="$PROJECT_DIR$/server/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/controllers/center.js" afterPath="$PROJECT_DIR$/server/controllers/center.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/middleware/validator.js" afterPath="$PROJECT_DIR$/server/middleware/validator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/routes/centers.js" afterPath="$PROJECT_DIR$/server/routes/centers.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/form/formInput.js" afterPath="$PROJECT_DIR$/client/src/components/form/formInput.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/modals/CenterModal.js" afterPath="$PROJECT_DIR$/client/src/components/modals/CenterModal.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/modals/EventModal.js" afterPath="$PROJECT_DIR$/client/src/components/modals/EventModal.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/rootReducer.js" afterPath="$PROJECT_DIR$/client/src/rootReducer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/controllers/events.js" afterPath="$PROJECT_DIR$/server/controllers/events.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -50,7 +44,63 @@
     <favorites_list name="event-manager" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="addCenterForm.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/components/modals/centerModalForms/addCenterForm.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="24" column="27" lean-forward="true" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EventModal.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/src/components/modals/EventModal.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2999">
+              <caret line="184" column="41" lean-forward="true" selection-start-line="184" selection-start-column="41" selection-end-line="184" selection-end-column="41" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+                <marker date="1515939125793" expanded="true" signature="7125:7137" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="centerDetail.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/centerDetail.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="381">
+              <caret line="75" column="14" lean-forward="true" selection-start-line="75" selection-start-column="14" selection-end-line="75" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="events.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/controllers/events.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="245">
+              <caret line="192" column="26" lean-forward="false" selection-start-line="192" selection-start-column="20" selection-end-line="192" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/actions/events-actions/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="25" lean-forward="true" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -117,25 +167,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/client/src/components/form/formInput.js" />
-        <option value="$PROJECT_DIR$/client/src/components/authentication/signin/signInForm.js" />
-        <option value="$PROJECT_DIR$/client/src/components/modals/CenterModal.js" />
-        <option value="$PROJECT_DIR$/server/middleware/authenticate.js" />
-        <option value="$PROJECT_DIR$/client/src/helpers/index.js" />
-        <option value="$PROJECT_DIR$/client/src/reducers/centerReducer.js" />
-        <option value="$PROJECT_DIR$/client/src/components/loader.js" />
-        <option value="$PROJECT_DIR$/client/src/components/centerComponent/centerCard/centerCard.js" />
-        <option value="$PROJECT_DIR$/client/public/css/_partials.sass" />
-        <option value="$PROJECT_DIR$/client/public/css/media-query.sass" />
         <option value="$PROJECT_DIR$/client/public/css/_mixins.sass" />
         <option value="$PROJECT_DIR$/client/public/css/overwrite/overwrite.sass" />
-        <option value="$PROJECT_DIR$/client/public/index.html" />
         <option value="$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/index.js" />
-        <option value="$PROJECT_DIR$/client/src/components/bodyComponents/headNav/fixedNav.js" />
-        <option value="$PROJECT_DIR$/client/src/components/bodyComponents/headNav/headbanner.js" />
-        <option value="$PROJECT_DIR$/client/src/components/bodyComponents/headNav/nav.js" />
         <option value="$PROJECT_DIR$/client/src/reducers/activeCenterReducer.js" />
-        <option value="$PROJECT_DIR$/client/src/rootReducer.js" />
         <option value="$PROJECT_DIR$/client/src/components/bodyComponents/eventsCard/eventCard.js" />
         <option value="$PROJECT_DIR$/client/src/components/authentication/signup/signUpForm.js" />
         <option value="$PROJECT_DIR$/client/src/components/authentication/signup/signup.js" />
@@ -149,7 +184,6 @@
         <option value="$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/currentEventForCenter.js" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
         <option value="$PROJECT_DIR$/client/src/actions/authActions.js" />
-        <option value="$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/centerDetail.js" />
         <option value="$PROJECT_DIR$/client/src/index.js" />
         <option value="$PROJECT_DIR$/client/src/components/pagination/index.js" />
         <option value="$PROJECT_DIR$/client/src/components/centerComponent/allCenters/allCenters.js" />
@@ -157,7 +191,6 @@
         <option value="$PROJECT_DIR$/client/src/helpers/authCheck.js" />
         <option value="$PROJECT_DIR$/client/src/actions/searchAction.js" />
         <option value="$PROJECT_DIR$/client/src/actions/fetchCenterRelatedTo.js" />
-        <option value="$PROJECT_DIR$/client/src/actions/index.js" />
         <option value="$PROJECT_DIR$/client/src/components/centerComponent/allCenters/searchFasterForm.js" />
         <option value="$PROJECT_DIR$/server/middleware/imageUploader.js" />
         <option value="$PROJECT_DIR$/server/middleware/validator.js" />
@@ -165,9 +198,26 @@
         <option value="$PROJECT_DIR$/server/routes/centers.js" />
         <option value="$PROJECT_DIR$/server/app.js" />
         <option value="$PROJECT_DIR$/client/src/actions/modalAction.js" />
-        <option value="$PROJECT_DIR$/client/src/components/modals/modalForms/addCenterForm.js" />
         <option value="$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/RecommCenter.js" />
         <option value="$PROJECT_DIR$/server/controllers/center.js" />
+        <option value="$PROJECT_DIR$/client/src/components/modals/modalForms/addCenterForm.js" />
+        <option value="$PROJECT_DIR$/client/src/actions/index.js" />
+        <option value="$PROJECT_DIR$/client/src/rootReducer.js" />
+        <option value="$PROJECT_DIR$/server/controllers/events.js" />
+        <option value="$PROJECT_DIR$/client/src/components/modals/eventModalForm/validateEventInput.js" />
+        <option value="$PROJECT_DIR$/client/src/components/modals/centerModalForms/validateCenterInput.js" />
+        <option value="$PROJECT_DIR$/client/src/actions/events-actions/index.js" />
+        <option value="$PROJECT_DIR$/client/src/reducers/eventReducer.js" />
+        <option value="$PROJECT_DIR$/client/src/components/form/formInput.js" />
+        <option value="$PROJECT_DIR$/client/src/components/bodyComponents/floatingActionButton/FloatingActionButton.js" />
+        <option value="$PROJECT_DIR$/client/public/index.html" />
+        <option value="$PROJECT_DIR$/client/src/components/authentication/signin/signInForm.js" />
+        <option value="$PROJECT_DIR$/client/src/components/bodyComponents/headNav/headbanner.js" />
+        <option value="$PROJECT_DIR$/client/src/components/bodyComponents/headNav/nav.js" />
+        <option value="$PROJECT_DIR$/client/src/components/bodyComponents/headNav/fixedNav.js" />
+        <option value="$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/centerDetail.js" />
+        <option value="$PROJECT_DIR$/client/src/components/modals/centerModalForms/addCenterForm.js" />
+        <option value="$PROJECT_DIR$/client/src/components/modals/EventModal.js" />
       </list>
     </option>
   </component>
@@ -213,38 +263,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="event-manager" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="event-manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="event-manager" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="event-manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="event-manager" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -320,149 +338,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="event-manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="event-manager" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modals" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="event-manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="event-manager" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modals" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modalForms" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="event-manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="event-manager" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="centerComponent" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="centerDetail" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="event-manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="event-manager" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="centerComponent" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="event-manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="event-manager" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="centerComponent" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="allCenters" />
+              <option name="myItemId" value="actions" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -487,6 +363,10 @@
               <option name="myItemId" value="actions" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="events-actions" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -505,19 +385,19 @@
     <property name="SearchEverywhereHistoryKey" value="export default class&#9;null&#9;null" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\projects\event-manager\client\src\components\modals" />
+      <recent name="C:\projects\event-manager\client\src\components\modals\modalForms" />
+      <recent name="C:\projects\event-manager\client\src\components\authentication" />
+      <recent name="C:\projects\event-manager\client\src\components\centerComponent\allCenters" />
+      <recent name="C:\projects\event-manager\client\src\components\centerComponent" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\projects\event-manager\client\src\actions" />
       <recent name="C:\projects\event-manager\client\src\components\authentication\signup" />
       <recent name="C:\projects\event-manager\client\public" />
       <recent name="C:\projects\event-manager\client\public\js" />
       <recent name="C:\projects\event-manager\client\public\fonts" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\projects\event-manager\client\src\components\modals\modalForms" />
-      <recent name="C:\projects\event-manager\client\src\components\authentication" />
-      <recent name="C:\projects\event-manager\client\src\components\centerComponent\allCenters" />
-      <recent name="C:\projects\event-manager\client\src\components\centerComponent" />
-      <recent name="C:\projects\event-manager\client\src\components\bodyComponents" />
     </key>
   </component>
   <component name="RunManager">
@@ -654,21 +534,7 @@
       <workItem from="1514233890909" duration="196409000" />
       <workItem from="1515445979884" duration="39160000" />
       <workItem from="1515612352788" duration="9896000" />
-      <workItem from="1515685913280" duration="26131000" />
-    </task>
-    <task id="LOCAL-00004" summary="landing page commit 2">
-      <created>1510649182065</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1510649182065</updated>
-    </task>
-    <task id="LOCAL-00005" summary="gh-pages-v1">
-      <created>1510653357404</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1510653357404</updated>
+      <workItem from="1515685913280" duration="42934000" />
     </task>
     <task id="LOCAL-00006" summary="gh-pages-v2 wow integration">
       <created>1510655090132</created>
@@ -999,11 +865,25 @@
       <option name="project" value="LOCAL" />
       <updated>1515507290663</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="fix: add center to insert images with center details.&#10;--- fix recommended centers fetching errors.&#10;--- fix authentication validation with jwt.verify which checks for expiry date for user.">
+      <created>1515790418780</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1515790418780</updated>
+    </task>
+    <task id="LOCAL-00054" summary="fix: webpack hot update and but leave webpack to compile not app.js">
+      <created>1515790589361</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1515790589361</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="571239000" />
+    <option name="totallyTimeSpent" value="588042000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1016,14 +896,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1370" height="772" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21374045" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21374045" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294893" sideWeight="0.506135" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.75203913" sideWeight="0.49386504" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42251223" sideWeight="0.49386504" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17292006" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1083,8 +963,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor: changed the input form for the center details.&#10;- Added title input&#10;- Added location input&#10;- Added facilities checkboxes&#10;- Added price and capacity of center&#10;- Added center description" />
-    <MESSAGE value="refactor: changed add center button background color." />
     <MESSAGE value="add travis-ci integration .travis.yml" />
     <MESSAGE value="frontend ui design refactoring" />
     <MESSAGE value="frontend ui design refactoring." />
@@ -1108,7 +986,9 @@
     <MESSAGE value="feat: get params from route. &#10;fix: linking routes to be relative to the host." />
     <MESSAGE value="doc: install multiparty for file upload.&#10;fix: center details rendering" />
     <MESSAGE value="feat: center quick search implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: center quick search implementation" />
+    <MESSAGE value="fix: add center to insert images with center details.&#10;--- fix recommended centers fetching errors.&#10;--- fix authentication validation with jwt.verify which checks for expiry date for user." />
+    <MESSAGE value="fix: webpack hot update and but leave webpack to compile not app.js" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: webpack hot update and but leave webpack to compile not app.js" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1117,96 +997,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/src/rootReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="10" column="29" lean-forward="false" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/reducers/activeCenterReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="33" lean-forward="true" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/Main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="18" column="48" lean-forward="true" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/modals/searchModal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/util/facilities.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="16" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/util/locations.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="23" lean-forward="true" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="115" column="6" lean-forward="true" selection-start-line="115" selection-start-column="6" selection-end-line="115" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/actions/activeCenterAction.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="19" column="40" lean-forward="true" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/public/manifest.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="41" lean-forward="true" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/public/js/fd9a93bac788491b7ba5.hot-update.json" />
-    <entry file="file://$PROJECT_DIR$/client/public/js/fb112db367145ec23ab3.hot-update.json" />
-    <entry file="file://$PROJECT_DIR$/client/public/js/0.0bd5fc24dfc5da69d346.hot-update.js" />
-    <entry file="file://$PROJECT_DIR$/.eslintrc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="21" column="11" lean-forward="true" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/public/js/cd05f7d312361fa1e48a.hot-update.json" />
     <entry file="file://$PROJECT_DIR$/webpack.config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
@@ -1235,14 +1025,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/centerDetail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/pagination/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
@@ -1261,13 +1043,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="42" lean-forward="true" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/modals/modalForms/validateCenterInput.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="39" column="55" lean-forward="true" selection-start-line="39" selection-start-column="55" selection-end-line="39" selection-end-column="55" />
         </state>
       </provider>
     </entry>
@@ -1307,13 +1082,6 @@
           <folding>
             <element signature="e#0#25#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/actions/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="55" lean-forward="true" selection-start-line="5" selection-start-column="55" selection-end-line="5" selection-end-column="55" />
         </state>
       </provider>
     </entry>
@@ -1409,14 +1177,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/reducers/centerReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="31" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/routes/centers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -1454,22 +1214,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/actions/modalAction.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="42" column="2" lean-forward="true" selection-start-line="42" selection-start-column="2" selection-end-line="42" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/modals/modalForms/addCenterForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="96" column="31" lean-forward="true" selection-start-line="96" selection-start-column="31" selection-end-line="96" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/controllers/center.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="765">
@@ -1483,6 +1227,202 @@
         <state relative-caret-position="289">
           <caret line="48" column="26" lean-forward="true" selection-start-line="48" selection-start-column="26" selection-end-line="48" selection-end-column="26" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/loader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="16" lean-forward="true" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/actions/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="43" lean-forward="true" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/reducers/centerReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="31" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/modals/CenterModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="11" column="32" lean-forward="false" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/modals/eventModalForm/validateEventInput.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/modals/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/modals/validateInput.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="34" lean-forward="false" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/form/formInput.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="32" column="33" lean-forward="true" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/actions/modalAction.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="26" column="56" lean-forward="true" selection-start-line="26" selection-start-column="56" selection-end-line="26" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="47" column="54" lean-forward="true" selection-start-line="47" selection-start-column="54" selection-end-line="47" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/authentication/signin/signInForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="83" column="9" lean-forward="true" selection-start-line="83" selection-start-column="9" selection-end-line="83" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#25#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/bodyComponents/headNav/headbanner.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="45" lean-forward="true" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+            <marker date="1515935109649" expanded="true" signature="468:560" ph="&lt;div/&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/bodyComponents/headNav/nav.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="52" lean-forward="true" selection-start-line="11" selection-start-column="52" selection-end-line="11" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/bodyComponents/headNav/fixedNav.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="52" lean-forward="true" selection-start-line="11" selection-start-column="52" selection-end-line="11" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/bodyComponents/floatingActionButton/FloatingActionButton.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/reducers/eventReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="56" lean-forward="true" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/actions/events-actions/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="25" lean-forward="true" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/controllers/events.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="192" column="26" lean-forward="false" selection-start-line="192" selection-start-column="20" selection-end-line="192" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/modals/centerModalForms/addCenterForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="27" lean-forward="true" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/centerDetail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="75" column="14" lean-forward="true" selection-start-line="75" selection-start-column="14" selection-end-line="75" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/rootReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#40#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/modals/EventModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2999">
+          <caret line="184" column="41" lean-forward="true" selection-start-line="184" selection-start-column="41" selection-end-line="184" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+            <marker date="1515939125793" expanded="true" signature="7125:7137" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

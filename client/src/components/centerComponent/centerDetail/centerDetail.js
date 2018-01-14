@@ -59,6 +59,36 @@ class CenterDetail extends Component {
         });
     }
 
+    editCenter(){
+
+    }
+
+    showEditCenterButton(){
+        let isAdmin = this.props.activeUser.user.role;
+        if(isAdmin)
+            return (
+                <div className="col s6">
+                    <a href="#edit_center_modal" onClick={this.editCenter}
+                       className="center-align modal-trigger btn btn-large waves-effect">
+                        Edit this center
+                    </a>
+                </div>
+            );
+    }
+
+    showBookCenterButton(centerId){
+        let isSignedIn = this.props.activeUser.isAuthenticated;
+        if(isSignedIn)
+            return(
+                <div className="col s6">
+                    <a href="#add_event_modal"
+                        className="center-align modal-trigger btn btn-large waves-effect gradient__bg">
+                        Book this center
+                    </a>
+                </div>
+            );
+    }
+
     render() {
         let {isLoading, activeCenter} = this.state;
         if (activeCenter.centr) {
@@ -122,12 +152,8 @@ class CenterDetail extends Component {
                                                 </div>
                                             </div>
                                             <div className="row">
-                                                <div className="col s12">
-                                                    <a href="#edit_center_modal"
-                                                       className="center-align modal-trigger btn btn-large waves-effect">
-                                                        Edit this center
-                                                    </a>
-                                                </div>
+                                                { this.showEditCenterButton() }
+                                                { this.showBookCenterButton(id) }
                                             </div>
                                         </section>
                                     </div>
@@ -152,7 +178,8 @@ CenterDetail.propTypes = {
 
 const mapStateToProps = (state) => {
     return {
-        activeCenterDetail: state.activeCenter
+        activeCenterDetail: state.activeCenter,
+        activeUser: state.authReducer
     }
 };
 

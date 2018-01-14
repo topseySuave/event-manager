@@ -32,7 +32,7 @@ InputForm.propTypes = {
     error: requiredPropTypeString,
     type: requiredPropTypeString,
     onChange: requiredPropTypeFunc,
-    label: requiredPropTypeString,
+    label: propsTypeNotRequired,
     minValue: propsTypeNotRequired
 };
 
