@@ -1,5 +1,9 @@
+import axios from 'axios'
 import { FETCH_EVENTS, ADD_EVENT, EDIT_EVENT } from '../'
 
+let api = '/api/v1/events';
+let token = localStorage.getItem('jwtToken');
+let config = { headers: { 'x-access-token': token } };
 
 const eventsDispatchAction = (type, data = {}) => {
     if('edit' === type){
@@ -27,20 +31,18 @@ export const editEventAction = (data) => {
 };
 
 export const createEventRequest = (data) => {
-    let api = '/api/v1/events';
-    let token = localStorage.getItem('jwtToken');
-    let config = { headers: { 'x-access-token': token } };
-
     return dispatch => {
         return axios.post(api, data, config)
             .then(({ data }) => {
-                console.log(data);
                 if(data.statusCode === 200){
                     return dispatch(eventsDispatchAction('add', data.event));
+                }else if(data.statusCode === 400){
+                    Materialize.toast(data.message, 5000);
+                    console.log(data);
                 }
             })
             .catch((err)=>{
-                Materialize.toast('Event cannot be created', 5000)
+                Materialize.toast('An error occurred and event cannot be created', 5000);
             });
     };
 };

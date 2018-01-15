@@ -177,7 +177,7 @@ export class Events {
         .then((result) => {
             if(result !== null){
                 return res.send({
-                    message: `Event does not exist or center has been booked already, please specify a date after ${result} `,
+                    message: `Center has been booked for this date`,
                     statusCode: 400,
                     error: true
                 });

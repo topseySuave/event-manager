@@ -10,6 +10,7 @@ import {fetchCenterAction} from '../../../actions/activeCenterAction'
 
 import CurrentEventForCenter from './currentEventForCenter'
 import RecommCenter from './RecommCenter'
+import EventModal from '../../modals/EventModal'
 
 class CenterDetail extends Component {
     constructor(props) {
@@ -69,7 +70,7 @@ class CenterDetail extends Component {
             return (
                 <div className="col s6">
                     <a href="#edit_center_modal" onClick={this.editCenter}
-                       className="center-align modal-trigger btn btn-large waves-effect">
+                       className="center-align modal-trigger btn btn-large waves-effect steel_blue">
                         Edit this center
                     </a>
                 </div>
@@ -80,12 +81,7 @@ class CenterDetail extends Component {
         let isSignedIn = this.props.activeUser.isAuthenticated;
         if(isSignedIn)
             return(
-                <div className="col s6">
-                    <a href="#add_event_modal"
-                        className="center-align modal-trigger btn btn-large waves-effect gradient__bg">
-                        Book this center
-                    </a>
-                </div>
+                <EventModal />
             );
     }
 

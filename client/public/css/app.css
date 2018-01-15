@@ -2,11 +2,17 @@
   margin-top: 20px !important; }
 
 /*Partials */
-/*defaulr colors */
+/*default colors */
 /*mixins */
 /*padding mixins */
 /*Margin mixins */
 /*overwrites */
+.toast {
+  background-color: #5A9EAB !important; }
+
+.steel_blue {
+  background: #5A9EAB; }
+
 .cards-container {
   -webkit-column-break-inside: avoid;
   page-break-inside: avoid;

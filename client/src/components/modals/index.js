@@ -7,7 +7,7 @@ class Modals extends Component {
     render() {
         return (
             <div>
-                <EventModal />
+                {/*<EventModal />*/}
                 <CenterModal />
                 <SearchModal />
             </div>
