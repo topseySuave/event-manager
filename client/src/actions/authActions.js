@@ -4,6 +4,7 @@ import setAuthorizationToken from '../components/authentication/setAuthenticatio
 import { SET_USER, REMOVE_USER } from './index'
 
 const removeCurrentUser = () => {
+    window.location.reload();
     return {
         type: REMOVE_USER,
         payload: {}

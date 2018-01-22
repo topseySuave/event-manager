@@ -10,16 +10,14 @@ const Events = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       references: {
           model: 'Centers',
-          key: 'id',
-          as: 'centerId',
+          key: 'id'
       }
     },
     userId: {
       type: DataTypes.INTEGER,
       reference: {
         model: 'User',
-        key: 'id',
-        as: 'userId'
+        key: 'id'
       }
     }
   });
@@ -27,10 +25,12 @@ const Events = (sequelize, DataTypes) => {
   EventsModel.associate = (models) => {
       EventsModel.belongsTo(models.Centers, {
           foreignKey: 'centerId',
+          as: 'center',
           onDelete: 'CASCADE',
       });
       EventsModel.belongsTo(models.User, {
           foreignKey: 'userId',
+          as: 'user',
           onDelete: 'CASCADE',
       });
   };

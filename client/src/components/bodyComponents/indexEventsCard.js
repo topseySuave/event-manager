@@ -1,35 +1,69 @@
 import React, { Component } from 'react';
-import EventCard from './eventCard';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { PropsTypes } from 'prop-types'
+import { CircularLoader } from '../loader'
+
+import shortid from 'shortid'
+import EventCard from './eventsCard/eventCard';
+import { fetchEventRequest } from './../../actions/events-actions'
 
 class IndexEventCardHolder extends Component {
+    constructor(props){
+        super(props);
+
+        this.state = {
+            isLoading: true,
+            events: []
+        };
+
+        this.props.fetchEventRequest();
+    }
+
+    componentWillReceiveProps(newProps){
+        this.setState({
+            isLoading: false,
+            events: newProps.allEvents.events
+        });
+    }
+
+    renderEventsCard(){
+        let events = this.state.events;
+        return events.map((event) => {
+            return (
+                <EventCard key={shortid.generate()} event={event}/>
+            );
+        });
+    }
+
     render() {
+        let { isLoading } = this.state;
         return (
             <div className="popular__events_holdr">
                 <div className="container popular__events">
-                    <div className="row">
-                        <div className="col s12 l4">
-                            <EventCard key="1"/>
+                    { (isLoading) ?
+                        <CircularLoader />
+                        :
+                        <div className="row">
+                            <div className="col s12 cards-container">
+                                {this.renderEventsCard()}
+                            </div>
                         </div>
-                        <div className="col s12 l4">
-                            <EventCard key="2"/>
-                        </div>
-                        <div className="col s12 l4">
-                            <EventCard key="3"/>
-                        </div>
-                        <div className="col s12 l4">
-                            <EventCard key="4"/>
-                        </div>
-                        <div className="col s12 l4">
-                            <EventCard key="5"/>
-                        </div>
-                        <div className="col s12 l4">
-                            <EventCard key="6"/>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
         );
     }
 }
 
-export default IndexEventCardHolder;
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({fetchEventRequest: fetchEventRequest}, dispatch);
+};
+
+const mapStateToProps = (state) => {
+    return {
+        allEvents: state.eventReducer
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(IndexEventCardHolder);

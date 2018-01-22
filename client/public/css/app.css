@@ -308,6 +308,11 @@ input[type=range] {
   background-color: #f5f5f5;
   border-radius: 3px; }
 
+.small__duration {
+  font-size: 12px !important; }
+  .small__duration i {
+    font-size: 12px !important; }
+
 /*center details css */
 .center__details {
   padding: 10px; }

@@ -4,22 +4,25 @@ import { bindActionCreators } from 'redux'
 import { createEventRequest } from '../../actions/events-actions'
 import InputForm from '../../components/form/formInput'
 import { validateEventInput } from './validateInput'
+import { ADD_EVENT } from '../../actions'
 
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-
-// const styles = {
-//     radioButton: {
-//         marginTop: 16,
-//     },
-// };
+import DatePicker from 'material-ui/DatePicker';
 
 class EventModal extends Component {
     constructor(props){
         super(props);
+
+        const startDate = new Date();
+        const endDate = new Date();
+        startDate.setFullYear(startDate.getFullYear() - 1);
+        endDate.setFullYear(endDate.getFullYear() - 1);
+
         this.state = {
             open: false,
+            disableYearSelection: false,
             isLoading: false,
             errors: {},
             editEvent: false,
@@ -27,8 +30,8 @@ class EventModal extends Component {
             userId: 0,
             title: '',
             img_url: '',
-            startDate: '',
-            endDate: '',
+            startDate: startDate,
+            endDate: endDate,
             description: ''
         };
 
@@ -37,17 +40,9 @@ class EventModal extends Component {
         this.onFileChange = this.onFileChange.bind(this);
     }
 
-    handleOpen = () => {
-        this.setState({open: true});
-    };
-
-    handleClose = () => {
-        this.setState({open: false});
-    };
-
-    componentWillReceiveProps(newProps){
-        if(newProps.event.editEvent){
-            let { title, img_url, startDate, endDate, description } = newProps.event.eventToEdit;
+    updateProps(newProps){
+        if(newProps.editEvent){
+            let { title, img_url, startDate, endDate, description } = newProps.eventToEdit;
             this.setState({
                 editEvent: true,
                 centerId: newProps.activeCenter.centr.id,
@@ -64,7 +59,10 @@ class EventModal extends Component {
                 userId: newProps.actUser.user.id,
             });
         }
-        console.log(newProps);
+    }
+
+    componentDidMount(){
+        this.updateProps(this.props);
     }
 
     isValid(){
@@ -74,6 +72,26 @@ class EventModal extends Component {
         }
         return isValid;
     }
+
+    handleChangeStartDate = (e, date) => {
+        this.setState({
+            startDate: date.toDateString(),
+        });
+    };
+
+    handleChangeEndDate = (e, date) => {
+        this.setState({
+            endDate: date.toDateString(),
+        });
+    };
+
+    handleOpen = () => {
+        this.setState({open: true});
+    };
+
+    handleClose = () => {
+        this.setState({open: false});
+    };
 
     handleInputChange(e){
         if (!!this.state.errors[e.target.name]) {
@@ -116,24 +134,18 @@ class EventModal extends Component {
                 isLoading: true
             });
 
-            console.log(this.state);
-            // this.props.createEventRequest(this.state);
-                // .then((data)=>{
-                //     console.log(data);
-                //     this.setState({isLoading: false});
-                //     if(data.statusCode == 200){
-                //         Materialize.toast('Event has been created successfully', 5000);
-                //     }else if(data.statusCode == 400){
-                //         Materialize.toast(data.message, 5000);
-                //     }else{
-                //         Materialize.toast('Houston, we have a problem! We are working on it', 5000);
-                //     }
-                // })
-                // .catch((err)=>{
-                //     console.log(err);
-                //     this.setState({isLoading: false});
-                //     Materialize.toast('Error creating Event..!!', 5000);
-                // });
+            this.props.createEventRequest(this.state)
+                .then((data)=>{
+                    // console.log('res from action', data);
+                    this.setState({isLoading: false});
+                    if(data.type == ADD_EVENT){
+                        Materialize.toast('Event has been created successfully', 5000);
+                        this.setState({ title: '', description: '' });
+                        this.handleClose();
+                    }else{
+                        Materialize.toast(data.message, 5000);
+                    }
+                });
         }
     }
 
@@ -167,9 +179,9 @@ class EventModal extends Component {
                     open={this.state.open}
                     onRequestClose={this.handleClose}
                     autoScrollBodyContent={true}
-                    style={{marginTop: '20px'}}
+                    style={{marginTop: '0px'}}
                 >
-                    <div className="row">
+                    <div className="row" style={{marginTop: '20px'}}>
                         <form className="col s12" id="add-event-form" >
                             <div className="row">
                                 <div className="col s6">
@@ -202,23 +214,19 @@ class EventModal extends Component {
                             </div>
                             <div className="row">
                                 <div className="input-field col s6">
-                                    <InputForm
-                                        type="date"
-                                        fieldId="startDate"
-                                        nameField="startDate"
-                                        value={startDate}
-                                        error={errors.startDate || ''}
-                                        onChange={this.handleInputChange}
+                                    <DatePicker
+                                        onChange={this.handleChangeStartDate}
+                                        autoOk={true}
+                                        floatingLabelText="Start Date"
+                                        disableYearSelection={this.state.disableYearSelection}
                                     />
                                 </div>
                                 <div className="input-field col s6">
-                                    <InputForm
-                                        type="date"
-                                        fieldId="endDate"
-                                        nameField="endDate"
-                                        value={endDate}
-                                        error={errors.endDate || ''}
-                                        onChange={this.handleInputChange}
+                                    <DatePicker
+                                        onChange={this.handleChangeEndDate}
+                                        autoOk={true}
+                                        floatingLabelText="End Date"
+                                        disableYearSelection={this.state.disableYearSelection}
                                     />
                                 </div>
                             </div>

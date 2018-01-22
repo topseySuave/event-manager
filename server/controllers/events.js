@@ -1,6 +1,7 @@
 import models from '../models';
 
-let event = models.Events;
+const Event = models.Events;
+const Center = models.Centers;
 
 // let storage = multer.diskStorage({
 //     destination: '../server/public/images/uploads',
@@ -33,7 +34,7 @@ export class Events {
             });
         }
 
-        event.findById(eventId)
+        Event.findById(eventId)
             .then((event) => {
                 if (!event) {
                     return res.status(404).send({
@@ -58,11 +59,12 @@ export class Events {
      * @memberof Events
      */
     getEvents(req, res){
+        let order = (req.query.order === 'desc') ? req.query.order : 'asc';
         if (req.query && req.query.sort) {
-            if (req.query.order && req.query.order === 'desc') {
-                event.findAll({
+            if (order) {
+                Event.findAll({
                     order: [
-                        ['id', 'DESC']
+                        ['id', order]
                     ]
                 })
                 .then((returnedEvent) => {
@@ -98,12 +100,12 @@ export class Events {
                 };
             });
 
-            event.findAll({
+            Event.findAll({
                 where: {
                     titleResp
                 },
                 order: [
-                    ['id', 'ASC']
+                    ['id', order]
                 ],
                 limit: limitValue,
             })
@@ -124,25 +126,30 @@ export class Events {
             let limitValue = 10;
             let pageValue = req.query.next - 1 || 0;
 
-            event.findAndCountAll({
+            Event.findAndCountAll({
+                include: [{
+                    model: Center,
+                    as: 'center'
+                }],
                 limit: limitValue,
                 offset: pageValue * limitValue
             })
-            .then((event) => {
-                if (event.length === 0) {
+            .then((events) => {
+                if (events.length === 0) {
                     return res.status(404).send({
                         statusCode: 404,
                         message: 'No result found',
                     });
                 }
+
                 res.status(200).json({
                     statusCode: 200,
                     message: 'Successful Events!',
-                    pageSize: parseInt(event.rows.length, 10),
-                    totalCount: event.count,
-                    pageCount: Math.ceil(event.count / limitValue),
+                    pageSize: parseInt(events.rows.length, 10),
+                    totalCount: events.count,
+                    pageCount: Math.ceil(events.count / limitValue),
                     page: pageValue + 1,
-                    events: event.rows,
+                    events: events.rows,
                 });
             })
             .catch(err => res.status(500).send(err));
@@ -161,7 +168,7 @@ export class Events {
         let startDate = new Date(req.body.startDate);
         let endDate = new Date(req.body.endDate);
 
-        event.findOne({
+        Event.findOne({
             where: {
                 centerId: req.body.centerId,
                 startDate: {
@@ -182,7 +189,7 @@ export class Events {
                     error: true
                 });
             }else{
-                return event.create({
+                return Event.create({
                     title: req.body.title,
                     img_url: req.body.img_url,
                     location: req.body.location,
@@ -232,7 +239,7 @@ export class Events {
             });
         }
 
-        event.findById(eventId)
+        Event.findById(eventId)
             .then((event) => {
                 if (!event) {
                     return res.status(400).send({
@@ -241,7 +248,7 @@ export class Events {
                     });
                 }
 
-                event.update({
+                Event.update({
                     title: req.body.title || event.title,
                     img_url: req.body.img_url || event.img_url,
                     description: req.body.description || event.description,
@@ -275,7 +282,7 @@ export class Events {
                 message: 'Event id is not a number'
             });
         }
-        event.findById(eventId)
+        Event.findById(eventId)
             .then((deletedEvent) => {
                 if (!deletedEvent) {
                     return res.status(400).send({
@@ -283,14 +290,15 @@ export class Events {
                         message: `Event not found with id : ${eventId}`
                     });
                 }
-                event.destroy({
+                Event.destroy({
                     where: {
                         id: eventId,
                     }
                 })
                 .then(() => res.status(200).send({
                     statusCode: 200,
-                    message: 'This Event has been deleted'
+                    message: 'This Event has been deleted',
+                    event: deletedEvent
                 }));
             })
             .catch(() => res.status(500).send({

@@ -57,9 +57,9 @@ class SearchModal extends Component {
                     <h5>Events Results</h5>
 
                     <div className="row">
-                        <div key={shortid.generate()}  className="col s12 l4">
-                            <EventCard/>
-                        </div>
+                        {/*<div key={shortid.generate()}  className="col s12 l4">*/}
+                            {/*<EventCard/>*/}
+                        {/*</div>*/}
                     </div>
 
                 </div>

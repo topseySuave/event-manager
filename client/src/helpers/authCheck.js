@@ -1,4 +1,4 @@
-import {store} from '../'
+import { store } from '../'
 // import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import jwtDecode from 'jwt-decode'
@@ -12,10 +12,7 @@ export default class authCheck {
     }
 
     jwtIsSet() {
-        if (localStorage.getItem('jwtToken')) {
-            return true;
-        }
-        return false;
+        return !!localStorage.getItem('jwtToken')
     }
 
     isSignedIn() {

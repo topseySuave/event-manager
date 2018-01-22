@@ -9,6 +9,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import App from './components/App';
 import authCheck from './helpers/authCheck'
 import rootReducer from './rootReducer'
+import { fetchEventRequest } from './actions/events-actions'
 
 import registerServiceWorker from './registerServiceWorker';
 

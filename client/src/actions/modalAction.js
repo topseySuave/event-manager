@@ -22,13 +22,11 @@ const addCenterPayload = (payload, response = null) => {
 };
 
 export const createCenterRequest = (centerData) => {
-    let token = localStorage.getItem('jwtToken');
     let centerApi = '/api/v1/centers';
-    let config = { headers: {'x-access-token': token} };
 
     return dispatch => {
         dispatch(addCenterPayload(centerData, 'request'));
-        return axios.post(centerApi, centerData, config)
+        return axios.post(centerApi, centerData)
             .then(({ data }) => {
                 if (data.statusCode === 201) {
                     return dispatch(addCenterPayload(data.center, 'success'));

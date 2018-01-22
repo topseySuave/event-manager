@@ -50,7 +50,6 @@ class SignInForm extends React.Component {
             this.setState({errors: {}, isLoading: true});
             this.props.userSignInRequest(this.state)
                 .then((res) => {
-                    console.log(res);
                     if(res){
                         this.setState({
                             isLoading: false
@@ -80,7 +79,7 @@ class SignInForm extends React.Component {
         let loading = classNames('row', {'isLoading': isLoading});
 
         if(this.props.activeState.isAuthenticated){
-            return <Redirect to={window.history.back()} />
+            return <Redirect to="/" />
         }
 
         return (

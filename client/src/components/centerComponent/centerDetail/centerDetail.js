@@ -77,7 +77,7 @@ class CenterDetail extends Component {
             );
     }
 
-    showBookCenterButton(centerId){
+    showBookCenterButton(){
         let isSignedIn = this.props.activeUser.isAuthenticated;
         if(isSignedIn)
             return(
@@ -149,7 +149,7 @@ class CenterDetail extends Component {
                                             </div>
                                             <div className="row">
                                                 { this.showEditCenterButton() }
-                                                { this.showBookCenterButton(id) }
+                                                { this.showBookCenterButton() }
                                             </div>
                                         </section>
                                     </div>
