@@ -3,30 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="f051bbcc-4e3a-4837-a5f5-ffa0a54f7bfb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/public/css/app.css" afterPath="$PROJECT_DIR$/client/public/css/app.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/public/css/app.css.map" afterPath="$PROJECT_DIR$/client/public/css/app.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/public/css/main-css/main.sass" afterPath="$PROJECT_DIR$/client/public/css/main-css/main.sass" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/public/js/app.bundle.js" afterPath="$PROJECT_DIR$/client/public/js/app.bundle.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/public/js/hot/hot-update.js" afterPath="$PROJECT_DIR$/client/public/js/hot/hot-update.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/public/js/hot/hot-update.json" afterPath="$PROJECT_DIR$/client/public/js/hot/hot-update.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/actions/authActions.js" afterPath="$PROJECT_DIR$/client/src/actions/authActions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/actions/events-actions/index.js" afterPath="$PROJECT_DIR$/client/src/actions/events-actions/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/actions/index.js" afterPath="$PROJECT_DIR$/client/src/actions/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/actions/modalAction.js" afterPath="$PROJECT_DIR$/client/src/actions/modalAction.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/authentication/signin/signInForm.js" afterPath="$PROJECT_DIR$/client/src/components/authentication/signin/signInForm.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/bodyComponents/eventsCard/eventCard.js" afterPath="$PROJECT_DIR$/client/src/components/bodyComponents/eventsCard/eventCard.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/bodyComponents/indexEventsCard.js" afterPath="$PROJECT_DIR$/client/src/components/bodyComponents/indexEventsCard.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/centerDetail.js" afterPath="$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/centerDetail.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/homepage.js" afterPath="$PROJECT_DIR$/client/src/components/homepage.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/modals/EventModal.js" afterPath="$PROJECT_DIR$/client/src/components/modals/EventModal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/modals/searchModal.js" afterPath="$PROJECT_DIR$/client/src/components/modals/searchModal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/helpers/authCheck.js" afterPath="$PROJECT_DIR$/client/src/helpers/authCheck.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/index.js" afterPath="$PROJECT_DIR$/client/src/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/reducers/eventReducer.js" afterPath="$PROJECT_DIR$/client/src/reducers/eventReducer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/controllers/events.js" afterPath="$PROJECT_DIR$/server/controllers/events.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/models/center.js" afterPath="$PROJECT_DIR$/server/models/center.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/models/events.js" afterPath="$PROJECT_DIR$/server/models/events.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/modals/validateInput.js" afterPath="$PROJECT_DIR$/client/src/components/modals/validateInput.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -66,26 +48,26 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="eventCard.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="eventCard.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/client/src/components/bodyComponents/eventsCard/eventCard.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="187">
-                  <caret line="68" column="0" lean-forward="true" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+                <state relative-caret-position="375">
+                  <caret line="106" column="17" lean-forward="false" selection-start-line="106" selection-start-column="17" selection-end-line="106" selection-end-column="17" />
                   <folding>
                     <element signature="e#0#43#0" expanded="true" />
+                    <marker date="1516653801665" expanded="true" signature="705:5255" ph="{...}" />
+                    <marker date="1516653801665" expanded="true" signature="2712:5253" ph="{...}" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="allCenters.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/src/components/centerComponent/allCenters/allCenters.js">
+          <file leaf-file-name="EventModal.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/client/src/components/modals/EventModal.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="204">
-                  <caret line="85" column="49" lean-forward="true" selection-start-line="85" selection-start-column="49" selection-end-line="85" selection-end-column="49" />
-                  <folding>
-                    <element signature="e#0#40#0" expanded="true" />
-                  </folding>
+                  <caret line="83" column="23" lean-forward="false" selection-start-line="83" selection-start-column="23" selection-end-line="83" selection-end-column="23" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -107,7 +89,7 @@
           <file leaf-file-name="eventReducer.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/client/src/reducers/eventReducer.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="221">
+                <state relative-caret-position="307">
                   <caret line="49" column="13" lean-forward="true" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
                   <folding />
                 </state>
@@ -195,7 +177,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/client/src/components/Main.js" />
         <option value="$PROJECT_DIR$/client/src/util/locations.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/currentEventForCenter.js" />
@@ -244,8 +225,9 @@
         <option value="$PROJECT_DIR$/server/models/center.js" />
         <option value="$PROJECT_DIR$/server/controllers/center.js" />
         <option value="$PROJECT_DIR$/client/src/reducers/eventReducer.js" />
-        <option value="$PROJECT_DIR$/client/src/components/modals/EventModal.js" />
         <option value="$PROJECT_DIR$/client/src/components/bodyComponents/eventsCard/eventCard.js" />
+        <option value="$PROJECT_DIR$/client/src/components/modals/validateInput.js" />
+        <option value="$PROJECT_DIR$/client/src/components/modals/EventModal.js" />
       </list>
     </option>
   </component>
@@ -618,14 +600,7 @@
       <workItem from="1515612352788" duration="9896000" />
       <workItem from="1515685913280" duration="58886000" />
       <workItem from="1516043574879" duration="31103000" />
-      <workItem from="1516406403454" duration="13232000" />
-    </task>
-    <task id="LOCAL-00009" summary="signin-page-v1">
-      <created>1510687539418</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1510687539418</updated>
+      <workItem from="1516406403454" duration="16352000" />
     </task>
     <task id="LOCAL-00010" summary="signin-page-v1">
       <created>1510687601873</created>
@@ -963,11 +938,18 @@
       <option name="project" value="LOCAL" />
       <updated>1516059745754</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="chore: complete delete event request and fix: add event modal">
+      <created>1516652047130</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1516652047131</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="648329000" />
+    <option name="totallyTimeSpent" value="651449000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -988,7 +970,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42251223" sideWeight="0.49386504" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28502417" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28502417" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1047,7 +1029,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="frontend ui design refactoring.." />
     <MESSAGE value="frontend ui design refactoring..." />
     <MESSAGE value="fix: attempt to let webpack compile the app and let it read static file (css, svg, images)" />
     <MESSAGE value="feat: broken down ui to react component, webpack compiling of react module for browser readability." />
@@ -1072,7 +1053,8 @@
     <MESSAGE value="feat: modify single event Modal to handle both edit and create events." />
     <MESSAGE value="feat: modify single event Modal to handle both edit and create events.." />
     <MESSAGE value="change: made to event modal to use material-ui layout." />
-    <option name="LAST_COMMIT_MESSAGE" value="change: made to event modal to use material-ui layout." />
+    <MESSAGE value="chore: complete delete event request and fix: add event modal" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: complete delete event request and fix: add event modal" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1096,17 +1078,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/modals/eventModalForm/validateEventInput.js" />
-    <entry file="file://$PROJECT_DIR$/client/src/components/modals/validateInput.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="34" lean-forward="false" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/form/formInput.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="381">
           <caret line="32" column="33" lean-forward="true" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1227,6 +1203,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="206">
           <caret line="30" column="46" lean-forward="true" selection-start-line="30" selection-start-column="46" selection-end-line="30" selection-end-column="46" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1248,6 +1225,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1272,6 +1250,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="52" lean-forward="true" selection-start-line="7" selection-start-column="52" selection-end-line="7" selection-end-column="52" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1315,6 +1294,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="13" column="35" lean-forward="true" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1322,6 +1302,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="393">
           <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1329,6 +1310,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="731">
           <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+            <marker date="1516207542074" expanded="true" signature="2462:2600" ph="&lt;div/&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1336,6 +1321,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
           <caret line="91" column="0" lean-forward="true" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1369,7 +1355,7 @@
         <state relative-caret-position="204">
           <caret line="85" column="49" lean-forward="true" selection-start-line="85" selection-start-column="49" selection-end-line="85" selection-end-column="49" />
           <folding>
-            <element signature="e#0#40#0" expanded="true" />
+            <element signature="e#0#40#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1424,17 +1410,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/modals/EventModal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="83" column="40" lean-forward="false" selection-start-line="83" selection-start-column="21" selection-end-line="83" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/reducers/eventReducer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
+        <state relative-caret-position="307">
           <caret line="49" column="13" lean-forward="true" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
           <folding />
         </state>
@@ -1442,11 +1420,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/bodyComponents/eventsCard/eventCard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="68" column="0" lean-forward="true" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+        <state relative-caret-position="375">
+          <caret line="106" column="17" lean-forward="false" selection-start-line="106" selection-start-column="17" selection-end-line="106" selection-end-column="17" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
+            <marker date="1516653801665" expanded="true" signature="705:5255" ph="{...}" />
+            <marker date="1516653801665" expanded="true" signature="2712:5253" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/modals/validateInput.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/modals/EventModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="83" column="23" lean-forward="false" selection-start-line="83" selection-start-column="23" selection-end-line="83" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>

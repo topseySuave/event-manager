@@ -97,7 +97,7 @@ class EventCard extends Component {
         let shareColor = ['red', 'blue', 'yellow', 'green'];
         shareColor = shareColor[Math.floor((Math.random() * shareColor.length))];
 
-        let { id, title, img_url, description, startDate, endDate, center } = this.state.event;
+        let { id, title, img_url, description, startDate, endDate, userId, center } = this.state.event;
         startDate = new Date(startDate).toDateString();
         endDate = new Date(endDate).toDateString();
 
@@ -110,7 +110,10 @@ class EventCard extends Component {
                     <div className="card-image">
                         <img src={img_url} alt={title} />
                         <span className="card-title bold" style={{right: '0', backgroundImage: 'linear-gradient(to top, rgba(0, 0, 0, .5), rgba(0, 0, 0, 0))'}}>{title}</span>
-                        <a className={classNames("btn-floating", "activator", "halfway-fab", "waves-effect", "waves-light", "tooltipped", shareColor) }
+                        <a
+                            className={
+                                classNames("btn-floating", "activator", "halfway-fab", "waves-effect", "waves-light", "tooltipped", shareColor)
+                            }
                            data-position="bottom" data-tooltip="share">
                             <i className="material-icons">share</i>
                         </a>
@@ -122,14 +125,18 @@ class EventCard extends Component {
                         </p>
                         <div>
                             <i className="material-icons f15">location_on </i> { (center) ? center.location : '' }
-                            { (this.props.userState.user.id === event.userId || this.props.userState.user.role) && this.showMenu(id) }
+                            {
+                                (this.props.userState.user.id === userId || this.props.userState.user.role)
+                                &&
+                                this.showMenu(id)
+                            }
                         </div>
                     </div>
                     <div className="card-reveal">
-                    <span className="card-title grey-text text-darken-4">
-                        <a className="bold">{title}</a>
-                        <i className="material-icons right">close</i>
-                    </span>
+                        <span className="card-title grey-text text-darken-4">
+                            <a className="bold">{title}</a>
+                            <i className="material-icons right">close</i>
+                        </span>
                         <p>{description}</p>
                         <small>{ (center) ? center.location : ''}</small>
                     </div>

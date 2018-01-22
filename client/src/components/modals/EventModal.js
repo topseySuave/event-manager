@@ -74,15 +74,29 @@ class EventModal extends Component {
     }
 
     handleChangeStartDate = (e, date) => {
-        this.setState({
-            startDate: date.toDateString(),
-        });
+        if(new Date(date) < new Date()){
+            Materialize.toast('Date isn\'t correct. Should be a day after today not before', 5000);
+            this.setState({
+                startDate: '',
+            });
+        }else{
+            this.setState({
+                startDate: date.toDateString(),
+            });
+        }
     };
 
     handleChangeEndDate = (e, date) => {
-        this.setState({
-            endDate: date.toDateString(),
-        });
+        if(new Date(date) < new Date()){
+            Materialize.toast('Date isn\'t correct. Should be a day after today not before', 5000);
+            this.setState({
+                endDate: '',
+            });
+        }else{
+            this.setState({
+                endDate: date.toDateString(),
+            });
+        }
     };
 
     handleOpen = () => {
@@ -128,7 +142,6 @@ class EventModal extends Component {
 
     handleEventSubmit(e) {
         e.preventDefault();
-
         if (this.isValid()) {
             this.setState({
                 isLoading: true
