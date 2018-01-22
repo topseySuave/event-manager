@@ -30,8 +30,8 @@ class EventModal extends Component {
             userId: 0,
             title: '',
             img_url: '',
-            startDate: startDate,
-            endDate: endDate,
+            startDate: null,
+            endDate: null,
             description: ''
         };
 
@@ -77,7 +77,7 @@ class EventModal extends Component {
         if(new Date(date) < new Date()){
             Materialize.toast('Date isn\'t correct. Should be a day after today not before', 5000);
             this.setState({
-                startDate: '',
+                startDate: {},
             });
         }else{
             this.setState({
@@ -90,7 +90,7 @@ class EventModal extends Component {
         if(new Date(date) < new Date()){
             Materialize.toast('Date isn\'t correct. Should be a day after today not before', 5000);
             this.setState({
-                endDate: '',
+                endDate: {},
             });
         }else{
             this.setState({
@@ -233,6 +233,7 @@ class EventModal extends Component {
                                         floatingLabelText="Start Date"
                                         disableYearSelection={this.state.disableYearSelection}
                                     />
+                                    { errors.startDate && <span className="red-text accent-1">{errors.startDate}</span> }
                                 </div>
                                 <div className="input-field col s6">
                                     <DatePicker
@@ -241,6 +242,7 @@ class EventModal extends Component {
                                         floatingLabelText="End Date"
                                         disableYearSelection={this.state.disableYearSelection}
                                     />
+                                    { errors.endDate && <span className="red-text accent-1">{errors.endDate}</span> }
                                 </div>
                             </div>
                             <div className="row">

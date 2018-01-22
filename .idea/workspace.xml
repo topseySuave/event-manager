@@ -6,7 +6,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/public/js/app.bundle.js" afterPath="$PROJECT_DIR$/client/public/js/app.bundle.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/public/js/hot/hot-update.js" afterPath="$PROJECT_DIR$/client/public/js/hot/hot-update.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/public/js/hot/hot-update.json" afterPath="$PROJECT_DIR$/client/public/js/hot/hot-update.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/bodyComponents/eventsCard/eventCard.js" afterPath="$PROJECT_DIR$/client/src/components/bodyComponents/eventsCard/eventCard.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/modals/EventModal.js" afterPath="$PROJECT_DIR$/client/src/components/modals/EventModal.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/modals/validateInput.js" afterPath="$PROJECT_DIR$/client/src/components/modals/validateInput.js" />
     </list>
@@ -66,7 +65,7 @@
             <entry file="file://$PROJECT_DIR$/client/src/components/modals/EventModal.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="204">
-                  <caret line="83" column="23" lean-forward="false" selection-start-line="83" selection-start-column="23" selection-end-line="83" selection-end-column="23" />
+                  <caret line="227" column="49" lean-forward="true" selection-start-line="227" selection-start-column="49" selection-end-line="227" selection-end-column="49" />
                   <folding />
                 </state>
               </provider>
@@ -226,8 +225,8 @@
         <option value="$PROJECT_DIR$/server/controllers/center.js" />
         <option value="$PROJECT_DIR$/client/src/reducers/eventReducer.js" />
         <option value="$PROJECT_DIR$/client/src/components/bodyComponents/eventsCard/eventCard.js" />
-        <option value="$PROJECT_DIR$/client/src/components/modals/validateInput.js" />
         <option value="$PROJECT_DIR$/client/src/components/modals/EventModal.js" />
+        <option value="$PROJECT_DIR$/client/src/components/modals/validateInput.js" />
       </list>
     </option>
   </component>
@@ -600,14 +599,7 @@
       <workItem from="1515612352788" duration="9896000" />
       <workItem from="1515685913280" duration="58886000" />
       <workItem from="1516043574879" duration="31103000" />
-      <workItem from="1516406403454" duration="16352000" />
-    </task>
-    <task id="LOCAL-00010" summary="signin-page-v1">
-      <created>1510687601873</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1510687601873</updated>
+      <workItem from="1516406403454" duration="17441000" />
     </task>
     <task id="LOCAL-00011" summary="signin-page-v1.1">
       <created>1510725242817</created>
@@ -945,11 +937,18 @@
       <option name="project" value="LOCAL" />
       <updated>1516652047131</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="fix: create event modal startDate and endDate field to respond to dates that are less than today.">
+      <created>1516655222188</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1516655222188</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="651449000" />
+    <option name="totallyTimeSpent" value="652538000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1029,7 +1028,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="frontend ui design refactoring..." />
     <MESSAGE value="fix: attempt to let webpack compile the app and let it read static file (css, svg, images)" />
     <MESSAGE value="feat: broken down ui to react component, webpack compiling of react module for browser readability." />
     <MESSAGE value="feat: broken down ui to react component, webpack compiling of react module for browser readability.." />
@@ -1054,7 +1052,8 @@
     <MESSAGE value="feat: modify single event Modal to handle both edit and create events.." />
     <MESSAGE value="change: made to event modal to use material-ui layout." />
     <MESSAGE value="chore: complete delete event request and fix: add event modal" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: complete delete event request and fix: add event modal" />
+    <MESSAGE value="fix: create event modal startDate and endDate field to respond to dates that are less than today." />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: create event modal startDate and endDate field to respond to dates that are less than today." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1078,14 +1077,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/modals/eventModalForm/validateEventInput.js" />
-    <entry file="file://$PROJECT_DIR$/client/src/components/form/formInput.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="32" column="33" lean-forward="true" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/bodyComponents/headNav/headbanner.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -1243,6 +1234,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1836">
           <caret line="114" column="0" lean-forward="true" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1329,6 +1323,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="117" column="92" lean-forward="true" selection-start-line="117" selection-start-column="92" selection-end-line="117" selection-end-column="92" />
+          <folding>
+            <element signature="e#0#40#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1430,10 +1427,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/form/formInput.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="11" column="35" lean-forward="true" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/modals/validateInput.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+        <state relative-caret-position="453">
+          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1441,7 +1446,7 @@
     <entry file="file://$PROJECT_DIR$/client/src/components/modals/EventModal.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
-          <caret line="83" column="23" lean-forward="false" selection-start-line="83" selection-start-column="23" selection-end-line="83" selection-end-column="23" />
+          <caret line="227" column="49" lean-forward="true" selection-start-line="227" selection-start-column="49" selection-end-line="227" selection-end-column="49" />
           <folding />
         </state>
       </provider>

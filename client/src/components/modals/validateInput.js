@@ -28,14 +28,14 @@ export function validateCenterInput(data) {
     if(isEmpty(data.startDate)){
         errors.startDate = 'Start Date is required';
     }
-    if(data.startDate < Date().now){
+    if(new Date(data.startDate) < new Date()){
         errors.startDate = 'Date isn\'t correct. Should be a day after today not before';
     }
 
     if(isEmpty(data.endDate)){
         errors.endDate = 'End Date is required';
     }
-    if(data.endDate < Date().now){
+    if(new Date(data.endDate) < new Date()){
         errors.endDate = 'Date isn\'t correct. Should be a day after today not before';
     }
 
