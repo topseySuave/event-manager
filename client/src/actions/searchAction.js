@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {isEmpty} from 'lodash'
 import {showLoading, hideLoading} from 'react-redux-loading-bar'
-import {fetchCentersDispatch} from './fetchCenterAction'
+import {fetchCentersDispatch} from './center-actions/fetchCenterAction'
 
 export const searchAction = (data) => {
     let searchApi = validateSearchQuery(data);

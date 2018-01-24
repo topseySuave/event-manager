@@ -19,7 +19,8 @@ class EventCard extends Component {
     constructor(props){
         super(props);
         this.state = {
-            open: false,
+            openAlert: false,
+            openEdit: false,
             event: {},
             location: '',
             userId: ''
@@ -32,12 +33,20 @@ class EventCard extends Component {
         });
     }
 
-    handleOpen = () => {
+    handleAlertOpen = () => {
         this.setState({open: true});
     };
 
-    handleClose = () => {
+    handleAlertClose = () => {
         this.setState({open: false});
+    };
+
+    handleEditOpen = () => {
+        this.setState({openEdit: true});
+    };
+
+    handleEditClose = () => {
+        this.setState({openEdit: false});
     };
 
     handleDelete(id){
@@ -58,7 +67,7 @@ class EventCard extends Component {
                         leftIcon={<EditorModeEdit />}
                     />
                     <MenuItem
-                        onClick={() => this.handleOpen()}
+                        onClick={() => this.handleAlertOpen()}
                         primaryText="Delete"
                         leftIcon={<ActionDelete />}
                     />
@@ -77,7 +86,7 @@ class EventCard extends Component {
             <FlatButton
                 label="No"
                 primary={true}
-                onClick={() => this.handleClose()}
+                onClick={() => this.handleAlertClose()}
             />,
         ];
 
@@ -86,7 +95,7 @@ class EventCard extends Component {
                 actions={actions}
                 modal={false}
                 open={this.state.open}
-                onRequestClose={this.handleClose}
+                onRequestClose={this.handleAlertClose}
             >
                 Are you sure you want to delete this event?
             </Dialog>

@@ -42,7 +42,9 @@ class IndexEventCardHolder extends Component {
             <div className="popular__events_holdr">
                 <div className="container popular__events">
                     { (isLoading) ?
-                        <CircularLoader />
+                        <div style={{height: '500px', marginTop: '100px'}}>
+                            <CircularLoader />
+                        </div>
                         :
                         <div className="row">
                             <div className="col s12 cards-container">

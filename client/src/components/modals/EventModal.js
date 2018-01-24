@@ -147,6 +147,7 @@ class EventModal extends Component {
                 isLoading: true
             });
 
+            // console.log(this.state);
             this.props.createEventRequest(this.state)
                 .then((data)=>{
                     // console.log('res from action', data);
@@ -183,6 +184,7 @@ class EventModal extends Component {
             <div>
                 <RaisedButton
                     label="Book this center"
+                    primary={true}
                     onClick={this.handleOpen}
                 />
                 <Dialog

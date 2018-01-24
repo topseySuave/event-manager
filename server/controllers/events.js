@@ -1,7 +1,7 @@
 import models from '../models';
 
 const Event = models.Events;
-const Center = models.Centers;
+const CenterModel = models.Centers;
 
 // let storage = multer.diskStorage({
 //     destination: '../server/public/images/uploads',
@@ -59,7 +59,7 @@ export class Events {
      * @memberof Events
      */
     getEvents(req, res){
-        let order = (req.query.order === 'desc') ? req.query.order : 'asc';
+        let order = (req.query.order) ? req.query.order : 'desc';
         if (req.query && req.query.sort) {
             if (order) {
                 Event.findAll({
@@ -123,14 +123,17 @@ export class Events {
                 });
             });
         } else {
-            let limitValue = 10;
+            let limitValue = 30;
             let pageValue = req.query.next - 1 || 0;
 
             Event.findAndCountAll({
                 include: [{
-                    model: Center,
+                    model: CenterModel,
                     as: 'center'
                 }],
+                order: [
+                    ['id', order]
+                ],
                 limit: limitValue,
                 offset: pageValue * limitValue
             })

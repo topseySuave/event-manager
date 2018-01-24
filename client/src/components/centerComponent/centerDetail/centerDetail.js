@@ -1,13 +1,19 @@
-import React, {Component} from 'react';
-import {PropTypes} from 'prop-types'
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
+import React, { Component } from 'react';
+import {PropTypes } from 'prop-types'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import shortid from 'shortid'
 import DocumentTitle from 'react-document-title'
 
-import {CircularLoader} from '../../loader'
-import {fetchCenterAction} from '../../../actions/activeCenterAction'
+import { CircularLoader } from '../../loader'
+import { fetchCenterAction } from '../../../actions/center-actions/activeCenterAction'
+import { deleteCenterRequest } from '../../../actions/center-actions/deleteCenterAction'
+import { REMOVE_CENTER } from '../../../actions'
 
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
+import Delete from 'material-ui/svg-icons/action/delete'
 import CurrentEventForCenter from './currentEventForCenter'
 import RecommCenter from './RecommCenter'
 import EventModal from '../../modals/EventModal'
@@ -18,6 +24,7 @@ class CenterDetail extends Component {
 
         this.state = {
             isLoading: true,
+            open: false,
             activeCenter: {
                 centr: {
                     id: '',
@@ -47,10 +54,6 @@ class CenterDetail extends Component {
             this.setState({isLoading: false, activeCenter: newProps.activeCenterDetail});
         }
     }
-
-    // componentWillUpdate(){
-    //     console.log(this.props.params.id);
-    // }
 
     renderFacilities(facilities) {
         return facilities.map((facility) => {
@@ -83,6 +86,57 @@ class CenterDetail extends Component {
             return(
                 <EventModal />
             );
+    }
+
+    handleAlertOpen = () => {
+        this.setState({open: true});
+    };
+
+    handleAlertClose = () => {
+        this.setState({open: false});
+    };
+
+    deleteCenter(id){
+        this.props.deleteCenterRequest(id)
+            .then((data)=>{
+                if(data.type === REMOVE_CENTER){
+                    window.history.back();
+                }
+            });
+    }
+
+    showAlertModal(id){
+        const actions = [
+            <FlatButton
+                label="Yes"
+                primary={true}
+                onClick={() => this.deleteCenter(id)}
+            />,
+            <FlatButton
+                label="No"
+                primary={true}
+                onClick={() => this.handleAlertClose()}
+            />,
+        ];
+
+        return (
+            <div>
+                <FlatButton
+                    label="Delete this center"
+                    secondary={true}
+                    icon={<Delete />}
+                    onClick={this.handleAlertOpen}
+                />
+                <Dialog
+                    actions={actions}
+                    modal={false}
+                    open={this.state.open}
+                    onRequestClose={this.handleAlertClose}
+                >
+                    Are you sure you want to delete this event?
+                </Dialog>
+            </div>
+        );
     }
 
     render() {
@@ -148,8 +202,9 @@ class CenterDetail extends Component {
                                                 </div>
                                             </div>
                                             <div className="row">
-                                                { this.showEditCenterButton() }
-                                                { this.showBookCenterButton() }
+                                                <div className="col s3">{ this.showEditCenterButton() }</div>
+                                                <div className="col s5">{ this.showAlertModal(id) }</div>
+                                                <div className="col s4">{ this.showBookCenterButton() }</div>
                                             </div>
                                         </section>
                                     </div>
@@ -180,7 +235,10 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({fetchCenterAction: fetchCenterAction}, dispatch);
+    return bindActionCreators({
+        fetchCenterAction: fetchCenterAction,
+        deleteCenterRequest: deleteCenterRequest
+    }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CenterDetail);

@@ -193,14 +193,15 @@ export class Centers {
             where: {
                 id: centerId
             },
+            include: [
+                {
+                    model: Events,
+                    as: 'events'
+                }
+            ],
             order: [
                 ['id', 'desc']
-            ],
-            include: [{
-                model: Events,
-                centerId: centerId,
-                as: 'events'
-            }],
+            ]
         })
             .then((centr) => {
                 if (!centr) {
@@ -231,7 +232,7 @@ export class Centers {
     getCenters(req, res) {
         let limitValue = parseInt(req.query.limit) || 20;
         let pageValue = req.query.next - 1 || 0;
-        let order = (req.query.order === 'desc') ? req.query.order : 'asc';
+        let order = (req.query.order) ? req.query.order : 'desc';
         if (req.query.search || req.query.limit) {
             let filterBy, reqSearch;
             if(req.query.filter){
@@ -318,7 +319,7 @@ export class Centers {
                 message: 'Center id is not a number'
             });
         }
-        Center.findOne(centerId)
+        Center.findById(centerId)
             .then((deletedCenter) => {
                 if (!deletedCenter) {
                     return res.status(400).send({

@@ -2,8 +2,9 @@ import React, {Component} from 'react'
 import {PropTypes} from 'prop-types'
 import {Link} from 'react-router-dom'
 import shortid from 'shortid'
+import isEmpty from 'lodash/isEmpty'
 
-import {fetchCenterRelatedTo} from '../../../actions/fetchCenterRelatedTo'
+import {fetchCenterRelatedTo} from '../../../actions/center-actions/fetchCenterRelatedTo'
 import {CircularLoader} from '../../loader'
 import Helpers from '../../../helpers'
 
@@ -20,7 +21,7 @@ class RecommCenter extends Component {
             error: false,
             errorMessage: '',
             relatedCenters: [],
-            currentCenterId: ''
+            currentCenterId: 0
         }
     }
 
@@ -44,40 +45,42 @@ class RecommCenter extends Component {
         return centerId !== this.state.currentCenterId;
     }
 
-    render() {
-        let {isLoading, error, errorMessage, relatedCenters} = this.state;
-        let relatedCenter;
-
+    sortAndShowRecommended(relatedCenters){
         if (relatedCenters) {
-            relatedCenter = relatedCenters.map((center) => {
-                // relatedCenters.filter(this.checkOwnCenter(center.id));
-
+            return relatedCenters.map((center) => {
                 let to = `/center-detail/${center.id}/${this.helper.sanitizeString(center.title)}`;
-                return (
-                    <div key={shortid.generate()} className="col s12 l4">
-                        <Link to={to}>
-                            <div className="card">
-                                <div className="card-image">
-                                    <img src={center.img_url}/>
+                if(this.checkOwnCenter(center.id)){
+                    return (
+                        <div key={shortid.generate()} className="col s12 l4">
+                            <a href={to}>
+                                <div className="card">
+                                    <div className="card-image">
+                                        <img src={center.img_url}/>
+                                    </div>
+                                    <div className="card-content black-text">
+                                        <p className="f__size">{center.title}</p>
+                                        <p><i className="material-icons f15">location_on</i>{center.location}</p>
+                                    </div>
                                 </div>
-                                <div className="card-content black-text">
-                                    <p className="f__size">{center.title}</p>
-                                    <p><i className="material-icons f15">location_on</i>{center.location}</p>
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
-                );
+                            </a>
+                        </div>
+                    );
+                }
             });
         }
+    }
 
+    render() {
+        let noCenter = 'There are no related centers';
+        let {isLoading, error, errorMessage, relatedCenters} = this.state;
+        let eachCenter = this.sortAndShowRecommended(relatedCenters);
         return (
             <div className="row">
                 <div className="divider"></div>
                 <h5>Recommended Center</h5>
                 { isLoading && <CircularLoader /> }
                 <div className="row">
-                    { !isLoading && (error) ? errorMessage : relatedCenter || 'There are no related centers' }
+                    { !isLoading && (error) ? errorMessage : (isEmpty(eachCenter)) ? noCenter : eachCenter }
                 </div>
             </div>
         );
