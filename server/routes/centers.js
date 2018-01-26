@@ -14,6 +14,6 @@ module.exports = (app) => {
     app.get('/api/v1/centers', centersController.getCenters)
         .get('/api/v1/centers/:id', centersController.getCenter)
         .post('/api/v1/centers', authenticate, validate.validateCenter, centersController.createCenter)
-        .put('/api/v1/centers/:id', authenticate, validate.validateCenter, centersController.updateCenter)
+        .post('/api/v1/centers/:id', authenticate, validate.validateCenter, centersController.updateCenter)
         .delete('/api/v1/centers/:id', authenticate, centersController.deleteCenter);
 };

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { FETCH_CENTER_DETAIL } from '../'
+import { FETCH_CENTER_DETAIL, EDIT_CENTER_REQUEST } from '../'
 import { showLoading, hideLoading } from 'react-redux-loading-bar'
 
 const fetchCenterDispatch = (data) => {
@@ -10,12 +10,11 @@ const fetchCenterDispatch = (data) => {
 };
 
 export const fetchCenterAction = (id) => {
-    if(!id) return 'id is required for the request to be successful';
-
+    if(!id) throw 'id is required for the request to be successful';
     return dispatch => {
         dispatch(showLoading());
         return axios.get(`/api/v1/centers/${id}`)
-            .then(( { data } )=>{
+            .then(({ data }) => {
                 dispatch(fetchCenterDispatch(data));
                 dispatch(hideLoading());
             })
@@ -24,4 +23,12 @@ export const fetchCenterAction = (id) => {
                 throw (err);
             });
     }
+};
+
+export const editCenterRequestAction = () => {
+    return dispatch => {
+        return dispatch({
+            type: EDIT_CENTER_REQUEST
+        });
+    };
 };

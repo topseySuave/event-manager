@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { PropsTypes } from 'prop-types'
-import { CircularLoader } from '../loader'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { PropsTypes } from 'prop-types';
 
-import shortid from 'shortid'
+import shortid from 'shortid';
+import { CircularLoader } from '../loader';
 import EventCard from './eventsCard/eventCard';
-import { fetchEventRequest } from './../../actions/events-actions'
+import { fetchEventRequest } from './../../actions/events-actions';
 
 class IndexEventCardHolder extends Component {
     constructor(props){

@@ -15,6 +15,9 @@ import webpackMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import config from '../webpack.config';
 // import cons from 'consolidate';
+// import React from 'react';
+// import { renderToString } from 'react-dom/server';
+// import { App } from '../client/src/components/homepage';
 
 dotenv.config();
 
@@ -56,6 +59,8 @@ app.set('views', path.join(__dirname, '..', 'client', 'public'));
 
 // Setup a default catch-all route that sends back the index html file.
 app.get('*', (req, res) => {
+    // const appString = renderToString(<App />);
+
     res.status(200).sendFile(path.join(__dirname, '..', 'client/public/index.html'));
 });
 

@@ -13,8 +13,13 @@ import {createCenterRequest} from '../../../actions/modalAction'
 class AddCenterForm extends Component {
     constructor(props) {
         super(props);
+
+        /**
+         * @Initialize the component's state.
+         **/
         this.state = {
             errors: {},
+            editCenter: false,
             isLoading: false,
             title: '',
             img_url: {},
@@ -29,7 +34,6 @@ class AddCenterForm extends Component {
         this.handleSelectChange = this.handleSelectChange.bind(this);
         this.handleCenterSubmit = this.handleCenterSubmit.bind(this);
         this.onFileChange = this.onFileChange.bind(this);
-
     }
 
     handleCenterChange(e) {
@@ -45,9 +49,11 @@ class AddCenterForm extends Component {
         }
     }
 
+    /**
+     * @Void: Get the image data and set the img_url in the state
+     * to the binary data url.
+     * **/
     onFileChange (e) {
-        // let img_url;
-        // this.setState({ img_url: JSON.stringify(e.target.files[0]) });
         let file = e.target.files[0];
         if (file.type.indexOf('image/') > -1) { // only image file
             if(file.size < 2000000){
@@ -63,8 +69,6 @@ class AddCenterForm extends Component {
                 Materialize.toast('File too large', 5000);
             }
         }
-        // this.setState({ img_url: img_url });
-        // console.log(this.state);
     };
 
     isValid() {
@@ -96,7 +100,6 @@ class AddCenterForm extends Component {
             this.setState({
                 isLoading: true
             });
-
             this.props.createCenterRequest(this.state)
                 .then((res)=>{
                     this.setState({isLoading: false});
@@ -114,7 +117,10 @@ class AddCenterForm extends Component {
     }
 
     render() {
-        const {errors, isLoading, title, location, facilities, price, capacity} = this.state;
+        const {editCenter, errors, isLoading, title, location, facilities, price, capacity} = this.state;
+        let modalTitle = (editCenter) ? "Save changes": "Add center";
+        // console.log(this.state);
+
         return (
             <form className="col s12" id="edit-center-form" onSubmit={this.handleCenterSubmit} formEncType="multipart/form-data">
                 <div className="row">
@@ -212,7 +218,7 @@ class AddCenterForm extends Component {
                             className="btn col s12 white-text gradient__bg btn-register waves-effect waves-light"
                             disabled={ isLoading ? 'disabled' : '' }
                         >
-                            { !isLoading ? "add center" :
+                            { !isLoading ? modalTitle :
                                 <img style={{marginTop: "10px"}} src="/image/loader/loading.gif"/> }
                         </button>
                     </div>

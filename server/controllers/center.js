@@ -159,8 +159,13 @@ export class Centers {
                     facilities: req.body.facilities || center.facilities,
                     capacity: parseInt(req.body.capacity) || center.capacity,
                     price: parseInt(req.body.price) || center.price,
+                },
+                {
+                    where: {
+                        id: req.body.id 
+                    }
                 })
-                    .then((center) => res.status(200).send({
+                    .then((centerUpdated) => res.status(200).send({
                         statusCode: 200,
                         message: 'Center has been created',
                         center

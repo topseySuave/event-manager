@@ -255,9 +255,15 @@ export class Events {
                     title: req.body.title || event.title,
                     img_url: req.body.img_url || event.img_url,
                     description: req.body.description || event.description,
-                    date: req.body.date || event.date,
+                    startDate: req.body.startDate || event.startDate,
+                    endDate: req.body.endDate || event.endDate,
                     centerId: parseInt(req.body.centerId) || event.centerId,
-                    userId: parseInt(req.currentUser) || event.userId,
+                    userId: parseInt(req.body.userId) || event.userId,
+                },
+                {
+                    where: {
+                        id: eventId
+                    }
                 })
                     .then(() => res.status(201).send({
                         statusCode: 201,

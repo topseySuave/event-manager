@@ -8,15 +8,18 @@ import DocumentTitle from 'react-document-title'
 import { CircularLoader } from '../../loader'
 import { fetchCenterAction } from '../../../actions/center-actions/activeCenterAction'
 import { deleteCenterRequest } from '../../../actions/center-actions/deleteCenterAction'
+import { editCenterRequestAction } from '../../../actions/center-actions/activeCenterAction'
 import { REMOVE_CENTER } from '../../../actions'
 
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
+import EditIcon from 'material-ui/svg-icons/editor/mode-edit'
 import RaisedButton from 'material-ui/RaisedButton';
 import Delete from 'material-ui/svg-icons/action/delete'
 import CurrentEventForCenter from './currentEventForCenter'
 import RecommCenter from './RecommCenter'
 import EventModal from '../../modals/EventModal'
+import EditCenterForm from '../../modals/centerModalForms/editCenterForm'
 
 class CenterDetail extends Component {
     constructor(props) {
@@ -24,6 +27,7 @@ class CenterDetail extends Component {
 
         this.state = {
             isLoading: true,
+            openAlert: false,
             open: false,
             activeCenter: {
                 centr: {
@@ -50,7 +54,6 @@ class CenterDetail extends Component {
      * **/
     componentWillReceiveProps(newProps) {
         if (newProps.activeCenterDetail) {
-            // console.log('newly received props: ', newProps.activeCenterDetail);
             this.setState({isLoading: false, activeCenter: newProps.activeCenterDetail});
         }
     }
@@ -64,18 +67,56 @@ class CenterDetail extends Component {
     }
 
     editCenter(){
-
+        this.props.editCenterRequestAction();
     }
+
+    handleOpen = () => {
+        this.props.editCenterRequestAction();
+        this.setState({open: true});
+    };
+
+    handleClose = () => {
+        this.setState({open: false});
+    };
+
+    handleAlertOpen = () => {
+        this.setState({openAlert: true});
+    };
+
+    handleAlertClose = () => {
+        this.setState({openAlert: false});
+    };
 
     showEditCenterButton(){
         let isAdmin = this.props.activeUser.user.role;
+        const actions = [
+            <FlatButton
+                label="Cancel"
+                primary={true}
+                onClick={this.handleClose}
+            />
+        ];
+
         if(isAdmin)
             return (
-                <div className="col s6">
-                    <a href="#edit_center_modal" onClick={this.editCenter}
-                       className="center-align modal-trigger btn btn-large waves-effect steel_blue">
-                        Edit this center
-                    </a>
+                <div>
+                    <FlatButton
+                        label="Edit center"
+                        icon={<EditIcon />}
+                        onClick={this.handleOpen}
+                        fullWidth={true}
+                    />
+                    <Dialog
+                        title='Edit Center'
+                        actions={actions}
+                        modal={false}
+                        open={this.state.open}
+                        onRequestClose={this.handleClose}
+                        autoScrollBodyContent={true}
+                        style={{marginTop: '0px'}}
+                    >
+                        <EditCenterForm />
+                    </Dialog>
                 </div>
             );
     }
@@ -88,14 +129,6 @@ class CenterDetail extends Component {
             );
     }
 
-    handleAlertOpen = () => {
-        this.setState({open: true});
-    };
-
-    handleAlertClose = () => {
-        this.setState({open: false});
-    };
-
     deleteCenter(id){
         this.props.deleteCenterRequest(id)
             .then((data)=>{
@@ -106,6 +139,7 @@ class CenterDetail extends Component {
     }
 
     showAlertModal(id){
+        let isAdmin = this.props.activeUser.user.role;
         const actions = [
             <FlatButton
                 label="Yes"
@@ -119,24 +153,25 @@ class CenterDetail extends Component {
             />,
         ];
 
-        return (
-            <div>
-                <FlatButton
-                    label="Delete this center"
-                    secondary={true}
-                    icon={<Delete />}
-                    onClick={this.handleAlertOpen}
-                />
-                <Dialog
-                    actions={actions}
-                    modal={false}
-                    open={this.state.open}
-                    onRequestClose={this.handleAlertClose}
-                >
-                    Are you sure you want to delete this event?
-                </Dialog>
-            </div>
-        );
+        if(isAdmin)
+            return (
+                <div>
+                    <FlatButton
+                        label="Delete this center"
+                        secondary={true}
+                        icon={<Delete />}
+                        onClick={this.handleAlertOpen}
+                    />
+                    <Dialog
+                        actions={actions}
+                        modal={false}
+                        open={this.state.openAlert}
+                        onRequestClose={this.handleAlertClose}
+                    >
+                        Are you sure you want to delete this event?
+                    </Dialog>
+                </div>
+            );
     }
 
     render() {
@@ -237,6 +272,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         fetchCenterAction: fetchCenterAction,
+        editCenterRequestAction: editCenterRequestAction,
         deleteCenterRequest: deleteCenterRequest
     }, dispatch);
 };

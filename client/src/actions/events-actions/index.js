@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
-import axios from 'axios'
-import { FETCH_EVENTS, ADD_EVENT, EDIT_EVENT, REMOVE_EVENT } from '../'
+import axios from 'axios';
+import { FETCH_EVENTS, ADD_EVENT, EDIT_EVENT, EDIT_EVENT_REQUEST, REMOVE_EVENT } from '../';
 
 let api = '/api/v1/events';
 
@@ -11,21 +11,31 @@ const eventsDispatchAction = (type, data = {}) => {
                 type: EDIT_EVENT,
                 payload: data
             };
+
+        case 'edit_request':
+            return {
+                type: EDIT_EVENT_REQUEST,
+                payload: data
+            };
+
         case 'add':
             return {
                 type: ADD_EVENT,
                 payload: data
             };
+
         case 'fetch':
             return {
                 type: FETCH_EVENTS,
                 payload: data
             };
+
         case 'delete':
             return {
                 type: REMOVE_EVENT,
                 payload: data
             };
+
         default:
             return data;
     }
@@ -83,5 +93,10 @@ export const deleteEventRequest = (id) => {
                 Materialize.toast(err.message, 5000);
             });
     }
-}; 
+};
 
+export const editEventRequestAction = (data) => {
+    return dispatch => {
+        return dispatch(eventsDispatchAction('edit_request', data));
+    };
+};

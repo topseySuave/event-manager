@@ -51,7 +51,6 @@ export default (state = {}, action = {}) => {
             newState.totalCount = newState.events.length;
             newState.pageSize = newState.totalCount;
             newState.pageCount = Math.ceil(newState.totalCount / pageLimit);
-
             return newState;
 
         default:

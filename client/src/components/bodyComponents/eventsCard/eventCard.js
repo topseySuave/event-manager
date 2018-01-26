@@ -13,7 +13,8 @@ import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import { EditorModeEdit, ActionDelete } from 'material-ui/svg-icons/'
 
-import { deleteEventRequest } from '../../../actions/events-actions'
+import { deleteEventRequest, editEventRequestAction } from '../../../actions/events-actions'
+import EditEventModal from '../../modals/eventModalForm/editEventModal'
 
 class EventCard extends Component {
     constructor(props){
@@ -34,14 +35,15 @@ class EventCard extends Component {
     }
 
     handleAlertOpen = () => {
-        this.setState({open: true});
+        this.setState({openAlert: true});
     };
 
     handleAlertClose = () => {
-        this.setState({open: false});
+        this.setState({openAlert: false});
     };
 
     handleEditOpen = () => {
+        this.props.editEventRequestAction(this.state.event);
         this.setState({openEdit: true});
     };
 
@@ -63,8 +65,9 @@ class EventCard extends Component {
                     targetOrigin={{horizontal: 'left', vertical: 'top'}}
                 >
                     <MenuItem
-                        primaryText="Edit" 
+                        primaryText="Edit"
                         leftIcon={<EditorModeEdit />}
+                        onClick={this.handleEditOpen}
                     />
                     <MenuItem
                         onClick={() => this.handleAlertOpen()}
@@ -74,6 +77,28 @@ class EventCard extends Component {
                 </IconMenu>
             );
         }
+    }
+
+    showEditModal(){
+        const actions = [
+            <FlatButton
+                label="Cancel"
+                primary={true}
+                onClick={() => this.handleEditClose()}
+            />
+        ];
+
+        return (
+            <Dialog
+                title="Edit Event"
+                actions={actions}
+                modal={false}
+                open={this.state.openEdit}
+                onRequestClose={this.handleEditClose()}
+            >
+                <EditEventModal />
+            </Dialog>
+        );
     }
 
     showAlertModal(id){
@@ -94,7 +119,7 @@ class EventCard extends Component {
             <Dialog
                 actions={actions}
                 modal={false}
-                open={this.state.open}
+                open={this.state.openAlert}
                 onRequestClose={this.handleAlertClose}
             >
                 Are you sure you want to delete this event?
@@ -166,7 +191,10 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({deleteEventRequest: deleteEventRequest}, dispatch);
+    return bindActionCreators({
+        deleteEventRequest: deleteEventRequest,
+        editEventRequestAction: editEventRequestAction
+    }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventCard);
