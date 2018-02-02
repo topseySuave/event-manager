@@ -12,7 +12,7 @@ export default class authCheck {
     }
 
     jwtIsSet() {
-        return !!localStorage.getItem('jwtToken')
+        return !!localStorage.getItem('jwtToken');
     }
 
     isSignedIn() {

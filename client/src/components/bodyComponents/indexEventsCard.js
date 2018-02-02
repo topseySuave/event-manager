@@ -11,12 +11,13 @@ import { fetchEventRequest } from './../../actions/events-actions';
 class IndexEventCardHolder extends Component {
     constructor(props){
         super(props);
-
         this.state = {
             isLoading: true,
             events: []
         };
+    }
 
+    componentWillMount(){
         this.props.fetchEventRequest();
     }
 

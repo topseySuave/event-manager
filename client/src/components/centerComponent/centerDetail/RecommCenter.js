@@ -52,7 +52,7 @@ class RecommCenter extends Component {
                 if(this.checkOwnCenter(center.id)){
                     return (
                         <div key={shortid.generate()} className="col s12 l4">
-                            <a href={to}>
+                            <Link to={to}>
                                 <div className="card">
                                     <div className="card-image">
                                         <img src={center.img_url}/>
@@ -62,7 +62,7 @@ class RecommCenter extends Component {
                                         <p><i className="material-icons f15">location_on</i>{center.location}</p>
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         </div>
                     );
                 }

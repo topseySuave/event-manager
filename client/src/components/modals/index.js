@@ -1,13 +1,28 @@
 import React, { Component } from 'react';
-import EventModal from './EventModal'
+import EditEventModal from './eventModalForm/editEventModal'
 import CenterModal from './CenterModal'
 import SearchModal from './searchModal'
 
 class Modals extends Component {
+
+    renderModal(){
+        return (
+            <div id="add_event_modal" className="modal modal-fixed-footer">
+                <div className="modal-content">
+                    <h4><span>Edit</span> Event</h4>
+                    <EditEventModal />
+                </div>
+                <div className="modal-footer">
+                    <a href="#!" className="modal-action modal-close waves-effect btn-flat">Cancel</a>
+                </div>
+            </div>
+        );
+    }
+
     render() {
         return (
             <div>
-                {/*<EventModal />*/}
+                {this.renderModal()}
                 <CenterModal />
                 <SearchModal />
             </div>

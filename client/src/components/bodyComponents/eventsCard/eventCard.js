@@ -21,7 +21,7 @@ class EventCard extends Component {
         super(props);
         this.state = {
             openAlert: false,
-            openEdit: false,
+            // openEdit: false,
             event: {},
             location: '',
             userId: ''
@@ -44,12 +44,14 @@ class EventCard extends Component {
 
     handleEditOpen = () => {
         this.props.editEventRequestAction(this.state.event);
-        this.setState({openEdit: true});
+        // this.setState({openEdit: true});
+        $("#add_event_modal").modal('open');
     };
 
-    handleEditClose = () => {
-        this.setState({openEdit: false});
-    };
+    // handleEditClose = () => {
+    //     // $(this).modal('close');
+    //     this.setState({openEdit: false});
+    // };
 
     handleDelete(id){
         this.props.deleteEventRequest(id);
@@ -67,7 +69,7 @@ class EventCard extends Component {
                     <MenuItem
                         primaryText="Edit"
                         leftIcon={<EditorModeEdit />}
-                        onClick={this.handleEditOpen}
+                        onClick={() => this.handleEditOpen()}
                     />
                     <MenuItem
                         onClick={() => this.handleAlertOpen()}
@@ -79,27 +81,27 @@ class EventCard extends Component {
         }
     }
 
-    showEditModal(){
-        const actions = [
-            <FlatButton
-                label="Cancel"
-                primary={true}
-                onClick={() => this.handleEditClose()}
-            />
-        ];
-
-        return (
-            <Dialog
-                title="Edit Event"
-                actions={actions}
-                modal={false}
-                open={this.state.openEdit}
-                onRequestClose={this.handleEditClose()}
-            >
-                <EditEventModal />
-            </Dialog>
-        );
-    }
+    // showEditModal(){
+    //     const actions = [
+    //         <FlatButton
+    //             label="Cancel"
+    //             primary={true}
+    //             onClick={() => this.handleEditClose()}
+    //         />
+    //     ];
+    //
+    //     return (
+    //         <Dialog
+    //             title="Edit Event"
+    //             actions={actions}
+    //             modal={false}
+    //             open={this.state.openEdit}
+    //             onRequestClose={() => this.handleEditClose()}
+    //         >
+    //             <EditEventModal />
+    //         </Dialog>
+    //     );
+    // }
 
     showAlertModal(id){
         const actions = [
@@ -140,7 +142,7 @@ class EventCard extends Component {
         return (
             <div>
                 {this.showAlertModal(id)}
-                <div className="card wow fadeInUp" data-id={shortid.generate(id)}>
+                <div className="card" data-id={shortid.generate(id)}>
                     <div className="card-image">
                         <img src={img_url} alt={title} />
                         <span className="card-title bold" style={{right: '0', backgroundImage: 'linear-gradient(to top, rgba(0, 0, 0, .5), rgba(0, 0, 0, 0))'}}>{title}</span>

@@ -29,8 +29,7 @@ export const store = compose(
     window.devToolsExtension ? window.devToolsExtension() : f => f
 )(createStore)(rootReducer);
 
-const authChecker = new authCheck();
-authChecker.isSignedIn();
+new authCheck().isSignedIn();
 
 ReactDOM.render(
     <Provider store={store}>

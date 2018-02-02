@@ -40,11 +40,11 @@ class EventModal extends Component {
     }
 
     updateState(newProps){
-        if(newProps.editEvent){
-            let { title, img_url, startDate, endDate, description } = newProps.eventToEdit;
+        if(newProps.event.editEvent){
+            let { title, img_url, startDate, endDate, description, centerId, userId } = newProps.event.eventToEdit;
             this.setState({
-                centerId: newProps.activeCenter.centr.id,
-                userId: newProps.actUser.user.id,
+                centerId: centerId,
+                userId: userId,
                 title: title,
                 img_url: img_url,
                 startDate: startDate,
@@ -52,15 +52,20 @@ class EventModal extends Component {
                 description: description
             });
         }else{
-            this.setState({
-                centerId: newProps.activeCenter.centr.id,
-                userId: newProps.actUser.user.id,
-            });
+            if(newProps.activeCenter.centr)
+                this.setState({
+                    centerId: newProps.activeCenter.centr.id,
+                    userId: newProps.actUser.user.id,
+                });
         }
     }
 
     componentDidMount(){
         this.updateState(this.props);
+    }
+
+    componentWillReceiveProps(newProps){
+        this.updateState(newProps);
     }
 
     isValid(){
@@ -190,6 +195,7 @@ class EventModal extends Component {
                                 onChange={this.handleChangeStartDate}
                                 autoOk={true}
                                 floatingLabelText="Start Date"
+                                value={startDate}
                                 disableYearSelection={this.state.disableYearSelection}
                             />
                             { errors.startDate && <span className="red-text accent-1">{errors.startDate}</span> }
@@ -199,6 +205,7 @@ class EventModal extends Component {
                                 onChange={this.handleChangeEndDate}
                                 autoOk={true}
                                 floatingLabelText="End Date"
+                                value={endDate}
                                 disableYearSelection={this.state.disableYearSelection}
                             />
                             { errors.endDate && <span className="red-text accent-1">{errors.endDate}</span> }

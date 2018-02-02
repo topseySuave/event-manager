@@ -53,6 +53,7 @@ class CenterDetail extends Component {
      * TODO: modify center details component to update and change the redux store in respond to route change
      * **/
     componentWillReceiveProps(newProps) {
+        console.log(newProps);
         if (newProps.activeCenterDetail) {
             this.setState({isLoading: false, activeCenter: newProps.activeCenterDetail});
         }
@@ -97,7 +98,7 @@ class CenterDetail extends Component {
             />
         ];
 
-        if(isAdmin)
+        if (isAdmin)
             return (
                 <div>
                     <FlatButton
