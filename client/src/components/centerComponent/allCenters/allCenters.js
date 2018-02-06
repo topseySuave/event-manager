@@ -44,14 +44,14 @@ class AllCenters extends Component{
             this.setState({ pageOfItems });
         } else {
             this.setState({ pageOfItems: centerStore.centers });
-            console.log('holla');
+            // console.log('holla');
         }
     }
 
     showCentersCard(){
         let centers = this.props.centerStore.centers;
         return centers.map((center) => {
-            let to = `center-detail/${center.id}/${this.helper.sanitizeString(center.title)}`;
+            let to = `center/${center.id}/${this.helper.sanitizeString(center.title)}`;
             return (
                 <Link key={shortid.generate()} to={to}>
                     <div className="card">

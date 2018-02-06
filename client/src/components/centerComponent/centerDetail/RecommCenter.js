@@ -48,7 +48,7 @@ class RecommCenter extends Component {
     sortAndShowRecommended(relatedCenters){
         if (relatedCenters) {
             return relatedCenters.map((center) => {
-                let to = `/center-detail/${center.id}/${this.helper.sanitizeString(center.title)}`;
+                let to = `/center/${center.id}/${this.helper.sanitizeString(center.title)}`;
                 if(this.checkOwnCenter(center.id)){
                     return (
                         <div key={shortid.generate()} className="col s12 l4">

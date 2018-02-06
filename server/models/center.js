@@ -1,4 +1,3 @@
-'use strict';
 const Centers = (sequelize, DataTypes) => {
   let CentersModel = sequelize.define('Centers', {
     title: DataTypes.TEXT,
@@ -12,9 +11,9 @@ const Centers = (sequelize, DataTypes) => {
 
   CentersModel.associate = (models) => {
     CentersModel.hasMany(models.Events, {
-        foreignKey: 'id',
-        as: 'events',
-        onDelete: 'CASCADE',
+      foreignKey: 'id',
+      as: 'events',
+      onDelete: 'CASCADE',
     });
   };
 

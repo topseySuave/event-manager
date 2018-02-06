@@ -25,10 +25,7 @@ const signOutRequest = () =>{
 };
 
 const userSignupRequest = (userData) => {
-    // return dispatch => {
-        return axios.post('/api/v1/users', userData);
-            // .then(res => dispatch(registerUser(res.data)));
-    // };
+    return axios.post('/api/v1/users', userData);
 };
 
 const userSignInRequest = (userData) => {

@@ -1,34 +1,28 @@
-import axios from 'axios'
-import { FETCH_CENTER_DETAIL, EDIT_CENTER_REQUEST } from '../'
-import { showLoading, hideLoading } from 'react-redux-loading-bar'
+import axios from 'axios';
+import { showLoading, hideLoading } from 'react-redux-loading-bar';
+import { FETCH_CENTER_DETAIL, EDIT_CENTER_REQUEST } from '../';
 
-const fetchCenterDispatch = (data) => {
-    return {
-        type: FETCH_CENTER_DETAIL,
-        center: data
-    }
-};
+const fetchCenterDispatch = data => ({
+  type: FETCH_CENTER_DETAIL,
+  center: data
+});
 
 export const fetchCenterAction = (id) => {
-    if(!id) throw 'id is required for the request to be successful';
-    return dispatch => {
-        dispatch(showLoading());
-        return axios.get(`/api/v1/centers/${id}`)
-            .then(({ data }) => {
-                dispatch(fetchCenterDispatch(data));
-                dispatch(hideLoading());
-            })
-            .catch((err)=>{
-                Materialize.toast('Error in connection!!!', 5000);
-                throw (err);
-            });
-    }
+  if (!id) return 'id is required for the request to be successful';
+  return (dispatch) => {
+    dispatch(showLoading());
+    return axios.get(`/api/v1/centers/${id}`)
+      .then(({ data }) => {
+        dispatch(fetchCenterDispatch(data));
+        dispatch(hideLoading());
+      })
+      .catch((err) => {
+        Materialize.toast('Error in connection!!!', 5000);
+        throw (err);
+      });
+  };
 };
 
-export const editCenterRequestAction = () => {
-    return dispatch => {
-        return dispatch({
-            type: EDIT_CENTER_REQUEST
-        });
-    };
-};
+export const editCenterRequestAction = () => dispatch => dispatch({
+  type: EDIT_CENTER_REQUEST
+});

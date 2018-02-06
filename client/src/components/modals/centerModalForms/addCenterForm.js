@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import shortid from 'shortid'
-import InputForm from '../../form/formInput'
-import {validateCenterInput} from '../validateInput'
-import facilities from '../../../util/facilities'
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
 import {PropTypes} from 'prop-types'
+import InputForm from '../../form/formInput'
+import {validateCenterInput} from '../validateInput'
+import facilities from '../../../util/facilities'
 import {createCenterRequest} from '../../../actions/modalAction'
 
 class AddCenterForm extends Component {
