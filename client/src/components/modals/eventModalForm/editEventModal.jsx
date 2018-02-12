@@ -30,6 +30,7 @@ class EventModal extends Component {
       isLoading: false,
       errors: {},
       eventId: 0,
+      centerId: 0,
       userId: 0,
       title: '',
       img_url: '',
@@ -121,10 +122,11 @@ class EventModal extends Component {
   updateState(newProps) {
     if (newProps.event.editEvent) {
       let {
-        title, img_url, startDate, endDate, description, id, userId
+        title, img_url, startDate, endDate, description, centerId, userId, id
       } = newProps.event.eventToEdit;
       this.setState({
         eventId: id,
+        centerId,
         userId,
         title,
         img_url,
@@ -147,16 +149,17 @@ class EventModal extends Component {
         isLoading: true
       });
       
-      this.props.editEventAction(this.state);
-        // .then((data) => {
-        //   this.setState({ isLoading: false });
-        //   if (data.type === EDIT_EVENT) {
-        //     Materialize.toast('Event has been updated successfully', 5000);
-        //     this.setState({ title: '', description: '' });
-        //   } else {
-        //     Materialize.toast(data.message, 5000);
-        //   }
-        // });
+      this.props.editEventAction(this.state)
+        .then((data) => {
+          this.setState({ isLoading: false });
+          if (data.type === EDIT_EVENT) {
+              $("#add_event_modal").modal('close');
+            // Materialize.toast('Event has been updated successfully', 5000);
+            this.setState({ title: '', description: '' });
+          } else {
+            Materialize.toast(data.message, 5000);
+          }
+        });
     }
   }
 

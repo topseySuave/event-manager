@@ -169,12 +169,13 @@ export class Events {
     const startDate = new Date(req.body.startDate);
     const endDate = new Date(req.body.endDate);
 
+    // noinspection JSDuplicatedDeclaration
     Event.findOne({
       where: {
         centerId: req.body.centerId,
         startDate: {
-          $lte: startDate,
-          $lte: endDate
+          $lte: endDate,
+          $lte: startDate
         },
         endDate: {
           $gte: startDate,
@@ -236,6 +237,7 @@ export class Events {
     const eventId = parseInt(req.params.id, 10);
     if (isNaN(eventId)) {
       return res.status(400).send({
+        statusCode: 400,
         message: 'Event id is not a number',
         error: true
       });
@@ -266,11 +268,25 @@ export class Events {
             }
           }
         )
-          .then(() => res.status(200).send({
-            statusCode: 200,
-            message: 'Event has been updated accordingly',
-            event
-          }))
+          .then((updatedEvent) => {
+            if (updatedEvent) {
+              Event.findById(eventId, {
+                include: [{
+                  model: CenterModel,
+                  as: 'center'
+                }]
+              })
+                .then((newEvent) => {
+                  if (newEvent) {
+                    res.status(201).send({
+                      statusCode: 201,
+                      message: 'Event has been updated accordingly',
+                      event: newEvent
+                    });
+                  }
+                });
+            }
+          })
           .catch(error => res.status(500).send(error));
       })
       .catch(error => res.status(500).send(error));

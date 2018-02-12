@@ -10,13 +10,13 @@ export default (state = {}, action = {}) => {
 
     case ADD_EVENT:
       if (state.events) {
-        state.events.push(action.payload);
+        state.events.unshift(action.payload);
         state.totalCount = state.events.length;
         state.pageCount = Math.ceil(state.totalCount / pageLimit);
         return state;
       }
       state.events = [];
-      state.events.push(action.payload);
+      state.events.unshift(action.payload);
       state.totalCount = state.events.length;
       state.pageCount = Math.ceil(state.totalCount / pageLimit);
       return state;
@@ -30,11 +30,11 @@ export default (state = {}, action = {}) => {
 
     case EDIT_EVENT:
       newState = Object.assign({}, state);
-      for (let i = 0; i < newState.events.length; i + 1) {
-        if (newState.events[i].id === action.payload.id) {
-          newState.events.splice(i, 1, action.payload);
+      newState.events.map((event, index) => {
+        if (event.id === action.payload.id) {
+          newState.events[index] = action.payload;
         }
-      }
+      });
       newState.totalCount = newState.events.length;
       newState.pageSize = newState.totalCount;
       newState.pageCount = Math.ceil(newState.totalCount / pageLimit);
@@ -42,11 +42,11 @@ export default (state = {}, action = {}) => {
 
     case REMOVE_EVENT:
       newState = Object.assign({}, state);
-      for (let i = 0; i < newState.events.length; i + 1) {
-        if (newState.events[i].id === action.payload.id) {
-          newState.events.splice(i, 1);
+      newState.events.map((event, index) => {
+        if (event.id === action.payload.id) {
+          delete newState.events[index];
         }
-      }
+      });
       newState.totalCount = newState.events.length;
       newState.pageSize = newState.totalCount;
       newState.pageCount = Math.ceil(newState.totalCount / pageLimit);

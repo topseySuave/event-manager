@@ -15,7 +15,11 @@ export class Validation {
     if (validate.passes()) {
       next();
     } else {
-      return res.status(400).send(validate.errors);
+      return res.status(400).send({
+        message: "a required field is missing",
+        statusCode: 400,
+        error: validate.errors
+      });
     }
   }
 
@@ -25,7 +29,6 @@ export class Validation {
       description: 'required|string',
       startDate: 'required|date',
       endDate: 'required|date',
-      eventId: 'required|integer',
       userId: 'required|integer'
     };
 
@@ -33,7 +36,11 @@ export class Validation {
     if (validate.passes()) {
       next();
     } else {
-      return res.status(400).send(validate.errors);
+      return res.status(400).send({
+        message: "a required field is missing",
+        statusCode: 400,
+        error: validate.errors
+      });
     }
   }
 
@@ -48,7 +55,11 @@ export class Validation {
     if (validate.passes()) {
       return next();
     }
-    return res.send(validate.errors);
+    return res.status(400).send({
+      message: "a required field is missing",
+      statusCode: 400,
+      error: validate.errors
+    });
   }
 
   validateSignUp(req, res, next) {
@@ -64,7 +75,11 @@ export class Validation {
     if (validate.passes()) {
       next();
     } else {
-      return res.send(validate.errors);
+      return res.status(400).send({
+        message: "a required field is missing",
+        statusCode: 400,
+        error: validate.errors
+      });
     }
   }
 }

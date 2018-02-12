@@ -2,8 +2,16 @@ import { Dispatch } from 'redux';
 import axios from 'axios';
 import { FETCH_EVENTS, ADD_EVENT, EDIT_EVENT, EDIT_EVENT_REQUEST, REMOVE_EVENT } from '../';
 
+
+/* *
+ *  @API Route String
+ * * */
 const api = '/api/v1/events';
 
+/* *
+ *  @Event Dispatch Method
+ *  @Returns Object
+ * * */
 const eventsDispatchAction = (type, data = {}) => {
   switch (type) {
     case 'edit':
@@ -41,10 +49,14 @@ const eventsDispatchAction = (type, data = {}) => {
   }
 };
 
+
+/* *
+ *  @Edit Event Action
+ *  @Returns Object
+ * * */
 export const editEventAction = data => dispatch => axios.put(`${api}/${data.eventId}`, data)
   .then(({ data }) => {
-    if (data.statusCode === 200) {
-      // console.log(data);
+    if (data.statusCode === 201) {
       Materialize.toast(data.message, 5000);
       return dispatch(eventsDispatchAction('edit', data.event));
     }
@@ -54,6 +66,11 @@ export const editEventAction = data => dispatch => axios.put(`${api}/${data.even
     Materialize.toast('An error occurred and event cannot be updated', 5000);
   });
 
+
+/* *
+ *  @Create Event Action
+ *  @Returns Object
+ * * */
 export const createEventRequest = data => dispatch => axios.post(api, data)
   .then(({ data }) => {
     if (data.statusCode === 200) {
@@ -66,11 +83,21 @@ export const createEventRequest = data => dispatch => axios.post(api, data)
     Materialize.toast('An error occurred and event cannot be created', 5000);
   });
 
+
+/* *
+ *  @Fetch Event Action
+ *  @Returns Object
+ * * */
 export const fetchEventRequest = () => dispatch => axios.get(api)
   .then(({ data }) => {
     dispatch(eventsDispatchAction('fetch', data));
   });
 
+
+/* *
+ *  @Delete Event Action
+ *  @Returns Object
+ * * */
 export const deleteEventRequest = (id) => {
   id = parseInt(id, 10);
   return dispatch => axios.delete(`${api}/${id}`)
@@ -87,4 +114,9 @@ export const deleteEventRequest = (id) => {
     });
 };
 
+
+/* *
+ *  @Edit Event Request Action
+ *  @Returns Object
+ * * */
 export const editEventRequestAction = data => dispatch => dispatch(eventsDispatchAction('edit_request', data));

@@ -16,6 +16,8 @@ module.exports = {
         "comma-dangle": 0,
         "no-unused-vars": 0,
         "react/no-unused-state": 1,
+        "react/forbid-prop-types": 0,
+        "react/prefer-stateless-function": 1,
         "max-len": 0,
         "no-dupe-keys": 0,
         "no-restricted-globals": 0,
