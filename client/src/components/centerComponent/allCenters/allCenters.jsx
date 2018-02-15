@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import shortid from 'shortid';
 import { PropTypes } from 'prop-types';
-// import CenterCard from '../centerCard/centerCard';
 import SearchFasterForm from './searchFasterForm';
 import { fetchCentersAction } from '../../../actions/center-actions/fetchCenterAction';
 import Pagination from '../../pagination';
 import { CircularLoader } from '../../loader';
 import Helpers from '../../../helpers';
+// import CenterCard from '../centerCard/centerCard';
 
 class AllCenters extends Component {
   constructor(props) {
@@ -79,7 +79,7 @@ class AllCenters extends Component {
         <div className="center__holdr">
           <div className="row relative">
             <div className="col s12 l12 fixed bg__white hide-on-med-and-down">
-              =<SearchFasterForm />
+              <SearchFasterForm />
             </div>
             <div className="col s12 l12" style={{ marginBottom: `${60}px` }}>
               <h4 className="center-align">Boots Centers</h4>
@@ -88,9 +88,7 @@ class AllCenters extends Component {
                 <div className="col s12 cards-container">
                   { isLoading ? '' : this.showCentersCard() }
                 </div>
-                <div className="col s12">
-                  <button className="btn waves-effect gradient__bg">loadmore</button>
-                </div>
+                { isLoading ? '' : <button className="col offset-s3 s6 btn waves-effect gradient__bg">load more</button>}
                 {/* <Pagination */}
                 {/* items={ */}
                 {/* pageOfItems */}

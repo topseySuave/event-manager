@@ -28,6 +28,10 @@ class EventCard extends Component {
         }
     }
 
+    componentWillMount(){
+        $('.modal').modal();
+    }
+
     componentDidMount(){
         this.setState({ 
             event: this.props.event

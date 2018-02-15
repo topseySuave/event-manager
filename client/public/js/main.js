@@ -1,4 +1,4 @@
-if(window.location == '/'){
+if(window.location.pathname === '/'){
     $(window).scroll(function () {
         let home__nav = $('.home__nav');
         let popular__events_holdr = $('.popular__events_holdr').offset().top;

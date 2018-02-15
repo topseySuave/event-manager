@@ -99,3 +99,7 @@ export const EDIT_EVENT = 'EDIT_EVENT';
  * To remove an existing event in the database and the store.
  * * */
 export const REMOVE_EVENT = 'REMOVE_EVENT';
+
+export const LOADMORE_REQUEST = 'LOADMORE_REQUEST';
+export const LOADMORE_SUCCESS = 'LOADMORE_SUCCESS';
+export const LOADMORE_FAILURE = 'LOADMORE_FAILURE';

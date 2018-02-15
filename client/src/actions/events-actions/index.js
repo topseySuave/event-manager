@@ -1,14 +1,23 @@
 import { Dispatch } from 'redux';
 import axios from 'axios';
-import { FETCH_EVENTS, ADD_EVENT, EDIT_EVENT, EDIT_EVENT_REQUEST, REMOVE_EVENT } from '../';
+import {
+  FETCH_EVENTS,
+  ADD_EVENT,
+  EDIT_EVENT,
+  EDIT_EVENT_REQUEST,
+  REMOVE_EVENT,
+  LOADMORE_REQUEST,
+  LOADMORE_SUCCESS,
+  LOADMORE_FAILURE
+} from '../';
 
 
-/* *
+/**
  *  @API Route String
  * * */
 const api = '/api/v1/events';
 
-/* *
+/**
  *  @Event Dispatch Method
  *  @Returns Object
  * * */
@@ -50,7 +59,7 @@ const eventsDispatchAction = (type, data = {}) => {
 };
 
 
-/* *
+/**
  *  @Edit Event Action
  *  @Returns Object
  * * */
@@ -67,7 +76,7 @@ export const editEventAction = data => dispatch => axios.put(`${api}/${data.even
   });
 
 
-/* *
+/**
  *  @Create Event Action
  *  @Returns Object
  * * */
@@ -90,11 +99,13 @@ export const createEventRequest = data => dispatch => axios.post(api, data)
  * * */
 export const fetchEventRequest = () => dispatch => axios.get(api)
   .then(({ data }) => {
+    data.loadingmore = false;
+    data.loadmore = false;
     dispatch(eventsDispatchAction('fetch', data));
   });
 
 
-/* *
+/**
  *  @Delete Event Action
  *  @Returns Object
  * * */
@@ -115,8 +126,33 @@ export const deleteEventRequest = (id) => {
 };
 
 
-/* *
+/**
  *  @Edit Event Request Action
  *  @Returns Object
  * * */
 export const editEventRequestAction = data => dispatch => dispatch(eventsDispatchAction('edit_request', data));
+
+/**
+ *  @Load more Event Request Action
+ *  @Returns Object
+ * * */
+export const loadMoreEvents = (offset) => {
+  return dispatch => {
+    dispatch({
+      type: LOADMORE_REQUEST
+    });
+    return axios.get(api + '?next=' + offset)
+      .then(({ data }) => {
+        if(data.statusCode === 200){
+          return dispatch({
+            type: LOADMORE_SUCCESS,
+            payload: data.events
+          });
+        }else{
+          return dispatch({
+            type: LOADMORE_FAILURE
+          });
+        }
+      });
+  };
+};

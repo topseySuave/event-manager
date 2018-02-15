@@ -4,6 +4,7 @@ import models from '../models';
 // import cloudinary from 'cloudinary';
 
 // dotenv.config();
+const Op = models.sequelize.Op;
 const Center = models.Centers;
 const { Events } = models;
 
@@ -16,7 +17,7 @@ const sortSearchRequest = (search, filterBy) => {
       if (value !== '') {
         return {
           location: {
-            $iLike: `%${value}%`
+            [Op.iLike]: `%${value}%`
           }
         };
       }
@@ -26,7 +27,7 @@ const sortSearchRequest = (search, filterBy) => {
       if (value !== '') {
         return {
           title: {
-            $iLike: `%${value}%`
+            [Op.iLike]: `%${value}%`
           }
         };
       }
@@ -36,7 +37,7 @@ const sortSearchRequest = (search, filterBy) => {
       if (value !== '') {
         return {
           price: {
-            $iLike: `%${value}%`
+            [Op.iLike]: `%${value}%`
           }
         };
       }
@@ -46,7 +47,7 @@ const sortSearchRequest = (search, filterBy) => {
       if (value !== '') {
         return {
           capacity: {
-            $iLike: `%${value}%`
+            [Op.iLike]: `%${value}%`
           }
         };
       }
@@ -187,6 +188,7 @@ export class Centers {
      * @memberof Center
      */
   getCenter(req, res) {
+    const order = req.query.order || 'desc';
     const centerId = parseInt(req.params.id, 10);
     if (isNaN(centerId)) {
       return res.status(400).send({
@@ -206,7 +208,7 @@ export class Centers {
         }
       ],
       order: [
-        ['id', 'desc']
+        ['id', order]
       ]
     })
       .then((centr) => {
@@ -238,7 +240,7 @@ export class Centers {
   getCenters(req, res) {
     const limitValue = parseInt(req.query.limit, 10) || 20;
     const pageValue = req.query.next - 1 || 0;
-    const order = (req.query.order) ? req.query.order : 'desc';
+    const order = req.query.order || 'desc';
     if (req.query.search || req.query.limit) {
       let filterBy, reqSearch;
       if (req.query.filter) {
@@ -249,7 +251,7 @@ export class Centers {
       reqSearch = sortSearchRequest(search, filterBy);
       Center.findAll({
         where: {
-          $or: reqSearch
+          [Op.or]: reqSearch
         },
         order: [
           ['id', order]

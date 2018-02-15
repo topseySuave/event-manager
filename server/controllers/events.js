@@ -1,7 +1,9 @@
+// import Sequelize from '../config';
 import models from '../models';
 
 const Event = models.Events;
 const CenterModel = models.Centers;
+const Op = models.sequelize.Op;
 
 // let storage = multer.diskStorage({
 //     destination: '../server/public/images/uploads',
@@ -91,10 +93,11 @@ export class Events {
       const search = req.query.search.split(' ');
 
       /**
-             * Search with Title But Map first* */
+      * Search with Title But Map first
+      **/
       const titleResp = search.map(value => ({
         title: {
-          $iLike: `%${value}%`
+          [Op.ilike]: `%${value}%`
         }
       }));
 
@@ -121,8 +124,8 @@ export class Events {
           });
         });
     } else {
-      const limitValue = 30;
-      const pageValue = req.query.next - 1 || 0;
+      const limitValue = 5;
+      const pageValue = req.query.next || 0;
 
       Event.findAndCountAll({
         include: [{
@@ -133,7 +136,7 @@ export class Events {
           ['id', order]
         ],
         limit: limitValue,
-        offset: pageValue * limitValue
+        offset: (pageValue > 1) ? (pageValue * limitValue) - limitValue : pageValue
       })
         .then((events) => {
           if (events.length === 0) {
@@ -149,7 +152,7 @@ export class Events {
             pageSize: parseInt(events.rows.length, 10),
             totalCount: events.count,
             pageCount: Math.ceil(events.count / limitValue),
-            page: pageValue + 1,
+            page: (pageValue) ? parseInt(pageValue, 10) : parseInt(pageValue + 1, 10),
             events: events.rows,
           });
         })
@@ -174,12 +177,12 @@ export class Events {
       where: {
         centerId: req.body.centerId,
         startDate: {
-          $lte: endDate,
-          $lte: startDate
+          [Op.lte]: endDate,
+          [Op.lte]: startDate
         },
         endDate: {
-          $gte: startDate,
-          $gte: endDate
+          [Op.gte]: startDate,
+          [Op.gte]: endDate
         }
       }
     })

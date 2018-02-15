@@ -1,4 +1,13 @@
-import { ADD_EVENT, EDIT_EVENT, EDIT_EVENT_REQUEST, FETCH_EVENTS, REMOVE_EVENT } from '../actions';
+import {
+  ADD_EVENT,
+  EDIT_EVENT,
+  EDIT_EVENT_REQUEST,
+  FETCH_EVENTS,
+  REMOVE_EVENT,
+  LOADMORE_REQUEST,
+  LOADMORE_SUCCESS,
+  LOADMORE_FAILURE
+} from '../actions';
 
 const pageLimit = 10;
 let newState;
@@ -50,6 +59,23 @@ export default (state = {}, action = {}) => {
       newState.totalCount = newState.events.length;
       newState.pageSize = newState.totalCount;
       newState.pageCount = Math.ceil(newState.totalCount / pageLimit);
+      return newState;
+
+    case LOADMORE_FAILURE:
+      return { ...state, loadingmore: false };
+
+    case LOADMORE_REQUEST:
+      return { ...state, loadmore: true, loadingmore: true };
+
+    case LOADMORE_SUCCESS:
+      newState = Object.assign({}, state);
+      newState.events = newState.events.concat(action.payload);
+      newState.loadingmore = false;
+      newState.page = parseInt(newState.page + 1, 10);
+      newState.pageSize = parseInt(newState.pageSize + action.payload.length, 10);
+      if(newState.pageSize === newState.totalCount){
+          newState.loadmore = false;
+      }
       return newState;
 
     default:

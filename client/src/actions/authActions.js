@@ -4,7 +4,7 @@ import setAuthorizationToken from '../components/authentication/setAuthenticatio
 import { SET_USER, REMOVE_USER } from './index'
 
 const removeCurrentUser = () => {
-    window.location.reload();
+    window.history.back();
     return {
         type: REMOVE_USER,
         payload: {}
@@ -18,7 +18,7 @@ const setCurrentUser = (token) => {
     }
 };
 
-const signOutRequest = () =>{
+const signOutRequest = () => {
     localStorage.removeItem('jwtToken');
     setAuthorizationToken(false);
     return removeCurrentUser();
