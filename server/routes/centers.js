@@ -1,19 +1,16 @@
-// import path from 'path'
-// import multipart from 'connect-multiparty';
+import express from 'express';
 import Center from '../controllers/center';
-import validation from '../middleware/validator';
+import Validation from '../middleware/validator';
 import authenticate from '../middleware/authenticate';
 
+const router = express.Router();
 const centersController = new Center();
-const validate = new validation();
+const validate = new Validation();
 
-// const uploadPath = path.resolve(__dirname, '../public/image/uploads');
-// const mutipartMiddleware = multipart({ uploadDir: uploadPath });
+  router.get('/centers', centersController.getCenters)
+    .get('/centers/:id', centersController.getCenter)
+    .post('/centers', authenticate, validate.validateCenter, centersController.createCenter)
+    .post('/centers/:id', authenticate, validate.validateCenter, centersController.updateCenter)
+    .delete('/centers/:id', authenticate, centersController.deleteCenter);
 
-module.exports = (app) => {
-  app.get('/api/v1/centers', centersController.getCenters)
-    .get('/api/v1/centers/:id', centersController.getCenter)
-    .post('/api/v1/centers', authenticate, validate.validateCenter, centersController.createCenter)
-    .post('/api/v1/centers/:id', authenticate, validate.validateCenter, centersController.updateCenter)
-    .delete('/api/v1/centers/:id', authenticate, centersController.deleteCenter);
-};
+module.exports = router;

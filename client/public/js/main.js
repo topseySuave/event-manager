@@ -15,6 +15,7 @@ if(window.location.pathname === '/'){
 $(document).on('click', '#search__view', function () {
     let search__modal = $('#search__modal');
     search__modal.addClass('search__pane');
+    search__modal.modal('open');
 });
 
 $(document).on('click', '.search__back_btn', function () {

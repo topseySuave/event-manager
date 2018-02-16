@@ -6,6 +6,14 @@ import { signOutRequest } from '../../../actions/authActions'
 
 class FixedNav extends Component {
 
+    componentWillMount(){
+        $('.modal').modal();
+    }
+
+    // handleOpenSearchPane(){
+    //     $('#search__modal').modal('open');
+    // }
+
     showAuthenticationLinks(){
         // Show Sign-in and Sign-up
         // links only if user isn't signed in

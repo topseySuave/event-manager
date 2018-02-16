@@ -175,8 +175,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        deleteEventRequest: deleteEventRequest,
-        editEventRequestAction: editEventRequestAction
+        deleteEventRequest,
+        editEventRequestAction
     }, dispatch);
 };
 

@@ -11,28 +11,28 @@ import center from './routes/centers';
 import users from './routes/users';
 import cors from 'cors';
 import webpack from 'webpack';
-import webpackMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import config from '../webpack.config';
 // import cons from 'consolidate';
 // import React from 'react';
 // import { renderToString } from 'react-dom/server';
 // import { App } from '../client/src/components/homepage';
-
 dotenv.config();
 
 // Set up the express app
 const app = express();
 let compiler = webpack(config);
-
-app.use('/docs', swagger.serve, swagger.setup(swaggerDoc));
-
+//Init API Route string
+const apiRoute = '/api/v1';
 app.set('superSecret', process.env.SECRET_KEY); // secret variable
-
-app.use(cors());
 
 // Log requests to the console.
 app.use(logger('dev'));
+app.use(cors());
+app.use('/docs', swagger.serve, swagger.setup(swaggerDoc));
+app.use(apiRoute, center);
+app.use(apiRoute, users);
+app.use(apiRoute, event);
 
 // Parse incoming requests data (https://github.com/expressjs/body-parser)
 app.use(bodyParser.json({limit: '10mb'}));
@@ -46,21 +46,12 @@ app.use(webpackHotMiddleware(compiler, {
     path: '/__webpack_hmr',
     heartbeat: 10 * 1000
 }));
-
-// app.use(webpackMiddleware(compiler));
-
-center(app);
-event(app);
-users(app);
-
 app.use(express.static(path.join(__dirname, '../client/public')));
-
 app.set('views', path.join(__dirname, '..', 'client', 'public'));
 
 // Setup a default catch-all route that sends back the index html file.
 app.get('*', (req, res) => {
     // const appString = renderToString(<App />);
-
     res.status(200).sendFile(path.join(__dirname, '..', 'client/public/index.html'));
 });
 
@@ -75,7 +66,7 @@ const port = parseInt(process.env.PORT, 10) || 8000;
 app.set('port', port);
 
 const server = http.createServer(app);
-server.listen(port);
-console.log('server listening on port ' + port);
-
-module.exports = app;
+server.listen(port, (err) => {
+    if(err) console.log(err);
+    console.log('server listening on port ' + port);
+});
