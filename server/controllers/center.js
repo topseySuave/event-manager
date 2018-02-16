@@ -238,8 +238,8 @@ export class Centers {
      * @memberof Centers
      */
   getCenters(req, res) {
-    const limitValue = parseInt(req.query.limit, 10) || 20;
-    const pageValue = req.query.next - 1 || 0;
+    const limitValue = parseInt(req.query.limit, 10) || 5;
+    const pageValue = req.query.next || 0;
     const order = req.query.order || 'desc';
     if (req.query.search || req.query.limit) {
       let filterBy, reqSearch;
@@ -257,6 +257,7 @@ export class Centers {
           ['id', order]
         ],
         limit: limitValue,
+        offset: (pageValue > 1) ? (pageValue * limitValue) - limitValue : pageValue
       })
         .then((searchResults) => {
           if (searchResults.length <= 0) {
@@ -269,7 +270,7 @@ export class Centers {
           return res.status(200).send({
             statusCode: 200,
             message: 'Successful Centers!',
-            page: pageValue + 1,
+            page: (pageValue) ? parseInt(pageValue, 10) : parseInt(pageValue + 1, 10),
             totalCount: searchResults.length,
             pageCount: Math.ceil(searchResults.length / limitValue),
             pageSize: parseInt(searchResults.length, 10),
@@ -282,7 +283,7 @@ export class Centers {
           ['id', order]
         ],
         limit: limitValue,
-        offset: pageValue * limitValue
+        offset: (pageValue > 1) ? (pageValue * limitValue) - limitValue : pageValue
       })
         .then((center) => {
           if (!center) {
@@ -291,10 +292,11 @@ export class Centers {
               message: 'No result found',
             });
           }
+
           return res.status(200).send({
             statusCode: 200,
             message: 'Successful Centers!',
-            page: pageValue + 1,
+            page: (pageValue) ? parseInt(pageValue, 10) : parseInt(pageValue + 1, 10),
             totalCount: center.count,
             pageCount: Math.ceil(center.count / limitValue),
             pageSize: parseInt(center.rows.length, 10),

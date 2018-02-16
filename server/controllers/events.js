@@ -124,7 +124,7 @@ export class Events {
           });
         });
     } else {
-      const limitValue = 5;
+      const limitValue = parseInt(req.query.limit, 10) || 5;
       const pageValue = req.query.next || 0;
 
       Event.findAndCountAll({

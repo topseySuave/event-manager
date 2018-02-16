@@ -5,8 +5,7 @@ import { bindActionCreators } from 'redux';
 import shortid from 'shortid';
 import { PropTypes } from 'prop-types';
 import SearchFasterForm from './searchFasterForm';
-import { fetchCentersAction } from '../../../actions/center-actions/fetchCenterAction';
-import Pagination from '../../pagination';
+import { fetchCentersAction, loadMoreCenters } from '../../../actions/center-actions/fetchCenterAction';
 import { CircularLoader } from '../../loader';
 import Helpers from '../../../helpers';
 // import CenterCard from '../centerCard/centerCard';
@@ -17,7 +16,9 @@ class AllCenters extends Component {
     this.helper = new Helpers();
     this.state = {
       pageOfItems: [],
-      isLoading: true
+      isLoading: true,
+      loadmore: null,
+      loadingmore: null,
     };
   }
 
@@ -26,25 +27,18 @@ class AllCenters extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps) {
-      this.setState({ isLoading: false });
-    }
-  }
+    let { centers, page, pageCount, pageSize, totalCount, loadingmore, loadmore } = newProps.centerStore;
 
-  // TODO: change and modify pageItems for pagination
-  /**
-     *
-     * @param {*} pageOfItems
-     * @returns {*} newPage
-     */
-  onChangePage(pageOfItems) {
-    const { centerStore } = this.props;
-    // update state with new page of items
-    if (pageOfItems) {
-      this.setState({ pageOfItems });
-    } else {
-      this.setState({ pageOfItems: centerStore.centers });
-      // console.log('holla');
+    if (newProps) {
+      this.setState({
+        isLoading: false,
+        page: page,
+        pageSize: pageSize,
+        totalCount: totalCount,
+        loadmore: loadmore,
+        loadingmore: loadingmore,
+        pageCount: pageCount
+      });
     }
   }
 
@@ -72,8 +66,41 @@ class AllCenters extends Component {
     });
   }
 
+    initInfiniteScroll(){
+      let winHeight, winScrollTop, docHeight, offset;
+      $(window).scroll(() => {
+        winHeight = $(window).height();
+        winScrollTop = $(window).scrollTop();
+        docHeight = $(document).height();
+
+        if (docHeight - winHeight === winScrollTop){
+          /**
+           * make loadmore request
+           * **/
+          offset = this.state.page + 1;
+          if(this.state.loadmore)
+            this.props.loadMoreCenters(offset);
+        }
+      });
+    }
+
+    autoLoadMore(){
+      if(this.state.loadmore){
+        this.initInfiniteScroll();
+      }
+    }
+
+    loadMore(){
+      /**
+       * make loadmore request
+       * **/
+      let offset = this.state.page + 1;
+      this.props.loadMoreCenters(offset);
+    }
+
   render() {
-    let { isLoading, pageOfItems } = this.state;
+    this.autoLoadMore();
+    let { isLoading, loadingmore, pageCount, pageSize, totalCount  } = this.state;
     return (
       <div className="container">
         <div className="center__holdr">
@@ -84,17 +111,33 @@ class AllCenters extends Component {
             <div className="col s12 l12" style={{ marginBottom: `${60}px` }}>
               <h4 className="center-align">Boots Centers</h4>
               <div className="row">
-                { isLoading ? <CircularLoader /> : '' }
-                <div className="col s12 cards-container">
-                  { isLoading ? '' : this.showCentersCard() }
-                </div>
-                { isLoading ? '' : <button className="col offset-s3 s6 btn waves-effect gradient__bg">load more</button>}
-                {/* <Pagination */}
-                {/* items={ */}
-                {/* pageOfItems */}
-                {/* } */}
-                {/* onChangePage={this.onChangePage} */}
-                {/* /> */}
+                { isLoading ? <CircularLoader /> :
+                  <div className="col s12 cards-container">
+                    { this.showCentersCard() }
+                  </div>
+                }
+                {
+                  (isLoading)
+                  ?
+                    ''
+                  :
+                    (pageCount > 1)
+                      ?
+                      (loadingmore)
+                        ?
+                        <CircularLoader />
+                        :
+                        (pageSize !== totalCount)
+                          ?
+                          <button
+                            onClick={() => this.loadMore()}
+                            className="col offset-s3 s6 btn waves-effect gradient__bg"
+                          >
+                            load more
+                          </button>
+                          : ''
+                      : ''
+                }
               </div>
             </div>
           </div>
@@ -108,6 +151,6 @@ const mapStateToProps = state => ({
   centerStore: state.centerReducer
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ fetchCentersAction }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ fetchCentersAction, loadMoreCenters }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllCenters);

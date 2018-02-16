@@ -5,17 +5,17 @@ import { bindActionCreators } from 'redux';
 import shortid from 'shortid';
 import DocumentTitle from 'react-document-title';
 
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
+// import RaisedButton from 'material-ui/RaisedButton';
+import Delete from 'material-ui/svg-icons/action/delete';
+
 import { CircularLoader } from '../../loader';
 import { fetchCenterAction } from '../../../actions/center-actions/activeCenterAction';
 import { deleteCenterRequest } from '../../../actions/center-actions/deleteCenterAction';
 import { editCenterRequestAction } from '../../../actions/center-actions/activeCenterAction';
 import { REMOVE_CENTER } from '../../../actions';
-
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
-import RaisedButton from 'material-ui/RaisedButton';
-import Delete from 'material-ui/svg-icons/action/delete';
 import CurrentEventForCenter from './currentEventForCenter';
 import RecommCenter from './RecommCenter';
 import EventModal from '../../modals/EventModal';

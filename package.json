@@ -2,7 +2,7 @@
   "name": "boots-event-manager",
   "version": "1.0.0",
   "description": "An Event Manager application to create and manage your own event.",
-  "main": "server/app.js",
+  "main": "./server/app.js",
   "scripts": {
     "build": "babel-node ./server/app.js",
     "test": " nyc --reporter=html --reporter=text mocha ./server/test/* --exit --require babel-register --reporter spec",

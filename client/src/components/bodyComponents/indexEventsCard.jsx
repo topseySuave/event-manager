@@ -24,18 +24,16 @@ class IndexEventCardHolder extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    let { events, page, pageCount, loadingmore, loadmore } = newProps.allEvents;
-    // if(loadingmore || loadmore){
-    //   console.log('props loadingmore: ' + loadingmore, 'props loadmore: ' + loadmore);
-    //   this.setState({
-    //   });
-    // }
+    let { events, page, pageCount, pageSize, totalCount, loadingmore, loadmore } = newProps.allEvents;
+
     this.setState({
       isLoading: false,
       events: events,
       page: page,
-        loadmore: loadmore,
-        loadingmore: loadingmore,
+      pageSize: pageSize,
+      totalCount: totalCount,
+      loadmore: loadmore,
+      loadingmore: loadingmore,
       pageCount: pageCount
     });
   }
@@ -48,29 +46,27 @@ class IndexEventCardHolder extends Component {
   }
 
   initInfiniteScroll(){
-      let winHeight, winScrollTop, scrollTop, docHeight, offset;
+      let winHeight, winScrollTop, docHeight, offset;
     $(window).scroll(() => {
       winHeight = $(window).height();
       winScrollTop = $(window).scrollTop();
-      scrollTop = $(document).scrollTop();
       docHeight = $(document).height();
 
       if (docHeight - winHeight === winScrollTop){
-        // console.log('hit the bottom');
         /**
          * make loadmore request
          * **/
         offset = this.state.page + 1;
-        // if(this.state.loadmore)
-          // this.props.loadMoreEvents(offset);
+        if(this.state.loadmore)
+          this.props.loadMoreEvents(offset);
       }
     });
   }
 
   autoLoadMore(){
-    // if(this.state.loadmore){
-    //   this.initInfiniteScroll();
-    // }
+    if(this.state.loadmore){
+      this.initInfiniteScroll();
+    }
   }
 
   loadMore(){
@@ -83,8 +79,7 @@ class IndexEventCardHolder extends Component {
 
   render() {
     this.autoLoadMore();
-    let { isLoading, loadmore, loadingmore, pageCount } = this.state;
-    console.log('loadingmore: ' + loadingmore, 'loadmore: ' + loadmore);
+    let { isLoading, loadingmore, pageCount, pageSize, totalCount } = this.state;
     return (
       <div className="popular__events_holdr">
         <div className="container popular__events">
@@ -104,7 +99,7 @@ class IndexEventCardHolder extends Component {
                     ?
                       <CircularLoader />
                     :
-                      (!loadmore)
+                      (pageSize !== totalCount)
                       ?
                         <button
                           onClick={() => this.loadMore()}

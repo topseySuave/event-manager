@@ -1,12 +1,17 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import { PropTypes } from 'prop-types'
+
 import Helpers from '../../../helpers'
 
 class CenterCard extends Component {
     constructor(props){
         super(props);
         this.helper = new Helpers();
+    }
+
+    componentWillMount(){
+        $('.modal').modal();
     }
 
     render() {

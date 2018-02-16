@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 
 class FloatingActionButton extends Component {
 
+    componentWillMount(){
+        $('.modal').modal();
+    }
+
     // addEventButton(){
     //     return (
     //         <a href="#add_event_modal" className="tooltipped modal-trigger btn-large btn-floating green"
@@ -28,7 +32,6 @@ class FloatingActionButton extends Component {
 
             return (
                 <div className="fixed-action-btn wow zoomIn">
-                    {/*{this.addEventButton()}*/}
                     {addCenterButton}
                 </div>
             );

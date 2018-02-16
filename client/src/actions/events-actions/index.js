@@ -6,9 +6,9 @@ import {
   EDIT_EVENT,
   EDIT_EVENT_REQUEST,
   REMOVE_EVENT,
-  LOADMORE_REQUEST,
-  LOADMORE_SUCCESS,
-  LOADMORE_FAILURE
+  LOADMORE_EVENT_REQUEST,
+  LOADMORE_EVENT_SUCCESS,
+  LOADMORE_EVENT_FAILURE
 } from '../';
 
 
@@ -139,18 +139,18 @@ export const editEventRequestAction = data => dispatch => dispatch(eventsDispatc
 export const loadMoreEvents = (offset) => {
   return dispatch => {
     dispatch({
-      type: LOADMORE_REQUEST
+      type: LOADMORE_EVENT_REQUEST
     });
     return axios.get(api + '?next=' + offset)
       .then(({ data }) => {
         if(data.statusCode === 200){
           return dispatch({
-            type: LOADMORE_SUCCESS,
+            type: LOADMORE_EVENT_SUCCESS,
             payload: data.events
           });
         }else{
           return dispatch({
-            type: LOADMORE_FAILURE
+            type: LOADMORE_EVENT_FAILURE
           });
         }
       });
