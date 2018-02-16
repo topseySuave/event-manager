@@ -13,7 +13,6 @@ import cors from 'cors';
 import webpack from 'webpack';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import config from '../webpack.config';
-// import cons from 'consolidate';
 // import React from 'react';
 // import { renderToString } from 'react-dom/server';
 // import { App } from '../client/src/components/homepage';
@@ -22,21 +21,23 @@ dotenv.config();
 // Set up the express app
 const app = express();
 let compiler = webpack(config);
+
 //Init API Route string
 const apiRoute = '/api/v1';
-app.set('superSecret', process.env.SECRET_KEY); // secret variable
 
-// Log requests to the console.
-app.use(logger('dev'));
-app.use(cors());
-app.use('/docs', swagger.serve, swagger.setup(swaggerDoc));
-app.use(apiRoute, center);
-app.use(apiRoute, users);
-app.use(apiRoute, event);
+app.set('superSecret', process.env.SECRET_KEY); // secret variable
 
 // Parse incoming requests data (https://github.com/expressjs/body-parser)
 app.use(bodyParser.json({limit: '10mb'}));
 app.use(bodyParser.urlencoded({limit: '10mb', extended: true, parameterLimit: 10000}));
+
+// Log requests to the console.
+app.use(logger('dev'));
+app.use(cors());
+app.use(apiRoute, center);
+app.use(apiRoute, users);
+app.use(apiRoute, event);
+app.use('/docs', swagger.serve, swagger.setup(swaggerDoc));
 
 app.use(webpackHotMiddleware(compiler, {
     hot: true,
@@ -46,6 +47,7 @@ app.use(webpackHotMiddleware(compiler, {
     path: '/__webpack_hmr',
     heartbeat: 10 * 1000
 }));
+
 app.use(express.static(path.join(__dirname, '../client/public')));
 app.set('views', path.join(__dirname, '..', 'client', 'public'));
 

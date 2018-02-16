@@ -3,6 +3,8 @@ import jwtDecode from 'jwt-decode'
 import setAuthorizationToken from '../components/authentication/setAuthenticationToken'
 import { SET_USER, REMOVE_USER } from './index'
 
+const api = 'api/v1/users';
+
 const removeCurrentUser = () => {
     window.history.back();
     return {
@@ -25,13 +27,13 @@ const signOutRequest = () => {
 };
 
 const userSignupRequest = (userData) => {
-    return axios.post('/api/v1/users', userData);
+    return axios.post(api, userData);
 };
 
 const userSignInRequest = (userData) => {
     return dispatch => {
-        return axios.post('/api/v1/users/authentication', userData )
-            .then(res =>{
+        return axios.post(api + '/authentication', userData)
+            .then(res => {
                 if(res.data.statusCode === 200){
                     const token = res.data.token;
                     localStorage.setItem('jwtToken', token);
