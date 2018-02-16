@@ -105,9 +105,9 @@ class AllCenters extends Component {
       <div className="container">
         <div className="center__holdr">
           <div className="row relative">
-            <div className="col s12 l12 fixed bg__white hide-on-med-and-down">
-              <SearchFasterForm />
-            </div>
+            {/*<div className="col s12 l12 fixed bg__white hide-on-med-and-down">*/}
+              {/*<SearchFasterForm />*/}
+            {/*</div>*/}
             <div className="col s12 l12" style={{ marginBottom: `${60}px` }}>
               <h4 className="center-align">Boots Centers</h4>
               <div className="row">

@@ -13,7 +13,6 @@ class CenterModal extends Component {
         </div>
         <div className="modal-footer">
           <a className="modal-action modal-close waves-effect btn-flat">Cancel</a>
-          {/* <a onClick={this.onClick()} className="btn waves-effect gradient__bg lighten-1">Create</a> */}
         </div>
       </div>
     );

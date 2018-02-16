@@ -2,18 +2,8 @@ import React, { Component } from 'react';
 import shortid from 'shortid'
 import CenterCard from '../centerComponent/centerCard/centerCard'
 import EventCard from '../bodyComponents/eventsCard/eventCard'
-// import uuidV5 from 'uuid/v5'
 
 class SearchModal extends Component {
-
-    // loopCard(val){
-    //     let i = 0;
-    //     let div = [];
-    //     for(i; i < 6; i++){
-    //         div.push(val);
-    //     }
-    //     return div;
-    // }
 
     render() {
         return (
