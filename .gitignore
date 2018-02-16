@@ -3,5 +3,6 @@
 /.idea/
 /.nyc_output/
 /.env
+/.github/
 /npm-debug.log*
 /client/bower_components
