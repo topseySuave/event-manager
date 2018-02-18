@@ -6,7 +6,8 @@ import {
   REMOVE_EVENT,
   LOADMORE_EVENT_REQUEST,
   LOADMORE_EVENT_SUCCESS,
-  LOADMORE_EVENT_FAILURE
+  LOADMORE_EVENT_FAILURE,
+  SEARCH_TITLE
 } from '../actions';
 
 const pageLimit = 10;
@@ -73,8 +74,19 @@ export default (state = {}, action = {}) => {
       newState.loadingmore = false;
       newState.page = parseInt(newState.page + 1, 10);
       newState.pageSize = parseInt(newState.pageSize + action.payload.length, 10);
-      if(newState.pageSize === newState.totalCount){
-          newState.loadmore = false;
+      if (newState.pageSize === newState.totalCount) {
+        newState.loadmore = false;
+      }
+      return newState;
+
+    case SEARCH_TITLE:
+      newState = Object.assign([], state);
+      if (!isEmpty(newState.centers)) {
+        newState.centers.filter((center) => {
+          if (center.title.indexOf(action.value) > -1) {
+            return center;
+          }
+        });
       }
       return newState;
 

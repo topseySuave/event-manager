@@ -24,18 +24,53 @@ class IndexEventCardHolder extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    let { events, page, pageCount, pageSize, totalCount, loadingmore, loadmore } = newProps.allEvents;
+    let {
+      events, page, pageCount, pageSize, totalCount, loadingmore, loadmore
+    } = newProps.allEvents;
 
     this.setState({
       isLoading: false,
-      events: events,
-      page: page,
-      pageSize: pageSize,
-      totalCount: totalCount,
-      loadmore: loadmore,
-      loadingmore: loadingmore,
-      pageCount: pageCount
+      events,
+      page,
+      pageSize,
+      totalCount,
+      loadmore,
+      loadingmore,
+      pageCount
     });
+  }
+
+  initInfiniteScroll() {
+    let winHeight, winScrollTop, docHeight, offset;
+    $(window).scroll(() => {
+      winHeight = $(window).height();
+      winScrollTop = $(window).scrollTop();
+      docHeight = $(document).height();
+
+      if (docHeight - winHeight === winScrollTop) {
+        /* *
+         * make loadmore request
+         * */
+        offset = this.state.page + 1;
+        if (this.state.loadmore) {
+          this.props.loadMoreEvents(offset);
+        }
+      }
+    });
+  }
+
+  autoLoadMore() {
+    if (this.state.loadmore) {
+      this.initInfiniteScroll();
+    }
+  }
+
+  loadMore() {
+    /**
+     * make loadmore request
+     * */
+    let offset = this.state.page + 1;
+    this.props.loadMoreEvents(offset);
   }
 
   renderEventsCard() {
@@ -45,41 +80,11 @@ class IndexEventCardHolder extends Component {
     ));
   }
 
-  initInfiniteScroll(){
-      let winHeight, winScrollTop, docHeight, offset;
-    $(window).scroll(() => {
-      winHeight = $(window).height();
-      winScrollTop = $(window).scrollTop();
-      docHeight = $(document).height();
-
-      if (docHeight - winHeight === winScrollTop){
-        /**
-         * make loadmore request
-         * **/
-        offset = this.state.page + 1;
-        if(this.state.loadmore)
-          this.props.loadMoreEvents(offset);
-      }
-    });
-  }
-
-  autoLoadMore(){
-    if(this.state.loadmore){
-      this.initInfiniteScroll();
-    }
-  }
-
-  loadMore(){
-    /**
-     * make loadmore request
-     * **/
-    let offset = this.state.page + 1;
-    this.props.loadMoreEvents(offset);
-  }
-
   render() {
     this.autoLoadMore();
-    let { isLoading, loadingmore, pageCount, pageSize, totalCount } = this.state;
+    let {
+      isLoading, loadingmore, pageCount, pageSize, totalCount
+    } = this.state;
     return (
       <div className="popular__events_holdr">
         <div className="container popular__events">
@@ -93,22 +98,7 @@ class IndexEventCardHolder extends Component {
                 {this.renderEventsCard()}
               </div>
               {
-                (pageCount > 1)
-                  ?
-                  (loadingmore)
-                    ?
-                      <CircularLoader />
-                    :
-                      (pageSize !== totalCount)
-                      ?
-                        <button
-                          onClick={() => this.loadMore()}
-                          className="col offset-s3 s6 btn waves-effect gradient__bg"
-                        >
-                          load more
-                        </button>
-                      : ''
-                  : ''
+                (pageCount > 1) ? (loadingmore) ? <CircularLoader /> : (pageSize !== totalCount) ? <button onClick={() => this.loadMore()} className="col offset-s3 s6 btn waves-effect gradient__bg"> load more </button> : '' : ''
               }
             </div>
           }

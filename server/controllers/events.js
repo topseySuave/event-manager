@@ -3,7 +3,7 @@ import models from '../models';
 
 const Event = models.Events;
 const CenterModel = models.Centers;
-const Op = models.sequelize.Op;
+const { Op } = models.sequelize;
 
 // let storage = multer.diskStorage({
 //     destination: '../server/public/images/uploads',
@@ -61,6 +61,7 @@ export class Events {
      * @memberof Events
      */
   getEvents(req, res) {
+    const limitValue = parseInt(req.query.limit, 10) || process.env.DATA_LIMIT;
     const order = (req.query.order) ? req.query.order : 'desc';
     if (req.query && req.query.sort) {
       if (order) {
@@ -89,12 +90,11 @@ export class Events {
           }));
       }
     } else if (req.query.search && req.query.limit) {
-      const limitValue = parseInt(req.query.limit, 10) || 10;
       const search = req.query.search.split(' ');
 
-      /**
+      /* *
       * Search with Title But Map first
-      **/
+      * */
       const titleResp = search.map(value => ({
         title: {
           [Op.ilike]: `%${value}%`
@@ -124,9 +124,7 @@ export class Events {
           });
         });
     } else {
-      const limitValue = parseInt(req.query.limit, 10) || 5;
       const pageValue = req.query.next || 0;
-
       Event.findAndCountAll({
         include: [{
           model: CenterModel,

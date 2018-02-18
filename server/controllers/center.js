@@ -4,7 +4,7 @@ import models from '../models';
 // import cloudinary from 'cloudinary';
 
 // dotenv.config();
-const Op = models.sequelize.Op;
+const { Op } = models.sequelize;
 const Center = models.Centers;
 const { Events } = models;
 
@@ -238,7 +238,7 @@ export class Centers {
      * @memberof Centers
      */
   getCenters(req, res) {
-    const limitValue = parseInt(req.query.limit, 10) || 5;
+    const limitValue = parseInt(req.query.limit, 10) || process.env.DATA_LIMIT;
     const pageValue = req.query.next || 0;
     const order = req.query.order || 'desc';
     if (req.query.search || req.query.limit) {
