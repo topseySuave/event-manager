@@ -7,12 +7,11 @@
     "build": "babel-node ./server/app.js",
     "test": " nyc --reporter=html --reporter=text mocha ./server/test/* --exit --require babel-register --reporter spec",
     "babel-node": "babel-node --preset=es2015",
-    "start": "nodemon --exec babel-node ./server/app.js",
+    "start": "babel-node ./server/app.js",
     "start:dev": "npm run webpack",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "test:dev": "npm run test && npm run coverage",
-    "postinstall": "npm run build",
     "webpack": "webpack --watch"
   },
   "author": "Gabriel Micah",
