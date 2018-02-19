@@ -7,10 +7,12 @@ import {
   LOADMORE_EVENT_REQUEST,
   LOADMORE_EVENT_SUCCESS,
   LOADMORE_EVENT_FAILURE,
-  SEARCH_TITLE
+  SEARCH_EVENT_TITLE,
+  SEARCH_EVENT_TITLE_FAILED
 } from '../actions';
+import isEmpty from 'lodash/isEmpty';
 
-const pageLimit = 10;
+const pageLimit = process.env.DATA_LIMIT;
 let newState;
 
 export default (state = {}, action = {}) => {
@@ -79,15 +81,18 @@ export default (state = {}, action = {}) => {
       }
       return newState;
 
-    case SEARCH_TITLE:
-      newState = Object.assign([], state);
-      if (!isEmpty(newState.centers)) {
-        newState.centers.filter((center) => {
-          if (center.title.indexOf(action.value) > -1) {
-            return center;
-          }
-        });
+    case SEARCH_EVENT_TITLE:
+      newState = Object.assign({}, state);
+      if (!isEmpty(action.events)) {
+          newState.events = action.events;
+      }else{
+          newState.events = state.events;
       }
+      return newState;
+
+    case SEARCH_EVENT_TITLE_FAILED:
+      newState = Object.assign({}, state);
+      newState.searchFailure = true;
       return newState;
 
     default:

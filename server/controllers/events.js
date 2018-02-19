@@ -66,6 +66,11 @@ export class Events {
     if (req.query && req.query.sort) {
       if (order) {
         Event.findAll({
+          where: {
+            startDate: {
+              [Op.gte]: new Date().toDateString()
+            }
+          },
           order: [
             ['id', order]
           ]
@@ -81,7 +86,7 @@ export class Events {
             return res.status(200).send({
               statusCode: 200,
               message: 'Event(s) found',
-              center: returnedEvent
+              events: returnedEvent
             });
           })
           .catch(() => res.status(500).send({
@@ -89,21 +94,24 @@ export class Events {
             message: 'Error searching for Events'
           }));
       }
-    } else if (req.query.search && req.query.limit) {
+    } else if (req.query.search || req.query.limit) {
       const search = req.query.search.split(' ');
 
-      /* *
+    /**
       * Search with Title But Map first
       * */
       const titleResp = search.map(value => ({
         title: {
-          [Op.ilike]: `%${value}%`
+          [Op.iLike]: `%${value}%`
         }
       }));
 
       Event.findAll({
         where: {
-          titleResp
+          [Op.or]: titleResp,
+          startDate: {
+            [Op.gte]: new Date().toDateString()
+          }
         },
         order: [
           ['id', order]
@@ -120,12 +128,17 @@ export class Events {
           return res.status(200).send({
             statusCode: 200,
             message: 'The Events found',
-            searchResults
+            events: searchResults
           });
         });
     } else {
       const pageValue = req.query.next || 0;
       Event.findAndCountAll({
+        where: {
+          startDate: {
+            [Op.gte]: new Date().toDateString()
+          }
+        },
         include: [{
           model: CenterModel,
           as: 'center'

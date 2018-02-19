@@ -1,10 +1,14 @@
 import axios from 'axios';
 import { isEmpty } from 'lodash';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
-import { fetchCentersDispatch } from './center-actions/fetchCenterAction';
-import { SEARCH_TITLE } from './';
+import { fetchCentersDispatch, searchCenterDispatch } from './center-actions/fetchCenterAction';
+import { searchEventsDispatch } from './events-actions/index';
+import {
+  SEARCH_CENTER_TITLE_FAILED,
+  SEARCH_EVENT_TITLE_FAILED
+} from './';
 
-const validateSearchQuery = ({
+const validateCenterSearchQuery = ({
   filterBy, location, price, capacity, search
 }) => {
   let searchApi, api;
@@ -29,9 +33,26 @@ const validateSearchQuery = ({
 
   return searchApi;
 };
+const validateEventSearchQuery = ({
+    filterBy, search
+}) => {
+    let searchApi, api;
+
+    if (filterBy) {
+        api = `/api/v1/events?filter=${filterBy}&search=`;
+    } else {
+        api = '/api/v1/events?search=';
+    }
+
+    if (!isEmpty(search) && search !== 'undefined') {
+        searchApi = `${api + search}`;
+    }
+
+    return searchApi;
+};
 
 export const searchAction = (data) => {
-  let searchApi = validateSearchQuery(data);
+  let searchApi = validateCenterSearchQuery(data);
   return (dispatch) => {
     dispatch(showLoading());
     return axios.get(searchApi)
@@ -51,10 +72,32 @@ export const searchAction = (data) => {
   };
 };
 
-export const filterTitle = value => (dispatch) => {
-  const obj = {
-    type: SEARCH_TITLE,
-    value
-  };
-  dispatch(obj);
+export const filterCenterTitle = value => (dispatch) => {
+    let searchApi = validateCenterSearchQuery(value);
+    return axios.get(searchApi)
+        .then(({ data }) => {
+          if (data.statusCode === 200) {
+            dispatch(searchCenterDispatch(data));
+          } else if (data.statusCode === 400) {
+            Materialize.toast(data.message, 5000);
+            dispatch({
+              type: SEARCH_CENTER_TITLE_FAILED
+            });
+          }
+        });
+};
+
+export const filterEventTitle = value => (dispatch) => {
+  let searchApi = validateEventSearchQuery(value);
+  return axios.get(searchApi)
+      .then(({ data }) => {
+        if(data.statusCode === 200){
+          dispatch(searchEventsDispatch(data.events));
+        } else if (data.statusCode === 400) {
+          Materialize.toast(data.message, 5000);
+          dispatch({
+            type: SEARCH_EVENT_TITLE_FAILED
+          });
+        }
+      });
 };

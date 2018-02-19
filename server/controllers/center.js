@@ -22,16 +22,6 @@ const sortSearchRequest = (search, filterBy) => {
         };
       }
     });
-  } else if (filterBy === 'title') {
-    reqSearch = search.map((value) => {
-      if (value !== '') {
-        return {
-          title: {
-            [Op.iLike]: `%${value}%`
-          }
-        };
-      }
-    });
   } else if (filterBy === 'price') {
     reqSearch = search.map((value) => {
       if (value !== '') {
@@ -51,6 +41,16 @@ const sortSearchRequest = (search, filterBy) => {
           }
         };
       }
+    });
+  } else {
+    reqSearch = search.map((value) => {
+        if (value !== '') {
+            return {
+                title: {
+                    [Op.iLike]: `%${value}%`
+                }
+            };
+        }
     });
   }
   return reqSearch;
@@ -246,7 +246,7 @@ export class Centers {
       if (req.query.filter) {
         filterBy = req.query.filter;
       }
-      const search = req.query.search.split(',');
+      const search = req.query.search.split(' ');
 
       reqSearch = sortSearchRequest(search, filterBy);
       Center.findAll({

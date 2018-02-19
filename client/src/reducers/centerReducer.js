@@ -1,5 +1,13 @@
 import isEmpty from 'lodash/isEmpty';
-import { ADD_CENTER_SUCCESS, FETCH_CENTERS, LOADMORE_CENTER_REQUEST, LOADMORE_CENTER_SUCCESS, LOADMORE_CENTER_FAILURE, SEARCH_TITLE } from '../actions';
+import {
+  ADD_CENTER_SUCCESS,
+  FETCH_CENTERS,
+  LOADMORE_CENTER_REQUEST,
+  LOADMORE_CENTER_SUCCESS,
+  LOADMORE_CENTER_FAILURE,
+  SEARCH_CENTER_TITLE,
+  SEARCH_CENTER_TITLE_FAILED
+} from '../actions';
 
 let newState;
 
@@ -38,15 +46,18 @@ export default (state = {}, action = {}) => {
       }
       return newState;
 
-    case SEARCH_TITLE:
-      newState = Object.assign([], state);
-      if (!isEmpty(newState.centers)) {
-        newState.centers.filter((center) => {
-          if (center.title.indexOf(action.value) > -1) {
-            return center;
-          }
-        });
+    case SEARCH_CENTER_TITLE:
+      newState = Object.assign({}, state);
+      if (!isEmpty(action.payload)) {
+        newState = action.payload;
+      }else{
+        newState.centers = state.centers;
       }
+      return newState;
+
+    case SEARCH_CENTER_TITLE_FAILED:
+      newState = Object.assign({}, state);
+      newState.searchFailure = true;
       return newState;
 
     default:

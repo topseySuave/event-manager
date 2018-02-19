@@ -4,18 +4,33 @@
   "description": "An Event Manager application to create and manage your own event.",
   "main": "./server/app.js",
   "scripts": {
-    "build": "babel-node ./server/app.js",
+    "build": "npm run build:client",
     "test": " nyc --reporter=html --reporter=text mocha ./server/test/* --exit --require babel-register --reporter spec",
     "babel-node": "babel-node --preset=es2015",
-    "start": "babel-node ./server/app.js",
-    "start:dev": "npm run webpack",
+    "start": "babel-node -- ./server/app.js",
+    "build:client": "webpack --config webpack.config.js",
+    "start:client": "npm run webpack",
+    "start:server": "nodemon --exec npm run start",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "test:dev": "npm run test && npm run coverage",
     "webpack": "webpack --watch"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/topseysuave/event-manager.git"
+  },
   "author": "Gabriel Micah",
   "license": "ISC",
+  "bug": {
+    "url": "https://github.com/topseysuave/event-manager/issues"
+  },
+  "homepage": "https://github.com/topseysuave/event-manager#readme",
+  "nodemonConfig": {
+    "ignore": [
+      "client/*"
+    ]
+  },
   "dependencies": {
     "axios": "^0.16.2",
     "babel-cli": "^6.26.0",
@@ -90,7 +105,8 @@
     "uuid": "^3.1.0",
     "validator": "^9.2.0",
     "validatorjs": "^3.13.5",
-    "webpack": "^3.7.1",
+    "webpack": "^3.8.1",
+    "webpack-config": "^7.5.0",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.19.1"
   },
@@ -105,8 +121,6 @@
     "jest": "^22.3.0",
     "mocha": "^4.0.1",
     "mocha-lcov-reporter": "^1.3.0",
-    "react-test-renderer": "^16.2.0",
-    "webpack": "^3.8.1",
-    "webpack-config": "^7.5.0"
+    "react-test-renderer": "^16.2.0"
   }
 }

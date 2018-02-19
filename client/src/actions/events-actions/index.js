@@ -8,16 +8,17 @@ import {
   REMOVE_EVENT,
   LOADMORE_EVENT_REQUEST,
   LOADMORE_EVENT_SUCCESS,
-  LOADMORE_EVENT_FAILURE
+  LOADMORE_EVENT_FAILURE,
+  SEARCH_EVENT_TITLE
 } from '../';
 
 
-/* *
+/**
  *  @API Route String
  * * */
 const api = '/api/v1/events';
 
-/* *
+/**
  *  @Event Dispatch Method
  *  @Returns Object
  * * */
@@ -58,8 +59,15 @@ const eventsDispatchAction = (type, data = {}) => {
   }
 };
 
+export const searchEventsDispatch = (data) => {
+  return {
+    type: SEARCH_EVENT_TITLE,
+    events: data
+  }
+};
 
-/* *
+
+/**
  *  @Edit Event Action
  *  @Returns Object
  * * */
@@ -76,7 +84,7 @@ export const editEventAction = data => dispatch => axios.put(`${api}/${data.even
   });
 
 
-/* *
+/**
  *  @Create Event Action
  *  @Returns Object
  * * */
@@ -93,7 +101,7 @@ export const createEventRequest = data => dispatch => axios.post(api, data)
   });
 
 
-/* *
+/**
  *  @Fetch Event Action
  *  @Returns Object
  * * */
@@ -105,7 +113,7 @@ export const fetchEventRequest = () => dispatch => axios.get(api)
   });
 
 
-/* *
+/**
  *  @Delete Event Action
  *  @Returns Object
  * * */
@@ -126,13 +134,13 @@ export const deleteEventRequest = (id) => {
 };
 
 
-/* *
+/**
  *  @Edit Event Request Action
  *  @Returns Object
  * * */
 export const editEventRequestAction = data => dispatch => dispatch(eventsDispatchAction('edit_request', data));
 
-/* *
+/**
  *  @Load more Event Request Action
  *  @Returns Object
  * * */

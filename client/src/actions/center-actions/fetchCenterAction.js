@@ -1,6 +1,13 @@
 import axios from 'axios';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
-import { FETCH_CENTERS, FETCH_CENTER_DETAIL, LOADMORE_CENTER_REQUEST, LOADMORE_CENTER_SUCCESS, LOADMORE_CENTER_FAILURE } from '../';
+import {
+    FETCH_CENTERS,
+    FETCH_CENTER_DETAIL,
+    LOADMORE_CENTER_REQUEST,
+    LOADMORE_CENTER_SUCCESS,
+    LOADMORE_CENTER_FAILURE,
+    SEARCH_CENTER_TITLE
+} from '../';
 
 //init api route string
 const api = '/api/v1/centers';
@@ -8,6 +15,11 @@ const api = '/api/v1/centers';
 export const fetchCentersDispatch = data => ({
   type: FETCH_CENTERS,
   centers: data
+});
+
+export const searchCenterDispatch = data => ({
+    type: SEARCH_CENTER_TITLE,
+    payload: data
 });
 
 export const fetchCentersAction = () => (dispatch) => {

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import {bindActionCreators} from 'redux';
+import { bindActionCreators } from 'redux';
 import shortid from 'shortid';
 import isEmpty from 'lodash/isEmpty';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import EventCard from '../bodyComponents/eventsCard/eventCard';
 import Helpers from '../../helpers';
-import { filterTitle } from '../../actions/searchAction';
+import { filterCenterTitle, filterEventTitle } from '../../actions/searchAction';
 
 class SearchModal extends Component {
   constructor(props) {
@@ -32,7 +32,9 @@ class SearchModal extends Component {
   }
 
   handleSearchInput(e) {
-    this.props.filterTitle(e.target.value);
+    let titleString = { search: e.target.value };
+    this.props.filterCenterTitle(titleString);
+    this.props.filterEventTitle(titleString);
   }
 
   renderEventsCard() {
@@ -59,7 +61,7 @@ class SearchModal extends Component {
                     <div className="card-image">
                       <img src={center.img_url} alt={center.title} />
                     </div>
-                }
+              }
               <div className="card-content black-text">
                 <p className="f__size">{center.title}</p>
                 <p><i className="material-icons f15">location_on</i>{center.location}</p>
@@ -124,7 +126,8 @@ class SearchModal extends Component {
 }
 
 SearchModal.propTypes = {
-  filterTitle: propTypes.func.isRequired
+  filterCenterTitle: PropTypes.func.isRequired,
+  filterEventTitle: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -132,4 +135,8 @@ const mapStateToProps = state => ({
   eventStore: state.eventReducer
 });
 
-export default connect(mapStateToProps)(SearchModal);
+const mapDispatchToProps = dispatch => {
+ return bindActionCreators({ filterCenterTitle, filterEventTitle }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchModal);
