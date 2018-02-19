@@ -8,7 +8,6 @@ import DocumentTitle from 'react-document-title';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
-// import RaisedButton from 'material-ui/RaisedButton';
 import Delete from 'material-ui/svg-icons/action/delete';
 
 import { CircularLoader } from '../../loader';
@@ -29,6 +28,7 @@ class CenterDetail extends Component {
             isLoading: true,
             openAlert: false,
             open: false,
+            event: {},
             activeCenter: {
                 centr: {
                     id: '',
@@ -53,11 +53,14 @@ class CenterDetail extends Component {
      * TODO: modify center details component to update and change the redux store in respond to route change
      * **/
     componentWillReceiveProps(newProps) {
-        // console.log(newProps);
         // const params = this.props.params;
         // this.props.fetchCenterAction(params.id);
         if (newProps.activeCenterDetail) {
-            this.setState({isLoading: false, activeCenter: newProps.activeCenterDetail});
+          newProps.activeCenterDetail.centr.events = newProps.activeCenterDetail.events;
+          if(newProps.activeCenterDetail.centr.events){
+            delete newProps.activeCenterDetail.events;
+          }
+          this.setState({isLoading: false, activeCenter: newProps.activeCenterDetail});
         }
     }
 
@@ -189,7 +192,11 @@ class CenterDetail extends Component {
                 capacity,
                 price
             };
-
+            if(events){
+                events.map(event => {
+                    event.center = relatedCenterBasedOn;
+                });
+            }
             return (
                 <DocumentTitle title={title + ' | Boots Events Manager'}>
                     <div className="container">

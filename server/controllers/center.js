@@ -6,7 +6,7 @@ import models from '../models';
 // dotenv.config();
 const { Op } = models.sequelize;
 const Center = models.Centers;
-const { Events } = models;
+const Event = models.Events;
 
 
 const sortSearchRequest = (search, filterBy) => {
@@ -189,6 +189,7 @@ export class Centers {
      */
   getCenter(req, res) {
     const order = req.query.order || 'desc';
+    const limitValue = req.query.limit || process.env.DATA_LIMIT;
     const centerId = parseInt(req.params.id, 10);
     if (isNaN(centerId)) {
       return res.status(400).send({
@@ -200,16 +201,7 @@ export class Centers {
     Center.findOne({
       where: {
         id: centerId
-      },
-      include: [
-        {
-          model: Events,
-          as: 'events'
-        }
-      ],
-      order: [
-        ['id', order]
-      ]
+      }
     })
       .then((centr) => {
         if (!centr) {
@@ -219,12 +211,42 @@ export class Centers {
           });
         }
 
-        return res.status(200).send({
-          statusCode: 200,
-          message: `Center with id: ${centerId} was found`,
-          centr,
+        return Event.findAndCountAll({
+          where: {
+            centerId,
+            startDate: new Date().toDateString()
+          },
+          order: [
+              ['id', order]
+          ],
+          limit: limitValue
+        })
+          .then((event) => {
+            centr.event = event.rows;
+            return res.status(200).send({
+              statusCode: 200,
+              message: `Center with id: ${centerId} was found`,
+              events: event.rows,
+              centr,
+            });
+          })
+          .catch((err) => {
+            if(err){
+              return res.status(500).send({
+                statusCode: 500,
+                message: `Error getting center details`
+              });
+            }
+          })
+      })
+        .catch((err) => {
+          if(err){
+            return res.status(500).send({
+              statusCode: 500,
+              message: `Error getting center details`
+            });
+          }
         });
-      });
   }
 
   /**
