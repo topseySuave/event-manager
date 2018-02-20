@@ -5,6 +5,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 const User = models.User;
+const Op = models.sequelize.Op;
 
 dotenv.config();
 
@@ -33,7 +34,7 @@ export default class Users {
         User.findOne({
             where: {
                 email: {
-                    $iLike: email
+                    [Op.iLike]: email
                 }
             }
         })
@@ -69,7 +70,7 @@ export default class Users {
             User.findOne({
                 where: {
                     email: {
-                        $iLike: email
+                        [Op.iLike]: email
                     }
                 }
             })
@@ -107,8 +108,63 @@ export default class Users {
     }
 
     currUser (req, res){
-        return res.send({
-            currentUser: req.currentUser
-        });
+      return res.send({
+        currentUser: req.currentUser
+      });
+    }
+
+    assignAdmin(req, res){
+        let { email, password } = req.body;
+        User.findOne({
+            where: {
+                email: {
+                    [Op.iLike]: email
+                }
+            }
+        })
+            .then((foundUser) => {
+                if(!foundUser){
+                    return res.status(404).send({
+                        statusCode: 404,
+                        message: 'User Not Found! Please Sign Up',
+                        error: true
+                    });
+                }
+                else if(bcrypt.compareSync(password, foundUser.password))
+                {
+                    // update user role to true...
+                    User.update({ role: true }, {
+                        where: {
+                            id: foundUser.id
+                        }
+                    })
+                    .then((updatedUser) => {
+                        return res.status(200).send({
+                            statusCode: 200,
+                            message: 'User has been assigned as administrator',
+                            user: updatedUser
+                        });
+                    });
+                } else {
+                    return res.status(401).send({
+                        statusCode: 401,
+                        message: 'Wrong password',
+                        error: true
+                    });
+                }
+            })
+            .catch(error => res.status(500).send(error));
+    }
+
+    allUsers(req, res){
+        User.findAll()
+            .then((users) => {
+                return res.status(200).send({
+                    message: 'all users found',
+                    statusCode: 200,
+                    users: users
+                });
+            })
+            .catch(error => res.status(500).send(error));
     }
 }

@@ -12,6 +12,7 @@ import swaggerDoc from './docs/swagger.json';
 import event from './routes/events';
 import center from './routes/centers';
 import users from './routes/users';
+import admin from './routes/administrator';
 import config from '../webpack.config';
 // import React from 'react';
 // import { renderToString } from 'react-dom/server';
@@ -37,6 +38,7 @@ app.use(cors());
 app.use(apiRoute, center);
 app.use(apiRoute, users);
 app.use(apiRoute, event);
+app.use('/admin', admin);
 app.use('/docs', swagger.serve, swagger.setup(swaggerDoc));
 
 app.use(webpackHotMiddleware(compiler, {

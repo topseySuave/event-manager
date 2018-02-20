@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/frameworks/ghpages-materialize.css">
+    <link href="/css/frameworks/micon.css" rel="stylesheet">
+    <link href="/css/frameworks/animate.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" href="/fav.ico">
+
+    <title>Boots Events Manager</title>
+</head>
+<body>
+<noscript>
+    You need to enable JavaScript to run this app.
+</noscript>
+
+<div id="admin">
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h5 class="bold green-text center-align">Boots Events Manager</h5>
+                <h6 class="grey-text center-align"> Administrator Assignment</h6>
+                <br />
+                <div class="container">
+                    <div class="row">
+                        <div class="card-panel yellow lighten-5">
+                            <p class="yellow-text text-darken-2">
+                                NOTE: you have to be registered to the application before being assigned as admin.
+                            </p>
+                        </div>
+                        <br />
+                        <form class="col s12" action="assign" method="POST">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">email</i>
+                                    <input id="icon_email" name="email" type="email" class="validate">
+                                    <label for="icon_email">Email</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">security</i>
+                                    <input id="icon_password" name="password"  type="password" class="validate">
+                                    <label for="icon_password">Password</label>
+                                </div>
+                                <div class="col s12 l3"></div>
+                                <div class="input-field col s12 l6">
+                                    <button id="submitAdmin" type="submit" class="btn btn-flat white-text teal lighten-3 waves-effect">
+                                        Assign to administration
+                                    </button>
+                                </div>
+                                <div class="col s12 l3"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/wow.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var modal = $('.modal');
+        new WOW().init();
+        modal.modal({
+            dismissible: true, // Modal can be dismissed by clicking outside of the modal
+            opacity: .5, // Opacity of modal background
+            inDuration: 300, // Transition in duration
+            outDuration: 200, // Transition out duration
+            startingTop: '4%', // Starting top style attribute
+            endingTop: '10%', // Ending top style attribute
+            ready: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+                $('.body__holdr').addClass('blur__fits');
+            },
+            complete: function () {
+                $('.body__holdr').removeClass('blur__fits');
+                $('.modal-overlay').css({'display': 'none'});
+                modal.removeClass('search__pane');
+            } // Callback for Modal close
+        });
+        $('.parallax').parallax();
+//            $('select').material_select();
+        $('.dropdown-button').dropdown();
+        $('.tooltipped').tooltip({delay: 50});
+    });
+</script>
+</body>
+</html>

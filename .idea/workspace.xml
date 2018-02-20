@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f051bbcc-4e3a-4837-a5f5-ffa0a54f7bfb" name="Default" comment="">
+    <list default="true" id="f051bbcc-4e3a-4837-a5f5-ffa0a54f7bfb" name="Default" comment="fix: sshow no center or event when there no center or event data in the database.">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/public/admin.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/routes/administrator.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/public/js/app.bundle.js" afterPath="$PROJECT_DIR$/client/public/js/app.bundle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/public/js/hot/hot-update.js" afterPath="$PROJECT_DIR$/client/public/js/hot/hot-update.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/public/js/hot/hot-update.json" afterPath="$PROJECT_DIR$/client/public/js/hot/hot-update.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/bodyComponents/eventsCard/eventCard.jsx" afterPath="$PROJECT_DIR$/client/src/components/bodyComponents/eventsCard/eventCard.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/bodyComponents/indexEventsCard.jsx" afterPath="$PROJECT_DIR$/client/src/components/bodyComponents/indexEventsCard.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/centerComponent/allCenters/allCenters.jsx" afterPath="$PROJECT_DIR$/client/src/components/centerComponent/allCenters/allCenters.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/app.js" afterPath="$PROJECT_DIR$/server/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/controllers/user.js" afterPath="$PROJECT_DIR$/server/controllers/user.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -33,14 +31,39 @@
     <favorites_list name="event-manager" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5004501">
+    <splitter split-orientation="horizontal" split-proportion="0.47614762">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="allCenters.jsx" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/client/src/components/centerComponent/allCenters/allCenters.jsx">
+          <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/server/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="68">
-                  <caret line="4" column="30" lean-forward="true" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+                <state relative-caret-position="408">
+                  <caret line="50" column="4" lean-forward="true" selection-start-line="50" selection-start-column="4" selection-end-line="50" selection-end-column="4" />
+                  <folding>
+                    <element signature="e#0#30#0" expanded="true" />
+                    <element signature="e#576#605#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="administrator.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/server/routes/administrator.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="204">
+                  <caret line="12" column="46" lean-forward="true" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
+                  <folding>
+                    <element signature="e#0#30#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="user.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/server/controllers/user.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="17">
+                  <caret line="120" column="37" lean-forward="true" selection-start-line="120" selection-start-column="37" selection-end-line="120" selection-end-column="37" />
                   <folding />
                 </state>
               </provider>
@@ -50,33 +73,21 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="eventReducer.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/src/reducers/eventReducer.js">
+          <file leaf-file-name="admin.html" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/client/public/admin.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="170">
-                  <caret line="91" column="0" lean-forward="true" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
-                  <folding>
-                    <element signature="e#0#238#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="center.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/server/controllers/center.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="174">
-                  <caret line="223" column="28" lean-forward="false" selection-start-line="223" selection-start-column="28" selection-end-line="223" selection-end-column="28" />
+                <state relative-caret-position="141">
+                  <caret line="38" column="45" lean-forward="true" selection-start-line="38" selection-start-column="45" selection-end-line="38" selection-end-column="45" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="events.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/server/controllers/events.js">
+          <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/public/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="187">
-                  <caret line="74" column="25" lean-forward="true" selection-start-line="74" selection-start-column="25" selection-end-line="74" selection-end-column="25" />
+                <state relative-caret-position="119">
+                  <caret line="7" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -90,9 +101,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="HTML File" />
         <option value="Sass File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -156,9 +167,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/client/src/components/authentication/authFooter.js" />
-        <option value="$PROJECT_DIR$/client/src/components/authentication/AuthHeader.js" />
-        <option value="$PROJECT_DIR$/client/src/components/authentication/signup/signup.js" />
         <option value="$PROJECT_DIR$/client/src/components/authentication/signup/signUpForm.js" />
         <option value="$PROJECT_DIR$/client/src/components/authentication/signin/signin.js" />
         <option value="$PROJECT_DIR$/client/src/components/authentication/signin/signInForm.js" />
@@ -181,8 +189,6 @@
         <option value="$PROJECT_DIR$/server/routes/events.js" />
         <option value="$PROJECT_DIR$/server/routes/centers.js" />
         <option value="$PROJECT_DIR$/server/routes/index.js" />
-        <option value="$PROJECT_DIR$/server/app.js" />
-        <option value="$PROJECT_DIR$/server/routes/users.js" />
         <option value="$PROJECT_DIR$/server/middleware/validator.js" />
         <option value="$PROJECT_DIR$/client/src/actions/authActions.js" />
         <option value="$PROJECT_DIR$/client/src/index.js" />
@@ -207,6 +213,11 @@
         <option value="$PROJECT_DIR$/client/src/components/centerComponent/allCenters/allCenters.jsx" />
         <option value="$PROJECT_DIR$/client/src/components/bodyComponents/indexEventsCard.jsx" />
         <option value="$PROJECT_DIR$/server/controllers/center.js" />
+        <option value="$PROJECT_DIR$/server/routes/users.js" />
+        <option value="$PROJECT_DIR$/server/app.js" />
+        <option value="$PROJECT_DIR$/client/public/admin.html" />
+        <option value="$PROJECT_DIR$/server/routes/administrator.js" />
+        <option value="$PROJECT_DIR$/server/controllers/user.js" />
       </list>
     </option>
   </component>
@@ -265,11 +276,21 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="event-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="event-manager" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="client" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -287,51 +308,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="event-manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="event-manager" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bodyComponents" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="event-manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="event-manager" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
+              <option name="myItemId" value="public" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -511,14 +488,7 @@
       <workItem from="1517968848268" duration="7029000" />
       <workItem from="1518086785089" duration="12949000" />
       <workItem from="1518548666942" duration="69141000" />
-      <workItem from="1518996751215" duration="35746000" />
-    </task>
-    <task id="LOCAL-00024" summary="style: logo photoshop modification.">
-      <created>1510870237744</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1510870237744</updated>
+      <workItem from="1518996751215" duration="43597000" />
     </task>
     <task id="LOCAL-00025" summary="Refactor: Changed the delete button to be at the card-reveal section of the event card.">
       <created>1510914675276</created>
@@ -856,11 +826,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519080523399</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="fix: sshow no center or event when there no center or event data in the database.">
+      <created>1519122866937</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1519122866937</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="860665000" />
+    <option name="totallyTimeSpent" value="868516000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -940,7 +917,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix: sign-in to use redux authentication store to set authentication conditions for the application." />
     <MESSAGE value="feat: add center and fetch centers from API end-points." />
     <MESSAGE value="fix: center rendering fetched from API." />
     <MESSAGE value="feat: broke center details to two component for flexibility." />
@@ -965,7 +941,8 @@
     <MESSAGE value="changes: file rename from js to jsx (from standard react-script)" />
     <MESSAGE value="chores: search implementation completed. where users can search for both events and centers." />
     <MESSAGE value="fix: sshow events held by a center." />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: sshow events held by a center." />
+    <MESSAGE value="fix: sshow no center or event when there no center or event data in the database." />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: sshow no center or event when there no center or event data in the database." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -974,42 +951,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/public/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/bodyComponents/headNav/nav.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="29" column="50" lean-forward="false" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/bodyComponents/headNav/fixedNav.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/docs/swagger.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="24" lean-forward="true" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/middleware/validator.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="79">
@@ -1023,13 +964,6 @@
         <state relative-caret-position="-139">
           <caret line="26" column="2" lean-forward="true" selection-start-line="26" selection-start-column="2" selection-end-line="26" selection-end-column="2" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="43" column="41" lean-forward="true" selection-start-line="43" selection-start-column="41" selection-end-line="43" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -1097,6 +1031,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1644">
           <caret line="8" column="27" lean-forward="true" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1169,24 +1104,6 @@
         <state relative-caret-position="-810150">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="5" column="14" lean-forward="true" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/routes/users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="32" lean-forward="false" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#30#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1317,7 +1234,7 @@
         <state relative-caret-position="170">
           <caret line="91" column="0" lean-forward="true" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
           <folding>
-            <element signature="e#0#238#0" expanded="true" />
+            <element signature="e#0#238#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1364,28 +1281,99 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/controllers/center.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="223" column="28" lean-forward="false" selection-start-line="223" selection-start-column="28" selection-end-line="223" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/bodyComponents/indexEventsCard.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="107" column="33" lean-forward="true" selection-start-line="107" selection-start-column="33" selection-end-line="107" selection-end-column="33" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/centerComponent/allCenters/allCenters.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="true" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+        <state relative-caret-position="272">
+          <caret line="16" column="32" lean-forward="true" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="50" column="4" lean-forward="true" selection-start-line="50" selection-start-column="4" selection-end-line="50" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+            <element signature="e#576#605#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="73" column="23" lean-forward="true" selection-start-line="73" selection-start-column="23" selection-end-line="73" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/routes/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="11" column="59" lean-forward="false" selection-start-line="11" selection-start-column="59" selection-end-line="11" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/controllers/center.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="154" column="10" lean-forward="true" selection-start-line="154" selection-start-column="10" selection-end-line="162" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/controllers/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="120" column="37" lean-forward="true" selection-start-line="120" selection-start-column="37" selection-end-line="120" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/routes/administrator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="46" lean-forward="true" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/public/admin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="38" column="45" lean-forward="true" selection-start-line="38" selection-start-column="45" selection-end-line="38" selection-end-column="45" />
           <folding />
         </state>
       </provider>
