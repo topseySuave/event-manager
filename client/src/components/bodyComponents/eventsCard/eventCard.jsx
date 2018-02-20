@@ -11,7 +11,7 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import { EditorModeEdit, ActionDelete } from 'material-ui/svg-icons/';
+import { EditorModeEdit, ActionDelete, ImageDehaze } from 'material-ui/svg-icons/';
 
 import { deleteEventRequest, editEventRequestAction } from '../../../actions/events-actions';
 import EditEventModal from '../../modals/eventModalForm/editEventModal';
@@ -77,6 +77,7 @@ class EventCard extends Component {
                     <MenuItem
                         onClick={() => this.handleAlertOpen()}
                         primaryText="Delete"
+                        style={{color: 'red'}}
                         leftIcon={<ActionDelete />}
                     />
                 </IconMenu>
@@ -132,7 +133,7 @@ class EventCard extends Component {
                                 classNames("btn-floating", "activator", "halfway-fab", "waves-effect", "waves-light", "tooltipped", shareColor)
                             }
                            data-position="bottom" data-tooltip="share">
-                            <i className="material-icons">share</i>
+                            <i className="material-icons">dehaze</i>
                         </a>
                     </div>
                     <div className="card-content">

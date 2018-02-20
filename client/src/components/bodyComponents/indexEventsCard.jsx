@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { PropsTypes } from 'prop-types';
 
 import shortid from 'shortid';
+import isEmpty from 'lodash/isEmpty';
 import { CircularLoader } from '../loader';
 import EventCard from './eventsCard/eventCard';
 import { fetchEventRequest, loadMoreEvents } from './../../actions/events-actions';
@@ -80,6 +81,17 @@ class IndexEventCardHolder extends Component {
     ));
   }
 
+  renderNoEvent(){
+    let { events } = this.state;
+    if(isEmpty(events)){
+      return (
+        <h4 className="bold grey-text lighten-2 center-align">
+          <p>No Event Available..</p>
+        </h4>
+      )
+    }
+  }
+
   render() {
     this.autoLoadMore();
     let {
@@ -97,6 +109,7 @@ class IndexEventCardHolder extends Component {
               <div className="col s12 cards-container">
                 {this.renderEventsCard()}
               </div>
+              {this.renderNoEvent()}
               {
                 (pageCount > 1) ? (loadingmore) ? <CircularLoader /> : (pageSize !== totalCount) ? <button onClick={() => this.loadMore()} className="col offset-s3 s6 btn waves-effect gradient__bg"> load more </button> : '' : ''
               }
