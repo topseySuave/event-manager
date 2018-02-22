@@ -8,7 +8,7 @@ import webpack from 'webpack';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import swagger from 'swagger-ui-express';
 import dotenv from 'dotenv';
-import swaggerDoc from './docs/swagger.json';
+import swaggerDoc from './docs/swagger';
 import event from './routes/events';
 import center from './routes/centers';
 import users from './routes/users';

@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.TEXT,
     role: {
       type: DataTypes.BOOLEAN,
+      default: false
     }
   }, {
     classMethods: {
