@@ -13,7 +13,7 @@
     "build:client": "webpack --config webpack.config.js",
     "build:server": "babel -d ./build ./server -s",
     "start:client": "npm run webpack",
-    "start:server": "nodemon --exec npm run start:dev",
+    "start:server": "nodemon --exec npm run start",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "test:dev": "npm run test && npm run coverage",
