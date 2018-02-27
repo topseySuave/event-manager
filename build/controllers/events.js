@@ -88,10 +88,14 @@ var Events = exports.Events = function () {
   }, {
     key: 'getEvents',
     value: function getEvents(req, res) {
+      var limitValue = parseInt(req.query.limit, 10) || process.env.DATA_LIMIT;
       var order = req.query.order ? req.query.order : 'desc';
       if (req.query && req.query.sort) {
         if (order) {
           Event.findAll({
+            where: {
+              startDate: _defineProperty({}, Op.gte, new Date().toDateString())
+            },
             order: [['id', order]]
           }).then(function (returnedEvent) {
             if (!returnedEvent) {
@@ -104,7 +108,7 @@ var Events = exports.Events = function () {
             return res.status(200).send({
               statusCode: 200,
               message: 'Event(s) found',
-              center: returnedEvent
+              events: returnedEvent
             });
           }).catch(function () {
             return res.status(500).send({
@@ -113,23 +117,22 @@ var Events = exports.Events = function () {
             });
           });
         }
-      } else if (req.query.search && req.query.limit) {
-        var limitValue = parseInt(req.query.limit, 10) || 10;
+      } else if (req.query.search || req.query.limit) {
+        var _where;
+
         var search = req.query.search.split(' ');
 
         /**
-        * Search with Title But Map first
-        **/
+          * Search with Title But Map first
+          * */
         var titleResp = search.map(function (value) {
           return {
-            title: _defineProperty({}, Op.ilike, '%' + value + '%')
+            title: _defineProperty({}, Op.iLike, '%' + value + '%')
           };
         });
 
         Event.findAll({
-          where: {
-            titleResp: titleResp
-          },
+          where: (_where = {}, _defineProperty(_where, Op.or, titleResp), _defineProperty(_where, 'startDate', _defineProperty({}, Op.gte, new Date().toDateString())), _where),
           order: [['id', order]],
           limit: limitValue
         }).then(function (searchResults) {
@@ -142,21 +145,22 @@ var Events = exports.Events = function () {
           return res.status(200).send({
             statusCode: 200,
             message: 'The Events found',
-            searchResults: searchResults
+            events: searchResults
           });
         });
       } else {
-        var _limitValue = parseInt(req.query.limit, 10) || 5;
         var pageValue = req.query.next || 0;
-
         Event.findAndCountAll({
+          where: {
+            startDate: _defineProperty({}, Op.gte, new Date().toDateString())
+          },
           include: [{
             model: CenterModel,
             as: 'center'
           }],
           order: [['id', order]],
-          limit: _limitValue,
-          offset: pageValue > 1 ? pageValue * _limitValue - _limitValue : pageValue
+          limit: limitValue,
+          offset: pageValue > 1 ? pageValue * limitValue - limitValue : pageValue
         }).then(function (events) {
           if (events.length === 0) {
             return res.status(404).send({
@@ -170,7 +174,7 @@ var Events = exports.Events = function () {
             message: 'Successful Events!',
             pageSize: parseInt(events.rows.length, 10),
             totalCount: events.count,
-            pageCount: Math.ceil(events.count / _limitValue),
+            pageCount: Math.ceil(events.count / limitValue),
             page: pageValue ? parseInt(pageValue, 10) : parseInt(pageValue + 1, 10),
             events: events.rows
           });
@@ -192,7 +196,7 @@ var Events = exports.Events = function () {
   }, {
     key: 'createEvent',
     value: function createEvent(req, res) {
-      var _startDate, _endDate;
+      var _startDate4, _endDate;
 
       var startDate = new Date(req.body.startDate);
       var endDate = new Date(req.body.endDate);
@@ -201,7 +205,7 @@ var Events = exports.Events = function () {
       Event.findOne({
         where: {
           centerId: req.body.centerId,
-          startDate: (_startDate = {}, _defineProperty(_startDate, Op.lte, endDate), _defineProperty(_startDate, Op.lte, startDate), _startDate),
+          startDate: (_startDate4 = {}, _defineProperty(_startDate4, Op.lte, endDate), _defineProperty(_startDate4, Op.lte, startDate), _startDate4),
           endDate: (_endDate = {}, _defineProperty(_endDate, Op.gte, startDate), _defineProperty(_endDate, Op.gte, endDate), _endDate)
         }
       }).then(function (result) {

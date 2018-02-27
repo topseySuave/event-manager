@@ -23,9 +23,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 // dotenv.config();
 var Op = _models2.default.sequelize.Op;
-var Center = _models2.default.Centers;
-var Events = _models2.default.Events;
 
+var Center = _models2.default.Centers;
+var Event = _models2.default.Events;
 
 var sortSearchRequest = function sortSearchRequest(search, filterBy) {
   var reqSearch = void 0;
@@ -35,14 +35,6 @@ var sortSearchRequest = function sortSearchRequest(search, filterBy) {
       if (value !== '') {
         return {
           location: _defineProperty({}, Op.iLike, '%' + value + '%')
-        };
-      }
-    });
-  } else if (filterBy === 'title') {
-    reqSearch = search.map(function (value) {
-      if (value !== '') {
-        return {
-          title: _defineProperty({}, Op.iLike, '%' + value + '%')
         };
       }
     });
@@ -59,6 +51,14 @@ var sortSearchRequest = function sortSearchRequest(search, filterBy) {
       if (value !== '') {
         return {
           capacity: _defineProperty({}, Op.iLike, '%' + value + '%')
+        };
+      }
+    });
+  } else {
+    reqSearch = search.map(function (value) {
+      if (value !== '') {
+        return {
+          title: _defineProperty({}, Op.iLike, '%' + value + '%')
         };
       }
     });
@@ -212,6 +212,7 @@ var Centers = exports.Centers = function () {
     key: 'getCenter',
     value: function getCenter(req, res) {
       var order = req.query.order || 'desc';
+      var limitValue = req.query.limit || process.env.DATA_LIMIT;
       var centerId = parseInt(req.params.id, 10);
       if (isNaN(centerId)) {
         return res.status(400).send({
@@ -223,12 +224,7 @@ var Centers = exports.Centers = function () {
       Center.findOne({
         where: {
           id: centerId
-        },
-        include: [{
-          model: Events,
-          as: 'events'
-        }],
-        order: [['id', order]]
+        }
       }).then(function (centr) {
         if (!centr) {
           return res.status(404).send({
@@ -237,11 +233,36 @@ var Centers = exports.Centers = function () {
           });
         }
 
-        return res.status(200).send({
-          statusCode: 200,
-          message: 'Center with id: ' + centerId + ' was found',
-          centr: centr
+        return Event.findAndCountAll({
+          where: {
+            centerId: centerId,
+            startDate: new Date().toDateString()
+          },
+          order: [['id', order]],
+          limit: limitValue
+        }).then(function (event) {
+          centr.event = event.rows;
+          return res.status(200).send({
+            statusCode: 200,
+            message: 'Center with id: ' + centerId + ' was found',
+            events: event.rows,
+            centr: centr
+          });
+        }).catch(function (err) {
+          if (err) {
+            return res.status(500).send({
+              statusCode: 500,
+              message: 'Error getting center details'
+            });
+          }
         });
+      }).catch(function (err) {
+        if (err) {
+          return res.status(500).send({
+            statusCode: 500,
+            message: 'Error getting center details'
+          });
+        }
       });
     }
 
@@ -259,7 +280,7 @@ var Centers = exports.Centers = function () {
   }, {
     key: 'getCenters',
     value: function getCenters(req, res) {
-      var limitValue = parseInt(req.query.limit, 10) || 5;
+      var limitValue = parseInt(req.query.limit, 10) || process.env.DATA_LIMIT;
       var pageValue = req.query.next || 0;
       var order = req.query.order || 'desc';
       if (req.query.search || req.query.limit) {
@@ -268,7 +289,7 @@ var Centers = exports.Centers = function () {
         if (req.query.filter) {
           filterBy = req.query.filter;
         }
-        var search = req.query.search.split(',');
+        var search = req.query.search.split(' ');
 
         reqSearch = sortSearchRequest(search, filterBy);
         Center.findAll({
