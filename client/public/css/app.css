@@ -313,6 +313,9 @@ input[type=range] {
   .small__duration i {
     font-size: 12px !important; }
 
+h4.bold.grey-text.center-align {
+  margin-top: 150px !important; }
+
 /*center details css */
 .center__details {
   padding: 10px; }
