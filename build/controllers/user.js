@@ -182,8 +182,8 @@ var Users = function () {
                         (0, _mailer2.default)(foundUser.email, subject, subject, htmlOutput);
                         return res.status(200).send({
                             statusCode: 200,
-                            message: 'User has been assigned as administrator',
-                            user: foundUser
+                            message: 'User has been assigned as administrator email notification as been sent to ' + updatedUser.email,
+                            user: updatedUser
                         });
                     });
                 } else {
