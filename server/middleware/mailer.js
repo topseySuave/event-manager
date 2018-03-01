@@ -7,7 +7,7 @@ export default (to, subject, text, html) => {
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-            user: 'gabrielsuave17@gmail.com', // generated ethereal user
+            user: 'noreply@gistout.com', // generated ethereal user
             pass: 'gabmicah'  // generated ethereal password
         },
         tls: {
@@ -17,7 +17,7 @@ export default (to, subject, text, html) => {
 
     // setup email data with unicode symbols
     let mailOptions = {
-        from: '"Boots Events Manager 👻" <gabrielsuave17@gmail.com>', // sender address
+        from: '"Boots Events Manager 👻" <noreply@gistout.com>', // sender address
         to: to, // list of receivers
         subject: `${subject} ✔`, // Subject line
         text: text, // plain text body
