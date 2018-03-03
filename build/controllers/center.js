@@ -155,6 +155,8 @@ var Centers = exports.Centers = function () {
   }, {
     key: 'updateCenter',
     value: function updateCenter(req, res) {
+      var order = req.query.order || 'desc';
+      var limitValue = req.query.limit || process.env.DATA_LIMIT;
       var centerId = parseInt(req.params.id, 10);
       if (isNaN(centerId)) {
         return res.status(400).send({
@@ -163,8 +165,8 @@ var Centers = exports.Centers = function () {
         });
       }
 
-      Center.findById(centerId).then(function (center) {
-        if (!center) {
+      Center.findById(centerId).then(function (centr) {
+        if (!centr) {
           return res.status(404).send({
             statusCode: 404,
             message: 'Center not Found with ' + centerId
@@ -181,19 +183,47 @@ var Centers = exports.Centers = function () {
           price: parseInt(req.body.price, 10) || center.price
         }, {
           where: {
-            id: req.body.id
+            id: centerId
           }
-        }).then(function (centerUpdated) {
-          return res.status(200).send({
-            statusCode: 200,
-            message: 'Center has been created',
-            center: center
+        }).then(function (updatedCenter) {
+          if (updatedCenter) {
+            Event.findAndCountAll({
+              where: {
+                centerId: centerId,
+                startDate: _defineProperty({}, Op.gte, new Date().toDateString())
+              },
+              order: [['id', order]],
+              limit: limitValue
+            }).then(function (event) {
+              centr.event = event.rows;
+              return res.status(200).send({
+                statusCode: 200,
+                message: 'Center has been updated',
+                events: event.rows,
+                centr: centr
+              });
+            }).catch(function (err) {
+              if (err) {
+                return res.status(500).send({
+                  statusCode: 500,
+                  message: 'Error getting events'
+                });
+              }
+            });
+          }
+        }).catch(function (err) {
+          return res.status(500).send({
+            error: true,
+            message: 'Error Updating center',
+            errorMessage: err
           });
-        }).catch(function (error) {
-          return res.status(500).send(error);
         });
       }).catch(function (error) {
-        return res.status(500).send(error);
+        return res.status(500).send({
+          error: true,
+          message: 'Error finding center',
+          errorMessage: error
+        });
       });
     }
 
@@ -236,7 +266,7 @@ var Centers = exports.Centers = function () {
         return Event.findAndCountAll({
           where: {
             centerId: centerId,
-            startDate: new Date().toDateString()
+            startDate: _defineProperty({}, Op.gte, new Date().toDateString())
           },
           order: [['id', order]],
           limit: limitValue

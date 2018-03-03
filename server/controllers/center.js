@@ -134,6 +134,8 @@ export class Centers {
      * @memberof Center
      */
   updateCenter(req, res) {
+    const order = req.query.order || 'desc';
+    const limitValue = req.query.limit || process.env.DATA_LIMIT;
     const centerId = parseInt(req.params.id, 10);
     if (isNaN(centerId)) {
       return res.status(400).send({
@@ -143,38 +145,72 @@ export class Centers {
     }
 
     Center.findById(centerId)
-      .then((center) => {
-        if (!center) {
+      .then((centr) => {
+        if (!centr) {
           return res.status(404).send({
             statusCode: 404,
             message: `Center not Found with ${centerId}`
           });
         }
 
-        Center.update(
-          {
-            title: req.body.title || center.title,
-            img_url: req.body.img_url || center.img_url,
-            location: req.body.location || center.location,
-            description: req.body.description || center.description,
-            facilities: req.body.facilities || center.facilities,
-            capacity: parseInt(req.body.capacity, 10) || center.capacity,
-            price: parseInt(req.body.price, 10) || center.price,
-          },
-          {
-            where: {
-              id: req.body.id
-            }
+        Center.update({
+          title: req.body.title || center.title,
+          img_url: req.body.img_url || center.img_url,
+          location: req.body.location || center.location,
+          description: req.body.description || center.description,
+          facilities: req.body.facilities || center.facilities,
+          capacity: parseInt(req.body.capacity, 10) || center.capacity,
+          price: parseInt(req.body.price, 10) || center.price,
+        },
+        {
+          where: {
+            id: centerId
           }
-        )
-          .then(centerUpdated => res.status(200).send({
-            statusCode: 200,
-            message: 'Center has been created',
-            center
-          }))
-          .catch(error => res.status(500).send(error));
+        })
+          .then((updatedCenter) => {
+            if(updatedCenter){
+              Event.findAndCountAll({
+                  where: {
+                    centerId,
+                    startDate: {
+                      [Op.gte]: new Date().toDateString()
+                    }
+                  },
+                  order: [
+                    ['id', order]
+                  ],
+                  limit: limitValue
+                })
+                  .then((event) => {
+                    centr.event = event.rows;
+                    return res.status(200).send({
+                      statusCode: 200,
+                      message: `Center has been updated`,
+                      events: event.rows,
+                      centr,
+                    });
+                  })
+                  .catch((err) => {
+                    if(err){
+                      return res.status(500).send({
+                        statusCode: 500,
+                        message: `Error getting events`
+                      });
+                    }
+                  })
+            }
+          })
+          .catch(err => res.status(500).send({
+            error: true,
+            message: `Error Updating center`,
+            errorMessage: err
+          }));
       })
-      .catch(error => res.status(500).send(error));
+      .catch(error => res.status(500).send({
+          error: true,
+          message: `Error finding center`,
+          errorMessage: error
+      }));
   }
 
   /**
@@ -214,7 +250,9 @@ export class Centers {
         return Event.findAndCountAll({
           where: {
             centerId,
-            startDate: new Date().toDateString()
+            startDate: {
+              [Op.gte]: new Date().toDateString()
+            }
           },
           order: [
               ['id', order]

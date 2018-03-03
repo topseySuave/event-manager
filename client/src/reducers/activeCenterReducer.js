@@ -12,6 +12,8 @@ export default (state = {}, action = {}) => {
             };
 
         case EDIT_CENTER:
+            let newState = Object.assign({}, state);
+            newState.editCenter = false;
             return action.payload;
 
         case REMOVE_CENTER:

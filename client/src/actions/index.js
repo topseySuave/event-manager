@@ -71,6 +71,12 @@ export const EDIT_CENTER_REQUEST = 'EDIT_CENTER_REQUEST';
 export const EDIT_CENTER = 'EDIT_CENTER';
 
 /**
+ * EDIT_CENTER_FAILURE action Constant,
+ * action when edit center request failed.
+ * * */
+export const EDIT_CENTER_FAILURE = 'EDIT_CENTER_FAILURE';
+
+/**
  * FETCH_EVENTS action constants.
  * TO fetch all centers from the database and add to the store.
  * * */

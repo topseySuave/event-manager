@@ -6,6 +6,7 @@ import models from '../models';
 import mailer from '../middleware/mailer';
 
 const User = models.User;
+const Events = models.Events;
 const Op = models.sequelize.Op;
 dotenv.config();
 
@@ -156,11 +157,7 @@ export default class Users {
                             </ul>
                         `;
                         mailer(foundUser.email, subject, subject, htmlOutput);
-                        return res.status(200).send({
-                            statusCode: 200,
-                            message: 'User has been assigned as administrator email notification as been sent to ' + updatedUser.email,
-                            user: updatedUser
-                        });
+                        return res.redirect('/');
                     });
                 } else {
                     return res.status(401).send({
@@ -193,30 +190,57 @@ export default class Users {
             }
         })
             .then((foundUser) => {
-                User.destroy({
-                    where: {
-                        id: foundUser.id
-                    }
-                })
-                    .then((deletedUser) => {
-                        if(deletedUser){
-                            res.status(200).send({
-                                message: 'User has been deleted successfully',
-                                error: false,
-                                user: foundUser
-                            });
-                        }else{
-                            res.send({
-                                message: 'User was not deleted, please try again',
-                                error: true
-                            });
+                if(foundUser){
+                    Events.destroy({
+                        where: {
+                            userId: foundUser.id
                         }
                     })
-                    .catch(error => res.status(500).send({
+                        .then((deletedEvents) => {
+                            if(deletedEvents){
+                                User.destroy({
+                                    where: {
+                                        id: foundUser.id
+                                    }
+                                })
+                                    .then((deletedUser) => {
+                                        if(deletedUser){
+                                            res.status(200).send({
+                                                message: 'User has been deleted successfully',
+                                                error: false,
+                                                user: foundUser
+                                            });
+                                        }else{
+                                            res.send({
+                                                message: 'User was not deleted, please try again',
+                                                error: true
+                                            });
+                                        }
+                                    })
+                                    .catch(error => res.status(500).send({
+                                        error: true,
+                                        message: 'Houston we have a problem.!! Error deleting User',
+                                        errorMessage: error
+                                    }));
+                            }else{
+                                res.status(200).send({
+                                    message: 'User has been deleted successfully',
+                                    error: false,
+                                    user: foundUser
+                                });
+                            }
+                        })
+                        .catch(err => res.status(500).send({
+                            error: true,
+                            message: 'Houston we have a problem.!! Error deleting Events',
+                            errorMessage: err
+                        }));
+                }else{
+                    res.send({
                         error: true,
-                        message: 'Houston we have a problem.!!',
-                        errorMessage: error
-                    }));
+                        message: 'User was not found',
+                    });
+                }
             });
     }
 }

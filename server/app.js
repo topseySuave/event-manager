@@ -59,17 +59,6 @@ app.get('*', (req, res) => {
   res.status(200).sendFile(path.join(__dirname, '..', 'client/public/index.html'));
 });
 
-app.get('*.js.gz', function (req, res, next) {
-    res.set('Content-Encoding', 'gzip');
-    res.set('Content-Type', 'application/javascript');
-    next();
-});
-app.get('*.css.gz', function (req, res, next) {
-    res.set('Content-Encoding', 'gzip');
-    res.set('Content-Type', 'text/css');
-    next();
-});
-
 app.use((req, res, next) => {
   const err = res.status(404).send({
     error: '404: Sorry Page Not Found!'

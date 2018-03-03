@@ -28,17 +28,10 @@ class CenterDetail extends Component {
             isLoading: true,
             openAlert: false,
             open: false,
-            event: {},
+            events: [],
             activeCenter: {
                 centr: {
-                    id: '',
-                    title: '',
-                    img_url: '',
-                    location: '',
-                    description: '',
-                    facilities: [],
-                    capacity: '',
-                    price: ''
+                    title: 'center'
                 }
             }
         }
@@ -60,7 +53,7 @@ class CenterDetail extends Component {
           if(newProps.activeCenterDetail.centr.events){
             delete newProps.activeCenterDetail.events;
           }
-          this.setState({isLoading: false, activeCenter: newProps.activeCenterDetail});
+          this.setState({isLoading: false, events: newProps.activeCenterDetail.events, activeCenter: newProps.activeCenterDetail});
         }
     }
 

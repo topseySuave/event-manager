@@ -13,8 +13,10 @@ class CurrentEventForCenter extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.event.length > 0) {
-      this.setState({ hasEvent: true, eventArr: newProps });
+    if(newProps.event){
+      if (newProps.event.length > 0) {
+        this.setState({ hasEvent: true, eventArr: newProps });
+      }
     }
   }
 

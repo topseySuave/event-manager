@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        User.hasMany(models.Event, {
+        User.hasMany(models.Events, {
           foreignKey: null,
           as: 'events'
         })

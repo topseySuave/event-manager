@@ -1,6 +1,6 @@
 import axios from 'axios';
 // import jwtDecode from 'jwt-decode'
-import { ADD_CENTER_SUCCESS, ADD_CENTER_REQUEST, ADD_CENTER_FAlLURE, EDIT_CENTER } from './';
+import { ADD_CENTER_SUCCESS, ADD_CENTER_REQUEST, ADD_CENTER_FAlLURE, EDIT_CENTER, EDIT_CENTER_FAILURE } from './';
 
 const centerApi = '/api/v1/centers';
 
@@ -23,10 +23,19 @@ const addCenterPayload = (payload, response = null) => {
   }
 };
 
-const updateCenterPayload = data => ({
-  type: EDIT_CENTER,
-  payload: data
-});
+const updateCenterPayload = (data, res) => {
+  if(res === 'success'){
+    return {
+      type: EDIT_CENTER,
+      payload: data
+    }
+  }else if(res === 'failure'){
+    return {
+      type: EDIT_CENTER_FAILURE,
+      payload: data
+    }
+  }
+};
 
 export const createCenterRequest = centerData => (dispatch) => {
   dispatch(addCenterPayload(centerData, 'request'));
@@ -40,15 +49,19 @@ export const createCenterRequest = centerData => (dispatch) => {
     .catch(err => dispatch(addCenterPayload(err, 'failure')));
 };
 
-export const updateCenterRequest = centerData => dispatch => axios.post(`${centerApi}/${centerData.id}`, centerData)
-  .then(({ data }) => {
-    if (data.statusCode === 200) {
-      return dispatch(updateCenterPayload(data));
+export const updateCenterRequest = (centerData) => {
+    return dispatch => {
+        return axios.post(`${centerApi}/${centerData.id}`, centerData)
+            .then(({ data }) => {
+                if (data.statusCode === 200) {
+                    return dispatch(updateCenterPayload(data, 'success'));
+                }
+                Materialize.toast(data.message, 5000);
+                return data;
+            })
+            .catch(err => dispatch(updateCenterPayload(err, 'failure')));
     }
-    Materialize.toast(data.message, 5000);
-    return data;
-  })
-  .catch(err => dispatch(addCenterPayload(err, 'failure')));
+};
 
 // let dataToSend = new FormData();
 // dataToSend.append('title', centerData.title);

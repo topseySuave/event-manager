@@ -1,1 +1,912 @@
-webpackHotUpdate(0,{1532:function(module,exports,__webpack_require__){"use strict";eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(0);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactRedux = __webpack_require__(17);\n\nvar _reactRouterDom = __webpack_require__(21);\n\nvar _redux = __webpack_require__(18);\n\nvar _shortid = __webpack_require__(32);\n\nvar _shortid2 = _interopRequireDefault(_shortid);\n\nvar _propTypes = __webpack_require__(3);\n\nvar _isEmpty = __webpack_require__(39);\n\nvar _isEmpty2 = _interopRequireDefault(_isEmpty);\n\nvar _fetchCenterAction = __webpack_require__(240);\n\nvar _loader = __webpack_require__(90);\n\nvar _helpers = __webpack_require__(144);\n\nvar _helpers2 = _interopRequireDefault(_helpers);\n\nvar _searchFasterForm = __webpack_require__(1533);\n\nvar _searchFasterForm2 = _interopRequireDefault(_searchFasterForm);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\n// import CenterCard from '../centerCard/centerCard';\n\nvar AllCenters = function (_Component) {\n  _inherits(AllCenters, _Component);\n\n  function AllCenters(props) {\n    _classCallCheck(this, AllCenters);\n\n    var _this = _possibleConstructorReturn(this, (AllCenters.__proto__ || Object.getPrototypeOf(AllCenters)).call(this, props));\n\n    _this.helper = new _helpers2.default();\n    _this.state = {\n      isLoading: true,\n      loadmore: null,\n      loadingmore: null\n    };\n    return _this;\n  }\n\n  _createClass(AllCenters, [{\n    key: 'componentWillMount',\n    value: function componentWillMount() {\n      this.props.fetchCentersAction();\n    }\n  }, {\n    key: 'componentWillReceiveProps',\n    value: function componentWillReceiveProps(newProps) {\n      var _newProps$centerStore = newProps.centerStore,\n          centers = _newProps$centerStore.centers,\n          page = _newProps$centerStore.page,\n          pageCount = _newProps$centerStore.pageCount,\n          pageSize = _newProps$centerStore.pageSize,\n          totalCount = _newProps$centerStore.totalCount,\n          loadingmore = _newProps$centerStore.loadingmore,\n          loadmore = _newProps$centerStore.loadmore;\n\n\n      if (newProps) {\n        this.setState({\n          isLoading: false,\n          page: page,\n          pageSize: pageSize,\n          totalCount: totalCount,\n          loadmore: loadmore,\n          loadingmore: loadingmore,\n          pageCount: pageCount\n        });\n      }\n    }\n  }, {\n    key: 'showCentersCard',\n    value: function showCentersCard() {\n      var _this2 = this;\n\n      var centers = this.props.centerStore.centers;\n\n      return centers.map(function (center) {\n        var to = 'center/' + center.id + '/' + _this2.helper.sanitizeString(center.title);\n        return _react2.default.createElement(\n          _reactRouterDom.Link,\n          { key: _shortid2.default.generate(), to: to, href: to },\n          _react2.default.createElement(\n            'div',\n            { className: 'card' },\n            !!center.img_url && _react2.default.createElement(\n              'div',\n              { className: 'card-image' },\n              _react2.default.createElement('img', { src: center.img_url, alt: center.title })\n            ),\n            _react2.default.createElement(\n              'div',\n              { className: 'card-content black-text' },\n              _react2.default.createElement(\n                'p',\n                { className: 'f__size' },\n                center.title\n              ),\n              _react2.default.createElement(\n                'p',\n                null,\n                _react2.default.createElement(\n                  'i',\n                  { className: 'material-icons f15' },\n                  'location_on'\n                ),\n                center.location\n              )\n            )\n          )\n        );\n      });\n    }\n  }, {\n    key: 'renderNoCenter',\n    value: function renderNoCenter() {\n      var centers = this.props.centerStore.centers;\n\n      if ((0, _isEmpty2.default)(centers)) {\n        return _react2.default.createElement(\n          'h4',\n          { className: 'bold grey-text lighten-2 center-align' },\n          _react2.default.createElement(\n            'p',\n            null,\n            'No centers Available...'\n          )\n        );\n      }\n    }\n  }, {\n    key: 'initInfiniteScroll',\n    value: function initInfiniteScroll() {\n      var _this3 = this;\n\n      var winHeight = void 0,\n          winScrollTop = void 0,\n          docHeight = void 0,\n          offset = void 0;\n      $(window).scroll(function () {\n        winHeight = $(window).height();\n        winScrollTop = $(window).scrollTop();\n        docHeight = $(document).height();\n\n        if (docHeight - winHeight === winScrollTop) {\n          /**\r\n             * make loadmore request\r\n             * * */\n          offset = _this3.state.page + 1;\n          if (_this3.state.loadmore) {\n            _this3.props.loadMoreCenters(offset);\n          }\n        }\n      });\n    }\n  }, {\n    key: 'autoLoadMore',\n    value: function autoLoadMore() {\n      if (this.state.loadmore) {\n        this.initInfiniteScroll();\n      }\n    }\n  }, {\n    key: 'loadMore',\n    value: function loadMore() {\n      /**\r\n         * make loadmore request\r\n         * * */\n      var offset = this.state.page + 1;\n      this.props.loadMoreCenters(offset);\n    }\n  }, {\n    key: 'render',\n    value: function render() {\n      var _this4 = this;\n\n      this.autoLoadMore();\n      var _state = this.state,\n          isLoading = _state.isLoading,\n          loadingmore = _state.loadingmore,\n          pageCount = _state.pageCount,\n          pageSize = _state.pageSize,\n          totalCount = _state.totalCount;\n\n      return _react2.default.createElement(\n        'div',\n        { className: 'container' },\n        _react2.default.createElement(\n          'div',\n          { className: 'center__holdr' },\n          _react2.default.createElement(\n            'div',\n            { className: 'row relative' },\n            _react2.default.createElement(\n              'div',\n              { className: 'col s12 l12', style: { marginBottom: 60 + 'px' } },\n              _react2.default.createElement(\n                'h4',\n                { className: 'center-align' },\n                'Boots Centers'\n              ),\n              _react2.default.createElement(\n                'div',\n                { className: 'row' },\n                isLoading ? _react2.default.createElement(_loader.CircularLoader, null) : _react2.default.createElement(\n                  'div',\n                  { className: 'col s12 cards-container' },\n                  this.showCentersCard()\n                ),\n                this.renderNoCenter(),\n                isLoading ? '' : pageCount > 1 ? loadingmore ? _react2.default.createElement(_loader.CircularLoader, null) : pageSize !== totalCount ? _react2.default.createElement(\n                  'button',\n                  { onClick: function onClick() {\n                      return _this4.loadMore();\n                    }, className: 'col offset-s3 s6 btn waves-effect gradient__bg' },\n                  ' load more '\n                ) : '' : ''\n              )\n            )\n          )\n        )\n      );\n    }\n  }]);\n\n  return AllCenters;\n}(_react.Component);\n\nAllCenters.propTypes = {\n  fetchCentersAction: _propTypes.PropTypes.func.isRequired,\n  centerStore: _propTypes.PropTypes.object.isRequired,\n  loadMoreCenters: _propTypes.PropTypes.func.isRequired\n};\n\nvar mapStateToProps = function mapStateToProps(state) {\n  return {\n    centerStore: state.centerReducer\n  };\n};\n\nvar mapDispatchToProps = function mapDispatchToProps(dispatch) {\n  return (0, _redux.bindActionCreators)({ fetchCentersAction: _fetchCenterAction.fetchCentersAction, loadMoreCenters: _fetchCenterAction.loadMoreCenters }, dispatch);\n};\n\nexports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(AllCenters);//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9jbGllbnQvc3JjL2NvbXBvbmVudHMvY2VudGVyQ29tcG9uZW50L2FsbENlbnRlcnMvYWxsQ2VudGVycy5qc3g/OTA2ZCJdLCJuYW1lcyI6WyJBbGxDZW50ZXJzIiwicHJvcHMiLCJoZWxwZXIiLCJzdGF0ZSIsImlzTG9hZGluZyIsImxvYWRtb3JlIiwibG9hZGluZ21vcmUiLCJmZXRjaENlbnRlcnNBY3Rpb24iLCJuZXdQcm9wcyIsImNlbnRlclN0b3JlIiwiY2VudGVycyIsInBhZ2UiLCJwYWdlQ291bnQiLCJwYWdlU2l6ZSIsInRvdGFsQ291bnQiLCJzZXRTdGF0ZSIsIm1hcCIsImNlbnRlciIsInRvIiwiaWQiLCJzYW5pdGl6ZVN0cmluZyIsInRpdGxlIiwiZ2VuZXJhdGUiLCJpbWdfdXJsIiwibG9jYXRpb24iLCJ3aW5IZWlnaHQiLCJ3aW5TY3JvbGxUb3AiLCJkb2NIZWlnaHQiLCJvZmZzZXQiLCIkIiwid2luZG93Iiwic2Nyb2xsIiwiaGVpZ2h0Iiwic2Nyb2xsVG9wIiwiZG9jdW1lbnQiLCJsb2FkTW9yZUNlbnRlcnMiLCJpbml0SW5maW5pdGVTY3JvbGwiLCJhdXRvTG9hZE1vcmUiLCJtYXJnaW5Cb3R0b20iLCJzaG93Q2VudGVyc0NhcmQiLCJyZW5kZXJOb0NlbnRlciIsImxvYWRNb3JlIiwicHJvcFR5cGVzIiwiZnVuYyIsImlzUmVxdWlyZWQiLCJvYmplY3QiLCJtYXBTdGF0ZVRvUHJvcHMiLCJjZW50ZXJSZWR1Y2VyIiwibWFwRGlzcGF0Y2hUb1Byb3BzIiwiZGlzcGF0Y2giXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQUE7Ozs7QUFDQTs7QUFDQTs7QUFDQTs7QUFDQTs7OztBQUNBOztBQUNBOzs7O0FBQ0E7O0FBQ0E7O0FBQ0E7Ozs7QUFDQTs7Ozs7Ozs7Ozs7O0FBQ0E7O0lBRU1BLFU7OztBQUNKLHNCQUFZQyxLQUFaLEVBQW1CO0FBQUE7O0FBQUEsd0hBQ1hBLEtBRFc7O0FBRWpCLFVBQUtDLE1BQUwsR0FBYyx1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QkFBakIsRUFBd0MsV0FBVSxnREFBbEQ7QUFBQTtBQUFBLGlCQUE1QixHQUFzSixFQUE3TSxHQUFrTjtBQVJ6TztBQUZGO0FBSkY7QUFERjtBQURGLE9BREY7QUF5QkQ7Ozs7OztBQUdIekMsV0FBVzBDLFNBQVgsR0FBdUI7QUFDckJuQyxzQkFBb0IscUJBQVVvQyxJQUFWLENBQWVDLFVBRGQ7QUFFckJuQyxlQUFhLHFCQUFVb0MsTUFBVixDQUFpQkQsVUFGVDtBQUdyQlQsbUJBQWlCLHFCQUFVUSxJQUFWLENBQWVDO0FBSFgsQ0FBdkI7O0FBTUEsSUFBTUUsa0JBQWtCLFNBQWxCQSxlQUFrQjtBQUFBLFNBQVU7QUFDaENyQyxpQkFBYU4sTUFBTTRDO0FBRGEsR0FBVjtBQUFBLENBQXhCOztBQUlBLElBQU1DLHFCQUFxQixTQUFyQkEsa0JBQXFCO0FBQUEsU0FBWSwrQkFBbUIsRUFBRXpDLHlEQUFGLEVBQXNCNEIsbURBQXRCLEVBQW5CLEVBQTREYyxRQUE1RCxDQUFaO0FBQUEsQ0FBM0I7O2tCQUVlLHlCQUFRSCxlQUFSLEVBQXlCRSxrQkFBekIsRUFBNkNoRCxVQUE3QyxDIiwiZmlsZSI6IjE1MzIuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QsIHsgQ29tcG9uZW50IH0gZnJvbSAncmVhY3QnO1xyXG5pbXBvcnQgeyBjb25uZWN0IH0gZnJvbSAncmVhY3QtcmVkdXgnO1xyXG5pbXBvcnQgeyBMaW5rIH0gZnJvbSAncmVhY3Qtcm91dGVyLWRvbSc7XHJcbmltcG9ydCB7IGJpbmRBY3Rpb25DcmVhdG9ycyB9IGZyb20gJ3JlZHV4JztcclxuaW1wb3J0IHNob3J0aWQgZnJvbSAnc2hvcnRpZCc7XHJcbmltcG9ydCB7IFByb3BUeXBlcyB9IGZyb20gJ3Byb3AtdHlwZXMnO1xyXG5pbXBvcnQgaXNFbXB0eSBmcm9tICdsb2Rhc2gvaXNFbXB0eSc7XHJcbmltcG9ydCB7IGZldGNoQ2VudGVyc0FjdGlvbiwgbG9hZE1vcmVDZW50ZXJzIH0gZnJvbSAnLi4vLi4vLi4vYWN0aW9ucy9jZW50ZXItYWN0aW9ucy9mZXRjaENlbnRlckFjdGlvbic7XHJcbmltcG9ydCB7IENpcmN1bGFyTG9hZGVyIH0gZnJvbSAnLi4vLi4vbG9hZGVyJztcclxuaW1wb3J0IEhlbHBlcnMgZnJvbSAnLi4vLi4vLi4vaGVscGVycyc7XHJcbmltcG9ydCBTZWFyY2hGYXN0ZXJGb3JtIGZyb20gJy4vc2VhcmNoRmFzdGVyRm9ybSc7XHJcbi8vIGltcG9ydCBDZW50ZXJDYXJkIGZyb20gJy4uL2NlbnRlckNhcmQvY2VudGVyQ2FyZCc7XHJcblxyXG5jbGFzcyBBbGxDZW50ZXJzIGV4dGVuZHMgQ29tcG9uZW50IHtcclxuICBjb25zdHJ1Y3Rvcihwcm9wcykge1xyXG4gICAgc3VwZXIocHJvcHMpO1xyXG4gICAgdGhpcy5oZWxwZXIgPSBuZXcgSGVscGVycygpO1xyXG4gICAgdGhpcy5zdGF0ZSA9IHtcclxuICAgICAgaXNMb2FkaW5nOiB0cnVlLFxyXG4gICAgICBsb2FkbW9yZTogbnVsbCxcclxuICAgICAgbG9hZGluZ21vcmU6IG51bGwsXHJcbiAgICB9O1xyXG4gIH1cclxuXHJcbiAgY29tcG9uZW50V2lsbE1vdW50KCkge1xyXG4gICAgdGhpcy5wcm9wcy5mZXRjaENlbnRlcnNBY3Rpb24oKTtcclxuICB9XHJcblxyXG4gIGNvbXBvbmVudFdpbGxSZWNlaXZlUHJvcHMobmV3UHJvcHMpIHtcclxuICAgIGxldCB7XHJcbiAgICAgIGNlbnRlcnMsIHBhZ2UsIHBhZ2VDb3VudCwgcGFnZVNpemUsIHRvdGFsQ291bnQsIGxvYWRpbmdtb3JlLCBsb2FkbW9yZVxyXG4gICAgfSA9IG5ld1Byb3BzLmNlbnRlclN0b3JlO1xyXG5cclxuICAgIGlmIChuZXdQcm9wcykge1xyXG4gICAgICB0aGlzLnNldFN0YXRlKHtcclxuICAgICAgICBpc0xvYWRpbmc6IGZhbHNlLFxyXG4gICAgICAgIHBhZ2UsXHJcbiAgICAgICAgcGFnZVNpemUsXHJcbiAgICAgICAgdG90YWxDb3VudCxcclxuICAgICAgICBsb2FkbW9yZSxcclxuICAgICAgICBsb2FkaW5nbW9yZSxcclxuICAgICAgICBwYWdlQ291bnRcclxuICAgICAgfSk7XHJcbiAgICB9XHJcbiAgfVxyXG5cclxuICBzaG93Q2VudGVyc0NhcmQoKSB7XHJcbiAgICBsZXQgeyBjZW50ZXJzIH0gPSB0aGlzLnByb3BzLmNlbnRlclN0b3JlO1xyXG4gICAgcmV0dXJuIGNlbnRlcnMubWFwKChjZW50ZXIpID0+IHtcclxuICAgICAgbGV0IHRvID0gYGNlbnRlci8ke2NlbnRlci5pZH0vJHt0aGlzLmhlbHBlci5zYW5pdGl6ZVN0cmluZyhjZW50ZXIudGl0bGUpfWA7XHJcbiAgICAgIHJldHVybiAoXHJcbiAgICAgICAgPExpbmsga2V5PXtzaG9ydGlkLmdlbmVyYXRlKCl9IHRvPXt0b30gaHJlZj17dG99PlxyXG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJjYXJkXCI+XHJcbiAgICAgICAgICAgIHtcclxuICAgICAgICAgICAgISFjZW50ZXIuaW1nX3VybFxyXG4gICAgICAgICAgICAmJlxyXG4gICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImNhcmQtaW1hZ2VcIj5cclxuICAgICAgICAgICAgICA8aW1nIHNyYz17Y2VudGVyLmltZ191cmx9IGFsdD17Y2VudGVyLnRpdGxlfSAvPlxyXG4gICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgfVxyXG4gICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImNhcmQtY29udGVudCBibGFjay10ZXh0XCI+XHJcbiAgICAgICAgICAgICAgPHAgY2xhc3NOYW1lPVwiZl9fc2l6ZVwiPntjZW50ZXIudGl0bGV9PC9wPlxyXG4gICAgICAgICAgICAgIDxwPjxpIGNsYXNzTmFtZT1cIm1hdGVyaWFsLWljb25zIGYxNVwiPmxvY2F0aW9uX29uPC9pPntjZW50ZXIubG9jYXRpb259PC9wPlxyXG4gICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgIDwvTGluaz5cclxuICAgICAgKTtcclxuICAgIH0pO1xyXG4gIH1cclxuXHJcbiAgcmVuZGVyTm9DZW50ZXIoKXtcclxuICAgIGxldCB7IGNlbnRlcnMgfSA9IHRoaXMucHJvcHMuY2VudGVyU3RvcmU7XHJcbiAgICBpZihpc0VtcHR5KGNlbnRlcnMpKXtcclxuICAgICAgcmV0dXJuIChcclxuICAgICAgICA8aDQgY2xhc3NOYW1lPVwiYm9sZCBncmV5LXRleHQgbGlnaHRlbi0yIGNlbnRlci1hbGlnblwiPlxyXG4gICAgICAgICAgPHA+Tm8gY2VudGVycyBBdmFpbGFibGUuLi48L3A+XHJcbiAgICAgICAgPC9oND5cclxuICAgICAgKVxyXG4gICAgfVxyXG4gIH1cclxuXHJcbiAgaW5pdEluZmluaXRlU2Nyb2xsKCkge1xyXG4gICAgbGV0IHdpbkhlaWdodCwgd2luU2Nyb2xsVG9wLCBkb2NIZWlnaHQsIG9mZnNldDtcclxuICAgICQod2luZG93KS5zY3JvbGwoKCkgPT4ge1xyXG4gICAgICB3aW5IZWlnaHQgPSAkKHdpbmRvdykuaGVpZ2h0KCk7XHJcbiAgICAgIHdpblNjcm9sbFRvcCA9ICQod2luZG93KS5zY3JvbGxUb3AoKTtcclxuICAgICAgZG9jSGVpZ2h0ID0gJChkb2N1bWVudCkuaGVpZ2h0KCk7XHJcblxyXG4gICAgICBpZiAoZG9jSGVpZ2h0IC0gd2luSGVpZ2h0ID09PSB3aW5TY3JvbGxUb3ApIHtcclxuICAgICAgICAvKipcclxuICAgICAgICAgICAqIG1ha2UgbG9hZG1vcmUgcmVxdWVzdFxyXG4gICAgICAgICAgICogKiAqL1xyXG4gICAgICAgIG9mZnNldCA9IHRoaXMuc3RhdGUucGFnZSArIDE7XHJcbiAgICAgICAgaWYgKHRoaXMuc3RhdGUubG9hZG1vcmUpIHsgdGhpcy5wcm9wcy5sb2FkTW9yZUNlbnRlcnMob2Zmc2V0KTsgfVxyXG4gICAgICB9XHJcbiAgICB9KTtcclxuICB9XHJcblxyXG4gIGF1dG9Mb2FkTW9yZSgpIHtcclxuICAgIGlmICh0aGlzLnN0YXRlLmxvYWRtb3JlKSB7XHJcbiAgICAgIHRoaXMuaW5pdEluZmluaXRlU2Nyb2xsKCk7XHJcbiAgICB9XHJcbiAgfVxyXG5cclxuICBsb2FkTW9yZSgpIHtcclxuICAgIC8qKlxyXG4gICAgICAgKiBtYWtlIGxvYWRtb3JlIHJlcXVlc3RcclxuICAgICAgICogKiAqL1xyXG4gICAgbGV0IG9mZnNldCA9IHRoaXMuc3RhdGUucGFnZSArIDE7XHJcbiAgICB0aGlzLnByb3BzLmxvYWRNb3JlQ2VudGVycyhvZmZzZXQpO1xyXG4gIH1cclxuXHJcbiAgcmVuZGVyKCkge1xyXG4gICAgdGhpcy5hdXRvTG9hZE1vcmUoKTtcclxuICAgIGxldCB7XHJcbiAgICAgIGlzTG9hZGluZywgbG9hZGluZ21vcmUsIHBhZ2VDb3VudCwgcGFnZVNpemUsIHRvdGFsQ291bnRcclxuICAgIH0gPSB0aGlzLnN0YXRlO1xyXG4gICAgcmV0dXJuIChcclxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJjb250YWluZXJcIj5cclxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImNlbnRlcl9faG9sZHJcIj5cclxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicm93IHJlbGF0aXZlXCI+XHJcbiAgICAgICAgICAgIHsvKiA8ZGl2IGNsYXNzTmFtZT1cImNvbCBzMTIgbDEyIGZpeGVkIGJnX193aGl0ZSBoaWRlLW9uLW1lZC1hbmQtZG93blwiPiAqL31cclxuICAgICAgICAgICAgey8qIDxTZWFyY2hGYXN0ZXJGb3JtIC8+ICovfVxyXG4gICAgICAgICAgICB7LyogPC9kaXY+ICovfVxyXG4gICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImNvbCBzMTIgbDEyXCIgc3R5bGU9e3sgbWFyZ2luQm90dG9tOiBgJHs2MH1weGAgfX0+XHJcbiAgICAgICAgICAgICAgPGg0IGNsYXNzTmFtZT1cImNlbnRlci1hbGlnblwiPkJvb3RzIENlbnRlcnM8L2g0PlxyXG4gICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicm93XCI+XHJcbiAgICAgICAgICAgICAgICB7IGlzTG9hZGluZyA/IDxDaXJjdWxhckxvYWRlciAvPiA6XHJcbiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImNvbCBzMTIgY2FyZHMtY29udGFpbmVyXCI+XHJcbiAgICAgICAgICAgICAgICAgIHsgdGhpcy5zaG93Q2VudGVyc0NhcmQoKSB9XHJcbiAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICAgIH1cclxuICAgICAgICAgICAgICAgIHt0aGlzLnJlbmRlck5vQ2VudGVyKCl9XHJcbiAgICAgICAgICAgICAgICB7XHJcbiAgICAgICAgICAgICAgICAgIChpc0xvYWRpbmcpID8gJycgOiAocGFnZUNvdW50ID4gMSkgPyAobG9hZGluZ21vcmUpID8gPENpcmN1bGFyTG9hZGVyIC8+IDogKHBhZ2VTaXplICE9PSB0b3RhbENvdW50KSA/IDxidXR0b24gb25DbGljaz17KCkgPT4gdGhpcy5sb2FkTW9yZSgpfSBjbGFzc05hbWU9XCJjb2wgb2Zmc2V0LXMzIHM2IGJ0biB3YXZlcy1lZmZlY3QgZ3JhZGllbnRfX2JnXCI+IGxvYWQgbW9yZSA8L2J1dHRvbj4gOiAnJyA6ICcnXHJcbiAgICAgICAgICAgICAgICB9XHJcbiAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgPC9kaXY+XHJcbiAgICAgIDwvZGl2PlxyXG4gICAgKTtcclxuICB9XHJcbn1cclxuXHJcbkFsbENlbnRlcnMucHJvcFR5cGVzID0ge1xyXG4gIGZldGNoQ2VudGVyc0FjdGlvbjogUHJvcFR5cGVzLmZ1bmMuaXNSZXF1aXJlZCxcclxuICBjZW50ZXJTdG9yZTogUHJvcFR5cGVzLm9iamVjdC5pc1JlcXVpcmVkLFxyXG4gIGxvYWRNb3JlQ2VudGVyczogUHJvcFR5cGVzLmZ1bmMuaXNSZXF1aXJlZFxyXG59O1xyXG5cclxuY29uc3QgbWFwU3RhdGVUb1Byb3BzID0gc3RhdGUgPT4gKHtcclxuICBjZW50ZXJTdG9yZTogc3RhdGUuY2VudGVyUmVkdWNlclxyXG59KTtcclxuXHJcbmNvbnN0IG1hcERpc3BhdGNoVG9Qcm9wcyA9IGRpc3BhdGNoID0+IGJpbmRBY3Rpb25DcmVhdG9ycyh7IGZldGNoQ2VudGVyc0FjdGlvbiwgbG9hZE1vcmVDZW50ZXJzIH0sIGRpc3BhdGNoKTtcclxuXHJcbmV4cG9ydCBkZWZhdWx0IGNvbm5lY3QobWFwU3RhdGVUb1Byb3BzLCBtYXBEaXNwYXRjaFRvUHJvcHMpKEFsbENlbnRlcnMpO1xyXG5cblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gLi9jbGllbnQvc3JjL2NvbXBvbmVudHMvY2VudGVyQ29tcG9uZW50L2FsbENlbnRlcnMvYWxsQ2VudGVycy5qc3giXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///1532\n")}});
+webpackHotUpdate(0,{
+
+/***/ 1532:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(4);
+
+var _reactRedux = __webpack_require__(18);
+
+var _redux = __webpack_require__(19);
+
+var _shortid = __webpack_require__(32);
+
+var _shortid2 = _interopRequireDefault(_shortid);
+
+var _reactDocumentTitle = __webpack_require__(59);
+
+var _reactDocumentTitle2 = _interopRequireDefault(_reactDocumentTitle);
+
+var _Dialog = __webpack_require__(73);
+
+var _Dialog2 = _interopRequireDefault(_Dialog);
+
+var _FlatButton = __webpack_require__(76);
+
+var _FlatButton2 = _interopRequireDefault(_FlatButton);
+
+var _modeEdit = __webpack_require__(237);
+
+var _modeEdit2 = _interopRequireDefault(_modeEdit);
+
+var _delete = __webpack_require__(236);
+
+var _delete2 = _interopRequireDefault(_delete);
+
+var _loader = __webpack_require__(95);
+
+var _activeCenterAction = __webpack_require__(1533);
+
+var _deleteCenterAction = __webpack_require__(1534);
+
+var _actions = __webpack_require__(23);
+
+var _currentEventForCenter = __webpack_require__(1535);
+
+var _currentEventForCenter2 = _interopRequireDefault(_currentEventForCenter);
+
+var _RecommCenter = __webpack_require__(1536);
+
+var _RecommCenter2 = _interopRequireDefault(_RecommCenter);
+
+var _EventModal = __webpack_require__(1538);
+
+var _EventModal2 = _interopRequireDefault(_EventModal);
+
+var _editCenterForm = __webpack_require__(1539);
+
+var _editCenterForm2 = _interopRequireDefault(_editCenterForm);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var CenterDetail = function (_Component) {
+    _inherits(CenterDetail, _Component);
+
+    function CenterDetail(props) {
+        _classCallCheck(this, CenterDetail);
+
+        var _this = _possibleConstructorReturn(this, (CenterDetail.__proto__ || Object.getPrototypeOf(CenterDetail)).call(this, props));
+
+        _this.handleOpen = function () {
+            _this.props.editCenterRequestAction();
+            _this.setState({ open: true });
+        };
+
+        _this.handleClose = function () {
+            _this.setState({ open: false });
+        };
+
+        _this.handleAlertOpen = function () {
+            _this.setState({ openAlert: true });
+        };
+
+        _this.handleAlertClose = function () {
+            _this.setState({ openAlert: false });
+        };
+
+        _this.state = {
+            isLoading: true,
+            openAlert: false,
+            open: false,
+            events: [],
+            activeCenter: {
+                centr: {
+                    title: 'center'
+                }
+            }
+        };
+        return _this;
+    }
+
+    _createClass(CenterDetail, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            var params = this.props.params;
+            this.props.fetchCenterAction(params.id);
+        }
+
+        /**
+         * TODO: modify center details component to update and change the redux store in respond to route change
+         * **/
+
+    }, {
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps(newProps) {
+            // const params = this.props.params;
+            // this.props.fetchCenterAction(params.id);
+            if (newProps.activeCenterDetail) {
+                newProps.activeCenterDetail.centr.events = newProps.activeCenterDetail.events;
+                if (newProps.activeCenterDetail.centr.events) {
+                    delete newProps.activeCenterDetail.events;
+                }
+                this.setState({ isLoading: false, events: newProps.activeCenterDetail.events, activeCenter: newProps.activeCenterDetail });
+            }
+        }
+    }, {
+        key: 'renderFacilities',
+        value: function renderFacilities(facilities) {
+            return facilities.map(function (facility) {
+                return _react2.default.createElement(
+                    'li',
+                    { key: _shortid2.default.generate() },
+                    facility
+                );
+            });
+        }
+    }, {
+        key: 'editCenter',
+        value: function editCenter() {
+            this.props.editCenterRequestAction();
+        }
+    }, {
+        key: 'showEditCenterButton',
+        value: function showEditCenterButton() {
+            var isAdmin = this.props.activeUser.user.role;
+            var actions = [_react2.default.createElement(_FlatButton2.default, {
+                label: 'Cancel',
+                primary: true,
+                onClick: this.handleClose
+            })];
+
+            if (isAdmin) return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(_FlatButton2.default, {
+                    label: 'Edit center',
+                    icon: _react2.default.createElement(_modeEdit2.default, null),
+                    onClick: this.handleOpen,
+                    fullWidth: true
+                }),
+                _react2.default.createElement(
+                    _Dialog2.default,
+                    {
+                        title: 'Edit Center',
+                        actions: actions,
+                        modal: false,
+                        open: this.state.open,
+                        onRequestClose: this.handleClose,
+                        autoScrollBodyContent: true,
+                        style: { marginTop: '0px' }
+                    },
+                    _react2.default.createElement(_editCenterForm2.default, null)
+                )
+            );
+        }
+    }, {
+        key: 'showBookCenterButton',
+        value: function showBookCenterButton() {
+            var isSignedIn = this.props.activeUser.isAuthenticated;
+            if (isSignedIn) return _react2.default.createElement(_EventModal2.default, null);
+        }
+    }, {
+        key: 'deleteCenter',
+        value: function deleteCenter(id) {
+            this.props.deleteCenterRequest(id).then(function (data) {
+                if (data.type === _actions.REMOVE_CENTER) {
+                    window.history.back();
+                }
+            });
+        }
+    }, {
+        key: 'showAlertModal',
+        value: function showAlertModal(id) {
+            var _this2 = this;
+
+            var isAdmin = this.props.activeUser.user.role;
+            var actions = [_react2.default.createElement(_FlatButton2.default, {
+                label: 'Yes',
+                primary: true,
+                onClick: function onClick() {
+                    return _this2.deleteCenter(id);
+                }
+            }), _react2.default.createElement(_FlatButton2.default, {
+                label: 'No',
+                primary: true,
+                onClick: function onClick() {
+                    return _this2.handleAlertClose();
+                }
+            })];
+
+            if (isAdmin) return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(_FlatButton2.default, {
+                    label: 'Delete this center',
+                    secondary: true,
+                    icon: _react2.default.createElement(_delete2.default, null),
+                    onClick: this.handleAlertOpen
+                }),
+                _react2.default.createElement(
+                    _Dialog2.default,
+                    {
+                        actions: actions,
+                        modal: false,
+                        open: this.state.openAlert,
+                        onRequestClose: this.handleAlertClose
+                    },
+                    'Are you sure you want to delete this event?'
+                )
+            );
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _state = this.state,
+                isLoading = _state.isLoading,
+                activeCenter = _state.activeCenter;
+
+            if (activeCenter.centr) {
+                var _activeCenter$centr = activeCenter.centr,
+                    id = _activeCenter$centr.id,
+                    title = _activeCenter$centr.title,
+                    img_url = _activeCenter$centr.img_url,
+                    location = _activeCenter$centr.location,
+                    description = _activeCenter$centr.description,
+                    facilities = _activeCenter$centr.facilities,
+                    capacity = _activeCenter$centr.capacity,
+                    price = _activeCenter$centr.price,
+                    events = _activeCenter$centr.events;
+
+
+                var relatedCenterBasedOn = {
+                    id: id,
+                    location: location,
+                    facilities: facilities,
+                    capacity: capacity,
+                    price: price
+                };
+                if (events) {
+                    events.map(function (event) {
+                        event.center = relatedCenterBasedOn;
+                    });
+                }
+                return _react2.default.createElement(
+                    _reactDocumentTitle2.default,
+                    { title: title + ' | Boots Events Manager' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'container' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'center__holdr' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'row' },
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'col s12 l8' },
+                                    isLoading && _react2.default.createElement(_loader.CircularLoader, null),
+                                    !isLoading && _react2.default.createElement(
+                                        'div',
+                                        { className: 'center__details', 'data-center-id': id },
+                                        _react2.default.createElement(
+                                            'h4',
+                                            null,
+                                            title
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'slider__holdr' },
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'carousel carousel-slider' },
+                                                _react2.default.createElement(
+                                                    'a',
+                                                    { className: 'carousel-item', href: '#one' },
+                                                    _react2.default.createElement('img', { src: img_url, alt: title })
+                                                )
+                                            )
+                                        ),
+                                        _react2.default.createElement(
+                                            'p',
+                                            null,
+                                            _react2.default.createElement(
+                                                'i',
+                                                { className: 'material-icons f15' },
+                                                'location_on'
+                                            ),
+                                            ' ',
+                                            location
+                                        ),
+                                        _react2.default.createElement('div', { className: 'divider' }),
+                                        _react2.default.createElement(
+                                            'section',
+                                            null,
+                                            _react2.default.createElement(
+                                                'h5',
+                                                null,
+                                                'About this Center'
+                                            ),
+                                            _react2.default.createElement(
+                                                'p',
+                                                null,
+                                                description
+                                            ),
+                                            _react2.default.createElement('div', { className: 'divider' }),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'row' },
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'col s4' },
+                                                    _react2.default.createElement(
+                                                        'p',
+                                                        null,
+                                                        'Capacity'
+                                                    )
+                                                ),
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'col s8' },
+                                                    _react2.default.createElement(
+                                                        'p',
+                                                        null,
+                                                        capacity
+                                                    )
+                                                )
+                                            ),
+                                            _react2.default.createElement('div', { className: 'divider' }),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'row' },
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'col s4' },
+                                                    _react2.default.createElement(
+                                                        'p',
+                                                        null,
+                                                        'Price'
+                                                    )
+                                                ),
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'col s8' },
+                                                    _react2.default.createElement(
+                                                        'p',
+                                                        null,
+                                                        _react2.default.createElement(
+                                                            'span',
+                                                            null,
+                                                            '\u20A6',
+                                                            price
+                                                        ),
+                                                        ' per event'
+                                                    )
+                                                )
+                                            ),
+                                            _react2.default.createElement('div', { className: 'divider' }),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'row' },
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'col s4' },
+                                                    _react2.default.createElement(
+                                                        'p',
+                                                        null,
+                                                        'Facilities'
+                                                    )
+                                                ),
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'col s8' },
+                                                    _react2.default.createElement(
+                                                        'ul',
+                                                        { className: 'facility__list' },
+                                                        this.renderFacilities(facilities)
+                                                    )
+                                                )
+                                            ),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'row' },
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'col s3' },
+                                                    this.showEditCenterButton()
+                                                ),
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'col s5' },
+                                                    this.showAlertModal(id)
+                                                ),
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'col s4' },
+                                                    this.showBookCenterButton()
+                                                )
+                                            )
+                                        )
+                                    )
+                                ),
+                                _react2.default.createElement(_currentEventForCenter2.default, { event: events })
+                            ),
+                            _react2.default.createElement(_RecommCenter2.default, { relatedCenterBasedOn: relatedCenterBasedOn })
+                        )
+                    )
+                );
+            } else {
+                return '';
+            }
+        }
+    }]);
+
+    return CenterDetail;
+}(_react.Component);
+
+CenterDetail.propTypes = {
+    params: _propTypes.PropTypes.object.isRequired
+};
+
+var mapStateToProps = function mapStateToProps(state) {
+    return {
+        activeCenterDetail: state.activeCenter,
+        activeUser: state.authReducer
+    };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+    return (0, _redux.bindActionCreators)({
+        fetchCenterAction: _activeCenterAction.fetchCenterAction,
+        editCenterRequestAction: _activeCenterAction.editCenterRequestAction,
+        deleteCenterRequest: _deleteCenterAction.deleteCenterRequest
+    }, dispatch);
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(CenterDetail);
+
+/***/ }),
+
+/***/ 1539:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _SelectField = __webpack_require__(149);
+
+var _SelectField2 = _interopRequireDefault(_SelectField);
+
+var _MenuItem = __webpack_require__(101);
+
+var _MenuItem2 = _interopRequireDefault(_MenuItem);
+
+var _shortid = __webpack_require__(32);
+
+var _shortid2 = _interopRequireDefault(_shortid);
+
+var _formInput = __webpack_require__(58);
+
+var _formInput2 = _interopRequireDefault(_formInput);
+
+var _validateInput = __webpack_require__(103);
+
+var _facilities2 = __webpack_require__(246);
+
+var _facilities3 = _interopRequireDefault(_facilities2);
+
+var _redux = __webpack_require__(19);
+
+var _reactRedux = __webpack_require__(18);
+
+var _propTypes = __webpack_require__(4);
+
+var _modalAction = __webpack_require__(247);
+
+var _actions = __webpack_require__(23);
+
+var _TextField = __webpack_require__(102);
+
+var _TextField2 = _interopRequireDefault(_TextField);
+
+var _colors = __webpack_require__(92);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var styles = {
+    underlineStyle: {
+        borderColor: _colors.teal300
+    }
+};
+
+var EditCenterForm = function (_Component) {
+    _inherits(EditCenterForm, _Component);
+
+    function EditCenterForm(props) {
+        _classCallCheck(this, EditCenterForm);
+
+        /**
+         * @Initialize the component's state.
+         **/
+        var _this = _possibleConstructorReturn(this, (EditCenterForm.__proto__ || Object.getPrototypeOf(EditCenterForm)).call(this, props));
+
+        _this.handleSelectChange = function (event, index, facilities) {
+            return _this.setState({ facilities: facilities });
+        };
+
+        _this.state = {
+            errors: {},
+            editCenter: false,
+            isLoading: false,
+            title: '',
+            img_url: {},
+            facilities: [],
+            location: '',
+            price: '',
+            capacity: '',
+            description: ''
+        };
+
+        _this.handleCenterChange = _this.handleCenterChange.bind(_this);
+        _this.handleSelectChange = _this.handleSelectChange.bind(_this);
+        _this.handleCenterSubmit = _this.handleCenterSubmit.bind(_this);
+        _this.onFileChange = _this.onFileChange.bind(_this);
+        return _this;
+    }
+
+    /**
+     * @Send activeCenter details to updateState method
+     * */
+
+
+    _createClass(EditCenterForm, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.updateState(this.props.activeCenter);
+        }
+
+        /**
+         * @Check if edit center is set to true.
+         * and get the keys from center object and populate the state
+         * with its appropriate values.
+         * */
+
+    }, {
+        key: 'updateState',
+        value: function updateState(props) {
+            if (props.editCenter) {
+                var _props$centr = props.centr,
+                    id = _props$centr.id,
+                    title = _props$centr.title,
+                    img_url = _props$centr.img_url,
+                    _facilities = _props$centr.facilities,
+                    _location = _props$centr.location,
+                    price = _props$centr.price,
+                    capacity = _props$centr.capacity,
+                    description = _props$centr.description;
+
+                this.setState({
+                    editCenter: true,
+                    id: id,
+                    title: title,
+                    img_url: img_url,
+                    facilities: _facilities,
+                    location: _location,
+                    price: price.toString(),
+                    capacity: capacity.toString(),
+                    description: description
+                });
+            }
+        }
+    }, {
+        key: 'handleCenterChange',
+        value: function handleCenterChange(e) {
+            if (!!this.state.errors[e.target.name]) {
+                var _setState;
+
+                var errors = Object.assign({}, !!this.state.errors);
+                delete errors[e.target.name];
+                this.setState((_setState = {}, _defineProperty(_setState, e.target.name, e.target.value), _defineProperty(_setState, 'errors', errors), _setState));
+            } else {
+                this.setState(_defineProperty({}, e.target.name, e.target.value));
+            }
+        }
+
+        /**
+         * @Void: Get the image data and set the img_url in the state
+         * to the binary data url.
+         * **/
+
+    }, {
+        key: 'onFileChange',
+        value: function onFileChange(e) {
+            var _this2 = this;
+
+            var file = e.target.files[0];
+            if (file.type.indexOf('image/') > -1) {
+                // only image file
+                if (file.size < 2000000) {
+                    // Must not be more than 2mb
+                    var reader = new FileReader(); // instance of the FileReader
+                    reader.readAsDataURL(file); // read the local file
+                    reader.onloadend = function () {
+                        _this2.setState({
+                            img_url: reader.result //store image as binary data string
+                            // img_url: file
+                        });
+                    };
+                } else {
+                    Materialize.toast('File too large', 5000);
+                }
+            } else {
+                Materialize.toast('Image files only', 5000);
+            }
+        }
+    }, {
+        key: 'isValid',
+        value: function isValid() {
+            var _validateCenterInput = (0, _validateInput.validateCenterInput)(this.state),
+                errors = _validateCenterInput.errors,
+                isValid = _validateCenterInput.isValid;
+
+            if (!isValid) {
+                this.setState({ errors: errors });
+            }
+            return isValid;
+        }
+    }, {
+        key: 'menuItems',
+        value: function menuItems(facilityes) {
+            return (0, _facilities3.default)().map(function (name) {
+                return _react2.default.createElement(_MenuItem2.default, {
+                    key: _shortid2.default.generate(),
+                    insetChildren: true,
+                    checked: facilityes && facilityes.indexOf(name) > -1,
+                    value: name,
+                    primaryText: name
+                });
+            });
+        }
+    }, {
+        key: 'handleCenterSubmit',
+        value: function handleCenterSubmit(e) {
+            var _this3 = this;
+
+            e.preventDefault();
+
+            if (this.isValid()) {
+                this.setState({
+                    isLoading: true
+                });
+
+                this.props.updateCenterRequest(this.state).then(function (res) {
+                    _this3.setState({ isLoading: false });
+                    // console.log(res);
+                    if (res.type === _actions.EDIT_CENTER) {
+                        Materialize.toast('Center has been updated successfully!!', 5000);
+                        location.reload();
+                    } else {
+                        Materialize.toast('Houston, we have a problem! We are working on it', 5000);
+                    }
+                }).catch(function () {
+                    _this3.setState({ isLoading: false });
+                    Materialize.toast('Error creating center..!!', 5000);
+                });
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _state = this.state,
+                editCenter = _state.editCenter,
+                errors = _state.errors,
+                isLoading = _state.isLoading,
+                title = _state.title,
+                location = _state.location,
+                facilities = _state.facilities,
+                price = _state.price,
+                capacity = _state.capacity,
+                description = _state.description;
+            // console.log(this.state);
+
+            return _react2.default.createElement(
+                'form',
+                { style: { marginTop: '20px' }, className: 'col s12', id: 'edit-center-form', onSubmit: this.handleCenterSubmit },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col s12 m6' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'file-field input-field' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'btn' },
+                                _react2.default.createElement(
+                                    'span',
+                                    null,
+                                    'Upload'
+                                ),
+                                _react2.default.createElement('input', { type: 'file', name: 'img_url', onChange: this.onFileChange,
+                                    accept: 'image/jpeg,jpg,png,gif' })
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'file-path-wrapper' },
+                                _react2.default.createElement('input', { className: 'file-path validate', type: 'text', placeholder: 'Upload an image here' })
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'input-field col s12 m6' },
+                        _react2.default.createElement(_TextField2.default, {
+                            id: 'text-field-controlled',
+                            hintText: 'Title',
+                            value: title,
+                            name: 'title',
+                            errorText: errors.title || '',
+                            underlineStyle: styles.underlineStyle,
+                            underlineFocusStyle: styles.underlineStyle,
+                            onChange: this.handleCenterChange
+                        })
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'input-field col s12 m6' },
+                        _react2.default.createElement(
+                            _SelectField2.default,
+                            {
+                                multiple: true,
+                                hintText: 'Select Facilities',
+                                value: facilities,
+                                onChange: this.handleSelectChange
+                            },
+                            this.menuItems(facilities)
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'input-field col s12 m6' },
+                        _react2.default.createElement(_TextField2.default, {
+                            id: 'text-field-controlled',
+                            hintText: 'location',
+                            value: location,
+                            name: 'location',
+                            errorText: errors.location || '',
+                            underlineStyle: styles.underlineStyle,
+                            underlineFocusStyle: styles.underlineStyle,
+                            onChange: this.handleCenterChange
+                        })
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'input-field col s12 m6' },
+                        _react2.default.createElement(_TextField2.default, {
+                            id: 'text-field-controlled',
+                            hintText: 'Price',
+                            value: price,
+                            name: 'price',
+                            type: 'number',
+                            errorText: errors.price || '',
+                            underlineStyle: styles.underlineStyle,
+                            underlineFocusStyle: styles.underlineStyle,
+                            onChange: this.handleCenterChange
+                        })
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'input-field col s12 m6' },
+                        _react2.default.createElement(_TextField2.default, {
+                            id: 'text-field-controlled',
+                            hintText: 'Capacity',
+                            value: capacity,
+                            name: 'capacity',
+                            type: 'number',
+                            errorText: errors.capacity || '',
+                            underlineStyle: styles.underlineStyle,
+                            underlineFocusStyle: styles.underlineStyle,
+                            onChange: this.handleCenterChange
+                        })
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'input-field col s12' },
+                        _react2.default.createElement(_TextField2.default, {
+                            hintText: 'Description',
+                            value: description,
+                            name: 'description',
+                            errorText: errors.description || '',
+                            multiLine: true,
+                            fullWidth: true,
+                            onChange: this.handleCenterChange,
+                            underlineStyle: styles.underlineStyle,
+                            underlineFocusStyle: styles.underlineStyle,
+                            rows: 2,
+                            rowsMax: 5
+                        })
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'input-field col s12' },
+                        _react2.default.createElement(
+                            'button',
+                            {
+                                type: 'submit',
+                                id: 'submitCenterForm',
+                                name: 'action',
+                                className: 'btn col s12 white-text gradient__bg btn-register waves-effect waves-light',
+                                disabled: isLoading ? 'disabled' : ''
+                            },
+                            !isLoading ? "Save Changes" : _react2.default.createElement('img', { style: { marginTop: "10px" }, src: '/image/loader/loading.gif' })
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return EditCenterForm;
+}(_react.Component);
+
+var mapStateToProps = function mapStateToProps(state) {
+    return {
+        activeCenter: state.activeCenter
+    };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+    return (0, _redux.bindActionCreators)({ updateCenterRequest: _modalAction.updateCenterRequest }, dispatch);
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(EditCenterForm);
+
+/***/ })
+
+})
+//# sourceMappingURL=hot-update.js.map

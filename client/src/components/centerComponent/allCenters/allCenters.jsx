@@ -73,7 +73,7 @@ class AllCenters extends Component {
     if(isEmpty(centers)){
       return (
         <h4 className="bold grey-text lighten-2 center-align">
-          <p>No centers Available...</p>
+          <p>No centers Available....</p>
         </h4>
       )
     }

@@ -14,7 +14,7 @@ module.exports = function (sequelize, DataTypes) {
     classMethods: {
       associate: function associate(models) {
         // associations can be defined here
-        User.hasMany(models.Event, {
+        User.hasMany(models.Events, {
           foreignKey: null,
           as: 'events'
         });

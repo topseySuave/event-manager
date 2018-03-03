@@ -35,6 +35,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var User = _models2.default.User;
+var Events = _models2.default.Events;
 var Op = _models2.default.sequelize.Op;
 _dotenv2.default.config();
 
@@ -180,11 +181,7 @@ var Users = function () {
                         var subject = 'Boots Events Manager: Administrator Assignment';
                         var htmlOutput = '\n                            <h6>Boots Events Manager: Administrator Assignment</h6>\n                            <p>Dear, ' + foundUser.firstName + ' ' + foundUser.lastName + ' you have been Assigned as Administrator</p>\n                            <br />\n                            <ul>\n                                <li>First Name: ' + foundUser.firstName + '</li>\n                                <li>Last Name: ' + foundUser.lastName + '</li>\n                                <li>Email: ' + foundUser.email + '</li>\n                            </ul>\n                            <br />\n                            <h6>Admin Privileges</h6>\n                            <ul>\n                                <li>Centers: creation, updating, deleting</li>\n                            </ul>\n                        ';
                         (0, _mailer2.default)(foundUser.email, subject, subject, htmlOutput);
-                        return res.status(200).send({
-                            statusCode: 200,
-                            message: 'User has been assigned as administrator email notification as been sent to ' + updatedUser.email,
-                            user: updatedUser
-                        });
+                        return res.redirect('/');
                     });
                 } else {
                     return res.status(401).send({
@@ -220,30 +217,57 @@ var Users = function () {
                     id: userId
                 }
             }).then(function (foundUser) {
-                User.destroy({
-                    where: {
-                        id: foundUser.id
-                    }
-                }).then(function (deletedUser) {
-                    if (deletedUser) {
-                        res.status(200).send({
-                            message: 'User has been deleted successfully',
-                            error: false,
-                            user: foundUser
+                if (foundUser) {
+                    Events.destroy({
+                        where: {
+                            userId: foundUser.id
+                        }
+                    }).then(function (deletedEvents) {
+                        if (deletedEvents) {
+                            User.destroy({
+                                where: {
+                                    id: foundUser.id
+                                }
+                            }).then(function (deletedUser) {
+                                if (deletedUser) {
+                                    res.status(200).send({
+                                        message: 'User has been deleted successfully',
+                                        error: false,
+                                        user: foundUser
+                                    });
+                                } else {
+                                    res.send({
+                                        message: 'User was not deleted, please try again',
+                                        error: true
+                                    });
+                                }
+                            }).catch(function (error) {
+                                return res.status(500).send({
+                                    error: true,
+                                    message: 'Houston we have a problem.!! Error deleting User',
+                                    errorMessage: error
+                                });
+                            });
+                        } else {
+                            res.status(200).send({
+                                message: 'User has been deleted successfully',
+                                error: false,
+                                user: foundUser
+                            });
+                        }
+                    }).catch(function (err) {
+                        return res.status(500).send({
+                            error: true,
+                            message: 'Houston we have a problem.!! Error deleting Events',
+                            errorMessage: err
                         });
-                    } else {
-                        res.send({
-                            message: 'User was not deleted, please try again',
-                            error: true
-                        });
-                    }
-                }).catch(function (error) {
-                    return res.status(500).send({
-                        error: true,
-                        message: 'Houston we have a problem.!!',
-                        errorMessage: error
                     });
-                });
+                } else {
+                    res.send({
+                        error: true,
+                        message: 'User was not found'
+                    });
+                }
             });
         }
     }]);

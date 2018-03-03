@@ -145,9 +145,10 @@ class EditCenterForm extends Component {
             this.props.updateCenterRequest(this.state)
                 .then((res)=>{
                     this.setState({isLoading: false});
-                    console.log(res);
+                    // console.log(res);
                     if(res.type === EDIT_CENTER){
-                        Materialize.toast('Center has been updated successfully!!', 5000)
+                        Materialize.toast('Center has been updated successfully!!', 5000);
+                        location.reload();
                     }else{
                         Materialize.toast('Houston, we have a problem! We are working on it', 5000);
                     }
