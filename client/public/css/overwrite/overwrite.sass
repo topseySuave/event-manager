@@ -1,0 +1,247 @@
+.toast
+  background-color: $steel_blue !important
+
+.steel_blue
+  background: $steel_blue
+
+.cards-container
+  -webkit-column-break-inside: avoid
+  page-break-inside: avoid
+  break-inside: avoid
+
+  .card
+    display: inline-block
+    overflow: visible
+    width: 100%
+
+.input-field
+  margin-top: 0 !important
+
+.no-margin
+  margin-top: 0 !important
+
+.f__size
+  font-size: 20px !important
+
+.isLoading
+  opacity: .5 !important
+
+nav
+  height: $height !important
+  box-shadow: none !important
+  background:
+    color: transparent !important
+  @include transit(500ms)
+
+  ul
+    height: $height
+
+    li
+      height: $height
+      line-height: $height !important
+
+      a
+        height: $height
+
+    a
+      &:hover
+        background:
+          color: rgba(0, 0, 0, .5) !important
+
+.logo
+  width: 250px
+  background:
+    image: url("../image/logo2.png")
+    size: contain
+    repeat: no-repeat
+    position: 60%
+  align-items: -100px
+
+  p
+    margin: 0
+    position: relative
+    top: -1000px
+
+.hidden
+  display: none
+
+.pointer
+  cursor: pointer !important
+
+.search__results
+  width: 70%
+  margin: 0 auto
+
+.search__back_btn
+  height: 54px !important
+
+.bg__white
+  background:
+    color: $white
+
+.f15
+  @include margTop(5px !important)
+  font:
+    size: 15px !important
+
+.card-image
+  position: relative !important
+
+
+.card-title
+  @include pad(14px !important)
+  font:
+    size: 20px !important
+
+.parallax-container
+  height: auto !important
+  color: $white
+
+  .container
+    .center-align
+      p
+        @include pad(15px)
+
+  .parallax
+    img
+      opacity: 1 !important
+
+.search_arrow_back_btn
+  height: 64px !important
+  padding-top: 12px !important
+  padding-bottom: 12px !important
+
+.search__label
+  margin-top: -12px !important
+  color: #CCC !important
+
+.search__pane
+  width: 100% !important
+  max-height: 100% !important
+  top: 0 !important
+  bottom: 0
+  @include marg(0 !important)
+  background:
+    color: $white
+  border:
+    radius: 0 !important
+
+.search__nav
+  background:
+    color: $white !important
+
+.carousel .carousel-item
+  visibility: inherit !important
+
+.relative
+  position: relative !important
+
+.fixed
+  position: fixed !important
+  bottom: 0px
+  z-index: 2
+  height: 80px
+  width: 70% !important
+
+[type="checkbox"]+label
+  position: relative
+  padding-left: 35px
+  cursor: pointer
+  display: inline-block
+  height: 25px
+  line-height: 25px
+  font-size: 1rem
+  -webkit-user-select: none
+  -moz-user-select: none
+  -khtml-user-select: none
+  -ms-user-select: none
+
+[type="checkbox"]:checked+label:before
+  top: -4px
+  left: -5px
+  width: 12px
+  height: 22px
+  border-top: 2px solid transparent
+  border-left: 2px solid transparent
+  border-right: 2px solid #26a69a
+  border-bottom: 2px solid #26a69a
+  -webkit-transform: rotate(40deg)
+  transform: rotate(40deg)
+  -webkit-backface-visibility: hidden
+  backface-visibility: hidden
+  -webkit-transform-origin: 100% 100%
+  transform-origin: 100% 100%
+
+[type="checkbox"].filled-in:checked+label:before
+  top: 0
+  left: 1px
+  width: 8px
+  height: 13px
+  border-top: 2px solid transparent
+  border-left: 2px solid transparent
+  border-right: 2px solid #fff
+  border-bottom: 2px solid #fff
+  -webkit-transform: rotateZ(37deg)
+  transform: rotateZ(37deg)
+  -webkit-transform-origin: 100% 100%
+  transform-origin: 100% 100%
+
+[type="checkbox"]+label:before, [type="checkbox"]:not(.filled-in)+label:after
+  content: ''
+  position: absolute
+  top: 0
+  left: 0
+  width: 18px
+  height: 18px
+  z-index: 0
+  border: 2px solid #5a5a5a
+  border-radius: 1px
+  margin-top: 2px
+  transition: .2s
+
+[type="checkbox"].filled-in:checked+label:after
+  top: 0
+  width: 20px
+  height: 20px
+  border: 2px solid #26a69a
+  background-color: #26a69a
+  z-index: 0
+
+[type="checkbox"]:not(.filled-in)+label:after
+  border: 0
+  -webkit-transform: scale(0)
+  transform: scale(0)
+
+[type="checkbox"].filled-in+label:after
+  border-radius: 2px
+
+[type="checkbox"]+label:before, [type="checkbox"]:not(.filled-in)+label:after
+  content: ''
+  position: absolute
+  top: 0
+  left: 0
+  width: 18px
+  height: 18px
+  z-index: 0
+  border: 2px solid #5a5a5a
+  border-radius: 1px
+  margin-top: 2px
+  transition: .2s
+
+[type="checkbox"].filled-in+label:before, [type="checkbox"].filled-in+label:after
+  content: ''
+  left: 0
+  position: absolute
+  transition: border .25s, background-color .25s, width .20s .1s, height .20s .1s, top .20s .1s, left .20s .1s
+  z-index: 1
+
+input[type=range]
+  margin: 40px 0 !important
+
+//.progress
+//  position: absolute !important
+//  top: 0
+//  left: 0
+//  margin: 0 !important
+//  height: 3px
+//  z-index: 1000

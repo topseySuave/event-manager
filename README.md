@@ -1,32 +1,32 @@
-# UI TEMPLATE.
- # event-manager
- Event registration platform for all of your online and on-site event management needs and handles the entire event lifecycle from start     to finish.<br />
- An event Manager where users can signup and signin,<br />
- Add a new Event, Modify the event he/she added,<br />
- Delete the event he/she added.<br />
- Admin can manage, and add, modify the details of a new center.<br />
- Details of a center and events slated to that center.<br />
+
+[![Build Status](https://travis-ci.org/topseySuave/event-manager.svg?branch=develop)](https://travis-ci.org/topseySuave/event-manager)
+[![Coverage Status](https://coveralls.io/repos/github/topseySuave/event-manager/badge.svg?branch=develop)](https://coveralls.io/github/topseySuave/event-manager?branch=develop)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/2219e1701e5995fa3410/test_coverage)](https://codeclimate.com/github/topseySuave/event-manager/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/2219e1701e5995fa3410/maintainability)](https://codeclimate.com/github/topseySuave/event-manager/maintainability)
+
+[![npm (tag)](https://img.shields.io/npm/v/npm/next.svg)]()
 
 
- # Sign In
-  - Sign in page where Registered users can sign in to there account and access the application.
-  - A form is provided, which contains An Email input field,
-  - And a password input field.
+## Boots Events Manager
+    A Event Managre Application that enables users admministrate there own events
+    
+ ## Application Features
+   - Sign in and Sign up
+   - Create Events
+   - Create Centers
+   - View Center details
 
- # Sign Up
- - Similar to the ssign up page this also will get users input whom have not registered to the application.
- - Form containing a First and last name input field.
- - Email and password input field.
+ ### Why this App is Useful
+   - Enables user Manager and Easily Attend Events.
 
- # Create Events
- - A page or modal that contains a form for users to create their own event.
+ ### Get Started
+  #### Clone the Application by running
+    $ git clone https://github.com/topseySuave/event-manager.git
+    
+ - Change your directory ``cd`` into the newly created folder ``cd event-manager``
+ - Install Dependencies by running ``npm install``
+ - To Start the server run ```npm start```
+ - Run test ``npm test``
 
- - Also Modification and Deletion of an already created event.
-
- # Application Modification
-
- - Application modification center is a page created for only the admin.
- - So the admin can add or delete Centers.
-
- - Also modify the details of a `center`.
-
+### License
+    ISC

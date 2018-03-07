@@ -1,9 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f051bbcc-4e3a-4837-a5f5-ffa0a54f7bfb" name="Default" comment="signin-page-v1 final commit">
+    <list default="true" id="f051bbcc-4e3a-4837-a5f5-ffa0a54f7bfb" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/js/app.bundle.js.gz" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/js/app.bundle.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/js/hot/hot-update.js.gz" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/topsey.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/topsey.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/index.html" afterPath="$PROJECT_DIR$/template/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/app.js" afterPath="$PROJECT_DIR$/build/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/app.js.map" afterPath="$PROJECT_DIR$/build/app.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/controllers/center.js" afterPath="$PROJECT_DIR$/build/controllers/center.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/controllers/center.js.map" afterPath="$PROJECT_DIR$/build/controllers/center.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/controllers/user.js" afterPath="$PROJECT_DIR$/build/controllers/user.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/controllers/user.js.map" afterPath="$PROJECT_DIR$/build/controllers/user.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/middleware/mailer.js" afterPath="$PROJECT_DIR$/build/middleware/mailer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/middleware/mailer.js.map" afterPath="$PROJECT_DIR$/build/middleware/mailer.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/models/user.js" afterPath="$PROJECT_DIR$/build/models/user.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/models/user.js.map" afterPath="$PROJECT_DIR$/build/models/user.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/public/index.html" afterPath="$PROJECT_DIR$/client/public/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/public/js/app.bundle.js" afterPath="$PROJECT_DIR$/client/public/js/app.bundle.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/public/js/hot/hot-update.js" afterPath="$PROJECT_DIR$/client/public/js/hot/hot-update.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/public/js/hot/hot-update.json" afterPath="$PROJECT_DIR$/client/public/js/hot/hot-update.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/actions/index.js" afterPath="$PROJECT_DIR$/client/src/actions/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/actions/modalAction.js" afterPath="$PROJECT_DIR$/client/src/actions/modalAction.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/centerComponent/allCenters/allCenters.jsx" afterPath="$PROJECT_DIR$/client/src/components/centerComponent/allCenters/allCenters.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/centerDetail.jsx" afterPath="$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/centerDetail.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/currentEventForCenter.jsx" afterPath="$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/currentEventForCenter.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/components/modals/centerModalForms/editCenterForm.jsx" afterPath="$PROJECT_DIR$/client/src/components/modals/centerModalForms/editCenterForm.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/index.jsx" afterPath="$PROJECT_DIR$/client/src/index.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/reducers/activeCenterReducer.js" afterPath="$PROJECT_DIR$/client/src/reducers/activeCenterReducer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/app.js" afterPath="$PROJECT_DIR$/server/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/controllers/center.js" afterPath="$PROJECT_DIR$/server/controllers/center.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/controllers/user.js" afterPath="$PROJECT_DIR$/server/controllers/user.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/models/user.js" afterPath="$PROJECT_DIR$/server/models/user.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack.config.js" afterPath="$PROJECT_DIR$/webpack.config.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,78 +46,133 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
+  <component name="DatabaseView">
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="event-manager" />
+  </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/template/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="224" column="42" lean-forward="true" selection-start-line="224" selection-start-column="42" selection-end-line="224" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/template/js/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="3" lean-forward="true" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="signin.sass" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/template/css/signin-css/signin.sass">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="22" column="15" lean-forward="false" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_mixins.sass" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/template/css/_mixins.sass">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="62" column="21" lean-forward="true" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.sass" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/template/css/main-css/main.sass">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="451">
-              <caret line="27" column="15" lean-forward="true" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.sass" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/template/css/app.sass">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="16" lean-forward="true" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5173642">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="webpack.config.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/webpack.config.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="85">
+                  <caret line="125" column="28" lean-forward="true" selection-start-line="125" selection-start-column="28" selection-end-line="125" selection-end-column="28" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="currentEventForCenter.jsx" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/currentEventForCenter.jsx">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="153">
+                  <caret line="18" column="7" lean-forward="false" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+                  <folding>
+                    <element signature="e#0#41#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="centerDetail.jsx" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/centerDetail.jsx">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="78">
+                  <caret line="65" column="5" lean-forward="false" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
+                  <folding>
+                    <element signature="e#0#41#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="editCenterForm.jsx" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/src/components/modals/centerModalForms/editCenterForm.jsx">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="255">
+                  <caret line="158" column="19" lean-forward="true" selection-start-line="158" selection-start-column="19" selection-end-line="158" selection-end-column="19" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/public/index.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="323">
+                  <caret line="34" column="50" lean-forward="false" selection-start-line="34" selection-start-column="50" selection-end-line="34" selection-end-column="50" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="users.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/server/routes/users.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="68">
+                  <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#0#30#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="center.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/server/controllers/center.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="231">
+                  <caret line="212" column="10" lean-forward="true" selection-start-line="212" selection-start-column="10" selection-end-line="212" selection-end-column="10" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="modalAction.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/src/actions/modalAction.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="85">
+                  <caret line="29" column="19" lean-forward="true" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="activeCenterReducer.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/src/reducers/activeCenterReducer.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="51">
+                  <caret line="9" column="25" lean-forward="true" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="HTML File" />
         <option value="Sass File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -97,7 +183,41 @@
       <find>popular__events_holdr</find>
       <find>parallax</find>
       <find>Parallax</find>
+      <find>search__pane</find>
+      <find>picker</find>
+      <find>//</find>
+      <find>search__bck_btn</find>
+      <find>for</find>
+      <find>&lt;i className=&quot;material-icons&quot;&gt;&lt;/i&gt;</find>
+      <find>createHistory</find>
+      <find>React.PropTypes.string.isRequired</find>
+      <find>requiredPropType</find>
+      <find>var</find>
+      <find>map</find>
+      <find>handleChange</find>
+      <find>handleSubmit</find>
+      <find>class</find>
+      <find>queries.</find>
+      <find>newCenter</find>
+      <find>formData</find>
+      <find>data</find>
+      <find>edit</find>
+      <find>delete</find>
+      <find>$</find>
+      <find>&quot;</find>
     </findStrings>
+    <replaceStrings>
+      <replace>htmlFor</replace>
+      <replace>requiredPropType</replace>
+      <replace>requiredPropTypeString</replace>
+      <replace>let</replace>
+      <replace>handleCenterChange</replace>
+      <replace>handleCenterSubmit</replace>
+      <replace>className</replace>
+      <replace>centerData</replace>
+      <replace>data</replace>
+      <replace>dataToSend</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -108,29 +228,64 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="create-event-modal" />
+        <entry key="$PROJECT_DIR$" value="ch-client-side" />
       </map>
     </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/template/css/main.css" />
-        <option value="$PROJECT_DIR$/template/css/micon.css" />
-        <option value="$PROJECT_DIR$/template/css/main.sass" />
-        <option value="$PROJECT_DIR$/template/css/media-query.sass" />
-        <option value="$PROJECT_DIR$/template/css/main.css/main.sass" />
-        <option value="$PROJECT_DIR$/template/css/app.sass" />
-        <option value="$PROJECT_DIR$/template/css/app.css" />
-        <option value="$PROJECT_DIR$/template/css/overwrite/overwrite.sass" />
-        <option value="$PROJECT_DIR$/template/css/_partials.sass" />
-        <option value="$PROJECT_DIR$/template/css/main-css/main.sass" />
-        <option value="$PROJECT_DIR$/template/signup.html" />
-        <option value="$PROJECT_DIR$/template/signin.html" />
-        <option value="$PROJECT_DIR$/template/css/signin-css/signin.sass" />
-        <option value="$PROJECT_DIR$/template/css/_mixins.sass" />
-        <option value="$PROJECT_DIR$/template/js/main.js" />
-        <option value="$PROJECT_DIR$/template/index.html" />
+        <option value="$PROJECT_DIR$/client/src/components/bodyComponents/headNav/fixedNav.js" />
+        <option value="$PROJECT_DIR$/client/src/reducers/authReducer.js" />
+        <option value="$PROJECT_DIR$/client/src/components/authentication/signout/signOut.jsx" />
+        <option value="$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/index.jsx" />
+        <option value="$PROJECT_DIR$/client/src/components/modals/index.js" />
+        <option value="$PROJECT_DIR$/client/src/components/centerComponent/centerCard/centerCard.js" />
+        <option value="$PROJECT_DIR$/client/src/components/centerComponent/allCenters/index.jsx" />
+        <option value="$PROJECT_DIR$/client/src/components/bodyComponents/floatingActionButton/FloatingActionButton.js" />
+        <option value="$PROJECT_DIR$/server/controllers/events.js" />
+        <option value="$PROJECT_DIR$/client/src/components/bodyComponents/indexEventsCard.jsx" />
+        <option value="$PROJECT_DIR$/client/src/actions/events-actions/index.js" />
+        <option value="$PROJECT_DIR$/client/src/reducers/eventReducer.js" />
+        <option value="$PROJECT_DIR$/client/src/reducers/centerReducer.js" />
+        <option value="$PROJECT_DIR$/client/src/actions/center-actions/fetchCenterAction.js" />
+        <option value="$PROJECT_DIR$/client/src/components/bodyComponents/eventsCard/eventCard.jsx" />
+        <option value="$PROJECT_DIR$/client/public/css/overwrite/overwrite.sass" />
+        <option value="$PROJECT_DIR$/client/public/js/main.js" />
+        <option value="$PROJECT_DIR$/client/src/components/bodyComponents/headNav/fixedNav.jsx" />
+        <option value="$PROJECT_DIR$/server/config/config.json" />
+        <option value="$PROJECT_DIR$/server/config/config.js" />
+        <option value="$PROJECT_DIR$/server/models/index.js" />
+        <option value="$PROJECT_DIR$/server/routes/events.js" />
+        <option value="$PROJECT_DIR$/server/routes/centers.js" />
+        <option value="$PROJECT_DIR$/server/routes/index.js" />
+        <option value="$PROJECT_DIR$/server/routes/users.js" />
+        <option value="$PROJECT_DIR$/server/middleware/validator.js" />
+        <option value="$PROJECT_DIR$/client/src/actions/authActions.js" />
+        <option value="$PROJECT_DIR$/client/src/index.js" />
+        <option value="$PROJECT_DIR$/client/src/components/modals/CenterModal.js" />
+        <option value="$PROJECT_DIR$/client/src/components/modals/searchModal.js" />
+        <option value="$PROJECT_DIR$/client/public/css/main-css/main.sass" />
+        <option value="$PROJECT_DIR$/client/public/pending.html" />
+        <option value="$PROJECT_DIR$/server/middleware/mailer.js" />
+        <option value="$PROJECT_DIR$/server/models/user.js" />
+        <option value="$PROJECT_DIR$/server/controllers/user.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/client/public/index.html" />
+        <option value="$PROJECT_DIR$/client/src/index.jsx" />
+        <option value="$PROJECT_DIR$/client/src/components/centerComponent/allCenters/allCenters.jsx" />
+        <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/server/app.js" />
+        <option value="$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/currentEventForCenter.jsx" />
+        <option value="$PROJECT_DIR$/client/src/actions/index.js" />
+        <option value="$PROJECT_DIR$/client/src/actions/modalAction.js" />
+        <option value="$PROJECT_DIR$/server/controllers/center.js" />
+        <option value="$PROJECT_DIR$/client/src/reducers/activeCenterReducer.js" />
+        <option value="$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/centerDetail.jsx" />
+        <option value="$PROJECT_DIR$/client/src/components/modals/centerModalForms/editCenterForm.jsx" />
+        <option value="$PROJECT_DIR$/client/public/admin.html" />
+        <option value="$PROJECT_DIR$/client/public/admin-users.html" />
+        <option value="$PROJECT_DIR$/webpack.config.js" />
       </list>
     </option>
   </component>
@@ -140,12 +295,15 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="1" />
-    <option name="y" value="1" />
-    <option name="width" value="1364" />
-    <option name="height" value="766" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1370" />
+    <option name="height" value="772" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -162,7 +320,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -185,7 +342,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="template" />
+              <option name="myItemId" value="server" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -199,11 +356,11 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="template" />
+              <option name="myItemId" value="server" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="models" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -217,37 +374,78 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="template" />
+              <option name="myItemId" value="server" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="event-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="event-manager" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="event-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="event-manager" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
-    <property name="settings.editor.selected.configurable" value="preferences.toDoOptions" />
-    <property name="last_opened_file_path" value="C:/Ruby24-x64/bin/scss" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="last_opened_file_path" value="C:/htdocs/6ixups-material" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="js.eslint.eslintPackage" value="" />
+    <property name="js.eslint.eslintPackage" value="C:\Users\topsey\AppData\Roaming\npm\node_modules\eslint" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="list.type.of.created.stylesheet" value="Sass" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
+    <property name="nodejs.mocha.mocha_node_package_dir" value="C:\projects\event-manager\node_modules\mocha" />
+    <property name="SearchEverywhereHistoryKey" value="export default class&#9;null&#9;null" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\projects\event-manager\template\css\frameworks" />
+      <recent name="C:\projects\event-manager\client\src\actions\center-actions" />
+      <recent name="C:\projects\event-manager\client\src\components\bodyComponents" />
+      <recent name="C:\projects\event-manager\client\src\components\modals" />
+      <recent name="C:\projects\event-manager\client\src\components\modals\modalForms" />
+      <recent name="C:\projects\event-manager\client\src\components\authentication" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\projects\event-manager\template\js" />
-      <recent name="C:\projects\event-manager\template\css\frameworks" />
-      <recent name="C:\projects\event-manager\template\css" />
+      <recent name="C:\projects\event-manager\client\src\actions" />
+      <recent name="C:\projects\event-manager\client\src\components\authentication\signup" />
+      <recent name="C:\projects\event-manager\client\public" />
+      <recent name="C:\projects\event-manager\client\public\js" />
+      <recent name="C:\projects\event-manager\client\public\fonts" />
     </key>
   </component>
   <component name="RunManager">
@@ -322,6 +520,12 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -348,6 +552,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="f051bbcc-4e3a-4837-a5f5-ffa0a54f7bfb" name="Default" comment="" />
@@ -355,127 +562,439 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1510585765372</updated>
-      <workItem from="1510585767423" duration="46506000" />
+      <workItem from="1510585767423" duration="70602000" />
+      <workItem from="1510849378045" duration="2128000" />
+      <workItem from="1510859023664" duration="13130000" />
+      <workItem from="1510930031100" duration="33297000" />
+      <workItem from="1511053877056" duration="92000" />
+      <workItem from="1511463899057" duration="11285000" />
+      <workItem from="1512761206150" duration="3383000" />
+      <workItem from="1512765165962" duration="2412000" />
+      <workItem from="1512859634437" duration="285000" />
+      <workItem from="1512867120728" duration="600000" />
+      <workItem from="1512868282388" duration="841000" />
+      <workItem from="1512934830663" duration="2744000" />
+      <workItem from="1513002062196" duration="15131000" />
+      <workItem from="1513069087708" duration="48996000" />
+      <workItem from="1513191453741" duration="53535000" />
+      <workItem from="1513604262961" duration="11206000" />
+      <workItem from="1514127165342" duration="29976000" />
+      <workItem from="1514233890909" duration="196409000" />
+      <workItem from="1515445979884" duration="39160000" />
+      <workItem from="1515612352788" duration="9896000" />
+      <workItem from="1515685913280" duration="58886000" />
+      <workItem from="1516043574879" duration="31103000" />
+      <workItem from="1516406403454" duration="54395000" />
+      <workItem from="1516930132579" duration="17501000" />
+      <workItem from="1517189003722" duration="3240000" />
+      <workItem from="1517275125177" duration="24046000" />
+      <workItem from="1517916171087" duration="1521000" />
+      <workItem from="1517968848268" duration="7029000" />
+      <workItem from="1518086785089" duration="12949000" />
+      <workItem from="1518548666942" duration="46325000" />
+      <workItem from="1519885803097" duration="37489000" />
     </task>
-    <task id="LOCAL-00001" summary="project building and first commit">
-      <created>1510593022088</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
+    <task id="LOCAL-00023" summary="refactor: event form completion.">
+      <created>1510869455756</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
       <option name="project" value="LOCAL" />
-      <updated>1510593022088</updated>
+      <updated>1510869455756</updated>
     </task>
-    <task id="LOCAL-00002" summary="project building and second commit">
-      <created>1510593602637</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
+    <task id="LOCAL-00024" summary="style: logo photoshop modification.">
+      <created>1510870237744</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
       <option name="project" value="LOCAL" />
-      <updated>1510593602637</updated>
+      <updated>1510870237744</updated>
     </task>
-    <task id="LOCAL-00003" summary="project building and second commit">
-      <created>1510593619859</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
+    <task id="LOCAL-00025" summary="Refactor: Changed the delete button to be at the card-reveal section of the event card.">
+      <created>1510914675276</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
       <option name="project" value="LOCAL" />
-      <updated>1510593619859</updated>
+      <updated>1510914675276</updated>
     </task>
-    <task id="LOCAL-00004" summary="landing page commit 2">
-      <created>1510649182065</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
+    <task id="LOCAL-00026" summary="style: designed center details page and implemented:&#10;- Center Title&#10;- Location&#10;- Description&#10;- Capacity&#10;- Facilities: displaying selected list of facilities the centers possess.&#10;Further updates to be provided.">
+      <created>1510961331662</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
       <option name="project" value="LOCAL" />
-      <updated>1510649182065</updated>
+      <updated>1510961331662</updated>
     </task>
-    <task id="LOCAL-00005" summary="gh-pages-v1">
-      <created>1510653357404</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
+    <task id="LOCAL-00027" summary="refactor: Added price tag to about center details list, indicating the price of the center.">
+      <created>1510962029543</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
       <option name="project" value="LOCAL" />
-      <updated>1510653357404</updated>
+      <updated>1510962029543</updated>
     </task>
-    <task id="LOCAL-00006" summary="gh-pages-v2 wow integration">
-      <created>1510655090132</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
+    <task id="LOCAL-00028" summary="style: completed center-details page, center  listing and center modification form.">
+      <created>1511048200851</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
       <option name="project" value="LOCAL" />
-      <updated>1510655090132</updated>
+      <updated>1511048200851</updated>
     </task>
-    <task id="LOCAL-00007" summary="gh-pages-v2.0">
-      <created>1510658413671</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
+    <task id="LOCAL-00029" summary="refactor: changed the input form for the center details.&#10;- Added title input&#10;- Added location input&#10;- Added facilities checkboxes&#10;- Added price and capacity of center&#10;- Added center description">
+      <created>1511052690100</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
       <option name="project" value="LOCAL" />
-      <updated>1510658413671</updated>
+      <updated>1511052690100</updated>
     </task>
-    <task id="LOCAL-00008" summary="gh-pages-v2.2">
-      <created>1510679567302</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
+    <task id="LOCAL-00030" summary="refactor: changed add center button background color.">
+      <created>1511052961782</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
       <option name="project" value="LOCAL" />
-      <updated>1510679567302</updated>
+      <updated>1511052961782</updated>
     </task>
-    <task id="LOCAL-00009" summary="signin-page-v1">
-      <created>1510687539418</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
+    <task id="LOCAL-00031" summary="frontend ui design refactoring">
+      <created>1512762258608</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
       <option name="project" value="LOCAL" />
-      <updated>1510687539418</updated>
+      <updated>1512762258608</updated>
     </task>
-    <task id="LOCAL-00010" summary="signin-page-v1">
-      <created>1510687601873</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
+    <task id="LOCAL-00032" summary="frontend ui design refactoring.">
+      <created>1512762924339</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
       <option name="project" value="LOCAL" />
-      <updated>1510687601873</updated>
+      <updated>1512762924339</updated>
     </task>
-    <task id="LOCAL-00011" summary="signin-page-v1.1">
-      <created>1510725242817</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
+    <task id="LOCAL-00033" summary="frontend ui design refactoring..">
+      <created>1512764490850</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
       <option name="project" value="LOCAL" />
-      <updated>1510725242817</updated>
+      <updated>1512764490850</updated>
     </task>
-    <task id="LOCAL-00012" summary="signin-page-v1.2">
-      <created>1510738161097</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
+    <task id="LOCAL-00034" summary="frontend ui design refactoring...">
+      <created>1512766922679</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
       <option name="project" value="LOCAL" />
-      <updated>1510738161097</updated>
+      <updated>1512766922679</updated>
     </task>
-    <task id="LOCAL-00013" summary="signin-page-v1 final commit">
-      <created>1510743111263</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
+    <task id="LOCAL-00035" summary="fix: attempt to let webpack compile the app and let it read static file (css, svg, images)">
+      <created>1512991627950</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
       <option name="project" value="LOCAL" />
-      <updated>1510743111263</updated>
+      <updated>1512991627991</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00036" summary="feat: broken down ui to react component, webpack compiling of react module for browser readability.">
+      <created>1513104281821</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1513104281821</updated>
+    </task>
+    <task id="LOCAL-00037" summary="feat: broken down ui to react component, webpack compiling of react module for browser readability..">
+      <created>1513104372030</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1513104372030</updated>
+    </task>
+    <task id="LOCAL-00038" summary="feat: implement react routes but fails to render content to the dom.">
+      <created>1513118412702</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1513118412702</updated>
+    </task>
+    <task id="LOCAL-00039" summary="fix: fixed routing and rendered all pages Components.">
+      <created>1513178607511</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1513178607511</updated>
+    </task>
+    <task id="LOCAL-00040" summary="feat: signup action and reducers created but errors popped.">
+      <created>1513241653431</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1513241653431</updated>
+    </task>
+    <task id="LOCAL-00041" summary="fix: redux implementation for signup completion">
+      <created>1513352954237</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1513352954237</updated>
+    </task>
+    <task id="LOCAL-00042" summary="feat: redux implementation for signin">
+      <created>1513370397551</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1513370397551</updated>
+    </task>
+    <task id="LOCAL-00043" summary="fix: modify signup to handle responses from server.">
+      <created>1514127441643</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1514127441643</updated>
+    </task>
+    <task id="LOCAL-00044" summary="fix: complete react redux authentication action for sign-in and sign-up.">
+      <created>1514225975154</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1514225975154</updated>
+    </task>
+    <task id="LOCAL-00045" summary="fix: sign-in to use redux authentication store to set authentication conditions for the application.">
+      <created>1514348814002</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1514348814002</updated>
+    </task>
+    <task id="LOCAL-00046" summary="feat: add center and fetch centers from API end-points.">
+      <created>1514809821151</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1514809821151</updated>
+    </task>
+    <task id="LOCAL-00047" summary="fix: center rendering fetched from API.">
+      <created>1514901915145</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1514901915145</updated>
+    </task>
+    <task id="LOCAL-00048" summary="feat: broke center details to two component for flexibility.">
+      <created>1514921177285</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1514921177285</updated>
+    </task>
+    <task id="LOCAL-00049" summary="fix: materialize card disfunctionality :)">
+      <created>1514925691084</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1514925691084</updated>
+    </task>
+    <task id="LOCAL-00050" summary="feat: get params from route. &#10;fix: linking routes to be relative to the host.">
+      <created>1515014615348</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1515014615445</updated>
+    </task>
+    <task id="LOCAL-00051" summary="doc: install multiparty for file upload.&#10;fix: center details rendering">
+      <created>1515110158188</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1515110158189</updated>
+    </task>
+    <task id="LOCAL-00052" summary="feat: center quick search implementation">
+      <created>1515507290661</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1515507290663</updated>
+    </task>
+    <task id="LOCAL-00053" summary="fix: add center to insert images with center details.&#10;--- fix recommended centers fetching errors.&#10;--- fix authentication validation with jwt.verify which checks for expiry date for user.">
+      <created>1515790418780</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1515790418780</updated>
+    </task>
+    <task id="LOCAL-00054" summary="fix: webpack hot update and but leave webpack to compile not app.js">
+      <created>1515790589361</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1515790589361</updated>
+    </task>
+    <task id="LOCAL-00055" summary="feat: modify single event Modal to handle both edit and create events.">
+      <created>1515939214229</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1515939214230</updated>
+    </task>
+    <task id="LOCAL-00056" summary="feat: modify single event Modal to handle both edit and create events..">
+      <created>1515939254036</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1515939254037</updated>
+    </task>
+    <task id="LOCAL-00057" summary="change: made to event modal to use material-ui layout.">
+      <created>1516059745753</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1516059745754</updated>
+    </task>
+    <task id="LOCAL-00058" summary="chore: complete delete event request and fix: add event modal">
+      <created>1516652047130</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1516652047131</updated>
+    </task>
+    <task id="LOCAL-00059" summary="fix: create event modal startDate and endDate field to respond to dates that are less than today.">
+      <created>1516655222188</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1516655222188</updated>
+    </task>
+    <task id="LOCAL-00060" summary="fix: create event form to display startDate and endDate errors if there is.">
+      <created>1516656332228</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1516656332228</updated>
+    </task>
+    <task id="LOCAL-00061" summary="chores: complete delete individual center">
+      <created>1516767111309</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1516767111309</updated>
+    </task>
+    <task id="LOCAL-00062" summary="chores: consumed center update api, stttarted with event.">
+      <created>1517008426089</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1517008426113</updated>
+    </task>
+    <task id="LOCAL-00063" summary="fix: edit event modal with materialize.">
+      <created>1517615122967</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1517615122970</updated>
+    </task>
+    <task id="LOCAL-00064" summary="fix: react standards file renames and pagination.">
+      <created>1518708209239</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1518708209241</updated>
+    </task>
+    <task id="LOCAL-00065" summary="fix: react standards file renames and pagination.">
+      <created>1518708242018</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1518708242018</updated>
+    </task>
+    <task id="LOCAL-00066" summary="chores: completed pagination fro both events and centers display list.">
+      <created>1518769675454</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1518769675454</updated>
+    </task>
+    <task id="LOCAL-00067" summary="fix: server (api route versioning optimization) clean up.">
+      <created>1518774598197</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1518774598197</updated>
+    </task>
+    <task id="LOCAL-00068" summary="fix: server (api route versioning optimization) clean up.">
+      <created>1518776313026</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1518776313026</updated>
+    </task>
+    <task id="LOCAL-00069" summary="fix: app.bundle.js syntax error done by commit conflict.">
+      <created>1519888078285</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1519888078286</updated>
+    </task>
+    <task id="LOCAL-00070" summary="fix: webpack optimisation(compression and minimization) for app bundle file.">
+      <created>1519940147141</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1519940147141</updated>
+    </task>
+    <task id="LOCAL-00071" summary="change: sender address from gail to gistout">
+      <created>1519941493224</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1519941493224</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46506000" />
+    <option name="totallyTimeSpent" value="839592000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="1" width="1364" height="766" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1370" height="772" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294893" sideWeight="0.506135" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294893" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7545305" sideWeight="0.49386504" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294893" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1519084" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294893" sideWeight="0.506135" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32626426" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36867863" sideWeight="0.49386504" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32626426" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6029654" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35562807" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294893" sideWeight="0.506135" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21859707" sideWeight="0.49386504" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32626426" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31647635" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14961833" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32626426" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
@@ -502,70 +1021,217 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="project building and first commit" />
-    <MESSAGE value="project building and second commit" />
-    <MESSAGE value="layout for home page" />
-    <MESSAGE value="landing page commit 1" />
-    <MESSAGE value="landing page commit 2" />
-    <MESSAGE value="gh-pages-v1" />
-    <MESSAGE value="gh-pages-v2 wow integration" />
-    <MESSAGE value="gh-pages-v2.0" />
-    <MESSAGE value="gh-pages-v2.2" />
-    <MESSAGE value="signin-page-v1" />
-    <MESSAGE value="signin-page-v1.1" />
-    <MESSAGE value="signin-page-v1.2" />
-    <MESSAGE value="signin-page-v1 final commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="signin-page-v1 final commit" />
+    <MESSAGE value="fix: sign-in to use redux authentication store to set authentication conditions for the application." />
+    <MESSAGE value="feat: add center and fetch centers from API end-points." />
+    <MESSAGE value="fix: center rendering fetched from API." />
+    <MESSAGE value="feat: broke center details to two component for flexibility." />
+    <MESSAGE value="fix: materialize card disfunctionality :)" />
+    <MESSAGE value="feat: get params from route. &#10;fix: linking routes to be relative to the host." />
+    <MESSAGE value="doc: install multiparty for file upload.&#10;fix: center details rendering" />
+    <MESSAGE value="feat: center quick search implementation" />
+    <MESSAGE value="fix: add center to insert images with center details.&#10;--- fix recommended centers fetching errors.&#10;--- fix authentication validation with jwt.verify which checks for expiry date for user." />
+    <MESSAGE value="fix: webpack hot update and but leave webpack to compile not app.js" />
+    <MESSAGE value="feat: modify single event Modal to handle both edit and create events." />
+    <MESSAGE value="feat: modify single event Modal to handle both edit and create events.." />
+    <MESSAGE value="change: made to event modal to use material-ui layout." />
+    <MESSAGE value="chore: complete delete event request and fix: add event modal" />
+    <MESSAGE value="fix: create event modal startDate and endDate field to respond to dates that are less than today." />
+    <MESSAGE value="fix: create event form to display startDate and endDate errors if there is." />
+    <MESSAGE value="chores: complete delete individual center" />
+    <MESSAGE value="chores: consumed center update api, stttarted with event." />
+    <MESSAGE value="fix: edit event modal with materialize." />
+    <MESSAGE value="fix: react standards file renames and pagination." />
+    <MESSAGE value="chores: completed pagination fro both events and centers display list." />
+    <MESSAGE value="fix: server (api route versioning optimization) clean up." />
+    <MESSAGE value="fix: app.bundle.js syntax error done by commit conflict." />
+    <MESSAGE value="fix: webpack optimisation(compression and minimization) for app bundle file." />
+    <MESSAGE value="change: sender address from gail to gistout" />
+    <option name="LAST_COMMIT_MESSAGE" value="change: sender address from gail to gistout" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="3" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/template/js/jquery-3.2.1.min.js">
+    <entry file="file://$PROJECT_DIR$/server/models/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="163">
+          <caret line="35" column="25" lean-forward="false" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/css/frameworks/micon.css">
+    <entry file="file://$PROJECT_DIR$/client/src/reducers/centerReducer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="34" lean-forward="true" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
-          <folding />
+        <state relative-caret-position="187">
+          <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/css/frameworks/ghpages-materialize.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/template/css/media-query.sass">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/template/css/main-css/main.css.map">
+    <entry file="file://$PROJECT_DIR$/server/docs/swagger.json" />
+    <entry file="file://$PROJECT_DIR$/server/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="1" column="13" lean-forward="true" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/middleware/validator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="62" column="3" lean-forward="true" selection-start-line="62" selection-start-column="3" selection-end-line="62" selection-end-column="3" />
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="sourcemapFileViewerProvider">
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/actions/authActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-139">
+          <caret line="26" column="2" lean-forward="true" selection-start-line="26" selection-start-column="2" selection-end-line="26" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/bodyComponents/eventsCard/eventCard.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1904">
+          <caret line="129" column="26" lean-forward="false" selection-start-line="129" selection-start-column="26" selection-end-line="129" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/modals/CenterModal.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="11" column="16" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/modals/searchModal.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-170">
+          <caret line="8" column="16" lean-forward="true" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/modals/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="17" column="6" lean-forward="false" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/centerComponent/allCenters/searchFasterForm.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="39" column="7" lean-forward="true" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/centerComponent/allCenters/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="21" column="25" lean-forward="false" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/App.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/noMatch.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/centerComponent/centerCard/centerCard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/public/css/main-css/main.sass">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="95" column="9" lean-forward="true" selection-start-line="95" selection-start-column="9" selection-end-line="95" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/registerServiceWorker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/public/js/app.bundle.js.gz">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/middleware/mailer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="11" column="10" lean-forward="false" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/models/center.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/public/js/app.bundle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="0" column="9048" lean-forward="false" selection-start-line="0" selection-start-column="9048" selection-end-line="0" selection-end-column="9048" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="LargeFileEditor">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/css/main-css/main.css">
+    <entry file="file://$PROJECT_DIR$/client/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="34" column="50" lean-forward="false" selection-start-line="34" selection-start-column="50" selection-end-line="34" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="11" column="38" lean-forward="true" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/public/js/hot/hot-update.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2598">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/public/js/hot/hot-update.js.gz">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -573,114 +1239,233 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/css/frameworks/animate.css">
+    <entry file="file://$PROJECT_DIR$/client/public/js/hot/hot-update.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="1282" column="14" lean-forward="false" selection-start-line="1282" selection-start-column="11" selection-end-line="1282" selection-end-column="14" />
+        <state relative-caret-position="0">
+          <caret line="0" column="43" lean-forward="true" selection-start-line="0" selection-start-column="43" selection-end-line="0" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/js/materialize.min.js">
+    <entry file="file://$PROJECT_DIR$/client/src/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="5" column="79535" lean-forward="false" selection-start-line="5" selection-start-column="79527" selection-end-line="5" selection-end-column="79535" />
+        <state relative-caret-position="17">
+          <caret line="10" column="39" lean-forward="true" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#26#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/routes/administrator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="16" column="6" lean-forward="true" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/js/materialize.js">
+    <entry file="file://$PROJECT_DIR$/server/controllers/user.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7100">
-          <caret line="1296" column="567" lean-forward="false" selection-start-line="1296" selection-start-column="567" selection-end-line="1296" selection-end-column="567" />
+        <state relative-caret-position="285">
+          <caret line="194" column="24" lean-forward="false" selection-start-line="194" selection-start-column="24" selection-end-line="194" selection-end-column="24" />
+          <folding>
+            <marker date="1520018863834" expanded="true" signature="4854:5105" ph="..." />
+            <marker date="1520018863834" expanded="true" signature="5227:5340" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/models/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/css/app.css">
+    <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        <state relative-caret-position="34">
+          <caret line="2" column="12" lean-forward="true" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/css/overwrite/overwrite.sass">
+    <entry file="file://$PROJECT_DIR$/server/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="11" lean-forward="true" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
+        <state relative-caret-position="34">
+          <caret line="50" column="4" lean-forward="true" selection-start-line="50" selection-start-column="4" selection-end-line="50" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/css/_partials.sass">
+    <entry file="file://$PROJECT_DIR$/client/src/components/centerComponent/allCenters/allCenters.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="25" lean-forward="false" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+        <state relative-caret-position="561">
+          <caret line="66" column="8" lean-forward="false" selection-start-line="66" selection-start-column="8" selection-end-line="66" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/signup.html">
+    <entry file="file://$PROJECT_DIR$/server/routes/centers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="28" column="36" lean-forward="false" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#30#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/routes/events.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#30#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/routes/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/controllers/events.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3784">
+          <caret line="322" column="9" lean-forward="true" selection-start-line="322" selection-start-column="9" selection-end-line="322" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/signin.html">
+    <entry file="file://$PROJECT_DIR$/client/src/actions/center-actions/activeCenterAction.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-59">
-          <caret line="29" column="36" lean-forward="false" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
+        <state relative-caret-position="391">
+          <caret line="23" column="2" lean-forward="true" selection-start-line="23" selection-start-column="2" selection-end-line="23" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#26#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/actions/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="74" column="42" lean-forward="true" selection-start-line="74" selection-start-column="42" selection-end-line="74" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/css/app.sass">
+    <entry file="file://$PROJECT_DIR$/server/models/events.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="16" lean-forward="true" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+        <state relative-caret-position="459">
+          <caret line="27" column="26" lean-forward="true" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/css/main-css/main.sass">
+    <entry file="file://$PROJECT_DIR$/node_modules/@types/node/index.d.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="27" column="15" lean-forward="true" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="15" />
+        <state relative-caret-position="122">
+          <caret line="2343" column="8" lean-forward="false" selection-start-line="2343" selection-start-column="8" selection-end-line="2343" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/css/signin-css/signin.sass">
+    <entry file="file://$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/currentEventForCenter.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="22" column="15" lean-forward="false" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="15" />
+        <state relative-caret-position="153">
+          <caret line="18" column="7" lean-forward="false" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/centerDetail.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="65" column="5" lean-forward="false" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/actions/modalAction.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="29" column="19" lean-forward="true" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/css/_mixins.sass">
+    <entry file="file://$PROJECT_DIR$/client/src/reducers/activeCenterReducer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="62" column="21" lean-forward="true" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
+        <state relative-caret-position="51">
+          <caret line="9" column="25" lean-forward="true" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/js/main.js">
+    <entry file="file://$PROJECT_DIR$/client/public/pending.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="3" lean-forward="true" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
+        <state relative-caret-position="801">
+          <caret line="50" column="19" lean-forward="false" selection-start-line="50" selection-start-column="19" selection-end-line="50" selection-end-column="19" />
+          <folding>
+            <marker date="1519936506098" expanded="true" signature="3781:4310" ph="..." />
+            <marker date="1519936506098" expanded="true" signature="4030:4284" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/public/admin-users.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="58" column="25" lean-forward="false" selection-start-line="58" selection-start-column="25" selection-end-line="58" selection-end-column="25" />
+          <folding>
+            <marker date="1520090006660" expanded="true" signature="3802:4264" ph="..." />
+            <marker date="1520090006660" expanded="true" signature="4041:4238" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/public/admin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="77" column="27" lean-forward="true" selection-start-line="77" selection-start-column="27" selection-end-line="77" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/index.html">
+    <entry file="file://$PROJECT_DIR$/server/controllers/center.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="224" column="42" lean-forward="true" selection-start-line="224" selection-start-column="42" selection-end-line="224" selection-end-column="42" />
+        <state relative-caret-position="231">
+          <caret line="212" column="10" lean-forward="true" selection-start-line="212" selection-start-column="10" selection-end-line="212" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/modals/centerModalForms/editCenterForm.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="158" column="19" lean-forward="true" selection-start-line="158" selection-start-column="19" selection-end-line="158" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="125" column="28" lean-forward="true" selection-start-line="125" selection-start-column="28" selection-end-line="125" selection-end-column="28" />
           <folding />
         </state>
       </provider>

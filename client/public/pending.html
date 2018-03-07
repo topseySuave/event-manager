@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <!--<link rel="stylesheet" href="/css/frameworks/ghpages-materialize.css">-->
+    <!--<link href="/css/frameworks/micon.css" rel="stylesheet">-->
+    <!--<link href="/css/frameworks/animate.css" rel="stylesheet">-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" href="/fav.ico">
+
+    <title>Boots Events Manager</title>
+</head>
+<noscript>
+    You need to enable JavaScript to run this app.
+</noscript>
+<body>
+<div id="admin">
+    <div class="row">
+        <div class="col s12">
+            <h5 class="bold green-text center-align">Boots Events Manager</h5>
+            <h6 class="grey-text center-align"> Pending Event </h6>
+            <br/>
+            <table class="highlight striped bordered responsive-table">
+                <thead>
+                <tr>
+                    <th data-field="title">Title</th>
+                    <th data-field="description">Description</th>
+                    <th data-field="startDate">Start Date</th>
+                    <th data-field="endDate">End Date</th>
+                    <th data-field="actions">Actions</th>
+                </tr>
+                </thead>
+                <tbody id="pending-body">
+                    <!-- td table body -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+<!--<script src="/js/jquery-3.2.1.min.js"></script>-->
+<!--<script src="/js/materialize.min.js"></script>-->
+<!--<script src="/js/wow.min.js"></script>-->
+<script>
+    $(document).ready(function () {
+        var modal = $('.modal');
+        new WOW().init();
+        modal.modal({
+            dismissible: true, // Modal can be dismissed by clicking outside of the modal
+            opacity: .5, // Opacity of modal background
+            inDuration: 300, // Transition in duration
+            outDuration: 200, // Transition out duration
+            startingTop: '4%', // Starting top style attribute
+            endingTop: '10%', // Ending top style attribute
+            ready: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+                $('.body__holdr').addClass('blur__fits');
+            },
+            complete: function () {
+                $('.body__holdr').removeClass('blur__fits');
+                $('.modal-overlay').css({'display': 'none'});
+                modal.removeClass('search__pane');
+            } // Callback for Modal close
+        });
+        $('.parallax').parallax();
+//            $('select').material_select();
+        $('.dropdown-button').dropdown();
+        $('.tooltipped').tooltip({delay: 50});
+
+        var tbody = $('tbody#pending-body');
+        var events, i, td;
+        $.get('/admin/pending-events/all', (res) => {
+            events = res.events;
+            for(i = 0; i < events.length; i++){
+                td = `<tr>
+                        <td>${events[i].title}</td>
+                        <td>${events[i].description}</td>
+                        <td>${events[i].startDate}</td>
+                        <td>${events[i].endDate}</td>
+                        <td>
+                            <button class="waves-effect btn btn-flat green darken-2 white-text">accept</button>
+                            <button class="waves-effect btn btn-flat red lighten-2 white-text">decline</button>
+                        </td>
+                    </tr>`;
+                tbody.append(td);
+            }
+        });
+    });
+</script>
+</body>
+</html>
