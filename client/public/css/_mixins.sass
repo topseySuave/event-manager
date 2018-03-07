@@ -1,0 +1,79 @@
+/*padding mixins*/
+@mixin pad($val)
+  padding: $val
+
+@mixin padLeft($val)
+  padding-left: $val
+
+@mixin padTop($val)
+  padding-top: $val
+
+@mixin padBottom($val)
+  padding-bottom: $val
+
+@mixin padRight($val)
+  padding-right: $val
+
+/*Margin mixins*/
+@mixin marg($val)
+  margin: $val
+
+@mixin margTop($val)
+  margin-top: $val
+
+@mixin margRight($val)
+  margin-left: $val
+
+@mixin margBottom($val)
+  margin-bottom: $val
+
+@mixin margLeft($val)
+  margin-left: $val
+
+@mixin transit($duration)
+  -webkit-transition: all $duration ease-in-out
+  -moz-transition: all $duration ease-in-out
+  -o-transition: all $duration ease-in-out
+  transition: all $duration ease-in-out
+
+@mixin fadeIn($val)
+  /* Chrome, Safari, Opera */
+  @-webkit-keyframes fadeIn
+    from
+      transform: translateY(-$val)
+    to
+      transform: translateY($val)
+
+  /* Standard syntax */
+  @keyframes fadeIn
+    from
+      transform: translateY(-$val)
+    to
+      transform: translateY($val)
+
+@mixin gradient()
+  background-image: linear-gradient(to top left, $rgbaBlueTrans, $rgbaGreenTrans)
+  background-image: -webkit-linear-gradient(to top left, $rgbaBlueTrans, $rgbaGreenTrans)
+
+@mixin gradientHorizTrans()
+  background-image: linear-gradient(to left, $rgbaBlueTrans, $rgbaGreenTrans)
+  background-image: -webkit-linear-gradient(to left, $rgbaBlueTrans, $rgbaGreenTrans)
+
+@mixin gradientHoriz()
+  background-image: linear-gradient(to left, $rgbaBlue, $rgbaGreen)
+  background-image: -webkit-linear-gradient(to left, $rgbaBlue, $rgbaGreen)
+
+@mixin gradientText()
+  @include gradient()
+  -webkit-background-clip: text
+  -webkit-text-fill-color: transparent
+
+@mixin blur()
+  -webkit-filter: blur(3px) !important
+  filter: blur(3px) !important
+
+@mixin column-count($ct)
+  -webkit-column-count: $ct
+  -moz-column-count: $ct
+  column-count: $ct
+

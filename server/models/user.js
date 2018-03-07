@@ -7,12 +7,13 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.TEXT,
     role: {
       type: DataTypes.BOOLEAN,
+      default: false
     }
   }, {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        User.hasMany(models.Event, {
+        User.hasMany(models.Events, {
           foreignKey: null,
           as: 'events'
         })

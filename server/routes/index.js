@@ -11,19 +11,19 @@ module.exports = (app) => {
         .put('/api/v1/centers/:id', data.center.updateCenter);
 };
 
-//correct readMe
+// correct readMe
 
-//heading nasme of app
+// heading name of app
 // what project do
 // what it is build with
 
-// sub- features
-    //what feature sso of the app
+// sub - features
+// what feature sso of the app
 // why the proj is useful
 // app requirement
 
-//CLI installation
-//how to start the project.
+// CLI installation
+// how to start the project.
 // sub - testing
 // heading - Api documentation
 

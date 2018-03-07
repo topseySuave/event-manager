@@ -1,0 +1,16 @@
+@media only screen and (max-width: 768px)
+  /* For mobile phones: */
+  .signin__card_holdr
+    width: 100%
+
+@media #{$small-and-down}
+  .cards-container
+    @include column-count(1)
+
+@media #{$medium-and-up}
+  .cards-container
+    @include column-count(2)
+
+@media #{$large-and-up}
+  .cards-container
+    @include column-count(3)

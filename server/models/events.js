@@ -1,4 +1,3 @@
-'use strict';
 const Events = (sequelize, DataTypes) => {
   let EventsModel = sequelize.define('Events', {
     title: DataTypes.TEXT,
@@ -9,30 +8,30 @@ const Events = (sequelize, DataTypes) => {
     centerId: {
       type: DataTypes.INTEGER,
       references: {
-          model: 'Centers',
-          key: 'id',
-          as: 'centerId',
+        model: 'Centers',
+        key: 'id'
       }
     },
     userId: {
       type: DataTypes.INTEGER,
       reference: {
         model: 'User',
-        key: 'id',
-        as: 'userId'
+        key: 'id'
       }
     }
   });
 
   EventsModel.associate = (models) => {
-      EventsModel.belongsTo(models.Centers, {
-          foreignKey: 'centerId',
-          onDelete: 'CASCADE',
-      });
-      EventsModel.belongsTo(models.User, {
-          foreignKey: 'userId',
-          onDelete: 'CASCADE',
-      });
+    EventsModel.belongsTo(models.Centers, {
+      foreignKey: 'centerId',
+      as: 'center',
+      onDelete: 'CASCADE',
+    });
+    EventsModel.belongsTo(models.User, {
+      foreignKey: 'userId',
+      as: 'user',
+      onDelete: 'CASCADE',
+    });
   };
   return EventsModel;
 };

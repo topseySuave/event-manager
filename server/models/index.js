@@ -4,7 +4,7 @@ const Sequelize = require('sequelize');
 require('dotenv').config();
 const basename = path.basename(module.filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require('../config/config.json')[env];
+const config = require('../config/config.js')[env];
 const db = {};
 
 let sequelize;
@@ -34,6 +34,4 @@ Object.keys(db).forEach(modelName => {
 });
 
 db.sequelize = sequelize;
-db.Sequelize = Sequelize;
-
 module.exports = db;
