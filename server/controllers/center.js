@@ -44,13 +44,13 @@ const sortSearchRequest = (search, filterBy) => {
     });
   } else {
     reqSearch = search.map((value) => {
-        if (value !== '') {
-            return {
-                title: {
-                    [Op.iLike]: `%${value}%`
-                }
-            };
-        }
+      if (value !== '') {
+        return {
+          title: {
+            [Op.iLike]: `%${value}%`
+          }
+        };
+      }
     });
   }
   return reqSearch;
@@ -153,7 +153,8 @@ export class Centers {
           });
         }
 
-        Center.update({
+        Center.update(
+{
           title: req.body.title || center.title,
           img_url: req.body.img_url || center.img_url,
           location: req.body.location || center.location,
@@ -166,50 +167,51 @@ export class Centers {
           where: {
             id: centerId
           }
-        })
+        }
+)
           .then((updatedCenter) => {
-            if(updatedCenter){
+            if (updatedCenter) {
               Event.findAndCountAll({
-                  where: {
-                    centerId,
-                    startDate: {
-                      [Op.gte]: new Date().toDateString()
-                    }
-                  },
-                  order: [
-                    ['id', order]
-                  ],
-                  limit: limitValue
+                where: {
+                  centerId,
+                  startDate: {
+                    [Op.gte]: new Date().toDateString()
+                  }
+                },
+                order: [
+                  ['id', order]
+                ],
+                limit: limitValue
+              })
+                .then((event) => {
+                  centr.event = event.rows;
+                  return res.status(200).send({
+                    statusCode: 200,
+                    message: 'Center has been updated',
+                    events: event.rows,
+                    centr,
+                  });
                 })
-                  .then((event) => {
-                    centr.event = event.rows;
-                    return res.status(200).send({
-                      statusCode: 200,
-                      message: `Center has been updated`,
-                      events: event.rows,
-                      centr,
+                .catch((err) => {
+                  if (err) {
+                    return res.status(500).send({
+                      statusCode: 500,
+                      message: 'Error getting events'
                     });
-                  })
-                  .catch((err) => {
-                    if(err){
-                      return res.status(500).send({
-                        statusCode: 500,
-                        message: `Error getting events`
-                      });
-                    }
-                  })
+                  }
+                });
             }
           })
           .catch(err => res.status(500).send({
             error: true,
-            message: `Error Updating center`,
+            message: 'Error Updating center',
             errorMessage: err
           }));
       })
       .catch(error => res.status(500).send({
-          error: true,
-          message: `Error finding center`,
-          errorMessage: error
+        error: true,
+        message: 'Error finding center',
+        errorMessage: error
       }));
   }
 
@@ -255,7 +257,7 @@ export class Centers {
             }
           },
           order: [
-              ['id', order]
+            ['id', order]
           ],
           limit: limitValue
         })
@@ -269,22 +271,22 @@ export class Centers {
             });
           })
           .catch((err) => {
-            if(err){
+            if (err) {
               return res.status(500).send({
                 statusCode: 500,
-                message: `Error getting center details`
+                message: 'Error getting center details'
               });
             }
-          })
+          });
       })
-        .catch((err) => {
-          if(err){
-            return res.status(500).send({
-              statusCode: 500,
-              message: `Error getting center details`
-            });
-          }
-        });
+      .catch((err) => {
+        if (err) {
+          return res.status(500).send({
+            statusCode: 500,
+            message: 'Error getting center details'
+          });
+        }
+      });
   }
 
   /**

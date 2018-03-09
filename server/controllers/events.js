@@ -97,7 +97,7 @@ export class Events {
     } else if (req.query.search || req.query.limit) {
       const search = req.query.search.split(' ');
 
-    /**
+      /**
       * Search with Title But Map first
       * */
       const titleResp = search.map(value => ({

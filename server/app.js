@@ -14,9 +14,7 @@ import center from './routes/centers';
 import users from './routes/users';
 import admin from './routes/administrator';
 import config from '../webpack.config';
-// import React from 'react';
-// import { renderToString } from 'react-dom/server';
-// import { App } from '../client/src/components/homepage';
+
 dotenv.config();
 
 // Set up the express app
@@ -55,7 +53,6 @@ app.set('views', path.join(__dirname, '..', 'client', 'public'));
 
 // Setup a default catch-all route that sends back the index html file.
 app.get('*', (req, res) => {
-  // const appString = renderToString(<App />);
   res.status(200).sendFile(path.join(__dirname, '..', 'client/public/index.html'));
 });
 
@@ -70,6 +67,7 @@ const port = parseInt(process.env.PORT, 10) || 8000;
 app.set('port', port);
 
 const server = http.createServer(app);
+
 server.listen(port, (err) => {
   if (err) console.log(err);
   console.log(`server listening on port ${port}`);
