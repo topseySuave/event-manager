@@ -81,14 +81,14 @@ class IndexEventCardHolder extends Component {
     ));
   }
 
-  renderNoEvent(){
+  renderNoEvent() {
     let { events } = this.state;
-    if(isEmpty(events)){
+    if (isEmpty(events)) {
       return (
         <h4 className="bold grey-text lighten-2 center-align">
           <p>No Event Available..</p>
         </h4>
-      )
+      );
     }
   }
 

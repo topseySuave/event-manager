@@ -201,7 +201,7 @@ class CenterDetail extends Component {
           <div className="container">
             <div className="center__holdr" style={{ minHeight: '560px' }}>
               <div className="row">
-                <div className="col s12 l8">
+                <div className="col s12 l12">
                   { isLoading && <CircularLoader /> }
                   { !isLoading &&
                   <div className="center__details" data-center-id={id}>
@@ -254,7 +254,7 @@ class CenterDetail extends Component {
                   </div>
                                     }
                 </div>
-                <CurrentEventForCenter event={events} />
+                {/* <CurrentEventForCenter event={events} /> */}
               </div>
               <RecommCenter relatedCenterBasedOn={relatedCenterBasedOn} />
             </div>

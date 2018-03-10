@@ -119,7 +119,6 @@ class AddCenterForm extends Component {
     render() {
         const {editCenter, errors, isLoading, title, location, facilities, price, capacity} = this.state;
         let modalTitle = (editCenter) ? "Save changes": "Add center";
-        // console.log(this.state);
 
         return (
             <form className="col s12" id="edit-center-form" onSubmit={this.handleCenterSubmit} formEncType="multipart/form-data">

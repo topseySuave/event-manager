@@ -18,7 +18,7 @@ import {
  * * */
 const api = '/api/v1/events';
 
-/**
+/* *
  *  @Event Dispatch Method
  *  @Returns Object
  * * */
@@ -59,15 +59,13 @@ const eventsDispatchAction = (type, data = {}) => {
   }
 };
 
-export const searchEventsDispatch = (data) => {
-  return {
-    type: SEARCH_EVENT_TITLE,
-    events: data
-  }
-};
+export const searchEventsDispatch = data => ({
+  type: SEARCH_EVENT_TITLE,
+  events: data
+});
 
 
-/**
+/* *
  *  @Edit Event Action
  *  @Returns Object
  * * */
@@ -84,7 +82,7 @@ export const editEventAction = data => dispatch => axios.put(`${api}/${data.even
   });
 
 
-/**
+/* *
  *  @Create Event Action
  *  @Returns Object
  * * */
@@ -113,7 +111,7 @@ export const fetchEventRequest = () => dispatch => axios.get(api)
   });
 
 
-/**
+/* *
  *  @Delete Event Action
  *  @Returns Object
  * * */
@@ -134,32 +132,30 @@ export const deleteEventRequest = (id) => {
 };
 
 
-/**
+/* *
  *  @Edit Event Request Action
  *  @Returns Object
  * * */
 export const editEventRequestAction = data => dispatch => dispatch(eventsDispatchAction('edit_request', data));
 
-/**
+/* *
  *  @Load more Event Request Action
  *  @Returns Object
  * * */
-export const loadMoreEvents = (offset) => {
-  return (dispatch) => {
-    dispatch({
-      type: LOADMORE_EVENT_REQUEST
-    });
-    return axios.get(`${api}?next=${offset}`)
-      .then(({ data }) => {
-        if (data.statusCode === 200) {
-          return dispatch({
-            type: LOADMORE_EVENT_SUCCESS,
-            payload: data.events
-          });
-        }
+export const loadMoreEvents = offset => (dispatch) => {
+  dispatch({
+    type: LOADMORE_EVENT_REQUEST
+  });
+  return axios.get(`${api}?next=${offset}`)
+    .then(({ data }) => {
+      if (data.statusCode === 200) {
         return dispatch({
-          type: LOADMORE_EVENT_FAILURE
+          type: LOADMORE_EVENT_SUCCESS,
+          payload: data.events
         });
+      }
+      return dispatch({
+        type: LOADMORE_EVENT_FAILURE
       });
-  };
+    });
 };

@@ -32,7 +32,6 @@ class RecommCenter extends Component {
         }
       })
       .catch((err) => {
-        // Materialize.toast('Houston we have a problem!! we are working on it', 5000);
         this.setState({ isLoading: false, error: true, errorMessage: 'Houston we have a problem!! we are working on it' });
       });
   }
@@ -64,6 +63,10 @@ class RecommCenter extends Component {
         }
       });
     }
+
+    return (
+      <p>There are no related centers</p>
+    );
   }
 
   render() {
@@ -90,8 +93,3 @@ RecommCenter.propTypes = {
 };
 
 export default RecommCenter;
-
-// const mapDispatchToProps = (dispatch) => {
-//     return bindActionCreators({fetchCenterRelatedTo: fetchCenterRelatedTo}, dispatch);
-// };
-// export default connect(null, mapDispatchToProps)(RecommCenter);

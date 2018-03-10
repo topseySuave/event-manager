@@ -24,16 +24,16 @@ const addCenterPayload = (payload, response = null) => {
 };
 
 const updateCenterPayload = (data, res) => {
-  if(res === 'success'){
+  if (res === 'success') {
     return {
       type: EDIT_CENTER,
       payload: data
-    }
-  }else if(res === 'failure'){
+    };
+  } else if (res === 'failure') {
     return {
       type: EDIT_CENTER_FAILURE,
       payload: data
-    }
+    };
   }
 };
 
@@ -49,41 +49,12 @@ export const createCenterRequest = centerData => (dispatch) => {
     .catch(err => dispatch(addCenterPayload(err, 'failure')));
 };
 
-export const updateCenterRequest = (centerData) => {
-    return dispatch => {
-        return axios.post(`${centerApi}/${centerData.id}`, centerData)
-            .then(({ data }) => {
-                if (data.statusCode === 200) {
-                    return dispatch(updateCenterPayload(data, 'success'));
-                }
-                Materialize.toast(data.message, 5000);
-                return data;
-            })
-            .catch(err => dispatch(updateCenterPayload(err, 'failure')));
+export const updateCenterRequest = centerData => dispatch => axios.post(`${centerApi}/${centerData.id}`, centerData)
+  .then(({ data }) => {
+    if (data.statusCode === 200) {
+      return dispatch(updateCenterPayload(data, 'success'));
     }
-};
-
-// let dataToSend = new FormData();
-// dataToSend.append('title', centerData.title);
-// dataToSend.append('location', centerData.location);
-// dataToSend.append('description', centerData.description);
-// dataToSend.append('capacity', centerData.capacity);
-// dataToSend.append('img_url', centerData.img_url);
-// dataToSend.append('facilities', centerData.facilities);
-// dataToSend.append('price', centerData.price);
-
-// console.log(centerData);
-
-// for (let key of dataToSend.entries()) {
-//     console.log(key[0] + ', ' + key[1]);
-// }
-
-// return axios({
-//     method: 'POST',
-//     url: centerApi,
-//     headers: {
-//         'x-access-token': token,
-//         // 'Content-Type': `multipart/form-data boundary=${dataToSend._boundary}`
-//     },
-//     data: dataToSend
-// })
+    Materialize.toast(data.message, 5000);
+    return data;
+  })
+  .catch(err => dispatch(updateCenterPayload(err, 'failure')));

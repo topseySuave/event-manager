@@ -135,8 +135,6 @@ const mapStateToProps = state => ({
   eventStore: state.eventReducer
 });
 
-const mapDispatchToProps = dispatch => {
- return bindActionCreators({ filterCenterTitle, filterEventTitle }, dispatch);
-};
+const mapDispatchToProps = dispatch => bindActionCreators({ filterCenterTitle, filterEventTitle }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchModal);

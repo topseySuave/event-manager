@@ -1,3 +1,4 @@
+import isEmpty from 'lodash/isEmpty';
 import {
   ADD_EVENT,
   EDIT_EVENT,
@@ -10,7 +11,6 @@ import {
   SEARCH_EVENT_TITLE,
   SEARCH_EVENT_TITLE_FAILED
 } from '../actions';
-import isEmpty from 'lodash/isEmpty';
 
 const pageLimit = process.env.DATA_LIMIT;
 let newState;
@@ -84,9 +84,9 @@ export default (state = {}, action = {}) => {
     case SEARCH_EVENT_TITLE:
       newState = Object.assign({}, state);
       if (!isEmpty(action.events)) {
-          newState.events = action.events;
-      }else{
-          newState.events = state.events;
+        newState.events = action.events;
+      } else {
+        newState.events = state.events;
       }
       return newState;
 

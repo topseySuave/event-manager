@@ -1,11 +1,8 @@
 import jwt from 'jsonwebtoken';
 import jwtDecode from 'jwt-decode';
 import { store } from '../';
-// import dotenv from 'dotenv';
 import setAuthorizationToken from '../components/authentication/setAuthenticationToken';
 import { setCurrentUser, signOutRequest } from '../actions/authActions';
-
-// dotenv.config();
 
 export default class authCheck {
   jwtIsSet() {
@@ -14,7 +11,6 @@ export default class authCheck {
 
   isSignedIn() {
     if (this.jwtIsSet()) {
-      // let current_time = new Date().getTime() / 1000;
       jwt.verify(localStorage.getItem('jwtToken'), '#(@#GYzU#EWERGFXTSWEW(@#YW($EW(', (err, decoded) => {
         if (err) {
           store.dispatch(signOutRequest());

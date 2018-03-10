@@ -68,17 +68,6 @@ class AllCenters extends Component {
     });
   }
 
-  renderNoCenter(){
-    let { centers } = this.props.centerStore;
-    if(isEmpty(centers)){
-      return (
-        <h4 className="bold grey-text lighten-2 center-align">
-          <p>No centers Available....</p>
-        </h4>
-      )
-    }
-  }
-
   initInfiniteScroll() {
     let winHeight, winScrollTop, docHeight, offset;
     $(window).scroll(() => {
@@ -108,6 +97,17 @@ class AllCenters extends Component {
        * * */
     let offset = this.state.page + 1;
     this.props.loadMoreCenters(offset);
+  }
+
+  renderNoCenter() {
+    let { centers } = this.props.centerStore;
+    if (isEmpty(centers)) {
+      return (
+        <h4 className="bold grey-text lighten-2 center-align">
+          <p>No centers Available....</p>
+        </h4>
+      );
+    }
   }
 
   render() {

@@ -50,7 +50,7 @@ export default (state = {}, action = {}) => {
       newState = Object.assign({}, state);
       if (!isEmpty(action.payload)) {
         newState = action.payload;
-      }else{
+      } else {
         newState.centers = state.centers;
       }
       return newState;
