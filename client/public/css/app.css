@@ -141,6 +141,7 @@ nav {
   height: 25px;
   line-height: 25px;
   font-size: 1rem;
+  user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
@@ -298,6 +299,7 @@ input[type=range] {
     background-image: linear-gradient(to top left, rgba(72, 132, 179, 0.7), rgba(144, 236, 146, 0.7));
     background-image: -webkit-linear-gradient(to top left, rgba(72, 132, 179, 0.7), rgba(144, 236, 146, 0.7));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent; }
     .footer a:hover {
       text-decoration: underline !important; }

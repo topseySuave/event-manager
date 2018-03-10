@@ -13,7 +13,7 @@ import rootReducer from './rootReducer';
 
 import registerServiceWorker from './registerServiceWorker';
 
-export default store = compose(
+export const store = compose(
   applyMiddleware(thunk, loadingBarMiddleware()),
   window.devToolsExtension ? window.devToolsExtension() : f => f
 )(createStore)(rootReducer);
