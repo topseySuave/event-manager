@@ -9,7 +9,6 @@ import { fetchCentersAction, loadMoreCenters } from '../../../actions/center-act
 import { CircularLoader } from '../../loader';
 import Helpers from '../../../helpers';
 import SearchFasterForm from './searchFasterForm';
-// import CenterCard from '../centerCard/centerCard';
 
 class AllCenters extends Component {
   constructor(props) {
@@ -119,9 +118,6 @@ class AllCenters extends Component {
       <div className="container">
         <div className="center__holdr">
           <div className="row relative">
-            {/* <div className="col s12 l12 fixed bg__white hide-on-med-and-down"> */}
-            {/* <SearchFasterForm /> */}
-            {/* </div> */}
             <div className="col s12 l12" style={{ marginBottom: `${60}px` }}>
               <h4 className="center-align">Boots Centers</h4>
               <div className="row">
@@ -130,7 +126,7 @@ class AllCenters extends Component {
                   { this.showCentersCard() }
                 </div>
                 }
-                {this.renderNoCenter()}
+                { (isLoading) ? '' : this.renderNoCenter()}
                 {
                   (isLoading) ? '' : (pageCount > 1) ? (loadingmore) ? <CircularLoader /> : (pageSize !== totalCount) ? <button onClick={() => this.loadMore()} className="col offset-s3 s6 btn waves-effect gradient__bg"> load more </button> : '' : ''
                 }

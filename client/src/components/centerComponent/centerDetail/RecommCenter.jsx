@@ -15,6 +15,7 @@ class RecommCenter extends Component {
     this.state = {
       isLoading: true,
       error: false,
+      noCenter: 'There are no related centers',
       errorMessage: '',
       relatedCenters: [],
       currentCenterId: 0
@@ -28,7 +29,7 @@ class RecommCenter extends Component {
         if (data.statusCode === 200) {
           this.setState({ isLoading: false, relatedCenters: data.centers });
         } else {
-          this.setState({ isLoading: false, error: true, errorMessage: 'There are no related centers' });
+          this.setState({ isLoading: false, error: true, errorMessage: this.state.noCenter });
         }
       })
       .catch((err) => {
@@ -61,16 +62,14 @@ class RecommCenter extends Component {
             </div>
           );
         }
+        return (
+          <p key={shortid.generate()}>{this.state.noCenter}</p>
+        );
       });
     }
-
-    return (
-      <p>There are no related centers</p>
-    );
   }
 
   render() {
-    let noCenter = 'There are no related centers';
     let {
       isLoading, error, errorMessage, relatedCenters
     } = this.state;
@@ -81,7 +80,7 @@ class RecommCenter extends Component {
         <h5>Recommended Center</h5>
         { isLoading && <CircularLoader /> }
         <div className="row">
-          { !isLoading && (error) ? errorMessage : (isEmpty(eachCenter)) ? noCenter : eachCenter }
+          { !isLoading && (error) ? errorMessage : (isEmpty(eachCenter)) ? this.state.noCenter : eachCenter }
         </div>
       </div>
     );
