@@ -38,36 +38,43 @@ const updateCenterPayload = (data, res) => {
   }
 };
 
-const handleImageUpload = (file) => {
-  let formData = new FormData();
-  formData.append('file', file);
-  formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-  setAuthorizationToken(false);
-  return axios.post(CLOUDINARY_URL, formData)
-    .then(({ data }) => data.url)
+const createCenter = (centerData, imgUrl) => (dispatch) => {
+  let token = localStorage.getItem('jwtToken') ? localStorage.getItem('jwtToken') : false;
+  setAuthorizationToken(token);
+  centerData.img_url = imgUrl;
+  dispatch(addCenterPayload(centerData, 'request'));
+  return axios.post(centerApi, centerData)
+    .then(({ data }) => {
+      dispatch(addCenterPayload(data.center, 'success'));
+      Materialize.toast(data.message, 5000);
+      $('.modal').modal('close');
+    })
     .catch((err) => {
       console.log(err);
+      Materialize.toast('An Error Occurred..!!!', 5000);
+      // return console.log(err.response.data.message);
+      // if (err.response.data.statusCode === 400) {
+      //   console.log(err.response.data.message);
+      // }
     });
 };
 
-export const createCenterRequest = centerData => (dispatch) => {
-  let token = localStorage.getItem('jwtToken') ? localStorage.getItem('jwtToken') : false;
-  handleImageUpload(centerData.img_url)
-    .then((imgString) => {
-      setAuthorizationToken(token);
-      centerData.img_url = imgString;
-      dispatch(addCenterPayload(centerData, 'request'));
-      return axios.post(centerApi, centerData)
-        .then(({ data }) => {
-          if (data.statusCode === 201) {
-            return dispatch(addCenterPayload(data.center, 'success'));
-          } else if (data.statusCode === 401) {
-            window.location.href = '/signin';
-          }
-          return dispatch(addCenterPayload(data, 'failure'));
-        })
-        .catch(err => dispatch(addCenterPayload(err, 'failure')));
-    });
+export const createCenterRequest = (centerData) => {
+  if (centerData.img_url.name) {
+    let formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+    setAuthorizationToken(false);
+    return axios.post(CLOUDINARY_URL, formData)
+      .then(({ data }) => {
+        createCenter(centerData, data.url);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  return createCenter(centerData, '');
 };
 
 export const updateCenterRequest = centerData => dispatch => axios.post(`${centerApi}/${centerData.id}`, centerData)

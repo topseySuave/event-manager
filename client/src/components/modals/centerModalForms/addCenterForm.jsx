@@ -5,14 +5,22 @@ import shortid from 'shortid';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {PropTypes} from 'prop-types';
+import createBrowserHistory from 'history/createBrowserHistory';
+
 import InputForm from '../../form/formInput';
 import {validateCenterInput} from '../validateInput';
 import facilities from '../../../util/facilities';
 import {createCenterRequest} from '../../../actions/modalAction';
+import Helpers from '../../../helpers';
+
+const history = createBrowserHistory({
+    basename: '/'
+  });
 
 class AddCenterForm extends Component {
     constructor(props) {
         super(props);
+        this.helpers = new Helpers();
 
         /* *
          * @Initialize the component's state.
@@ -98,18 +106,9 @@ class AddCenterForm extends Component {
                 isLoading: true
             });
             this.props.createCenterRequest(this.state)
-                .then((res) => {
-                    console.log(res);
+                .then(() => {
                     this.setState({isLoading: false});
-                    if(res){
-                        // window.location.href = '/center/';
-                    }else{
-                        Materialize.toast('Houston, we have a problem! We are working on it', 5000);
-                    }
-                })
-                .catch(() => {
-                    this.setState({isLoading: false});
-                    Materialize.toast('Error creating center..!!', 5000);
+                    history.push(`/centers`);
                 });
         }
     }
@@ -226,7 +225,7 @@ class AddCenterForm extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({createCenterRequest: createCenterRequest}, dispatch);
+    return bindActionCreators({ createCenterRequest }, dispatch);
 };
 
 export default connect(null, mapDispatchToProps)(AddCenterForm)

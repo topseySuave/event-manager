@@ -1,6 +1,7 @@
 import isEmpty from 'lodash/isEmpty';
 import {
   ADD_CENTER_SUCCESS,
+  ADD_CENTER_FAlLURE,
   FETCH_CENTERS,
   LOADMORE_CENTER_REQUEST,
   LOADMORE_CENTER_SUCCESS,
@@ -8,21 +9,20 @@ import {
   SEARCH_CENTER_TITLE,
   SEARCH_CENTER_TITLE_FAILED
 } from '../actions';
-import Helpers from '../helpers';
 
 let newState;
 let newCenter;
-let helpers = new Helpers();
 
 export default (state = {}, action = {}) => {
   switch (action.type) {
     case ADD_CENTER_SUCCESS:
+      newState = Object.assign({}, state);
+      newState.centers = newState.centers.concat(action.center);
+      return newState;
+
+    case ADD_CENTER_FAlLURE:
       newCenter = Object.assign({}, action.center);
-      window.location.href = `/center/${newCenter.id}/${helpers.sanitizeString(newCenter.title)}`;
-      return {
-        ...state,
-        payload: center
-      };
+      return newCenter;
 
     case FETCH_CENTERS:
       return action.centers;
