@@ -8,15 +8,20 @@ import {
   SEARCH_CENTER_TITLE,
   SEARCH_CENTER_TITLE_FAILED
 } from '../actions';
+import Helpers from '../helpers';
 
 let newState;
+let newCenter;
+let helpers = new Helpers();
 
 export default (state = {}, action = {}) => {
   switch (action.type) {
     case ADD_CENTER_SUCCESS:
+      newCenter = Object.assign({}, action.center);
+      window.location.href = `/center/${newCenter.id}/${helpers.sanitizeString(newCenter.title)}`;
       return {
         ...state,
-        payload: Object.assign({}, action.center)
+        payload: center
       };
 
     case FETCH_CENTERS:

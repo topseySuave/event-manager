@@ -17,7 +17,8 @@ export const fetchCenterAction = (id) => {
         dispatch(hideLoading());
       })
       .catch((err) => {
-        Materialize.toast('Error in connection!!!', 5000);
+        Materialize.toast('Page Not Found!!!', 5000);
+        window.location.href = '/page-not-found';
         throw (err);
       });
   };

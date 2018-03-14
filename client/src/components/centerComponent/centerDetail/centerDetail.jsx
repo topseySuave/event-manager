@@ -6,6 +6,7 @@ import shortid from 'shortid';
 import DocumentTitle from 'react-document-title';
 
 import Dialog from 'material-ui/Dialog';
+import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
 import Delete from 'material-ui/svg-icons/action/delete';
@@ -27,6 +28,7 @@ class CenterDetail extends Component {
       isLoading: true,
       openAlert: false,
       open: false,
+      openCenterEvents: false,
       activeCenter: {
         centr: {
           title: 'center'
@@ -38,9 +40,12 @@ class CenterDetail extends Component {
     this.handleClose = this.handleClose.bind(this);
     this.handleAlertOpen = this.handleAlertOpen.bind(this);
     this.handleAlertClose = this.handleAlertClose.bind(this);
+    this.handleEventsOpen = this.handleEventsOpen.bind(this);
+    this.handleEventsClose = this.handleEventsClose.bind(this);
   }
 
   componentWillMount() {
+    $('.tooltipped').tooltip({ delay: 50 });
     const { params } = this.props;
     this.props.fetchCenterAction(params.id);
   }
@@ -81,6 +86,14 @@ class CenterDetail extends Component {
     this.setState({ openAlert: false });
   }
 
+  handleEventsOpen() {
+    this.setState({ openCenterEvents: true });
+  }
+
+  handleEventsClose() {
+    this.setState({ openCenterEvents: false });
+  }
+
   showEditCenterButton() {
     let isAdmin = this.props.activeUser.user.role;
     const actions = [
@@ -114,6 +127,37 @@ class CenterDetail extends Component {
         </div>
       );
     }
+  }
+
+  showCenterEventsButton(events) {
+    const actions = [
+      <FlatButton
+        label="close"
+        primary
+        onClick={this.handleEventsClose}
+      />
+    ];
+
+    return (
+      <div>
+        <RaisedButton
+          label="view Events"
+          onClick={this.handleEventsOpen}
+          fullWidth
+        />
+        <Dialog
+          title="Events Held by this center"
+          actions={actions}
+          modal={false}
+          open={this.state.openCenterEvents}
+          onRequestClose={this.handleEventsClose}
+          autoScrollBodyContent
+          style={{ marginTop: '-100px' }}
+        >
+          <CurrentEventForCenter event={events} />
+        </Dialog>
+      </div>
+    );
   }
 
   showBookCenterButton() {
@@ -199,13 +243,13 @@ class CenterDetail extends Component {
       return (
         <DocumentTitle title={`${title} | Boots Events Manager`}>
           <div className="container">
-            <div className="center__holdr" style={{ minHeight: '560px' }}>
+            <div className="center__holdr" style={{ minHeight: '100vh' }}>
               <div className="row">
                 <div className="col s12 l12">
                   { isLoading && <CircularLoader /> }
                   { !isLoading &&
                   <div className="center__details" data-center-id={id}>
-                    <h4>{title}</h4>
+                    <h5 style={{ fontWeight: '500' }}>{title}</h5>
                     <div className="slider__holdr">
                       <div className="carousel carousel-slider">
                         <a className="carousel-item" href="#one"><img src={img_url} alt={title} /></a>
@@ -246,9 +290,10 @@ class CenterDetail extends Component {
                         </div>
                       </div>
                       <div className="row">
-                        <div className="col s3">{ this.showEditCenterButton() }</div>
-                        <div className="col s5">{ this.showAlertModal(id) }</div>
+                        <div className="col s2">{ this.showEditCenterButton() }</div>
+                        <div className="col s2">{ this.showAlertModal(id) }</div>
                         <div className="col s4">{ this.showBookCenterButton() }</div>
+                        <div className="col s3">{ this.showCenterEventsButton(events) }</div>
                       </div>
                     </section>
                   </div>

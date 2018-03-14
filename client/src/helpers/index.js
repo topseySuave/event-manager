@@ -4,7 +4,6 @@ export default class Helpers {
   }
 
   sanitizeString(str) {
-    // str.replace(/\s+/g, '-').toLowerCase();
     return str.toLowerCase().replace(/[\. ,:-]+/g, '-');
   }
 }

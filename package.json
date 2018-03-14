@@ -10,7 +10,7 @@
     "test": " nyc --reporter=html --reporter=text mocha ./server/test/* --exit --require babel-register --reporter spec",
     "babel-node": "babel-node --preset=es2015",
     "start": "node -- ./build/app.js",
-    "start:dev": "babel-node -- ./server/app.js",
+    "start:dev": "nodemon --exec babel-node -- ./server/app.js",
     "build:client": "webpack --config webpack.config.js",
     "build:server": "babel -d ./build ./server -s",
     "start:client": "npm run webpack",
@@ -118,6 +118,7 @@
     "webpack-hot-middleware": "^2.19.1"
   },
   "devDependencies": {
+    "babel-preset-react-hmre": "^1.1.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.17.0",

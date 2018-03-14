@@ -8,7 +8,7 @@ class FixedNav extends Component {
   componentWillMount() {
     $('.modal').modal();
   }
-  
+
   showAuthenticationLinks() {
     // Show Sign-in and Sign-up
     // links only if user isn't signed in
@@ -29,23 +29,25 @@ class FixedNav extends Component {
 
   render() {
     return (
-      <div className="navbar-fixed">
-        <nav className="gradient__bg">
-          <div className="container">
-            <div className="nav-wrapper">
-              <Link to="/" className="brand-logo logo">
-                <p>Boots EM</p>
-              </Link>
-              <ul id="nav-mobile" className="right hide-on-med-and-down">
-                <li><a href="#search__modal" className="modal-trigger" id="search__view"><i className="material-icons">search</i></a>
-                </li>
-                <li><Link to="/centers">List of centers</Link></li>
-
-                { this.showAuthenticationLinks() }
-              </ul>
+      <div>
+        <div className="navbar-fixed">
+          <nav className="gradient__bg">
+            <div className="container">
+              <div className="nav-wrapper">
+                <Link to="/" className="brand-logo logo">
+                  <p>Boots EM</p>
+                </Link>
+                <a href="#_=_" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></a>
+                <ul id="nav-mobile" className="right hide-on-med-and-down">
+                  <li><a href="#search__modal" className="modal-trigger" id="search__view"><i className="material-icons">search</i></a>
+                  </li>
+                  <li><Link to="/centers">List of centers</Link></li>
+                  { this.showAuthenticationLinks() }
+                </ul>
+              </div>
             </div>
-          </div>
-        </nav>
+          </nav>
+        </div>
       </div>
     );
   }

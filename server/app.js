@@ -3,7 +3,6 @@ import logger from 'morgan';
 import bodyParser from 'body-parser';
 import http from 'http';
 import path from 'path';
-import cors from 'cors';
 import webpack from 'webpack';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import swagger from 'swagger-ui-express';
@@ -32,7 +31,6 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: true, parameterLimit: 1
 
 // Log requests to the console.
 app.use(logger('dev'));
-app.use(cors());
 app.use(apiRoute, center);
 app.use(apiRoute, users);
 app.use(apiRoute, event);

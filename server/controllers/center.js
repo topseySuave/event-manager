@@ -1,7 +1,4 @@
 import models from '../models';
-// import path from 'path';
-// import fs from 'fs';
-// import cloudinary from 'cloudinary';
 
 // dotenv.config();
 const { Op } = models.sequelize;
@@ -90,15 +87,6 @@ export class Centers {
           }
         }
 
-        // cloudinary.config({
-        //     cloud_name: 'dcbqn1c10',
-        //     api_key: '441952115171911',
-        //     api_secret: 'RMaPGLJFey85McETvjNUkH_6SyE'
-        // });
-        // cloudinary.uploader.upload(req.files.image.path, (res) => {
-        //     console.log(res);
-        // });
-
         return Center.create({
           title: req.body.title,
           img_url: req.body.img_url,
@@ -114,8 +102,8 @@ export class Centers {
             center
           }))
 
-          .catch(err => res.status(500).send({
-            statusCode: 500,
+          .catch(err => res.status(400).send({
+            statusCode: 400,
             success: false,
             message: 'Center cannot be created',
             error: err
@@ -146,6 +134,7 @@ export class Centers {
 
     Center.findById(centerId)
       .then((centr) => {
+        console.log(centr);
         if (!centr) {
           return res.status(404).send({
             statusCode: 404,
@@ -154,21 +143,21 @@ export class Centers {
         }
 
         Center.update(
-{
-          title: req.body.title || center.title,
-          img_url: req.body.img_url || center.img_url,
-          location: req.body.location || center.location,
-          description: req.body.description || center.description,
-          facilities: req.body.facilities || center.facilities,
-          capacity: parseInt(req.body.capacity, 10) || center.capacity,
-          price: parseInt(req.body.price, 10) || center.price,
-        },
-        {
-          where: {
-            id: centerId
+          {
+            title: req.body.title || centr.title,
+            img_url: req.body.img_url || centr.img_url,
+            location: req.body.location || centr.location,
+            description: req.body.description || centr.description,
+            facilities: req.body.facilities || centr.facilities,
+            capacity: parseInt(req.body.capacity, 10) || centr.capacity,
+            price: parseInt(req.body.price, 10) || centr.price,
+          },
+          {
+            where: {
+              id: centerId
+            }
           }
-        }
-)
+        )
           .then((updatedCenter) => {
             if (updatedCenter) {
               Event.findAndCountAll({
@@ -194,25 +183,20 @@ export class Centers {
                 })
                 .catch((err) => {
                   if (err) {
-                    return res.status(500).send({
-                      statusCode: 500,
+                    return res.status(400).send({
+                      statusCode: 400,
                       message: 'Error getting events'
                     });
                   }
                 });
             }
           })
-          .catch(err => res.status(500).send({
+          .catch(err => res.status(400).send({
             error: true,
             message: 'Error Updating center',
             errorMessage: err
           }));
-      })
-      .catch(error => res.status(500).send({
-        error: true,
-        message: 'Error finding center',
-        errorMessage: error
-      }));
+      });
   }
 
   /**
@@ -272,8 +256,8 @@ export class Centers {
           })
           .catch((err) => {
             if (err) {
-              return res.status(500).send({
-                statusCode: 500,
+              return res.status(400).send({
+                statusCode: 400,
                 message: 'Error getting center details'
               });
             }
@@ -281,8 +265,8 @@ export class Centers {
       })
       .catch((err) => {
         if (err) {
-          return res.status(500).send({
-            statusCode: 500,
+          return res.status(400).send({
+            statusCode: 400,
             message: 'Error getting center details'
           });
         }
@@ -365,9 +349,9 @@ export class Centers {
             centers: center.rows,
           });
         })
-        .catch(err => res.status(500).send({
-          statusCode: 500,
-          message: 'Internal server Error!',
+        .catch(err => res.status(400).send({
+          statusCode: 400,
+          message: 'Couldn\'t find all centers...!',
           error: err
         }));
     }
@@ -409,11 +393,7 @@ export class Centers {
             statusCode: 200,
             message: 'This Center has been deleted'
           }));
-      })
-      .catch(() => res.status(500).send({
-        statusCode: 500,
-        message: 'Error deleting Center'
-      }));
+      });
   }
 }
 

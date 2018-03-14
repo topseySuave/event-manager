@@ -50,21 +50,25 @@ class RecommCenter extends Component {
             <div key={shortid.generate()} className="col s12 l4">
               <Link to={to} href={to}>
                 <div className="card">
-                  <div className="card-image">
-                    <img src={center.img_url} alt="center" />
-                  </div>
+                  {
+                    !!center.img_url
+                    &&
+                    <div className="card-image center__image">
+                      <img src={center.img_url} alt={center.title} />
+                    </div>
+                  }
                   <div className="card-content black-text">
-                    <p className="f__size">{center.title}</p>
-                    <p><i className="material-icons f15">location_on</i>{center.location}</p>
+                    <p className="bold">{center.title}</p>
+                    <p className="light__font"><i className="material-icons f15">location_on</i>{center.location}</p>
                   </div>
                 </div>
               </Link>
             </div>
           );
         }
-        return (
-          <p key={shortid.generate()}>{this.state.noCenter}</p>
-        );
+        // return (
+        //   <p key={shortid.generate()}>{this.state.noCenter}</p>
+        // );
       });
     }
   }

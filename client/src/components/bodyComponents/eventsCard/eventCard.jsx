@@ -156,7 +156,7 @@ class EventCard extends Component {
                             <i className="material-icons right">close</i>
                         </span>
                         <p>{description}</p>
-                        <small>{ (center) ? center.location : ''}</small>
+                        <small><i className="material-icons f15">location_on </i> { (center) ? center.location : ''}</small>
                     </div>
                 </div>
             </div>

@@ -22,6 +22,7 @@ class AllCenters extends Component {
   }
 
   componentWillMount() {
+    $('.modal').modal();
     this.props.fetchCentersAction();
   }
 
@@ -53,13 +54,13 @@ class AllCenters extends Component {
             {
             !!center.img_url
             &&
-            <div className="card-image">
+            <div className="card-image center__image">
               <img src={center.img_url} alt={center.title} />
             </div>
             }
             <div className="card-content black-text">
-              <p className="f__size">{center.title}</p>
-              <p><i className="material-icons f15">location_on</i>{center.location}</p>
+              <p className="bold">{center.title}</p>
+              <p className="light__font"><i className="material-icons f15">location_on</i>{center.location}</p>
             </div>
           </div>
         </Link>
@@ -75,7 +76,7 @@ class AllCenters extends Component {
       docHeight = $(document).height();
 
       if (docHeight - winHeight === winScrollTop) {
-        /**
+        /* *
            * make loadmore request
            * * */
         offset = this.state.page + 1;
@@ -91,7 +92,7 @@ class AllCenters extends Component {
   }
 
   loadMore() {
-    /**
+    /* *
        * make loadmore request
        * * */
     let offset = this.state.page + 1;
