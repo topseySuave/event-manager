@@ -19,6 +19,7 @@ import CurrentEventForCenter from './currentEventForCenter';
 import RecommCenter from './RecommCenter';
 import EventModal from '../../modals/EventModal';
 import EditCenterForm from '../../modals/centerModalForms/editCenterForm';
+// import history from '../../../util/history';
 
 class CenterDetail extends Component {
   constructor(props) {
@@ -53,10 +54,13 @@ class CenterDetail extends Component {
   /* *
      * TODO: modify center details component to update and change the redux store in respond to route change
      * * */
-  componentWillReceiveProps(newProps) {
+  componentWillReceiveProps(newProps, newState) {
     // const params = this.props.params;
     // this.props.fetchCenterAction(params.id);
-    if (newProps.activeCenterDetail) {
+    console.log('old props: ', this.props);
+    console.log('new props: ', newProps);
+    console.log('new State: ', newState);
+    if (typeof newProps.activeCenterDetail.centr !== 'undefined') {
       newProps.activeCenterDetail.centr.events = newProps.activeCenterDetail.events;
       if (newProps.activeCenterDetail.centr.events) {
         delete newProps.activeCenterDetail.events;
@@ -171,9 +175,10 @@ class CenterDetail extends Component {
 
   deleteCenter(id) {
     this.props.deleteCenterRequest(id)
-      .then((data) => {
-        if (data.type === REMOVE_CENTER) {
-          window.history.back();
+      .then(() => {
+        if (typeof this.props.activeCenterDetail.centr === 'undefined') {
+          Materialize.toast('Center has been Deleted', 5000);
+          this.props.history.push('/centers');
         }
       });
   }
@@ -312,7 +317,8 @@ class CenterDetail extends Component {
 }
 
 CenterDetail.propTypes = {
-  params: PropTypes.object.isRequired
+  params: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

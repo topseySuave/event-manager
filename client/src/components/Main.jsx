@@ -9,14 +9,10 @@ import CenterDetailIndex from './centerComponent/centerDetail';
 import AllCentersIndex from './centerComponent/allCenters/index';
 import NoMatch from './noMatch';
 
-const history = createBrowserHistory({
-  basename: '/'
-});
-
 class Main extends Component {
   render() {
     return (
-      <Switch history={history}>
+      <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/signup" component={SignUp} />
         <Route path="/signin" component={SignIn} />

@@ -391,7 +391,8 @@ export class Centers {
           })
           .then(() => res.status(200).send({
             statusCode: 200,
-            message: 'This Center has been deleted'
+            message: 'This Center has been deleted',
+            center: deletedCenter
           }));
       });
   }

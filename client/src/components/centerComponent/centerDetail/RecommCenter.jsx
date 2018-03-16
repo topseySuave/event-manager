@@ -47,7 +47,7 @@ class RecommCenter extends Component {
         let to = `/center/${center.id}/${this.helper.sanitizeString(center.title)}`;
         if (this.checkOwnCenter(center.id)) {
           return (
-            <div key={shortid.generate()} className="col s12 l4">
+            <div key={shortid.generate()} className="col s12 m6 l4">
               <Link to={to} href={to}>
                 <div className="card">
                   {

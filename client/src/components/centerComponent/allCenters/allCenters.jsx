@@ -46,26 +46,28 @@ class AllCenters extends Component {
 
   showCentersCard() {
     let { centers } = this.props.centerStore;
-    return centers.map((center) => {
-      let to = `center/${center.id}/${this.helper.sanitizeString(center.title)}`;
-      return (
-        <Link key={shortid.generate()} to={to} href={to}>
-          <div className="card">
-            {
-            !!center.img_url
-            &&
-            <div className="card-image center__image">
-              <img src={center.img_url} alt={center.title} />
+    return centers
+      .sort((firstObj, secObj) => secObj.id - firstObj.id)
+      .map((center) => {
+        let to = `center/${center.id}/${this.helper.sanitizeString(center.title)}`;
+        return (
+          <Link key={shortid.generate()} to={to} href={to}>
+            <div className="card">
+              {
+              !!center.img_url
+              &&
+              <div className="card-image center__image">
+                <img src={center.img_url} alt={center.title} />
+              </div>
+              }
+              <div className="card-content black-text">
+                <p className="bold">{center.title}</p>
+                <p className="light__font"><i className="material-icons f15">location_on</i>{center.location}</p>
+              </div>
             </div>
-            }
-            <div className="card-content black-text">
-              <p className="bold">{center.title}</p>
-              <p className="light__font"><i className="material-icons f15">location_on</i>{center.location}</p>
-            </div>
-          </div>
-        </Link>
-      );
-    });
+          </Link>
+        );
+      });
   }
 
   initInfiniteScroll() {

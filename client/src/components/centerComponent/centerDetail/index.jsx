@@ -41,12 +41,11 @@ class CenterDetailIndex extends Component {
           <LoadingBar style={{ backgroundImage: 'linear-gradient(to top left, rgba(72, 132, 179, 0.7), rgba(144, 236, 146, 0.7))', height: `${2}px` }} />
           <div className="body__holdr">
             <FixedNav />
-            <CenterDetail params={this.props.match.params} />
+            <CenterDetail params={this.props.match.params} history={this.props.history} />
             <FloatingActionButton />
             <Footer />
           </div>
           <Modals />
-          {/* { this.showSandWichNavBar() } */}
         </div>
       </DocumentTitle>
     );

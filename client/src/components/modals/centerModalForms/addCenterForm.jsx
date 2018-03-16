@@ -5,17 +5,13 @@ import shortid from 'shortid';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {PropTypes} from 'prop-types';
-import createBrowserHistory from 'history/createBrowserHistory';
 
 import InputForm from '../../form/formInput';
 import {validateCenterInput} from '../validateInput';
 import facilities from '../../../util/facilities';
 import {createCenterRequest} from '../../../actions/modalAction';
 import Helpers from '../../../helpers';
-
-const history = createBrowserHistory({
-    basename: '/'
-  });
+import history from '../../../util/history';
 
 class AddCenterForm extends Component {
     constructor(props) {
@@ -107,7 +103,18 @@ class AddCenterForm extends Component {
             });
             this.props.createCenterRequest(this.state)
                 .then(() => {
-                    this.setState({isLoading: false});
+                    this.setState({
+                        errors: {},
+                        editCenter: false,
+                        isLoading: false,
+                        title: '',
+                        img_url: {},
+                        facilities: [],
+                        location: '',
+                        price: '',
+                        capacity: '',
+                        description: ''
+                    });
                     history.push(`/centers`);
                 });
         }
@@ -118,7 +125,7 @@ class AddCenterForm extends Component {
         let modalTitle = (editCenter) ? "Save changes": "Add center";
 
         return (
-            <form className="col s12" id="edit-center-form" onSubmit={this.handleCenterSubmit} formEncType="multipart/form-data">
+            <form className="col s12" id="edit-center-form" onSubmit={this.handleCenterSubmit} encType="multipart/form-data">
                 <div className="row">
                     <div className="col s6">
                         <div className="file-field input-field">

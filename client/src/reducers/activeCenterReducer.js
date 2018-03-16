@@ -18,9 +18,9 @@ export default (state = {}, action = {}) => {
       return action.payload;
 
     case REMOVE_CENTER:
-      return {
-        deletedCenter: action.payload
-      };
+      newState = Object.assign({}, state);
+      delete { ...newState };
+      return {};
 
     default:
       return state;

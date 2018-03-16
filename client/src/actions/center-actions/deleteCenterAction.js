@@ -10,13 +10,10 @@ export const deleteCenterRequest = (id) => {
   let api = '/api/v1/centers/';
   return dispatch => axios.delete(api + id)
     .then(({ data }) => {
-      console.log(data);
-      if (data.statusCode === 200) {
-        Materialize.toast(data.message, 5000);
-        window.location.href = '/centers';
-        return dispatch(deleteAction(data));
-      }
-      Materialize.toast(data.message, 5000);
-      return {};
+      dispatch(deleteAction(data));
+    })
+    .catch((err) => {
+      Materialize.toast('Center could not be deleted!!!', 5000);
+      console.log(err);
     });
 };

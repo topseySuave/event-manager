@@ -47,6 +47,7 @@ const createCenter = (centerData, imgUrl) => (dispatch) => {
     .then(({ data }) => {
       dispatch(addCenterPayload(data.center, 'success'));
       Materialize.toast(data.message, 5000);
+      document.getElementById('edit-center-form').reset();
       $('.modal').modal('close');
     })
     .catch((err) => {

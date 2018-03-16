@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { loadingBarMiddleware } from 'react-redux-loading-bar';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -9,7 +9,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import App from './components/App';
 import authCheck from './helpers/authCheck';
 import rootReducer from './rootReducer';
-// import { fetchEventRequest } from './actions/events-actions'
+import history from '../src/util/history';
 
 import registerServiceWorker from './registerServiceWorker';
 
@@ -22,11 +22,11 @@ new authCheck().isSignedIn();
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <Router history={history}>
       <MuiThemeProvider>
         <App />
       </MuiThemeProvider>
-    </BrowserRouter>
+    </Router>
   </Provider>,
   document.getElementById('root')
 );
