@@ -10,7 +10,7 @@ class FloatingActionButton extends Component {
     return (
       <a
         href="#edit_center_modal"
-        className="tooltipped modal-trigger btn-large btn-floating amber lighten-1"
+        className="tooltipped modal-trigger btn-large btn-floating green lighten-1"
         data-position="top"
         data-tooltip="Add Center"
       ><i className="material-icons">add</i>

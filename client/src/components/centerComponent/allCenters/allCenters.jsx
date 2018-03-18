@@ -21,7 +21,7 @@ class AllCenters extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     $('.modal').modal();
     this.props.fetchCentersAction();
   }

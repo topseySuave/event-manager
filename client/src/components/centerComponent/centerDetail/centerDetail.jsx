@@ -19,7 +19,7 @@ import CurrentEventForCenter from './currentEventForCenter';
 import RecommCenter from './RecommCenter';
 import EventModal from '../../modals/EventModal';
 import EditCenterForm from '../../modals/centerModalForms/editCenterForm';
-// import history from '../../../util/history';
+import { fetchCenterRelatedTo } from '../../../actions/center-actions/fetchCenterRelatedTo';
 
 class CenterDetail extends Component {
   constructor(props) {
@@ -45,21 +45,17 @@ class CenterDetail extends Component {
     this.handleEventsClose = this.handleEventsClose.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     $('.tooltipped').tooltip({ delay: 50 });
     const { params } = this.props;
     this.props.fetchCenterAction(params.id);
   }
 
-  /* *
-     * TODO: modify center details component to update and change the redux store in respond to route change
-     * * */
-  componentWillReceiveProps(newProps, newState) {
-    // const params = this.props.params;
-    // this.props.fetchCenterAction(params.id);
-    console.log('old props: ', this.props);
-    console.log('new props: ', newProps);
-    console.log('new State: ', newState);
+  componentWillReceiveProps(newProps) {
+    if (this.props.params.id !== newProps.params.id) {
+      newProps.fetchCenterAction(newProps.params.id);
+    }
+
     if (typeof newProps.activeCenterDetail.centr !== 'undefined') {
       newProps.activeCenterDetail.centr.events = newProps.activeCenterDetail.events;
       if (newProps.activeCenterDetail.centr.events) {
@@ -304,9 +300,8 @@ class CenterDetail extends Component {
                   </div>
                                     }
                 </div>
-                {/* <CurrentEventForCenter event={events} /> */}
               </div>
-              <RecommCenter relatedCenterBasedOn={relatedCenterBasedOn} />
+              <RecommCenter relatedCenterBasedOn={relatedCenterBasedOn} fetchCenterRelatedTo={fetchCenterRelatedTo} />
             </div>
           </div>
         </DocumentTitle>
@@ -318,7 +313,8 @@ class CenterDetail extends Component {
 
 CenterDetail.propTypes = {
   params: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  fetchCenterRelatedTo: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -329,7 +325,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators({
   fetchCenterAction,
   editCenterRequestAction,
-  deleteCenterRequest
+  deleteCenterRequest,
+  fetchCenterRelatedTo
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(CenterDetail);

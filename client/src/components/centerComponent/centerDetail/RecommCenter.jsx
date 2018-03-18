@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import shortid from 'shortid';
 import isEmpty from 'lodash/isEmpty';
 
-import { fetchCenterRelatedTo } from '../../../actions/center-actions/fetchCenterRelatedTo';
 import { CircularLoader } from '../../loader';
 import Helpers from '../../../helpers';
 
@@ -18,34 +17,26 @@ class RecommCenter extends Component {
       noCenter: 'There are no related centers',
       errorMessage: '',
       relatedCenters: [],
-      currentCenterId: 0
+      currentCenterId: this.props.relatedCenterBasedOn.id
     };
   }
 
   componentWillReceiveProps(newProps) {
     this.setState({ currentCenterId: newProps.relatedCenterBasedOn.id });
-    fetchCenterRelatedTo(newProps.relatedCenterBasedOn)
+    this.props.fetchCenterRelatedTo(newProps.relatedCenterBasedOn)
       .then(({ data }) => {
-        if (data.statusCode === 200) {
-          this.setState({ isLoading: false, relatedCenters: data.centers });
-        } else {
-          this.setState({ isLoading: false, error: true, errorMessage: this.state.noCenter });
-        }
+        this.setState({ isLoading: false, relatedCenters: data.centers });
       })
       .catch((err) => {
-        this.setState({ isLoading: false, error: true, errorMessage: 'Houston we have a problem!! we are working on it' });
+        this.setState({ isLoading: false, error: true, errorMessage: this.state.noCenter });
       });
   }
 
-  checkOwnCenter(centerId) {
-    return centerId !== this.state.currentCenterId;
-  }
-
-  sortAndShowRecommended(relatedCenters) {
-    if (relatedCenters) {
-      return relatedCenters.map((center) => {
-        let to = `/center/${center.id}/${this.helper.sanitizeString(center.title)}`;
-        if (this.checkOwnCenter(center.id)) {
+  sortAndShowRecommended() {
+    if (!isEmpty(this.state.relatedCenters)) {
+      return this.state.relatedCenters.map((center, index) => {
+        if (center.id !== this.state.currentCenterId) {
+          let to = `/center/${center.id}/${this.helper.sanitizeString(center.title)}`;
           return (
             <div key={shortid.generate()} className="col s12 m6 l4">
               <Link to={to} href={to}>
@@ -66,33 +57,38 @@ class RecommCenter extends Component {
             </div>
           );
         }
-        // return (
-        //   <p key={shortid.generate()}>{this.state.noCenter}</p>
-        // );
+
+        delete this.state.relatedCenters[index];
       });
     }
+    return (
+      <p>{ this.state.noCenter }</p>
+    );
   }
 
   render() {
     let {
-      isLoading, error, errorMessage, relatedCenters
+      isLoading, error, errorMessage
     } = this.state;
-    let eachCenter = this.sortAndShowRecommended(relatedCenters);
+    let eachCenter = this.sortAndShowRecommended();
     return (
       <div className="row">
         <div className="divider" />
         <h5>Recommended Center</h5>
-        { isLoading && <CircularLoader /> }
-        <div className="row">
-          { !isLoading && (error) ? errorMessage : (isEmpty(eachCenter)) ? this.state.noCenter : eachCenter }
-        </div>
+        { isLoading ? <CircularLoader /> : (
+          <div className="row">
+            { (error) ? errorMessage : (isEmpty(eachCenter)) ? this.state.noCenter : eachCenter }
+          </div>
+        )
+        }
       </div>
     );
   }
 }
 
 RecommCenter.propTypes = {
-  relatedCenterBasedOn: PropTypes.object.isRequired
+  relatedCenterBasedOn: PropTypes.object.isRequired,
+  fetchCenterRelatedTo: PropTypes.func.isRequired
 };
 
 export default RecommCenter;

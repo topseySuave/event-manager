@@ -20,7 +20,7 @@ class IndexEventCardHolder extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchEventRequest();
   }
 
