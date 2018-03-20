@@ -31,6 +31,7 @@ export default class Users {
     let {
       firstName, lastName, email, password
     } = req.body;
+    let role = req.body.role || false;
     let encryptedPassword = bcrypt.hashSync(password, salt);
 
     User.findOne({
@@ -41,7 +42,6 @@ export default class Users {
       }
     })
       .then((foundUser) => {
-        // console.log(foundUser);
         if (foundUser) {
           return res.status(401).json({
             statusCode: 401,
@@ -53,7 +53,8 @@ export default class Users {
           firstName,
           lastName,
           email,
-          password: encryptedPassword
+          password: encryptedPassword,
+          role
         })
           .then(user => res.status(201)
             .send({
@@ -61,9 +62,7 @@ export default class Users {
               message: `Account Created for ${user.firstName} ${user.lastName}`,
               error: false
             }));
-        //   .catch(err => res.status(400).send(err));
       });
-    //   .catch(error => res.status(400).send(error));
   }
 
   loginUser(req, res) {
@@ -229,7 +228,7 @@ export default class Users {
               errorMessage: err
             }));
         } else {
-          res.send({
+          res.status(404).send({
             error: true,
             message: 'User was not found',
           });

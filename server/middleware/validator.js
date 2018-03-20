@@ -16,7 +16,7 @@ export class Validation {
       next();
     } else {
       return res.status(400).send({
-        message: "a required field is missing",
+        message: 'a required field is missing',
         statusCode: 400,
         error: validate.errors
       });
@@ -37,7 +37,7 @@ export class Validation {
       next();
     } else {
       return res.status(400).send({
-        message: "a required field is missing",
+        message: 'a required field is missing',
         statusCode: 400,
         error: validate.errors
       });
@@ -56,7 +56,7 @@ export class Validation {
       return next();
     }
     return res.status(400).send({
-      message: "a required field is missing",
+      message: 'a required field is missing',
       statusCode: 400,
       error: validate.errors
     });
@@ -76,7 +76,7 @@ export class Validation {
       next();
     } else {
       return res.status(400).send({
-        message: "a required field is missing",
+        message: 'a required field is missing',
         statusCode: 400,
         error: validate.errors
       });

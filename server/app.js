@@ -26,8 +26,8 @@ const apiRoute = '/api/v1';
 app.set('superSecret', process.env.SECRET_KEY); // secret variable
 
 // Parse incoming requests data (https://github.com/expressjs/body-parser)
-app.use(bodyParser.json({ limit: '10mb' }));
-app.use(bodyParser.urlencoded({ limit: '10mb', extended: true, parameterLimit: 10000 }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Log requests to the console.
 app.use(logger('dev'));
@@ -64,9 +64,9 @@ app.use((req, res, next) => {
 const port = parseInt(process.env.PORT, 10) || 8000;
 app.set('port', port);
 
-const server = http.createServer(app);
-
-server.listen(port, (err) => {
+app.listen(port, (err) => {
   if (err) console.log(err);
   console.log(`server listening on port ${port}`);
 });
+
+export default app;
