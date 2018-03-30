@@ -22,7 +22,8 @@ router.get('/', (req, res) => {
         return res.status(200).sendFile(path.join(__dirname, '../..', 'client/public/admin-users.html'));
       }
     }
-    return res.send({
+
+    return res.status(401).send({
       message: 'Unauthorized access',
       error: true
     });

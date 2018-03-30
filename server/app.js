@@ -26,8 +26,8 @@ const apiRoute = '/api/v1';
 app.set('superSecret', process.env.SECRET_KEY); // secret variable
 
 // Parse incoming requests data (https://github.com/expressjs/body-parser)
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true, parameterLimit: 10000 }));
 
 // Log requests to the console.
 app.use(logger('dev'));

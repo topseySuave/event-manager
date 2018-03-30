@@ -17,10 +17,17 @@
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "test": "npm run test:server && npm run test:client",
     "test:client": "jest --coverage",
-    "test:server": "nyc --reporter=html --reporter=text mocha --timeout 500000 --exit --require babel-core/register server/test/*test.js",
-    "test:dev:server": "nyc --reporter=html --reporter=text mocha ./server/test/* --exit --require babel-node/register --reporter spec",
+    "test:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --timeout 20000 --exit --require babel-core/register server/test/*test.js",
+    "test:dev:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha ./server/test/* --exit --require babel-node/register --reporter spec",
     "test:dev": "npm test && npm run coverage",
-    "webpack": "webpack --watch"
+    "webpack": "webpack --watch",
+    "migrate:test": "cross-env NODE_ENV=test sequelize db:migrate --env test"
+  },
+  "nyc": {
+    "exclude": [
+      "server/middleware/**",
+      "server/app.js"
+    ]
   },
   "repository": {
     "type": "git",
@@ -61,11 +68,13 @@
     "consolidate": "^0.15.0",
     "cors": "^2.8.4",
     "coveralls": "^3.0.0",
+    "cross-env": "^5.1.4",
     "css-loader": "^0.28.7",
     "dotenv": "^4.0.0",
     "es6-promise": "^4.1.1",
     "expect": "^21.2.1",
     "express": "^4.16.2",
+    "faker": "*",
     "fetch-ie8": "^1.5.0",
     "file-loader": "^1.1.5",
     "history": "^4.7.2",
@@ -129,6 +138,7 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.6.1",
+    "faker": "^4.1.0",
     "jest": "^22.3.0",
     "mocha": "^4.0.1",
     "mocha-lcov-reporter": "^1.3.0",

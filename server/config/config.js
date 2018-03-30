@@ -9,10 +9,8 @@ module.exports = {
   },
   test: {
     username: 'postgres',
-    password: 'gabmicah',
-    database: 'boots',
-    host: '127.0.0.1',
-    port: 5342,
+    password: '12345',
+    database: 'boots_test',
     dialect: 'postgres'
   },
   production: {
@@ -25,14 +23,14 @@ module.exports = {
 //   "development": {
 //       "username": "postgres",
 //       "password": "12345",
-//       "database": "boots",
+//       "database": "boots_test",
 //       "host": "127.0.0.1",
 //       "port": 5432,
 //       "dialect": "postgres"
 //   },
 //   "test": {
 //       "username": "postgres",
-//       "password": "gabmicah",
+//       "password": "12345",
 //       "database": "boots",
 //       "host": "127.0.0.1",
 //       "port": 5342,

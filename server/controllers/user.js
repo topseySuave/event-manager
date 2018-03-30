@@ -183,49 +183,29 @@ export default class Users {
     })
       .then((foundUser) => {
         if (foundUser) {
-          Events.destroy({
+          User.destroy({
             where: {
-              userId: foundUser.id
+              id: foundUser.id
             }
           })
-            .then((deletedEvents) => {
-              if (deletedEvents) {
-                User.destroy({
-                  where: {
-                    id: foundUser.id
-                  }
-                })
-                  .then((deletedUser) => {
-                    if (deletedUser) {
-                      res.status(200).send({
-                        message: 'User has been deleted successfully',
-                        error: false,
-                        user: foundUser
-                      });
-                    } else {
-                      res.send({
-                        message: 'User was not deleted, please try again',
-                        error: true
-                      });
-                    }
-                  })
-                  .catch(error => res.status(500).send({
-                    error: true,
-                    message: 'Houston we have a problem.!! Error deleting User',
-                    errorMessage: error
-                  }));
-              } else {
+            .then((deletedUser) => {
+              if (deletedUser) {
                 res.status(200).send({
                   message: 'User has been deleted successfully',
                   error: false,
                   user: foundUser
                 });
+              } else {
+                res.send({
+                  message: 'User was not deleted, please try again',
+                  error: true
+                });
               }
             })
-            .catch(err => res.status(500).send({
+            .catch(error => res.status(500).send({
               error: true,
-              message: 'Houston we have a problem.!! Error deleting Events',
-              errorMessage: err
+              message: 'Houston we have a problem.!! Error deleting User',
+              errorMessage: error
             }));
         } else {
           res.status(404).send({

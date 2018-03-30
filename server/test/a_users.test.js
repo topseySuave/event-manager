@@ -1,21 +1,13 @@
 import chai from 'chai';
-import uuidv4 from 'uuid/v4';
 import dotenv from 'dotenv';
 import supertest from 'supertest';
 import app from '../app';
+import { usersApiRoute, demoUserEmail, demoUserPassword, adminEmailAddr, constMailAddr, constPass } from './testHelpers';
 
 chai.should();
 const request = supertest(app);
 const { expect } = chai;
 
-// Init constants
-const host = '/api/v1';
-const demoUserEmail = `${uuidv4()}@gmail.com`;
-const demoUserPassword = uuidv4();
-const adminEmailAddr = 'topse@gmail.com';
-const constMailAddr = 'gabriel@gmail.com';
-const constPass = '123456789';
-const usersApiRoute = `${host}/users`;
 
 describe('Test user API', () => {
   describe('Creating a new admin or user', () => {
@@ -177,8 +169,8 @@ describe('Test user API', () => {
           expect(res.status).to.equal(201);
           expect(res.body).to.be.an('object');
           expect(res.body).to.haveOwnProperty('message').to.equal(`Account Created for ${firstName} ${lastName}`);
-          done();
         });
+      done();
     });
 
     it('should create an admin', (done) => {
@@ -283,8 +275,8 @@ describe('Test user API', () => {
           expect(res.status).to.equal(200);
           expect(res.body).to.haveOwnProperty('token');
           expect(res.body).to.haveOwnProperty('message').to.equal('Here`s your Token');
-          done();
         });
+      done();
     });
   });
 
@@ -314,7 +306,9 @@ describe('Test user API', () => {
           done();
         });
     });
+  });
 
+  describe('Tests for deleting users from the database', () => {
     it('should return 404 for trying to delete a user but user not found', (done) => {
       request.post('/admin/users')
         .send({
@@ -329,4 +323,29 @@ describe('Test user API', () => {
         });
     });
   });
+
+  // describe('Test for admin render routes', () => {
+  //   it('should return 200 for "/admin/" route', (done) => {
+  //     request.get('/admin/')
+  //       .end((err, res) => {
+  //         expect(res.status).to.equal(200);
+  //       });
+  //   });
+
+  //   it('should return 200 for "/admin/pending-events" route', (done) => {
+  //     request.get('/admin/pending-events')
+  //       .end((err, res) => {
+  //         expect(res.status).to.equal(200);
+  //       });
+  //   });
+
+  //   it('should return 401 for unauthorized access to "/admin/users" route', (done) => {
+  //     request.get('/admin/users')
+  //       .end((err, res) => {
+  //         expect(res.status).to.equal(401);
+  //         expect(res.body).to.haveOwnProperty('error').to.equal(true);
+  //         expect(res.body).to.haveOwnProperty('message').to.equal('Unauthorized access');
+  //       });
+  //   });
+  // });
 });

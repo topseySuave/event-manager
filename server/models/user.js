@@ -1,4 +1,3 @@
-'use strict';
 module.exports = (sequelize, DataTypes) => {
   let User = sequelize.define('User', {
     firstName: DataTypes.TEXT,
@@ -11,12 +10,19 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     classMethods: {
-      associate: function(models) {
+      associate(models) {
         // associations can be defined here
+        User.hasMany(models.Centers, {
+          foreignKey: 'userId',
+          as: 'centers',
+          onDelete: 'cascade'
+        });
+
         User.hasMany(models.Events, {
-          foreignKey: null,
-          as: 'events'
-        })
+          foreignKey: 'userId',
+          as: 'events',
+          onDelete: 'cascade'
+        });
       }
     }
   });
