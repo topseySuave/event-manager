@@ -1,6 +1,5 @@
 import axios from 'axios';
 import setAuthorizationToken from '../components/authentication/setAuthenticationToken';
-// import jwtDecode from 'jwt-decode'
 import { ADD_CENTER_SUCCESS, ADD_CENTER_REQUEST, ADD_CENTER_FAlLURE, EDIT_CENTER, EDIT_CENTER_FAILURE, CLOUDINARY_URL, CLOUDINARY_UPLOAD_PRESET } from './';
 
 const centerApi = '/api/v1/centers';
@@ -53,17 +52,13 @@ const createCenter = (centerData, imgUrl) => (dispatch) => {
     .catch((err) => {
       console.log(err);
       Materialize.toast('An Error Occurred..!!!', 5000);
-      // return console.log(err.response.data.message);
-      // if (err.response.data.statusCode === 400) {
-      //   console.log(err.response.data.message);
-      // }
     });
 };
 
 export const createCenterRequest = (centerData) => {
   if (centerData.img_url.name) {
     let formData = new FormData();
-    formData.append('file', file);
+    formData.append('file', centerData.img_url);
     formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
     setAuthorizationToken(false);
     return axios.post(CLOUDINARY_URL, formData)

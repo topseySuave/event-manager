@@ -65,6 +65,14 @@ export default class Users {
       });
   }
 
+  /**
+     * Signin User record
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @returns {object} Class instance
+     * @memberof Users
+     */
   loginUser(req, res) {
     let { email, password } = req.body;
     User.findOne({
@@ -104,12 +112,28 @@ export default class Users {
       .catch(error => res.status(400).send(error));
   }
 
+  /**
+     * GETS Current User record
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @returns {object} Class instance
+     * @memberof Users
+     */
   currUser(req, res) {
     return res.send({
       currentUser: req.currentUser
     });
   }
 
+  /**
+     * Assign a User as admin
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @returns {object} Class instance
+     * @memberof Users
+     */
   assignAdmin(req, res) {
     let { email, password } = req.body;
     User.findOne({
@@ -164,6 +188,14 @@ export default class Users {
       .catch(error => res.status(500).send(error));
   }
 
+  /**
+     * GETS all User record
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @returns {object} Class instance
+     * @memberof Users
+     */
   allUsers(req, res) {
     User.findAll()
       .then(users => res.status(200).send({
@@ -174,6 +206,14 @@ export default class Users {
       .catch(error => res.status(500).send(error));
   }
 
+  /**
+     * DELETE a User record
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @returns {object} Class instance
+     * @memberof Users
+     */
   removeUsers(req, res) {
     let { userId } = req.body;
     User.findOne({

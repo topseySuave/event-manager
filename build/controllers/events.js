@@ -123,8 +123,8 @@ var Events = exports.Events = function () {
         var search = req.query.search.split(' ');
 
         /**
-          * Search with Title But Map first
-          * */
+        * Search with Title But Map first
+        * */
         var titleResp = search.map(function (value) {
           return {
             title: _defineProperty({}, Op.iLike, '%' + value + '%')

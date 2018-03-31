@@ -55,7 +55,7 @@ const sortSearchRequest = (search, filterBy) => {
 
 /**
  * @export
- * @class Center
+ * @class Centers
  */
 export class Centers {
   /**

@@ -37,7 +37,7 @@ var Validation = exports.Validation = function () {
         next();
       } else {
         return res.status(400).send({
-          message: "a required field is missing",
+          message: 'a required field is missing',
           statusCode: 400,
           error: validate.errors
         });
@@ -59,7 +59,7 @@ var Validation = exports.Validation = function () {
         next();
       } else {
         return res.status(400).send({
-          message: "a required field is missing",
+          message: 'a required field is missing',
           statusCode: 400,
           error: validate.errors
         });
@@ -79,7 +79,7 @@ var Validation = exports.Validation = function () {
         return next();
       }
       return res.status(400).send({
-        message: "a required field is missing",
+        message: 'a required field is missing',
         statusCode: 400,
         error: validate.errors
       });
@@ -100,7 +100,7 @@ var Validation = exports.Validation = function () {
         next();
       } else {
         return res.status(400).send({
-          message: "a required field is missing",
+          message: 'a required field is missing',
           statusCode: 400,
           error: validate.errors
         });

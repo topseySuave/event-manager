@@ -52,8 +52,8 @@ module.exports = {
         "require-jsdoc": ["error", {
             require: {
                 FunctionDeclaration: false,
-                MethodDefinition: false,
-                ClassDeclaration: false
+                MethodDefinition: true,
+                ClassDeclaration: true
             }
         }]
     }

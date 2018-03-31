@@ -5,6 +5,7 @@ module.exports = {
     database: 'boots',
     host: '127.0.0.1',
     port: 5432,
+    operatorsAliases: false,
     dialect: 'postgres'
   },
   test: {

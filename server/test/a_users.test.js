@@ -2,12 +2,12 @@ import chai from 'chai';
 import dotenv from 'dotenv';
 import supertest from 'supertest';
 import app from '../app';
-import { usersApiRoute, demoUserEmail, demoUserPassword, adminEmailAddr, constMailAddr, constPass } from './testHelpers';
+import testHelper from './testHelpers';
 
 chai.should();
 const request = supertest(app);
 const { expect } = chai;
-
+const testHelpers = new testHelper();
 
 describe('Test user API', () => {
   describe('Creating a new admin or user', () => {
@@ -15,12 +15,12 @@ describe('Test user API', () => {
     let lastName = 'Micah';
 
     it('should return a status 400 error response for a empty firstName field', (done) => {
-      request.post(usersApiRoute)
+      request.post(testHelpers.usersApiRoute)
         .send({
           firstName: '',
           lastName,
-          email: demoUserEmail,
-          password: demoUserPassword
+          email: testHelpers.demoUserEmail,
+          password: testHelpers.demoUserPassword
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -31,12 +31,12 @@ describe('Test user API', () => {
     });
 
     it('should return a status 400 error response for a empty firstName field is only spaces', (done) => {
-      request.post(usersApiRoute)
+      request.post(testHelpers.usersApiRoute)
         .send({
           firstName: '            ',
           lastName,
-          email: demoUserEmail,
-          password: demoUserPassword
+          email: testHelpers.demoUserEmail,
+          password: testHelpers.demoUserPassword
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -47,12 +47,12 @@ describe('Test user API', () => {
     });
 
     it('should return a status 400 error response for a empty lastName field', (done) => {
-      request.post(usersApiRoute)
+      request.post(testHelpers.usersApiRoute)
         .send({
           firstName,
           lastName: '',
-          email: demoUserEmail,
-          password: demoUserPassword
+          email: testHelpers.demoUserEmail,
+          password: testHelpers.demoUserPassword
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -62,12 +62,12 @@ describe('Test user API', () => {
         });
     });
     it('should return a status 400 error response for a empty lastName field is only spaces', (done) => {
-      request.post(usersApiRoute)
+      request.post(testHelpers.usersApiRoute)
         .send({
           firstName,
           lastName: '             ',
-          email: demoUserEmail,
-          password: demoUserPassword
+          email: testHelpers.demoUserEmail,
+          password: testHelpers.demoUserPassword
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -78,12 +78,12 @@ describe('Test user API', () => {
     });
 
     it('should return a status 400 error response for a empty email field', (done) => {
-      request.post(usersApiRoute)
+      request.post(testHelpers.usersApiRoute)
         .send({
           firstName,
           lastName,
           email: '',
-          password: demoUserPassword
+          password: testHelpers.demoUserPassword
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -94,12 +94,12 @@ describe('Test user API', () => {
     });
 
     it('should return a status 400 error response for a empty email field is only spaces', (done) => {
-      request.post(usersApiRoute)
+      request.post(testHelpers.usersApiRoute)
         .send({
           firstName,
           lastName,
           email: '            ',
-          password: demoUserPassword
+          password: testHelpers.demoUserPassword
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -110,12 +110,12 @@ describe('Test user API', () => {
     });
 
     it('should return a status 400 error response if email is not correct', (done) => {
-      request.post(usersApiRoute)
+      request.post(testHelpers.usersApiRoute)
         .send({
           firstName,
           lastName,
-          email: 'demoUserEmail',
-          password: demoUserPassword
+          email: 'testHelpers.demoUserEmail',
+          password: testHelpers.demoUserPassword
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -126,11 +126,11 @@ describe('Test user API', () => {
     });
 
     it('should return a status 400 error response if password is empty', (done) => {
-      request.post(usersApiRoute)
+      request.post(testHelpers.usersApiRoute)
         .send({
           firstName,
           lastName,
-          email: demoUserEmail,
+          email: testHelpers.demoUserEmail,
           password: ''
         })
         .end((err, res) => {
@@ -142,11 +142,11 @@ describe('Test user API', () => {
     });
 
     it('should return a status 400 error response if password field is only spaces', (done) => {
-      request.post(usersApiRoute)
+      request.post(testHelpers.usersApiRoute)
         .send({
           firstName,
           lastName,
-          email: demoUserEmail,
+          email: testHelpers.demoUserEmail,
           password: '          '
         })
         .end((err, res) => {
@@ -158,12 +158,12 @@ describe('Test user API', () => {
     });
 
     it('should create a user ', (done) => {
-      request.post(usersApiRoute)
+      request.post(testHelpers.usersApiRoute)
         .send({
           firstName,
           lastName,
-          email: constMailAddr,
-          password: constPass
+          email: testHelpers.constMailAddr,
+          password: testHelpers.constPass
         })
         .end((err, res) => {
           expect(res.status).to.equal(201);
@@ -174,12 +174,12 @@ describe('Test user API', () => {
     });
 
     it('should create an admin', (done) => {
-      request.post(usersApiRoute)
+      request.post(testHelpers.usersApiRoute)
         .send({
           firstName,
           lastName,
-          email: adminEmailAddr,
-          password: constPass,
+          email: testHelpers.adminEmailAddr,
+          password: testHelpers.constPass,
           role: true
         })
         .end((err, res) => {
@@ -191,12 +191,12 @@ describe('Test user API', () => {
     });
 
     it('should return 401 error response for existing email', (done) => {
-      request.post(usersApiRoute)
+      request.post(testHelpers.usersApiRoute)
         .send({
           firstName,
           lastName,
-          email: constMailAddr,
-          password: demoUserPassword
+          email: testHelpers.constMailAddr,
+          password: testHelpers.demoUserPassword
         })
         .end((err, res) => {
           expect(res.status).to.equal(401);
@@ -209,10 +209,10 @@ describe('Test user API', () => {
 
   describe('Test to sign a user and/or admin in/out', () => {
     it('should return a status 400 error response if email is empty', (done) => {
-      request.post(usersApiRoute)
+      request.post(testHelpers.usersApiRoute)
         .send({
           email: '',
-          password: demoUserPassword
+          password: testHelpers.demoUserPassword
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -223,10 +223,10 @@ describe('Test user API', () => {
     });
 
     it('should return a status 400 error response if email field is only spaces', (done) => {
-      request.post(usersApiRoute)
+      request.post(testHelpers.usersApiRoute)
         .send({
           email: '          ',
-          password: demoUserPassword
+          password: testHelpers.demoUserPassword
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -237,9 +237,9 @@ describe('Test user API', () => {
     });
 
     it('should return a status 400 error response if password is empty', (done) => {
-      request.post(usersApiRoute)
+      request.post(testHelpers.usersApiRoute)
         .send({
-          email: constMailAddr,
+          email: testHelpers.constMailAddr,
           password: ''
         })
         .end((err, res) => {
@@ -251,9 +251,9 @@ describe('Test user API', () => {
     });
 
     it('should return a status 400 error response if password field is only spaces', (done) => {
-      request.post(usersApiRoute)
+      request.post(testHelpers.usersApiRoute)
         .send({
-          email: constMailAddr,
+          email: testHelpers.constMailAddr,
           password: '         '
         })
         .end((err, res) => {
@@ -265,16 +265,17 @@ describe('Test user API', () => {
     });
 
     it('should return a status 200 success response for logging in a user', (done) => {
-      request.post(`${usersApiRoute}/authentication`)
+      request.post(`${testHelpers.usersApiRoute}/authentication`)
         .send({
-          email: constMailAddr,
-          password: constPass,
+          email: testHelpers.constMailAddr,
+          password: testHelpers.constPass,
         })
         .end((err, res) => {
           expect(res.body).to.be.an('object');
           expect(res.status).to.equal(200);
           expect(res.body).to.haveOwnProperty('token');
           expect(res.body).to.haveOwnProperty('message').to.equal('Here`s your Token');
+          testHelpers.setToken(res.body.token);
         });
       done();
     });
@@ -285,7 +286,7 @@ describe('Test user API', () => {
       request.post('/admin/assign')
         .send({
           email: 'person',
-          password: constPass
+          password: testHelpers.constPass
         })
         .end((err, res) => {
           expect(res.body).to.be.an('object');

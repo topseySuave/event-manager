@@ -1,22 +1,60 @@
 import faker from 'faker';
 
-export const host = '/api/v1';
-export const usersApiRoute = `${host}/users`;
-export const centersApiRoute = `${host}/centers`;
+/**
+ * Assign test helpers Constants
+ * @class
+ * @memberof testHelper
+ */
+export default class testHelper {
+  /**
+     * Class Contructor
+     * @constructor
+     * @returns {void} Class instance
+     * @memberof testHelper
+     */
+  constructor() {
+    this.host = '/api/v1';
+    this.usersApiRoute = `${this.host}/users`;
+    this.centersApiRoute = `${this.host}/centers`;
 
-// Init users constants
-export const demoUserEmail = faker.internet.email();
-export const demoUserPassword = faker.internet.password();
-export const adminEmailAddr = 'topse@gmail.com';
-export const constMailAddr = 'gabriel@gmail.com';
-export const constPass = '123456789';
+    // Init users constants
+    this.demoUserEmail = faker.internet.email();
+    this.demoUserPassword = faker.internet.password();
+    this.adminEmailAddr = 'topse@gmail.com';
+    this.constMailAddr = 'gabriel@gmail.com';
+    this.constPass = '123456789';
 
 
-// Init center constants
-export const democenterTitle = faker.internet.email();
-export const demoCenterImg = faker.internet.password();
-export const democenterLocation = faker.internet.email();
-export const demoCenterDescrp = faker.internet.password();
-export const demoCenterFacilities = faker.internet.password();
-export const democenterCapacity = parseInt(500, 10);
-export const demoCenterPrice = parseInt(200000, 10);
+    // Init center constants
+    this.democenterTitle = faker.name.title();
+    this.demoCenterImg = faker.image.imageUrl();
+    this.democenterLocation = faker.address.streetAddress();
+    this.demoCenterDescrp = faker.lorem.paragraph();
+    this.demoCenterFacilities = faker.random.arrayElement();
+    this.democenterCapacity = parseInt(Math.ceil(Math.random() * 5000) + 10, 10); // Return a random number between 10 and 5000 for the capacity of the center
+    this.demoCenterPrice = parseInt(Math.ceil(Math.random() * 200000) + 10000, 10); // Return a random number between 10000 and 200000 for the price of the center
+
+    this.token = '';
+  }
+
+  /**
+     * Sets the token property
+     *
+     * @param {string} token
+     * @returns {string} 'token'
+     * @memberof testHelper
+     */
+  setToken(token) {
+    this.token = token;
+  }
+
+  /**
+     * Gets the token property
+     *
+     * @returns {string} 'token'
+     * @memberof testHelper
+     */
+  getToken() {
+    return this.token;
+  }
+}
