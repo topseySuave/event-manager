@@ -15,6 +15,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+/**
+ * @export
+ * @class Validation
+ */
 var Validation = exports.Validation = function () {
   function Validation() {
     _classCallCheck(this, Validation);
@@ -22,14 +26,24 @@ var Validation = exports.Validation = function () {
 
   _createClass(Validation, [{
     key: 'validateCenter',
+
+    /**
+       * Validate Center record
+       *
+       * @param {object} req - HTTP Request
+       * @param {object} res - HTTP Response
+       * @param {function} next
+       * @returns {object} Class instance
+       * @memberof Validation
+       */
     value: function validateCenter(req, res, next) {
       var centerRules = {
         title: 'required|string',
         location: 'required|string',
         description: 'required|string',
         facilities: 'array',
-        capacity: 'integer',
-        price: 'integer'
+        capacity: 'required|integer',
+        price: 'required|integer'
       };
 
       var validate = new _validatorjs2.default(req.body, centerRules);
@@ -43,6 +57,17 @@ var Validation = exports.Validation = function () {
         });
       }
     }
+
+    /**
+       * Validate Event record
+       *
+       * @param {object} req - HTTP Request
+       * @param {object} res - HTTP Response
+       * @param {function} next
+       * @returns {object} Class instance
+       * @memberof Validation
+       */
+
   }, {
     key: 'validateEvent',
     value: function validateEvent(req, res, next) {
@@ -65,6 +90,17 @@ var Validation = exports.Validation = function () {
         });
       }
     }
+
+    /**
+       * Validate Login record
+       *
+       * @param {object} req - HTTP Request
+       * @param {object} res - HTTP Response
+       * @param {function} next
+       * @returns {object} Class instance
+       * @memberof Validation
+       */
+
   }, {
     key: 'validateLogin',
     value: function validateLogin(req, res, next) {
@@ -84,6 +120,17 @@ var Validation = exports.Validation = function () {
         error: validate.errors
       });
     }
+
+    /**
+       * Validate Sign up record
+       *
+       * @param {object} req - HTTP Request
+       * @param {object} res - HTTP Response
+       * @param {function} next
+       * @returns {object} Class instance
+       * @memberof Validation
+       */
+
   }, {
     key: 'validateSignUp',
     value: function validateSignUp(req, res, next) {

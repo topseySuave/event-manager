@@ -1,6 +1,7 @@
 import chai from 'chai';
 import dotenv from 'dotenv';
 import supertest from 'supertest';
+import faker from 'faker';
 import app from '../app';
 import testHelper from './testHelpers';
 
@@ -10,9 +11,13 @@ const { expect } = chai;
 const testHelpers = new testHelper();
 
 describe('Test user API', () => {
+  let adminId;
+  let userId;
+  let adminToken;
+
   describe('Creating a new admin or user', () => {
-    let firstName = 'Gabriel';
-    let lastName = 'Micah';
+    let firstName = faker.name.firstName();
+    let lastName = faker.name.lastName();
 
     it('should return a status 400 error response for a empty firstName field', (done) => {
       request.post(testHelpers.usersApiRoute)
@@ -166,11 +171,12 @@ describe('Test user API', () => {
           password: testHelpers.constPass
         })
         .end((err, res) => {
+          userId = res.body.user.id;
           expect(res.status).to.equal(201);
           expect(res.body).to.be.an('object');
           expect(res.body).to.haveOwnProperty('message').to.equal(`Account Created for ${firstName} ${lastName}`);
+          done();
         });
-      done();
     });
 
     it('should create an admin', (done) => {
@@ -183,6 +189,7 @@ describe('Test user API', () => {
           role: true
         })
         .end((err, res) => {
+          adminId = res.body.user.id;
           expect(res.status).to.equal(201);
           expect(res.body).to.be.an('object');
           expect(res.body).to.haveOwnProperty('message').to.equal(`Account Created for ${firstName} ${lastName}`);
@@ -196,7 +203,7 @@ describe('Test user API', () => {
           firstName,
           lastName,
           email: testHelpers.constMailAddr,
-          password: testHelpers.demoUserPassword
+          password: testHelpers.constPass
         })
         .end((err, res) => {
           expect(res.status).to.equal(401);
@@ -275,7 +282,22 @@ describe('Test user API', () => {
           expect(res.status).to.equal(200);
           expect(res.body).to.haveOwnProperty('token');
           expect(res.body).to.haveOwnProperty('message').to.equal('Here`s your Token');
-          testHelpers.setToken(res.body.token);
+        });
+      done();
+    });
+
+    it('should return a status 200 success response for logging in an admin user', (done) => {
+      request.post(`${testHelpers.usersApiRoute}/authentication`)
+        .send({
+          email: testHelpers.adminEmailAddr,
+          password: testHelpers.constPass,
+        })
+        .end((err, res) => {
+          adminToken = res.body.token;
+          expect(res.body).to.be.an('object');
+          expect(res.status).to.equal(200);
+          expect(res.body).to.haveOwnProperty('token');
+          expect(res.body).to.haveOwnProperty('message').to.equal('Here`s your Token');
         });
       done();
     });
@@ -323,30 +345,19 @@ describe('Test user API', () => {
           done();
         });
     });
+
+    it('should return 200 for succesfully deleting an admin user', (done) => {
+      request.post('/admin/users')
+        .send({
+          userId: adminId
+        })
+        .end((err, res) => {
+          expect(res.body).to.be.an('object');
+          expect(res.status).to.equal(200);
+          expect(res.body).to.haveOwnProperty('message').to.equal('User has been deleted successfully');
+          expect(res.body).to.haveOwnProperty('error').to.equal(false);
+          done();
+        });
+    });
   });
-
-  // describe('Test for admin render routes', () => {
-  //   it('should return 200 for "/admin/" route', (done) => {
-  //     request.get('/admin/')
-  //       .end((err, res) => {
-  //         expect(res.status).to.equal(200);
-  //       });
-  //   });
-
-  //   it('should return 200 for "/admin/pending-events" route', (done) => {
-  //     request.get('/admin/pending-events')
-  //       .end((err, res) => {
-  //         expect(res.status).to.equal(200);
-  //       });
-  //   });
-
-  //   it('should return 401 for unauthorized access to "/admin/users" route', (done) => {
-  //     request.get('/admin/users')
-  //       .end((err, res) => {
-  //         expect(res.status).to.equal(401);
-  //         expect(res.body).to.haveOwnProperty('error').to.equal(true);
-  //         expect(res.body).to.haveOwnProperty('message').to.equal('Unauthorized access');
-  //       });
-  //   });
-  // });
 });

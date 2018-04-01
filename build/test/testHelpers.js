@@ -45,11 +45,9 @@ var testHelper = function () {
     this.demoCenterImg = _faker2.default.image.imageUrl();
     this.democenterLocation = _faker2.default.address.streetAddress();
     this.demoCenterDescrp = _faker2.default.lorem.paragraph();
-    this.demoCenterFacilities = _faker2.default.random.arrayElement();
+    this.demoCenterFacilities = ['swimming pool', 'power', 'chairs', 'parking lot', 'stage'];
     this.democenterCapacity = parseInt(Math.ceil(Math.random() * 5000) + 10, 10); // Return a random number between 10 and 5000 for the capacity of the center
     this.demoCenterPrice = parseInt(Math.ceil(Math.random() * 200000) + 10000, 10); // Return a random number between 10000 and 200000 for the price of the center
-
-    this.token = '';
   }
 
   /**

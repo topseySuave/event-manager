@@ -12,6 +12,10 @@ var _supertest = require('supertest');
 
 var _supertest2 = _interopRequireDefault(_supertest);
 
+var _faker = require('faker');
+
+var _faker2 = _interopRequireDefault(_faker);
+
 var _app = require('../app');
 
 var _app2 = _interopRequireDefault(_app);
@@ -29,9 +33,13 @@ var expect = _chai2.default.expect;
 var testHelpers = new _testHelpers2.default();
 
 describe('Test user API', function () {
+  var adminId = void 0;
+  var userId = void 0;
+  var adminToken = void 0;
+
   describe('Creating a new admin or user', function () {
-    var firstName = 'Gabriel';
-    var lastName = 'Micah';
+    var firstName = _faker2.default.name.firstName();
+    var lastName = _faker2.default.name.lastName();
 
     it('should return a status 400 error response for a empty firstName field', function (done) {
       request.post(testHelpers.usersApiRoute).send({
@@ -165,11 +173,12 @@ describe('Test user API', function () {
         email: testHelpers.constMailAddr,
         password: testHelpers.constPass
       }).end(function (err, res) {
+        userId = res.body.user.id;
         expect(res.status).to.equal(201);
         expect(res.body).to.be.an('object');
         expect(res.body).to.haveOwnProperty('message').to.equal('Account Created for ' + firstName + ' ' + lastName);
+        done();
       });
-      done();
     });
 
     it('should create an admin', function (done) {
@@ -180,6 +189,7 @@ describe('Test user API', function () {
         password: testHelpers.constPass,
         role: true
       }).end(function (err, res) {
+        adminId = res.body.user.id;
         expect(res.status).to.equal(201);
         expect(res.body).to.be.an('object');
         expect(res.body).to.haveOwnProperty('message').to.equal('Account Created for ' + firstName + ' ' + lastName);
@@ -192,7 +202,7 @@ describe('Test user API', function () {
         firstName: firstName,
         lastName: lastName,
         email: testHelpers.constMailAddr,
-        password: testHelpers.demoUserPassword
+        password: testHelpers.constPass
       }).end(function (err, res) {
         expect(res.status).to.equal(401);
         expect(res.body).to.be.an('object');
@@ -260,7 +270,20 @@ describe('Test user API', function () {
         expect(res.status).to.equal(200);
         expect(res.body).to.haveOwnProperty('token');
         expect(res.body).to.haveOwnProperty('message').to.equal('Here`s your Token');
-        testHelpers.setToken(res.body.token);
+      });
+      done();
+    });
+
+    it('should return a status 200 success response for logging in an admin user', function (done) {
+      request.post(testHelpers.usersApiRoute + '/authentication').send({
+        email: testHelpers.adminEmailAddr,
+        password: testHelpers.constPass
+      }).end(function (err, res) {
+        adminToken = res.body.token;
+        expect(res.body).to.be.an('object');
+        expect(res.status).to.equal(200);
+        expect(res.body).to.haveOwnProperty('token');
+        expect(res.body).to.haveOwnProperty('message').to.equal('Here`s your Token');
       });
       done();
     });
@@ -303,31 +326,18 @@ describe('Test user API', function () {
         done();
       });
     });
+
+    it('should return 200 for succesfully deleting an admin user', function (done) {
+      request.post('/admin/users').send({
+        userId: adminId
+      }).end(function (err, res) {
+        expect(res.body).to.be.an('object');
+        expect(res.status).to.equal(200);
+        expect(res.body).to.haveOwnProperty('message').to.equal('User has been deleted successfully');
+        expect(res.body).to.haveOwnProperty('error').to.equal(false);
+        done();
+      });
+    });
   });
-
-  // describe('Test for admin render routes', () => {
-  //   it('should return 200 for "/admin/" route', (done) => {
-  //     request.get('/admin/')
-  //       .end((err, res) => {
-  //         expect(res.status).to.equal(200);
-  //       });
-  //   });
-
-  //   it('should return 200 for "/admin/pending-events" route', (done) => {
-  //     request.get('/admin/pending-events')
-  //       .end((err, res) => {
-  //         expect(res.status).to.equal(200);
-  //       });
-  //   });
-
-  //   it('should return 401 for unauthorized access to "/admin/users" route', (done) => {
-  //     request.get('/admin/users')
-  //       .end((err, res) => {
-  //         expect(res.status).to.equal(401);
-  //         expect(res.body).to.haveOwnProperty('error').to.equal(true);
-  //         expect(res.body).to.haveOwnProperty('message').to.equal('Unauthorized access');
-  //       });
-  //   });
-  // });
 });
 //# sourceMappingURL=a_users.test.js.map

@@ -26,7 +26,7 @@ export default class Users {
   createUser(req, res) {
     /**
      * Encrypt Password** */
-    let salt = bcrypt.genSaltSync(Math.floor(Math.random() * 31));
+    let salt = bcrypt.genSaltSync(Math.floor(Math.random() * 5));
 
     let {
       firstName, lastName, email, password
@@ -60,7 +60,8 @@ export default class Users {
             .send({
               statusCode: 201,
               message: `Account Created for ${user.firstName} ${user.lastName}`,
-              error: false
+              error: false,
+              user
             }));
       });
   }

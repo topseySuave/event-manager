@@ -24,7 +24,7 @@ const sortSearchRequest = (search, filterBy) => {
       if (value !== '') {
         return {
           price: {
-            [Op.iLike]: `%${value}%`
+            [Op.iLike]: `%${parseInt(value, 10)}%`
           }
         };
       }
@@ -34,7 +34,7 @@ const sortSearchRequest = (search, filterBy) => {
       if (value !== '') {
         return {
           capacity: {
-            [Op.iLike]: `%${value}%`
+            [Op.iLike]: `%${parseInt(value, 10)}%`
           }
         };
       }
@@ -76,15 +76,13 @@ export class Centers {
         location: req.body.location
       }
     })
-      .then((centers) => {
-        // return this if  center name is taken
-        if (centers) {
-          if (centers.length > 0) {
-            return res.status(400).json({
-              message: 'Center already exist',
-              statusCode: 400
-            });
-          }
+      .then((xCenter) => {
+        // return this if center name is taken
+        if (xCenter) {
+          return res.status(400).json({
+            message: 'Center already exist',
+            statusCode: 400
+          });
         }
 
         return Center.create({
@@ -96,18 +94,15 @@ export class Centers {
           capacity: parseInt(req.body.capacity, 10),
           price: parseInt(req.body.price, 10)
         })
-          .then(center => res.status(201).send({
-            statusCode: 201,
-            message: 'Center has been created',
-            center
-          }))
-
-          .catch(err => res.status(400).send({
-            statusCode: 400,
-            success: false,
-            message: 'Center cannot be created',
-            error: err
-          }));
+          .then((center) => {
+            if (center) {
+              res.status(201).send({
+                statusCode: 201,
+                message: 'Center has been created',
+                center
+              });
+            }
+          });
       });
   }
 
@@ -134,7 +129,6 @@ export class Centers {
 
     Center.findById(centerId)
       .then((centr) => {
-        console.log(centr);
         if (!centr) {
           return res.status(404).send({
             statusCode: 404,
@@ -229,6 +223,7 @@ export class Centers {
         if (!centr) {
           return res.status(404).send({
             statusCode: 404,
+            error: true,
             message: `Center with id: ${centerId} does not exist`,
           });
         }
@@ -253,23 +248,7 @@ export class Centers {
               events: event.rows,
               centr,
             });
-          })
-          .catch((err) => {
-            if (err) {
-              return res.status(400).send({
-                statusCode: 400,
-                message: 'Error getting center details'
-              });
-            }
           });
-      })
-      .catch((err) => {
-        if (err) {
-          return res.status(400).send({
-            statusCode: 400,
-            message: 'Error getting center details'
-          });
-        }
       });
   }
 
@@ -331,28 +310,14 @@ export class Centers {
         limit: limitValue,
         offset: (pageValue > 1) ? (pageValue * limitValue) - limitValue : pageValue
       })
-        .then((center) => {
-          if (!center) {
-            return res.status(404).send({
-              statusCode: 404,
-              message: 'No result found',
-            });
-          }
-
-          return res.status(200).send({
-            statusCode: 200,
-            message: 'Successful Centers!',
-            page: (pageValue) ? parseInt(pageValue, 10) : parseInt(pageValue + 1, 10),
-            totalCount: center.count,
-            pageCount: Math.ceil(center.count / limitValue),
-            pageSize: parseInt(center.rows.length, 10),
-            centers: center.rows,
-          });
-        })
-        .catch(err => res.status(400).send({
-          statusCode: 400,
-          message: 'Couldn\'t find all centers...!',
-          error: err
+        .then(center => res.status(200).send({
+          statusCode: 200,
+          message: 'Successful Centers!',
+          page: (pageValue) ? parseInt(pageValue, 10) : parseInt(pageValue + 1, 10),
+          totalCount: center.count,
+          pageCount: Math.ceil(center.count / limitValue),
+          pageSize: parseInt(center.rows.length, 10),
+          centers: center.rows,
         }));
     }
   }
@@ -375,14 +340,16 @@ export class Centers {
         message: 'Center id is not a number'
       });
     }
+
     Center.findById(centerId)
       .then((deletedCenter) => {
         if (!deletedCenter) {
-          return res.status(400).send({
-            statusCode: 400,
+          return res.status(404).send({
+            statusCode: 404,
             message: `Center not found with id : ${centerId}`
           });
         }
+
         Center
           .destroy({
             where: {
@@ -394,6 +361,13 @@ export class Centers {
             message: 'This Center has been deleted',
             center: deletedCenter
           }));
+      })
+      .catch((err) => {
+        res.status(400).send({
+          statusCode: 400,
+          message: 'Center not found',
+          error: err
+        });
       });
   }
 }

@@ -64,7 +64,7 @@ var Users = function () {
     value: function createUser(req, res) {
       /**
        * Encrypt Password** */
-      var salt = _bcryptjs2.default.genSaltSync(Math.floor(Math.random() * 31));
+      var salt = _bcryptjs2.default.genSaltSync(Math.floor(Math.random() * 5));
 
       var _req$body = req.body,
           firstName = _req$body.firstName,
@@ -97,7 +97,8 @@ var Users = function () {
           return res.status(201).send({
             statusCode: 201,
             message: 'Account Created for ' + user.firstName + ' ' + user.lastName,
-            error: false
+            error: false,
+            user: user
           });
         });
       });

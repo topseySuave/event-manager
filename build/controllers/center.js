@@ -38,7 +38,7 @@ var sortSearchRequest = function sortSearchRequest(search, filterBy) {
     reqSearch = search.map(function (value) {
       if (value !== '') {
         return {
-          price: _defineProperty({}, Op.iLike, '%' + value + '%')
+          price: _defineProperty({}, Op.iLike, '%' + parseInt(value, 10) + '%')
         };
       }
     });
@@ -46,7 +46,7 @@ var sortSearchRequest = function sortSearchRequest(search, filterBy) {
     reqSearch = search.map(function (value) {
       if (value !== '') {
         return {
-          capacity: _defineProperty({}, Op.iLike, '%' + value + '%')
+          capacity: _defineProperty({}, Op.iLike, '%' + parseInt(value, 10) + '%')
         };
       }
     });
@@ -92,15 +92,13 @@ var Centers = exports.Centers = function () {
           title: req.body.title,
           location: req.body.location
         }
-      }).then(function (centers) {
-        // return this if  center name is taken
-        if (centers) {
-          if (centers.length > 0) {
-            return res.status(400).json({
-              message: 'Center already exist',
-              statusCode: 400
-            });
-          }
+      }).then(function (xCenter) {
+        // return this if center name is taken
+        if (xCenter) {
+          return res.status(400).json({
+            message: 'Center already exist',
+            statusCode: 400
+          });
         }
 
         return Center.create({
@@ -112,18 +110,13 @@ var Centers = exports.Centers = function () {
           capacity: parseInt(req.body.capacity, 10),
           price: parseInt(req.body.price, 10)
         }).then(function (center) {
-          return res.status(201).send({
-            statusCode: 201,
-            message: 'Center has been created',
-            center: center
-          });
-        }).catch(function (err) {
-          return res.status(400).send({
-            statusCode: 400,
-            success: false,
-            message: 'Center cannot be created',
-            error: err
-          });
+          if (center) {
+            res.status(201).send({
+              statusCode: 201,
+              message: 'Center has been created',
+              center: center
+            });
+          }
         });
       });
     }
@@ -153,7 +146,6 @@ var Centers = exports.Centers = function () {
       }
 
       Center.findById(centerId).then(function (centr) {
-        console.log(centr);
         if (!centr) {
           return res.status(404).send({
             statusCode: 404,
@@ -241,6 +233,7 @@ var Centers = exports.Centers = function () {
         if (!centr) {
           return res.status(404).send({
             statusCode: 404,
+            error: true,
             message: 'Center with id: ' + centerId + ' does not exist'
           });
         }
@@ -260,21 +253,7 @@ var Centers = exports.Centers = function () {
             events: event.rows,
             centr: centr
           });
-        }).catch(function (err) {
-          if (err) {
-            return res.status(400).send({
-              statusCode: 400,
-              message: 'Error getting center details'
-            });
-          }
         });
-      }).catch(function (err) {
-        if (err) {
-          return res.status(400).send({
-            statusCode: 400,
-            message: 'Error getting center details'
-          });
-        }
       });
     }
 
@@ -333,13 +312,6 @@ var Centers = exports.Centers = function () {
           limit: limitValue,
           offset: pageValue > 1 ? pageValue * limitValue - limitValue : pageValue
         }).then(function (center) {
-          if (!center) {
-            return res.status(404).send({
-              statusCode: 404,
-              message: 'No result found'
-            });
-          }
-
           return res.status(200).send({
             statusCode: 200,
             message: 'Successful Centers!',
@@ -348,12 +320,6 @@ var Centers = exports.Centers = function () {
             pageCount: Math.ceil(center.count / limitValue),
             pageSize: parseInt(center.rows.length, 10),
             centers: center.rows
-          });
-        }).catch(function (err) {
-          return res.status(400).send({
-            statusCode: 400,
-            message: 'Couldn\'t find all centers...!',
-            error: err
           });
         });
       }
@@ -380,13 +346,15 @@ var Centers = exports.Centers = function () {
           message: 'Center id is not a number'
         });
       }
+
       Center.findById(centerId).then(function (deletedCenter) {
         if (!deletedCenter) {
-          return res.status(400).send({
-            statusCode: 400,
+          return res.status(404).send({
+            statusCode: 404,
             message: 'Center not found with id : ' + centerId
           });
         }
+
         Center.destroy({
           where: {
             id: centerId
@@ -397,6 +365,12 @@ var Centers = exports.Centers = function () {
             message: 'This Center has been deleted',
             center: deletedCenter
           });
+        });
+      }).catch(function (err) {
+        res.status(400).send({
+          statusCode: 400,
+          message: 'Center not found',
+          error: err
         });
       });
     }

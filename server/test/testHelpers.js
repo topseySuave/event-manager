@@ -24,17 +24,14 @@ export default class testHelper {
     this.constMailAddr = 'gabriel@gmail.com';
     this.constPass = '123456789';
 
-
     // Init center constants
     this.democenterTitle = faker.name.title();
     this.demoCenterImg = faker.image.imageUrl();
     this.democenterLocation = faker.address.streetAddress();
     this.demoCenterDescrp = faker.lorem.paragraph();
-    this.demoCenterFacilities = faker.random.arrayElement();
+    this.demoCenterFacilities = ['swimming pool', 'power', 'chairs', 'parking lot', 'stage'];
     this.democenterCapacity = parseInt(Math.ceil(Math.random() * 5000) + 10, 10); // Return a random number between 10 and 5000 for the capacity of the center
     this.demoCenterPrice = parseInt(Math.ceil(Math.random() * 200000) + 10000, 10); // Return a random number between 10000 and 200000 for the price of the center
-
-    this.token = '';
   }
 
   /**
