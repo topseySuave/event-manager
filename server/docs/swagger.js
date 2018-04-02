@@ -1,8 +1,4 @@
-<<<<<<< HEAD:server/docs/swagger.js
 module.export = {
-=======
-module.exports = {
->>>>>>> 597a7345fdb2a12fa3b1da8b1c0e6a64c406be07:server/docs/swagger.js
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
