@@ -13,8 +13,10 @@ class CurrentEventForCenter extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.event.length > 0) {
-      this.setState({ hasEvent: true, eventArr: newProps });
+    if (newProps.event) {
+      if (newProps.event.length > 0) {
+        this.setState({ hasEvent: true, eventArr: newProps });
+      }
     }
   }
 
@@ -37,10 +39,9 @@ class CurrentEventForCenter extends Component {
   render() {
     return (
       <div className="col s12 l4">
-        <span><h6 className="bold">Events hosted by this center</h6></span>
         <section>
           <div className="row">
-            <div className="col s12 l12">
+            <div className="col s12 l6">
               { this.showEventCard() }
             </div>
           </div>

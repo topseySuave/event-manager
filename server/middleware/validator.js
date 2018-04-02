@@ -1,14 +1,28 @@
 import Validator from 'validatorjs';
 
+
+/**
+ * @export
+ * @class Validation
+ */
 export class Validation {
+  /**
+     * Validate Center record
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @param {function} next
+     * @returns {object} Class instance
+     * @memberof Validation
+     */
   validateCenter(req, res, next) {
     const centerRules = {
       title: 'required|string',
       location: 'required|string',
       description: 'required|string',
       facilities: 'array',
-      capacity: 'integer',
-      price: 'integer'
+      capacity: 'required|integer',
+      price: 'required|integer'
     };
 
     let validate = new Validator(req.body, centerRules);
@@ -16,13 +30,22 @@ export class Validation {
       next();
     } else {
       return res.status(400).send({
-        message: "a required field is missing",
+        message: 'a required field is missing',
         statusCode: 400,
         error: validate.errors
       });
     }
   }
 
+  /**
+     * Validate Event record
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @param {function} next
+     * @returns {object} Class instance
+     * @memberof Validation
+     */
   validateEvent(req, res, next) {
     const eventRules = {
       title: 'required|string',
@@ -37,13 +60,23 @@ export class Validation {
       next();
     } else {
       return res.status(400).send({
-        message: "a required field is missing",
+        message: 'a required field is missing',
         statusCode: 400,
         error: validate.errors
       });
     }
   }
 
+
+  /**
+     * Validate Login record
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @param {function} next
+     * @returns {object} Class instance
+     * @memberof Validation
+     */
   validateLogin(req, res, next) {
     let validateLogin = {
       email: 'required|email',
@@ -56,12 +89,21 @@ export class Validation {
       return next();
     }
     return res.status(400).send({
-      message: "a required field is missing",
+      message: 'a required field is missing',
       statusCode: 400,
       error: validate.errors
     });
   }
 
+  /**
+     * Validate Sign up record
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @param {function} next
+     * @returns {object} Class instance
+     * @memberof Validation
+     */
   validateSignUp(req, res, next) {
     let validation = {
       firstName: 'required|string',
@@ -76,7 +118,7 @@ export class Validation {
       next();
     } else {
       return res.status(400).send({
-        message: "a required field is missing",
+        message: 'a required field is missing',
         statusCode: 400,
         error: validate.errors
       });

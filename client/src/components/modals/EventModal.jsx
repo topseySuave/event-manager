@@ -124,19 +124,14 @@ class EventModal extends Component {
         let file = e.target.files[0];
         if (file.type.indexOf('image/') > -1) { // only image file
             if(file.size < 2000000){
-                let reader = new FileReader(); // instance of the FileReader
-                reader.readAsDataURL(file); // read the local file
-                reader.onloadend = () => {
-                    this.setState({
-                        img_url: reader.result //store image as binary data string
-                        // img_url: file
-                    });
-                }
-            }else{
+                this.setState({
+                    img_url: file
+                });
+            } else {
                 Materialize.toast('File too large', 5000);
             }
-        }else{
-            Materialize.toast('Please select only images', 5000)
+        } else {
+            Materialize.toast('Image files only please', 5000);
         }
     };
 
@@ -150,7 +145,7 @@ class EventModal extends Component {
             // console.log(this.state);
             this.props.createEventRequest(this.state)
                 .then((data)=>{
-                    // console.log('res from action', data);
+                    console.log('res from action', data);
                     this.setState({isLoading: false});
                     if(data.type == ADD_EVENT){
                         Materialize.toast('Event has been created successfully', 5000);

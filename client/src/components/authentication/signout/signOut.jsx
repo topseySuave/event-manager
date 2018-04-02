@@ -1,32 +1,24 @@
 import React, { Component } from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { signOutRequest } from '../../../actions/authActions';
 
 class SignOut extends Component {
-  constructor(props){
-    super(props);
-  }
-
-  componentWillMount(){
+  componentWillMount() {
     this.props.signOutRequest();
   }
 
-  render(){
+  render() {
     return (
       <p>signed out</p>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    auth: state.authReducer
-  };
-};
+const mapStateToProps = state => ({
+  auth: state.authReducer
+});
 
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({signOutRequest: signOutRequest}, dispatch);
-};
+const mapDispatchToProps = dispatch => bindActionCreators({ signOutRequest }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignOut);

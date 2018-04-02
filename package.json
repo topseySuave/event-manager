@@ -5,20 +5,41 @@
   "main": "./server/app.js",
   "scripts": {
     "build": "babel-node ./server/app.js",
-    "test:client": "jest",
-    "test": " nyc --reporter=html --reporter=text mocha ./server/test/* --exit --require babel-register --reporter spec",
     "babel-node": "babel-node --preset=es2015",
     "build:server": "babel -d ./build ./server -s",
     "start": "nodemon --exec babel-node ./server/app.js",
     "start:dev": "npm run webpack && nodemon --exec babel-node ./server/app.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
-    "test:dev": "npm run test && npm run coverage",
-    "postinstall": "npm run build",
-    "webpack": "webpack --watch"
+    "test": "npm run test:server && npm run test:client",
+    "test:client": "jest --coverage",
+    "test:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --timeout 20000 --exit --require babel-core/register server/test/*test.js",
+    "test:dev:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha ./server/test/* --exit --require babel-node/register --reporter spec",
+    "test:dev": "npm test && npm run coverage",
+    "webpack": "webpack --watch",
+    "migrate:test": "cross-env NODE_ENV=test sequelize db:migrate --env test"
+  },
+  "nyc": {
+    "exclude": [
+      "server/middleware/**",
+      "server/app.js"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/topseysuave/event-manager.git"
   },
   "author": "Gabriel Micah",
   "license": "ISC",
+  "bug": {
+    "url": "https://github.com/topseysuave/event-manager/issues"
+  },
+  "homepage": "https://github.com/topseysuave/event-manager#readme",
+  "nodemonConfig": {
+    "ignore": [
+      "client/*"
+    ]
+  },
   "dependencies": {
     "axios": "^0.16.2",
     "babel-cli": "^6.26.0",
@@ -38,15 +59,18 @@
     "chai-http": "^3.0.0",
     "classnames": "^2.2.5",
     "cloudinary": "^1.9.1",
+    "compression-webpack-plugin": "^1.1.10",
     "connect-multiparty": "^2.1.0",
     "consolidate": "^0.15.0",
     "cors": "^2.8.4",
     "coveralls": "^3.0.0",
+    "cross-env": "^5.1.4",
     "css-loader": "^0.28.7",
     "dotenv": "^4.0.0",
     "es6-promise": "^4.1.1",
     "expect": "^21.2.1",
     "express": "^4.16.2",
+    "faker": "*",
     "fetch-ie8": "^1.5.0",
     "file-loader": "^1.1.5",
     "history": "^4.7.2",
@@ -62,6 +86,7 @@
     "multer": "^1.3.0",
     "multiparty": "^4.1.3",
     "node-sass": "^4.5.3",
+    "nodemailer": "^4.5.0",
     "nodemon": "^1.12.1",
     "nyc": "^11.2.1",
     "pg": "^7.4.0",
@@ -84,20 +109,24 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "sass-loader": "^6.0.6",
-    "sequelize": "^4.22.11",
+    "sequelize": "^4.35.2",
+    "sequelize-cli": "^4.0.0",
     "sha1": "^1.1.1",
     "shortid": "^2.2.8",
     "style-loader": "^0.19.0",
     "superagent": "^3.8.0",
+    "supertest": "^3.0.0",
     "swagger-ui-express": "^2.0.11",
     "uuid": "^3.1.0",
     "validator": "^9.2.0",
     "validatorjs": "^3.13.5",
-    "webpack": "^3.7.1",
+    "webpack": "^3.8.1",
+    "webpack-config": "^7.5.0",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.19.1"
   },
   "devDependencies": {
+    "babel-preset-react-hmre": "^1.1.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.17.0",
@@ -105,11 +134,10 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.6.1",
+    "faker": "^4.1.0",
     "jest": "^22.3.0",
     "mocha": "^4.0.1",
     "mocha-lcov-reporter": "^1.3.0",
-    "react-test-renderer": "^16.2.0",
-    "webpack": "^3.8.1",
-    "webpack-config": "^7.5.0"
+    "react-test-renderer": "^16.2.0"
   }
 }

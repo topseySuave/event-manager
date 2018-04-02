@@ -4,6 +4,7 @@
       <w>airbnb</w>
       <w>alimosho</w>
       <w>andela</w>
+      <w>autocomplete</w>
       <w>axios</w>
       <w>baasu</w>
       <w>bcrypt</w>
@@ -11,6 +12,7 @@
       <w>cloudinary</w>
       <w>contentbase</w>
       <w>cors</w>
+      <w>crossorigin</w>
       <w>datepicker</w>
       <w>dcbqn</w>
       <w>detrtgefvdvfe</w>
@@ -28,6 +30,7 @@
       <w>festac</w>
       <w>gabmicah</w>
       <w>ghpages</w>
+      <w>gmail</w>
       <w>gobe</w>
       <w>googleapis</w>
       <w>gowon</w>
@@ -46,11 +49,13 @@
       <w>mako</w>
       <w>memberof</w>
       <w>micon</w>
+      <w>mimetype</w>
       <w>mixins</w>
       <w>mokola</w>
       <w>multer</w>
       <w>muson</w>
       <w>mutipart</w>
+      <w>nodemailer</w>
       <w>oluwantode</w>
       <w>onloadend</w>
       <w>pglj</w>
@@ -63,10 +68,13 @@
       <w>sidenav</w>
       <w>signin</w>
       <w>signout</w>
+      <w>smtp</w>
+      <w>tbody</w>
       <w>tferfdd</w>
       <w>thisisus</w>
       <w>tooltipped</w>
       <w>vert</w>
+      <w>woff</w>
       <w>yaba</w>
     </words>
   </dictionary>

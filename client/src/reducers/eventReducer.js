@@ -1,3 +1,4 @@
+import isEmpty from 'lodash/isEmpty';
 import {
   ADD_EVENT,
   EDIT_EVENT,
@@ -6,10 +7,12 @@ import {
   REMOVE_EVENT,
   LOADMORE_EVENT_REQUEST,
   LOADMORE_EVENT_SUCCESS,
-  LOADMORE_EVENT_FAILURE
+  LOADMORE_EVENT_FAILURE,
+  SEARCH_EVENT_TITLE,
+  SEARCH_EVENT_TITLE_FAILED
 } from '../actions';
 
-const pageLimit = 10;
+const pageLimit = process.env.DATA_LIMIT;
 let newState;
 
 export default (state = {}, action = {}) => {
@@ -73,9 +76,23 @@ export default (state = {}, action = {}) => {
       newState.loadingmore = false;
       newState.page = parseInt(newState.page + 1, 10);
       newState.pageSize = parseInt(newState.pageSize + action.payload.length, 10);
-      if(newState.pageSize === newState.totalCount){
-          newState.loadmore = false;
+      if (newState.pageSize === newState.totalCount) {
+        newState.loadmore = false;
       }
+      return newState;
+
+    case SEARCH_EVENT_TITLE:
+      newState = Object.assign({}, state);
+      if (!isEmpty(action.events)) {
+        newState.events = action.events;
+      } else {
+        newState.events = state.events;
+      }
+      return newState;
+
+    case SEARCH_EVENT_TITLE_FAILED:
+      newState = Object.assign({}, state);
+      newState.searchFailure = true;
       return newState;
 
     default:

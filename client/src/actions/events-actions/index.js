@@ -8,8 +8,12 @@ import {
   REMOVE_EVENT,
   LOADMORE_EVENT_REQUEST,
   LOADMORE_EVENT_SUCCESS,
-  LOADMORE_EVENT_FAILURE
+  LOADMORE_EVENT_FAILURE,
+  SEARCH_EVENT_TITLE,
+  CLOUDINARY_URL,
+  CLOUDINARY_UPLOAD_PRESET
 } from '../';
+import setAuthorizationToken from '../../components/authentication/setAuthenticationToken';
 
 
 /**
@@ -17,7 +21,7 @@ import {
  * * */
 const api = '/api/v1/events';
 
-/**
+/* *
  *  @Event Dispatch Method
  *  @Returns Object
  * * */
@@ -58,8 +62,13 @@ const eventsDispatchAction = (type, data = {}) => {
   }
 };
 
+export const searchEventsDispatch = data => ({
+  type: SEARCH_EVENT_TITLE,
+  events: data
+});
 
-/**
+
+/* *
  *  @Edit Event Action
  *  @Returns Object
  * * */
@@ -75,25 +84,42 @@ export const editEventAction = data => dispatch => axios.put(`${api}/${data.even
     Materialize.toast('An error occurred and event cannot be updated', 5000);
   });
 
+const createEvent = (eventData, imgUrl) => (dispatch) => {
+  let token = localStorage.getItem('jwtToken') ? localStorage.getItem('jwtToken') : false;
+  setAuthorizationToken(token);
+  eventData.img_url = imgUrl;
+  return axios.post(api, eventData)
+    .then(({ data }) => dispatch(eventsDispatchAction('add', data.event)))
+    .catch((err) => {
+      console.log(err);
+      Materialize.toast('An Error Occurred..!!!', 5000);
+    });
+};
 
-/**
+/* *
  *  @Create Event Action
  *  @Returns Object
  * * */
-export const createEventRequest = data => dispatch => axios.post(api, data)
-  .then(({ data }) => {
-    if (data.statusCode === 200) {
-      return dispatch(eventsDispatchAction('add', data.event));
-    } else if (data.statusCode === 400) {
-      return data;
-    }
-  })
-  .catch((err) => {
-    Materialize.toast('An error occurred and event cannot be created', 5000);
-  });
+export const createEventRequest = (eventData) => {
+  if (eventData.img_url.name) {
+    let formData = new FormData();
+    formData.append('file', eventData.img_url);
+    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+    setAuthorizationToken(false);
+    return axios.post(CLOUDINARY_URL, formData)
+      .then(({ data }) => {
+        createEvent(eventData, data.url);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  return createEvent(eventData, '');
+};
 
 
-/* *
+/**
  *  @Fetch Event Action
  *  @Returns Object
  * * */
@@ -105,7 +131,7 @@ export const fetchEventRequest = () => dispatch => axios.get(api)
   });
 
 
-/**
+/* *
  *  @Delete Event Action
  *  @Returns Object
  * * */
@@ -126,33 +152,30 @@ export const deleteEventRequest = (id) => {
 };
 
 
-/**
+/* *
  *  @Edit Event Request Action
  *  @Returns Object
  * * */
 export const editEventRequestAction = data => dispatch => dispatch(eventsDispatchAction('edit_request', data));
 
-/**
+/* *
  *  @Load more Event Request Action
  *  @Returns Object
  * * */
-export const loadMoreEvents = (offset) => {
-  return dispatch => {
-    dispatch({
-      type: LOADMORE_EVENT_REQUEST
-    });
-    return axios.get(api + '?next=' + offset)
-      .then(({ data }) => {
-        if(data.statusCode === 200){
-          return dispatch({
-            type: LOADMORE_EVENT_SUCCESS,
-            payload: data.events
-          });
-        }else{
-          return dispatch({
-            type: LOADMORE_EVENT_FAILURE
-          });
-        }
+export const loadMoreEvents = offset => (dispatch) => {
+  dispatch({
+    type: LOADMORE_EVENT_REQUEST
+  });
+  return axios.get(`${api}?next=${offset}`)
+    .then(({ data }) => {
+      if (data.statusCode === 200) {
+        return dispatch({
+          type: LOADMORE_EVENT_SUCCESS,
+          payload: data.events
+        });
+      }
+      return dispatch({
+        type: LOADMORE_EVENT_FAILURE
       });
-  };
+    });
 };

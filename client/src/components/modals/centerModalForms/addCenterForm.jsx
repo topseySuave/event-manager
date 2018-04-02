@@ -1,20 +1,24 @@
 import React, {Component} from 'react';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-import shortid from 'shortid'
+import shortid from 'shortid';
 import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux'
-import {PropTypes} from 'prop-types'
-import InputForm from '../../form/formInput'
-import {validateCenterInput} from '../validateInput'
-import facilities from '../../../util/facilities'
-import {createCenterRequest} from '../../../actions/modalAction'
+import {connect} from 'react-redux';
+import {PropTypes} from 'prop-types';
+
+import InputForm from '../../form/formInput';
+import {validateCenterInput} from '../validateInput';
+import facilities from '../../../util/facilities';
+import {createCenterRequest} from '../../../actions/modalAction';
+import Helpers from '../../../helpers';
+import history from '../../../util/history';
 
 class AddCenterForm extends Component {
     constructor(props) {
         super(props);
+        this.helpers = new Helpers();
 
-        /**
+        /* *
          * @Initialize the component's state.
          **/
         this.state = {
@@ -57,17 +61,14 @@ class AddCenterForm extends Component {
         let file = e.target.files[0];
         if (file.type.indexOf('image/') > -1) { // only image file
             if(file.size < 2000000){
-                let reader = new FileReader(); // instance of the FileReader
-                reader.readAsDataURL(file); // read the local file
-                reader.onloadend = () => {
-                    this.setState({
-                        img_url: reader.result //store image as binary data string
-                        // img_url: file
-                    });
-                }
-            }else{
+                this.setState({
+                    img_url: file
+                });
+            } else {
                 Materialize.toast('File too large', 5000);
             }
+        } else {
+            Materialize.toast('Image files only please', 5000);
         }
     };
 
@@ -101,17 +102,20 @@ class AddCenterForm extends Component {
                 isLoading: true
             });
             this.props.createCenterRequest(this.state)
-                .then((res)=>{
-                    this.setState({isLoading: false});
-                    if(res){
-                        window.location.reload();
-                    }else{
-                        Materialize.toast('Houston, we have a problem! We are working on it', 5000);
-                    }
-                })
-                .catch(()=>{
-                    this.setState({isLoading: false});
-                    Materialize.toast('Error creating center..!!', 5000);
+                .then(() => {
+                    this.setState({
+                        errors: {},
+                        editCenter: false,
+                        isLoading: false,
+                        title: '',
+                        img_url: {},
+                        facilities: [],
+                        location: '',
+                        price: '',
+                        capacity: '',
+                        description: ''
+                    });
+                    history.push(`/centers`);
                 });
         }
     }
@@ -119,10 +123,9 @@ class AddCenterForm extends Component {
     render() {
         const {editCenter, errors, isLoading, title, location, facilities, price, capacity} = this.state;
         let modalTitle = (editCenter) ? "Save changes": "Add center";
-        // console.log(this.state);
 
         return (
-            <form className="col s12" id="edit-center-form" onSubmit={this.handleCenterSubmit} formEncType="multipart/form-data">
+            <form className="col s12" id="edit-center-form" onSubmit={this.handleCenterSubmit} encType="multipart/form-data">
                 <div className="row">
                     <div className="col s6">
                         <div className="file-field input-field">
@@ -229,7 +232,7 @@ class AddCenterForm extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({createCenterRequest: createCenterRequest}, dispatch);
+    return bindActionCreators({ createCenterRequest }, dispatch);
 };
 
 export default connect(null, mapDispatchToProps)(AddCenterForm)

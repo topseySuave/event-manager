@@ -1,3 +1,7 @@
+export const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dcbqn1c10/upload';
+
+export const CLOUDINARY_UPLOAD_PRESET = 'z3nqw1ue';
+
 /**
 * ADD_USER action Constant, To add a new user to the store
 * */
@@ -71,6 +75,12 @@ export const EDIT_CENTER_REQUEST = 'EDIT_CENTER_REQUEST';
 export const EDIT_CENTER = 'EDIT_CENTER';
 
 /**
+ * EDIT_CENTER_FAILURE action Constant,
+ * action when edit center request failed.
+ * * */
+export const EDIT_CENTER_FAILURE = 'EDIT_CENTER_FAILURE';
+
+/**
  * FETCH_EVENTS action constants.
  * TO fetch all centers from the database and add to the store.
  * * */
@@ -107,3 +117,9 @@ export const LOADMORE_EVENT_FAILURE = 'LOADMORE_EVENT_FAILURE';
 export const LOADMORE_CENTER_REQUEST = 'LOADMORE_CENTER_REQUEST';
 export const LOADMORE_CENTER_SUCCESS = 'LOADMORE_CENTER_SUCCESS';
 export const LOADMORE_CENTER_FAILURE = 'LOADMORE_CENTER_FAILURE';
+
+export const SEARCH_CENTER_TITLE = 'SEARCH_CENTER_TITLE';
+export const SEARCH_CENTER_TITLE_FAILED = 'SEARCH_CENTER_TITLE_FAILED';
+
+export const SEARCH_EVENT_TITLE = 'SEARCH_EVENT_TITLE';
+export const SEARCH_EVENT_TITLE_FAILED = 'SEARCH_EVENT_TITLE_FAILED';

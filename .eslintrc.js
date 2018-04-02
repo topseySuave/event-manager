@@ -14,12 +14,21 @@ module.exports = {
         "consistent-return": 0,
         "no-param-reassign": 0,
         "comma-dangle": 0,
+        "jsx-a11y/anchor-is-valid": 0,
+        "jsx-a11y/label-has-for": 0,
         "no-unused-vars": 0,
+        "no-nested-ternary": 0,
+        "no-multi-assign": 0,
         "react/no-unused-state": 1,
+        "react/no-unescaped-entities": 0,
+        "react/prop-types": 0,
         "react/forbid-prop-types": 0,
         "react/prefer-stateless-function": 0,
+        "react/no-unused-prop-types": 0,
+        "react/require-default-props": 0,
         "import/no-named-as-default": 0,
         "import/no-named-as-default-member": 0,
+        "import/prefer-default-export": 0,
         "max-len": 0,
         "no-dupe-keys": 0,
         "no-restricted-globals": 0,
@@ -43,8 +52,8 @@ module.exports = {
         "require-jsdoc": ["error", {
             require: {
                 FunctionDeclaration: false,
-                MethodDefinition: false,
-                ClassDeclaration: false
+                MethodDefinition: true,
+                ClassDeclaration: true
             }
         }]
     }

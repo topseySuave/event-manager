@@ -148,12 +148,12 @@ class EventModal extends Component {
       this.setState({
         isLoading: true
       });
-      
+
       this.props.editEventAction(this.state)
         .then((data) => {
           this.setState({ isLoading: false });
           if (data.type === EDIT_EVENT) {
-              $("#add_event_modal").modal('close');
+            $('#add_event_modal').modal('close');
             // Materialize.toast('Event has been updated successfully', 5000);
             this.setState({ title: '', description: '' });
           } else {
@@ -267,6 +267,6 @@ const mapStateToProps = state => ({
   actUser: state.authReducer
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ editEventAction: editEventAction }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ editEventAction }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventModal);

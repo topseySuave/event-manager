@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="/css/frameworks/ghpages-materialize.css">
+    <link href="/css/frameworks/micon.css" rel="stylesheet">
+    <link href="/css/frameworks/animate.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" href="/fav.ico">
+
+    <title>Boots Events Manager</title>
+</head>
+<noscript>
+    You need to enable JavaScript to run this app.
+</noscript>
+<body>
+<div id="admin">
+    <div class="row">
+        <div class="col s12">
+            <h5 class="bold green-text center-align">Boots Events Manager</h5>
+            <h6 class="grey-text center-align"> All Users </h6>
+            <br/>
+            <table class="highlight striped bordered responsive-table">
+                <thead>
+                <tr>
+                    <th data-field="title">First Name</th>
+                    <th data-field="description">Last Name</th>
+                    <th data-field="startDate">Email</th>
+                    <th data-field="role">Role</th>
+                    <th data-field="actions">Actions</th>
+                </tr>
+                </thead>
+                <tbody id="pending-body">
+                    <!-- td table body -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/wow.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var modal = $('.modal');
+        new WOW().init();
+        modal.modal({
+            dismissible: true, // Modal can be dismissed by clicking outside of the modal
+            opacity: .5, // Opacity of modal background
+            inDuration: 300, // Transition in duration
+            outDuration: 200, // Transition out duration
+            startingTop: '4%', // Starting top style attribute
+            endingTop: '10%', // Ending top style attribute
+            ready: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+                $('.body__holdr').addClass('blur__fits');
+            },
+            complete: function () {
+                $('.body__holdr').removeClass('blur__fits');
+                $('.modal-overlay').css({'display': 'none'});
+                modal.removeClass('search__pane');
+            } // Callback for Modal close
+        });
+        $('.parallax').parallax();
+//            $('select').material_select();
+        $('.dropdown-button').dropdown();
+        $('.tooltipped').tooltip({delay: 50});
+
+        var tbody = $('tbody#pending-body');
+        var users, i, td, id, response;
+
+        $.get('/admin/users/all', (res) => {
+            users = res.users;
+            for(i = 0; i < users.length; i++){
+                td = `<tr id="${users[i].id}">
+                        <td>${users[i].firstName}</td>
+                        <td>${users[i].lastName}</td>
+                        <td>${users[i].email}</td>
+                        <td>${users[i].role}</td>
+                        <td>
+                            <button id="deleteUser-${users[i].id}" data-id="${users[i].id}" class="waves-effect btn btn-flat red lighten-2 white-text">delete</button>
+                        </td>
+                    </tr>`;
+                tbody.append(td);
+            }
+        });
+
+        $('body').on('click', "[id^='deleteUser-']", function(){
+            id = $(this).data('id');
+            response = confirm('Are you sure you want to delete this users?');
+            if(response){
+                $.post('/admin/users', { userId: id }, (res) => {
+                    console.log(res);
+                    if(!res.error){
+                        $('#' + id).css({'background-color': 'red'});
+                        $('tr').remove('#' + id);
+                    }
+                });
+            }
+        });
+
+    });
+</script>
+</body>
+</html>
