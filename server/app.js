@@ -6,10 +6,7 @@ import path from 'path';
 import webpack from 'webpack';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import swagger from 'swagger-ui-express';
-<<<<<<< HEAD
 import swaggerDoc from './docs/swagger';
-=======
->>>>>>> 597a7345fdb2a12fa3b1da8b1c0e6a64c406be07
 import dotenv from 'dotenv';
 import swaggerDoc from './docs/swagger';
 import event from './routes/events';
