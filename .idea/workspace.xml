@@ -4,17 +4,6 @@
     <list default="true" id="f051bbcc-4e3a-4837-a5f5-ffa0a54f7bfb" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/center.js" afterPath="$PROJECT_DIR$/server/controllers/center.js" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/events.js" afterPath="$PROJECT_DIR$/server/controllers/events.js" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/user.js" afterPath="$PROJECT_DIR$/server/controllers/user.js" />
-      <change beforePath="$PROJECT_DIR$/server/middleware/validator.js" afterPath="$PROJECT_DIR$/server/middleware/validator.js" />
-      <change beforePath="$PROJECT_DIR$/server/routes/events.js" afterPath="$PROJECT_DIR$/server/routes/events.js" />
-      <change beforePath="$PROJECT_DIR$/server/test/a_users.test.js" afterPath="$PROJECT_DIR$/server/test/a_users.test.js" />
-      <change beforePath="$PROJECT_DIR$/server/test/b_center.test.js" afterPath="$PROJECT_DIR$/server/test/b_center.test.js" />
-      <change beforePath="$PROJECT_DIR$/server/test/c_event.test.js" afterPath="$PROJECT_DIR$/server/test/c_event.test.js" />
-      <change beforePath="$PROJECT_DIR$/server/test/index.test.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/server/test/testHelpers.js" afterPath="$PROJECT_DIR$/server/test/testHelpers.js" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" afterPath="$PROJECT_DIR$/webpack.config.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -38,7 +27,18 @@
     <favorites_list name="event-manager" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="143">
+              <caret line="11" column="38" lean-forward="true" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -160,9 +160,9 @@
         <option value="$PROJECT_DIR$/server/controllers/center.js" />
         <option value="$PROJECT_DIR$/server/test/b_center.test.js" />
         <option value="$PROJECT_DIR$/server/test/testHelpers.js" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/server/controllers/events.js" />
         <option value="$PROJECT_DIR$/server/test/c_event.test.js" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -420,14 +420,7 @@
       <workItem from="1518548666942" duration="46325000" />
       <workItem from="1519885803097" duration="37489000" />
       <workItem from="1523153511068" duration="537000" />
-      <workItem from="1523742954513" duration="10134000" />
-    </task>
-    <task id="LOCAL-00023" summary="refactor: event form completion.">
-      <created>1510869455756</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1510869455756</updated>
+      <workItem from="1523742954513" duration="10511000" />
     </task>
     <task id="LOCAL-00024" summary="style: logo photoshop modification.">
       <created>1510870237744</created>
@@ -765,11 +758,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519941493224</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="chore: written tests for event, centers and users">
+      <created>1523754534927</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1523754534927</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="850263000" />
+    <option name="totallyTimeSpent" value="850640000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -782,8 +782,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15170771" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15170771" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294893" sideWeight="0.506135" order="7" side_tool="true" content_ui="tabs" />
@@ -849,7 +850,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix: sign-in to use redux authentication store to set authentication conditions for the application." />
     <MESSAGE value="feat: add center and fetch centers from API end-points." />
     <MESSAGE value="fix: center rendering fetched from API." />
     <MESSAGE value="feat: broke center details to two component for flexibility." />
@@ -874,7 +874,8 @@
     <MESSAGE value="fix: app.bundle.js syntax error done by commit conflict." />
     <MESSAGE value="fix: webpack optimisation(compression and minimization) for app bundle file." />
     <MESSAGE value="change: sender address from gail to gistout" />
-    <option name="LAST_COMMIT_MESSAGE" value="change: sender address from gail to gistout" />
+    <MESSAGE value="chore: written tests for event, centers and users" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: written tests for event, centers and users" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -894,6 +895,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1904">
           <caret line="129" column="26" lean-forward="false" selection-start-line="129" selection-start-column="26" selection-end-line="129" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1248,8 +1250,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="25" column="16" lean-forward="true" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+        <state relative-caret-position="143">
+          <caret line="11" column="38" lean-forward="true" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
           <folding />
         </state>
       </provider>
