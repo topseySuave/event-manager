@@ -2,7 +2,6 @@ const path = require('path');
 // const CompressionPlugin = require('compression-webpack-plugin');
 const webpack = require('webpack');
 
-
 module.exports = {
   devtool: 'eval',
   entry: [

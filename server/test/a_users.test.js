@@ -1,5 +1,6 @@
 import chai from 'chai';
 import dotenv from 'dotenv';
+import jwtDecode from 'jwt-decode';
 import supertest from 'supertest';
 import faker from 'faker';
 import app from '../app';
@@ -10,7 +11,7 @@ const request = supertest(app);
 const { expect } = chai;
 const testHelpers = new testHelper();
 
-describe('Test user API', () => {
+describe('Test for users API "/api/v1/users"', () => {
   let adminId;
   let userId;
   let adminToken;
@@ -171,8 +172,7 @@ describe('Test user API', () => {
           password: testHelpers.constPass
         })
         .end((err, res) => {
-          userId = res.body.user.id;
-          expect(res.status).to.equal(201);
+          expect(res.status).to.be.equal(201);
           expect(res.body).to.be.an('object');
           expect(res.body).to.haveOwnProperty('message').to.equal(`Account Created for ${firstName} ${lastName}`);
           done();
@@ -189,8 +189,7 @@ describe('Test user API', () => {
           role: true
         })
         .end((err, res) => {
-          adminId = res.body.user.id;
-          expect(res.status).to.equal(201);
+          expect(res.status).to.be.equal(201);
           expect(res.body).to.be.an('object');
           expect(res.body).to.haveOwnProperty('message').to.equal(`Account Created for ${firstName} ${lastName}`);
           done();
@@ -282,6 +281,8 @@ describe('Test user API', () => {
           expect(res.status).to.equal(200);
           expect(res.body).to.haveOwnProperty('token');
           expect(res.body).to.haveOwnProperty('message').to.equal('Here`s your Token');
+          process.env.TOKEN = res.body.token;
+          userId = jwtDecode(process.env.TOKEN).id;
         });
       done();
     });
@@ -293,7 +294,7 @@ describe('Test user API', () => {
           password: testHelpers.constPass,
         })
         .end((err, res) => {
-          adminToken = res.body.token;
+          adminId = jwtDecode(res.body.token).id;
           expect(res.body).to.be.an('object');
           expect(res.status).to.equal(200);
           expect(res.body).to.haveOwnProperty('token');
@@ -313,7 +314,6 @@ describe('Test user API', () => {
         .end((err, res) => {
           expect(res.body).to.be.an('object');
           expect(res.status).to.equal(404);
-          expect(res.body).to.haveOwnProperty('error').to.equal(true);
           expect(res.body).to.haveOwnProperty('message').to.equal('User Not Found! Please Sign Up');
           done();
         });
@@ -341,7 +341,6 @@ describe('Test user API', () => {
           expect(res.body).to.be.an('object');
           expect(res.status).to.equal(404);
           expect(res.body).to.haveOwnProperty('message').to.equal('User was not found');
-          expect(res.body).to.haveOwnProperty('error').to.equal(true);
           done();
         });
     });
@@ -355,7 +354,6 @@ describe('Test user API', () => {
           expect(res.body).to.be.an('object');
           expect(res.status).to.equal(200);
           expect(res.body).to.haveOwnProperty('message').to.equal('User has been deleted successfully');
-          expect(res.body).to.haveOwnProperty('error').to.equal(false);
           done();
         });
     });

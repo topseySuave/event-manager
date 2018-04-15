@@ -96,8 +96,8 @@ export class Centers {
         })
           .then((center) => {
             if (center) {
-              res.status(201).send({
-                statusCode: 201,
+              res.status(200).send({
+                statusCode: 200,
                 message: 'Center has been created',
                 center
               });
@@ -123,7 +123,7 @@ export class Centers {
     if (isNaN(centerId)) {
       return res.status(400).send({
         message: 'Center id is not a number',
-        error: true
+        statusCode: 400
       });
     }
 
@@ -185,11 +185,7 @@ export class Centers {
                 });
             }
           })
-          .catch(err => res.status(400).send({
-            error: true,
-            message: 'Error Updating center',
-            errorMessage: err
-          }));
+          .catch(err => res.status(400).send({ message: 'Error Updating center', err }));
       });
   }
 
@@ -210,7 +206,7 @@ export class Centers {
     if (isNaN(centerId)) {
       return res.status(400).send({
         message: 'Center id is not a number',
-        error: true
+        stausCode: 400
       });
     }
 
@@ -223,7 +219,6 @@ export class Centers {
         if (!centr) {
           return res.status(404).send({
             statusCode: 404,
-            error: true,
             message: `Center with id: ${centerId} does not exist`,
           });
         }
@@ -268,9 +263,11 @@ export class Centers {
     const order = req.query.order || 'desc';
     if (req.query.search || req.query.limit) {
       let filterBy, reqSearch;
+
       if (req.query.filter) {
         filterBy = req.query.filter;
       }
+
       const search = req.query.search.split(' ');
 
       reqSearch = sortSearchRequest(search, filterBy);
@@ -366,7 +363,7 @@ export class Centers {
         res.status(400).send({
           statusCode: 400,
           message: 'Center not found',
-          error: err
+          err
         });
       });
   }

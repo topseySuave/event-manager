@@ -7,7 +7,7 @@ import faker from 'faker';
  */
 export default class testHelper {
   /**
-     * Class Contructor
+     * Class Constructor
      * @constructor
      * @returns {void} Class instance
      * @memberof testHelper
@@ -16,6 +16,7 @@ export default class testHelper {
     this.host = '/api/v1';
     this.usersApiRoute = `${this.host}/users`;
     this.centersApiRoute = `${this.host}/centers`;
+    this.eventsApiRoute = `${this.host}/events`;
 
     // Init users constants
     this.demoUserEmail = faker.internet.email();
@@ -32,6 +33,15 @@ export default class testHelper {
     this.demoCenterFacilities = ['swimming pool', 'power', 'chairs', 'parking lot', 'stage'];
     this.democenterCapacity = parseInt(Math.ceil(Math.random() * 5000) + 10, 10); // Return a random number between 10 and 5000 for the capacity of the center
     this.demoCenterPrice = parseInt(Math.ceil(Math.random() * 200000) + 10000, 10); // Return a random number between 10000 and 200000 for the price of the center
+
+    // Init Event constants
+    this.demoEventTitle = faker.name.title();
+    this.demoEventImg = faker.image.imageUrl();
+    this.demoEventLocation = faker.address.streetAddress();
+    this.demoEventStartDate = faker.date.future();
+    this.demoEventEndDate = faker.date.future();
+    this.demoEventPastedDate = faker.date.past();
+    this.demoEventDescrp = faker.lorem.paragraph();
   }
 
   /**

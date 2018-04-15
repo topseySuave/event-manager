@@ -10,22 +10,16 @@ chai.should();
 const request = supertest(app);
 const { expect } = chai;
 const testHelpers = new testHelper();
+process.env.DATA_LIMIT = 30;
 
-describe('Test center API', () => {
+describe('Test for centers API "/api/v1/centers"', () => {
   let decodedToken;
   let token;
   let centerId;
 
   describe('Creating a new center', () => {
     before(() => {
-      request.post(`${testHelpers.usersApiRoute}/authentication`)
-        .send({
-          email: testHelpers.constMailAddr,
-          password: testHelpers.constPass,
-        })
-        .end((err, res) => {
-          token = res.body.token;
-        });
+      token = process.env.TOKEN;
     });
 
     it('should return 401 error response for no token', (done) => {
@@ -180,7 +174,7 @@ describe('Test center API', () => {
         });
     });
 
-    it('should create center and return 201 response for a valid token', (done) => {
+    it('should create center and return 200 response for a valid token', (done) => {
       request.post(`${testHelpers.centersApiRoute}?token=${token}`)
         .send({
           title: testHelpers.democenterTitle,
@@ -192,7 +186,7 @@ describe('Test center API', () => {
           price: testHelpers.demoCenterPrice
         })
         .end((err, res) => {
-          expect(res.status).to.equal(201);
+          expect(res.status).to.equal(200);
           expect(res.body).to.be.an('object');
           expect(res.body).to.haveOwnProperty('message').to.equal('Center has been created');
           done();
@@ -219,6 +213,7 @@ describe('Test center API', () => {
     });
 
     it('should return 200 response for getting all centers', (done) => {
+      let centerIds = [];
       request.get(`${testHelpers.centersApiRoute}`)
         .end((err, res) => {
           expect(res.status).to.equal(200);
@@ -228,14 +223,14 @@ describe('Test center API', () => {
           expect(res.body).to.haveOwnProperty('totalCount');
           expect(res.body).to.haveOwnProperty('pageCount');
           expect(res.body).to.haveOwnProperty('message').to.equal('Successful Centers!');
-          let rand5 = Math.floor((Math.random() * res.body.centers.length) + 1);
-          centerId = rand5;
+          centerIds = res.body.centers.map(center => center.id);
+          let rand = Math.floor((Math.random() * centerIds.length));
+          centerId = centerIds[rand];
           done();
         });
     });
 
     it('should return 404 response for getting search result for centers not found', (done) => {
-      process.env.DATA_LIMIT = 30;
       request.get(`${testHelpers.centersApiRoute}?search=ikeja lagos`)
         .end((err, res) => {
           expect(res.status).to.equal(404);
@@ -283,7 +278,6 @@ describe('Test center API', () => {
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.be.an('object');
-          expect(res.body).to.haveOwnProperty('error').to.equal(true);
           expect(res.body).to.haveOwnProperty('message').to.equal('Center id is not a number');
           done();
         });
@@ -295,7 +289,6 @@ describe('Test center API', () => {
         .end((err, res) => {
           expect(res.status).to.equal(404);
           expect(res.body).to.be.an('object');
-          expect(res.body).to.haveOwnProperty('error').to.equal(true);
           expect(res.body).to.haveOwnProperty('message').to.equal(`Center with id: ${centId} does not exist`);
           done();
         });
@@ -306,6 +299,7 @@ describe('Test center API', () => {
         .end((err, res) => {
           expect(res.status).to.equal(200);
           expect(res.body).to.be.an('object');
+          expect(res.body).to.haveOwnProperty('centr').to.be.an('object');
           expect(res.body).to.haveOwnProperty('message').to.equal(`Center with id: ${centerId} was found`);
           done();
         });
@@ -323,10 +317,9 @@ describe('Test center API', () => {
           price: testHelpers.demoCenterPrice
         })
         .end((err, res) => {
-          // console.log(res);
-          // expect(res.status).to.equal(404);
-          // expect(res.body).to.be.an('object');
-          // expect(res.body).to.haveOwnProperty('message').to.equal('Center not Found with 900');
+          expect(res.status).to.equal(404);
+          expect(res.body).to.be.an('object');
+          expect(res.body).to.haveOwnProperty('message').to.equal('Center not Found with 900');
           done();
         });
     });
@@ -449,7 +442,7 @@ describe('Test center API', () => {
       request.delete(`${testHelpers.centersApiRoute}/${centerId}`)
         .end((err, res) => {
           expect(res.status).to.equal(401);
-          expect(res.body).to.an('object');
+          expect(res.body).to.be.an('object');
           expect(res.body).to.haveOwnProperty('message').to.equal('Unauthorized user, You need to sign in');
         });
       done();
@@ -459,23 +452,38 @@ describe('Test center API', () => {
       request.delete(`${testHelpers.centersApiRoute}/2000`)
         .end((err, res) => {
           expect(res.status).to.equal(401);
-          expect(res.body).to.an('object');
+          expect(res.body).to.be.an('object');
           expect(res.body).to.haveOwnProperty('message').to.equal('Unauthorized user, You need to sign in');
         });
       done();
     });
 
-    it('should return 200 for succesfully deleting this user', (done) => {
-      decodedToken = jwtDecode(token);
-      request.post('/admin/users')
+    it('should return 200 for successfully deleting a center with token', (done) => {
+      request.delete(`${testHelpers.centersApiRoute}/${centerId}?token=${token}`)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body).to.be.an('object');
+          expect(res.body).to.haveOwnProperty('center').to.be.an('object');
+          expect(res.body).to.haveOwnProperty('message').to.equal('This Center has been deleted');
+        });
+      done();
+    });
+
+    it('should create another center and return 200 response for a valid token', (done) => {
+      request.post(`${testHelpers.centersApiRoute}?token=${token}`)
         .send({
-          userId: decodedToken.id
+          title: testHelpers.democenterTitle,
+          img_url: testHelpers.demoCenterImg,
+          location: testHelpers.democenterLocation,
+          description: testHelpers.demoCenterDescrp,
+          facilities: testHelpers.demoCenterFacilities,
+          capacity: testHelpers.democenterCapacity,
+          price: testHelpers.demoCenterPrice
         })
         .end((err, res) => {
+          expect(res.body.statusCode).to.deep.equal(200);
           expect(res.body).to.be.an('object');
-          expect(res.status).to.equal(200);
-          expect(res.body).to.haveOwnProperty('message').to.equal('User has been deleted successfully');
-          expect(res.body).to.haveOwnProperty('error').to.equal(false);
+          expect(res.body).to.haveOwnProperty('message').to.deep.equal('Center has been created');
         });
       done();
     });

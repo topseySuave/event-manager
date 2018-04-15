@@ -45,8 +45,7 @@ export default class Users {
         if (foundUser) {
           return res.status(401).json({
             statusCode: 401,
-            message: 'Email has been taken, Please Choose another',
-            error: true
+            message: 'Email has been taken, Please Choose another'
           });
         }
         return User.create({
@@ -59,9 +58,7 @@ export default class Users {
           .then(user => res.status(201)
             .send({
               statusCode: 201,
-              message: `Account Created for ${user.firstName} ${user.lastName}`,
-              error: false,
-              user
+              message: `Account Created for ${user.firstName} ${user.lastName}`
             }));
       });
   }
@@ -87,8 +84,7 @@ export default class Users {
         if (!foundUser) {
           return res.status(404).send({
             statusCode: 404,
-            message: 'User Not Found! Please Sign Up',
-            error: true,
+            message: 'User Not Found! Please Sign Up'
           });
         } else if (bcrypt.compareSync(password, foundUser.password)) {
           return res.status(200).send({
@@ -100,14 +96,12 @@ export default class Users {
               lastName: foundUser.lastName,
               email: foundUser.email,
               role: foundUser.role
-            }, process.env.SECRET_KEY, { expiresIn: '24h' }),
-            error: false
+            }, process.env.SECRET_KEY, { expiresIn: '24h' })
           });
         }
         return res.status(401).send({
           statusCode: 401,
-          message: 'Wrong password',
-          error: true
+          message: 'Wrong password'
         });
       })
       .catch(error => res.status(400).send(error));
@@ -148,8 +142,7 @@ export default class Users {
         if (!foundUser) {
           return res.status(404).send({
             statusCode: 404,
-            message: 'User Not Found! Please Sign Up',
-            error: true
+            message: 'User Not Found! Please Sign Up'
           });
         } else if (bcrypt.compareSync(password, foundUser.password)) {
           // update user role to true...
@@ -181,8 +174,7 @@ export default class Users {
         } else {
           return res.status(401).send({
             statusCode: 401,
-            message: 'Wrong password',
-            error: true
+            message: 'Wrong password'
           });
         }
       })
@@ -233,24 +225,20 @@ export default class Users {
               if (deletedUser) {
                 res.status(200).send({
                   message: 'User has been deleted successfully',
-                  error: false,
                   user: foundUser
                 });
               } else {
                 res.send({
-                  message: 'User was not deleted, please try again',
-                  error: true
+                  message: 'User was not deleted, please try again'
                 });
               }
             })
             .catch(error => res.status(500).send({
-              error: true,
               message: 'Houston we have a problem.!! Error deleting User',
-              errorMessage: error
+              error
             }));
         } else {
           res.status(404).send({
-            error: true,
             message: 'User was not found',
           });
         }

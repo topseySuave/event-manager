@@ -32,7 +32,7 @@ export class Events {
     if (isNaN(eventId)) {
       return res.status(400).send({
         message: 'Event id is not a number',
-        error: true
+        statusCode: 400
       });
     }
 
@@ -183,6 +183,13 @@ export class Events {
     const startDate = new Date(req.body.startDate);
     const endDate = new Date(req.body.endDate);
 
+    //Check for pasted date
+    if(startDate < new Date.now){
+      return res.status(400).send({
+        message: 'Date is pasted, Please provide a future time'
+      });
+    }
+
     // noinspection JSDuplicatedDeclaration
     Event.findOne({
       where: {
@@ -202,7 +209,6 @@ export class Events {
           return res.send({
             message: 'Center has been booked for this date',
             statusCode: 400,
-            error: true
           });
         }
         return Event.create({
@@ -221,21 +227,7 @@ export class Events {
               message: 'Event has been created',
               event
             });
-          })
-          .catch(err => res.status(500).send({
-            statusCode: 500,
-            success: false,
-            message: 'Event cannot be created',
-            error: err
-          }));
-      })
-      .catch((err) => {
-        res.status(500).send({
-          statusCode: 500,
-          success: false,
-          message: 'Event cannot be created',
-          error: err
-        });
+          });
       });
   }
 
@@ -252,8 +244,7 @@ export class Events {
     if (isNaN(eventId)) {
       return res.status(400).send({
         statusCode: 400,
-        message: 'Event id is not a number',
-        error: true
+        message: 'Event id is not a number'
       });
     }
 

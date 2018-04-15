@@ -1,5 +1,6 @@
 import Validator from 'validatorjs';
 
+let validatorErrors;
 
 /**
  * @export
@@ -29,10 +30,11 @@ export class Validation {
     if (validate.passes()) {
       next();
     } else {
+      validatorErrors = validate.errors;
       return res.status(400).send({
         message: 'a required field is missing',
         statusCode: 400,
-        error: validate.errors
+        validatorErrors
       });
     }
   }
@@ -59,10 +61,11 @@ export class Validation {
     if (validate.passes()) {
       next();
     } else {
+      let { errors } = validate;
       return res.status(400).send({
         message: 'a required field is missing',
         statusCode: 400,
-        error: validate.errors
+        errors
       });
     }
   }
@@ -88,10 +91,11 @@ export class Validation {
     if (validate.passes()) {
       return next();
     }
+    validatorErrors = validate.errors;
     return res.status(400).send({
       message: 'a required field is missing',
       statusCode: 400,
-      error: validate.errors
+      validatorErrors
     });
   }
 
@@ -117,10 +121,11 @@ export class Validation {
     if (validate.passes()) {
       next();
     } else {
+      validatorErrors = validate.errors;
       return res.status(400).send({
         message: 'a required field is missing',
         statusCode: 400,
-        error: validate.errors
+        validatorErrors
       });
     }
   }
