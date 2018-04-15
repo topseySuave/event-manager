@@ -31,8 +31,8 @@ export class Events {
     const eventId = parseInt(req.params.id, 10);
     if (isNaN(eventId)) {
       return res.status(400).send({
-        message: 'Event id is not a number',
-        error: true
+        statusCode: 400,
+        message: 'Event id is not a number'
       });
     }
 
@@ -224,7 +224,6 @@ export class Events {
           })
           .catch(err => res.status(500).send({
             statusCode: 500,
-            success: false,
             message: 'Event cannot be created',
             error: err
           }));
@@ -232,7 +231,6 @@ export class Events {
       .catch((err) => {
         res.status(500).send({
           statusCode: 500,
-          success: false,
           message: 'Event cannot be created',
           error: err
         });
@@ -252,8 +250,7 @@ export class Events {
     if (isNaN(eventId)) {
       return res.status(400).send({
         statusCode: 400,
-        message: 'Event id is not a number',
-        error: true
+        message: 'Event id is not a number'
       });
     }
 

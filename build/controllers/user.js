@@ -83,8 +83,7 @@ var Users = function () {
         if (foundUser) {
           return res.status(401).json({
             statusCode: 401,
-            message: 'Email has been taken, Please Choose another',
-            error: true
+            message: 'Email has been taken, Please Choose another'
           });
         }
         return User.create({
@@ -96,9 +95,7 @@ var Users = function () {
         }).then(function (user) {
           return res.status(201).send({
             statusCode: 201,
-            message: 'Account Created for ' + user.firstName + ' ' + user.lastName,
-            error: false,
-            user: user
+            message: 'Account Created for ' + user.firstName + ' ' + user.lastName
           });
         });
       });
@@ -128,8 +125,7 @@ var Users = function () {
         if (!foundUser) {
           return res.status(404).send({
             statusCode: 404,
-            message: 'User Not Found! Please Sign Up',
-            error: true
+            message: 'User Not Found! Please Sign Up'
           });
         } else if (_bcryptjs2.default.compareSync(password, foundUser.password)) {
           return res.status(200).send({
@@ -141,14 +137,12 @@ var Users = function () {
               lastName: foundUser.lastName,
               email: foundUser.email,
               role: foundUser.role
-            }, process.env.SECRET_KEY, { expiresIn: '24h' }),
-            error: false
+            }, process.env.SECRET_KEY, { expiresIn: '24h' })
           });
         }
         return res.status(401).send({
           statusCode: 401,
-          message: 'Wrong password',
-          error: true
+          message: 'Wrong password'
         });
       }).catch(function (error) {
         return res.status(400).send(error);
@@ -196,8 +190,7 @@ var Users = function () {
         if (!foundUser) {
           return res.status(404).send({
             statusCode: 404,
-            message: 'User Not Found! Please Sign Up',
-            error: true
+            message: 'User Not Found! Please Sign Up'
           });
         } else if (_bcryptjs2.default.compareSync(password, foundUser.password)) {
           // update user role to true...
@@ -214,8 +207,7 @@ var Users = function () {
         } else {
           return res.status(401).send({
             statusCode: 401,
-            message: 'Wrong password',
-            error: true
+            message: 'Wrong password'
           });
         }
       }).catch(function (error) {
@@ -274,13 +266,11 @@ var Users = function () {
             if (deletedUser) {
               res.status(200).send({
                 message: 'User has been deleted successfully',
-                error: false,
                 user: foundUser
               });
             } else {
               res.send({
-                message: 'User was not deleted, please try again',
-                error: true
+                message: 'User was not deleted, please try again'
               });
             }
           }).catch(function (error) {
@@ -292,7 +282,6 @@ var Users = function () {
           });
         } else {
           res.status(404).send({
-            error: true,
             message: 'User was not found'
           });
         }

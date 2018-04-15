@@ -56,8 +56,8 @@ var Events = exports.Events = function () {
       var eventId = parseInt(req.params.id, 10);
       if (isNaN(eventId)) {
         return res.status(400).send({
-          message: 'Event id is not a number',
-          error: true
+          statusCode: 400,
+          message: 'Event id is not a number'
         });
       }
 
@@ -234,7 +234,6 @@ var Events = exports.Events = function () {
         }).catch(function (err) {
           return res.status(500).send({
             statusCode: 500,
-            success: false,
             message: 'Event cannot be created',
             error: err
           });
@@ -242,7 +241,6 @@ var Events = exports.Events = function () {
       }).catch(function (err) {
         res.status(500).send({
           statusCode: 500,
-          success: false,
           message: 'Event cannot be created',
           error: err
         });
@@ -265,8 +263,7 @@ var Events = exports.Events = function () {
       if (isNaN(eventId)) {
         return res.status(400).send({
           statusCode: 400,
-          message: 'Event id is not a number',
-          error: true
+          message: 'Event id is not a number'
         });
       }
 

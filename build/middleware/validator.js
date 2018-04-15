@@ -47,15 +47,13 @@ var Validation = exports.Validation = function () {
       };
 
       var validate = new _validatorjs2.default(req.body, centerRules);
-      if (validate.passes()) {
-        next();
-      } else {
-        return res.status(400).send({
-          message: 'a required field is missing',
-          statusCode: 400,
-          error: validate.errors
-        });
-      }
+      if (validate.passes()) return next();
+
+      return res.status(400).send({
+        message: 'a required field is missing',
+        statusCode: 400,
+        error: validate.errors
+      });
     }
 
     /**
@@ -80,15 +78,13 @@ var Validation = exports.Validation = function () {
       };
 
       var validate = new _validatorjs2.default(req.body, eventRules);
-      if (validate.passes()) {
-        next();
-      } else {
-        return res.status(400).send({
-          message: 'a required field is missing',
-          statusCode: 400,
-          error: validate.errors
-        });
-      }
+      if (validate.passes()) return next();
+
+      return res.status(400).send({
+        message: 'a required field is missing',
+        statusCode: 400,
+        error: validate.errors
+      });
     }
 
     /**
@@ -110,14 +106,24 @@ var Validation = exports.Validation = function () {
       };
 
       var validate = new _validatorjs2.default(req.body, validateLogin);
+      if (validate.passes()) return next();
 
-      if (validate.passes()) {
-        return next();
+      var error = void 0,
+          email = validate.errors.first('email'),
+          password = validate.errors.first('password');
+
+      if (email && password) {
+        error = 'The email and password fields are required';
+      } else if (email) {
+        error = validate.errors.first('email');
+      } else {
+        error = validate.errors.first('password');
       }
+
       return res.status(400).send({
         message: 'a required field is missing',
         statusCode: 400,
-        error: validate.errors
+        error: error
       });
     }
 
@@ -142,16 +148,25 @@ var Validation = exports.Validation = function () {
       };
 
       var validate = new _validatorjs2.default(req.body, validation);
+      if (validate.passes()) return next();
 
-      if (validate.passes()) {
-        next();
-      } else {
-        return res.status(400).send({
-          message: 'a required field is missing',
-          statusCode: 400,
-          error: validate.errors
-        });
-      }
+      var error = void 0,
+          firstName = validate.errors.first('firstName'),
+          lastName = validate.errors.first('lastName'),
+          email = validate.errors.first('email'),
+          password = validate.errors.first('password');
+
+      error = email && password && firstName && lastName && 'All fields are required';
+      error.firstName = firstName && validate.errors.first('firstName');
+      error.lastName = lastName && validate.errors.first('lastName');
+      error.email = email && validate.errors.first('email');
+      error.password = password && validate.errors.first('password');
+
+      return res.status(400).send({
+        message: 'a required field is missing',
+        statusCode: 400,
+        error: error
+      });
     }
   }]);
 

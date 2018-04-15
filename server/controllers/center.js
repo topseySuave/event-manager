@@ -122,8 +122,8 @@ export class Centers {
     const centerId = parseInt(req.params.id, 10);
     if (isNaN(centerId)) {
       return res.status(400).send({
-        message: 'Center id is not a number',
-        error: true
+        statusCode: 400,
+        message: 'Center id is not a number'
       });
     }
 
@@ -186,7 +186,6 @@ export class Centers {
             }
           })
           .catch(err => res.status(400).send({
-            error: true,
             message: 'Error Updating center',
             errorMessage: err
           }));
@@ -209,8 +208,8 @@ export class Centers {
     const centerId = parseInt(req.params.id, 10);
     if (isNaN(centerId)) {
       return res.status(400).send({
-        message: 'Center id is not a number',
-        error: true
+        statusCode: 400,
+        message: 'Center id is not a number'
       });
     }
 
@@ -223,7 +222,6 @@ export class Centers {
         if (!centr) {
           return res.status(404).send({
             statusCode: 404,
-            error: true,
             message: `Center with id: ${centerId} does not exist`,
           });
         }
