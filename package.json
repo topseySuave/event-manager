@@ -12,7 +12,7 @@
     "start:client": "npm run webpack",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
-    "test": "npm run migrate:test && npm run test:server",
+    "test": "npm run create:test && npm run migrate:test && npm run test:server",
     "test:local": "npm run drop:test && npm run migrate:test && npm run test:server",
     "test:client": "jest --coverage",
     "test:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --timeout 20000 --exit --require babel-core/register server/test/*test.js",
@@ -20,8 +20,8 @@
     "test:dev": "npm test && npm run coverage",
     "webpack": "webpack --watch",
     "drop:test":"sequelize db:migrate:undo:all",
-    "migrate:test": "cross-env NODE_ENV=test sequelize db:migrate --env test",
-    "create:test": "sequelize db:create boots_test && npm run migrate:test"
+    "migrate:test": "sequelize db:migrate --env test",
+    "create:test": "sequelize db:create boots_test"
   },
   "nyc": {
     "exclude": [

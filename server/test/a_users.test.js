@@ -175,8 +175,8 @@ describe('Test for users API "/api/v1/users"', () => {
           expect(res.status).to.be.equal(201);
           expect(res.body).to.be.an('object');
           expect(res.body).to.haveOwnProperty('message').to.equal(`Account Created for ${firstName} ${lastName}`);
-          done();
         });
+      done();
     });
 
     it('should create an admin', (done) => {
