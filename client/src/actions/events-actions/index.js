@@ -1,4 +1,4 @@
-import { Dispatch } from 'redux';
+import {Dispatch} from 'redux';
 import axios from 'axios';
 import {
   FETCH_EVENTS,
@@ -67,55 +67,42 @@ export const searchEventsDispatch = data => ({
   events: data
 });
 
-
-/* *
- *  @Edit Event Action
- *  @Returns Object
- * * */
-export const editEventAction = data => dispatch => axios.put(`${api}/${data.eventId}`, data)
-  .then(({ data }) => {
-    if (data.statusCode === 201) {
-      Materialize.toast(data.message, 5000);
-      return dispatch(eventsDispatchAction('edit', data.event));
-    }
-    return data;
-  })
-  .catch((err) => {
-    Materialize.toast('An error occurred and event cannot be updated', 5000);
-  });
-
 const createEvent = (eventData, imgUrl) => (dispatch) => {
   let token = localStorage.getItem('jwtToken') ? localStorage.getItem('jwtToken') : false;
   setAuthorizationToken(token);
   eventData.img_url = imgUrl;
   return axios.post(api, eventData)
-    .then(({ data }) => dispatch(eventsDispatchAction('add', data.event)))
+    .then(({data}) => {
+      dispatch(eventsDispatchAction('add', data.event));
+      Materialize.toast(data.message, 5000, 'teal');
+      location.reload();
+    })
     .catch((err) => {
       console.log(err);
-      Materialize.toast('An Error Occurred..!!!', 5000);
+      Materialize.toast('An Error Occurred..!!!', 5000, 'red');
     });
 };
 
 /* *
- *  @Create Event Action
- *  @Returns Object
+ *  Initial Create Event Request Action
+ *  @Returns Promise
  * * */
-export const createEventRequest = (eventData) => {
+export const createEventRequest = eventData => dispatch => {
   if (eventData.img_url.name) {
     let formData = new FormData();
     formData.append('file', eventData.img_url);
     formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
     setAuthorizationToken(false);
     return axios.post(CLOUDINARY_URL, formData)
-      .then(({ data }) => {
-        createEvent(eventData, data.url);
+      .then(({data}) => {
+        dispatch(createEvent(eventData, data.url));
       })
       .catch((err) => {
         console.log(err);
       });
   }
 
-  return createEvent(eventData, '');
+  return dispatch(createEvent(eventData, ''));
 };
 
 
@@ -124,12 +111,50 @@ export const createEventRequest = (eventData) => {
  *  @Returns Object
  * * */
 export const fetchEventRequest = () => dispatch => axios.get(api)
-  .then(({ data }) => {
+  .then(({data}) => {
     data.loadingmore = false;
     data.loadmore = false;
     dispatch(eventsDispatchAction('fetch', data));
   });
 
+/* *
+ *  @Edit Event Request Action
+ *  @Returns Object
+ * * */
+export const editEventRequestAction = data => dispatch => dispatch(eventsDispatchAction('edit_request', data));
+
+const editEvent = (eventData, imgUrl) => dispatch => {
+  let token = localStorage.getItem('jwtToken') ? localStorage.getItem('jwtToken') : false;
+  setAuthorizationToken(token);
+  eventData.img_url = imgUrl;
+  return axios.put(`${api}/${eventData.eventId}`, eventData)
+    .then(({ data }) => {
+      if (data.statusCode === 201) {
+        Materialize.toast(data.message, 5000, 'teal');
+        $('#add_event_modal').modal('close');
+        return dispatch(eventsDispatchAction('edit', data.event));
+      }
+      return data;
+    });
+};
+
+/* *
+ *  @Edit Event Action
+ *  @Returns Object
+ * * */
+export const editEventAction = eventData => dispatch => {
+  if(eventData.img_url.name){
+    let formData = new FormData();
+    formData.append('file', eventData.img_url);
+    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+    setAuthorizationToken(false);
+    return axios.post(CLOUDINARY_URL, formData)
+      .then(({data}) => {
+        dispatch(editEvent(eventData, data.url));
+      });
+  }
+  return dispatch(editEvent(eventData, eventData.img_url));
+};
 
 /* *
  *  @Delete Event Action
@@ -138,25 +163,18 @@ export const fetchEventRequest = () => dispatch => axios.get(api)
 export const deleteEventRequest = (id) => {
   id = parseInt(id, 10);
   return dispatch => axios.delete(`${api}/${id}`)
-    .then(({ data }) => {
+    .then(({data}) => {
       if (data.statusCode === 200) {
         Materialize.toast(data.message, 5000);
         return dispatch(eventsDispatchAction('delete', data.event));
       }
-      Materialize.toast(data.message, 5000);
+      Materialize.toast(data.message, 5000, 'red');
       return data;
     })
     .catch((err) => {
-      Materialize.toast(err.message, 5000);
+      Materialize.toast(err.message, 5000, 'red');
     });
 };
-
-
-/* *
- *  @Edit Event Request Action
- *  @Returns Object
- * * */
-export const editEventRequestAction = data => dispatch => dispatch(eventsDispatchAction('edit_request', data));
 
 /* *
  *  @Load more Event Request Action
@@ -167,7 +185,7 @@ export const loadMoreEvents = offset => (dispatch) => {
     type: LOADMORE_EVENT_REQUEST
   });
   return axios.get(`${api}?next=${offset}`)
-    .then(({ data }) => {
+    .then(({data}) => {
       if (data.statusCode === 200) {
         return dispatch({
           type: LOADMORE_EVENT_SUCCESS,

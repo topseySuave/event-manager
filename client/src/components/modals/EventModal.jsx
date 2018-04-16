@@ -75,7 +75,7 @@ class EventModal extends Component {
 
     handleChangeStartDate = (e, date) => {
         if(new Date(date) < new Date()){
-            Materialize.toast('Date isn\'t correct. Should be a day after today not before', 5000);
+            Materialize.toast('Date isn\'t correct. Should be a day after today not before', 5000, 'red');
             this.setState({
                 startDate: {},
             });
@@ -88,7 +88,7 @@ class EventModal extends Component {
 
     handleChangeEndDate = (e, date) => {
         if(new Date(date) < new Date()){
-            Materialize.toast('Date isn\'t correct. Should be a day after today not before', 5000);
+            Materialize.toast('Date isn\'t correct. Should be a day after today not before', 5000, 'red');
             this.setState({
                 endDate: {},
             });
@@ -128,10 +128,10 @@ class EventModal extends Component {
                     img_url: file
                 });
             } else {
-                Materialize.toast('File too large', 5000);
+                Materialize.toast('File too large', 5000, 'red');
             }
         } else {
-            Materialize.toast('Image files only please', 5000);
+            Materialize.toast('Image files only please', 5000, 'red');
         }
     };
 
@@ -141,20 +141,18 @@ class EventModal extends Component {
             this.setState({
                 isLoading: true
             });
-
-            // console.log(this.state);
-            this.props.createEventRequest(this.state)
-                .then((data)=>{
-                    console.log('res from action', data);
-                    this.setState({isLoading: false});
-                    if(data.type == ADD_EVENT){
-                        Materialize.toast('Event has been created successfully', 5000);
-                        this.setState({ title: '', description: '' });
-                        this.handleClose();
-                    }else{
-                        Materialize.toast(data.message, 5000);
-                    }
-                });
+            this.props.createEventRequest(this.state);
+                // .then((data)=>{
+                //     console.log('res from action', data);
+                //     this.setState({isLoading: false});
+                //     if(data.type === ADD_EVENT){
+                //         Materialize.toast('Event has been created successfully', 5000, 'teal');
+                //         this.setState({ title: '', description: '' });
+                //         this.handleClose();
+                //     }else{
+                //         Materialize.toast(data.message, 5000, 'red');
+                //     }
+                // });
         }
     }
 
