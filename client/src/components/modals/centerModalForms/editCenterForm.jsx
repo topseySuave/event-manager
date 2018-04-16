@@ -16,7 +16,7 @@ import { EDIT_CENTER } from '../../../actions';
 
 const styles = {
   underlineStyle: {
-    borderColor: teal300
+    borderColor: 'transparent'
   }
 };
 
@@ -65,15 +65,14 @@ class EditCenterForm extends Component {
         reader.readAsDataURL(file); // read the local file
         reader.onloadend = () => {
           this.setState({
-            img_url: reader.result // store image as binary data string
-            // img_url: file
+            img_url: file
           });
         };
       } else {
-        Materialize.toast('File too large', 5000);
+        Materialize.toast('File too large', 5000, 'red');
       }
     } else {
-      Materialize.toast('Image files only', 5000);
+      Materialize.toast('Image files only', 5000, 'red');
     }
   }
 
@@ -146,21 +145,21 @@ class EditCenterForm extends Component {
         isLoading: true
       });
 
-      this.props.updateCenterRequest(this.state)
-        .then((res) => {
-          this.setState({ isLoading: false });
-          // console.log(res);
-          if (res.type === EDIT_CENTER) {
-            Materialize.toast('Center has been updated successfully!!', 5000);
-            location.reload();
-          } else {
-            Materialize.toast('Houston, we have a problem! We are working on it', 5000);
-          }
-        })
-        .catch(() => {
-          this.setState({ isLoading: false });
-          Materialize.toast('Error creating center..!!', 5000);
-        });
+      this.props.updateCenterRequest(this.state);
+        // .then((res) => {
+        //   console.log(res);
+        //   this.setState({ isLoading: false });
+        //   if (res.type === EDIT_CENTER) {
+        //     Materialize.toast('Center has been updated successfully!!', 5000, 'teal');
+        //     location.reload();
+        //   } else {
+        //     Materialize.toast('Houston, we have a problem! We are working on it', 5000, 'red');
+        //   }
+        // })
+        // .catch(() => {
+        //   this.setState({ isLoading: false });
+        //   Materialize.toast('Error creating center..!!', 5000, 'red');
+        // });
     }
   }
 
@@ -168,7 +167,6 @@ class EditCenterForm extends Component {
     const {
       editCenter, errors, isLoading, title, location, facilities, price, capacity, description
     } = this.state;
-    // console.log(this.state);
 
     return (
       <form style={{ marginTop: '20px' }} className="col s12" id="edit-center-form" onSubmit={this.handleCenterSubmit}>
@@ -289,6 +287,10 @@ class EditCenterForm extends Component {
     );
   }
 }
+
+EditCenterForm.propTypes = {
+  history: PropTypes.object.isRequired
+};
 
 const mapStateToProps = state => ({
   activeCenter: state.activeCenter

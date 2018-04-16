@@ -24,9 +24,7 @@ export default class authCheck {
 
   isAdmin() {
     if (this.jwtIsSet()) {
-      if (jwtDecode(localStorage.getItem('jwtToken')).role) {
-        return true;
-      }
+      if (jwtDecode(localStorage.getItem('jwtToken')).role) return true;
     }
     return false;
   }

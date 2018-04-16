@@ -49,10 +49,37 @@ var Validation = exports.Validation = function () {
       var validate = new _validatorjs2.default(req.body, centerRules);
       if (validate.passes()) return next();
 
+      var error = {},
+          title = validate.errors.first('title'),
+          location = validate.errors.first('location'),
+          description = validate.errors.first('description'),
+          facilities = validate.errors.first('facilities'),
+          capacity = validate.errors.first('capacity'),
+          price = validate.errors.first('price');
+
+      if (title) {
+        error.title = title;
+      }
+      if (location) {
+        error.location = location;
+      }
+      if (description) {
+        error.description = description;
+      }
+      if (facilities) {
+        error.facilities = facilities;
+      }
+      if (capacity) {
+        error.capacity = capacity;
+      }
+      if (price) {
+        error.price = price;
+      }
+
       return res.status(400).send({
         message: 'a required field is missing',
         statusCode: 400,
-        error: validate.errors
+        error: error
       });
     }
 
@@ -74,16 +101,44 @@ var Validation = exports.Validation = function () {
         description: 'required|string',
         startDate: 'required|date',
         endDate: 'required|date',
+        centerId: 'required|integer',
         userId: 'required|integer'
       };
 
       var validate = new _validatorjs2.default(req.body, eventRules);
       if (validate.passes()) return next();
 
+      var error = {},
+          title = validate.errors.first('title'),
+          description = validate.errors.first('description'),
+          startDate = validate.errors.first('startDate'),
+          endDate = validate.errors.first('endDate'),
+          centerId = validate.errors.first('centerId'),
+          userId = validate.errors.first('userId');
+
+      if (title) {
+        error.title = title;
+      }
+      if (description) {
+        error.description = description;
+      }
+      if (startDate) {
+        error.startDate = startDate;
+      }
+      if (endDate) {
+        error.password = endDate;
+      }
+      if (centerId) {
+        error.centerId = centerId;
+      }
+      if (userId) {
+        error.userId = userId;
+      }
+
       return res.status(400).send({
         message: 'a required field is missing',
         statusCode: 400,
-        error: validate.errors
+        error: error
       });
     }
 
@@ -115,9 +170,9 @@ var Validation = exports.Validation = function () {
       if (email && password) {
         error = 'The email and password fields are required';
       } else if (email) {
-        error = validate.errors.first('email');
+        error = email;
       } else {
-        error = validate.errors.first('password');
+        error = password;
       }
 
       return res.status(400).send({
@@ -150,17 +205,24 @@ var Validation = exports.Validation = function () {
       var validate = new _validatorjs2.default(req.body, validation);
       if (validate.passes()) return next();
 
-      var error = void 0,
+      var error = {},
           firstName = validate.errors.first('firstName'),
           lastName = validate.errors.first('lastName'),
           email = validate.errors.first('email'),
           password = validate.errors.first('password');
 
-      error = email && password && firstName && lastName && 'All fields are required';
-      error.firstName = firstName && validate.errors.first('firstName');
-      error.lastName = lastName && validate.errors.first('lastName');
-      error.email = email && validate.errors.first('email');
-      error.password = password && validate.errors.first('password');
+      if (firstName) {
+        error.firstName = firstName;
+      }
+      if (lastName) {
+        error.lastName = lastName;
+      }
+      if (email) {
+        error.email = email;
+      }
+      if (password) {
+        error.password = password;
+      }
 
       return res.status(400).send({
         message: 'a required field is missing',

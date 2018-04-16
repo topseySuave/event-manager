@@ -89,7 +89,7 @@ export default class Users {
         } else if (bcrypt.compareSync(password, foundUser.password)) {
           return res.status(200).send({
             statusCode: 200,
-            message: 'Here`s your Token',
+            message: 'signin successful',
             token: jwt.sign({
               id: foundUser.id,
               firstName: foundUser.firstName,
@@ -103,8 +103,7 @@ export default class Users {
           statusCode: 401,
           message: 'Wrong password',
         });
-      })
-      .catch(error => res.status(400).send(error));
+      });
   }
 
   /**
@@ -117,7 +116,10 @@ export default class Users {
      */
   currUser(req, res) {
     return res.send({
-      currentUser: req.currentUser
+      id: req.currentUser.id,
+      firstName: req.currentUser.firstName,
+      lastName: req.currentUser.lastName,
+      email: req.currentUser.email
     });
   }
 
@@ -234,7 +236,6 @@ export default class Users {
               }
             })
             .catch(error => res.status(500).send({
-              error: true,
               message: 'Houston we have a problem.!! Error deleting User',
               errorMessage: error
             }));

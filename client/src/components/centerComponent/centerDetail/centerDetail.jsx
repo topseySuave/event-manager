@@ -122,7 +122,7 @@ class CenterDetail extends Component {
             autoScrollBodyContent
             style={{ marginTop: '0px' }}
           >
-            <EditCenterForm />
+            <EditCenterForm history={this.props.history}/>
           </Dialog>
         </div>
       );
@@ -173,7 +173,7 @@ class CenterDetail extends Component {
     this.props.deleteCenterRequest(id)
       .then(() => {
         if (typeof this.props.activeCenterDetail.centr === 'undefined') {
-          Materialize.toast('Center has been Deleted', 5000);
+          Materialize.toast('Center has been Deleted', 5000, 'teal');
           this.props.history.push('/centers');
         }
       });
@@ -217,6 +217,7 @@ class CenterDetail extends Component {
   }
 
   renderFacilities(facilities) {
+    // console.log('facilities ====> ', facilities);
     return facilities.map(facility => (
       <li key={shortid.generate()}>{facility}</li>
     ));

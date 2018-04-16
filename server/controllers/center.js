@@ -172,7 +172,7 @@ export class Centers {
                     statusCode: 200,
                     message: 'Center has been updated',
                     events: event.rows,
-                    centr,
+                    centr
                   });
                 })
                 .catch((err) => {

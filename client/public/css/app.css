@@ -8,9 +8,9 @@
 /*padding mixins*/
 /*Margin mixins*/
 /*overwrites*/
-.toast {
-  background-color: #5A9EAB !important;
-}
+/*.toast {*/
+  /*background-color: #5A9EAB !important;*/
+/*}*/
 
 .steel_blue {
   background: #5A9EAB;

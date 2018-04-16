@@ -8,8 +8,8 @@
 
 
 ## Boots Events Manager
-    A Event Managre Application that enables users admministrate there own events
-    
+    A Event Manager Application that enables users administrate there own events
+
  ## Application Features
    - Sign in and Sign up
    - Create Events
@@ -22,7 +22,7 @@
  ### Get Started
   #### Clone the Application by running
     $ git clone https://github.com/topseySuave/event-manager.git
-    
+
  - Change your directory ``cd`` into the newly created folder ``cd event-manager``
  - Install Dependencies by running ``npm install``
  - To Start the server run ```npm start```
