@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f051bbcc-4e3a-4837-a5f5-ffa0a54f7bfb" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
+    <list default="true" id="f051bbcc-4e3a-4837-a5f5-ffa0a54f7bfb" name="Default" comment="fix: image upload to cloudinary when creating and editing an event.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/client/public/css/app.css" afterPath="$PROJECT_DIR$/client/public/css/app.css" />
-      <change beforePath="$PROJECT_DIR$/client/public/css/overwrite/overwrite.sass" afterPath="$PROJECT_DIR$/client/public/css/overwrite/overwrite.sass" />
       <change beforePath="$PROJECT_DIR$/client/public/js/app.bundle.js" afterPath="$PROJECT_DIR$/client/public/js/app.bundle.js" />
       <change beforePath="$PROJECT_DIR$/client/public/js/hot/hot-update.js" afterPath="$PROJECT_DIR$/client/public/js/hot/hot-update.js" />
       <change beforePath="$PROJECT_DIR$/client/public/js/hot/hot-update.json" afterPath="$PROJECT_DIR$/client/public/js/hot/hot-update.json" />
-      <change beforePath="$PROJECT_DIR$/client/src/actions/center-actions/activeCenterAction.js" afterPath="$PROJECT_DIR$/client/src/actions/center-actions/activeCenterAction.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/actions/events-actions/index.js" afterPath="$PROJECT_DIR$/client/src/actions/events-actions/index.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/actions/index.js" afterPath="$PROJECT_DIR$/client/src/actions/index.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/modals/EventModal.jsx" afterPath="$PROJECT_DIR$/client/src/components/modals/EventModal.jsx" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/modals/eventModalForm/editEventModal.jsx" afterPath="$PROJECT_DIR$/client/src/components/modals/eventModalForm/editEventModal.jsx" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/bodyComponents/eventsCard/eventCard.jsx" afterPath="$PROJECT_DIR$/client/src/components/bodyComponents/eventsCard/eventCard.jsx" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -62,11 +55,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="editEventModal.jsx" pinned="false" current-in-tab="true">
+          <file leaf-file-name="editEventModal.jsx" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/client/src/components/modals/eventModalForm/editEventModal.jsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="252">
-                  <caret line="148" column="9" lean-forward="true" selection-start-line="148" selection-start-column="9" selection-end-line="148" selection-end-column="9" />
+                <state relative-caret-position="706">
+                  <caret line="150" column="45" lean-forward="false" selection-start-line="150" selection-start-column="45" selection-end-line="150" selection-end-column="45" />
                   <folding>
                     <element signature="e#0#41#0" expanded="true" />
                     <element signature="e#4090#4110#0" expanded="false" />
@@ -78,11 +71,35 @@
           <file leaf-file-name="EventModal.jsx" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/client/src/components/modals/EventModal.jsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="169">
-                  <caret line="13" column="16" lean-forward="false" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="16" />
+                <state relative-caret-position="297">
+                  <caret line="143" column="54" lean-forward="false" selection-start-line="143" selection-start-column="54" selection-end-line="143" selection-end-column="54" />
                   <folding>
                     <element signature="e#0#41#0" expanded="true" />
                     <element signature="e#4327#4345#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="indexEventsCard.jsx" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/src/components/bodyComponents/indexEventsCard.jsx">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="441">
+                  <caret line="79" column="13" lean-forward="false" selection-start-line="79" selection-start-column="13" selection-end-line="79" selection-end-column="13" />
+                  <folding>
+                    <element signature="e#0#41#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="eventCard.jsx" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/client/src/components/bodyComponents/eventsCard/eventCard.jsx">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-571">
+                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#0#41#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -115,8 +132,8 @@
           <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/client/src/actions/events-actions/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="350">
-                  <caret line="136" column="18" lean-forward="false" selection-start-line="136" selection-start-column="18" selection-end-line="136" selection-end-column="18" />
+                <state relative-caret-position="387">
+                  <caret line="155" column="59" lean-forward="true" selection-start-line="155" selection-start-column="59" selection-end-line="155" selection-end-column="59" />
                   <folding>
                     <element signature="e#0#31#0" expanded="true" />
                   </folding>
@@ -248,9 +265,9 @@
         <option value="$PROJECT_DIR$/client/src/actions/center-actions/activeCenterAction.js" />
         <option value="$PROJECT_DIR$/client/public/css/app.css" />
         <option value="$PROJECT_DIR$/client/public/css/overwrite/overwrite.sass" />
-        <option value="$PROJECT_DIR$/client/src/components/bodyComponents/eventsCard/eventCard.jsx" />
         <option value="$PROJECT_DIR$/client/src/actions/events-actions/index.js" />
         <option value="$PROJECT_DIR$/client/src/components/modals/eventModalForm/editEventModal.jsx" />
+        <option value="$PROJECT_DIR$/client/src/components/bodyComponents/eventsCard/eventCard.jsx" />
       </list>
     </option>
   </component>
@@ -348,15 +365,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="modals" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="event-manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="event-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="modals" type="462c0819:PsiDirectoryNode" />
-              <item name="eventModalForm" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="event-manager" type="b2602c69:ProjectViewProjectNode" />
@@ -565,13 +573,6 @@
       <workItem from="1519885803097" duration="37489000" />
       <workItem from="1523153511068" duration="537000" />
       <workItem from="1523742954513" duration="12030000" />
-    </task>
-    <task id="LOCAL-00031" summary="frontend ui design refactoring">
-      <created>1512762258608</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1512762258608</updated>
     </task>
     <task id="LOCAL-00032" summary="frontend ui design refactoring.">
       <created>1512762924339</created>
@@ -909,11 +910,18 @@
       <option name="project" value="LOCAL" />
       <updated>1523878052429</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="fix: image upload to cloudinary when creating and editing an event.">
+      <created>1523889123420</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1523889123420</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="883828000" />
+    <option name="totallyTimeSpent" value="886032000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1005,7 +1013,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="doc: install multiparty for file upload.&#10;fix: center details rendering" />
     <MESSAGE value="feat: center quick search implementation" />
     <MESSAGE value="fix: add center to insert images with center details.&#10;--- fix recommended centers fetching errors.&#10;--- fix authentication validation with jwt.verify which checks for expiry date for user." />
     <MESSAGE value="fix: webpack hot update and but leave webpack to compile not app.js" />
@@ -1030,7 +1037,8 @@
     <MESSAGE value="fix: package.json to create database before running test" />
     <MESSAGE value="fix: add config.json for sequelize to see" />
     <MESSAGE value="fix: add secret to travis file." />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: add secret to travis file." />
+    <MESSAGE value="fix: image upload to cloudinary when creating and editing an event." />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: image upload to cloudinary when creating and editing an event." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1039,16 +1047,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/src/components/centerComponent/centerDetail/currentEventForCenter.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="20" column="3" lean-forward="false" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="13">
@@ -1398,17 +1396,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/modals/EventModal.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="13" column="16" lean-forward="false" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-            <element signature="e#4327#4345#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/modals/centerModalForms/editCenterForm.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1433">
@@ -1437,16 +1424,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/bodyComponents/eventsCard/eventCard.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-481">
-          <caret line="21" column="21" lean-forward="true" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#43#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/controllers/user.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="485">
@@ -1466,23 +1443,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/modals/eventModalForm/editEventModal.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="706">
+          <caret line="150" column="45" lean-forward="false" selection-start-line="150" selection-start-column="45" selection-end-line="150" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#4090#4110#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/modals/EventModal.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="143" column="54" lean-forward="false" selection-start-line="143" selection-start-column="54" selection-end-line="143" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#4327#4345#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/bodyComponents/indexEventsCard.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="79" column="13" lean-forward="false" selection-start-line="79" selection-start-column="13" selection-end-line="79" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/actions/events-actions/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="136" column="18" lean-forward="false" selection-start-line="136" selection-start-column="18" selection-end-line="136" selection-end-column="18" />
+        <state relative-caret-position="387">
+          <caret line="155" column="59" lean-forward="true" selection-start-line="155" selection-start-column="59" selection-end-line="155" selection-end-column="59" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/modals/eventModalForm/editEventModal.jsx">
+    <entry file="file://$PROJECT_DIR$/client/src/components/bodyComponents/eventsCard/eventCard.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="148" column="9" lean-forward="true" selection-start-line="148" selection-start-column="9" selection-end-line="148" selection-end-column="9" />
+        <state relative-caret-position="-571">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
-            <element signature="e#4090#4110#0" expanded="false" />
           </folding>
         </state>
       </provider>
