@@ -3,6 +3,7 @@ node_js:
   - 9
   - 6
 env:
+  - SECRET_KEY=#(@#GYzU#EWERGFXTSWEW(@#YW($EW(
   global:
     - export NODE_ENV=test
   script:

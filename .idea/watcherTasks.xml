@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectTasksOptions" suppressed-tasks="Babel">
+  <component name="ProjectTasksOptions" suppressed-tasks="Babel;CoffeeScript">
     <TaskOptions isEnabled="true">
       <option name="arguments" value="--no-cache --update $FileName$:$FileNameWithoutExtension$.css" />
       <option name="checkSyntaxErrors" value="true" />
@@ -15,6 +15,7 @@
       </option>
       <option name="outputFromStdout" value="false" />
       <option name="program" value="C:/Ruby24-x64/bin/sass.bat" />
+      <option name="runOnExternalChanges" value="true" />
       <option name="scopeName" value="Project Files" />
       <option name="trackOnlyRoot" value="true" />
       <option name="workingDir" value="$FileDir$" />
