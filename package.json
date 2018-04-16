@@ -15,13 +15,15 @@
     "start:server": "nodemon --exec npm run start",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
-    "test": "npm run test:server && npm run test:client",
+    "test": "npm run create:test && npm run migrate:test && npm run test:server",
     "test:client": "jest --coverage",
     "test:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --timeout 20000 --exit --require babel-core/register server/test/*test.js",
     "test:dev:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha ./server/test/* --exit --require babel-node/register --reporter spec",
     "test:dev": "npm test && npm run coverage",
     "webpack": "webpack --watch",
-    "migrate:test": "cross-env NODE_ENV=test sequelize db:migrate --env test"
+    "drop:test":"sequelize db:migrate:undo:all",
+    "migrate:test": "sequelize db:migrate --env test",
+    "create:test": "sequelize db:create boots_test"
   },
   "nyc": {
     "exclude": [
