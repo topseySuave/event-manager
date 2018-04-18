@@ -1,18 +1,11 @@
 // import Sequelize from '../config';
 import models from '../models';
 
-const Event = models.Events;
+const EventModel = models.Events;
 const CenterModel = models.Centers;
 const { Op } = models.sequelize;
-
-// let storage = multer.diskStorage({
-//     destination: '../server/public/images/uploads',
-//     filename: (req, file, cb) => {
-//         cb(null, file.fieldname + '-' + Date.now() + path.extname())
-//     }
-// });
-//
-// let upload = multer({ storage: storage }).array('photos', 5);
+const attributes = ['id', 'title', 'img_url', 'description', 'startDate', 'endDate', 'centerId'];
+const centersAttributes = ['location'];
 
 /**
  * @export
@@ -36,7 +29,12 @@ export class Events {
       });
     }
 
-    Event.findById(eventId)
+    EventModel.findOne({
+        where: {
+          id: eventId
+        },
+        attributes: attributes
+    })
       .then((event) => {
         if (!event) {
           return res.status(404).send({
@@ -65,7 +63,7 @@ export class Events {
     const order = (req.query.order) ? req.query.order : 'desc';
     if (req.query && req.query.sort) {
       if (order) {
-        Event.findAll({
+        EventModel.findAll({
           where: {
             startDate: {
               [Op.gte]: new Date().toDateString()
@@ -73,7 +71,8 @@ export class Events {
           },
           order: [
             ['id', order]
-          ]
+          ],
+          attributes: attributes
         })
           .then((returnedEvent) => {
             if (!returnedEvent) {
@@ -106,7 +105,7 @@ export class Events {
         }
       }));
 
-      Event.findAll({
+      EventModel.findAll({
         where: {
           [Op.or]: titleResp,
           startDate: {
@@ -117,6 +116,7 @@ export class Events {
           ['id', order]
         ],
         limit: limitValue,
+        attributes
       })
         .then((searchResults) => {
           if (searchResults.length <= 0) {
@@ -133,15 +133,17 @@ export class Events {
         });
     } else {
       const pageValue = req.query.next || 0;
-      Event.findAndCountAll({
+      EventModel.findAndCountAll({
         where: {
           startDate: {
             [Op.gte]: new Date().toDateString()
           }
         },
+        attributes: attributes,
         include: [{
           model: CenterModel,
-          as: 'center'
+          as: 'center',
+          attributes: centersAttributes
         }],
         order: [
           ['id', order]
@@ -160,11 +162,11 @@ export class Events {
           res.status(200).json({
             statusCode: 200,
             message: 'Successful Events!',
+            events: events.rows,
             pageSize: parseInt(events.rows.length, 10),
             totalCount: events.count,
             pageCount: Math.ceil(events.count / limitValue),
             page: (pageValue) ? parseInt(pageValue, 10) : parseInt(pageValue + 1, 10),
-            events: events.rows,
           });
         })
         .catch(err => res.status(500).send(err));
@@ -184,7 +186,7 @@ export class Events {
     const endDate = new Date(req.body.endDate);
 
     // noinspection JSDuplicatedDeclaration
-    Event.findOne({
+    EventModel.findOne({
       where: {
         centerId: req.body.centerId,
         startDate: {
@@ -201,19 +203,17 @@ export class Events {
         if (result !== null) {
           return res.send({
             message: 'Center has been booked for this date',
-            statusCode: 400,
-            error: true
+            statusCode: 400
           });
         }
-        return Event.create({
+        return EventModel.create({
           title: req.body.title,
           img_url: req.body.img_url,
-          location: req.body.location,
           description: req.body.description,
           startDate,
           endDate,
           centerId: parseInt(req.body.centerId, 10),
-          userId: parseInt(req.body.userId, 10),
+          userId: parseInt(req.currentUser.id, 10),
         })
           .then((event) => {
             res.status(200).send({
@@ -254,7 +254,7 @@ export class Events {
       });
     }
 
-    Event.findById(eventId)
+    EventModel.findById(eventId)
       .then((event) => {
         if (!event) {
           return res.status(400).send({
@@ -263,7 +263,7 @@ export class Events {
           });
         }
 
-        Event.update(
+        EventModel.update(
           {
             title: req.body.title || event.title,
             img_url: req.body.img_url || event.img_url,
@@ -284,7 +284,8 @@ export class Events {
               Event.findById(eventId, {
                 include: [{
                   model: CenterModel,
-                  as: 'center'
+                  as: 'center',
+                  attributes: centersAttributes
                 }]
               })
                 .then((newEvent) => {
@@ -319,7 +320,7 @@ export class Events {
         message: 'Event id is not a number'
       });
     }
-    Event.findById(eventId)
+    EventModel.findById(eventId)
       .then((deletedEvent) => {
         if (!deletedEvent) {
           return res.status(400).send({
@@ -327,7 +328,7 @@ export class Events {
             message: `Event not found with id : ${eventId}`
           });
         }
-        Event.destroy({
+        EventModel.destroy({
           where: {
             id: eventId,
           }

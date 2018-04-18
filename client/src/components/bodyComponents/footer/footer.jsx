@@ -9,7 +9,7 @@ class Footer extends Component {
         <div className="container">
           <div className="center-align">
             <p>© { year.getFullYear() }, All rights reserved.
-              <Link to="/" href="/">Boots Events Manager</Link>
+              <Link to="/" href="/"> Boots Events Manager</Link>
             </p>
           </div>
         </div>

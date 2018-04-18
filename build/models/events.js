@@ -42,4 +42,4 @@ var Events = function Events(sequelize, DataTypes) {
 };
 
 exports.default = Events;
-//# sourceMappingURL=events.js.map
+//# sourceMappingURL=Events.js.map

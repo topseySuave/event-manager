@@ -9,12 +9,12 @@ import {
 } from './';
 
 const validateCenterSearchQuery = ({
-  filterBy, location, price, capacity, search
+  searchBy, location, price, capacity, search
 }) => {
   let searchApi, api;
 
-  if (filterBy) {
-    api = `/api/v1/centers?filter=${filterBy}&search=`;
+  if (searchBy) {
+    api = `/api/v1/centers?searchBy=${searchBy}&search=`;
   } else {
     api = '/api/v1/centers?search=';
   }
@@ -33,13 +33,14 @@ const validateCenterSearchQuery = ({
 
   return searchApi;
 };
+
 const validateEventSearchQuery = ({
-  filterBy, search
+  searchBy, search
 }) => {
   let searchApi, api;
 
-  if (filterBy) {
-    api = `/api/v1/events?filter=${filterBy}&search=`;
+  if (searchBy) {
+    api = `/api/v1/events?searchBy=${searchBy}&search=`;
   } else {
     api = '/api/v1/events?search=';
   }
@@ -61,12 +62,12 @@ export const searchAction = (data) => {
           dispatch(fetchCentersDispatch(data));
           dispatch(hideLoading());
         } else if (data.statusCode === 404) {
-          if (err) Materialize.toast('search result do not match center(s)', 5000, 'rounded');
+          if (err) Materialize.toast('search result do not match center(s)', 5000, 'red');
           dispatch(hideLoading());
         }
       })
       .catch((err) => {
-        if (err) Materialize.toast('search result do not match center(s)', 5000, 'rounded');
+        if (err) Materialize.toast('search result do not match center(s)', 5000, 'red');
         dispatch(hideLoading());
       });
   };
@@ -79,7 +80,7 @@ export const filterCenterTitle = value => (dispatch) => {
       if (data.statusCode === 200) {
         dispatch(searchCenterDispatch(data));
       } else if (data.statusCode === 400) {
-        Materialize.toast(data.message, 5000);
+        Materialize.toast(data.message, 5000, 'red');
         dispatch({
           type: SEARCH_CENTER_TITLE_FAILED
         });
@@ -94,7 +95,7 @@ export const filterEventTitle = value => (dispatch) => {
       if (data.statusCode === 200) {
         dispatch(searchEventsDispatch(data.events));
       } else if (data.statusCode === 400) {
-        Materialize.toast(data.message, 5000);
+        Materialize.toast(data.message, 5000, 'red');
         dispatch({
           type: SEARCH_EVENT_TITLE_FAILED
         });

@@ -26,4 +26,4 @@ var Centers = function Centers(sequelize, DataTypes) {
 };
 
 exports.default = Centers;
-//# sourceMappingURL=center.js.map
+//# sourceMappingURL=Centers.js.map

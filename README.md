@@ -14,7 +14,7 @@
    - Sign in and Sign up
    - Create Events
    - Create Centers
-   - View Center details
+   - View Centers details
 
  ### Why this App is Useful
    - Enables user Manager and Easily Attend Events.

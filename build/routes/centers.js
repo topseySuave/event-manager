@@ -4,13 +4,13 @@ var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
 
-var _center = require('../controllers/center');
+var _Centers = require('../controllers/Centers');
 
-var _center2 = _interopRequireDefault(_center);
+var _Centers2 = _interopRequireDefault(_Centers);
 
-var _validator = require('../middleware/validator');
+var _Validation = require('../middleware/Validation');
 
-var _validator2 = _interopRequireDefault(_validator);
+var _Validation2 = _interopRequireDefault(_Validation);
 
 var _authenticate = require('../middleware/authenticate');
 
@@ -19,10 +19,10 @@ var _authenticate2 = _interopRequireDefault(_authenticate);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var router = _express2.default.Router();
-var centersController = new _center2.default();
-var validate = new _validator2.default();
+var centersController = new _Centers2.default();
+var validate = new _Validation2.default();
 
-router.get('/centers', centersController.getCenters).get('/centers/:id', centersController.getCenter).post('/centers', _authenticate2.default, validate.validateCenter, centersController.createCenter).post('/centers/:id', _authenticate2.default, validate.validateCenter, centersController.updateCenter).delete('/centers/:id', _authenticate2.default, centersController.deleteCenter);
+router.get('/centers', centersController.getCenters).get('/centers/:id', centersController.getCenter).post('/centers', _authenticate2.default, validate.validateCenter, centersController.createCenter).put('/centers/:id', _authenticate2.default, validate.validateCenter, centersController.updateCenter).delete('/centers/:id', _authenticate2.default, centersController.deleteCenter);
 
 module.exports = router;
 //# sourceMappingURL=centers.js.map

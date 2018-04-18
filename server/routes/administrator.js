@@ -1,13 +1,13 @@
 import express from 'express';
 import path from 'path';
 import jwtDecode from 'jwt-decode';
-import User from '../controllers/user';
-import Event from '../controllers/events';
+import Users from '../controllers/Users';
+import Events from '../controllers/Events';
 import authenticate from '../middleware/authenticate';
 
 const router = express.Router();
-const userController = new User();
-const eventsController = new Event();
+const userController = new Users();
+const eventsController = new Events();
 
 router.get('/', (req, res) => {
   res.status(200).sendFile(path.join(__dirname, '../..', 'client/public/admin.html'));

@@ -293,4 +293,4 @@ var Users = function () {
 }();
 
 exports.default = Users;
-//# sourceMappingURL=user.js.map
+//# sourceMappingURL=Users.js.map

@@ -24,7 +24,7 @@ export class Validation {
       price: 'required|integer'
     };
 
-    let validate = new Validator(req.body, centerRules);
+    const validate = new Validator(req.body, centerRules);
     if (validate.passes()) return next();
 
     let error = {}, title = validate.errors.first('title'),
@@ -75,11 +75,10 @@ export class Validation {
       description: 'required|string',
       startDate: 'required|date',
       endDate: 'required|date',
-      centerId: 'required|integer',
-      userId: 'required|integer'
+      centerId: 'required|integer'
     };
 
-    let validate = new Validator(req.body, eventRules);
+    const validate = new Validator(req.body, eventRules);
     if (validate.passes()) return next();
 
     let error = {}, title = validate.errors.first('title'),
@@ -126,12 +125,12 @@ export class Validation {
      * @memberof Validation
      */
   validateLogin(req, res, next) {
-    let validateLogin = {
+    const validateLogin = {
       email: 'required|email',
       password: 'required|string'
     };
 
-    let validate = new Validator(req.body, validateLogin);
+    const validate = new Validator(req.body, validateLogin);
     if (validate.passes()) return next();
 
     let error, email = validate.errors.first('email'),
@@ -162,14 +161,14 @@ export class Validation {
      * @memberof Validation
      */
   validateSignUp(req, res, next) {
-    let validation = {
+    const validation = {
       firstName: 'required|string',
       lastName: 'required|string',
       email: 'required|email',
       password: 'required|string'
     };
 
-    let validate = new Validator(req.body, validation);
+    const validate = new Validator(req.body, validation);
     if (validate.passes()) return next();
 
     let error = {}, firstName = validate.errors.first('firstName'),

@@ -4,10 +4,6 @@ var _chai = require('chai');
 
 var _chai2 = _interopRequireDefault(_chai);
 
-var _dotenv = require('dotenv');
-
-var _dotenv2 = _interopRequireDefault(_dotenv);
-
 var _supertest = require('supertest');
 
 var _supertest2 = _interopRequireDefault(_supertest);
@@ -26,7 +22,8 @@ var _testHelpers2 = _interopRequireDefault(_testHelpers);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_chai2.default.should();
+_chai2.default.should(); /* global describe, it */
+
 var request = (0, _supertest2.default)(_app2.default);
 var expect = _chai2.default.expect;
 

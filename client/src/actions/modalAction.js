@@ -93,7 +93,7 @@ const editCenter = (centerApi, centerData, imgUrl) => dispatch => {
   let token = localStorage.getItem('jwtToken') ? localStorage.getItem('jwtToken') : false;
   setAuthorizationToken(token);
   centerData.img_url = imgUrl;
-  return axios.post(centerApi, centerData)
+  return axios.put(centerApi, centerData)
     .then(({data}) => {
       dispatch(updateCenterPayload(data.centr, 'success'));
       window.location.reload();

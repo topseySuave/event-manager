@@ -22,7 +22,9 @@
     "test:dev:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha ./server/test/* --exit --require babel-node/register --reporter spec",
     "test:dev": "npm test && npm run coverage",
     "webpack": "webpack --watch",
-    "drop:test":"sequelize db:migrate:undo:all",
+    "migrate": "sequelize db:migrate",
+    "seed": "sequelize db:seed",
+    "drop:test": "sequelize db:migrate:undo:all",
     "migrate:test": "sequelize db:migrate --env test",
     "create:test": "sequelize db:create boots_test"
   },

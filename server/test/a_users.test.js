@@ -1,5 +1,6 @@
+/* global describe, it */
+
 import chai from 'chai';
-import dotenv from 'dotenv';
 import supertest from 'supertest';
 import faker from 'faker';
 import app from '../app';

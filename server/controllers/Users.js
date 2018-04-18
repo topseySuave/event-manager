@@ -1,11 +1,10 @@
 import dotenv from 'dotenv';
-// import Validator from 'validatorjs';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import models from '../models';
 import mailer from '../middleware/mailer';
 
-const { User } = models;
+const userModel = models.Users;
 const { Events } = models;
 const { Op } = models.sequelize;
 dotenv.config();
@@ -16,7 +15,7 @@ dotenv.config();
  */
 export default class Users {
   /**
-     * Signup User record
+     * Signup Users record
      *
      * @param {object} req - HTTP Request
      * @param {object} res - HTTP Response
@@ -26,15 +25,15 @@ export default class Users {
   createUser(req, res) {
     /**
      * Encrypt Password** */
-    let salt = bcrypt.genSaltSync(Math.floor(Math.random() * 5));
+    const salt = bcrypt.genSaltSync(Math.floor(Math.random() * 5));
 
-    let {
+    const {
       firstName, lastName, email, password
     } = req.body;
-    let role = req.body.role || false;
-    let encryptedPassword = bcrypt.hashSync(password, salt);
+    const role = req.body.role || false;
+    const encryptedPassword = bcrypt.hashSync(password, salt);
 
-    User.findOne({
+    userModel.findOne({
       where: {
         email: {
           [Op.iLike]: email
@@ -48,7 +47,7 @@ export default class Users {
             message: 'Email has been taken, Please Choose another'
           });
         }
-        return User.create({
+        return userModel.create({
           firstName,
           lastName,
           email,
@@ -64,7 +63,7 @@ export default class Users {
   }
 
   /**
-     * Signin User record
+     * Signin Users record
      *
      * @param {object} req - HTTP Request
      * @param {object} res - HTTP Response
@@ -72,8 +71,8 @@ export default class Users {
      * @memberof Users
      */
   loginUser(req, res) {
-    let { email, password } = req.body;
-    User.findOne({
+    const { email, password } = req.body;
+    userModel.findOne({
       where: {
         email: {
           [Op.iLike]: email
@@ -84,7 +83,7 @@ export default class Users {
         if (!foundUser) {
           return res.status(404).send({
             statusCode: 404,
-            message: 'User Not Found! Please Sign Up'
+            message: 'Users Not Found! Please Sign Up'
           });
         } else if (bcrypt.compareSync(password, foundUser.password)) {
           return res.status(200).send({
@@ -92,9 +91,6 @@ export default class Users {
             message: 'signin successful',
             token: jwt.sign({
               id: foundUser.id,
-              firstName: foundUser.firstName,
-              lastName: foundUser.lastName,
-              email: foundUser.email,
               role: foundUser.role
             }, process.env.SECRET_KEY, { expiresIn: '24h' })
           });
@@ -107,7 +103,7 @@ export default class Users {
   }
 
   /**
-     * GETS Current User record
+     * GETS Current Users record
      *
      * @param {object} req - HTTP Request
      * @param {object} res - HTTP Response
@@ -117,14 +113,12 @@ export default class Users {
   currUser(req, res) {
     return res.send({
       id: req.currentUser.id,
-      firstName: req.currentUser.firstName,
-      lastName: req.currentUser.lastName,
       email: req.currentUser.email
     });
   }
 
   /**
-     * Assign a User as admin
+     * Assign a Users as admin
      *
      * @param {object} req - HTTP Request
      * @param {object} res - HTTP Response
@@ -132,8 +126,8 @@ export default class Users {
      * @memberof Users
      */
   assignAdmin(req, res) {
-    let { email, password } = req.body;
-    User.findOne({
+    const { email, password } = req.body;
+    userModel.findOne({
       where: {
         email: {
           [Op.iLike]: email
@@ -144,17 +138,17 @@ export default class Users {
         if (!foundUser) {
           return res.status(404).send({
             statusCode: 404,
-            message: 'User Not Found! Please Sign Up'
+            message: 'Users Not Found! Please Sign Up'
           });
         } else if (bcrypt.compareSync(password, foundUser.password)) {
           // update user role to true...
-          User.update({ role: true }, {
+          userModel.update({ role: true }, {
             where: {
               id: foundUser.id
             }
           })
             .then((updatedUser) => {
-              let subject = 'Boots Events Manager: Administrator Assignment';
+              const subject = 'Boots Events Manager: Administrator Assignment';
               let htmlOutput = `
                             <h6>Boots Events Manager: Administrator Assignment</h6>
                             <p>Dear, ${foundUser.firstName} ${foundUser.lastName} you have been Assigned as Administrator</p>
@@ -184,7 +178,7 @@ export default class Users {
   }
 
   /**
-     * GETS all User record
+     * GETS all Users record
      *
      * @param {object} req - HTTP Request
      * @param {object} res - HTTP Response
@@ -192,7 +186,7 @@ export default class Users {
      * @memberof Users
      */
   allUsers(req, res) {
-    User.findAll()
+    userModel.findAll()
       .then(users => res.status(200).send({
         message: 'all users found',
         statusCode: 200,
@@ -202,7 +196,7 @@ export default class Users {
   }
 
   /**
-     * DELETE a User record
+     * DELETE a Users record
      *
      * @param {object} req - HTTP Request
      * @param {object} res - HTTP Response
@@ -210,15 +204,15 @@ export default class Users {
      * @memberof Users
      */
   removeUsers(req, res) {
-    let { userId } = req.body;
-    User.findOne({
+    const { userId } = req.body;
+    userModel.findOne({
       where: {
         id: userId
       }
     })
       .then((foundUser) => {
         if (foundUser) {
-          User.destroy({
+          userModel.destroy({
             where: {
               id: foundUser.id
             }
@@ -226,22 +220,22 @@ export default class Users {
             .then((deletedUser) => {
               if (deletedUser) {
                 res.status(200).send({
-                  message: 'User has been deleted successfully',
+                  message: 'Users has been deleted successfully',
                   user: foundUser
                 });
               } else {
                 res.send({
-                  message: 'User was not deleted, please try again'
+                  message: 'Users was not deleted, please try again'
                 });
               }
             })
             .catch(error => res.status(500).send({
-              message: 'Houston we have a problem.!! Error deleting User',
+              message: 'Houston we have a problem.!! Error deleting Users',
               errorMessage: error
             }));
         } else {
           res.status(404).send({
-            message: 'User was not found',
+            message: 'Users was not found',
           });
         }
       });

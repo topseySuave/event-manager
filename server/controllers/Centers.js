@@ -1,15 +1,15 @@
 import models from '../models';
 
-// dotenv.config();
 const { Op } = models.sequelize;
-const Center = models.Centers;
+const centersModel = models.Centers;
 const Event = models.Events;
+const attributes = ['id', 'title', 'img_url', 'location', 'description', 'facilities', 'capacity', 'price'];
+const eventAttributes = ['id', 'title', 'img_url', 'description', 'startDate', 'endDate', 'centerId'];
 
-
-const sortSearchRequest = (search, filterBy) => {
+const sortSearchRequest = (search, searchBy) => {
   let reqSearch;
   // Search with location, title, price, capacity
-  if (filterBy === 'location') {
+  if (searchBy === 'location') {
     reqSearch = search.map((value) => {
       if (value !== '') {
         return {
@@ -19,22 +19,24 @@ const sortSearchRequest = (search, filterBy) => {
         };
       }
     });
-  } else if (filterBy === 'price') {
+  } else if (searchBy === 'price') {
     reqSearch = search.map((value) => {
       if (value !== '') {
+        value = parseInt(value, 10);
         return {
           price: {
-            [Op.iLike]: `%${parseInt(value, 10)}%`
+            [Op.gte]: `${value}`
           }
         };
       }
     });
-  } else if (filterBy === 'capacity') {
+  } else if (searchBy === 'capacity') {
     reqSearch = search.map((value) => {
       if (value !== '') {
+        value = parseInt(value, 10);
         return {
           capacity: {
-            [Op.iLike]: `%${parseInt(value, 10)}%`
+            [Op.gte]: `${value}`
           }
         };
       }
@@ -59,33 +61,33 @@ const sortSearchRequest = (search, filterBy) => {
  */
 export class Centers {
   /**
-     * Add Center record
+     * Add Centers record
      *
      * @API POST request '/api/v1/centers'
      *
      * @param {object} req - HTTP Request
      * @param {object} res - HTTP Response
      * @returns {object} Class instance
-     * @memberof Center
+     * @memberof Centers
      */
   createCenter(req, res) {
     // check if center name already exist
-    return Center.findOne({
+    return centersModel.findOne({
       where: {
         title: req.body.title,
         location: req.body.location
       }
     })
-      .then((xCenter) => {
+      .then((existingCenter) => {
         // return this if center name is taken
-        if (xCenter) {
+        if (existingCenter) {
           return res.status(400).json({
-            message: 'Center already exist',
+            message: 'Centers already exist',
             statusCode: 400
           });
         }
 
-        return Center.create({
+        return centersModel.create({
           title: req.body.title,
           img_url: req.body.img_url,
           location: req.body.location,
@@ -94,12 +96,12 @@ export class Centers {
           capacity: parseInt(req.body.capacity, 10),
           price: parseInt(req.body.price, 10)
         })
-          .then((center) => {
-            if (center) {
+          .then((addedCenter) => {
+            if (addedCenter) {
               res.status(201).send({
                 statusCode: 201,
-                message: 'Center has been created',
-                center
+                message: 'Centers has been created',
+                center: addedCenter
               });
             }
           });
@@ -107,14 +109,14 @@ export class Centers {
   }
 
   /**
-     * Update Or Modify Center record
+     * Update Or Modify Centers record
      *
      * @API POST request '/api/v1/centers/:id'
      *
      * @param {object} req - HTTP Request
      * @param {object} res - HTTP Response
      * @returns {object} Class instance
-     * @memberof Center
+     * @memberof Centers
      */
   updateCenter(req, res) {
     const order = req.query.order || 'desc';
@@ -123,28 +125,28 @@ export class Centers {
     if (isNaN(centerId)) {
       return res.status(400).send({
         statusCode: 400,
-        message: 'Center id is not a number'
+        message: 'Centers id is not a number'
       });
     }
 
-    Center.findById(centerId)
-      .then((centr) => {
-        if (!centr) {
+    centersModel.findById(centerId)
+      .then((foundCenter) => {
+        if (!foundCenter) {
           return res.status(404).send({
             statusCode: 404,
-            message: `Center not Found with ${centerId}`
+            message: `Center with the id of ${centerId} was not Found`
           });
         }
 
-        Center.update(
+        centersModel.update(
           {
-            title: req.body.title || centr.title,
-            img_url: req.body.img_url || centr.img_url,
-            location: req.body.location || centr.location,
-            description: req.body.description || centr.description,
-            facilities: req.body.facilities || centr.facilities,
-            capacity: parseInt(req.body.capacity, 10) || centr.capacity,
-            price: parseInt(req.body.price, 10) || centr.price,
+            title: req.body.title || foundCenter.title,
+            img_url: req.body.img_url || foundCenter.img_url,
+            location: req.body.location || foundCenter.location,
+            description: req.body.description || foundCenter.description,
+            facilities: req.body.facilities || foundCenter.facilities,
+            capacity: parseInt(req.body.capacity, 10) || foundCenter.capacity,
+            price: parseInt(req.body.price, 10) || foundCenter.price,
           },
           {
             where: {
@@ -167,12 +169,12 @@ export class Centers {
                 limit: limitValue
               })
                 .then((event) => {
-                  centr.event = event.rows;
+                  foundCenter.events = event.rows;
                   return res.status(200).send({
                     statusCode: 200,
-                    message: 'Center has been updated',
+                    message: 'Centers has been updated',
+                    center: foundCenter,
                     events: event.rows,
-                    centr
                   });
                 })
                 .catch((err) => {
@@ -193,14 +195,14 @@ export class Centers {
   }
 
   /**
-     * Get Center by id
+     * Get Centers by id
      *
      * @API GET request '/api/v1/centers/:id'
      *
      * @param {object} req - HTTP Request
      * @param {object} res - HTTP Response
      * @returns {object} Class instance
-     * @memberof Center
+     * @memberof Centers
      */
   getCenter(req, res) {
     const order = req.query.order || 'desc';
@@ -209,17 +211,18 @@ export class Centers {
     if (isNaN(centerId)) {
       return res.status(400).send({
         statusCode: 400,
-        message: 'Center id is not a number'
+        message: 'Centers id is not a number'
       });
     }
 
-    Center.findOne({
+    centersModel.findOne({
       where: {
         id: centerId
-      }
+      },
+      attributes
     })
-      .then((centr) => {
-        if (!centr) {
+      .then((foundCenter) => {
+        if (!foundCenter) {
           return res.status(404).send({
             statusCode: 404,
             message: `Center with id: ${centerId} does not exist`,
@@ -233,18 +236,19 @@ export class Centers {
               [Op.gte]: new Date().toDateString()
             }
           },
+          attributes: eventAttributes,
           order: [
             ['id', order]
           ],
           limit: limitValue
         })
           .then((event) => {
-            centr.event = event.rows;
+            foundCenter['events'] = event.rows;
             return res.status(200).send({
               statusCode: 200,
               message: `Center with id: ${centerId} was found`,
+              center: foundCenter,
               events: event.rows,
-              centr,
             });
           });
       });
@@ -265,20 +269,21 @@ export class Centers {
     const pageValue = req.query.next || 0;
     const order = req.query.order || 'desc';
     if (req.query.search || req.query.limit) {
-      let filterBy, reqSearch;
-      if (req.query.filter) {
-        filterBy = req.query.filter;
+      let searchBy, reqSearch;
+      if (req.query.searchBy) {
+          searchBy = req.query.searchBy;
       }
       const search = req.query.search.split(' ');
 
-      reqSearch = sortSearchRequest(search, filterBy);
-      Center.findAll({
+      reqSearch = sortSearchRequest(search, searchBy);
+      centersModel.findAll({
         where: {
           [Op.or]: reqSearch
         },
         order: [
           ['id', order]
         ],
+        attributes,
         limit: limitValue,
         offset: (pageValue > 1) ? (pageValue * limitValue) - limitValue : pageValue
       })
@@ -286,60 +291,61 @@ export class Centers {
           if (searchResults.length <= 0) {
             return res.status(404).send({
               statusCode: 404,
-              message: 'Center(s) do not match your search result'
+              message: 'Centers(s) do not match your search result'
             });
           }
 
           return res.status(200).send({
             statusCode: 200,
             message: 'Successful Centers!',
+            centers: searchResults,
             page: (pageValue) ? parseInt(pageValue, 10) : parseInt(pageValue + 1, 10),
             totalCount: searchResults.length,
             pageCount: Math.ceil(searchResults.length / limitValue),
             pageSize: parseInt(searchResults.length, 10),
-            centers: searchResults,
           });
         });
     } else {
-      Center.findAndCountAll({
+      centersModel.findAndCountAll({
         order: [
           ['id', order]
         ],
+        attributes,
         limit: limitValue,
         offset: (pageValue > 1) ? (pageValue * limitValue) - limitValue : pageValue
       })
         .then(center => res.status(200).send({
           statusCode: 200,
           message: 'Successful Centers!',
+          centers: center.rows,
           page: (pageValue) ? parseInt(pageValue, 10) : parseInt(pageValue + 1, 10),
           totalCount: center.count,
           pageCount: Math.ceil(center.count / limitValue),
           pageSize: parseInt(center.rows.length, 10),
-          centers: center.rows,
         }));
     }
   }
 
   /**
-     * Delete Center record
+     * Delete Centers record
      *
      * @API DELETE request '/api/v1/centers/:id'
      *
      * @param {object} req - HTTP Request
      * @param {object} res - HTTP Response
      * @returns {object} Class instance
-     * @memberof Center
+     * @memberof Centers
      */
   deleteCenter(req, res) {
     const centerId = parseInt(req.params.id, 10);
     if (isNaN(centerId)) {
       return res.status(400).send({
         statusCode: 400,
-        message: 'Center id is not a number'
+        message: 'Centers id is not a number'
       });
     }
 
-    Center.findById(centerId)
+    centersModel.findById(centerId)
       .then((deletedCenter) => {
         if (!deletedCenter) {
           return res.status(404).send({
@@ -348,7 +354,7 @@ export class Centers {
           });
         }
 
-        Center
+        centersModel
           .destroy({
             where: {
               id: centerId,
@@ -356,14 +362,14 @@ export class Centers {
           })
           .then(() => res.status(200).send({
             statusCode: 200,
-            message: 'This Center has been deleted',
+            message: 'This Centers has been deleted',
             center: deletedCenter
           }));
       })
       .catch((err) => {
         res.status(400).send({
           statusCode: 400,
-          message: 'Center not found',
+          message: 'Centers not found',
           error: err
         });
       });

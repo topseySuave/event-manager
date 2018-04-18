@@ -23,8 +23,9 @@ module.exports = {
       endDate: {
           type: Sequelize.DATE
       },
-        centerId: {
+      centerId: {
         type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
         references: {
             model: 'Centers',
             key: 'id',

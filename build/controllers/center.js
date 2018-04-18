@@ -378,4 +378,4 @@ var Centers = exports.Centers = function () {
 }();
 
 exports.default = Centers;
-//# sourceMappingURL=center.js.map
+//# sourceMappingURL=Centers.js.map

@@ -1,10 +1,10 @@
 import express from 'express';
-import User from '../controllers/user';
-import Validation from '../middleware/validator';
+import Users from '../controllers/Users';
+import Validation from '../middleware/Validation';
 import authenticate from '../middleware/authenticate';
 
 const router = express.Router();
-const userController = new User();
+const userController = new Users();
 const validate = new Validation();
 
 router.post('/users', validate.validateSignUp, userController.createUser)

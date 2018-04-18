@@ -7,14 +7,14 @@ import MenuItem from 'material-ui/MenuItem';
 import shortid from 'shortid'
 
 import locations from '../../../util/locations'
-import {searchAction} from '../../../actions/searchAction'
+import { searchAction } from '../../../actions/searchAction'
 
 class SearchFasterForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             startSearch: false,
-            filterBy: null,
+            searchBy: null,
             locations: '',
             price: '',
             capacity: ''
@@ -32,7 +32,7 @@ class SearchFasterForm extends Component {
     handleSelectChange = (event, index, locations) => this.setState({locations: locations, startSearch: true});
 
     handleFilterChange = (e, index, value) => this.setState({
-        filterBy: value,
+        searchBy: value,
         startSearch: false,
         locations: '',
         price: '',
@@ -62,13 +62,13 @@ class SearchFasterForm extends Component {
         ));
     }
 
-    filterMenuItems(filterBy) {
+    filterMenuItems(searchBy) {
         return ['price', 'capacity', 'location'].map((filter) => {
             return (
                 <MenuItem
                     key={shortid.generate()}
                     insetChildren={true}
-                    checked={filterBy === filter && true}
+                    checked={searchBy === filter && true}
                     value={filter}
                     primaryText={filter}
                 />
@@ -77,8 +77,8 @@ class SearchFasterForm extends Component {
     }
 
     sortByFilter() {
-        let {locations, price, capacity, filterBy} = this.state;
-        if (filterBy === 'price') {
+        let {locations, price, capacity, searchBy} = this.state;
+        if (searchBy === 'price') {
             return (
                 <div className="input-field col s12 l2">
                     <label htmlFor="fast_price">Price</label>
@@ -93,7 +93,7 @@ class SearchFasterForm extends Component {
                     />
                 </div>
             );
-        } else if (filterBy === 'capacity') {
+        } else if (searchBy === 'capacity') {
             return (
                 <div className="input-field col s12 l4">
                     <label htmlFor="fast_capacity">Capacity</label>
@@ -126,7 +126,7 @@ class SearchFasterForm extends Component {
 
 
     render() {
-        let {filterBy} = this.state;
+        let {searchBy} = this.state;
         return (
             <form onChange={this.handleSearchStart}>
                 <div className="row">
@@ -134,14 +134,14 @@ class SearchFasterForm extends Component {
                         <SelectField
                             multiple={false}
                             hintText="Filter By: "
-                            value={filterBy}
+                            value={searchBy}
                             onChange={this.handleFilterChange}
                         >
-                            {this.filterMenuItems(filterBy)}
+                            {this.filterMenuItems(searchBy)}
                         </SelectField>
                     </div>
                     <div className="input-field col s12 l3">
-                        <h6 className="center-align">Search By: {filterBy}</h6>
+                        <h6 className="center-align">Search By: {searchBy}</h6>
                     </div>
                     {this.sortByFilter()}
                 </div>
@@ -151,7 +151,7 @@ class SearchFasterForm extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({searchAction: searchAction}, dispatch);
+    return bindActionCreators({searchAction}, dispatch);
 };
 
 export default connect(null, mapDispatchToProps)(SearchFasterForm);

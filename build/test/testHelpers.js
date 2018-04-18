@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 var testHelper = function () {
   /**
-     * Class Contructor
+     * Class Constructor
      * @constructor
      * @returns {void} Class instance
      * @memberof testHelper
@@ -48,6 +48,8 @@ var testHelper = function () {
     this.demoCenterFacilities = ['swimming pool', 'power', 'chairs', 'parking lot', 'stage'];
     this.democenterCapacity = parseInt(Math.ceil(Math.random() * 5000) + 10, 10); // Return a random number between 10 and 5000 for the capacity of the center
     this.demoCenterPrice = parseInt(Math.ceil(Math.random() * 200000) + 10000, 10); // Return a random number between 10000 and 200000 for the price of the center
+    this.setToken = this.setToken.bind(this);
+    this.getToken = this.getToken.bind(this);
   }
 
   /**

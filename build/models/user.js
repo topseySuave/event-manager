@@ -30,4 +30,4 @@ module.exports = function (sequelize, DataTypes) {
   });
   return User;
 };
-//# sourceMappingURL=user.js.map
+//# sourceMappingURL=User.js.map
