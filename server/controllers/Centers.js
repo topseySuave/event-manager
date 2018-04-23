@@ -298,7 +298,7 @@ export class Centers {
             });
           }
 
-          const results = searchResults.filter((center) => {
+          const results = searchResults.rows.filter((center) => {
               return center.id !== basedOn;
           });
 
@@ -306,7 +306,7 @@ export class Centers {
             statusCode: 200,
             message: 'Successful Centers!',
             centers: results,
-            meta: generatePaginationMeta(results, limitValue, pageValue)
+            meta: generatePaginationMeta(searchResults, limitValue, pageValue)
           });
         });
     } else {
