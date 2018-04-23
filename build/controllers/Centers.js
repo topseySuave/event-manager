@@ -11,6 +11,8 @@ var _models = require('../models');
 
 var _models2 = _interopRequireDefault(_models);
 
+var _util = require('../middleware/util');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -277,6 +279,8 @@ var Centers = exports.Centers = function () {
       var limitValue = parseInt(req.query.limit, 10) || process.env.DATA_LIMIT;
       var pageValue = req.query.next || 0;
       var order = req.query.order || 'desc';
+      var basedOn = parseInt(req.query.basedOn) || 0;
+      var offset = pageValue > 1 ? pageValue * limitValue - limitValue : pageValue;
       if (req.query.search || req.query.limit) {
         var searchBy = void 0,
             reqSearch = void 0;
@@ -286,12 +290,12 @@ var Centers = exports.Centers = function () {
         var search = req.query.search.split(' ');
 
         reqSearch = sortSearchRequest(search, searchBy);
-        centersModel.findAll({
+        centersModel.findAndCountAll({
           where: _defineProperty({}, Op.or, reqSearch),
           order: [['id', order]],
           attributes: attributes,
           limit: limitValue,
-          offset: pageValue > 1 ? pageValue * limitValue - limitValue : pageValue
+          offset: offset
         }).then(function (searchResults) {
           if (searchResults.length <= 0) {
             return res.status(404).send({
@@ -300,14 +304,15 @@ var Centers = exports.Centers = function () {
             });
           }
 
+          var results = searchResults.filter(function (center) {
+            return center.id !== basedOn;
+          });
+
           return res.status(200).send({
             statusCode: 200,
             message: 'Successful Centers!',
-            centers: searchResults,
-            page: pageValue ? parseInt(pageValue, 10) : parseInt(pageValue + 1, 10),
-            totalCount: searchResults.length,
-            pageCount: Math.ceil(searchResults.length / limitValue),
-            pageSize: parseInt(searchResults.length, 10)
+            centers: results,
+            meta: (0, _util.generatePaginationMeta)(results, limitValue, pageValue)
           });
         });
       } else {
@@ -315,16 +320,13 @@ var Centers = exports.Centers = function () {
           order: [['id', order]],
           attributes: attributes,
           limit: limitValue,
-          offset: pageValue > 1 ? pageValue * limitValue - limitValue : pageValue
+          offset: offset
         }).then(function (center) {
-          return res.status(200).send({
+          res.status(200).send({
             statusCode: 200,
             message: 'Successful Centers!',
             centers: center.rows,
-            page: pageValue ? parseInt(pageValue, 10) : parseInt(pageValue + 1, 10),
-            totalCount: center.count,
-            pageCount: Math.ceil(center.count / limitValue),
-            pageSize: parseInt(center.rows.length, 10)
+            meta: (0, _util.generatePaginationMeta)(center, limitValue, pageValue)
           });
         });
       }

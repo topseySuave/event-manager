@@ -12,6 +12,8 @@ var _models = require('../models');
 
 var _models2 = _interopRequireDefault(_models);
 
+var _util = require('../middleware/util');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -99,8 +101,8 @@ var Events = exports.Events = function () {
             attributes: attributes
           }).then(function (returnedEvent) {
             if (!returnedEvent) {
-              return res.status(400).send({
-                statusCode: 400,
+              return res.status(404).send({
+                statusCode: 404,
                 message: 'No Event found'
               });
             }
@@ -138,8 +140,8 @@ var Events = exports.Events = function () {
           attributes: attributes
         }).then(function (searchResults) {
           if (searchResults.length <= 0) {
-            return res.status(400).send({
-              statusCode: 400,
+            return res.status(404).send({
+              statusCode: 404,
               message: 'Event(s) do not match your search result'
             });
           }
@@ -176,10 +178,7 @@ var Events = exports.Events = function () {
             statusCode: 200,
             message: 'Successful Events!',
             events: events.rows,
-            pageSize: parseInt(events.rows.length, 10),
-            totalCount: events.count,
-            pageCount: Math.ceil(events.count / limitValue),
-            page: pageValue ? parseInt(pageValue, 10) : parseInt(pageValue + 1, 10)
+            meta: (0, _util.generatePaginationMeta)(events, limitValue, pageValue)
           });
         }).catch(function (err) {
           return res.status(500).send(err);
@@ -290,7 +289,7 @@ var Events = exports.Events = function () {
           }
         }).then(function (updatedEvent) {
           if (updatedEvent) {
-            Event.findById(eventId, {
+            EventModel.findById(eventId, {
               include: [{
                 model: CenterModel,
                 as: 'center',
@@ -306,11 +305,7 @@ var Events = exports.Events = function () {
               }
             });
           }
-        }).catch(function (error) {
-          return res.status(500).send(error);
         });
-      }).catch(function (error) {
-        return res.status(500).send(error);
       });
     }
 
