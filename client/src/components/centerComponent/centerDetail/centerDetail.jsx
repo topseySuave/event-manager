@@ -14,7 +14,6 @@ import Delete from 'material-ui/svg-icons/action/delete';
 import { CircularLoader } from '../../loader';
 import { fetchCenterAction, editCenterRequestAction } from '../../../actions/center-actions/activeCenterAction';
 import { deleteCenterRequest } from '../../../actions/center-actions/deleteCenterAction';
-import { REMOVE_CENTER } from '../../../actions';
 import CurrentEventForCenter from './currentEventForCenter';
 import RecommCenter from './RecommCenter';
 import EventModal from '../../modals/EventModal';
@@ -45,7 +44,7 @@ class CenterDetail extends Component {
     this.handleEventsClose = this.handleEventsClose.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     $('.tooltipped').tooltip({ delay: 50 });
     const { params } = this.props;
     this.props.fetchCenterAction(params.id);
@@ -56,9 +55,9 @@ class CenterDetail extends Component {
       newProps.fetchCenterAction(newProps.params.id);
     }
 
-    if (typeof newProps.activeCenterDetail.centr !== 'undefined') {
-      newProps.activeCenterDetail.centr.events = newProps.activeCenterDetail.events;
-      if (newProps.activeCenterDetail.centr.events) {
+    if (typeof newProps.activeCenterDetail.center !== 'undefined') {
+      newProps.activeCenterDetail.center.events = newProps.activeCenterDetail.events;
+      if (newProps.activeCenterDetail.center.events) {
         delete newProps.activeCenterDetail.events;
       }
       this.setState({ isLoading: false, activeCenter: newProps.activeCenterDetail });
@@ -161,7 +160,7 @@ class CenterDetail extends Component {
   }
 
   showBookCenterButton() {
-    let isSignedIn = this.props.activeUser.isAuthenticated;
+    const isSignedIn = this.props.activeUser.isAuthenticated;
     if (isSignedIn) {
       return (
         <EventModal />
@@ -169,10 +168,22 @@ class CenterDetail extends Component {
     }
   }
 
+  showRecommendedCenters(relatedCenterBasedOn){
+    const isAdmin = this.props.activeUser.user.role;
+    if (!isAdmin) {
+      return (
+        <RecommCenter
+           relatedCenterBasedOn={relatedCenterBasedOn}
+           fetchCenterRelatedTo={fetchCenterRelatedTo}
+        />
+      );
+    }
+  }
+
   deleteCenter(id) {
     this.props.deleteCenterRequest(id)
       .then(() => {
-        if (typeof this.props.activeCenterDetail.centr === 'undefined') {
+        if (typeof this.props.activeCenterDetail.center === 'undefined') {
           Materialize.toast('Center has been Deleted', 5000, 'teal');
           this.props.history.push('/centers');
         }
@@ -217,7 +228,6 @@ class CenterDetail extends Component {
   }
 
   renderFacilities(facilities) {
-    // console.log('facilities ====> ', facilities);
     return facilities.map(facility => (
       <li key={shortid.generate()}>{facility}</li>
     ));
@@ -225,10 +235,10 @@ class CenterDetail extends Component {
 
   render() {
     let { isLoading, activeCenter } = this.state;
-    if (activeCenter.centr) {
-      let {
+    if (activeCenter.center) {
+      const {
         id, title, img_url, location, description, facilities, capacity, price, events
-      } = activeCenter.centr;
+      } = activeCenter.center;
 
       let relatedCenterBasedOn = {
         id,
@@ -237,11 +247,13 @@ class CenterDetail extends Component {
         capacity,
         price
       };
+
       if (events) {
         events.map((event) => {
           event.center = relatedCenterBasedOn;
         });
       }
+
       return (
         <DocumentTitle title={`${title} | Boots Events Manager`}>
           <div className="container">
@@ -268,7 +280,7 @@ class CenterDetail extends Component {
                           <p>Capacity</p>
                         </div>
                         <div className="col s8">
-                          <p>{capacity}</p>
+                          <p>{capacity} Guests</p>
                         </div>
                       </div>
                       <div className="divider" />
@@ -302,7 +314,7 @@ class CenterDetail extends Component {
                                     }
                 </div>
               </div>
-              <RecommCenter relatedCenterBasedOn={relatedCenterBasedOn} fetchCenterRelatedTo={fetchCenterRelatedTo} />
+              { this.showRecommendedCenters(relatedCenterBasedOn) }
             </div>
           </div>
         </DocumentTitle>

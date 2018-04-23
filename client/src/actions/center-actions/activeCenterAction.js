@@ -18,10 +18,10 @@ export const fetchCenterAction = id => {
         dispatch(fetchCenterDispatch(data));
         dispatch(hideLoading());
         // TODO: Allow center to see the events coming in
-        console.log('events from center =====> ', data);
+        // console.log('events from center =====> ', data);
       })
       .catch((err) => {
-        Materialize.toast('Page Not Found!!!', 5000);
+        Materialize.toast('Page Not Found!!!', 5000, 'red lighten-4');
         window.location.href = '/404';
         throw (err);
       });

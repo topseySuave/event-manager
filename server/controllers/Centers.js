@@ -1,5 +1,6 @@
 import models from '../models';
 
+import { generatePaginationMeta } from '../middleware/util';
 const { Op } = models.sequelize;
 const centersModel = models.Centers;
 const Event = models.Events;
@@ -268,6 +269,8 @@ export class Centers {
     const limitValue = parseInt(req.query.limit, 10) || process.env.DATA_LIMIT;
     const pageValue = req.query.next || 0;
     const order = req.query.order || 'desc';
+    const basedOn = parseInt(req.query.basedOn) || 0;
+    const offset = (pageValue > 1) ? (pageValue * limitValue) - limitValue : pageValue;
     if (req.query.search || req.query.limit) {
       let searchBy, reqSearch;
       if (req.query.searchBy) {
@@ -276,7 +279,7 @@ export class Centers {
       const search = req.query.search.split(' ');
 
       reqSearch = sortSearchRequest(search, searchBy);
-      centersModel.findAll({
+      centersModel.findAndCountAll({
         where: {
           [Op.or]: reqSearch
         },
@@ -285,7 +288,7 @@ export class Centers {
         ],
         attributes,
         limit: limitValue,
-        offset: (pageValue > 1) ? (pageValue * limitValue) - limitValue : pageValue
+        offset
       })
         .then((searchResults) => {
           if (searchResults.length <= 0) {
@@ -295,14 +298,15 @@ export class Centers {
             });
           }
 
+          const results = searchResults.filter((center) => {
+              return center.id !== basedOn;
+          });
+
           return res.status(200).send({
             statusCode: 200,
             message: 'Successful Centers!',
-            centers: searchResults,
-            page: (pageValue) ? parseInt(pageValue, 10) : parseInt(pageValue + 1, 10),
-            totalCount: searchResults.length,
-            pageCount: Math.ceil(searchResults.length / limitValue),
-            pageSize: parseInt(searchResults.length, 10),
+            centers: results,
+            meta: generatePaginationMeta(results, limitValue, pageValue)
           });
         });
     } else {
@@ -312,17 +316,16 @@ export class Centers {
         ],
         attributes,
         limit: limitValue,
-        offset: (pageValue > 1) ? (pageValue * limitValue) - limitValue : pageValue
+        offset
       })
-        .then(center => res.status(200).send({
-          statusCode: 200,
-          message: 'Successful Centers!',
-          centers: center.rows,
-          page: (pageValue) ? parseInt(pageValue, 10) : parseInt(pageValue + 1, 10),
-          totalCount: center.count,
-          pageCount: Math.ceil(center.count / limitValue),
-          pageSize: parseInt(center.rows.length, 10),
-        }));
+        .then(center => {
+          res.status(200).send({
+            statusCode: 200,
+            message: 'Successful Centers!',
+            centers: center.rows,
+            meta: generatePaginationMeta(center, limitValue, pageValue)
+          })
+        });
     }
   }
 

@@ -25,7 +25,7 @@ export default (state = {}, action = {}) => {
       return newCenter;
 
     case FETCH_CENTERS:
-      return action.centers;
+      return action.payload;
 
     case LOADMORE_CENTER_REQUEST:
       return {
@@ -40,13 +40,13 @@ export default (state = {}, action = {}) => {
         loadingmore: false
       };
 
-    case LOADMORE_CENTER_SUCCESS:
+      case LOADMORE_CENTER_SUCCESS:
       newState = Object.assign({}, state);
       newState.centers = newState.centers.concat(action.payload);
       newState.loadingmore = false;
-      newState.page = parseInt(newState.page + 1, 10);
-      newState.pageSize = parseInt(newState.pageSize + action.payload.length, 10);
-      if (newState.pageSize === newState.totalCount) {
+      newState.meta.page = parseInt(newState.meta.page + 1, 10);
+      newState.meta.pageSize = parseInt(newState.meta.pageSize + action.payload.length, 10);
+      if (newState.meta.pageSize === newState.meta.totalCount) {
         newState.loadmore = false;
       }
       return newState;

@@ -14,7 +14,7 @@ const api = '/api/v1/centers';
 
 export const fetchCentersDispatch = data => ({
   type: FETCH_CENTERS,
-  centers: data
+  payload: data
 });
 
 export const searchCenterDispatch = data => ({
@@ -32,7 +32,7 @@ export const fetchCentersAction = () => (dispatch) => {
       dispatch(hideLoading());
     })
     .catch((err) => {
-      Materialize.toast('Error in connection!!!', 5000);
+      Materialize.toast('Error in connection!!!', 5000, 'red');
       throw (err);
     });
 };

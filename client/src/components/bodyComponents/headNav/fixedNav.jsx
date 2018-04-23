@@ -9,6 +9,10 @@ class FixedNav extends Component {
     $('.modal').modal();
   }
 
+  showModal () {
+    $('#search__modal').modal('open');
+  }
+
   showAuthenticationLinks() {
     // Show Sign-in and Sign-up
     // links only if user isn't signed in
@@ -37,9 +41,11 @@ class FixedNav extends Component {
                 <Link to="/" className="brand-logo logo">
                   <p>Boots EM</p>
                 </Link>
-                <a href="#_=_" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></a>
+                  <a href="#" data-activates="slide-out" className="button-collapse"><i
+                      className="material-icons">menu</i></a>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
-                  <li><a href="#search__modal" className="modal-trigger" id="search__view"><i className="material-icons">search</i></a>
+                  <li><a onClick={() => this.showModal()} className="modal-trigger" id="search__view">
+                    <i className="material-icons">search</i></a>
                   </li>
                   <li><Link to="/centers">List of centers</Link></li>
                   { this.showAuthenticationLinks() }

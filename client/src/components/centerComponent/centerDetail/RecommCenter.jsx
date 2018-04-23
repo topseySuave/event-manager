@@ -21,44 +21,47 @@ class RecommCenter extends Component {
     };
   }
 
-  componentWillReceiveProps(newProps) {
-    this.setState({ currentCenterId: newProps.relatedCenterBasedOn.id });
-    this.props.fetchCenterRelatedTo(newProps.relatedCenterBasedOn)
+  fetchCenter(relatedCenters){
+    this.props.fetchCenterRelatedTo(relatedCenters)
       .then(({ data }) => {
-        this.setState({ isLoading: false, relatedCenters: data.centers });
+          this.setState({ isLoading: false, relatedCenters: data.centers });
       })
-      .catch((err) => {
-        this.setState({ isLoading: false, error: true, errorMessage: this.state.noCenter });
+      .catch(() => {
+          this.setState({ isLoading: false, error: true, errorMessage: this.state.noCenter });
       });
+  }
+
+  componentWillMount(){
+    this.fetchCenter(this.props.relatedCenterBasedOn);
+  }
+
+  componentWillReceiveProps(newProps){
+    this.fetchCenter(newProps.relatedCenterBasedOn);
   }
 
   sortAndShowRecommended() {
     if (!isEmpty(this.state.relatedCenters)) {
       return this.state.relatedCenters.map((center, index) => {
-        if (center.id !== this.state.currentCenterId) {
-          let to = `/center/${center.id}/${this.helper.sanitizeString(center.title)}`;
-          return (
-            <div key={shortid.generate()} className="col s12 m6 l4">
-              <Link to={to} href={to}>
-                <div className="card">
-                  {
-                    !!center.img_url
-                    &&
-                    <div className="card-image center__image">
-                      <img src={center.img_url} alt={center.title} />
-                    </div>
-                  }
-                  <div className="card-content black-text">
-                    <p className="bold">{center.title}</p>
-                    <p className="light__font"><i className="material-icons f15">location_on</i>{center.location}</p>
+      const to = `/center/${center.id}/${this.helper.sanitizeString(center.title)}`;
+        return (
+          <div key={shortid.generate()} className="col s12 m6 l4">
+            <Link to={to} href={to}>
+              <div className="card">
+                {
+                  !!center.img_url
+                  &&
+                  <div className="card-image center__image">
+                    <img src={center.img_url} alt={center.title} />
                   </div>
+                }
+                <div className="card-content black-text">
+                  <p className="bold">{center.title}</p>
+                  <p className="light__font"><i className="material-icons f15">location_on</i>{center.location}</p>
                 </div>
-              </Link>
-            </div>
-          );
-        }
-
-        delete this.state.relatedCenters[index];
+              </div>
+            </Link>
+          </div>
+        );
       });
     }
     return (
@@ -67,10 +70,10 @@ class RecommCenter extends Component {
   }
 
   render() {
-    let {
+    const {
       isLoading, error, errorMessage
     } = this.state;
-    let eachCenter = this.sortAndShowRecommended();
+    const eachCenter = this.sortAndShowRecommended();
     return (
       <div className="row">
         <div className="divider" />

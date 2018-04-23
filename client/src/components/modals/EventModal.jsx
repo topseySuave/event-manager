@@ -45,7 +45,7 @@ class EventModal extends Component {
             let {title, img_url, startDate, endDate, description} = newProps.eventToEdit;
             this.setState({
                 editEvent: true,
-                centerId: newProps.activeCenter.centr.id,
+                centerId: newProps.activeCenter.center.id,
                 userId: newProps.actUser.user.id,
                 title: title,
                 img_url: img_url,
@@ -55,7 +55,7 @@ class EventModal extends Component {
             });
         } else {
             this.setState({
-                centerId: newProps.activeCenter.centr.id,
+                centerId: newProps.activeCenter.center.id,
                 userId: newProps.actUser.user.id,
             });
         }

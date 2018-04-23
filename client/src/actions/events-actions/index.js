@@ -21,7 +21,7 @@ import setAuthorizationToken from '../../components/authentication/setAuthentica
  * * */
 const api = '/api/v1/events';
 
-/* *
+/**
  *  @Event Dispatch Method
  *  @Returns Object
  * * */
@@ -83,7 +83,7 @@ const createEvent = (eventData, imgUrl) => (dispatch) => {
     });
 };
 
-/* *
+/**
  *  Initial Create Event Request Action
  *  @Returns Promise
  * * */
@@ -98,6 +98,7 @@ export const createEventRequest = eventData => dispatch => {
         dispatch(createEvent(eventData, data.url));
       })
       .catch((err) => {
+        Materialize.toast('Error in connection', 5000, 'red');
         console.log(err);
       });
   }
@@ -117,7 +118,7 @@ export const fetchEventRequest = () => dispatch => axios.get(api)
     dispatch(eventsDispatchAction('fetch', data));
   });
 
-/* *
+/**
  *  @Edit Event Request Action
  *  @Returns Object
  * * */
@@ -135,10 +136,13 @@ const editEvent = (eventData, imgUrl) => dispatch => {
         return dispatch(eventsDispatchAction('edit', data.event));
       }
       return data;
+    })
+    .catch(() => {
+      Materialize.toast('Error in connection', 5000, 'red');
     });
 };
 
-/* *
+/**
  *  @Edit Event Action
  *  @Returns Object
  * * */
@@ -151,12 +155,15 @@ export const editEventAction = eventData => dispatch => {
     return axios.post(CLOUDINARY_URL, formData)
       .then(({data}) => {
         dispatch(editEvent(eventData, data.url));
+      })
+      .catch(() => {
+        Materialize.toast('Error in connection', 5000, 'red');
       });
   }
   return dispatch(editEvent(eventData, eventData.img_url));
 };
 
-/* *
+/**
  *  @Delete Event Action
  *  @Returns Object
  * * */
@@ -176,7 +183,7 @@ export const deleteEventRequest = (id) => {
     });
 };
 
-/* *
+/**
  *  @Load more Event Request Action
  *  @Returns Object
  * * */

@@ -85,7 +85,7 @@ class EditCenterForm extends Component {
     if (props.editCenter) {
       let {
         id, title, img_url, facilities, location, price, capacity, description
-      } = props.centr;
+      } = props.center;
       this.setState({
         editCenter: true,
         id,

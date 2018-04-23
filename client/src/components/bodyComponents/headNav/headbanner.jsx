@@ -23,6 +23,10 @@ class HeaderBanner extends Component {
     );
   }
 
+  showModal () {
+    $('#search__modal').modal('open');
+  }
+
   showSignUpActionButton() {
     if (!this.props.activeState.isAuthenticated) {
       return (
@@ -42,7 +46,7 @@ class HeaderBanner extends Component {
                   <p>Boots EM</p>
                 </Link>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
-                  <li><a href="#search__modal" className="modal-trigger" id="search__view"><i className="material-icons">search</i></a>
+                  <li><a onClick={() => this.showModal()} className="modal-trigger" id="search__view"><i className="material-icons">search</i></a>
                   </li>
                   <li><Link to="/centers">List of centers</Link></li>
                   { this.showAuthenticationLinks() }

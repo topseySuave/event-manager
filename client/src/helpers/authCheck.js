@@ -4,7 +4,7 @@ import { store } from '../';
 import setAuthorizationToken from '../components/authentication/setAuthenticationToken';
 import { setCurrentUser, signOutRequest } from '../actions/authActions';
 
-export default class authCheck {
+export default class AuthCheck {
   jwtIsSet() {
     return !!localStorage.getItem('jwtToken');
   }

@@ -27,9 +27,8 @@ class AllCenters extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    let {
-      centers, page, pageCount, pageSize, totalCount, loadingmore, loadmore
-    } = newProps.centerStore;
+    let { page, pageCount, pageSize, totalCount } = newProps.centerStore.meta,
+    { loadingmore, loadmore } = newProps.centerStore;
 
     if (newProps) {
       this.setState({
@@ -112,10 +111,30 @@ class AllCenters extends Component {
     }
   }
 
+  showLoadMoreButton(){
+      const {
+          isLoading, loadingmore, pageCount, pageSize, totalCount
+      } = this.state;
+
+      if(!isLoading && pageCount >= 1){
+        if(loadingmore){
+          return (
+            <CircularLoader />
+          );
+        } else {
+          if(pageSize !== totalCount){
+            return (
+              <button onClick={() => this.loadMore()} className="col offset-s3 s6 btn waves-effect gradient__bg"> load more </button>
+            );
+          }
+        }
+      }
+  }
+
   render() {
     this.autoLoadMore();
-    let {
-      isLoading, loadingmore, pageCount, pageSize, totalCount
+    const {
+      isLoading
     } = this.state;
     return (
       <div className="container">
@@ -130,9 +149,7 @@ class AllCenters extends Component {
                 </div>
                 }
                 { (isLoading) ? '' : this.renderNoCenter()}
-                {
-                  (isLoading) ? '' : (pageCount > 1) ? (loadingmore) ? <CircularLoader /> : (pageSize !== totalCount) ? <button onClick={() => this.loadMore()} className="col offset-s3 s6 btn waves-effect gradient__bg"> load more </button> : '' : ''
-                }
+                { this.showLoadMoreButton() }
               </div>
             </div>
           </div>

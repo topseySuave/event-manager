@@ -51,7 +51,7 @@ class SearchModal extends Component {
     let { centers } = this.state;
     if (!isEmpty(centers)) {
       return centers.map((center) => {
-        let to = `center/${center.id}/${this.helper.sanitizeString(center.title)}`;
+        let to = `/center/${center.id}/${this.helper.sanitizeString(center.title)}`;
         return (
           <Link key={shortid.generate()} to={to} href={to}>
             <div className="card">

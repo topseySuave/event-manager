@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import models from '../models';
 import mailer from '../middleware/mailer';
 
-const userModel = models.Users;
+const userModel = models.User;
 const { Events } = models;
 const { Op } = models.sequelize;
 dotenv.config();

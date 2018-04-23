@@ -1,5 +1,6 @@
 // import Sequelize from '../config';
 import models from '../models';
+import { generatePaginationMeta } from '../middleware/util';
 
 const EventModel = models.Events;
 const CenterModel = models.Centers;
@@ -76,8 +77,8 @@ export class Events {
         })
           .then((returnedEvent) => {
             if (!returnedEvent) {
-              return res.status(400).send({
-                statusCode: 400,
+              return res.status(404).send({
+                statusCode: 404,
                 message: 'No Event found'
               });
             }
@@ -120,8 +121,8 @@ export class Events {
       })
         .then((searchResults) => {
           if (searchResults.length <= 0) {
-            return res.status(400).send({
-              statusCode: 400,
+            return res.status(404).send({
+              statusCode: 404,
               message: 'Event(s) do not match your search result'
             });
           }
@@ -163,10 +164,7 @@ export class Events {
             statusCode: 200,
             message: 'Successful Events!',
             events: events.rows,
-            pageSize: parseInt(events.rows.length, 10),
-            totalCount: events.count,
-            pageCount: Math.ceil(events.count / limitValue),
-            page: (pageValue) ? parseInt(pageValue, 10) : parseInt(pageValue + 1, 10),
+            meta: generatePaginationMeta(events, limitValue, pageValue)
           });
         })
         .catch(err => res.status(500).send(err));
@@ -281,7 +279,7 @@ export class Events {
         )
           .then((updatedEvent) => {
             if (updatedEvent) {
-              Event.findById(eventId, {
+              EventModel.findById(eventId, {
                 include: [{
                   model: CenterModel,
                   as: 'center',
@@ -298,10 +296,8 @@ export class Events {
                   }
                 });
             }
-          })
-          .catch(error => res.status(500).send(error));
-      })
-      .catch(error => res.status(500).send(error));
+          });
+      });
   }
 
   /**

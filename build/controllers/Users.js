@@ -32,7 +32,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var userModel = _models2.default.Users;
+var userModel = _models2.default.User;
 var Events = _models2.default.Events;
 var Op = _models2.default.sequelize.Op;
 
