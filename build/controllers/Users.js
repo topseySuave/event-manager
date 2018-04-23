@@ -130,7 +130,7 @@ var Users = function () {
         } else if (_bcryptjs2.default.compareSync(password, foundUser.password)) {
           return res.status(200).send({
             statusCode: 200,
-            message: 'signin successful',
+            message: 'Here`s your Token',
             token: _jsonwebtoken2.default.sign({
               id: foundUser.id,
               firstName: foundUser.firstName,
@@ -144,6 +144,8 @@ var Users = function () {
           statusCode: 401,
           message: 'Wrong password'
         });
+      }).catch(function (error) {
+        return res.status(400).send(error);
       });
     }
 
@@ -160,10 +162,7 @@ var Users = function () {
     key: 'currUser',
     value: function currUser(req, res) {
       return res.send({
-        id: req.currentUser.id,
-        firstName: req.currentUser.firstName,
-        lastName: req.currentUser.lastName,
-        email: req.currentUser.email
+        currentUser: req.currentUser
       });
     }
 
@@ -276,6 +275,7 @@ var Users = function () {
             }
           }).catch(function (error) {
             return res.status(500).send({
+              error: true,
               message: 'Houston we have a problem.!! Error deleting User',
               errorMessage: error
             });
