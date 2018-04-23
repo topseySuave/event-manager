@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+// import Validator from 'validatorjs';
+
 
 var _dotenv = require('dotenv');
 
@@ -32,7 +34,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var userModel = _models2.default.User;
+var User = _models2.default.User;
 var Events = _models2.default.Events;
 var Op = _models2.default.sequelize.Op;
 
@@ -52,7 +54,7 @@ var Users = function () {
     key: 'createUser',
 
     /**
-       * Signup Users record
+       * Signup User record
        *
        * @param {object} req - HTTP Request
        * @param {object} res - HTTP Response
@@ -73,7 +75,7 @@ var Users = function () {
       var role = req.body.role || false;
       var encryptedPassword = _bcryptjs2.default.hashSync(password, salt);
 
-      userModel.findOne({
+      User.findOne({
         where: {
           email: _defineProperty({}, Op.iLike, email)
         }
@@ -84,7 +86,7 @@ var Users = function () {
             message: 'Email has been taken, Please Choose another'
           });
         }
-        return userModel.create({
+        return User.create({
           firstName: firstName,
           lastName: lastName,
           email: email,
@@ -100,7 +102,7 @@ var Users = function () {
     }
 
     /**
-       * Signin Users record
+       * Signin User record
        *
        * @param {object} req - HTTP Request
        * @param {object} res - HTTP Response
@@ -115,7 +117,7 @@ var Users = function () {
           email = _req$body2.email,
           password = _req$body2.password;
 
-      userModel.findOne({
+      User.findOne({
         where: {
           email: _defineProperty({}, Op.iLike, email)
         }
@@ -123,7 +125,7 @@ var Users = function () {
         if (!foundUser) {
           return res.status(404).send({
             statusCode: 404,
-            message: 'Users Not Found! Please Sign Up'
+            message: 'User Not Found! Please Sign Up'
           });
         } else if (_bcryptjs2.default.compareSync(password, foundUser.password)) {
           return res.status(200).send({
@@ -131,6 +133,9 @@ var Users = function () {
             message: 'signin successful',
             token: _jsonwebtoken2.default.sign({
               id: foundUser.id,
+              firstName: foundUser.firstName,
+              lastName: foundUser.lastName,
+              email: foundUser.email,
               role: foundUser.role
             }, process.env.SECRET_KEY, { expiresIn: '24h' })
           });
@@ -143,7 +148,7 @@ var Users = function () {
     }
 
     /**
-       * GETS Current Users record
+       * GETS Current User record
        *
        * @param {object} req - HTTP Request
        * @param {object} res - HTTP Response
@@ -156,12 +161,14 @@ var Users = function () {
     value: function currUser(req, res) {
       return res.send({
         id: req.currentUser.id,
+        firstName: req.currentUser.firstName,
+        lastName: req.currentUser.lastName,
         email: req.currentUser.email
       });
     }
 
     /**
-       * Assign a Users as admin
+       * Assign a User as admin
        *
        * @param {object} req - HTTP Request
        * @param {object} res - HTTP Response
@@ -176,7 +183,7 @@ var Users = function () {
           email = _req$body3.email,
           password = _req$body3.password;
 
-      userModel.findOne({
+      User.findOne({
         where: {
           email: _defineProperty({}, Op.iLike, email)
         }
@@ -184,11 +191,11 @@ var Users = function () {
         if (!foundUser) {
           return res.status(404).send({
             statusCode: 404,
-            message: 'Users Not Found! Please Sign Up'
+            message: 'User Not Found! Please Sign Up'
           });
         } else if (_bcryptjs2.default.compareSync(password, foundUser.password)) {
           // update user role to true...
-          userModel.update({ role: true }, {
+          User.update({ role: true }, {
             where: {
               id: foundUser.id
             }
@@ -210,7 +217,7 @@ var Users = function () {
     }
 
     /**
-       * GETS all Users record
+       * GETS all User record
        *
        * @param {object} req - HTTP Request
        * @param {object} res - HTTP Response
@@ -221,7 +228,7 @@ var Users = function () {
   }, {
     key: 'allUsers',
     value: function allUsers(req, res) {
-      userModel.findAll().then(function (users) {
+      User.findAll().then(function (users) {
         return res.status(200).send({
           message: 'all users found',
           statusCode: 200,
@@ -233,7 +240,7 @@ var Users = function () {
     }
 
     /**
-       * DELETE a Users record
+       * DELETE a User record
        *
        * @param {object} req - HTTP Request
        * @param {object} res - HTTP Response
@@ -246,36 +253,36 @@ var Users = function () {
     value: function removeUsers(req, res) {
       var userId = req.body.userId;
 
-      userModel.findOne({
+      User.findOne({
         where: {
           id: userId
         }
       }).then(function (foundUser) {
         if (foundUser) {
-          userModel.destroy({
+          User.destroy({
             where: {
               id: foundUser.id
             }
           }).then(function (deletedUser) {
             if (deletedUser) {
               res.status(200).send({
-                message: 'Users has been deleted successfully',
+                message: 'User has been deleted successfully',
                 user: foundUser
               });
             } else {
               res.send({
-                message: 'Users was not deleted, please try again'
+                message: 'User was not deleted, please try again'
               });
             }
           }).catch(function (error) {
             return res.status(500).send({
-              message: 'Houston we have a problem.!! Error deleting Users',
+              message: 'Houston we have a problem.!! Error deleting User',
               errorMessage: error
             });
           });
         } else {
           res.status(404).send({
-            message: 'Users was not found'
+            message: 'User was not found'
           });
         }
       });
@@ -286,4 +293,4 @@ var Users = function () {
 }();
 
 exports.default = Users;
-//# sourceMappingURL=Users.js.map
+//# sourceMappingURL=user.js.map
