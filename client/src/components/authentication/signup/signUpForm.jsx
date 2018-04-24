@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { PropTypes } from 'prop-types';
+import {PropTypes} from 'prop-types';
 import classNames from 'classnames';
 import { validateSignUpInput } from '../validateInput';
 import InputForm from '../../form/formInput';
@@ -40,7 +40,7 @@ class SignUpForm extends Component {
   }
 
   isValid() {
-    const { errors, isValid } = validateSignUpInput(this.state);
+    const {errors, isValid} = validateSignUpInput(this.state);
     if (!isValid) {
       this.setState({ errors });
     }
@@ -57,49 +57,29 @@ class SignUpForm extends Component {
       });
 
       this.props.userSignupRequest(this.state)
-        .then((res) => {
-          switch (res.data.statusCode) {
-            case 201:
-              this.setState({
-                resMessage: res.data.message,
-                interval: 5,
-                isLoading: false,
-                signedUp: true
-              });
-
-              setInterval(() => {
-                this.setState({ interval: this.state.interval - 1 });
-                if (this.state.interval === 0) {
-                  this.setState({ redirect: true });
-                }
-              }, 1000);
-
-              break;
-            case 401:
-              this.setState({
-                serverRes: res.data,
-                error: res.data.message,
-                isLoading: false,
-                exists: true,
-                signedUp: false
-              });
-              break;
-            default:
-              this.setState({
-                serverRes: res.data,
-                error: 'Houston we have a problem...!',
-                isLoading: false,
-                signedUp: false
-              });
-              break;
-          }
-        })
-        .catch((err) => {
-          Materialize.toast('Error in connection!!!', 5000, 'rounded', () => {
-            this.setState({
-              isLoading: false,
-            });
+        .then(({ data }) => {
+          this.setState({
+            resMessage: data.message,
+            interval: 5,
+            isLoading: false,
+            signedUp: true
           });
+          setInterval(() => {
+            this.setState({ interval: this.state.interval - 1 });
+            if (this.state.interval === 0) {
+              this.setState({ redirect: true });
+            }
+          }, 1000);
+        })
+        .catch(({ response }) => {
+          this.setState({
+            serverRes: response.data,
+            error: response.data.message,
+            isLoading: false,
+            exists: true,
+            signedUp: false
+          });
+          Materialize.toast(this.state.error, 5000, 'red');
         });
     }
   }
@@ -110,22 +90,23 @@ class SignUpForm extends Component {
     } = this.state;
     let to = '/signin';
     if (redirect) {
-      return <Redirect to={to} />;
+      return <Redirect to={to}/>;
     }
 
-    let loading = classNames('row', { isLoading });
+    let loading = classNames('row', {isLoading});
     return (
       <div>
-        <div className={classNames('col', 's12', { hidden: !this.state.signedUp })}>
+        <div className={classNames('col', 's12', {hidden: !this.state.signedUp})}>
           <div className="card-panel teal lighten-3">
-            <h3 className="white-text" style={{ marginTop: '0px' }}>You're Welcome!!!</h3>
+            <h3 className="white-text" style={{marginTop: '0px'}}>You're Welcome!!!</h3>
             <span className="white-text">{this.state.resMessage}</span>
-            <br />
+            <br/>
             <span className="white-text">Redirecting to signin in {interval} seconds</span>
           </div>
         </div>
 
-        <form className={classNames('col s12', { hidden: this.state.signedUp })} id="reg-form" onSubmit={this.handleSubmit}>
+        <form className={classNames('col s12', {hidden: this.state.signedUp})} id="reg-form"
+              onSubmit={this.handleSubmit}>
           <div className={loading}>
             <InputForm
               fieldId="first_name"
@@ -188,7 +169,7 @@ class SignUpForm extends Component {
                 type="submit"
                 name="action"
                 disabled={isLoading ? 'disabled' : ''}
-              >{ !isLoading ? 'Register' : <img src="/image/loader/loading.gif" alt="submin-loader" /> }
+              >{!isLoading ? 'Register' : <img src="/image/loader/loading.gif" alt="submin-loader"/>}
               </button>
             </div>
 

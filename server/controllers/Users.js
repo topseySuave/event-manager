@@ -42,8 +42,8 @@ export default class Users {
     })
       .then((foundUser) => {
         if (foundUser) {
-          return res.status(401).json({
-            statusCode: 401,
+          return res.status(400).json({
+            statusCode: 400,
             message: 'Email has been taken, Please Choose another'
           });
         }

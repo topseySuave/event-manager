@@ -3,14 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="f051bbcc-4e3a-4837-a5f5-ffa0a54f7bfb" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/css/overwrite/overwrite.sass" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/css/overwrite/overwrite.sass" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/public/js/app.bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/js/app.bundle.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/public/js/hot/hot-update.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/js/hot/hot-update.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/actions/events-actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/actions/events-actions/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/actions/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/modals/EventModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/modals/EventModal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/modals/eventModalForm/editEventModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/modals/eventModalForm/editEventModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/js/hot/hot-update.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/js/hot/hot-update.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/authentication/signup/signUpForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/authentication/signup/signUpForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/Users.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/Users.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/models/Events.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/Events.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -62,11 +59,20 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Centers.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Centers.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/server/controllers/Centers.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="238">
-                  <caret line="244" column="10" lean-forward="true" selection-start-line="244" selection-start-column="10" selection-end-line="244" selection-end-column="10" />
+                <state relative-caret-position="176">
+                  <caret line="298" column="11" lean-forward="true" selection-start-line="298" selection-start-column="11" selection-end-line="298" selection-end-column="11" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Users.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/server/controllers/Users.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="414">
+                  <caret line="50" column="20" lean-forward="true" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="20" />
                 </state>
               </provider>
             </entry>
@@ -75,23 +81,26 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="editEventModal.jsx" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/client/src/components/modals/eventModalForm/editEventModal.jsx">
+          <file leaf-file-name="authActions.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/client/src/actions/authActions.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1436">
-                  <caret line="135" column="46" lean-forward="true" selection-start-line="135" selection-start-column="46" selection-end-line="135" selection-end-column="46" />
+                <state relative-caret-position="294">
+                  <caret line="24" column="2" lean-forward="true" selection-start-line="24" selection-start-column="2" selection-end-line="24" selection-end-column="2" />
                   <folding>
-                    <element signature="e#0#41#0" expanded="true" />
+                    <element signature="e#0#26#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="EventModal.jsx" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/src/components/modals/EventModal.jsx">
+          <file leaf-file-name="signUpForm.jsx" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/src/components/authentication/signup/signUpForm.jsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-2846">
-                  <caret line="31" column="24" lean-forward="true" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
+                <state relative-caret-position="298">
+                  <caret line="76" column="41" lean-forward="true" selection-start-line="76" selection-start-column="41" selection-end-line="76" selection-end-column="41" />
+                  <folding>
+                    <element signature="e#0#41#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -172,12 +181,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/server/models/index.js" />
-        <option value="$PROJECT_DIR$/server/routes/events.js" />
-        <option value="$PROJECT_DIR$/server/routes/centers.js" />
         <option value="$PROJECT_DIR$/server/routes/index.js" />
         <option value="$PROJECT_DIR$/server/routes/users.js" />
-        <option value="$PROJECT_DIR$/client/src/actions/authActions.js" />
         <option value="$PROJECT_DIR$/client/src/index.js" />
         <option value="$PROJECT_DIR$/client/src/components/modals/CenterModal.js" />
         <option value="$PROJECT_DIR$/client/src/components/modals/searchModal.js" />
@@ -223,6 +228,10 @@
         <option value="$PROJECT_DIR$/server/controllers/events.js" />
         <option value="$PROJECT_DIR$/server/controllers/Events.js" />
         <option value="$PROJECT_DIR$/client/src/components/modals/eventModalForm/editEventModal.jsx" />
+        <option value="$PROJECT_DIR$/client/src/components/authentication/signup/signup.jsx" />
+        <option value="$PROJECT_DIR$/server/controllers/Users.js" />
+        <option value="$PROJECT_DIR$/client/src/actions/authActions.js" />
+        <option value="$PROJECT_DIR$/client/src/components/authentication/signup/signUpForm.jsx" />
       </list>
     </option>
   </component>
@@ -242,9 +251,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="y" value="23" />
-    <option name="width" value="1440" />
-    <option name="height" value="825" />
+    <option name="x" value="1440" />
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -282,8 +291,7 @@
               <item name="event-manager" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="actions" type="462c0819:PsiDirectoryNode" />
-              <item name="center-actions" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="event-manager" type="b2602c69:ProjectViewProjectNode" />
@@ -291,6 +299,16 @@
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="authentication" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="event-manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="event-manager" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="authentication" type="462c0819:PsiDirectoryNode" />
+              <item name="signup" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="event-manager" type="b2602c69:ProjectViewProjectNode" />
@@ -299,32 +317,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="bodyComponents" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="event-manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="event-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="bodyComponents" type="462c0819:PsiDirectoryNode" />
-              <item name="eventsCard" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="event-manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="event-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="modals" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="event-manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="event-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="modals" type="462c0819:PsiDirectoryNode" />
-              <item name="eventModalForm" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="event-manager" type="b2602c69:ProjectViewProjectNode" />
@@ -531,14 +523,7 @@
       <workItem from="1519885803097" duration="37489000" />
       <workItem from="1523153511068" duration="537000" />
       <workItem from="1523742954513" duration="12030000" />
-      <workItem from="1524524569323" duration="3541000" />
-    </task>
-    <task id="LOCAL-00034" summary="frontend ui design refactoring...">
-      <created>1512766922679</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1512766922679</updated>
+      <workItem from="1524524569323" duration="9360000" />
     </task>
     <task id="LOCAL-00035" summary="fix: attempt to let webpack compile the app and let it read static file (css, svg, images)">
       <created>1512991627950</created>
@@ -876,11 +861,18 @@
       <option name="project" value="LOCAL" />
       <updated>1524529066674</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="fix(centers-page): fix centers page on the client side to render properly the center details">
+      <created>1524529999476</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1524529999476</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="887369000" />
+    <option name="totallyTimeSpent" value="893188000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -892,9 +884,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="1440" y="0" width="1920" height="1080" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15151516" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11321748" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32952693" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.506135" side_tool="true" weight="0.3294893" />
@@ -902,7 +895,7 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.32626426" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49386504" weight="0.67151517" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.35393938" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.29054725" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" order="7" />
@@ -969,7 +962,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix: add center to insert images with center details.&#10;--- fix recommended centers fetching errors.&#10;--- fix authentication validation with jwt.verify which checks for expiry date for user." />
     <MESSAGE value="fix: webpack hot update and but leave webpack to compile not app.js" />
     <MESSAGE value="feat: modify single event Modal to handle both edit and create events." />
     <MESSAGE value="feat: modify single event Modal to handle both edit and create events.." />
@@ -994,7 +986,8 @@
     <MESSAGE value="fix: add secret to travis file." />
     <MESSAGE value="Revert &quot;fix: add config.json for sequelize to see&quot;&#10;&#10;This reverts commit 0d39445" />
     <MESSAGE value="fix(reverted): revert and rename controllers to fit their class names" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(reverted): revert and rename controllers to fit their class names" />
+    <MESSAGE value="fix(centers-page): fix centers page on the client side to render properly the center details" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(centers-page): fix centers page on the client side to render properly the center details" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1002,23 +995,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/server/test/a_users.test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="177" column="11" selection-start-line="177" selection-start-column="11" selection-end-line="177" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.hound.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="2" column="27" lean-forward="true" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.coveralls.yml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130">
@@ -1031,6 +1007,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
           <caret line="18" column="75" selection-start-line="18" selection-start-column="75" selection-end-line="18" selection-end-column="75" />
+          <folding>
+            <element signature="e#0#31#0" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1178,6 +1157,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="259">
           <caret line="30" column="43" lean-forward="true" selection-start-line="30" selection-start-column="43" selection-end-line="30" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#26#0" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1221,16 +1203,6 @@
           <caret line="21" column="21" lean-forward="true" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
           <folding>
             <element signature="e#0#43#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/controllers/Users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="14" column="3" selection-end-line="243" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1318,13 +1290,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/controllers/Centers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="244" column="10" lean-forward="true" selection-start-line="244" selection-start-column="10" selection-end-line="244" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/modals/EventModal.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2846">
@@ -1348,10 +1313,54 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/modals/eventModalForm/editEventModal.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1436">
-          <caret line="135" column="46" lean-forward="true" selection-start-line="135" selection-start-column="46" selection-end-line="135" selection-end-column="46" />
+        <state relative-caret-position="555">
+          <caret line="259" column="5" lean-forward="true" selection-start-line="259" selection-start-column="5" selection-end-line="259" selection-end-column="5" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/authentication/signup/signup.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="39" column="20" lean-forward="true" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/controllers/Centers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="298" column="11" lean-forward="true" selection-start-line="298" selection-start-column="11" selection-end-line="298" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/controllers/Users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="50" column="20" lean-forward="true" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/authentication/signup/signUpForm.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="76" column="41" lean-forward="true" selection-start-line="76" selection-start-column="41" selection-end-line="76" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/actions/authActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="24" column="2" lean-forward="true" selection-start-line="24" selection-start-column="2" selection-end-line="24" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
