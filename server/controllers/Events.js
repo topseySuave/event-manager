@@ -2,11 +2,18 @@
 import models from '../models';
 import { generatePaginationMeta } from '../middleware/util';
 
-const EventModel = models.Events;
+const Event = models.Events;
 const CenterModel = models.Centers;
 const { Op } = models.sequelize;
-const attributes = ['id', 'title', 'img_url', 'description', 'startDate', 'endDate', 'centerId'];
-const centersAttributes = ['location'];
+
+// let storage = multer.diskStorage({
+//     destination: '../server/public/images/uploads',
+//     filename: (req, file, cb) => {
+//         cb(null, file.fieldname + '-' + Date.now() + path.extname())
+//     }
+// });
+//
+// let upload = multer({ storage: storage }).array('photos', 5);
 
 /**
  * @export
@@ -30,12 +37,7 @@ export class Events {
       });
     }
 
-    EventModel.findOne({
-        where: {
-          id: eventId
-        },
-        attributes: attributes
-    })
+    Event.findById(eventId)
       .then((event) => {
         if (!event) {
           return res.status(404).send({
@@ -64,7 +66,7 @@ export class Events {
     const order = (req.query.order) ? req.query.order : 'desc';
     if (req.query && req.query.sort) {
       if (order) {
-        EventModel.findAll({
+        Event.findAll({
           where: {
             startDate: {
               [Op.gte]: new Date().toDateString()
@@ -72,13 +74,12 @@ export class Events {
           },
           order: [
             ['id', order]
-          ],
-          attributes: attributes
+          ]
         })
           .then((returnedEvent) => {
             if (!returnedEvent) {
-              return res.status(404).send({
-                statusCode: 404,
+              return res.status(400).send({
+                statusCode: 400,
                 message: 'No Event found'
               });
             }
@@ -106,7 +107,7 @@ export class Events {
         }
       }));
 
-      EventModel.findAll({
+      Event.findAll({
         where: {
           [Op.or]: titleResp,
           startDate: {
@@ -117,12 +118,11 @@ export class Events {
           ['id', order]
         ],
         limit: limitValue,
-        attributes
       })
         .then((searchResults) => {
           if (searchResults.length <= 0) {
-            return res.status(404).send({
-              statusCode: 404,
+            return res.status(400).send({
+              statusCode: 400,
               message: 'Event(s) do not match your search result'
             });
           }
@@ -134,17 +134,15 @@ export class Events {
         });
     } else {
       const pageValue = req.query.next || 0;
-      EventModel.findAndCountAll({
+      Event.findAndCountAll({
         where: {
           startDate: {
             [Op.gte]: new Date().toDateString()
           }
         },
-        attributes: attributes,
         include: [{
           model: CenterModel,
-          as: 'center',
-          attributes: centersAttributes
+          as: 'center'
         }],
         order: [
           ['id', order]
@@ -164,7 +162,7 @@ export class Events {
             statusCode: 200,
             message: 'Successful Events!',
             events: events.rows,
-            meta: generatePaginationMeta(events, limitValue, pageValue)
+            mete: generatePaginationMeta(events, limitValue, pageValue)
           });
         })
         .catch(err => res.status(500).send(err));
@@ -184,7 +182,7 @@ export class Events {
     const endDate = new Date(req.body.endDate);
 
     // noinspection JSDuplicatedDeclaration
-    EventModel.findOne({
+    Event.findOne({
       where: {
         centerId: req.body.centerId,
         startDate: {
@@ -204,14 +202,15 @@ export class Events {
             statusCode: 400
           });
         }
-        return EventModel.create({
+        return Event.create({
           title: req.body.title,
           img_url: req.body.img_url,
+          location: req.body.location,
           description: req.body.description,
           startDate,
           endDate,
           centerId: parseInt(req.body.centerId, 10),
-          userId: parseInt(req.currentUser.id, 10),
+          userId: parseInt(req.body.userId, 10),
         })
           .then((event) => {
             res.status(200).send({
@@ -252,7 +251,7 @@ export class Events {
       });
     }
 
-    EventModel.findById(eventId)
+    Event.findById(eventId)
       .then((event) => {
         if (!event) {
           return res.status(400).send({
@@ -261,7 +260,7 @@ export class Events {
           });
         }
 
-        EventModel.update(
+        Event.update(
           {
             title: req.body.title || event.title,
             img_url: req.body.img_url || event.img_url,
@@ -279,11 +278,10 @@ export class Events {
         )
           .then((updatedEvent) => {
             if (updatedEvent) {
-              EventModel.findById(eventId, {
+              Event.findById(eventId, {
                 include: [{
                   model: CenterModel,
-                  as: 'center',
-                  attributes: centersAttributes
+                  as: 'center'
                 }]
               })
                 .then((newEvent) => {
@@ -296,8 +294,10 @@ export class Events {
                   }
                 });
             }
-          });
-      });
+          })
+          .catch(error => res.status(500).send(error));
+      })
+      .catch(error => res.status(500).send(error));
   }
 
   /**
@@ -316,7 +316,7 @@ export class Events {
         message: 'Event id is not a number'
       });
     }
-    EventModel.findById(eventId)
+    Event.findById(eventId)
       .then((deletedEvent) => {
         if (!deletedEvent) {
           return res.status(400).send({
@@ -324,7 +324,7 @@ export class Events {
             message: `Event not found with id : ${eventId}`
           });
         }
-        EventModel.destroy({
+        Event.destroy({
           where: {
             id: eventId,
           }

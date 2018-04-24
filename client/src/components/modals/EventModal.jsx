@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
-import {createEventRequest} from '../../actions/events-actions'
+import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { createEventRequest } from '../../actions/events-actions'
 import InputForm from '../../components/form/formInput'
-import {validateEventInput} from './validateInput'
-import {ADD_EVENT} from '../../actions'
+import { validateEventInput } from './validateInput'
+import { ADD_EVENT } from '../../actions'
 
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
@@ -12,7 +12,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
 
 class EventModal extends Component {
-    constructor(props) {
+    constructor(props){
         super(props);
 
         const startDate = new Date();
@@ -40,9 +40,9 @@ class EventModal extends Component {
         this.onFileChange = this.onFileChange.bind(this);
     }
 
-    updateProps(newProps) {
-        if (newProps.editEvent) {
-            let {title, img_url, startDate, endDate, description} = newProps.eventToEdit;
+    updateProps(newProps){
+        if(newProps.editEvent){
+            let { title, img_url, startDate, endDate, description } = newProps.eventToEdit;
             this.setState({
                 editEvent: true,
                 centerId: newProps.activeCenter.center.id,
@@ -53,7 +53,7 @@ class EventModal extends Component {
                 endDate: endDate,
                 description: description
             });
-        } else {
+        }else{
             this.setState({
                 centerId: newProps.activeCenter.center.id,
                 userId: newProps.actUser.user.id,
@@ -61,11 +61,11 @@ class EventModal extends Component {
         }
     }
 
-    componentDidMount() {
+    componentDidMount(){
         this.updateProps(this.props);
     }
 
-    isValid() {
+    isValid(){
         const {errors, isValid} = validateEventInput(this.state);
         if (!isValid) {
             this.setState({errors});
@@ -142,17 +142,17 @@ class EventModal extends Component {
                 isLoading: true
             });
             this.props.createEventRequest(this.state);
-            // .then((data)=>{
-            //     console.log('res from action', data);
-            //     this.setState({isLoading: false});
-            //     if(data.type === ADD_EVENT){
-            //         Materialize.toast('Event has been created successfully', 5000, 'teal');
-            //         this.setState({ title: '', description: '' });
-            //         this.handleClose();
-            //     }else{
-            //         Materialize.toast(data.message, 5000, 'red');
-            //     }
-            // });
+                // .then((data)=>{
+                //     console.log('res from action', data);
+                //     this.setState({isLoading: false});
+                //     if(data.type === ADD_EVENT){
+                //         Materialize.toast('Event has been created successfully', 5000, 'teal');
+                //         this.setState({ title: '', description: '' });
+                //         this.handleClose();
+                //     }else{
+                //         Materialize.toast(data.message, 5000, 'red');
+                //     }
+                // });
         }
     }
 
@@ -165,8 +165,8 @@ class EventModal extends Component {
                 onClick={this.handleClose}
             />,
             <FlatButton
-                label={(isLoading) ?
-                    <img style={{marginTop: "10px"}} src="/image/loader/loading.gif"/> : 'Add Event'
+                label={ (isLoading) ?
+                        <img style={{marginTop: "10px"}} src="/image/loader/loading.gif"/> : 'Add Event'
                 }
                 primary={true}
                 keyboardFocused={true}
@@ -181,7 +181,7 @@ class EventModal extends Component {
                     onClick={this.handleOpen}
                 />
                 <Dialog
-                    title={(editEvent) ? 'Edit Event' : 'Create Event'}
+                    title={ (editEvent) ? 'Edit Event' : 'Create Event' }
                     actions={actions}
                     modal={false}
                     open={this.state.open}
@@ -229,7 +229,7 @@ class EventModal extends Component {
                                         floatingLabelText="Start Date"
                                         disableYearSelection={this.state.disableYearSelection}
                                     />
-                                    {errors.startDate && <span className="red-text accent-1">{errors.startDate}</span>}
+                                    { errors.startDate && <span className="red-text accent-1">{errors.startDate}</span> }
                                 </div>
                                 <div className="input-field col s6">
                                     <DatePicker
@@ -238,7 +238,7 @@ class EventModal extends Component {
                                         floatingLabelText="End Date"
                                         disableYearSelection={this.state.disableYearSelection}
                                     />
-                                    {errors.endDate && <span className="red-text accent-1">{errors.endDate}</span>}
+                                    { errors.endDate && <span className="red-text accent-1">{errors.endDate}</span> }
                                 </div>
                             </div>
                             <div className="row">

@@ -9,8 +9,8 @@
  ## Application Features
    - Sign in and Sign up
    - Create Events
-   - Create Centers
-   - View Centers details
+   - Create Center
+   - View Center details
 
  ### Why this App is Useful
    - Enables user Manager and Easily Attend Events.

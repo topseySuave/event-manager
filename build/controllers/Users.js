@@ -5,8 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-// import Validator from 'validatorjs';
-
 
 var _dotenv = require('dotenv');
 
@@ -34,7 +32,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var User = _models2.default.User;
+var userModel = _models2.default.User;
 var Events = _models2.default.Events;
 var Op = _models2.default.sequelize.Op;
 
@@ -54,13 +52,13 @@ var Users = function () {
     key: 'createUser',
 
     /**
-       * Signup User record
-       *
-       * @param {object} req - HTTP Request
-       * @param {object} res - HTTP Response
-       * @returns {object} Class instance
-       * @memberof Users
-       */
+     * Signup Users record
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @returns {object} Class instance
+     * @memberof Users
+     */
     value: function createUser(req, res) {
       /**
        * Encrypt Password** */
@@ -75,7 +73,7 @@ var Users = function () {
       var role = req.body.role || false;
       var encryptedPassword = _bcryptjs2.default.hashSync(password, salt);
 
-      User.findOne({
+      userModel.findOne({
         where: {
           email: _defineProperty({}, Op.iLike, email)
         }
@@ -86,7 +84,7 @@ var Users = function () {
             message: 'Email has been taken, Please Choose another'
           });
         }
-        return User.create({
+        return userModel.create({
           firstName: firstName,
           lastName: lastName,
           email: email,
@@ -102,13 +100,13 @@ var Users = function () {
     }
 
     /**
-       * Signin User record
-       *
-       * @param {object} req - HTTP Request
-       * @param {object} res - HTTP Response
-       * @returns {object} Class instance
-       * @memberof Users
-       */
+     * Signin Users record
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @returns {object} Class instance
+     * @memberof Users
+     */
 
   }, {
     key: 'loginUser',
@@ -117,7 +115,7 @@ var Users = function () {
           email = _req$body2.email,
           password = _req$body2.password;
 
-      User.findOne({
+      userModel.findOne({
         where: {
           email: _defineProperty({}, Op.iLike, email)
         }
@@ -125,17 +123,14 @@ var Users = function () {
         if (!foundUser) {
           return res.status(404).send({
             statusCode: 404,
-            message: 'User Not Found! Please Sign Up'
+            message: 'Users Not Found! Please Sign Up'
           });
         } else if (_bcryptjs2.default.compareSync(password, foundUser.password)) {
           return res.status(200).send({
             statusCode: 200,
-            message: 'Here`s your Token',
+            message: 'signin successful',
             token: _jsonwebtoken2.default.sign({
               id: foundUser.id,
-              firstName: foundUser.firstName,
-              lastName: foundUser.lastName,
-              email: foundUser.email,
               role: foundUser.role
             }, process.env.SECRET_KEY, { expiresIn: '24h' })
           });
@@ -144,36 +139,35 @@ var Users = function () {
           statusCode: 401,
           message: 'Wrong password'
         });
-      }).catch(function (error) {
-        return res.status(400).send(error);
       });
     }
 
     /**
-       * GETS Current User record
-       *
-       * @param {object} req - HTTP Request
-       * @param {object} res - HTTP Response
-       * @returns {object} Class instance
-       * @memberof Users
-       */
+     * GETS Current Users record
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @returns {object} Class instance
+     * @memberof Users
+     */
 
   }, {
     key: 'currUser',
     value: function currUser(req, res) {
       return res.send({
-        currentUser: req.currentUser
+        id: req.currentUser.id,
+        email: req.currentUser.email
       });
     }
 
     /**
-       * Assign a User as admin
-       *
-       * @param {object} req - HTTP Request
-       * @param {object} res - HTTP Response
-       * @returns {object} Class instance
-       * @memberof Users
-       */
+     * Assign a Users as admin
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @returns {object} Class instance
+     * @memberof Users
+     */
 
   }, {
     key: 'assignAdmin',
@@ -182,7 +176,7 @@ var Users = function () {
           email = _req$body3.email,
           password = _req$body3.password;
 
-      User.findOne({
+      userModel.findOne({
         where: {
           email: _defineProperty({}, Op.iLike, email)
         }
@@ -190,11 +184,11 @@ var Users = function () {
         if (!foundUser) {
           return res.status(404).send({
             statusCode: 404,
-            message: 'User Not Found! Please Sign Up'
+            message: 'Users Not Found! Please Sign Up'
           });
         } else if (_bcryptjs2.default.compareSync(password, foundUser.password)) {
           // update user role to true...
-          User.update({ role: true }, {
+          userModel.update({ role: true }, {
             where: {
               id: foundUser.id
             }
@@ -216,18 +210,18 @@ var Users = function () {
     }
 
     /**
-       * GETS all User record
-       *
-       * @param {object} req - HTTP Request
-       * @param {object} res - HTTP Response
-       * @returns {object} Class instance
-       * @memberof Users
-       */
+     * GETS all Users record
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @returns {object} Class instance
+     * @memberof Users
+     */
 
   }, {
     key: 'allUsers',
     value: function allUsers(req, res) {
-      User.findAll().then(function (users) {
+      userModel.findAll().then(function (users) {
         return res.status(200).send({
           message: 'all users found',
           statusCode: 200,
@@ -239,50 +233,49 @@ var Users = function () {
     }
 
     /**
-       * DELETE a User record
-       *
-       * @param {object} req - HTTP Request
-       * @param {object} res - HTTP Response
-       * @returns {object} Class instance
-       * @memberof Users
-       */
+     * DELETE a Users record
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @returns {object} Class instance
+     * @memberof Users
+     */
 
   }, {
     key: 'removeUsers',
     value: function removeUsers(req, res) {
       var userId = req.body.userId;
 
-      User.findOne({
+      userModel.findOne({
         where: {
           id: userId
         }
       }).then(function (foundUser) {
         if (foundUser) {
-          User.destroy({
+          userModel.destroy({
             where: {
               id: foundUser.id
             }
           }).then(function (deletedUser) {
             if (deletedUser) {
               res.status(200).send({
-                message: 'User has been deleted successfully',
+                message: 'Users has been deleted successfully',
                 user: foundUser
               });
             } else {
               res.send({
-                message: 'User was not deleted, please try again'
+                message: 'Users was not deleted, please try again'
               });
             }
           }).catch(function (error) {
             return res.status(500).send({
-              error: true,
-              message: 'Houston we have a problem.!! Error deleting User',
+              message: 'Houston we have a problem.!! Error deleting Users',
               errorMessage: error
             });
           });
         } else {
           res.status(404).send({
-            message: 'User was not found'
+            message: 'Users was not found'
           });
         }
       });
@@ -293,4 +286,4 @@ var Users = function () {
 }();
 
 exports.default = Users;
-//# sourceMappingURL=user.js.map
+//# sourceMappingURL=Users.js.map

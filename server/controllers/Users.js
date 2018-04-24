@@ -15,13 +15,13 @@ dotenv.config();
  */
 export default class Users {
   /**
-     * Signup Users record
-     *
-     * @param {object} req - HTTP Request
-     * @param {object} res - HTTP Response
-     * @returns {object} Class instance
-     * @memberof Users
-     */
+   * Signup Users record
+   *
+   * @param {object} req - HTTP Request
+   * @param {object} res - HTTP Response
+   * @returns {object} Class instance
+   * @memberof Users
+   */
   createUser(req, res) {
     /**
      * Encrypt Password** */
@@ -63,13 +63,13 @@ export default class Users {
   }
 
   /**
-     * Signin Users record
-     *
-     * @param {object} req - HTTP Request
-     * @param {object} res - HTTP Response
-     * @returns {object} Class instance
-     * @memberof Users
-     */
+   * Signin Users record
+   *
+   * @param {object} req - HTTP Request
+   * @param {object} res - HTTP Response
+   * @returns {object} Class instance
+   * @memberof Users
+   */
   loginUser(req, res) {
     const { email, password } = req.body;
     userModel.findOne({
@@ -103,13 +103,13 @@ export default class Users {
   }
 
   /**
-     * GETS Current Users record
-     *
-     * @param {object} req - HTTP Request
-     * @param {object} res - HTTP Response
-     * @returns {object} Class instance
-     * @memberof Users
-     */
+   * GETS Current Users record
+   *
+   * @param {object} req - HTTP Request
+   * @param {object} res - HTTP Response
+   * @returns {object} Class instance
+   * @memberof Users
+   */
   currUser(req, res) {
     return res.send({
       id: req.currentUser.id,
@@ -118,13 +118,13 @@ export default class Users {
   }
 
   /**
-     * Assign a Users as admin
-     *
-     * @param {object} req - HTTP Request
-     * @param {object} res - HTTP Response
-     * @returns {object} Class instance
-     * @memberof Users
-     */
+   * Assign a Users as admin
+   *
+   * @param {object} req - HTTP Request
+   * @param {object} res - HTTP Response
+   * @returns {object} Class instance
+   * @memberof Users
+   */
   assignAdmin(req, res) {
     const { email, password } = req.body;
     userModel.findOne({
@@ -178,13 +178,13 @@ export default class Users {
   }
 
   /**
-     * GETS all Users record
-     *
-     * @param {object} req - HTTP Request
-     * @param {object} res - HTTP Response
-     * @returns {object} Class instance
-     * @memberof Users
-     */
+   * GETS all Users record
+   *
+   * @param {object} req - HTTP Request
+   * @param {object} res - HTTP Response
+   * @returns {object} Class instance
+   * @memberof Users
+   */
   allUsers(req, res) {
     userModel.findAll()
       .then(users => res.status(200).send({
@@ -196,13 +196,13 @@ export default class Users {
   }
 
   /**
-     * DELETE a Users record
-     *
-     * @param {object} req - HTTP Request
-     * @param {object} res - HTTP Response
-     * @returns {object} Class instance
-     * @memberof Users
-     */
+   * DELETE a Users record
+   *
+   * @param {object} req - HTTP Request
+   * @param {object} res - HTTP Response
+   * @returns {object} Class instance
+   * @memberof Users
+   */
   removeUsers(req, res) {
     const { userId } = req.body;
     userModel.findOne({

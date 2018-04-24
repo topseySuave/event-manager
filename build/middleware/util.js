@@ -8,7 +8,7 @@ var generatePaginationMeta = exports.generatePaginationMeta = function generateP
     page: pageValue ? parseInt(pageValue, 10) : parseInt(pageValue + 1, 10),
     totalCount: dbResult.count,
     pageCount: Math.ceil(dbResult.count / limitValue),
-    pageSize: dbResult.rows.length
+    pageSize: Math.ceil(dbResult.rows.length)
   };
 };
 //# sourceMappingURL=util.js.map

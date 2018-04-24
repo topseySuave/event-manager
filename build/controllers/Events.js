@@ -20,12 +20,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var EventModel = _models2.default.Events;
+var Event = _models2.default.Events;
 var CenterModel = _models2.default.Centers;
 var Op = _models2.default.sequelize.Op;
 
-var attributes = ['id', 'title', 'img_url', 'description', 'startDate', 'endDate', 'centerId'];
-var centersAttributes = ['location'];
+// let storage = multer.diskStorage({
+//     destination: '../server/public/images/uploads',
+//     filename: (req, file, cb) => {
+//         cb(null, file.fieldname + '-' + Date.now() + path.extname())
+//     }
+// });
+//
+// let upload = multer({ storage: storage }).array('photos', 5);
 
 /**
  * @export
@@ -57,12 +63,7 @@ var Events = exports.Events = function () {
         });
       }
 
-      EventModel.findOne({
-        where: {
-          id: eventId
-        },
-        attributes: attributes
-      }).then(function (event) {
+      Event.findById(eventId).then(function (event) {
         if (!event) {
           return res.status(404).send({
             statusCode: 404,
@@ -93,16 +94,15 @@ var Events = exports.Events = function () {
       var order = req.query.order ? req.query.order : 'desc';
       if (req.query && req.query.sort) {
         if (order) {
-          EventModel.findAll({
+          Event.findAll({
             where: {
               startDate: _defineProperty({}, Op.gte, new Date().toDateString())
             },
-            order: [['id', order]],
-            attributes: attributes
+            order: [['id', order]]
           }).then(function (returnedEvent) {
             if (!returnedEvent) {
-              return res.status(404).send({
-                statusCode: 404,
+              return res.status(400).send({
+                statusCode: 400,
                 message: 'No Event found'
               });
             }
@@ -133,15 +133,14 @@ var Events = exports.Events = function () {
           };
         });
 
-        EventModel.findAll({
+        Event.findAll({
           where: (_where = {}, _defineProperty(_where, Op.or, titleResp), _defineProperty(_where, 'startDate', _defineProperty({}, Op.gte, new Date().toDateString())), _where),
           order: [['id', order]],
-          limit: limitValue,
-          attributes: attributes
+          limit: limitValue
         }).then(function (searchResults) {
           if (searchResults.length <= 0) {
-            return res.status(404).send({
-              statusCode: 404,
+            return res.status(400).send({
+              statusCode: 400,
               message: 'Event(s) do not match your search result'
             });
           }
@@ -153,15 +152,13 @@ var Events = exports.Events = function () {
         });
       } else {
         var pageValue = req.query.next || 0;
-        EventModel.findAndCountAll({
+        Event.findAndCountAll({
           where: {
             startDate: _defineProperty({}, Op.gte, new Date().toDateString())
           },
-          attributes: attributes,
           include: [{
             model: CenterModel,
-            as: 'center',
-            attributes: centersAttributes
+            as: 'center'
           }],
           order: [['id', order]],
           limit: limitValue,
@@ -178,7 +175,7 @@ var Events = exports.Events = function () {
             statusCode: 200,
             message: 'Successful Events!',
             events: events.rows,
-            meta: (0, _util.generatePaginationMeta)(events, limitValue, pageValue)
+            mete: (0, _util.generatePaginationMeta)(events, limitValue, pageValue)
           });
         }).catch(function (err) {
           return res.status(500).send(err);
@@ -204,7 +201,7 @@ var Events = exports.Events = function () {
       var endDate = new Date(req.body.endDate);
 
       // noinspection JSDuplicatedDeclaration
-      EventModel.findOne({
+      Event.findOne({
         where: {
           centerId: req.body.centerId,
           startDate: (_startDate4 = {}, _defineProperty(_startDate4, Op.lte, endDate), _defineProperty(_startDate4, Op.lte, startDate), _startDate4),
@@ -217,14 +214,15 @@ var Events = exports.Events = function () {
             statusCode: 400
           });
         }
-        return EventModel.create({
+        return Event.create({
           title: req.body.title,
           img_url: req.body.img_url,
+          location: req.body.location,
           description: req.body.description,
           startDate: startDate,
           endDate: endDate,
           centerId: parseInt(req.body.centerId, 10),
-          userId: parseInt(req.currentUser.id, 10)
+          userId: parseInt(req.body.userId, 10)
         }).then(function (event) {
           res.status(200).send({
             statusCode: 200,
@@ -267,7 +265,7 @@ var Events = exports.Events = function () {
         });
       }
 
-      EventModel.findById(eventId).then(function (event) {
+      Event.findById(eventId).then(function (event) {
         if (!event) {
           return res.status(400).send({
             statusCode: 400,
@@ -275,7 +273,7 @@ var Events = exports.Events = function () {
           });
         }
 
-        EventModel.update({
+        Event.update({
           title: req.body.title || event.title,
           img_url: req.body.img_url || event.img_url,
           description: req.body.description || event.description,
@@ -289,11 +287,10 @@ var Events = exports.Events = function () {
           }
         }).then(function (updatedEvent) {
           if (updatedEvent) {
-            EventModel.findById(eventId, {
+            Event.findById(eventId, {
               include: [{
                 model: CenterModel,
-                as: 'center',
-                attributes: centersAttributes
+                as: 'center'
               }]
             }).then(function (newEvent) {
               if (newEvent) {
@@ -305,7 +302,11 @@ var Events = exports.Events = function () {
               }
             });
           }
+        }).catch(function (error) {
+          return res.status(500).send(error);
         });
+      }).catch(function (error) {
+        return res.status(500).send(error);
       });
     }
 
@@ -328,14 +329,14 @@ var Events = exports.Events = function () {
           message: 'Event id is not a number'
         });
       }
-      EventModel.findById(eventId).then(function (deletedEvent) {
+      Event.findById(eventId).then(function (deletedEvent) {
         if (!deletedEvent) {
           return res.status(400).send({
             statusCode: 400,
             message: 'Event not found with id : ' + eventId
           });
         }
-        EventModel.destroy({
+        Event.destroy({
           where: {
             id: eventId
           }

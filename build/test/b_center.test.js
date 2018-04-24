@@ -222,7 +222,7 @@ describe('Test center API', function () {
         expect(res.body).to.haveOwnProperty('pageSize');
         expect(res.body).to.haveOwnProperty('totalCount');
         expect(res.body).to.haveOwnProperty('pageCount');
-        expect(res.body).to.haveOwnProperty('message').to.equal('Successful Centers!');
+        expect(res.body).to.haveOwnProperty('message').to.equal('Successful Center!');
         var rand5 = Math.floor(Math.random() * res.body.centers.length + 1);
         centerId = rand5;
         done();

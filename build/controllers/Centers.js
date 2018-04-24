@@ -81,15 +81,15 @@ var Centers = exports.Centers = function () {
     key: 'createCenter',
 
     /**
-       * Add Centers record
-       *
-       * @API POST request '/api/v1/centers'
-       *
-       * @param {object} req - HTTP Request
-       * @param {object} res - HTTP Response
-       * @returns {object} Class instance
-       * @memberof Centers
-       */
+     * Add Center record
+     *
+     * @API POST request '/api/v1/centers'
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @returns {object} Class instance
+     * @memberof Center
+     */
     value: function createCenter(req, res) {
       // check if center name already exist
       return centersModel.findOne({
@@ -101,7 +101,7 @@ var Centers = exports.Centers = function () {
         // return this if center name is taken
         if (existingCenter) {
           return res.status(400).json({
-            message: 'Centers already exist',
+            message: 'Center already exist',
             statusCode: 400
           });
         }
@@ -118,7 +118,7 @@ var Centers = exports.Centers = function () {
           if (addedCenter) {
             res.status(201).send({
               statusCode: 201,
-              message: 'Centers has been created',
+              message: 'Center has been created',
               center: addedCenter
             });
           }
@@ -127,15 +127,15 @@ var Centers = exports.Centers = function () {
     }
 
     /**
-       * Update Or Modify Centers record
-       *
-       * @API POST request '/api/v1/centers/:id'
-       *
-       * @param {object} req - HTTP Request
-       * @param {object} res - HTTP Response
-       * @returns {object} Class instance
-       * @memberof Centers
-       */
+     * Update Or Modify Center record
+     *
+     * @API POST request '/api/v1/centers/:id'
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @returns {object} Class instance
+     * @memberof Center
+     */
 
   }, {
     key: 'updateCenter',
@@ -146,7 +146,7 @@ var Centers = exports.Centers = function () {
       if (isNaN(centerId)) {
         return res.status(400).send({
           statusCode: 400,
-          message: 'Centers id is not a number'
+          message: 'Center id is not a number'
         });
       }
 
@@ -183,7 +183,7 @@ var Centers = exports.Centers = function () {
               foundCenter.events = event.rows;
               return res.status(200).send({
                 statusCode: 200,
-                message: 'Centers has been updated',
+                message: 'Center has been updated',
                 center: foundCenter,
                 events: event.rows
               });
@@ -206,15 +206,15 @@ var Centers = exports.Centers = function () {
     }
 
     /**
-       * Get Centers by id
-       *
-       * @API GET request '/api/v1/centers/:id'
-       *
-       * @param {object} req - HTTP Request
-       * @param {object} res - HTTP Response
-       * @returns {object} Class instance
-       * @memberof Centers
-       */
+     * Get Center by id
+     *
+     * @API GET request '/api/v1/centers/:id'
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @returns {object} Class instance
+     * @memberof Center
+     */
 
   }, {
     key: 'getCenter',
@@ -225,7 +225,7 @@ var Centers = exports.Centers = function () {
       if (isNaN(centerId)) {
         return res.status(400).send({
           statusCode: 400,
-          message: 'Centers id is not a number'
+          message: 'Center id is not a number'
         });
       }
 
@@ -263,15 +263,15 @@ var Centers = exports.Centers = function () {
     }
 
     /**
-       * Get Centers record
-       *
-       * @API GET request '/api/v1/centers[?search=<search-query>&limit=<limit>&order=<desc || asc>]'
-       *
-       * @param {object} req - HTTP Request
-       * @param {object} res - HTTP Response
-       * @returns {object} Class instance
-       * @memberof Centers
-       */
+     * Get Center record
+     *
+     * @API GET request '/api/v1/centers[?search=<search-query>&limit=<limit>&order=<desc || asc>]'
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @returns {object} Class instance
+     * @memberof Center
+     */
 
   }, {
     key: 'getCenters',
@@ -300,19 +300,19 @@ var Centers = exports.Centers = function () {
           if (searchResults.length <= 0) {
             return res.status(404).send({
               statusCode: 404,
-              message: 'Centers(s) do not match your search result'
+              message: 'Center(s) do not match your search result'
             });
           }
 
-          var results = searchResults.filter(function (center) {
+          var results = searchResults.rows.filter(function (center) {
             return center.id !== basedOn;
           });
 
           return res.status(200).send({
             statusCode: 200,
-            message: 'Successful Centers!',
+            message: 'Successful Center!',
             centers: results,
-            meta: (0, _util.generatePaginationMeta)(results, limitValue, pageValue)
+            meta: (0, _util.generatePaginationMeta)(searchResults, limitValue, pageValue)
           });
         });
       } else {
@@ -324,7 +324,7 @@ var Centers = exports.Centers = function () {
         }).then(function (center) {
           res.status(200).send({
             statusCode: 200,
-            message: 'Successful Centers!',
+            message: 'Successful Center!',
             centers: center.rows,
             meta: (0, _util.generatePaginationMeta)(center, limitValue, pageValue)
           });
@@ -333,15 +333,15 @@ var Centers = exports.Centers = function () {
     }
 
     /**
-       * Delete Centers record
-       *
-       * @API DELETE request '/api/v1/centers/:id'
-       *
-       * @param {object} req - HTTP Request
-       * @param {object} res - HTTP Response
-       * @returns {object} Class instance
-       * @memberof Centers
-       */
+     * Delete Center record
+     *
+     * @API DELETE request '/api/v1/centers/:id'
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @returns {object} Class instance
+     * @memberof Center
+     */
 
   }, {
     key: 'deleteCenter',
@@ -350,7 +350,7 @@ var Centers = exports.Centers = function () {
       if (isNaN(centerId)) {
         return res.status(400).send({
           statusCode: 400,
-          message: 'Centers id is not a number'
+          message: 'Center id is not a number'
         });
       }
 
@@ -369,14 +369,14 @@ var Centers = exports.Centers = function () {
         }).then(function () {
           return res.status(200).send({
             statusCode: 200,
-            message: 'This Centers has been deleted',
+            message: 'This Center has been deleted',
             center: deletedCenter
           });
         });
       }).catch(function (err) {
         res.status(400).send({
           statusCode: 400,
-          message: 'Centers not found',
+          message: 'Center not found',
           error: err
         });
       });

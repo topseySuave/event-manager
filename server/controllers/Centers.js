@@ -62,15 +62,15 @@ const sortSearchRequest = (search, searchBy) => {
  */
 export class Centers {
   /**
-     * Add Centers record
-     *
-     * @API POST request '/api/v1/centers'
-     *
-     * @param {object} req - HTTP Request
-     * @param {object} res - HTTP Response
-     * @returns {object} Class instance
-     * @memberof Centers
-     */
+   * Add Center record
+   *
+   * @API POST request '/api/v1/centers'
+   *
+   * @param {object} req - HTTP Request
+   * @param {object} res - HTTP Response
+   * @returns {object} Class instance
+   * @memberof Center
+   */
   createCenter(req, res) {
     // check if center name already exist
     return centersModel.findOne({
@@ -83,7 +83,7 @@ export class Centers {
         // return this if center name is taken
         if (existingCenter) {
           return res.status(400).json({
-            message: 'Centers already exist',
+            message: 'Center already exist',
             statusCode: 400
           });
         }
@@ -101,7 +101,7 @@ export class Centers {
             if (addedCenter) {
               res.status(201).send({
                 statusCode: 201,
-                message: 'Centers has been created',
+                message: 'Center has been created',
                 center: addedCenter
               });
             }
@@ -110,15 +110,15 @@ export class Centers {
   }
 
   /**
-     * Update Or Modify Centers record
-     *
-     * @API POST request '/api/v1/centers/:id'
-     *
-     * @param {object} req - HTTP Request
-     * @param {object} res - HTTP Response
-     * @returns {object} Class instance
-     * @memberof Centers
-     */
+   * Update Or Modify Center record
+   *
+   * @API POST request '/api/v1/centers/:id'
+   *
+   * @param {object} req - HTTP Request
+   * @param {object} res - HTTP Response
+   * @returns {object} Class instance
+   * @memberof Center
+   */
   updateCenter(req, res) {
     const order = req.query.order || 'desc';
     const limitValue = req.query.limit || process.env.DATA_LIMIT;
@@ -126,7 +126,7 @@ export class Centers {
     if (isNaN(centerId)) {
       return res.status(400).send({
         statusCode: 400,
-        message: 'Centers id is not a number'
+        message: 'Center id is not a number'
       });
     }
 
@@ -173,7 +173,7 @@ export class Centers {
                   foundCenter.events = event.rows;
                   return res.status(200).send({
                     statusCode: 200,
-                    message: 'Centers has been updated',
+                    message: 'Center has been updated',
                     center: foundCenter,
                     events: event.rows,
                   });
@@ -196,15 +196,15 @@ export class Centers {
   }
 
   /**
-     * Get Centers by id
-     *
-     * @API GET request '/api/v1/centers/:id'
-     *
-     * @param {object} req - HTTP Request
-     * @param {object} res - HTTP Response
-     * @returns {object} Class instance
-     * @memberof Centers
-     */
+   * Get Center by id
+   *
+   * @API GET request '/api/v1/centers/:id'
+   *
+   * @param {object} req - HTTP Request
+   * @param {object} res - HTTP Response
+   * @returns {object} Class instance
+   * @memberof Center
+   */
   getCenter(req, res) {
     const order = req.query.order || 'desc';
     const limitValue = req.query.limit || process.env.DATA_LIMIT;
@@ -212,7 +212,7 @@ export class Centers {
     if (isNaN(centerId)) {
       return res.status(400).send({
         statusCode: 400,
-        message: 'Centers id is not a number'
+        message: 'Center id is not a number'
       });
     }
 
@@ -256,15 +256,15 @@ export class Centers {
   }
 
   /**
-     * Get Centers record
-     *
-     * @API GET request '/api/v1/centers[?search=<search-query>&limit=<limit>&order=<desc || asc>]'
-     *
-     * @param {object} req - HTTP Request
-     * @param {object} res - HTTP Response
-     * @returns {object} Class instance
-     * @memberof Centers
-     */
+   * Get Center record
+   *
+   * @API GET request '/api/v1/centers[?search=<search-query>&limit=<limit>&order=<desc || asc>]'
+   *
+   * @param {object} req - HTTP Request
+   * @param {object} res - HTTP Response
+   * @returns {object} Class instance
+   * @memberof Center
+   */
   getCenters(req, res) {
     const limitValue = parseInt(req.query.limit, 10) || process.env.DATA_LIMIT;
     const pageValue = req.query.next || 0;
@@ -274,7 +274,7 @@ export class Centers {
     if (req.query.search || req.query.limit) {
       let searchBy, reqSearch;
       if (req.query.searchBy) {
-          searchBy = req.query.searchBy;
+        searchBy = req.query.searchBy;
       }
       const search = req.query.search.split(' ');
 
@@ -294,17 +294,17 @@ export class Centers {
           if (searchResults.length <= 0) {
             return res.status(404).send({
               statusCode: 404,
-              message: 'Centers(s) do not match your search result'
+              message: 'Center(s) do not match your search result'
             });
           }
 
           const results = searchResults.rows.filter((center) => {
-              return center.id !== basedOn;
+            return center.id !== basedOn;
           });
 
           return res.status(200).send({
             statusCode: 200,
-            message: 'Successful Centers!',
+            message: 'Successful Center!',
             centers: results,
             meta: generatePaginationMeta(searchResults, limitValue, pageValue)
           });
@@ -321,7 +321,7 @@ export class Centers {
         .then(center => {
           res.status(200).send({
             statusCode: 200,
-            message: 'Successful Centers!',
+            message: 'Successful Center!',
             centers: center.rows,
             meta: generatePaginationMeta(center, limitValue, pageValue)
           })
@@ -330,21 +330,21 @@ export class Centers {
   }
 
   /**
-     * Delete Centers record
-     *
-     * @API DELETE request '/api/v1/centers/:id'
-     *
-     * @param {object} req - HTTP Request
-     * @param {object} res - HTTP Response
-     * @returns {object} Class instance
-     * @memberof Centers
-     */
+   * Delete Center record
+   *
+   * @API DELETE request '/api/v1/centers/:id'
+   *
+   * @param {object} req - HTTP Request
+   * @param {object} res - HTTP Response
+   * @returns {object} Class instance
+   * @memberof Center
+   */
   deleteCenter(req, res) {
     const centerId = parseInt(req.params.id, 10);
     if (isNaN(centerId)) {
       return res.status(400).send({
         statusCode: 400,
-        message: 'Centers id is not a number'
+        message: 'Center id is not a number'
       });
     }
 
@@ -365,14 +365,14 @@ export class Centers {
           })
           .then(() => res.status(200).send({
             statusCode: 200,
-            message: 'This Centers has been deleted',
+            message: 'This Center has been deleted',
             center: deletedCenter
           }));
       })
       .catch((err) => {
         res.status(400).send({
           statusCode: 400,
-          message: 'Centers not found',
+          message: 'Center not found',
           error: err
         });
       });
