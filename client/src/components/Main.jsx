@@ -7,6 +7,7 @@ import SignIn from './authentication/signin/signin';
 import SignOut from './authentication/signout/signOut';
 import CenterDetailIndex from './centerComponent/centerDetail';
 import AllCentersIndex from './centerComponent/allCenters/index';
+import MyEvents from './bodyComponents/myEvents';
 import NoMatch from './noMatch';
 
 class Main extends Component {
@@ -19,6 +20,7 @@ class Main extends Component {
         <Route path="/signout" component={SignOut} />
         <Route path="/center/:id/:title" component={CenterDetailIndex} />
         <Route path="/centers" component={AllCentersIndex} />
+        <Route path="/my-events" component={MyEvents} />
         <Route path="*" component={NoMatch} />
       </Switch>
     );

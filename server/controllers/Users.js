@@ -91,6 +91,7 @@ export default class Users {
             message: 'signin successful',
             token: jwt.sign({
               id: foundUser.id,
+              lastName: foundUser.lastName,
               role: foundUser.role
             }, process.env.SECRET_KEY, { expiresIn: '24h' })
           });
@@ -164,8 +165,7 @@ export default class Users {
                                 <li>Centers: creation, updating, deleting</li>
                             </ul>
                         `;
-              mailer(foundUser.email, subject, subject, htmlOutput);
-              return res.redirect('/');
+              if(mailer(foundUser.email, subject, subject, htmlOutput)) res.redirect('/');
             });
         } else {
           return res.status(401).send({
@@ -219,10 +219,28 @@ export default class Users {
           })
             .then((deletedUser) => {
               if (deletedUser) {
-                res.status(200).send({
-                  message: 'Users has been deleted successfully',
-                  user: foundUser
-                });
+                const subject = 'Dropped as Administrator: Boots Events Manager';
+                let htmlOutput = `
+                            <h6>Dropped as Administrator: Boots Events Manager</h6>
+                            <p>Dear, ${foundUser.firstName} ${foundUser.lastName} you have been Dropped as Administrator</p>
+                            <br />
+                            <ul>
+                                <li>First Name: ${foundUser.firstName}</li>
+                                <li>Last Name: ${foundUser.lastName}</li>
+                                <li>Email: ${foundUser.email}</li>
+                            </ul>
+                            <br />
+                            <h6>Admin Privileges relinquished</h6>
+                            <ul>
+                                <li>Centers: creation, updating, deleting</li>
+                            </ul>
+                        `;
+                if (mailer(foundUser.email, subject, subject, htmlOutput)){
+                  res.status(200).send({
+                    message: 'Users has been deleted successfully',
+                    user: foundUser
+                  });
+                }
               } else {
                 res.send({
                   message: 'Users was not deleted, please try again'

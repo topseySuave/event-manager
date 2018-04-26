@@ -45,6 +45,7 @@ class CenterDetail extends Component {
   }
 
   componentWillMount() {
+    $('.modal').modal('close');
     $('.tooltipped').tooltip({ delay: 50 });
     const { params } = this.props;
     this.props.fetchCenterAction(params.id);

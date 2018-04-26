@@ -40,7 +40,7 @@ export default (state = {}, action = {}) => {
         loadingmore: false
       };
 
-      case LOADMORE_CENTER_SUCCESS:
+    case LOADMORE_CENTER_SUCCESS:
       newState = Object.assign({}, state);
       newState.centers = newState.centers.concat(action.payload);
       newState.loadingmore = false;

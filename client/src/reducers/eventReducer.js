@@ -9,7 +9,8 @@ import {
   LOADMORE_EVENT_SUCCESS,
   LOADMORE_EVENT_FAILURE,
   SEARCH_EVENT_TITLE,
-  SEARCH_EVENT_TITLE_FAILED
+  SEARCH_EVENT_TITLE_FAILED,
+  SESSION_EVENTS
 } from '../actions';
 
 const pageLimit = process.env.DATA_LIMIT;
@@ -62,6 +63,11 @@ export default (state = {}, action = {}) => {
       newState.totalCount = newState.events.length;
       newState.pageSize = newState.totalCount;
       newState.pageCount = Math.ceil(newState.totalCount / pageLimit);
+      return newState;
+
+    case SESSION_EVENTS:
+      newState = Object.assign({}, state);
+      newState.sessEvents = action.payload;
       return newState;
 
     case LOADMORE_EVENT_FAILURE:

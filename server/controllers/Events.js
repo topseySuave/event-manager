@@ -95,6 +95,36 @@ export class Events {
             message: 'Error searching for Events'
           }));
       }
+    } else if (req.query.sessionEvents) {
+      let userId =  parseInt(req.query.sessionEvents, 10);
+      if(isNaN(userId)) return res.status(400).send({
+        message: 'the id specified is not a number',
+        statusCode: 400
+      });
+
+      Event.findAll({
+        where: {
+          userId
+        },
+        order: [
+          ['id', order]
+        ],
+        limit: limitValue
+      })
+        .then((eventsFound) => {
+          if (eventsFound.length <= 0) {
+            return res.status(204).send({
+              statusCode: 204,
+              message: 'There are no event for this user',
+              events: []
+            });
+          }
+          return res.status(200).send({
+            statusCode: 200,
+            message: 'The Events found',
+            events: eventsFound
+          });
+        });
     } else if (req.query.search || req.query.limit) {
       const search = req.query.search.split(' ');
 

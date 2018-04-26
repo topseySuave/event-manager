@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import IconMenu from 'material-ui/IconMenu';
+import IconButton from 'material-ui/IconButton';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import MenuItem from 'material-ui/MenuItem';
+import Divider from 'material-ui/Divider';
+
 import { signOutRequest } from '../../../actions/authActions';
 
 class FixedNav extends Component {
@@ -24,10 +30,20 @@ class FixedNav extends Component {
         </div>
       );
     }
+
     return (
-      <li>
-        <Link to="/signout">Sign Out</Link>
-      </li>
+      <React.Fragment>
+        <IconMenu
+          iconButtonElement={<IconButton><MoreVertIcon color='white' /></IconButton>}
+          anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+          targetOrigin={{horizontal: 'left', vertical: 'top'}}
+        >
+          <MenuItem primaryText={ `Hello ${this.props.activeState.user.lastName}` } />
+          <MenuItem primaryText="My Events" containerElement={<Link to="/my-events" />} />
+          <Divider />
+          <MenuItem primaryText="sign out" containerElement={<Link to="/signout" />} />
+        </IconMenu>
+      </React.Fragment>
     );
   }
 

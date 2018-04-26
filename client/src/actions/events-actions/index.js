@@ -1,4 +1,4 @@
-import {Dispatch} from 'redux';
+import { dispatch } from 'redux';
 import axios from 'axios';
 import {
   FETCH_EVENTS,
@@ -10,6 +10,7 @@ import {
   LOADMORE_EVENT_SUCCESS,
   LOADMORE_EVENT_FAILURE,
   SEARCH_EVENT_TITLE,
+  SESSION_EVENTS,
   CLOUDINARY_URL,
   CLOUDINARY_UPLOAD_PRESET
 } from '../';
@@ -117,6 +118,16 @@ export const fetchEventRequest = () => dispatch => axios.get(api)
     data.loadmore = false;
     dispatch(eventsDispatchAction('fetch', data));
   });
+
+export const fetchSessionEventRequest = userId => dispatch => {
+  return axios.get(`${api}?sessionEvents=${userId}`)
+    .then(({ data }) => {
+      dispatch({
+        type: SESSION_EVENTS,
+        payload: data.events
+      });
+    });
+};
 
 /**
  *  @Edit Event Request Action

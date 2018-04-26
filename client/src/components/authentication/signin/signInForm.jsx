@@ -79,7 +79,7 @@ class SignInForm extends React.Component {
     let loading = classNames('row', { isLoading });
 
     if (this.props.activeState.isAuthenticated) {
-      return <Redirect to="/" />;
+      return <Redirect to="/my-events" />;
     }
 
     return (
