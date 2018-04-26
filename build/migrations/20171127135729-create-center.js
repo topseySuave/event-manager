@@ -2,7 +2,7 @@
 
 module.exports = {
   up: function up(queryInterface, Sequelize) {
-    return queryInterface.createTable('Centers', {
+    return queryInterface.createTable('Center', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -41,7 +41,7 @@ module.exports = {
     });
   },
   down: function down(queryInterface, Sequelize) {
-    return queryInterface.dropTable('Centers');
+    return queryInterface.dropTable('Center');
   }
 };
 //# sourceMappingURL=20171127135729-create-center.js.map

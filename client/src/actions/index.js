@@ -1,3 +1,7 @@
+export const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dcbqn1c10/upload';
+
+export const CLOUDINARY_UPLOAD_PRESET = 'z3nqw1ue';
+
 /**
 * ADD_USER action Constant, To add a new user to the store
 * */
@@ -119,3 +123,6 @@ export const SEARCH_CENTER_TITLE_FAILED = 'SEARCH_CENTER_TITLE_FAILED';
 
 export const SEARCH_EVENT_TITLE = 'SEARCH_EVENT_TITLE';
 export const SEARCH_EVENT_TITLE_FAILED = 'SEARCH_EVENT_TITLE_FAILED';
+export const SESSION_EVENTS = 'SESSION_EVENTS';
+
+export const IMAGE_PLACEHOLDER = 'http://placehold.it/600/92c952';

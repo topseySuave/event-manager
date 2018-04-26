@@ -9,7 +9,6 @@ import { fetchCentersAction, loadMoreCenters } from '../../../actions/center-act
 import { CircularLoader } from '../../loader';
 import Helpers from '../../../helpers';
 import SearchFasterForm from './searchFasterForm';
-// import CenterCard from '../centerCard/centerCard';
 
 class AllCenters extends Component {
   constructor(props) {
@@ -22,14 +21,14 @@ class AllCenters extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    $('.modal').modal();
     this.props.fetchCentersAction();
   }
 
   componentWillReceiveProps(newProps) {
-    let {
-      centers, page, pageCount, pageSize, totalCount, loadingmore, loadmore
-    } = newProps.centerStore;
+    let { page, pageCount, pageSize, totalCount } = newProps.centerStore.meta,
+    { loadingmore, loadmore } = newProps.centerStore;
 
     if (newProps) {
       this.setState({
@@ -46,37 +45,28 @@ class AllCenters extends Component {
 
   showCentersCard() {
     let { centers } = this.props.centerStore;
-    return centers.map((center) => {
-      let to = `center/${center.id}/${this.helper.sanitizeString(center.title)}`;
-      return (
-        <Link key={shortid.generate()} to={to} href={to}>
-          <div className="card">
-            {
-            !!center.img_url
-            &&
-            <div className="card-image">
-              <img src={center.img_url} alt={center.title} />
+    return centers
+      .sort((firstObj, secObj) => secObj.id - firstObj.id)
+      .map((center) => {
+        let to = `center/${center.id}/${this.helper.sanitizeString(center.title)}`;
+        return (
+          <Link key={shortid.generate()} to={to} href={to}>
+            <div className="card">
+              {
+              !!center.img_url
+              &&
+              <div className="card-image center__image">
+                <img src={center.img_url} alt={center.title} />
+              </div>
+              }
+              <div className="card-content black-text">
+                <p className="bold">{center.title}</p>
+                <p className="light__font"><i className="material-icons f15">location_on</i>{center.location}</p>
+              </div>
             </div>
-            }
-            <div className="card-content black-text">
-              <p className="f__size">{center.title}</p>
-              <p><i className="material-icons f15">location_on</i>{center.location}</p>
-            </div>
-          </div>
-        </Link>
-      );
-    });
-  }
-
-  renderNoCenter(){
-    let { centers } = this.props.centerStore;
-    if(isEmpty(centers)){
-      return (
-        <h4 className="bold grey-text lighten-2 center-align">
-          <p>No centers Available....</p>
-        </h4>
-      )
-    }
+          </Link>
+        );
+      });
   }
 
   initInfiniteScroll() {
@@ -87,7 +77,7 @@ class AllCenters extends Component {
       docHeight = $(document).height();
 
       if (docHeight - winHeight === winScrollTop) {
-        /**
+        /* *
            * make loadmore request
            * * */
         offset = this.state.page + 1;
@@ -103,25 +93,53 @@ class AllCenters extends Component {
   }
 
   loadMore() {
-    /**
+    /* *
        * make loadmore request
        * * */
     let offset = this.state.page + 1;
     this.props.loadMoreCenters(offset);
   }
 
+  renderNoCenter() {
+    let { centers } = this.props.centerStore;
+    if (isEmpty(centers)) {
+      return (
+        <h4 className="bold grey-text lighten-2 center-align">
+          <p>No centers Available....</p>
+        </h4>
+      );
+    }
+  }
+
+  showLoadMoreButton(){
+      const {
+          isLoading, loadingmore, pageCount, pageSize, totalCount
+      } = this.state;
+
+      if(!isLoading && pageCount >= 1){
+        if(loadingmore){
+          return (
+            <CircularLoader />
+          );
+        } else {
+          if(pageSize !== totalCount){
+            return (
+              <button onClick={() => this.loadMore()} className="col offset-s3 s6 btn waves-effect gradient__bg"> load more </button>
+            );
+          }
+        }
+      }
+  }
+
   render() {
     this.autoLoadMore();
-    let {
-      isLoading, loadingmore, pageCount, pageSize, totalCount
+    const {
+      isLoading
     } = this.state;
     return (
       <div className="container">
         <div className="center__holdr">
           <div className="row relative">
-            {/* <div className="col s12 l12 fixed bg__white hide-on-med-and-down"> */}
-            {/* <SearchFasterForm /> */}
-            {/* </div> */}
             <div className="col s12 l12" style={{ marginBottom: `${60}px` }}>
               <h4 className="center-align">Boots Centers</h4>
               <div className="row">
@@ -130,10 +148,8 @@ class AllCenters extends Component {
                   { this.showCentersCard() }
                 </div>
                 }
-                {this.renderNoCenter()}
-                {
-                  (isLoading) ? '' : (pageCount > 1) ? (loadingmore) ? <CircularLoader /> : (pageSize !== totalCount) ? <button onClick={() => this.loadMore()} className="col offset-s3 s6 btn waves-effect gradient__bg"> load more </button> : '' : ''
-                }
+                { (isLoading) ? '' : this.renderNoCenter()}
+                { this.showLoadMoreButton() }
               </div>
             </div>
           </div>

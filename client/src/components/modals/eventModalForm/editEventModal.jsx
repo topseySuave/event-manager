@@ -14,8 +14,7 @@ import InputForm from '../../../components/form/formInput';
 import { validateEventInput } from '../validateInput';
 import { EDIT_EVENT } from '../../../actions';
 
-
-class EventModal extends Component {
+class EditEventModal extends Component {
   constructor(props) {
     super(props);
 
@@ -60,15 +59,15 @@ class EventModal extends Component {
         reader.readAsDataURL(file); // read the local file
         reader.onloadend = () => {
           this.setState({
-            img_url: reader.result // store image as binary data string
-            // img_url: file
+            // img_url: reader.result // store image as binary data string
+            img_url: file
           });
         };
       } else {
-        Materialize.toast('File too large', 5000);
+        Materialize.toast('File too large', 5000, 'red');
       }
     } else {
-      Materialize.toast('Please select only images', 5000);
+      Materialize.toast('Please select only images', 5000, 'red');
     }
   }
 
@@ -82,7 +81,7 @@ class EventModal extends Component {
 
   handleChangeStartDate(e, date) {
     if (new Date(date) < this.state.startdDate) {
-      Materialize.toast('Date isn\'t correct. Should be a day after today not before', 5000);
+      Materialize.toast('Date isn\'t correct. Should be a day after today not before', 5000, 'red');
       this.setState({
         startDate: {},
       });
@@ -95,7 +94,7 @@ class EventModal extends Component {
 
   handleChangeEndDate(e, date) {
     if (new Date(date) < this.state.endDate) {
-      Materialize.toast('Date isn\'t correct. Should be a day after today not before', 5000);
+      Materialize.toast('Date isn\'t correct. Should be a day after today not before', 5000, 'red');
       this.setState({
         endDate: {},
       });
@@ -134,9 +133,9 @@ class EventModal extends Component {
         endDate: new Date(endDate),
         description
       });
-    } else if (newProps.activeCenter.centr) {
+    } else if (newProps.activeCenter.center) {
       this.setState({
-        centerId: newProps.activeCenter.centr.id,
+        centerId: newProps.activeCenter.center.id,
         userId: newProps.actUser.user.id,
       });
     }
@@ -148,18 +147,18 @@ class EventModal extends Component {
       this.setState({
         isLoading: true
       });
-      
-      this.props.editEventAction(this.state)
-        .then((data) => {
-          this.setState({ isLoading: false });
-          if (data.type === EDIT_EVENT) {
-              $("#add_event_modal").modal('close');
-            // Materialize.toast('Event has been updated successfully', 5000);
-            this.setState({ title: '', description: '' });
-          } else {
-            Materialize.toast(data.message, 5000);
-          }
-        });
+
+      this.props.editEventAction(this.state);
+        // .then((data) => {
+        //   this.setState({ isLoading: false });
+        //   if (data.type === EDIT_EVENT) {
+        //     $('#add_event_modal').modal('close');
+        //     // Materialize.toast('Event has been updated successfully', 5000, 'teal');
+        //     this.setState({ title: '', description: '' });
+        //   } else {
+        //     Materialize.toast(data.message, 5000, 'red');
+        //   }
+        // });
     }
   }
 
@@ -226,7 +225,6 @@ class EventModal extends Component {
               <label htmlFor="description">Description</label>
               <textarea
                 id="description"
-                type="text"
                 name="description"
                 className="materialize-textarea validate"
                 required
@@ -255,7 +253,7 @@ class EventModal extends Component {
   }
 }
 
-// EventModal.propTypes = {
+// EditEventModal.propTypes = {
 //   activeCenter: PropTypes.object.isRequired,
 //   event: PropTypes.object.isRequired,
 //   editEventAction: PropTypes.func.isRequired
@@ -267,6 +265,6 @@ const mapStateToProps = state => ({
   actUser: state.authReducer
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ editEventAction: editEventAction }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ editEventAction }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventModal);
+export default connect(mapStateToProps, mapDispatchToProps)(EditEventModal);

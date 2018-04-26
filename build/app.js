@@ -1,5 +1,9 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
@@ -19,10 +23,6 @@ var _http2 = _interopRequireDefault(_http);
 var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);
-
-var _cors = require('cors');
-
-var _cors2 = _interopRequireDefault(_cors);
 
 var _webpack = require('webpack');
 
@@ -66,9 +66,6 @@ var _webpack4 = _interopRequireDefault(_webpack3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import React from 'react';
-// import { renderToString } from 'react-dom/server';
-// import { App } from '../client/src/components/homepage';
 _dotenv2.default.config();
 
 // Set up the express app
@@ -86,7 +83,6 @@ app.use(_bodyParser2.default.urlencoded({ limit: '10mb', extended: true, paramet
 
 // Log requests to the console.
 app.use((0, _morgan2.default)('dev'));
-app.use((0, _cors2.default)());
 app.use(apiRoute, _centers2.default);
 app.use(apiRoute, _users2.default);
 app.use(apiRoute, _events2.default);
@@ -107,7 +103,6 @@ app.set('views', _path2.default.join(__dirname, '..', 'client', 'public'));
 
 // Setup a default catch-all route that sends back the index html file.
 app.get('*', function (req, res) {
-  // const appString = renderToString(<App />);
   res.status(200).sendFile(_path2.default.join(__dirname, '..', 'client/public/index.html'));
 });
 
@@ -121,9 +116,10 @@ app.use(function (req, res, next) {
 var port = parseInt(process.env.PORT, 10) || 8000;
 app.set('port', port);
 
-var server = _http2.default.createServer(app);
-server.listen(port, function (err) {
+app.listen(port, function (err) {
   if (err) console.log(err);
   console.log('server listening on port ' + port);
 });
+
+exports.default = app;
 //# sourceMappingURL=app.js.map

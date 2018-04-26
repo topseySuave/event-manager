@@ -1,3 +1,4 @@
+import isEmpty from 'lodash/isEmpty';
 import {
   ADD_EVENT,
   EDIT_EVENT,
@@ -8,9 +9,9 @@ import {
   LOADMORE_EVENT_SUCCESS,
   LOADMORE_EVENT_FAILURE,
   SEARCH_EVENT_TITLE,
-  SEARCH_EVENT_TITLE_FAILED
+  SEARCH_EVENT_TITLE_FAILED,
+  SESSION_EVENTS
 } from '../actions';
-import isEmpty from 'lodash/isEmpty';
 
 const pageLimit = process.env.DATA_LIMIT;
 let newState;
@@ -64,6 +65,11 @@ export default (state = {}, action = {}) => {
       newState.pageCount = Math.ceil(newState.totalCount / pageLimit);
       return newState;
 
+    case SESSION_EVENTS:
+      newState = Object.assign({}, state);
+      newState.sessEvents = action.payload;
+      return newState;
+
     case LOADMORE_EVENT_FAILURE:
       return { ...state, loadingmore: false };
 
@@ -84,9 +90,9 @@ export default (state = {}, action = {}) => {
     case SEARCH_EVENT_TITLE:
       newState = Object.assign({}, state);
       if (!isEmpty(action.events)) {
-          newState.events = action.events;
-      }else{
-          newState.events = state.events;
+        newState.events = action.events;
+      } else {
+        newState.events = state.events;
       }
       return newState;
 

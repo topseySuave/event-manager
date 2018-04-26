@@ -1,62 +1,75 @@
 import React, { Component } from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { signOutRequest } from '../../../actions/authActions'
+import IconMenu from 'material-ui/IconMenu';
+import IconButton from 'material-ui/IconButton';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import MenuItem from 'material-ui/MenuItem';
+import Divider from 'material-ui/Divider';
+
+import { signOutRequest } from '../../../actions/authActions';
 
 class Nav extends Component {
-
-    showAuthenticationLinks(){
-        // Show Sign-in and Sign-up
-        // links only if user isn't signed in
-        if(!this.props.activeState.isAuthenticated){
-            return (
-                <div style={{float: 'left'}}>
-                    <li><Link to="/signin">Sign In</Link></li>
-                    <li><Link to="/signup">Sign Up</Link></li>
-                </div>
-            )
-        }else{
-            return (
-                <li>
-                    <Link to="/signout">Sign Out</Link>
-                </li>
-            )
-        }
+  showAuthenticationLinks() {
+    // Show Sign-in and Sign-up
+    // links only if user isn't signed in
+    if (!this.props.activeState.isAuthenticated) {
+      return (
+        <div style={{ float: 'left' }}>
+          <li><Link to="/signin">Sign In</Link></li>
+          <li><Link to="/signup">Sign Up</Link></li>
+        </div>
+      );
     }
 
-    render() {
-        return (
-            <div className="navbar-fixed home__nav">
-                <nav className="gradient__bg">
-                    <div className="container">
-                        <div className="nav-wrapper">
-                            <Link to="/" className="brand-logo logo">
-                                <p>Boots EM</p>
-                            </Link>
-                            <ul id="nav-mobile" className="right hide-on-med-and-down">
-                                <li><a href="#search__modal" className="modal-trigger" id="search__view"><i
-                                    className="material-icons">search</i></a></li>
-                                <li><Link to="/centers">List of centers</Link></li>
+    return (
+      <React.Fragment>
+        <IconMenu
+          iconButtonElement={<IconButton><MoreVertIcon color='white' /></IconButton>}
+          anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+          targetOrigin={{horizontal: 'left', vertical: 'top'}}
+        >
+          <MenuItem primaryText={ `Hello ${this.props.activeState.user.lastName}` } />
+          <MenuItem primaryText="My Events" containerElement={<Link to="/my-events" />} />
+          <Divider />
+          <MenuItem primaryText="sign out" containerElement={<Link to="/signout" />} />
+        </IconMenu>
+      </React.Fragment>
+    );
+  }
 
-                                { this.showAuthenticationLinks() }
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
+  showModal () {
+    $('#search__modal').modal('open');
+  }
+
+  render() {
+    return (
+      <div className="navbar-fixed home__nav">
+        <nav className="gradient__bg">
+          <div className="container">
+            <div className="nav-wrapper">
+              <Link to="/" className="brand-logo logo">
+                <p>Boots EM</p>
+              </Link>
+              <ul id="nav-mobile" className="right hide-on-med-and-down">
+                <li><a onClick={() => this.showModal()} className="modal-trigger" id="search__view"><i className="material-icons">search</i></a></li>
+                <li><Link to="/centers">List of centers</Link></li>
+
+                { this.showAuthenticationLinks() }
+              </ul>
             </div>
-        );
-    }
+          </div>
+        </nav>
+      </div>
+    );
+  }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        activeState: state.authReducer
-    }
-};
+const mapStateToProps = state => ({
+  activeState: state.authReducer
+});
 
-const matchDispatchToProps = (dispatch) => {
-    return bindActionCreators({signOutRequest: signOutRequest}, dispatch);
-};
+const matchDispatchToProps = dispatch => bindActionCreators({ signOutRequest }, dispatch);
 
 export default connect(mapStateToProps, { matchDispatchToProps })(Nav);

@@ -1,4 +1,4 @@
-const Centers = (sequelize, DataTypes) => {
+const Center = (sequelize, DataTypes) => {
   let CentersModel = sequelize.define('Centers', {
     title: DataTypes.TEXT,
     img_url: DataTypes.TEXT,
@@ -20,4 +20,4 @@ const Centers = (sequelize, DataTypes) => {
   return CentersModel;
 };
 
-export default Centers;
+export default Center;

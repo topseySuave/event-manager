@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _jsonwebtoken = require('jsonwebtoken');
@@ -21,39 +21,41 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _dotenv2.default.config();
 var User = _models2.default.User;
 
+
 var authenticate = function authenticate(req, res, next) {
-
-    /***
+  /* * *
      * Check if token is provided in request body or query param or request Headers
-     ***/
-    var token = req.body.token || req.query.token || req.headers['x-access-token'] || req.headers['authorization'];
+     ** */
+  var token = req.body.token || req.query.token || req.headers['x-access-token'] || req.headers.authorization;
 
-    if (!token) {
-        return res.send({
-            success: false,
-            message: 'Unauthorized user, You need to sign in.'
-        });
-    }
-
-    /**
-     * verify secret and checks expiry time**/
-    return _jsonwebtoken2.default.verify(token, process.env.SECRET_KEY, function (err, decoded) {
-        if (err) {
-            return res.send({
-                success: false,
-                message: 'Failed to authenticate token'
-            });
-        }
-        User.findById(decoded.id).then(function (user) {
-            if (!user) {
-                return res.send({
-                    error: 'User Not Found..!!!'
-                });
-            }
-            req.currentUser = user;
-            next();
-        });
+  if (!token) {
+    return res.status(401).send({
+      success: false,
+      statusCode: 401,
+      message: 'Unauthorized user, You need to sign in'
     });
+  }
+
+  /**
+     * verify secret and checks expiry time* */
+  return _jsonwebtoken2.default.verify(token, process.env.SECRET_KEY, function (err, decoded) {
+    if (err) {
+      return res.status(401).send({
+        success: false,
+        statusCode: 401,
+        message: 'Failed to authenticate token, please sign in'
+      });
+    }
+    User.findById(decoded.id).then(function (user) {
+      if (!user) {
+        return res.send({
+          error: 'User Not Found..!!!'
+        });
+      }
+      req.currentUser = user;
+      next();
+    });
+  });
 };
 
 exports.default = authenticate;

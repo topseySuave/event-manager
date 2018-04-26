@@ -14,9 +14,16 @@ module.exports = function (sequelize, DataTypes) {
     classMethods: {
       associate: function associate(models) {
         // associations can be defined here
+        User.hasMany(models.Centers, {
+          foreignKey: 'userId',
+          as: 'centers',
+          onDelete: 'cascade'
+        });
+
         User.hasMany(models.Events, {
-          foreignKey: null,
-          as: 'events'
+          foreignKey: 'userId',
+          as: 'events',
+          onDelete: 'cascade'
         });
       }
     }

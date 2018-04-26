@@ -1,8 +1,7 @@
-export default () => {
-    return [
-        'Muson Center',
-        'Boots Center',
-        'Ojo Events Center',
-        'Ikeja Events Center'
-    ];
-}
+export default () => [
+  'Muson Center',
+  'Boots Center',
+  'Ojo Events Center',
+  'Ikeja Events Center'
+];
+

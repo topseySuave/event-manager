@@ -3,21 +3,16 @@ import nodemailer from 'nodemailer';
 export default (to, subject, text, html) => {
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
-        host: 'mail.gistout.com',
-        port: 587,
-        secure: false, // true for 465, false for other ports
-        auth: {
-            user: 'noreply@gistout.com', // generated ethereal user
-            pass: 'gabmicah'  // generated ethereal password
-        },
-        tls: {
-            rejectUnauthorized: false
-        }
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD,
+      },
     });
 
     // setup email data with unicode symbols
     let mailOptions = {
-        from: '"Boots Events Manager 👻" <noreply@gistout.com>', // sender address
+        from: '"Boots Events Manager 👻" <gabrielsuave17@gmail.com>', // sender address
         to: to, // list of receivers
         subject: `${subject} ✔`, // Subject line
         text: text, // plain text body

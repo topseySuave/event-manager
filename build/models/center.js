@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var Centers = function Centers(sequelize, DataTypes) {
+var Center = function Center(sequelize, DataTypes) {
   var CentersModel = sequelize.define('Centers', {
     title: DataTypes.TEXT,
     img_url: DataTypes.TEXT,
@@ -25,5 +25,5 @@ var Centers = function Centers(sequelize, DataTypes) {
   return CentersModel;
 };
 
-exports.default = Centers;
+exports.default = Center;
 //# sourceMappingURL=center.js.map

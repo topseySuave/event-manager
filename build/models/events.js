@@ -13,7 +13,7 @@ var Events = function Events(sequelize, DataTypes) {
     centerId: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'Centers',
+        model: 'Center',
         key: 'id'
       }
     },

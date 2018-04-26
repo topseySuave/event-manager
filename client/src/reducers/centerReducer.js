@@ -1,6 +1,7 @@
 import isEmpty from 'lodash/isEmpty';
 import {
   ADD_CENTER_SUCCESS,
+  ADD_CENTER_FAlLURE,
   FETCH_CENTERS,
   LOADMORE_CENTER_REQUEST,
   LOADMORE_CENTER_SUCCESS,
@@ -10,17 +11,21 @@ import {
 } from '../actions';
 
 let newState;
+let newCenter;
 
 export default (state = {}, action = {}) => {
   switch (action.type) {
     case ADD_CENTER_SUCCESS:
-      return {
-        ...state,
-        payload: Object.assign({}, action.center)
-      };
+      newState = Object.assign({}, state);
+      newState.centers = newState.centers.concat(action.center);
+      return newState;
+
+    case ADD_CENTER_FAlLURE:
+      newCenter = Object.assign({}, action.center);
+      return newCenter;
 
     case FETCH_CENTERS:
-      return action.centers;
+      return action.payload;
 
     case LOADMORE_CENTER_REQUEST:
       return {
@@ -39,9 +44,9 @@ export default (state = {}, action = {}) => {
       newState = Object.assign({}, state);
       newState.centers = newState.centers.concat(action.payload);
       newState.loadingmore = false;
-      newState.page = parseInt(newState.page + 1, 10);
-      newState.pageSize = parseInt(newState.pageSize + action.payload.length, 10);
-      if (newState.pageSize === newState.totalCount) {
+      newState.meta.page = parseInt(newState.meta.page + 1, 10);
+      newState.meta.pageSize = parseInt(newState.meta.pageSize + action.payload.length, 10);
+      if (newState.meta.pageSize === newState.meta.totalCount) {
         newState.loadmore = false;
       }
       return newState;
@@ -50,7 +55,7 @@ export default (state = {}, action = {}) => {
       newState = Object.assign({}, state);
       if (!isEmpty(action.payload)) {
         newState = action.payload;
-      }else{
+      } else {
         newState.centers = state.centers;
       }
       return newState;

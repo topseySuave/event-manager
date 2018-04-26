@@ -1,6 +1,15 @@
 import axios from 'axios';
-// import jwtDecode from 'jwt-decode'
-import { ADD_CENTER_SUCCESS, ADD_CENTER_REQUEST, ADD_CENTER_FAlLURE, EDIT_CENTER, EDIT_CENTER_FAILURE } from './';
+import setAuthorizationToken from '../components/authentication/setAuthenticationToken';
+import {
+  ADD_CENTER_SUCCESS,
+  ADD_CENTER_REQUEST,
+  ADD_CENTER_FAlLURE,
+  EDIT_CENTER,
+  EDIT_CENTER_FAILURE,
+  CLOUDINARY_URL,
+  CLOUDINARY_UPLOAD_PRESET
+} from './';
+import history from '../util/history';
 
 const centerApi = '/api/v1/centers';
 
@@ -23,67 +32,90 @@ const addCenterPayload = (payload, response = null) => {
   }
 };
 
+const createCenter = (centerApi, centerData, imgUrl) => dispatch => {
+  let token = localStorage.getItem('jwtToken') ? localStorage.getItem('jwtToken') : false;
+  setAuthorizationToken(token);
+  centerData.img_url = imgUrl;
+  dispatch(addCenterPayload(centerData, 'request'));
+  return axios.post(centerApi, centerData)
+    .then(({data}) => {
+      if (data.statusCode === 400) {
+        Materialize.toast(data.message, 5000, 'red');
+        return dispatch(addCenterPayload(data, 'failure'));
+      } else {
+        Materialize.toast(data.message, 5000, 'teal');
+        document.getElementById('edit-center-form').reset();
+        $('.modal').modal('close');
+        return dispatch(addCenterPayload(data.center, 'success'));
+      }
+    });
+};
+
+export const createCenterRequest = (centerData) => dispatch => {
+  if (centerData.img_url.name) {
+    let formData = new FormData();
+    formData.append('file', centerData.img_url);
+    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+    setAuthorizationToken(false);
+    return axios.post(CLOUDINARY_URL, formData)
+      .then(({data}) => {
+        dispatch(createCenter(centerApi, centerData, data.url));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  return dispatch(createCenter(centerApi, centerData, ''));
+};
+
+/***
+ * update center payload sorter
+ * ***/
 const updateCenterPayload = (data, res) => {
-  if(res === 'success'){
+  if (res === 'success') {
     return {
       type: EDIT_CENTER,
       payload: data
-    }
-  }else if(res === 'failure'){
+    };
+  } else if (res === 'failure') {
     return {
       type: EDIT_CENTER_FAILURE,
       payload: data
-    }
+    };
   }
 };
 
-export const createCenterRequest = centerData => (dispatch) => {
-  dispatch(addCenterPayload(centerData, 'request'));
-  return axios.post(centerApi, centerData)
-    .then(({ data }) => {
-      if (data.statusCode === 201) {
-        return dispatch(addCenterPayload(data.center, 'success'));
-      }
-      return dispatch(addCenterPayload(data, 'failure'));
-    })
-    .catch(err => dispatch(addCenterPayload(err, 'failure')));
+/***
+ * update center method
+ * requester to local server
+ * ***/
+const editCenter = (centerApi, centerData, imgUrl) => dispatch => {
+  let token = localStorage.getItem('jwtToken') ? localStorage.getItem('jwtToken') : false;
+  setAuthorizationToken(token);
+  centerData.img_url = imgUrl;
+  return axios.put(centerApi, centerData)
+    .then(({data}) => {
+      dispatch(updateCenterPayload(data.centr, 'success'));
+      window.location.reload();
+    });
 };
 
-export const updateCenterRequest = (centerData) => {
-    return dispatch => {
-        return axios.post(`${centerApi}/${centerData.id}`, centerData)
-            .then(({ data }) => {
-                if (data.statusCode === 200) {
-                    return dispatch(updateCenterPayload(data, 'success'));
-                }
-                Materialize.toast(data.message, 5000);
-                return data;
-            })
-            .catch(err => dispatch(updateCenterPayload(err, 'failure')));
-    }
+/***
+ * Initial landing method for edit center request
+ * ***/
+export const updateCenterRequest = (centerData) => dispatch => {
+  if (centerData.img_url.name) {
+    let formData = new FormData();
+    formData.append('file', centerData.img_url);
+    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+    setAuthorizationToken(false);
+    return axios.post(CLOUDINARY_URL, formData)
+      .then(({data}) => {
+        dispatch(editCenter(`${centerApi}/${centerData.id}`, centerData, data.url));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  return dispatch(editCenter(`${centerApi}/${centerData.id}`, centerData, centerData.img_url));
 };
-
-// let dataToSend = new FormData();
-// dataToSend.append('title', centerData.title);
-// dataToSend.append('location', centerData.location);
-// dataToSend.append('description', centerData.description);
-// dataToSend.append('capacity', centerData.capacity);
-// dataToSend.append('img_url', centerData.img_url);
-// dataToSend.append('facilities', centerData.facilities);
-// dataToSend.append('price', centerData.price);
-
-// console.log(centerData);
-
-// for (let key of dataToSend.entries()) {
-//     console.log(key[0] + ', ' + key[1]);
-// }
-
-// return axios({
-//     method: 'POST',
-//     url: centerApi,
-//     headers: {
-//         'x-access-token': token,
-//         // 'Content-Type': `multipart/form-data boundary=${dataToSend._boundary}`
-//     },
-//     data: dataToSend
-// })
