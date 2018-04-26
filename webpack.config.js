@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 const path = require('path');
 // const CompressionPlugin = require('compression-webpack-plugin');
 const webpack = require('webpack');

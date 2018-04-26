@@ -1,0 +1,5 @@
+node_modules
+server/seeders
+server/migrations
+server/test
+build
