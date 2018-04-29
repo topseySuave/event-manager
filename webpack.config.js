@@ -31,7 +31,30 @@ module.exports = {
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.optimize.UglifyJsPlugin(),
+    //   compress: {
+    //     unused: true,
+    //     dead_code: true, // big one--strip code that will never execute
+    //     warnings: false, // good for prod apps so users can't peek behind curtain
+    //     drop_debugger: true,
+    //     conditionals: true,
+    //     evaluate: true,
+    //     drop_console: true, // strips console statements
+    //     sequences: true,
+    //     booleans: true,
+    //   },
+    //   comments: false,
+    //   sourceMap: true,
+    //   minimize: false
+    // }),
+    new webpack.HotModuleReplacementPlugin(),
+    // new CompressionPlugin({
+    //   asset: '[path].gz[query]',
+    //   algorithm: 'gzip',
+    //   test: /\.js$|\.css$|\.html$/,
+    //   threshold: 10240,
+    //   minRatio: 0
+    // })
   ],
   module: {
     loaders: [
