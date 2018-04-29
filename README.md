@@ -5,6 +5,8 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/topseySuave/event-manager/badge.svg?branch=ch-client-side)](https://coveralls.io/github/topseySuave/event-manager?branch=ch-client-side)
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/2219e1701e5995fa3410/maintainability)](https://codeclimate.com/github/topseySuave/event-manager/maintainability)
+
 
 ## Boots Events Manager
     A Event Manager Application that enables users administrate there own centers, An Event registration platform for all of your online and on-site event management needs and handles the entire event lifecycle from start to finish.
