@@ -1,6 +1,6 @@
 // import Sequelize from '../config';
 import models from '../models';
-import { generatePaginationMeta } from '../middleware/util';
+import { isNaNValidator, generatePaginationMeta } from '../middleware/util';
 
 const Event = models.Events;
 const CenterModel = models.Centers;
@@ -30,12 +30,7 @@ export class Events {
      */
   getEvent(req, res) {
     const eventId = parseInt(req.params.id, 10);
-    if (isNaN(eventId)) {
-      return res.status(400).send({
-        statusCode: 400,
-        message: 'Event id is not a number'
-      });
-    }
+    isNaNValidator(eventId);
 
     Event.findById(eventId)
       .then((event) => {
@@ -97,10 +92,7 @@ export class Events {
       }
     } else if (req.query.sessionEvents) {
       let userId =  parseInt(req.query.sessionEvents, 10);
-      if(isNaN(userId)) return res.status(400).send({
-        message: 'the id specified is not a number',
-        statusCode: 400
-      });
+      isNaNValidator(userId);
 
       Event.findAll({
         where: {
@@ -119,6 +111,7 @@ export class Events {
               events: []
             });
           }
+          console.log('eventsFound outside =====> ', eventsFound);
           return res.status(200).send({
             statusCode: 200,
             message: 'The Events found',
@@ -192,7 +185,7 @@ export class Events {
             statusCode: 200,
             message: 'Successful Events!',
             events: events.rows,
-            mete: generatePaginationMeta(events, limitValue, pageValue)
+            meta: generatePaginationMeta(events, limitValue, pageValue)
           });
         })
         .catch(err => res.status(500).send(err));
@@ -274,12 +267,7 @@ export class Events {
      */
   updateEvent(req, res) {
     const eventId = parseInt(req.params.id, 10);
-    if (isNaN(eventId)) {
-      return res.status(400).send({
-        statusCode: 400,
-        message: 'Event id is not a number'
-      });
-    }
+    isNaNValidator(eventId);
 
     Event.findById(eventId)
       .then((event) => {
@@ -340,12 +328,8 @@ export class Events {
      */
   deleteEvent(req, res) {
     const eventId = parseInt(req.params.id, 10);
-    if (isNaN(eventId)) {
-      return res.status(400).send({
-        statusCode: 400,
-        message: 'Event id is not a number'
-      });
-    }
+    isNaNValidator(eventId);
+
     Event.findById(eventId)
       .then((deletedEvent) => {
         if (!deletedEvent) {

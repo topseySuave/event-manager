@@ -7,3 +7,9 @@ export const generatePaginationMeta = (dbResult, limitValue, pageValue) => {
   };
 };
 
+export const isNaNValidator = (value) => {
+  if(isNaN(value)) return res.status(400).send({
+    message: 'the id specified is not a number',
+    statusCode: 400
+  });
+}

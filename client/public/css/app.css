@@ -491,6 +491,13 @@ h4.bold.grey-text.center-align {
     -moz-column-count: 1;
     column-count: 1;
   }
+  .container{
+    width: 100% !important;
+  }
+  .logo{
+    width: 200px;
+    transform: translateX(-70%) !important;
+  }
 }
 
 @media only screen and (min-width: 601px) {

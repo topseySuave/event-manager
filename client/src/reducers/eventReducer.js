@@ -10,7 +10,8 @@ import {
   LOADMORE_EVENT_FAILURE,
   SEARCH_EVENT_TITLE,
   SEARCH_EVENT_TITLE_FAILED,
-  SESSION_EVENTS
+  SESSION_EVENTS,
+  SESSION_EVENTS_FAILURE
 } from '../actions';
 
 const pageLimit = process.env.DATA_LIMIT;
@@ -70,11 +71,21 @@ export default (state = {}, action = {}) => {
       newState.sessEvents = action.payload;
       return newState;
 
+    case SESSION_EVENTS_FAILURE:
+      newState = Object.assign({}, state);
+      newState.sessEvents = [];
+      return newState;
+
     case LOADMORE_EVENT_FAILURE:
-      return { ...state, loadingmore: false };
+      return { ...state,
+        loadingmore: false
+      };
 
     case LOADMORE_EVENT_REQUEST:
-      return { ...state, loadmore: true, loadingmore: true };
+      return { ...state,
+        loadmore: true,
+        loadingmore: true
+      };
 
     case LOADMORE_EVENT_SUCCESS:
       newState = Object.assign({}, state);

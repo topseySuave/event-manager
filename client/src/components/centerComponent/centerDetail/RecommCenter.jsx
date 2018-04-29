@@ -77,7 +77,7 @@ class RecommCenter extends Component {
     return (
       <div className="row">
         <div className="divider" />
-        <h5>Recommended Center</h5>
+        <h5 style={{ marginLeft: '10px' }}>Recommended Center</h5>
         { isLoading ? <CircularLoader /> : (
           <div className="row">
             { (error) ? errorMessage : (isEmpty(eachCenter)) ? this.state.noCenter : eachCenter }
