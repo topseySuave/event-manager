@@ -12,6 +12,7 @@ services:
 global:
   - export NODE_ENV=test
 before_script:
+- psql -c "CREATE DATABASE \"boots_test\";" -U postgres
 - npm install
 script:
   - npm run test

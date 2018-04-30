@@ -15,7 +15,7 @@
     "start:server": "nodemon --exec npm run start",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
-    "pretest": "NODE_ENV=test npm run create:test && npm run migrate:test",
+    "pretest": "NODE_ENV=test npm run migrate:test",
     "test:local": "npm run create:test && npm run migrate:test && npm run test:server",
     "test": "npm run test:server",
     "test:client": "jest --coverage",
@@ -26,8 +26,7 @@
     "migrate": "sequelize db:migrate",
     "seed": "sequelize db:seed",
     "drop:test": "sequelize db:migrate:undo:all",
-    "migrate:test": "sequelize db:migrate --env test",
-    "create:test": "sequelize db:create boots_test"
+    "migrate:test": "sequelize db:migrate --env test"
   },
   "nyc": {
     "exclude": [
