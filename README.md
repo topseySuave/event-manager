@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/topseySuave/event-manager.svg?branch=157178840-update-rename-test-files)](https://travis-ci.org/topseySuave/event-manager)
+[![Coverage Status](https://coveralls.io/repos/github/topseySuave/event-manager/badge.svg?branch=157178840-update-rename-test-files)](https://coveralls.io/github/topseySuave/event-manager?branch=157178840-update-rename-test-files)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/2219e1701e5995fa3410/test_coverage)](https://codeclimate.com/github/topseySuave/event-manager/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/2219e1701e5995fa3410/maintainability)](https://codeclimate.com/github/topseySuave/event-manager/maintainability)
 
