@@ -11,8 +11,14 @@ const request = supertest(app);
 const { expect } = chai;
 const testConstants = new testInit();
 
-// describe('Test event API', () => {
-//   describe('Creating a new event', () => {
-//     it();
-//   });
-// });
+describe('/api/v1/events Route Test API Endpoints', () => {
+  let decodedToken;
+  let token;
+  let centerId;
+  
+  describe('Creating a new event', () => {
+    it('', (done) => {
+      done();
+    });
+  });
+});
