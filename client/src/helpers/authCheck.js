@@ -11,7 +11,7 @@ export default class AuthCheck {
 
   isSignedIn() {
     if (this.jwtIsSet()) {
-      jwt.verify(localStorage.getItem('jwtToken'), '#(@#GYzU#EWERGFXTSWEW(@#YW($EW(', (err, decoded) => {
+      jwt.verify(localStorage.getItem('jwtToken'), 'iamgabrieltopseysuavemicah', (err, decoded) => {
         if (err) {
           store.dispatch(signOutRequest());
         } else {
