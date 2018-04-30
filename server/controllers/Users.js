@@ -253,7 +253,7 @@ export default class Users {
             }));
         } else {
           res.status(404).send({
-            message: 'Users was not found',
+            message: 'User was not found',
           });
         }
       });
