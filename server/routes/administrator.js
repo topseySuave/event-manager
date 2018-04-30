@@ -30,7 +30,6 @@ router.get('/', (req, res) => {
   })
   .get('/pending-events/all', eventsController.getEvents)
   .get('/users/all', userController.allUsers)
-  .post('/users', userController.removeUsers)
-  .post('/assign', userController.assignAdmin);
+  .post('/users', userController.removeUsers);
 
 module.exports = router;

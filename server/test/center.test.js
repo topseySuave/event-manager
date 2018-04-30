@@ -4,12 +4,12 @@ import chai from 'chai';
 import jwtDecode from 'jwt-decode';
 import supertest from 'supertest';
 import app from '../app';
-import testHelper from './testHelpers';
+import testInit from './testInit';
 
 chai.should();
 const request = supertest(app);
 const { expect } = chai;
-const testHelpers = new testHelper();
+const testConstants = new testInit();
 
 describe('Test center API', () => {
   let decodedToken;
@@ -18,10 +18,10 @@ describe('Test center API', () => {
 
   describe('Creating a new center', () => {
     before(() => {
-      request.post(`${testHelpers.usersApiRoute}/authentication`)
+      request.post(`${testConstants.usersApiRoute}/authentication`)
         .send({
-          email: testHelpers.constMailAddr,
-          password: testHelpers.constPass,
+          email: testConstants.constMailAddr,
+          password: testConstants.constPass,
         })
         .end((err, res) => {
           token = res.body.token;
@@ -29,15 +29,15 @@ describe('Test center API', () => {
     });
 
     it('should return 401 error response for no token', (done) => {
-      request.post(testHelpers.centersApiRoute)
+      request.post(testConstants.centersApiRoute)
         .send({
-          title: testHelpers.democenterTitle,
-          img_url: testHelpers.demoCenterImg,
-          location: testHelpers.democenterLocation,
-          description: testHelpers.demoCenterDescrp,
-          facilities: testHelpers.demoCenterFacilities,
-          capacity: testHelpers.democenterCapacity,
-          price: testHelpers.demoCenterPrice
+          title: testConstants.democenterTitle,
+          img_url: testConstants.demoCenterImg,
+          location: testConstants.democenterLocation,
+          description: testConstants.demoCenterDescrp,
+          facilities: testConstants.demoCenterFacilities,
+          capacity: testConstants.democenterCapacity,
+          price: testConstants.demoCenterPrice
         })
         .end((err, res) => {
           expect(res.status).to.equal(401);
@@ -48,15 +48,15 @@ describe('Test center API', () => {
     });
 
     it('should return 401 error response for a invalid token', (done) => {
-      request.post(`${testHelpers.centersApiRoute}?token=undefined`)
+      request.post(`${testConstants.centersApiRoute}?token=undefined`)
         .send({
-          title: testHelpers.democenterTitle,
-          img_url: testHelpers.demoCenterImg,
-          location: testHelpers.democenterLocation,
-          description: testHelpers.demoCenterDescrp,
-          facilities: testHelpers.demoCenterFacilities,
-          capacity: testHelpers.democenterCapacity,
-          price: testHelpers.demoCenterPrice
+          title: testConstants.democenterTitle,
+          img_url: testConstants.demoCenterImg,
+          location: testConstants.democenterLocation,
+          description: testConstants.demoCenterDescrp,
+          facilities: testConstants.demoCenterFacilities,
+          capacity: testConstants.democenterCapacity,
+          price: testConstants.demoCenterPrice
         })
         .end((err, res) => {
           expect(res.status).to.equal(401);
@@ -67,15 +67,15 @@ describe('Test center API', () => {
     });
 
     it('should return 400 response for an empty title field', (done) => {
-      request.post(`${testHelpers.centersApiRoute}?token=${token}`)
+      request.post(`${testConstants.centersApiRoute}?token=${token}`)
         .send({
           title: '',
-          img_url: testHelpers.demoCenterImg,
-          location: testHelpers.democenterLocation,
-          description: testHelpers.demoCenterDescrp,
-          facilities: testHelpers.demoCenterFacilities,
-          capacity: testHelpers.democenterCapacity,
-          price: testHelpers.demoCenterPrice
+          img_url: testConstants.demoCenterImg,
+          location: testConstants.democenterLocation,
+          description: testConstants.demoCenterDescrp,
+          facilities: testConstants.demoCenterFacilities,
+          capacity: testConstants.democenterCapacity,
+          price: testConstants.demoCenterPrice
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -86,15 +86,15 @@ describe('Test center API', () => {
     });
 
     it('should return 400 response for an empty location field', (done) => {
-      request.post(`${testHelpers.centersApiRoute}?token=${token}`)
+      request.post(`${testConstants.centersApiRoute}?token=${token}`)
         .send({
-          title: testHelpers.democenterTitle,
-          img_url: testHelpers.demoCenterImg,
+          title: testConstants.democenterTitle,
+          img_url: testConstants.demoCenterImg,
           location: '',
-          description: testHelpers.demoCenterDescrp,
-          facilities: testHelpers.demoCenterFacilities,
-          capacity: testHelpers.democenterCapacity,
-          price: testHelpers.demoCenterPrice
+          description: testConstants.demoCenterDescrp,
+          facilities: testConstants.demoCenterFacilities,
+          capacity: testConstants.democenterCapacity,
+          price: testConstants.demoCenterPrice
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -105,15 +105,15 @@ describe('Test center API', () => {
     });
 
     it('should return 400 response for an empty description field', (done) => {
-      request.post(`${testHelpers.centersApiRoute}?token=${token}`)
+      request.post(`${testConstants.centersApiRoute}?token=${token}`)
         .send({
-          title: testHelpers.democenterTitle,
-          img_url: testHelpers.demoCenterImg,
-          location: testHelpers.democenterLocation,
+          title: testConstants.democenterTitle,
+          img_url: testConstants.demoCenterImg,
+          location: testConstants.democenterLocation,
           description: '',
-          facilities: testHelpers.demoCenterFacilities,
-          capacity: testHelpers.democenterCapacity,
-          price: testHelpers.demoCenterPrice
+          facilities: testConstants.demoCenterFacilities,
+          capacity: testConstants.democenterCapacity,
+          price: testConstants.demoCenterPrice
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -124,15 +124,15 @@ describe('Test center API', () => {
     });
 
     it('should return 400 response if facility field is not an array', (done) => {
-      request.post(`${testHelpers.centersApiRoute}?token=${token}`)
+      request.post(`${testConstants.centersApiRoute}?token=${token}`)
         .send({
-          title: testHelpers.democenterTitle,
-          img_url: testHelpers.demoCenterImg,
-          location: testHelpers.democenterLocation,
-          description: testHelpers.demoCenterDescrp,
+          title: testConstants.democenterTitle,
+          img_url: testConstants.demoCenterImg,
+          location: testConstants.democenterLocation,
+          description: testConstants.demoCenterDescrp,
           facilities: 'swimming pool, parking lot, stage',
-          capacity: testHelpers.democenterCapacity,
-          price: testHelpers.demoCenterPrice
+          capacity: testConstants.democenterCapacity,
+          price: testConstants.demoCenterPrice
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -143,15 +143,15 @@ describe('Test center API', () => {
     });
 
     it('should return 400 response if capacity field is empty', (done) => {
-      request.post(`${testHelpers.centersApiRoute}?token=${token}`)
+      request.post(`${testConstants.centersApiRoute}?token=${token}`)
         .send({
-          title: testHelpers.democenterTitle,
-          img_url: testHelpers.demoCenterImg,
-          location: testHelpers.democenterLocation,
-          description: testHelpers.demoCenterDescrp,
-          facilities: testHelpers.demoCenterFacilities,
+          title: testConstants.democenterTitle,
+          img_url: testConstants.demoCenterImg,
+          location: testConstants.democenterLocation,
+          description: testConstants.demoCenterDescrp,
+          facilities: testConstants.demoCenterFacilities,
           capacity: '',
-          price: testHelpers.demoCenterPrice
+          price: testConstants.demoCenterPrice
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -162,14 +162,14 @@ describe('Test center API', () => {
     });
 
     it('should return 400 response if price field is empty', (done) => {
-      request.post(`${testHelpers.centersApiRoute}?token=${token}`)
+      request.post(`${testConstants.centersApiRoute}?token=${token}`)
         .send({
-          title: testHelpers.democenterTitle,
-          img_url: testHelpers.demoCenterImg,
-          location: testHelpers.democenterLocation,
-          description: testHelpers.demoCenterDescrp,
-          facilities: testHelpers.demoCenterFacilities,
-          capacity: testHelpers.democenterCapacity,
+          title: testConstants.democenterTitle,
+          img_url: testConstants.demoCenterImg,
+          location: testConstants.democenterLocation,
+          description: testConstants.demoCenterDescrp,
+          facilities: testConstants.demoCenterFacilities,
+          capacity: testConstants.democenterCapacity,
           price: ''
         })
         .end((err, res) => {
@@ -181,15 +181,15 @@ describe('Test center API', () => {
     });
 
     it('should create center and return 201 response for a valid token', (done) => {
-      request.post(`${testHelpers.centersApiRoute}?token=${token}`)
+      request.post(`${testConstants.centersApiRoute}?token=${token}`)
         .send({
-          title: testHelpers.democenterTitle,
-          img_url: testHelpers.demoCenterImg,
-          location: testHelpers.democenterLocation,
-          description: testHelpers.demoCenterDescrp,
-          facilities: testHelpers.demoCenterFacilities,
-          capacity: testHelpers.democenterCapacity,
-          price: testHelpers.demoCenterPrice
+          title: testConstants.democenterTitle,
+          img_url: testConstants.demoCenterImg,
+          location: testConstants.democenterLocation,
+          description: testConstants.demoCenterDescrp,
+          facilities: testConstants.demoCenterFacilities,
+          capacity: testConstants.democenterCapacity,
+          price: testConstants.demoCenterPrice
         })
         .end((err, res) => {
           expect(res.status).to.equal(201);
@@ -200,15 +200,15 @@ describe('Test center API', () => {
     });
 
     it('should create center and return 400 response for "center all ready exist"', (done) => {
-      request.post(`${testHelpers.centersApiRoute}?token=${token}`)
+      request.post(`${testConstants.centersApiRoute}?token=${token}`)
         .send({
-          title: testHelpers.democenterTitle,
-          img_url: testHelpers.demoCenterImg,
-          location: testHelpers.democenterLocation,
-          description: testHelpers.demoCenterDescrp,
-          facilities: testHelpers.demoCenterFacilities,
-          capacity: testHelpers.democenterCapacity,
-          price: testHelpers.demoCenterPrice
+          title: testConstants.democenterTitle,
+          img_url: testConstants.demoCenterImg,
+          location: testConstants.democenterLocation,
+          description: testConstants.demoCenterDescrp,
+          facilities: testConstants.demoCenterFacilities,
+          capacity: testConstants.democenterCapacity,
+          price: testConstants.demoCenterPrice
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -219,14 +219,11 @@ describe('Test center API', () => {
     });
 
     it('should return 200 response for getting all centers', (done) => {
-      request.get(`${testHelpers.centersApiRoute}`)
+      request.get(`${testConstants.centersApiRoute}`)
         .end((err, res) => {
           expect(res.status).to.equal(200);
           expect(res.body).to.be.an('object');
-          expect(res.body).to.haveOwnProperty('page');
-          expect(res.body).to.haveOwnProperty('pageSize');
-          expect(res.body).to.haveOwnProperty('totalCount');
-          expect(res.body).to.haveOwnProperty('pageCount');
+          expect(res.body).to.haveOwnProperty('meta');
           expect(res.body).to.haveOwnProperty('message').to.equal('Successful Center!');
           let rand5 = Math.floor((Math.random() * res.body.centers.length) + 1);
           centerId = rand5;
@@ -234,56 +231,56 @@ describe('Test center API', () => {
         });
     });
 
-    it('should return 404 response for getting search result for centers not found', (done) => {
+    it('should return 200 response for getting search result for centers but centers array will be empty', (done) => {
       process.env.DATA_LIMIT = 30;
-      request.get(`${testHelpers.centersApiRoute}?search=ikeja lagos`)
+      request.get(`${testConstants.centersApiRoute}?search=tfniurhaefidcekubifr`)
         .end((err, res) => {
-          expect(res.status).to.equal(404);
+          let centerLength = res.body.centers.length;
+          expect(res.status).to.equal(200);
           expect(res.body).to.be.an('object');
-          expect(res.body).to.haveOwnProperty('message').to.equal('Center(s) do not match your search result');
+          expect(res.body).to.haveOwnProperty('centers').to.deep.equal([]);
+          expect(res.body.centers.length).to.equal(centerLength);
           done();
         });
     });
 
     it('should return 200 response for getting search result for centers with filters by capacity', (done) => {
-      request.get(`${testHelpers.centersApiRoute}?filter=capacity&search=2000`)
+      request.get(`${testConstants.centersApiRoute}?filter=capacity&search=2000`)
         .end((err, res) => {
-          let centerCount = res.body.centers.length;
           expect(res.status).to.equal(200);
           expect(res.body).to.be.an('object');
-          expect(res.body).to.haveOwnProperty('totalCount').to.equal(centerCount);
+          expect(res.body).to.haveOwnProperty('meta').to.be.an('object');
         });
       done();
     });
 
     it('should return 200 response for getting search result for centers with filters by price', (done) => {
-      request.get(`${testHelpers.centersApiRoute}?filter=price&search=200000`)
+      request.get(`${testConstants.centersApiRoute}?filter=price&search=200000`)
         .end((err, res) => {
-          let centerCount = res.body.centers.length;
+          let meta = res.body.meta;
           expect(res.status).to.equal(200);
           expect(res.body).to.be.an('object');
-          expect(res.body).to.haveOwnProperty('totalCount').to.equal(centerCount);
+          expect(meta).to.haveOwnProperty('totalCount').to.equal(0);
         });
       done();
     });
 
     it('should return 200 response for getting search result for centers with filters by location', (done) => {
-      request.get(`${testHelpers.centersApiRoute}?filter=location&search=`)
+      request.get(`${testConstants.centersApiRoute}?filter=location&search=`)
         .end((err, res) => {
           let centerCount = res.body.centers.length;
           expect(res.status).to.equal(200);
           expect(res.body).to.be.an('object');
-          expect(res.body).to.haveOwnProperty('totalCount').to.equal(centerCount);
+          expect(res.body).to.haveOwnProperty('meta').to.be.an('object');
         });
       done();
     });
 
-    it('should return 400 response for getting one center with wrond id parameter', (done) => {
-      request.get(`${testHelpers.centersApiRoute}/wrong-id-param`)
+    it('should return 400 response for getting one center with wrong id parameter', (done) => {
+      request.get(`${testConstants.centersApiRoute}/wrongidparam`)
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.be.an('object');
-          expect(res.body).to.haveOwnProperty('error').to.equal(true);
           expect(res.body).to.haveOwnProperty('message').to.equal('Center id is not a number');
           done();
         });
@@ -291,18 +288,17 @@ describe('Test center API', () => {
 
     it('should return 404 response for getting one center with "Center with id: <centerId> does not exist"', (done) => {
       let centId = 200;
-      request.get(`${testHelpers.centersApiRoute}/${centId}`)
+      request.get(`${testConstants.centersApiRoute}/${centId}`)
         .end((err, res) => {
           expect(res.status).to.equal(404);
           expect(res.body).to.be.an('object');
-          expect(res.body).to.haveOwnProperty('error').to.equal(true);
           expect(res.body).to.haveOwnProperty('message').to.equal(`Center with id: ${centId} does not exist`);
           done();
         });
     });
 
     it('should return 200 response for getting one center', (done) => {
-      request.get(`${testHelpers.centersApiRoute}/${centerId}`)
+      request.get(`${testConstants.centersApiRoute}/${centerId}`)
         .end((err, res) => {
           expect(res.status).to.equal(200);
           expect(res.body).to.be.an('object');
@@ -312,35 +308,34 @@ describe('Test center API', () => {
     });
 
     it('should return 404 response with "center not found" for trying to updating a center', (done) => {
-      request.post(`${testHelpers.centersApiRoute}/900?token=${token}`)
+      request.put(`${testConstants.centersApiRoute}/900?token=${token}`)
         .send({
-          title: testHelpers.democenterTitle,
-          img_url: testHelpers.demoCenterImg,
-          location: testHelpers.democenterLocation,
-          description: testHelpers.demoCenterDescrp,
-          facilities: testHelpers.demoCenterFacilities,
-          capacity: testHelpers.democenterCapacity,
-          price: testHelpers.demoCenterPrice
+          title: testConstants.democenterTitle,
+          img_url: testConstants.demoCenterImg,
+          location: testConstants.democenterLocation,
+          description: testConstants.demoCenterDescrp,
+          facilities: testConstants.demoCenterFacilities,
+          capacity: testConstants.democenterCapacity,
+          price: testConstants.demoCenterPrice
         })
         .end((err, res) => {
-          // console.log(res);
-          // expect(res.status).to.equal(404);
-          // expect(res.body).to.be.an('object');
-          // expect(res.body).to.haveOwnProperty('message').to.equal('Center not Found with 900');
+          expect(res.status).to.equal(404);
+          expect(res.body).to.be.an('object');
+          expect(res.body).to.haveOwnProperty('message').to.equal('Center with the id of 900 was not Found');
           done();
         });
     });
 
     it('should return 400 response for a invalid id parameter when trying to update a center', (done) => {
-      request.post(`${testHelpers.centersApiRoute}/params?token=${token}`)
+      request.put(`${testConstants.centersApiRoute}/params?token=${token}`)
         .send({
-          title: testHelpers.democenterTitle,
-          img_url: testHelpers.demoCenterImg,
-          location: testHelpers.democenterLocation,
-          description: testHelpers.demoCenterDescrp,
-          facilities: testHelpers.demoCenterFacilities,
-          capacity: testHelpers.democenterCapacity,
-          price: testHelpers.demoCenterPrice
+          title: testConstants.democenterTitle,
+          img_url: testConstants.demoCenterImg,
+          location: testConstants.democenterLocation,
+          description: testConstants.demoCenterDescrp,
+          facilities: testConstants.demoCenterFacilities,
+          capacity: testConstants.democenterCapacity,
+          price: testConstants.demoCenterPrice
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -351,15 +346,15 @@ describe('Test center API', () => {
     });
 
     it('should return an error response with missing title field for updating a center', () => {
-      request.post(`${testHelpers.centersApiRoute}/${centerId}?token=${token}`)
+      request.put(`${testConstants.centersApiRoute}/${centerId}?token=${token}`)
         .send({
           title: '',
-          img_url: testHelpers.demoCenterImg,
-          location: testHelpers.democenterLocation,
-          description: testHelpers.demoCenterDescrp,
-          facilities: testHelpers.demoCenterFacilities,
-          capacity: testHelpers.democenterCapacity,
-          price: testHelpers.demoCenterPrice
+          img_url: testConstants.demoCenterImg,
+          location: testConstants.democenterLocation,
+          description: testConstants.demoCenterDescrp,
+          facilities: testConstants.demoCenterFacilities,
+          capacity: testConstants.democenterCapacity,
+          price: testConstants.demoCenterPrice
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -370,15 +365,15 @@ describe('Test center API', () => {
     });
 
     it('should return an error response with missing location field for updating a center', () => {
-      request.post(`${testHelpers.centersApiRoute}/${centerId}?token=${token}`)
+      request.put(`${testConstants.centersApiRoute}/${centerId}?token=${token}`)
         .send({
-          title: testHelpers.democenterTitle,
-          img_url: testHelpers.demoCenterImg,
+          title: testConstants.democenterTitle,
+          img_url: testConstants.demoCenterImg,
           location: '',
-          description: testHelpers.demoCenterDescrp,
-          facilities: testHelpers.demoCenterFacilities,
-          capacity: testHelpers.democenterCapacity,
-          price: testHelpers.demoCenterPrice
+          description: testConstants.demoCenterDescrp,
+          facilities: testConstants.demoCenterFacilities,
+          capacity: testConstants.democenterCapacity,
+          price: testConstants.demoCenterPrice
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -389,15 +384,15 @@ describe('Test center API', () => {
     });
 
     it('should return an error response with missing description field for updating a center', () => {
-      request.post(`${testHelpers.centersApiRoute}/${centerId}?token=${token}`)
+      request.put(`${testConstants.centersApiRoute}/${centerId}?token=${token}`)
         .send({
-          title: testHelpers.democenterTitle,
-          img_url: testHelpers.demoCenterImg,
-          location: testHelpers.democenterLocation,
+          title: testConstants.democenterTitle,
+          img_url: testConstants.demoCenterImg,
+          location: testConstants.democenterLocation,
           description: '',
-          facilities: testHelpers.demoCenterFacilities,
-          capacity: testHelpers.democenterCapacity,
-          price: testHelpers.demoCenterPrice
+          facilities: testConstants.demoCenterFacilities,
+          capacity: testConstants.democenterCapacity,
+          price: testConstants.demoCenterPrice
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -408,15 +403,15 @@ describe('Test center API', () => {
     });
 
     it('should return an error response with missing capacity field for updating a center', () => {
-      request.post(`${testHelpers.centersApiRoute}/${centerId}?token=${token}`)
+      request.put(`${testConstants.centersApiRoute}/${centerId}?token=${token}`)
         .send({
-          title: testHelpers.democenterTitle,
-          img_url: testHelpers.demoCenterImg,
-          location: testHelpers.democenterLocation,
-          description: testHelpers.demoCenterDescrp,
-          facilities: testHelpers.demoCenterFacilities,
+          title: testConstants.democenterTitle,
+          img_url: testConstants.demoCenterImg,
+          location: testConstants.democenterLocation,
+          description: testConstants.demoCenterDescrp,
+          facilities: testConstants.demoCenterFacilities,
           capacity: '',
-          price: testHelpers.demoCenterPrice
+          price: testConstants.demoCenterPrice
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -427,14 +422,14 @@ describe('Test center API', () => {
     });
 
     it('should return 200 response for finally updating a center', () => {
-      request.post(`${testHelpers.centersApiRoute}/${centerId}?token=${token}`)
+      request.put(`${testConstants.centersApiRoute}/${centerId}?token=${token}`)
         .send({
           title: 'A descriptive title for a center',
-          img_url: testHelpers.demoCenterImg,
-          location: testHelpers.democenterLocation,
-          description: testHelpers.demoCenterDescrp,
-          facilities: testHelpers.demoCenterFacilities,
-          capacity: testHelpers.democenterCapacity,
+          img_url: testConstants.demoCenterImg,
+          location: testConstants.democenterLocation,
+          description: testConstants.demoCenterDescrp,
+          facilities: testConstants.demoCenterFacilities,
+          capacity: testConstants.democenterCapacity,
           price: 200000
         })
         .end((err, res) => {
@@ -446,7 +441,7 @@ describe('Test center API', () => {
     });
 
     it('should return 401 for trying to delete a center with an id parameter but no token', (done) => {
-      request.delete(`${testHelpers.centersApiRoute}/${centerId}`)
+      request.delete(`${testConstants.centersApiRoute}/${centerId}`)
         .end((err, res) => {
           expect(res.status).to.equal(401);
           expect(res.body).to.an('object');
@@ -456,7 +451,7 @@ describe('Test center API', () => {
     });
 
     it('should return 400 for trying to delete a center without authorization', (done) => {
-      request.delete(`${testHelpers.centersApiRoute}/2000`)
+      request.delete(`${testConstants.centersApiRoute}/2000`)
         .end((err, res) => {
           expect(res.status).to.equal(401);
           expect(res.body).to.an('object');
@@ -475,7 +470,6 @@ describe('Test center API', () => {
           expect(res.body).to.be.an('object');
           expect(res.status).to.equal(200);
           expect(res.body).to.haveOwnProperty('message').to.equal('User has been deleted successfully');
-          expect(res.body).to.haveOwnProperty('error').to.equal(false);
         });
       done();
     });

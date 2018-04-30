@@ -3,14 +3,14 @@ import faker from 'faker';
 /**
  * Assign test helpers Constants
  * @class
- * @memberof testHelper
+ * @memberof testInit
  */
-export default class testHelper {
+export default class testInit {
   /**
      * Class Constructor
      * @constructor
      * @returns {void} Class instance
-     * @memberof testHelper
+     * @memberof testInit
      */
   constructor() {
     this.host = '/api/v1';
