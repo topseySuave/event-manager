@@ -5,7 +5,7 @@
 
 
 ## Boots Events Manager
-    A Event Manager Application that enables users administrate there own centers, An Event registration platform for all of your online and on-site event management needs and handles the entire event lifecycle from start to finish.
+  A Event Manager Application that enables users administrate there own centers, An Event registration platform for all of your online and on-site event management needs and handles the entire event lifecycle from start to finish.
 
  ## Application Features
    - Sign in and Sign up

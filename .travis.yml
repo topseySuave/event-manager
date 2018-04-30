@@ -2,13 +2,20 @@ language: node_js
 node_js:
   - 9
   - 6
-env:
-  - SECRET_KEY=#(@#GYzU#EWERGFXTSWEW(@#YW($EW(
-  global:
-    - export NODE_ENV=test
-  script:
-  - npm install
+cache:
+  directories:
+  - node_modules
+addons:
+- postgresql: "9.4"
+services:
+- postgresql
+global:
+  - export NODE_ENV=test
+before_script:
+- psql -c "CREATE DATABASE \"boots_test\";" -U postgres
+- npm install
+script:
   - npm run test
+after_success:
+  - codeclimate-test-reporter < coverage/lcov.info
   - npm run coverage
-
-  after_success: 'npm run coveralls'
