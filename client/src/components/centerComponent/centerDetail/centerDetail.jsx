@@ -305,10 +305,10 @@ class CenterDetail extends Component {
                         </div>
                       </div>
                       <div className="row">
-                        <div className="col s2">{ this.showEditCenterButton() }</div>
-                        <div className="col s2">{ this.showAlertModal(id) }</div>
-                        <div className="col s4">{ this.showBookCenterButton() }</div>
-                        <div className="col s3">{ this.showCenterEventsButton(events) }</div>
+                        <div className="col s12 l2">{ this.showEditCenterButton() }</div>
+                        <div className="col s12 l2">{ this.showAlertModal(id) }</div>
+                        <div className="col s12 l4">{ this.showBookCenterButton() }</div>
+                        <div className="col s12 l3">{ this.showCenterEventsButton(events) }</div>
                       </div>
                     </section>
                   </div>

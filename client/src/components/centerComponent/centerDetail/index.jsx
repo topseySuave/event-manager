@@ -8,10 +8,6 @@ import Footer from '../../bodyComponents/footer/footer';
 import Modals from '../../modals';
 
 class CenterDetailIndex extends Component {
-  componentWillMount() {
-    $(".button-collapse").sideNav();
-  }
-
   showSandWichNavBar() {
     return (
         <div>
