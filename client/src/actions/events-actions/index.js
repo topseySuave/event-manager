@@ -11,6 +11,7 @@ import {
   LOADMORE_EVENT_FAILURE,
   SEARCH_EVENT_TITLE,
   SESSION_EVENTS,
+  SESSION_EVENTS_FAILURE,
   CLOUDINARY_URL,
   CLOUDINARY_UPLOAD_PRESET
 } from '../';
@@ -122,9 +123,13 @@ export const fetchEventRequest = () => dispatch => axios.get(api)
 export const fetchSessionEventRequest = userId => dispatch => {
   return axios.get(`${api}?sessionEvents=${userId}`)
     .then(({ data }) => {
-      dispatch({
+      if (data) return dispatch({
         type: SESSION_EVENTS,
         payload: data.events
+      });
+
+      return dispatch({
+        type: SESSION_EVENTS_FAILURE
       });
     });
 };

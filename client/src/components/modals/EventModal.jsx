@@ -142,17 +142,6 @@ class EventModal extends Component {
                 isLoading: true
             });
             this.props.createEventRequest(this.state);
-            // .then((data)=>{
-            //     console.log('res from action', data);
-            //     this.setState({isLoading: false});
-            //     if(data.type === ADD_EVENT){
-            //         Materialize.toast('Event has been created successfully', 5000, 'teal');
-            //         this.setState({ title: '', description: '' });
-            //         this.handleClose();
-            //     }else{
-            //         Materialize.toast(data.message, 5000, 'red');
-            //     }
-            // });
         }
     }
 
