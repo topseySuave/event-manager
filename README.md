@@ -1,7 +1,4 @@
-
-[![Build Status](https://travis-ci.org/topseySuave/event-manager.svg?branch=develop)](https://travis-ci.org/topseySuave/event-manager)
-[![Build Status](https://travis-ci.org/topseySuave/event-manager.svg?branch=157178840-update-rename-test-files)]
-(https://travis-ci.org/topseySuave/event-manager)
+[![Build Status](https://travis-ci.org/topseySuave/event-manager.svg?branch=157178840-update-rename-test-files)](https://travis-ci.org/topseySuave/event-manager)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/2219e1701e5995fa3410/test_coverage)](https://codeclimate.com/github/topseySuave/event-manager/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/2219e1701e5995fa3410/maintainability)](https://codeclimate.com/github/topseySuave/event-manager/maintainability)
 
