@@ -8,7 +8,7 @@ const Events = (sequelize, DataTypes) => {
     centerId: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'Center',
+        model: 'Centers',
         key: 'id'
       }
     },

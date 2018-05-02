@@ -111,7 +111,7 @@ export class Events {
               events: []
             });
           }
-          console.log('eventsFound outside =====> ', eventsFound);
+          
           return res.status(200).send({
             statusCode: 200,
             message: 'The Events found',
