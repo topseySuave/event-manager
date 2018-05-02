@@ -31,8 +31,11 @@
   },
   "nyc": {
     "exclude": [
-      "server/middleware/**",
-      "server/app.js"
+      "server/middleware/imageUploader.js",
+      "server/middleware/mailer.js",
+      "server/models/user.js",
+      "server/app.js",
+      "server/routes/administrator.js"
     ]
   },
   "repository": {

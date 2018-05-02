@@ -29,7 +29,8 @@ const authenticate = (req, res, next) => {
         message: 'Failed to authenticate token, please sign in'
       });
     }
-    User.findById(decoded.id).then((user) => {
+    User.findById(decoded.id)
+    .then((user) => {
       if (!user) {
         return res.send({
           error: 'User Not Found..!!!'
