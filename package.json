@@ -33,7 +33,8 @@
     "exclude": [
       "server/middleware/imageUploader.js",
       "server/middleware/mailer.js",
-      "server/models/user.js",
+      "server/models/**",
+      "server/controllers/**",
       "server/app.js",
       "server/routes/administrator.js"
     ]
