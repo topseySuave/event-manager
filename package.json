@@ -15,7 +15,7 @@
     "start:server": "nodemon --exec npm run start",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
-    "pretest": "NODE_ENV=test npm run drop:test && npm run migrate:test",
+    "pretest": "NODE_ENV=test npm run migrate:test",
     "test:local": "npm run create:test && npm run migrate:test && npm run test:server",
     "test": "npm run test:server",
     "test:client": "jest --coverage",
