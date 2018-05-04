@@ -6,15 +6,6 @@ const Event = models.Events;
 const CenterModel = models.Centers;
 const { Op } = models.sequelize;
 
-// let storage = multer.diskStorage({
-//     destination: '../server/public/images/uploads',
-//     filename: (req, file, cb) => {
-//         cb(null, file.fieldname + '-' + Date.now() + path.extname())
-//     }
-// });
-//
-// let upload = multer({ storage: storage }).array('photos', 5);
-
 /**
  * @export
  * @class Events
@@ -30,7 +21,7 @@ export class Events {
      */
   getEvent(req, res) {
     const eventId = parseInt(req.params.id, 10);
-    isNaNValidator(eventId);
+    return isNaNValidator(res, eventId);
 
     Event.findById(eventId)
       .then((event) => {
@@ -92,7 +83,7 @@ export class Events {
       }
     } else if (req.query.sessionEvents) {
       let userId =  parseInt(req.query.sessionEvents, 10);
-      isNaNValidator(userId);
+      return isNaNValidator(res, userId);
 
       Event.findAll({
         where: {
@@ -267,7 +258,7 @@ export class Events {
      */
   updateEvent(req, res) {
     const eventId = parseInt(req.params.id, 10);
-    isNaNValidator(eventId);
+    return isNaNValidator(res, eventId);
 
     Event.findById(eventId)
       .then((event) => {
@@ -328,7 +319,7 @@ export class Events {
      */
   deleteEvent(req, res) {
     const eventId = parseInt(req.params.id, 10);
-    isNaNValidator(eventId);
+    return isNaNValidator(res, eventId);
 
     Event.findById(eventId)
       .then((deletedEvent) => {
