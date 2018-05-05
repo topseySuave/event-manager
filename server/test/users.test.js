@@ -3,10 +3,10 @@
 import chai from 'chai';
 import supertest from 'supertest';
 import faker from 'faker';
+import jwtDecode from 'jwt-decode';
 import app from '../app';
 import testInit from './testInit';
 
-chai.should();
 const request = supertest(app);
 const { expect } = chai;
 const testConstants = new testInit();
@@ -17,10 +17,10 @@ describe('Test user API', () => {
   let adminToken;
 
   describe('Creating a new admin or user', () => {
-    let firstName = faker.name.firstName();
-    let lastName = faker.name.lastName();
-    let adminFirstName = faker.name.firstName();
-    let adminLastName = faker.name.lastName();
+    let firstName = testConstants.firstName;
+    let lastName = testConstants.lastName;
+    let adminFirstName = testConstants.adminFirstName;
+    let adminLastName = testConstants.adminLastName;
 
     it('should return a status 400 error response for a empty firstName field', (done) => {
       request.post(testConstants.usersApiRoute)
@@ -172,17 +172,17 @@ describe('Test user API', () => {
           lastName,
           email: testConstants.constMailAddr,
           password: testConstants.constPass
-        })        
+        })
         .end((err, res) => {
           userId = res.body.id;
           expect(res.status).to.equal(201);
           expect(res.body).to.be.an('object');
           expect(res.body).to.haveOwnProperty('message').to.equal(`Account Created for ${firstName} ${lastName}`);
-          done();
         });
+      done();
     });
 
-    it('should return 400 error response for existing email', (done) => {
+    it('should return 201 response for creaqting another user', (done) => {
       request.post(testConstants.usersApiRoute)
         .send({
           firstName,
@@ -191,9 +191,9 @@ describe('Test user API', () => {
           password: testConstants.constPass
         })
         .end((err, res) => {
-          expect(res.status).to.equal(400);
+          expect(res.status).to.equal(201);
           expect(res.body).to.be.an('object');
-          expect(res.body).to.haveOwnProperty('message').to.equal('Email has been taken, Please Choose another');
+          expect(res.body).to.haveOwnProperty('message').to.equal(`Account Created for ${firstName} ${lastName}`);
           done();
         });
     });
@@ -267,6 +267,8 @@ describe('Test user API', () => {
           expect(res.status).to.equal(200);
           expect(res.body).to.haveOwnProperty('token');
           expect(res.body).to.haveOwnProperty('message').to.equal('signin successful');
+          process.env.TOKEN = res.body.token;
+          userId = jwtDecode(process.env.TOKEN).id;
         });
       done();
     });
