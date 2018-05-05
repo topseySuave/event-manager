@@ -1,6 +1,6 @@
 import models from '../models';
 
-import { generatePaginationMeta } from '../middleware/util';
+import { generatePaginationMeta, isNaNValidator } from '../middleware/util';
 const { Op } = models.sequelize;
 const centersModel = models.Centers;
 const Event = models.Events;
@@ -123,12 +123,7 @@ export class Centers {
     const order = req.query.order || 'desc';
     const limitValue = req.query.limit || process.env.DATA_LIMIT;
     const centerId = parseInt(req.params.id, 10);
-    if (isNaN(centerId)) {
-      return res.status(400).send({
-        statusCode: 400,
-        message: 'Center id is not a number'
-      });
-    }
+    if (isNaN(centerId)) return isNaNValidator(res, centerId);
 
     centersModel.findById(centerId)
       .then((foundCenter) => {
@@ -209,12 +204,7 @@ export class Centers {
     const order = req.query.order || 'desc';
     const limitValue = req.query.limit || process.env.DATA_LIMIT;
     const centerId = parseInt(req.params.id, 10);
-    if (isNaN(centerId)) {
-      return res.status(400).send({
-        statusCode: 400,
-        message: 'Center id is not a number'
-      });
-    }
+    if (isNaN(centerId)) return isNaNValidator(res, centerId);
 
     centersModel.findOne({
       where: {
@@ -341,12 +331,7 @@ export class Centers {
    */
   deleteCenter(req, res) {
     const centerId = parseInt(req.params.id, 10);
-    if (isNaN(centerId)) {
-      return res.status(400).send({
-        statusCode: 400,
-        message: 'Center id is not a number'
-      });
-    }
+    if (isNaN(centerId)) return isNaNValidator(res, centerId);
 
     centersModel.findById(centerId)
       .then((deletedCenter) => {

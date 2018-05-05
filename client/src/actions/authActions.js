@@ -38,7 +38,7 @@ const userSignInRequest = userData => dispatch =>
     }
   });
 
-module.exports = {
+export default {
   userSignupRequest,
   userSignInRequest,
   signOutRequest,

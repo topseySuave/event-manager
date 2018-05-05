@@ -1,9 +1,15 @@
-import models from '../models';
-import { isNaNValidator, generatePaginationMeta, generatePagination } from '../middleware/util';
+import models from "../models";
+import {
+  isNaNValidator,
+  generatePaginationMeta,
+  generatePagination
+} from "../middleware/util";
 
 const Event = models.Events;
 const CenterModel = models.Centers;
 const { Op } = models.sequelize;
+const centerAttributes = ["location"];
+const attributes = ['id', 'title', 'img_url', 'description', 'startDate', 'endDate', 'centerId'];
 
 /**
  * @export
@@ -11,44 +17,44 @@ const { Op } = models.sequelize;
  */
 export class Events {
   /**
-     * Get a single Event record
-     *
-     * @param {object} req - HTTP Request
-     * @param {object} res - HTTP Response
-     * @returns {object} Class instance
-     * @memberof Events
-     */
+   * Get a single Event record
+   *
+   * @param {object} req - HTTP Request
+   * @param {object} res - HTTP Response
+   * @returns {object} Class instance
+   * @memberof Events
+   */
   getEvent(req, res) {
     const eventId = parseInt(req.params.id, 10);
-    if(isNaN(eventId)) return isNaNValidator(res, eventId);
+    if (isNaN(eventId)) return isNaNValidator(res, eventId);
 
-    Event.findById(eventId)
-      .then((event) => {
-        if (!event) {
-          return res.status(404).send({
-            statusCode: 404,
-            message: `Event with id: ${eventId} does not exist`
-          });
-        }
-        return res.status(200).send({
-          statusCode: 200,
-          message: `Event with id: ${eventId} was found`,
-          event
+    Event.findById(eventId).then(event => {
+      if (!event) {
+        return res.status(404).send({
+          statusCode: 404,
+          message: `Event with id: ${eventId} does not exist`
         });
+      }
+      return res.status(200).send({
+        statusCode: 200,
+        message: `Event with id: ${eventId} was found`,
+        event
       });
+    });
   }
 
   /**
-     * Get Multiple Event record
-     *
-     * @param {object} req - HTTP Request
-     * @param {object} res - HTTP Response
-     * @returns {object} Class instance
-     * @memberof Events
-     */
+   * Get Multiple Event record
+   *
+   * @param {object} req - HTTP Request
+   * @param {object} res - HTTP Response
+   * @returns {object} Class instance
+   * @memberof Events
+   */
   getEvents(req, res) {
     const limitValue = parseInt(req.query.limit, 10) || process.env.DATA_LIMIT;
-    const order = (req.query.order) ? req.query.order : 'desc';
+    const order = req.query.order ? req.query.order : "desc";
+    const pageValue = req.query.next || 0;
     if (req.query && req.query.sort) {
       if (order) {
         Event.findAll({
@@ -57,125 +63,136 @@ export class Events {
               [Op.gte]: new Date().toDateString()
             }
           },
-          order: [
-            ['id', order]
-          ]
+          order: [["id", order]],
+          attributes
         })
-          .then((returnedEvent) => {
+          .then(returnedEvent => {
             if (!returnedEvent) {
               return res.status(400).send({
                 statusCode: 400,
-                message: 'No Event found'
+                message: "No Event found"
               });
             }
 
             return res.status(200).send({
               statusCode: 200,
-              message: 'Event(s) found',
+              message: "Event(s) found",
               events: returnedEvent
             });
           })
-          .catch(() => res.status(500).send({
-            statusCode: 500,
-            message: 'Error searching for Events'
-          }));
+          .catch(() =>
+            res.status(500).send({
+              statusCode: 500,
+              message: "Error searching for Events"
+            })
+          );
       }
     } else if (req.query.sessionEvents) {
       const userId = parseInt(req.query.sessionEvents, 10) || 0;
-      const pageValue = req.query.next || 0;
-      if(isNaN(userId)) return isNaNValidator(res, userId);
+      if (isNaN(userId)) return isNaNValidator(res, userId);
 
-      Event.findAll({
+      Event.findAndCountAll({
         where: {
           userId
         },
-        order: [
-          ['id', order]
-        ],
-        limit: limitValue
-      })
-        .then((eventsFound) => {
-          if (eventsFound.length <= 0) {
-            return res.status(204).send({
-              statusCode: 204,
-              message: 'There are no event for this user',
-              events: []
-            });
+        include: [
+          {
+            model: CenterModel,
+            as: "center",
+            attributes: centerAttributes
           }
-          
-          return res.status(200).send({
-            statusCode: 200,
-            message: 'The Events found',
-            events: eventsFound,
-            meta: generatePagination(eventsFound, limitValue, pageValue)
+        ],
+        order: [["id", order]],
+        limit: limitValue,
+        attributes
+      }).then(eventsFound => {
+        if (eventsFound.count <= 0)
+          return res.status(204).send({
+            statusCode: 204,
+            message: "There are no event for this user",
+            events: []
           });
+
+        return res.status(200).send({
+          statusCode: 200,
+          message: "The Events found",
+          events: eventsFound.rows,
+          meta: generatePaginationMeta(eventsFound, limitValue, pageValue)
         });
+      });
     } else if (req.query.search || req.query.limit) {
-      const search = req.query.search.split(' ');
+      const search = req.query.search.split(" ");
 
       /**
-      * Search with Title But Map first
-      * */
+       * Search with Title But Map first
+       * */
       const titleResp = search.map(value => ({
         title: {
           [Op.iLike]: `%${value}%`
         }
       }));
 
-      Event.findAll({
+      Event.findAndCountAll({
         where: {
           [Op.or]: titleResp,
           startDate: {
             [Op.gte]: new Date().toDateString()
           }
         },
-        order: [
-          ['id', order]
-        ],
-        limit: limitValue,
-      })
-        .then((searchResults) => {
-          if (searchResults.length <= 0) {
-            return res.status(400).send({
-              statusCode: 400,
-              message: 'Event(s) do not match your search result'
-            });
+        include: [
+          {
+            model: CenterModel,
+            as: "center",
+            attributes: centerAttributes
           }
-          return res.status(200).send({
-            statusCode: 200,
-            message: 'The Events found',
-            events: searchResults
+        ],
+        attributes,
+        order: [["id", order]],
+        limit: limitValue
+      }).then(searchResults => {
+        if (searchResults.count <= 0)
+          return res.status(400).send({
+            statusCode: 400,
+            message: "Event(s) do not match your search result"
           });
+
+        return res.status(200).send({
+          statusCode: 200,
+          message: "The Events found",
+          events: searchResults.rows,
+          meta: generatePaginationMeta(searchResults, limitValue, pageValue)
         });
+      });
     } else {
-      const pageValue = req.query.next || 0;
       Event.findAndCountAll({
         where: {
           startDate: {
             [Op.gte]: new Date().toDateString()
           }
         },
-        include: [{
-          model: CenterModel,
-          as: 'center'
-        }],
-        order: [
-          ['id', order]
+        include: [
+          {
+            model: CenterModel,
+            as: "center",
+            attributes: centerAttributes
+          }
         ],
+        attributes,
+        order: [["id", order]],
         limit: limitValue,
-        offset: (pageValue > 1) ? (pageValue * limitValue) - limitValue : pageValue
+        offset: pageValue > 1 ? pageValue * limitValue - limitValue : pageValue
       })
-        .then((events) => {
+        .then(events => {
           if (events.length === 0) {
             return res.status(404).send({
               statusCode: 404,
-              message: 'No result found',
+              message: "No result found"
             });
           }
 
           res.status(200).json({
             statusCode: 200,
-            message: 'Successful Events!',
+            message: "Successful Events!",
             events: events.rows,
             meta: generatePaginationMeta(events, limitValue, pageValue)
           });
@@ -185,13 +202,13 @@ export class Events {
   }
 
   /**
-     * Create Event record
-     *
-     * @param {object} req - HTTP Request
-     * @param {object} res - HTTP Response
-     * @returns {object} Class instance
-     * @memberof Events
-     */
+   * Create Event record
+   *
+   * @param {object} req - HTTP Request
+   * @param {object} res - HTTP Response
+   * @returns {object} Class instance
+   * @memberof Events
+   */
   createEvent(req, res) {
     const startDate = new Date(req.body.startDate);
     const endDate = new Date(req.body.endDate);
@@ -210,10 +227,10 @@ export class Events {
         }
       }
     })
-      .then((result) => {
+      .then(result => {
         if (result !== null) {
           return res.send({
-            message: 'Center has been booked for this date',
+            message: "Center has been booked for this date",
             statusCode: 400
           });
         }
@@ -225,103 +242,106 @@ export class Events {
           startDate,
           endDate,
           centerId: parseInt(req.body.centerId, 10),
-          userId: parseInt(req.body.userId, 10),
+          userId: parseInt(req.body.userId, 10)
         })
-          .then((event) => {
+          .then(event => {
             res.status(200).send({
               statusCode: 200,
-              message: 'Event has been created',
+              message: "Event has been created",
               event
             });
           })
-          .catch(err => res.status(500).send({
-            statusCode: 500,
-            message: 'Event cannot be created',
-            error: err
-          }));
+          .catch(err =>
+            res.status(500).send({
+              statusCode: 500,
+              message: "Event cannot be created",
+              error: err
+            })
+          );
       })
-      .catch((err) => {
+      .catch(err => {
         res.status(500).send({
           statusCode: 500,
-          message: 'Event cannot be created',
+          message: "Event cannot be created",
           error: err
         });
       });
   }
 
   /**
-     * Update a single Event record
-     *
-     * @param {object} req - HTTP Request
-     * @param {object} res - HTTP Response
-     * @returns {object} Class instance
-     * @memberof Events
-     */
+   * Update a single Event record
+   *
+   * @param {object} req - HTTP Request
+   * @param {object} res - HTTP Response
+   * @returns {object} Class instance
+   * @memberof Events
+   */
   updateEvent(req, res) {
     const eventId = parseInt(req.params.id, 10);
-    if(isNaN(eventId)) return isNaNValidator(res, eventId);
+    if (isNaN(eventId)) return isNaNValidator(res, eventId);
 
-    Event.findById(eventId)
-      .then((event) => {
-        if (!event) {
-          return res.status(400).send({
-            statusCode: 400,
-            message: `Event not Found with ${eventId}`
+    Event.findById(eventId).then(event => {
+      if (!event) {
+        return res.status(400).send({
+          statusCode: 400,
+          message: `Event not Found with ${eventId}`
+        });
+      }
+
+      Event.update(
+        {
+          title: req.body.title || event.title,
+          img_url: req.body.img_url || event.img_url,
+          description: req.body.description || event.description,
+          startDate: req.body.startDate || event.startDate,
+          endDate: req.body.endDate || event.endDate,
+          centerId: parseInt(req.body.centerId, 10) || event.centerId,
+          userId: parseInt(req.body.userId, 10) || event.userId
+        },
+        {
+          where: {
+            id: eventId
+          }
+        }
+      ).then(updatedEvent => {
+        if (updatedEvent) {
+          Event.findById(eventId, {
+            include: [
+              {
+                model: CenterModel,
+                as: "center",
+                attributes: centerAttributes
+              }
+            ],
+            attributes
+          }).then(newEvent => {
+            if (newEvent) {
+              res.status(201).send({
+                statusCode: 201,
+                message: "Event has been updated accordingly",
+                event: newEvent
+              });
+            }
           });
         }
-
-        Event.update(
-          {
-            title: req.body.title || event.title,
-            img_url: req.body.img_url || event.img_url,
-            description: req.body.description || event.description,
-            startDate: req.body.startDate || event.startDate,
-            endDate: req.body.endDate || event.endDate,
-            centerId: parseInt(req.body.centerId, 10) || event.centerId,
-            userId: parseInt(req.body.userId, 10) || event.userId,
-          },
-          {
-            where: {
-              id: eventId
-            }
-          }
-        )
-          .then((updatedEvent) => {
-            if (updatedEvent) {
-              Event.findById(eventId, {
-                include: [{
-                  model: CenterModel,
-                  as: 'center'
-                }]
-              })
-                .then((newEvent) => {
-                  if (newEvent) {
-                    res.status(201).send({
-                      statusCode: 201,
-                      message: 'Event has been updated accordingly',
-                      event: newEvent
-                    });
-                  }
-                });
-            }
-          });
       });
+    });
   }
 
   /**
-     * Delete an Event record
-     *
-     * @param {object} req - HTTP Request
-     * @param {object} res - HTTP Response
-     * @returns {object} Class instance
-     * @memberof Events
-     */
+   * Delete an Event record
+   *
+   * @param {object} req - HTTP Request
+   * @param {object} res - HTTP Response
+   * @returns {object} Class instance
+   * @memberof Events
+   */
   deleteEvent(req, res) {
     const eventId = parseInt(req.params.id, 10);
-    if(isNaN(eventId)) return isNaNValidator(res, eventId);
+    if (isNaN(eventId)) return isNaNValidator(res, eventId);
 
     Event.findById(eventId)
-      .then((deletedEvent) => {
+      .then(deletedEvent => {
         if (!deletedEvent) {
           return res.status(400).send({
             statusCode: 400,
@@ -330,19 +350,22 @@ export class Events {
         }
         Event.destroy({
           where: {
-            id: eventId,
+            id: eventId
           }
-        })
-          .then(() => res.status(200).send({
+        }).then(() =>
+          res.status(200).send({
             statusCode: 200,
-            message: 'This Event has been deleted',
+            message: "This Event has been deleted",
             event: deletedEvent
-          }));
+          })
+        );
       })
-      .catch(() => res.status(500).send({
-        statusCode: 500,
-        message: 'Error deleting Event'
-      }));
+      .catch(() =>
+        res.status(500).send({
+          statusCode: 500,
+          message: "Error deleting Event"
+        })
+      );
   }
 }
 
