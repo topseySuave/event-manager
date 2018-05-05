@@ -1,5 +1,5 @@
 import models from '../models';
-import { isNaNValidator, generatePaginationMeta } from '../middleware/util';
+import { isNaNValidator, generatePaginationMeta, generatePagination } from '../middleware/util';
 
 const Event = models.Events;
 const CenterModel = models.Centers;
@@ -20,7 +20,7 @@ export class Events {
      */
   getEvent(req, res) {
     const eventId = parseInt(req.params.id, 10);
-    return isNaNValidator(res, eventId);
+    if(isNaN(eventId)) return isNaNValidator(res, eventId);
 
     Event.findById(eventId)
       .then((event) => {
@@ -81,8 +81,9 @@ export class Events {
           }));
       }
     } else if (req.query.sessionEvents) {
-      let userId =  parseInt(req.query.sessionEvents, 10);
-      return isNaNValidator(res, userId);
+      const userId = parseInt(req.query.sessionEvents, 10) || 0;
+      const pageValue = req.query.next || 0;
+      if(isNaN(userId)) return isNaNValidator(res, userId);
 
       Event.findAll({
         where: {
@@ -105,7 +106,8 @@ export class Events {
           return res.status(200).send({
             statusCode: 200,
             message: 'The Events found',
-            events: eventsFound
+            events: eventsFound,
+            meta: generatePagination(eventsFound, limitValue, pageValue)
           });
         });
     } else if (req.query.search || req.query.limit) {
@@ -257,7 +259,7 @@ export class Events {
      */
   updateEvent(req, res) {
     const eventId = parseInt(req.params.id, 10);
-    return isNaNValidator(res, eventId);
+    if(isNaN(eventId)) return isNaNValidator(res, eventId);
 
     Event.findById(eventId)
       .then((event) => {
@@ -316,7 +318,7 @@ export class Events {
      */
   deleteEvent(req, res) {
     const eventId = parseInt(req.params.id, 10);
-    return isNaNValidator(res, eventId);
+    if(isNaN(eventId)) return isNaNValidator(res, eventId);
 
     Event.findById(eventId)
       .then((deletedEvent) => {
