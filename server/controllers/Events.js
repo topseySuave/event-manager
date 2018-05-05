@@ -82,11 +82,7 @@ export class Events {
       }
     } else if (req.query.sessionEvents) {
       let userId =  parseInt(req.query.sessionEvents, 10);
-<<<<<<< HEAD
       return isNaNValidator(res, userId);
-=======
-      return isNaNValidator(userId);
->>>>>>> 8dd967a21a5365c0198b71cc1da541ae6e52a2fc
 
       Event.findAll({
         where: {
@@ -261,11 +257,7 @@ export class Events {
      */
   updateEvent(req, res) {
     const eventId = parseInt(req.params.id, 10);
-<<<<<<< HEAD
     return isNaNValidator(res, eventId);
-=======
-    return isNaNValidator(eventId);
->>>>>>> 8dd967a21a5365c0198b71cc1da541ae6e52a2fc
 
     Event.findById(eventId)
       .then((event) => {
@@ -324,11 +316,7 @@ export class Events {
      */
   deleteEvent(req, res) {
     const eventId = parseInt(req.params.id, 10);
-<<<<<<< HEAD
     return isNaNValidator(res, eventId);
-=======
-    return isNaNValidator(eventId);
->>>>>>> 8dd967a21a5365c0198b71cc1da541ae6e52a2fc
 
     Event.findById(eventId)
       .then((deletedEvent) => {
