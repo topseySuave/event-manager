@@ -81,7 +81,7 @@ class SearchModal extends Component {
           <div className="container">
             <div className="row">
               <div className="col s1">
-                <a className="btn btn-flat white waves-effect search__back_btn" href="#_=_" >
+                <a className="btn btn-flat white waves-effect search__back_btn">
                   <i className="material-icons search_arrow_back_btn">arrow_back</i>
                 </a>
               </div>

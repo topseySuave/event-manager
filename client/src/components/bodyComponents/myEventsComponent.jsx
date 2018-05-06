@@ -31,8 +31,8 @@ class MyEventCardHolder extends Component {
   componentWillReceiveProps(newProps) {
     let {
       page, pageCount, pageSize, totalCount, loadingmore, loadmore
-    } = newProps.allEvents;
-    let events = newProps.allEvents.sessEvents;
+    } = newProps.allEvents.sessEvents.meta;
+    let { events } = newProps.allEvents.sessEvents;
     //
     this.setState({
       isLoading: false,
@@ -104,7 +104,7 @@ class MyEventCardHolder extends Component {
     } = this.state;
     return (
       <React.Fragment>
-        <div style={{ minHeight: '85vh' }} className="container popular__events">
+        <div style={{ minHeight: '85vh', paddingTop: '64px' }} className="container popular__events">
           <h4 className="center-align">My Events</h4>
           { (isLoading) ?
             <div style={{ height: '500px', marginTop: '100px' }}>

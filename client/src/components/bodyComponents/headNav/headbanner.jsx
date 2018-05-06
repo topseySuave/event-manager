@@ -11,6 +11,7 @@ import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
 import Drawer from 'material-ui/Drawer';
 import FlatButton from 'material-ui/FlatButton';
+import AccountCircle from 'material-ui/svg-icons/action/account-circle';
 
 import { signOutRequest } from '../../../actions/authActions';
 
@@ -67,7 +68,7 @@ class HeaderBanner extends Component {
     return (
       <React.Fragment>
         <IconMenu
-          iconButtonElement={<IconButton><MoreVertIcon color='white' /></IconButton>}
+          iconButtonElement={<IconButton><AccountCircle color='white' /></IconButton>}
           anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
           targetOrigin={{ horizontal: 'left', vertical: 'top' }}
         >

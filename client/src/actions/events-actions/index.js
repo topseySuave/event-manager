@@ -123,9 +123,10 @@ export const fetchEventRequest = () => dispatch => axios.get(api)
 export const fetchSessionEventRequest = userId => dispatch => {
   return axios.get(`${api}?sessionEvents=${userId}`)
     .then(({ data }) => {
+      // console.log('data ====> ', data);
       if (data) return dispatch({
         type: SESSION_EVENTS,
-        payload: data.events
+        payload: data
       });
 
       return dispatch({
