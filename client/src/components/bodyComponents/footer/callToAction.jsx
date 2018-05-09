@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 class CallToAction extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount(){
     $('.parallax').parallax();
   }
 
