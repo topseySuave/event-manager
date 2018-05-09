@@ -100,11 +100,13 @@ class FixedNav extends Component {
       return (
         <Fragment>
           <MenuItem
-            primaryText="Sign In"
+            primaryText="sign in"
+            style={{ color: '#FFFFFF' }}
             containerElement={<Link to="/signin" />}
           />
           <MenuItem
-            primaryText="Sign Up"
+            primaryText="sign up"
+            style={{ color: '#FFFFFF' }}
             containerElement={<Link to="/signup" />}
           />
         </Fragment>

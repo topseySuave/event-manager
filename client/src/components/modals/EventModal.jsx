@@ -38,6 +38,8 @@ class EventModal extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleEventSubmit = this.handleEventSubmit.bind(this);
         this.onFileChange = this.onFileChange.bind(this);
+        this.handleChangeStartDate = this.handleChangeStartDate.bind(this);
+        this.handleChangeEndDate = this.handleChangeEndDate.bind(this);
     }
 
     updateProps(newProps) {
@@ -65,10 +67,15 @@ class EventModal extends Component {
         this.updateProps(this.props);
     }
 
+    componentWillReceiveProps(newProps){
+        // console.log('newProps ====> ', newProps.event);
+        if(newProps.event) this.setState({ isLoading: newProps.event.isLoading });
+    }
+
     isValid() {
         const {errors, isValid} = validateEventInput(this.state);
         if (!isValid) {
-            this.setState({errors});
+            this.setState({ errors });
         }
         return isValid;
     }
@@ -242,6 +249,7 @@ class EventModal extends Component {
                                         onChange={this.handleInputChange}
                                         value={description}
                                     ></textarea>
+                                    {errors.description && <span className="red-text accent-1">{errors.description}</span>}
                                 </div>
                             </div>
                         </form>

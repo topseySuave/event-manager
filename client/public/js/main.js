@@ -23,3 +23,5 @@ $(document).on('click', '.search__back_btn', function () {
     $('#search__modal').modal('close');
     $('.modal-overlay').css({'display': 'none'});
 });
+
+

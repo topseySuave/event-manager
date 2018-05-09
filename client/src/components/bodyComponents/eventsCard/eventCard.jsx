@@ -194,7 +194,7 @@ class EventCard extends Component {
             </span>
             <p>{description}</p>
             <small>
-              <i className="material-icons f15">location_on </i>{" "}
+              <i className="material-icons f15">location_on</i>{" "}
               {center ? center.location : ""}
             </small>
           </div>

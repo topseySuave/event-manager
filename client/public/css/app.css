@@ -167,6 +167,7 @@ nav ul a:hover {
   margin: 0 !important;
   background-color: #fff;
   border-radius: 0 !important;
+  z-index: 1200 !important;
 }
 
 .search__nav {

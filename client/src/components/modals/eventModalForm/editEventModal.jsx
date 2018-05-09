@@ -1,27 +1,22 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { PropTypes } from 'prop-types';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { PropTypes } from "prop-types";
 
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
-import DatePicker from 'material-ui/DatePicker';
+import Dialog from "material-ui/Dialog";
+import FlatButton from "material-ui/FlatButton";
+import RaisedButton from "material-ui/RaisedButton";
+import TextField from "material-ui/TextField";
+import DatePicker from "material-ui/DatePicker";
 
-import { editEventAction } from '../../../actions/events-actions';
-import InputForm from '../../../components/form/formInput';
-import { validateEventInput } from '../validateInput';
-import { EDIT_EVENT } from '../../../actions';
+import { editEventAction } from "../../../actions/events-actions";
+import InputForm from "../../../components/form/formInput";
+import { validateEventInput } from "../validateInput";
+import { EDIT_EVENT } from "../../../actions";
 
 class EditEventModal extends Component {
   constructor(props) {
     super(props);
-
-    const startDate = new Date();
-    const endDate = new Date();
-    startDate.setFullYear(startDate.getFullYear() - 1);
-    endDate.setFullYear(endDate.getFullYear() - 1);
 
     this.state = {
       open: false,
@@ -31,15 +26,17 @@ class EditEventModal extends Component {
       eventId: 0,
       centerId: 0,
       userId: 0,
-      title: '',
-      img_url: '',
+      title: "",
+      img_url: "",
       startDate: null,
       endDate: null,
-      description: ''
+      description: ""
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleEventSubmit = this.handleEventSubmit.bind(this);
+    this.handleChangeStartDate = this.handleChangeStartDate.bind(this);
+    this.handleChangeEndDate = this.handleChangeEndDate.bind(this);
     this.onFileChange = this.onFileChange.bind(this);
   }
 
@@ -53,7 +50,8 @@ class EditEventModal extends Component {
 
   onFileChange(e) {
     let file = e.target.files[0];
-    if (file.type.indexOf('image/') > -1) { // only image file
+    if (file.type.indexOf("image/") > -1) {
+      // only image file
       if (file.size < 2000000) {
         let reader = new FileReader(); // instance of the FileReader
         reader.readAsDataURL(file); // read the local file
@@ -64,10 +62,10 @@ class EditEventModal extends Component {
           });
         };
       } else {
-        Materialize.toast('File too large', 5000, 'red');
+        Materialize.toast("File too large", 5000, "red");
       }
     } else {
-      Materialize.toast('Please select only images', 5000, 'red');
+      Materialize.toast("Please select only images", 5000, "red");
     }
   }
 
@@ -79,28 +77,77 @@ class EditEventModal extends Component {
     return isValid;
   }
 
+  removeError(date, dateField){
+    let errors = Object.assign({}, !!this.state.errors);
+    if(dateField === 'startDate'){
+      delete errors.startDate;
+      this.setState({
+        startDate: new Date(date),
+        errors
+      });
+    } else {
+      delete errors.endDate;
+      this.setState({
+        endDate: new Date(date),
+        errors
+      });
+    }
+  }
+
   handleChangeStartDate(e, date) {
-    if (new Date(date) < this.state.startdDate) {
-      Materialize.toast('Date isn\'t correct. Should be a day after today not before', 5000, 'red');
+    if (this.state.errors.startDate) {
+      this.removeError(date, 'startDate');
+    }
+    if (new Date(date) < new Date()) {
+      Materialize.toast(
+        "Date isn't correct. Should be a day after today not before",
+        5000,
+        "red"
+      );
       this.setState({
         startDate: {},
+        errors: {
+          startDate: 'This field is required'
+        }
       });
     } else {
       this.setState({
-        startDate: new Date(date).toDateString(),
+        startDate: new Date(date)
       });
     }
   }
 
   handleChangeEndDate(e, date) {
-    if (new Date(date) < this.state.endDate) {
-      Materialize.toast('Date isn\'t correct. Should be a day after today not before', 5000, 'red');
+    if (this.state.errors.endDate) {
+      this.removeError(date, 'endDate');
+    }
+    if (new Date(date) < new Date()) {
+      Materialize.toast(
+        "Date isn't correct. Should be a day after today not before",
+        5000,
+        "red"
+      );
       this.setState({
         endDate: {},
+        errors: {
+          endDate: 'This field is required'
+        }
+      });
+    } else if (date < this.state.startDate) {
+      Materialize.toast(
+        "End Date should be after Start Date",
+        5000,
+        "red"
+      );
+      this.setState({
+        endDate: {},
+        errors: {
+          endDate: 'This field is required'
+        }
       });
     } else {
       this.setState({
-        endDate: new Date(date).toDateString(),
+        endDate: new Date(date)
       });
     }
   }
@@ -121,7 +168,14 @@ class EditEventModal extends Component {
   updateState(newProps) {
     if (newProps.event.editEvent) {
       let {
-        title, img_url, startDate, endDate, description, centerId, userId, id
+        title,
+        img_url,
+        startDate,
+        endDate,
+        description,
+        centerId,
+        userId,
+        id
       } = newProps.event.eventToEdit;
       this.setState({
         eventId: id,
@@ -133,10 +187,12 @@ class EditEventModal extends Component {
         endDate: new Date(endDate),
         description
       });
+      if (!newProps.event.isLoading)
+        this.setState({ isLoading: newProps.event.isLoading });
     } else if (newProps.activeCenter.center) {
       this.setState({
         centerId: newProps.activeCenter.center.id,
-        userId: newProps.actUser.user.id,
+        userId: newProps.actUser.user.id
       });
     }
   }
@@ -149,26 +205,35 @@ class EditEventModal extends Component {
       });
 
       this.props.editEventAction(this.state);
-        // .then((data) => {
-        //   this.setState({ isLoading: false });
-        //   if (data.type === EDIT_EVENT) {
-        //     $('#add_event_modal').modal('close');
-        //     // Materialize.toast('Event has been updated successfully', 5000, 'teal');
-        //     this.setState({ title: '', description: '' });
-        //   } else {
-        //     Materialize.toast(data.message, 5000, 'red');
-        //   }
-        // });
+      // .then((data) => {
+      //   this.setState({ isLoading: false });
+      //   if (data.type === EDIT_EVENT) {
+      //     $('#add_event_modal').modal('close');
+      //     // Materialize.toast('Event has been updated successfully', 5000, 'teal');
+      //     this.setState({ title: '', description: '' });
+      //   } else {
+      //     Materialize.toast(data.message, 5000, 'red');
+      //   }
+      // });
     }
   }
 
   render() {
     let {
-      isLoading, title, description, endDate, startDate, errors
+      isLoading,
+      title,
+      description,
+      endDate,
+      startDate,
+      errors
     } = this.state;
     return (
-      <div className="row" style={{ marginTop: '20px' }}>
-        <form className="col s12" id="add-event-form" onSubmit={this.handleEventSubmit}>
+      <div className="row" style={{ marginTop: "20px" }}>
+        <form
+          className="col s12"
+          id="add-event-form"
+          onSubmit={this.handleEventSubmit}
+        >
           <div className="row">
             <div className="col s6">
               <div className="file-field input-field">
@@ -182,7 +247,11 @@ class EditEventModal extends Component {
                   />
                 </div>
                 <div className="file-path-wrapper">
-                  <input className="file-path validate" type="text" placeholder="Upload an image here" />
+                  <input
+                    className="file-path validate"
+                    type="text"
+                    placeholder="Upload an image here"
+                  />
                 </div>
               </div>
             </div>
@@ -192,7 +261,7 @@ class EditEventModal extends Component {
                 hintText="Title"
                 name="title"
                 value={title}
-                errorText={errors.title || ''}
+                errorText={errors.title || ""}
                 multiLine={false}
                 onChange={this.handleInputChange}
               />
@@ -207,7 +276,9 @@ class EditEventModal extends Component {
                 value={startDate}
                 disableYearSelection={this.state.disableYearSelection}
               />
-              { errors.startDate && <span className="red-text accent-1">{errors.startDate}</span> }
+              {errors.startDate && (
+                <span className="red-text accent-1">{errors.startDate}</span>
+              )}
             </div>
             <div className="input-field col s6">
               <DatePicker
@@ -217,7 +288,9 @@ class EditEventModal extends Component {
                 value={endDate}
                 disableYearSelection={this.state.disableYearSelection}
               />
-              { errors.endDate && <span className="red-text accent-1">{errors.endDate}</span> }
+              {errors.endDate && (
+                <span className="red-text accent-1">{errors.endDate}</span>
+              )}
             </div>
           </div>
           <div className="row">
@@ -240,10 +313,17 @@ class EditEventModal extends Component {
                 id="editEventForm"
                 name="action"
                 className="btn col s12 white-text gradient__bg btn-register waves-effect waves-light"
-                disabled={isLoading ? 'disabled' : ''}
+                disabled={isLoading ? "disabled" : ""}
               >
-                { !isLoading ? 'update event' :
-                <img style={{ marginTop: '10px' }} src="/image/loader/loading.gif" alt="loading gif" /> }
+                {!isLoading ? (
+                  "update event"
+                ) : (
+                  <img
+                    style={{ marginTop: "10px" }}
+                    src="/image/loader/loading.gif"
+                    alt="loading gif"
+                  />
+                )}
               </button>
             </div>
           </div>
@@ -265,6 +345,7 @@ const mapStateToProps = state => ({
   actUser: state.authReducer
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ editEventAction }, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ editEventAction }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditEventModal);

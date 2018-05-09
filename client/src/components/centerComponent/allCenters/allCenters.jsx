@@ -60,8 +60,15 @@ class AllCenters extends Component {
               </div>
               }
               <div className="card-content black-text">
-                <p className="bold">{center.title}</p>
-                <p className="light__font"><i className="material-icons f15">location_on</i>{center.location}</p>
+                <div className="row" style={{marginBottom: '0'}}>
+                  <div className="col s12">
+                    <p className="bold">{center.title}</p>
+                    <p className="light__font"><i className="material-icons f15">location_on</i>{center.location}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="card-action">
+                <span className="black-text right-align">capacity of {center.capacity} Guests</span>
               </div>
             </div>
           </Link>

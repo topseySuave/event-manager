@@ -5,6 +5,7 @@ import {
   ADD_EVENT,
   EDIT_EVENT,
   EDIT_EVENT_REQUEST,
+  EDIT_EVENT_FAILURE,
   REMOVE_EVENT,
   LOADMORE_EVENT_REQUEST,
   LOADMORE_EVENT_SUCCESS,
@@ -81,6 +82,9 @@ const createEvent = (eventData, imgUrl) => (dispatch) => {
     })
     .catch((err) => {
       console.log(err);
+      dispatch({
+        type: EDIT_EVENT_FAILURE
+      });
       Materialize.toast('An Error Occurred..!!!', 5000, 'red');
     });
 };
@@ -117,13 +121,14 @@ export const fetchEventRequest = () => dispatch => axios.get(api)
   .then(({data}) => {
     data.loadingmore = false;
     data.loadmore = false;
+    data.isLoading = false;
     dispatch(eventsDispatchAction('fetch', data));
   });
 
 export const fetchSessionEventRequest = userId => dispatch => {
   return axios.get(`${api}?sessionEvents=${userId}`)
     .then(({ data }) => {
-      // console.log('data ====> ', data);
+      data.isLoading = false;
       if (data) return dispatch({
         type: SESSION_EVENTS,
         payload: data
@@ -149,7 +154,11 @@ const editEvent = (eventData, imgUrl) => dispatch => {
     .then(({ data }) => {
       if (data.statusCode === 201) {
         Materialize.toast(data.message, 5000, 'teal');
-        $('#add_event_modal').modal('close');
+        $('#add_event_modal').modal('close', {
+          onCloseStart: () => {
+            $('.body__holdr').removeClass('blur__fits');
+          }
+        });
         return dispatch(eventsDispatchAction('edit', data.event));
       }
       return data;

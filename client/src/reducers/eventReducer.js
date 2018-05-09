@@ -1,8 +1,9 @@
-import isEmpty from 'lodash/isEmpty';
+import isEmpty from "lodash/isEmpty";
 import {
   ADD_EVENT,
   EDIT_EVENT,
   EDIT_EVENT_REQUEST,
+  EDIT_EVENT_FAILURE,
   FETCH_EVENTS,
   REMOVE_EVENT,
   LOADMORE_EVENT_REQUEST,
@@ -12,7 +13,7 @@ import {
   SEARCH_EVENT_TITLE_FAILED,
   SESSION_EVENTS,
   SESSION_EVENTS_FAILURE
-} from '../actions';
+} from "../actions";
 
 const pageLimit = process.env.DATA_LIMIT;
 let newState;
@@ -49,9 +50,15 @@ export default (state = {}, action = {}) => {
           newState.events[index] = action.payload;
         }
       });
+      newState.isLoading = false;
       newState.totalCount = newState.events.length;
       newState.pageSize = newState.totalCount;
       newState.pageCount = Math.ceil(newState.totalCount / pageLimit);
+      return newState;
+
+    case EDIT_EVENT_FAILURE:
+      newState = Object.assign({}, state);
+      newState.isLoading = false;
       return newState;
 
     case REMOVE_EVENT:
@@ -77,12 +84,14 @@ export default (state = {}, action = {}) => {
       return newState;
 
     case LOADMORE_EVENT_FAILURE:
-      return { ...state,
+      return {
+        ...state,
         loadingmore: false
       };
 
     case LOADMORE_EVENT_REQUEST:
-      return { ...state,
+      return {
+        ...state,
         loadmore: true,
         loadingmore: true
       };
@@ -92,7 +101,10 @@ export default (state = {}, action = {}) => {
       newState.events = newState.events.concat(action.payload);
       newState.loadingmore = false;
       newState.page = parseInt(newState.page + 1, 10);
-      newState.pageSize = parseInt(newState.pageSize + action.payload.length, 10);
+      newState.pageSize = parseInt(
+        newState.pageSize + action.payload.length,
+        10
+      );
       if (newState.pageSize === newState.totalCount) {
         newState.loadmore = false;
       }

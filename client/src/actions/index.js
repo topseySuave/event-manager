@@ -105,6 +105,12 @@ export const EDIT_EVENT_REQUEST = 'EDIT_EVENT_REQUEST';
 export const EDIT_EVENT = 'EDIT_EVENT';
 
 /**
+ * EDIT_EVENT_FAILURE action constants.
+ * To throw error when edit request could not be made.
+ * * */
+export const EDIT_EVENT_FAILURE = 'EDIT_EVENT_FAILURE';
+
+/**
  * REMOVE_EVENT action constants.
  * To remove an existing event in the database and the store.
  * * */
