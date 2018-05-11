@@ -143,12 +143,7 @@ var Centers = exports.Centers = function () {
       var order = req.query.order || 'desc';
       var limitValue = req.query.limit || process.env.DATA_LIMIT;
       var centerId = parseInt(req.params.id, 10);
-      if (isNaN(centerId)) {
-        return res.status(400).send({
-          statusCode: 400,
-          message: 'Center id is not a number'
-        });
-      }
+      if (isNaN(centerId)) return (0, _util.isNaNValidator)(res, centerId);
 
       centersModel.findById(centerId).then(function (foundCenter) {
         if (!foundCenter) {
@@ -222,12 +217,7 @@ var Centers = exports.Centers = function () {
       var order = req.query.order || 'desc';
       var limitValue = req.query.limit || process.env.DATA_LIMIT;
       var centerId = parseInt(req.params.id, 10);
-      if (isNaN(centerId)) {
-        return res.status(400).send({
-          statusCode: 400,
-          message: 'Center id is not a number'
-        });
-      }
+      if (isNaN(centerId)) return (0, _util.isNaNValidator)(res, centerId);
 
       centersModel.findOne({
         where: {
@@ -347,12 +337,7 @@ var Centers = exports.Centers = function () {
     key: 'deleteCenter',
     value: function deleteCenter(req, res) {
       var centerId = parseInt(req.params.id, 10);
-      if (isNaN(centerId)) {
-        return res.status(400).send({
-          statusCode: 400,
-          message: 'Center id is not a number'
-        });
-      }
+      if (isNaN(centerId)) return (0, _util.isNaNValidator)(res, centerId);
 
       centersModel.findById(centerId).then(function (deletedCenter) {
         if (!deletedCenter) {

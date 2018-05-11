@@ -1,18 +1,17 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.Events = undefined;
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); // import Sequelize from '../config';
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-
-var _models = require('../models');
+var _models = require("../models");
 
 var _models2 = _interopRequireDefault(_models);
 
-var _util = require('../middleware/util');
+var _util = require("../middleware/util");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24,14 +23,8 @@ var Event = _models2.default.Events;
 var CenterModel = _models2.default.Centers;
 var Op = _models2.default.sequelize.Op;
 
-// let storage = multer.diskStorage({
-//     destination: '../server/public/images/uploads',
-//     filename: (req, file, cb) => {
-//         cb(null, file.fieldname + '-' + Date.now() + path.extname())
-//     }
-// });
-//
-// let upload = multer({ storage: storage }).array('photos', 5);
+var centerAttributes = ["location"];
+var attributes = ['id', 'title', 'img_url', 'description', 'startDate', 'endDate', 'centerId'];
 
 /**
  * @export
@@ -44,138 +37,172 @@ var Events = exports.Events = function () {
   }
 
   _createClass(Events, [{
-    key: 'getEvent',
+    key: "getEvent",
 
     /**
-       * Get a single Event record
-       *
-       * @param {object} req - HTTP Request
-       * @param {object} res - HTTP Response
-       * @returns {object} Class instance
-       * @memberof Events
-       */
+     * Get a single Event record
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @returns {object} Class instance
+     * @memberof Events
+     */
     value: function getEvent(req, res) {
       var eventId = parseInt(req.params.id, 10);
-      if (isNaN(eventId)) {
-        return res.status(400).send({
-          statusCode: 400,
-          message: 'Event id is not a number'
-        });
-      }
+      if (isNaN(eventId)) return (0, _util.isNaNValidator)(res, eventId);
 
       Event.findById(eventId).then(function (event) {
         if (!event) {
           return res.status(404).send({
             statusCode: 404,
-            message: 'Event with id: ' + eventId + ' does not exist'
+            message: "Event with id: " + eventId + " does not exist"
           });
         }
         return res.status(200).send({
           statusCode: 200,
-          message: 'Event with id: ' + eventId + ' was found',
+          message: "Event with id: " + eventId + " was found",
           event: event
         });
       });
     }
 
     /**
-       * Get Multiple Event record
-       *
-       * @param {object} req - HTTP Request
-       * @param {object} res - HTTP Response
-       * @returns {object} Class instance
-       * @memberof Events
-       */
+     * Get Multiple Event record
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @returns {object} Class instance
+     * @memberof Events
+     */
 
   }, {
-    key: 'getEvents',
+    key: "getEvents",
     value: function getEvents(req, res) {
       var limitValue = parseInt(req.query.limit, 10) || process.env.DATA_LIMIT;
-      var order = req.query.order ? req.query.order : 'desc';
+      var order = req.query.order ? req.query.order : "desc";
+      var pageValue = req.query.next || 0;
       if (req.query && req.query.sort) {
         if (order) {
           Event.findAll({
             where: {
               startDate: _defineProperty({}, Op.gte, new Date().toDateString())
             },
-            order: [['id', order]]
+            order: [["id", order]],
+            attributes: attributes
           }).then(function (returnedEvent) {
             if (!returnedEvent) {
               return res.status(400).send({
                 statusCode: 400,
-                message: 'No Event found'
+                message: "No Event found"
               });
             }
 
             return res.status(200).send({
               statusCode: 200,
-              message: 'Event(s) found',
+              message: "Event(s) found",
               events: returnedEvent
             });
           }).catch(function () {
             return res.status(500).send({
               statusCode: 500,
-              message: 'Error searching for Events'
+              message: "Error searching for Events"
             });
           });
         }
+      } else if (req.query.sessionEvents) {
+        var userId = parseInt(req.query.sessionEvents, 10) || 0;
+        if (isNaN(userId)) return (0, _util.isNaNValidator)(res, userId);
+
+        Event.findAndCountAll({
+          where: {
+            userId: userId
+          },
+          include: [{
+            model: CenterModel,
+            as: "center",
+            attributes: centerAttributes
+          }],
+          order: [["id", order]],
+          limit: limitValue,
+          attributes: attributes
+        }).then(function (eventsFound) {
+          if (eventsFound.count <= 0) return res.status(200).send({
+            statusCode: 200,
+            message: "There are no event for this user",
+            events: []
+          });
+
+          return res.status(200).send({
+            statusCode: 200,
+            message: "The Events found",
+            events: eventsFound.rows,
+            meta: (0, _util.generatePaginationMeta)(eventsFound, limitValue, pageValue)
+          });
+        });
       } else if (req.query.search || req.query.limit) {
         var _where;
 
-        var search = req.query.search.split(' ');
+        var search = req.query.search.split(" ");
 
         /**
-        * Search with Title But Map first
-        * */
+         * Search with Title But Map first
+         * */
         var titleResp = search.map(function (value) {
           return {
-            title: _defineProperty({}, Op.iLike, '%' + value + '%')
+            title: _defineProperty({}, Op.iLike, "%" + value + "%")
           };
         });
 
-        Event.findAll({
-          where: (_where = {}, _defineProperty(_where, Op.or, titleResp), _defineProperty(_where, 'startDate', _defineProperty({}, Op.gte, new Date().toDateString())), _where),
-          order: [['id', order]],
+        Event.findAndCountAll({
+          where: (_where = {}, _defineProperty(_where, Op.or, titleResp), _defineProperty(_where, "startDate", _defineProperty({}, Op.gte, new Date().toDateString())), _where),
+          include: [{
+            model: CenterModel,
+            as: "center",
+            attributes: centerAttributes
+          }],
+          attributes: attributes,
+          order: [["id", order]],
           limit: limitValue
         }).then(function (searchResults) {
-          if (searchResults.length <= 0) {
-            return res.status(400).send({
-              statusCode: 400,
-              message: 'Event(s) do not match your search result'
-            });
-          }
+          if (searchResults.count <= 0) return res.status(400).send({
+            statusCode: 400,
+            message: "Event(s) do not match your search result"
+          });
+
           return res.status(200).send({
             statusCode: 200,
-            message: 'The Events found',
-            events: searchResults
+            message: "The Events found",
+            events: searchResults.rows,
+            meta: (0, _util.generatePaginationMeta)(searchResults, limitValue, pageValue)
           });
         });
       } else {
-        var pageValue = req.query.next || 0;
         Event.findAndCountAll({
           where: {
             startDate: _defineProperty({}, Op.gte, new Date().toDateString())
           },
           include: [{
             model: CenterModel,
-            as: 'center'
+            as: "center",
+            attributes: centerAttributes
           }],
-          order: [['id', order]],
+          attributes: attributes,
+          order: [["id", order]],
           limit: limitValue,
           offset: pageValue > 1 ? pageValue * limitValue - limitValue : pageValue
         }).then(function (events) {
           if (events.length === 0) {
             return res.status(404).send({
               statusCode: 404,
-              message: 'No result found'
+              message: "No result found"
             });
           }
 
           res.status(200).json({
             statusCode: 200,
-            message: 'Successful Events!',
+            message: "Successful Events!",
             events: events.rows,
-            mete: (0, _util.generatePaginationMeta)(events, limitValue, pageValue)
+            meta: (0, _util.generatePaginationMeta)(events, limitValue, pageValue)
           });
         }).catch(function (err) {
           return res.status(500).send(err);
@@ -184,16 +211,16 @@ var Events = exports.Events = function () {
     }
 
     /**
-       * Create Event record
-       *
-       * @param {object} req - HTTP Request
-       * @param {object} res - HTTP Response
-       * @returns {object} Class instance
-       * @memberof Events
-       */
+     * Create Event record
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @returns {object} Class instance
+     * @memberof Events
+     */
 
   }, {
-    key: 'createEvent',
+    key: "createEvent",
     value: function createEvent(req, res) {
       var _startDate4, _endDate;
 
@@ -210,7 +237,7 @@ var Events = exports.Events = function () {
       }).then(function (result) {
         if (result !== null) {
           return res.send({
-            message: 'Center has been booked for this date',
+            message: "Center has been booked for this date",
             statusCode: 400
           });
         }
@@ -226,50 +253,45 @@ var Events = exports.Events = function () {
         }).then(function (event) {
           res.status(200).send({
             statusCode: 200,
-            message: 'Event has been created',
+            message: "Event has been created",
             event: event
           });
         }).catch(function (err) {
           return res.status(500).send({
             statusCode: 500,
-            message: 'Event cannot be created',
+            message: "Event cannot be created",
             error: err
           });
         });
       }).catch(function (err) {
         res.status(500).send({
           statusCode: 500,
-          message: 'Event cannot be created',
+          message: "Event cannot be created",
           error: err
         });
       });
     }
 
     /**
-       * Update a single Event record
-       *
-       * @param {object} req - HTTP Request
-       * @param {object} res - HTTP Response
-       * @returns {object} Class instance
-       * @memberof Events
-       */
+     * Update a single Event record
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @returns {object} Class instance
+     * @memberof Events
+     */
 
   }, {
-    key: 'updateEvent',
+    key: "updateEvent",
     value: function updateEvent(req, res) {
       var eventId = parseInt(req.params.id, 10);
-      if (isNaN(eventId)) {
-        return res.status(400).send({
-          statusCode: 400,
-          message: 'Event id is not a number'
-        });
-      }
+      if (isNaN(eventId)) return (0, _util.isNaNValidator)(res, eventId);
 
       Event.findById(eventId).then(function (event) {
         if (!event) {
           return res.status(400).send({
             statusCode: 400,
-            message: 'Event not Found with ' + eventId
+            message: "Event not Found with " + eventId
           });
         }
 
@@ -290,50 +312,44 @@ var Events = exports.Events = function () {
             Event.findById(eventId, {
               include: [{
                 model: CenterModel,
-                as: 'center'
-              }]
+                as: "center",
+                attributes: centerAttributes
+              }],
+              attributes: attributes
             }).then(function (newEvent) {
               if (newEvent) {
                 res.status(201).send({
                   statusCode: 201,
-                  message: 'Event has been updated accordingly',
+                  message: "Event has been updated accordingly",
                   event: newEvent
                 });
               }
             });
           }
-        }).catch(function (error) {
-          return res.status(500).send(error);
         });
-      }).catch(function (error) {
-        return res.status(500).send(error);
       });
     }
 
     /**
-       * Delete an Event record
-       *
-       * @param {object} req - HTTP Request
-       * @param {object} res - HTTP Response
-       * @returns {object} Class instance
-       * @memberof Events
-       */
+     * Delete an Event record
+     *
+     * @param {object} req - HTTP Request
+     * @param {object} res - HTTP Response
+     * @returns {object} Class instance
+     * @memberof Events
+     */
 
   }, {
-    key: 'deleteEvent',
+    key: "deleteEvent",
     value: function deleteEvent(req, res) {
       var eventId = parseInt(req.params.id, 10);
-      if (isNaN(eventId)) {
-        return res.status(400).send({
-          statusCode: 400,
-          message: 'Event id is not a number'
-        });
-      }
+      if (isNaN(eventId)) return (0, _util.isNaNValidator)(res, eventId);
+
       Event.findById(eventId).then(function (deletedEvent) {
         if (!deletedEvent) {
           return res.status(400).send({
             statusCode: 400,
-            message: 'Event not found with id : ' + eventId
+            message: "Event not found with id : " + eventId
           });
         }
         Event.destroy({
@@ -343,14 +359,14 @@ var Events = exports.Events = function () {
         }).then(function () {
           return res.status(200).send({
             statusCode: 200,
-            message: 'This Event has been deleted',
+            message: "This Event has been deleted",
             event: deletedEvent
           });
         });
       }).catch(function () {
         return res.status(500).send({
           statusCode: 500,
-          message: 'Error deleting Event'
+          message: "Error deleting Event"
         });
       });
     }

@@ -106,11 +106,10 @@ app.get('*', function (req, res) {
   res.status(200).sendFile(_path2.default.join(__dirname, '..', 'client/public/index.html'));
 });
 
-app.use(function (req, res, next) {
-  var err = res.status(404).send({
+app.use(function (req, res) {
+  return res.status(404).send({
     error: '404: Sorry Page Not Found!'
   });
-  next(err);
 });
 
 var port = parseInt(process.env.PORT, 10) || 8000;

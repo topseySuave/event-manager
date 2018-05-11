@@ -46,7 +46,7 @@ router.get('/', function (req, res) {
     message: 'Unauthorized access',
     error: true
   });
-}).get('/pending-events/all', eventsController.getEvents).get('/users/all', userController.allUsers).post('/users', userController.removeUsers).post('/assign', userController.assignAdmin);
+}).get('/pending-events/all', eventsController.getEvents).get('/users/all', userController.allUsers).post('/users', userController.removeUsers);
 
 module.exports = router;
 //# sourceMappingURL=administrator.js.map

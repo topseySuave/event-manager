@@ -2,7 +2,7 @@
   "development": {
     "username": "postgres",
     "password": "12345",
-    "database": "boots_test",
+    "database": "boots",
     "host": "127.0.0.1",
     "port": 5432,
     "operatorsAliases": false,
