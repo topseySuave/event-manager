@@ -23,6 +23,11 @@ module.exports = {
       endDate: {
           type: Sequelize.DATE
       },
+      status: {
+        type: Sequelize.ENUM,
+        values: ['pending', 'accepted', 'rejected'],
+        defaultValue: 'pending'
+      },
       centerId: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',

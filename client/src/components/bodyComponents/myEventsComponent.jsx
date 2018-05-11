@@ -25,25 +25,30 @@ class MyEventCardHolder extends Component {
   }
 
   componentDidMount() {
+    $('.modal').modal();
     this.props.fetchSessionEventRequest(this.props.activeUser.user.id);
   }
 
   componentWillReceiveProps(newProps) {
-    let {
-      page, pageCount, pageSize, totalCount, loadingmore, loadmore
-    } = newProps.allEvents.sessEvents.meta;
-    let { events } = newProps.allEvents.sessEvents;
-    //
-    this.setState({
-      isLoading: false,
-      events,
-      page,
-      pageSize,
-      totalCount,
-      loadmore,
-      loadingmore,
-      pageCount
-    });
+    if(newProps.allEvents.sessEvents.events.length > 0){
+      let {
+        page, pageCount, pageSize, totalCount, loadingmore, loadmore
+      } = newProps.allEvents.sessEvents.meta;
+      let { events } = newProps.allEvents.sessEvents;
+  
+      this.setState({
+        isLoading: false,
+        events,
+        page,
+        pageSize,
+        totalCount,
+        loadmore,
+        loadingmore,
+        pageCount
+      });
+    } else {
+      this.setState({isLoading: false});
+    }
   }
 
   initInfiniteScroll() {
@@ -79,14 +84,7 @@ class MyEventCardHolder extends Component {
     this.props.loadMoreEvents(offset);
   }
 
-  renderEventsCard() {
-    let { events } = this.state;
-    return events.map((event) => (
-      <EventCard key={shortid.generate()} event={event} />
-    ));
-  }
-
-  renderNoEvent() {
+  renderNoEvents() {
     let { events } = this.state;
     if (isEmpty(events)) {
       return (
@@ -97,6 +95,15 @@ class MyEventCardHolder extends Component {
     }
   }
 
+  renderEventsCard() {
+    let { events } = this.state;
+    if (!isEmpty(events)) {
+      return events.map((event) => (
+        <EventCard key={shortid.generate()} event={event} />
+      ));
+    }
+  }
+
   render() {
     this.autoLoadMore();
     let {
@@ -104,7 +111,7 @@ class MyEventCardHolder extends Component {
     } = this.state;
     return (
       <React.Fragment>
-        <div style={{ minHeight: '85vh', paddingTop: '64px' }} className="container popular__events">
+        <div style={{ minHeight: '90vh', paddingTop: '64px' }} className="container popular__events">
           <h4 className="center-align">My Events</h4>
           { (isLoading) ?
             <div style={{ height: '500px', marginTop: '100px' }}>
@@ -115,7 +122,7 @@ class MyEventCardHolder extends Component {
               <div className="col s12 cards-container">
                 {this.renderEventsCard()}
               </div>
-              {this.renderNoEvent()}
+              {this.renderNoEvents()}
               {
                 (pageCount > 1) ?
                   (loadingmore) ? <CircularLoader /> :

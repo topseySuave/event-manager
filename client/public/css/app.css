@@ -453,6 +453,14 @@ h4.bold.grey-text.center-align {
   background-image: -webkit-linear-gradient(to left, #4884b3, #90ec92);
 }
 
+.gradient_text {
+  background: -webkit-linear-gradient(to left, #4884b3, #90ec92);
+  background: linear-gradient(to left, #4884b3, #90ec92);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .tabs .indicator {
   background-color: #e0f2f1;
   height: 60px;

@@ -107,8 +107,8 @@ export class Events {
         attributes
       }).then(eventsFound => {
         if (eventsFound.count <= 0)
-          return res.status(204).send({
-            statusCode: 204,
+          return res.status(200).send({
+            statusCode: 200,
             message: "There are no event for this user",
             events: []
           });

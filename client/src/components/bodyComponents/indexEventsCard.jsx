@@ -21,6 +21,7 @@ class IndexEventCardHolder extends Component {
   }
 
   componentDidMount() {
+    $('.modal').modal();
     this.props.fetchEventRequest();
   }
 

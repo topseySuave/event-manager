@@ -84,16 +84,10 @@ class Nav extends Component {
     // links only if user isn't signed in
     if (!this.props.activeState.isAuthenticated) {
       return (
-        <React.Fragment>
-          <MenuItem
-            primaryText="Sign In"
-            containerElement={<Link to="/signin" />}
-          />
-          <MenuItem
-            primaryText="Sign Up"
-            containerElement={<Link to="/signup" />}
-          />
-        </React.Fragment>
+        <span>
+          <li><Link to="/signin">Sign In</Link></li>
+          <li><Link to="/signup">Sign Up</Link></li>
+        </span>
       );
     }
 

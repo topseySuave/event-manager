@@ -154,17 +154,11 @@ const editEvent = (eventData, imgUrl) => dispatch => {
     .then(({ data }) => {
       if (data.statusCode === 201) {
         Materialize.toast(data.message, 5000, 'teal');
-        $('#add_event_modal').modal('close', {
-          onCloseStart: () => {
-            $('.body__holdr').removeClass('blur__fits');
-          }
-        });
+        $('#add_event_modal').modal('close');
+        $('.body__holdr').removeClass('blur__fits');
         return dispatch(eventsDispatchAction('edit', data.event));
       }
       return data;
-    })
-    .catch(() => {
-      Materialize.toast('Error in connection', 5000, 'red');
     });
 };
 

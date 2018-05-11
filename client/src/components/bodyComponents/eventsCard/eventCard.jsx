@@ -147,7 +147,14 @@ class EventCard extends Component {
         {this.showAlertModal(id)}
         <div className="card" data-id={shortid.generate(id)}>
           <div className="card-image">
-            <img src={img_url} alt={title} />
+            {img_url ? (
+              <img src={img_url} alt={title} />
+            ) : (
+              <img
+                src="http://www.topangacreekoutpost.com/assets/images/site/image_not_available.png"
+                alt={title}
+              />
+            )}
             <span
               className="card-title bold"
               style={{
