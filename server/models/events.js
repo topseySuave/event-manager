@@ -5,11 +5,6 @@ const Events = (sequelize, DataTypes) => {
     description: DataTypes.TEXT,
     startDate: DataTypes.DATE,
     endDate: DataTypes.DATE,
-    status: {
-      type: DataTypes.ENUM('pending', 'accepted', 'rejected'),
-      allowNull: false,
-      defaultValue: 'pending'
-    },
     centerId: {
       type: DataTypes.INTEGER,
       references: {
