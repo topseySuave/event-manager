@@ -10,6 +10,10 @@ const Events = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 'pending'
     },
+    private: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
     centerId: {
       type: DataTypes.INTEGER,
       references: {
