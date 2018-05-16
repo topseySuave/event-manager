@@ -7,7 +7,8 @@ export function validateEventInput(data) {
   if (isEmpty(data.title)) {
     errors.title = "This field is required";
   }
-  if (data.endDate < data.startDate) {
+
+  if (new Date(data.endDate) < new Date(data.startDate)) {
     errors.endDate = "End Date should be after Start Date";
   }
   if (isEmpty(data.description)) {

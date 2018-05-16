@@ -59,19 +59,23 @@ class CenterDetail extends Component {
   }
 
   componentWillReceiveProps(newProps) {
+    let centerDetails = newProps.activeCenterDetail;
+    if(centerDetails.eventStatusChange){
+      this.forceUpdate();
+    }
+
     if (this.props.params.id !== newProps.params.id) {
       newProps.fetchCenterAction(newProps.params.id);
     }
 
-    if (typeof newProps.activeCenterDetail.center !== "undefined") {
-      newProps.activeCenterDetail.center.events =
-        newProps.activeCenterDetail.events;
-      if (newProps.activeCenterDetail.center.events) {
-        delete newProps.activeCenterDetail.events;
+    if (typeof centerDetails.center !== "undefined") {
+      if (centerDetails.events) {
+        centerDetails.center.events = centerDetails.events;
+        delete centerDetails.events;
       }
       this.setState({
         isLoading: false,
-        activeCenter: newProps.activeCenterDetail
+        activeCenter: centerDetails
       });
     }
   }
@@ -282,7 +286,6 @@ class CenterDetail extends Component {
                             <CurrentEventForCenter
                               isAdmin={isAdmin}
                               events={events}
-                              handleStatusEventAction={handleStatusEventAction}
                             />
                           </div>
                         </div>

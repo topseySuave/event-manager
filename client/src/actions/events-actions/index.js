@@ -14,7 +14,8 @@ import {
   SESSION_EVENTS,
   SESSION_EVENTS_FAILURE,
   CLOUDINARY_URL,
-  CLOUDINARY_UPLOAD_PRESET
+  CLOUDINARY_UPLOAD_PRESET,
+  EVENT_STATUS_CHANGE
 } from '../';
 import setAuthorizationToken from '../../components/authentication/setAuthenticationToken';
 
@@ -229,13 +230,14 @@ export const loadMoreEvents = offset => (dispatch) => {
  * Accept a pending event
  * */
 export const handleStatusEventAction = (eventId, status) => dispatch => {
-  console.log('event id to accept ===> ', eventId, status);
   // send status request for event
   return axios.post(`${api}/${eventId}?status=${status}`)
     .then(({ data }) => {
-      console.log(data);
       if(data.statusCode === 200){
         Materialize.toast(data.message, 5000, 'teal');
+        return dispatch({
+          type: EVENT_STATUS_CHANGE
+        });
       } else {
         Materialize.toast(data.message, 5000, 'red');
       }

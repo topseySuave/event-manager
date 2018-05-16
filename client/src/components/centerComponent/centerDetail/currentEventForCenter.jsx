@@ -1,15 +1,53 @@
 import React, { Component } from "react";
 import { PropTypes } from "prop-types";
+import { connect } from "react-redux";
 import shortid from "shortid";
+import { bindActionCreators } from "redux";
 import IconButton from "material-ui/IconButton";
 import ActionDone from "material-ui/svg-icons/action/done";
 import ContentClear from "material-ui/svg-icons/content/clear";
+import FlatButton from "material-ui/FlatButton";
+import Dialog from "material-ui/Dialog";
 
 import EventCard from "../../bodyComponents/eventsCard/eventCard";
+import { handleStatusEventAction } from "../../../actions/events-actions";
 
 class CurrentEventForCenter extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      openAlert: false
+    };
+  }
+
+  handleAlertOpen = () => {
+    this.setState({ openAlert: true });
+  };
+
+  handleAlertClose = () => {
+    this.setState({ openAlert: false });
+  };
+
+  showAlertModal(eventId) {
+    const actions = [
+      <FlatButton
+        label="Yes"
+        primary={true}
+        onClick={() => this.props.handleStatusEventAction(eventId, "reject")}
+      />,
+      <FlatButton label="No" primary={true} onClick={this.handleAlertClose} />
+    ];
+
+    return (
+      <Dialog
+        actions={actions}
+        modal={false}
+        open={this.state.openAlert}
+        onRequestClose={this.handleAlertClose}
+      >
+        <h5>Are you sure you want to reject this event?</h5>
+      </Dialog>
+    );
   }
 
   renderStatusButtons(eventId, status) {
@@ -17,7 +55,7 @@ class CurrentEventForCenter extends Component {
       return (
         <a
           className="secondary-content red-text"
-          onClick={() => this.props.handleStatusEventAction(eventId, "reject")}
+          onClick={this.handleAlertOpen}
         >
           <IconButton tooltip="Reject Event" tooltipPosition="top-left">
             <ContentClear color="red" />
@@ -34,9 +72,7 @@ class CurrentEventForCenter extends Component {
               {closeButton()}
               <a
                 className="secondary-content"
-                onClick={() =>
-                  this.props.handleStatusEventAction(eventId, "accept")
-                }
+                onClick={() => this.props.handleStatusEventAction(eventId, "accept")}
               >
                 <IconButton tooltip="Accept Event" tooltipPosition="top-center">
                   <ActionDone color="green" />
@@ -69,6 +105,7 @@ class CurrentEventForCenter extends Component {
               " - " +
               new Date(event.endDate).toDateString()}
             {this.renderStatusButtons(event.id, event.status)}
+            {this.showAlertModal(event.id)}
           </li>
         );
       });
@@ -92,8 +129,15 @@ class CurrentEventForCenter extends Component {
 }
 
 CurrentEventForCenter.propTypes = {
-  events: PropTypes.array.isRequired,
-  handleStatusEventAction: PropTypes.func.isRequired
+  events: PropTypes.array.isRequired
 };
 
-export default CurrentEventForCenter;
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      handleStatusEventAction
+    },
+    dispatch
+  );
+
+export default connect(null, mapDispatchToProps)(CurrentEventForCenter);

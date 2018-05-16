@@ -32,6 +32,17 @@
   -webkit-transition: all 200ms ease-in-out;
 }
 
+.event-status{
+  padding: 5px 10px;
+  position: absolute;
+  top: 5px;
+  right: -10px;
+  z-index: 1;
+  border-radius: 3px;
+  transition: all 200ms ease-in-out;
+  -webkit-transition: all 200ms ease-in-out;
+}
+
 .collection-item:hover .status-btns{
   margin-right: 0px;
 }

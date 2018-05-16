@@ -96,6 +96,28 @@ class EventCard extends Component {
     }
   }
 
+  showStatusBars(status, statusColor) {
+    let userState = this.props.userState;
+    if (
+      (userState.isAuthenticated &&
+        userState.user.id === this.state.event.userId) ||
+      userState.user.role
+    ) {
+      return (
+        <span
+          className={classNames(
+            "event-status",
+            "darken-3",
+            "white-text",
+            statusColor
+          )}
+        >
+          {status}
+        </span>
+      );
+    }
+  }
+
   showAlertModal(id) {
     const actions = [
       <FlatButton
@@ -123,8 +145,9 @@ class EventCard extends Component {
   }
 
   render() {
-    let shareColor = ["red", "blue", "yellow", "green"];
-    shareColor = shareColor[Math.floor(Math.random() * shareColor.length)];
+    let shareColor = ["red", "blue", "yellow", "green"],
+      floatBtnColor;
+    floatBtnColor = shareColor[Math.floor(Math.random() * shareColor.length)];
 
     let {
       id,
@@ -134,19 +157,28 @@ class EventCard extends Component {
       startDate,
       endDate,
       userId,
-      center
+      center,
+      status
     } = this.state.event;
+
     startDate = new Date(startDate).toDateString();
     endDate = new Date(endDate).toDateString();
 
     let displayDate =
       startDate === endDate ? startDate : startDate + " - " + endDate;
+    let statusColor =
+      status === "pending"
+        ? shareColor[2]
+        : status === "rejected"
+          ? shareColor[0]
+          : shareColor[3];
 
     return (
       <div>
         {this.showAlertModal(id)}
         <div className="card" data-id={shortid.generate(id)}>
           <div className="card-image">
+            {this.showStatusBars(status, statusColor)}
             {img_url ? (
               <img src={img_url} alt={title} />
             ) : (
@@ -160,7 +192,7 @@ class EventCard extends Component {
               style={{
                 right: "0",
                 backgroundImage:
-                  "linear-gradient(to top, rgba(0, 0, 0, .5), rgba(0, 0, 0, 0))"
+                  "linear-gradient(to top, rgba(0, 0, 0, .7), rgba(0, 0, 0, .3))"
               }}
             >
               {title}
@@ -173,7 +205,7 @@ class EventCard extends Component {
                 "waves-effect",
                 "waves-light",
                 "tooltipped",
-                shareColor
+                floatBtnColor
               )}
               data-position="bottom"
               data-tooltip="share"
@@ -188,7 +220,9 @@ class EventCard extends Component {
             </p>
             <div>
               <i className="material-icons f15">location_on </i>{" "}
-              {center ? center.location : ""}
+              {center
+                ? center.location
+                : "sorry can't get location at this time"}
               {(this.props.userState.user.id === userId ||
                 this.props.userState.user.role) &&
                 this.showMenu(id)}

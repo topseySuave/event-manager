@@ -1,4 +1,10 @@
-import { FETCH_CENTER_DETAIL, EDIT_CENTER_REQUEST, EDIT_CENTER, REMOVE_CENTER } from '../actions';
+import {
+  FETCH_CENTER_DETAIL,
+  EDIT_CENTER_REQUEST,
+  EDIT_CENTER,
+  REMOVE_CENTER,
+  EVENT_STATUS_CHANGE
+} from "../actions";
 
 export default (state = {}, action = {}) => {
   let newState;
@@ -22,6 +28,11 @@ export default (state = {}, action = {}) => {
       newState = Object.assign({}, state);
       delete { ...newState };
       return {};
+
+    case EVENT_STATUS_CHANGE:
+      newState = Object.assign({}, state);
+      newState.eventStatusChange = true;
+      return newState;
 
     default:
       return state;
