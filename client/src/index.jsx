@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { loadingBarMiddleware } from "react-redux-loading-bar";
 import { Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
@@ -17,7 +16,7 @@ import history from "../src/util/history";
 import registerServiceWorker from "./registerServiceWorker";
 
 export const store = compose(
-  applyMiddleware(thunk, loadingBarMiddleware()),
+  applyMiddleware(thunk),
   window.devToolsExtension ? window.devToolsExtension() : f => f
 )(createStore)(rootReducer);
 

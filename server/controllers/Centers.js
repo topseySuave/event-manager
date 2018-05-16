@@ -5,7 +5,7 @@ const { Op } = models.sequelize;
 const centersModel = models.Centers;
 const Event = models.Events;
 const attributes = ['id', 'title', 'img_url', 'location', 'description', 'facilities', 'capacity', 'price'];
-const eventAttributes = ['id', 'title', 'img_url', 'description', 'startDate', 'endDate', 'centerId'];
+const eventAttributes = ['id', 'title', 'img_url', 'description', 'startDate', 'endDate', 'status', 'private', 'centerId'];
 
 const sortSearchRequest = (search, searchBy) => {
   let reqSearch;

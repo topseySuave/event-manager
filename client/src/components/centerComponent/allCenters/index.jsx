@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import LoadingBar from 'react-redux-loading-bar';
 import DocumentTitle from 'react-document-title';
 import FixedNav from '../../bodyComponents/headNav/fixedNav';
 import AllCenters from './allCenters';
@@ -11,8 +10,6 @@ class AllCentersIndex extends Component {
     return (
       <DocumentTitle title="Centers | Boots Events Manager">
         <div>
-          <LoadingBar styles={{ backgroundImage: 'linear-gradient(to top left, rgba(72, 132, 179, 0.7), rgba(144, 236, 146, 0.7))', height: '2px' }} />
-
           <div className="body__holdr">
             <FixedNav />
             <AllCenters />

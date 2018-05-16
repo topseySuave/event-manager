@@ -224,3 +224,20 @@ export const loadMoreEvents = offset => (dispatch) => {
       });
     });
 };
+
+/**
+ * Accept a pending event
+ * */
+export const handleStatusEventAction = (eventId, status) => dispatch => {
+  console.log('event id to accept ===> ', eventId, status);
+  // send status request for event
+  return axios.post(`${api}/${eventId}?status=${status}`)
+    .then(({ data }) => {
+      console.log(data);
+      if(data.statusCode === 200){
+        Materialize.toast(data.message, 5000, 'teal');
+      } else {
+        Materialize.toast(data.message, 5000, 'red');
+      }
+    });
+};

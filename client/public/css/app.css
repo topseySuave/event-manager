@@ -12,6 +12,34 @@
   /*background-color: #5A9EAB !important;*/
 /*}*/
 
+.collection.with-header .collection-item{
+  padding-left: 20px !important;
+  position: relative;
+}
+
+.status-btns{
+  display: -webkit-flex;
+  display: flex;
+  height: 40px;
+  background: #FFF;
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  margin-right: -100px;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transition: all 200ms ease-in-out;
+  -webkit-transition: all 200ms ease-in-out;
+}
+
+.collection-item:hover .status-btns{
+  margin-right: 0px;
+}
+
+.status-btns .secondary-content{
+  cursor: pointer;
+}
+
 .card .card-reveal{
   word-wrap: break-word;
 }

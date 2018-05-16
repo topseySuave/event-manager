@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import LoadingBar from 'react-redux-loading-bar';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -30,10 +29,6 @@ class MyEvents extends Component {
 
     return (
       <React.Fragment>
-        <LoadingBar style={{
-          backgroundImage: 'linear-gradient(to top left, rgba(72, 132, 179, 0.7), rgba(144, 236, 146, 0.7))',
-          height: '2px'
-        }}/>
         <div className="body__holdr">
           <FixedNav/>
           <MyEventCardHolder/>

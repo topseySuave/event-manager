@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import LoadingBar from 'react-redux-loading-bar';
 import DocumentTitle from 'react-document-title';
 import FixedNav from '../../bodyComponents/headNav/fixedNav';
 import CenterDetail from './centerDetail';
@@ -38,7 +37,6 @@ class CenterDetailIndex extends Component {
     return (
       <DocumentTitle title="Center Details | Boots Events Manager">
         <div>
-          <LoadingBar style={{ backgroundImage: 'linear-gradient(to top left, rgba(72, 132, 179, 0.7), rgba(144, 236, 146, 0.7))', height: `${2}px` }} />
           <div className="body__holdr">
             { this.showSandWichNavBar() }
             <FixedNav />

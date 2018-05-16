@@ -8,11 +8,18 @@ import FlatButton from "material-ui/FlatButton";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
 import DatePicker from "material-ui/DatePicker";
+import Toggle from 'material-ui/Toggle';
 
 import { editEventAction } from "../../../actions/events-actions";
 import InputForm from "../../../components/form/formInput";
 import { validateEventInput } from "../validateInput";
 import { EDIT_EVENT } from "../../../actions";
+
+const styles = {
+  labelStyle: {
+    color: 'green',
+  }
+}
 
 class EditEventModal extends Component {
   constructor(props) {
@@ -30,7 +37,8 @@ class EditEventModal extends Component {
       img_url: "",
       startDate: null,
       endDate: null,
-      description: ""
+      description: "",
+      private: false
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -38,6 +46,7 @@ class EditEventModal extends Component {
     this.handleChangeStartDate = this.handleChangeStartDate.bind(this);
     this.handleChangeEndDate = this.handleChangeEndDate.bind(this);
     this.onFileChange = this.onFileChange.bind(this);
+    this.handleToggleChange = this.handleToggleChange.bind(this);
   }
 
   componentDidMount() {
@@ -165,6 +174,10 @@ class EditEventModal extends Component {
     }
   }
 
+  handleToggleChange(e){
+      this.setState({ private: !this.state.private });
+  }
+
   updateState(newProps) {
     if (newProps.event.editEvent) {
       let {
@@ -177,6 +190,7 @@ class EditEventModal extends Component {
         userId,
         id
       } = newProps.event.eventToEdit;
+      let privateEvent = newProps.event.eventToEdit.private;
       this.setState({
         eventId: id,
         centerId,
@@ -185,7 +199,8 @@ class EditEventModal extends Component {
         img_url,
         startDate: new Date(startDate),
         endDate: new Date(endDate),
-        description
+        description,
+        private: privateEvent
       });
       if (!newProps.event.isLoading)
         this.setState({ isLoading: newProps.event.isLoading });
@@ -205,16 +220,6 @@ class EditEventModal extends Component {
       });
 
       this.props.editEventAction(this.state);
-      // .then((data) => {
-      //   this.setState({ isLoading: false });
-      //   if (data.type === EDIT_EVENT) {
-      //     $('#add_event_modal').modal('close');
-      //     // Materialize.toast('Event has been updated successfully', 5000, 'teal');
-      //     this.setState({ title: '', description: '' });
-      //   } else {
-      //     Materialize.toast(data.message, 5000, 'red');
-      //   }
-      // });
     }
   }
 
@@ -305,6 +310,17 @@ class EditEventModal extends Component {
                 value={description}
               />
             </div>
+          </div>
+          <div className="row">
+              <div className="input-field col s12">
+              <Toggle
+                  label="Do you want this event to be private?"
+                  name="private"
+                  defaultToggled={this.state.private}
+                  onToggle={this.handleToggleChange}
+                  labelStyle={styles.labelStyle}
+                  />
+              </div>
           </div>
           <div className="row">
             <div className="input-field col s12">

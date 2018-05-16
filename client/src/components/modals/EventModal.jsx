@@ -1,15 +1,23 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {createEventRequest} from '../../actions/events-actions'
-import InputForm from '../../components/form/formInput'
-import {validateEventInput} from './validateInput'
-import {ADD_EVENT} from '../../actions'
 
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
+import Toggle from 'material-ui/Toggle';
+
+import {createEventRequest} from '../../actions/events-actions'
+import InputForm from '../../components/form/formInput'
+import {validateEventInput} from './validateInput'
+import {ADD_EVENT} from '../../actions'
+
+const styles = {
+    labelStyle: {
+      color: 'green',
+    }
+  }
 
 class EventModal extends Component {
     constructor(props) {
@@ -32,7 +40,8 @@ class EventModal extends Component {
             img_url: '',
             startDate: null,
             endDate: null,
-            description: ''
+            description: '',
+            private: false
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -40,6 +49,7 @@ class EventModal extends Component {
         this.onFileChange = this.onFileChange.bind(this);
         this.handleChangeStartDate = this.handleChangeStartDate.bind(this);
         this.handleChangeEndDate = this.handleChangeEndDate.bind(this);
+        this.handleToggleChange = this.handleToggleChange.bind(this);
     }
 
     updateProps(newProps) {
@@ -68,7 +78,6 @@ class EventModal extends Component {
     }
 
     componentWillReceiveProps(newProps){
-        // console.log('newProps ====> ', newProps.event);
         if(newProps.event) this.setState({ isLoading: newProps.event.isLoading });
     }
 
@@ -125,6 +134,10 @@ class EventModal extends Component {
         } else {
             this.setState({[e.target.name]: e.target.value});
         }
+    }
+
+    handleToggleChange(e){
+        this.setState({ private: !this.state.private });
     }
 
     onFileChange(e) {
@@ -250,6 +263,17 @@ class EventModal extends Component {
                                         value={description}
                                     ></textarea>
                                     {errors.description && <span className="red-text accent-1">{errors.description}</span>}
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="input-field col s12">
+                                <Toggle
+                                    label="Do you want this event to be private?"
+                                    name="private"
+                                    defaultToggled={this.state.private}
+                                    onToggle={this.handleToggleChange}
+                                    labelStyle={styles.labelStyle}
+                                    />
                                 </div>
                             </div>
                         </form>

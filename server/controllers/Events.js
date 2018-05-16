@@ -9,7 +9,7 @@ const Event = models.Events;
 const CenterModel = models.Centers;
 const { Op } = models.sequelize;
 const centerAttributes = ["location"];
-const attributes = ['id', 'title', 'img_url', 'description', 'startDate', 'endDate', 'centerId'];
+const attributes = ['id', 'title', 'img_url', 'description', 'startDate', 'endDate', 'status', 'centerId', 'private'];
 
 /**
  * @export
@@ -59,6 +59,8 @@ export class Events {
       if (order) {
         Event.findAll({
           where: {
+            private: false,
+            status: 'accepted',
             startDate: {
               [Op.gte]: new Date().toDateString()
             }
@@ -137,7 +139,9 @@ export class Events {
           [Op.or]: titleResp,
           startDate: {
             [Op.gte]: new Date().toDateString()
-          }
+          },
+          private: false,
+          status: 'accepted',
         },
         include: [
           {
@@ -168,7 +172,9 @@ export class Events {
         where: {
           startDate: {
             [Op.gte]: new Date().toDateString()
-          }
+          },
+          private: false,
+          status: 'accepted',
         },
         include: [
           {
@@ -239,6 +245,7 @@ export class Events {
           img_url: req.body.img_url,
           location: req.body.location,
           description: req.body.description,
+          private: req.body.private,
           startDate,
           endDate,
           centerId: parseInt(req.body.centerId, 10),
@@ -280,52 +287,76 @@ export class Events {
     const eventId = parseInt(req.params.id, 10);
     if (isNaN(eventId)) return isNaNValidator(res, eventId);
 
-    Event.findById(eventId).then(event => {
-      if (!event) {
-        return res.status(400).send({
-          statusCode: 400,
-          message: `Event not Found with ${eventId}`
-        });
-      }
-
-      Event.update(
-        {
-          title: req.body.title || event.title,
-          img_url: req.body.img_url || event.img_url,
-          description: req.body.description || event.description,
-          startDate: req.body.startDate || event.startDate,
-          endDate: req.body.endDate || event.endDate,
-          centerId: parseInt(req.body.centerId, 10) || event.centerId,
-          userId: parseInt(req.body.userId, 10) || event.userId
-        },
-        {
-          where: {
-            id: eventId
-          }
-        }
-      ).then(updatedEvent => {
-        if (updatedEvent) {
-          Event.findById(eventId, {
-            include: [
-              {
-                model: CenterModel,
-                as: "center",
-                attributes: centerAttributes
+    if(req.query){
+      let status = req.query.status;
+      status = (status === 'accept') ? 'accepted' : 'rejected';
+        Event.findById(eventId)
+        .then(foundEvent => {
+          if(foundEvent){
+            Event.update({
+              status
+            }, {
+              where: {
+                id: foundEvent.id
               }
-            ],
-            attributes
-          }).then(newEvent => {
-            if (newEvent) {
-              res.status(201).send({
-                statusCode: 201,
-                message: "Event has been updated accordingly",
-                event: newEvent
+            }).then((updatedEvent) => {
+              res.status(200).send({
+                statusCode: 200,
+                message: `Event has been ${status}`,
+                event: updatedEvent
               });
-            }
+            });
+          }
+        });
+    } else {
+      Event.findById(eventId).then(event => {
+        if (!event) {
+          return res.status(400).send({
+            statusCode: 400,
+            message: `Event not Found with ${eventId}`
           });
         }
+
+        Event.update(
+          {
+            title: req.body.title || event.title,
+            img_url: req.body.img_url || event.img_url,
+            description: req.body.description || event.description,
+            startDate: req.body.startDate || event.startDate,
+            endDate: req.body.endDate || event.endDate,
+            private: req.body.private,
+            centerId: parseInt(req.body.centerId, 10) || event.centerId,
+            userId: parseInt(req.body.userId, 10) || event.userId
+          },
+          {
+            where: {
+              id: eventId
+            }
+          }
+        ).then(updatedEvent => {
+          if (updatedEvent) {
+            Event.findById(eventId, {
+              include: [
+                {
+                  model: CenterModel,
+                  as: "center",
+                  attributes: centerAttributes
+                }
+              ],
+              attributes
+            }).then(newEvent => {
+              if (newEvent) {
+                res.status(201).send({
+                  statusCode: 201,
+                  message: "Event has been updated accordingly",
+                  event: newEvent
+                });
+              }
+            });
+          }
+        });
       });
-    });
+    }
   }
 
   /**
