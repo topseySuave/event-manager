@@ -39,8 +39,9 @@
     "array-callback-return": 0,
     "prefer-const": 0,
     "curly": ["error", "multi-line"],
+    "import/extensions": 0,
     "import/no-unresolved": [
-      2,
+      0,
       {
         "commonjs": true
       }

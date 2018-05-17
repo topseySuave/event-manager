@@ -3,7 +3,9 @@
 const path = require('path');
 // const CompressionPlugin = require('compression-webpack-plugin');
 const webpack = require('webpack');
+const dotenv = require('dotenv');
 
+dotenv.load();
 
 module.exports = {
   devtool: 'eval',
@@ -32,6 +34,9 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.SECRET_KEY': JSON.stringify(process.env.SECRET_KEY)
+    }),
     //   compress: {
     //     unused: true,
     //     dead_code: true, // big one--strip code that will never execute

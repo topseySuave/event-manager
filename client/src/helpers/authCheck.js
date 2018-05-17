@@ -1,11 +1,8 @@
 import jwt from 'jsonwebtoken';
 import jwtDecode from 'jwt-decode';
-import dotenv from 'dotenv';
 import { store } from '../';
 import setAuthorizationToken from '../components/authentication/setAuthenticationToken';
 import { setCurrentUser, signOutRequest } from '../actions/authActions';
-
-dotenv.load();
 
 /**
  * AuthCheck Class

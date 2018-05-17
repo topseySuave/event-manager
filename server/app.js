@@ -50,12 +50,12 @@ app.use(express.static(path.join(__dirname, '../client/public')));
 app.set('views', path.join(__dirname, '..', 'client', 'public'));
 
 // Setup a default catch-all route that sends back the index html file.
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
   res.status(200).sendFile(path.join(__dirname, '..', 'client/public/index.html'));
 });
 
 app.use((req, res) => res.status(404).send({
-  error: '404: Sorry Page Not Found!'
+  error: '404: Sorry Route Not Found!'
 }));
 
 const port = parseInt(process.env.PORT, 10) || 8000;

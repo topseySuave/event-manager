@@ -51,8 +51,6 @@ class CenterDetail extends Component {
     this.handleClose = this.handleClose.bind(this);
     this.handleAlertOpen = this.handleAlertOpen.bind(this);
     this.handleAlertClose = this.handleAlertClose.bind(this);
-    this.handleEventsOpen = this.handleEventsOpen.bind(this);
-    this.handleEventsClose = this.handleEventsClose.bind(this);
   }
 
   /**
