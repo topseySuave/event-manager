@@ -1,4 +1,4 @@
-import isEmpty from "lodash/isEmpty";
+import isEmpty from 'lodash/isEmpty';
 import {
   ADD_EVENT,
   EDIT_EVENT,
@@ -13,7 +13,7 @@ import {
   SEARCH_EVENT_TITLE_FAILED,
   SESSION_EVENTS,
   SESSION_EVENTS_FAILURE
-} from "../actions";
+} from '../actions';
 
 const pageLimit = process.env.DATA_LIMIT;
 let newState;

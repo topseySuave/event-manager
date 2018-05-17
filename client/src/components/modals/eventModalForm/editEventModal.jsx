@@ -1,27 +1,34 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { PropTypes } from "prop-types";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { PropTypes } from 'prop-types';
 
-import Dialog from "material-ui/Dialog";
-import FlatButton from "material-ui/FlatButton";
-import RaisedButton from "material-ui/RaisedButton";
-import TextField from "material-ui/TextField";
-import DatePicker from "material-ui/DatePicker";
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
+import DatePicker from 'material-ui/DatePicker';
 import Toggle from 'material-ui/Toggle';
 
-import { editEventAction } from "../../../actions/events-actions";
-import InputForm from "../../../components/form/formInput";
-import { validateEventInput } from "../validateInput";
-import { EDIT_EVENT } from "../../../actions";
+import { editEventAction } from '../../../actions/events-actions';
+import InputForm from '../../../components/form/formInput';
+import { validateEventInput } from '../validateInput';
+import { EDIT_EVENT } from '../../../actions';
 
 const styles = {
   labelStyle: {
     color: 'green',
   }
-}
+};
 
+/**
+   * EditEventModal Class Component
+   * */
 class EditEventModal extends Component {
+  /**
+   * EditEventModal Class Constructor
+   * @param { object } props
+   * */
   constructor(props) {
     super(props);
 
@@ -33,11 +40,11 @@ class EditEventModal extends Component {
       eventId: 0,
       centerId: 0,
       userId: 0,
-      title: "",
-      img_url: "",
+      title: '',
+      img_url: '',
       startDate: null,
       endDate: null,
-      description: "",
+      description: '',
       private: false
     };
 
@@ -49,17 +56,31 @@ class EditEventModal extends Component {
     this.handleToggleChange = this.handleToggleChange.bind(this);
   }
 
+  /**
+   * componentDidMount life cycle Method
+   * @return { void }
+   * */
   componentDidMount() {
     this.updateState(this.props);
   }
 
+  /**
+   * componentWillReceiveProps life cycle Method
+   * @param { object } newProps
+   * @return { void }
+   * */
   componentWillReceiveProps(newProps) {
     this.updateState(newProps);
   }
 
+  /**
+   * onFileChange Method
+   * @param { object } e
+   * @return { void }
+   * */
   onFileChange(e) {
     let file = e.target.files[0];
-    if (file.type.indexOf("image/") > -1) {
+    if (file.type.indexOf('image/') > -1) {
       // only image file
       if (file.size < 2000000) {
         let reader = new FileReader(); // instance of the FileReader
@@ -71,13 +92,17 @@ class EditEventModal extends Component {
           });
         };
       } else {
-        Materialize.toast("File too large", 5000, "red");
+        Materialize.toast('File too large', 5000, 'red');
       }
     } else {
-      Materialize.toast("Please select only images", 5000, "red");
+      Materialize.toast('Please select only images', 5000, 'red');
     }
   }
 
+  /**
+   * isValid Method
+   * @return { void }
+   * */
   isValid() {
     const { errors, isValid } = validateEventInput(this.state);
     if (!isValid) {
@@ -86,9 +111,15 @@ class EditEventModal extends Component {
     return isValid;
   }
 
-  removeError(date, dateField){
+  /**
+   * removeError Method
+   * @param { string } date
+   * @param { string } dateField
+   * @return { void }
+   * */
+  removeError(date, dateField) {
     let errors = Object.assign({}, !!this.state.errors);
-    if(dateField === 'startDate'){
+    if (dateField === 'startDate') {
       delete errors.startDate;
       this.setState({
         startDate: new Date(date),
@@ -103,6 +134,12 @@ class EditEventModal extends Component {
     }
   }
 
+  /**
+   * handleChangeStartDate Method
+   * @param { object } e
+   * @param { string } date
+   * @return { void }
+   * */
   handleChangeStartDate(e, date) {
     if (this.state.errors.startDate) {
       this.removeError(date, 'startDate');
@@ -111,7 +148,7 @@ class EditEventModal extends Component {
       Materialize.toast(
         "Date isn't correct. Should be a day after today not before",
         5000,
-        "red"
+        'red'
       );
       this.setState({
         startDate: {},
@@ -126,6 +163,12 @@ class EditEventModal extends Component {
     }
   }
 
+  /**
+   * handleChangeEndDate Method
+   * @param { object } e
+   * @param { string } date
+   * @return { void }
+   * */
   handleChangeEndDate(e, date) {
     if (this.state.errors.endDate) {
       this.removeError(date, 'endDate');
@@ -134,7 +177,7 @@ class EditEventModal extends Component {
       Materialize.toast(
         "Date isn't correct. Should be a day after today not before",
         5000,
-        "red"
+        'red'
       );
       this.setState({
         endDate: {},
@@ -144,9 +187,9 @@ class EditEventModal extends Component {
       });
     } else if (date < this.state.startDate) {
       Materialize.toast(
-        "End Date should be after Start Date",
+        'End Date should be after Start Date',
         5000,
-        "red"
+        'red'
       );
       this.setState({
         endDate: {},
@@ -161,6 +204,11 @@ class EditEventModal extends Component {
     }
   }
 
+  /**
+   * handleInputChange Method
+   * @param { object } e
+   * @return { void }
+   * */
   handleInputChange(e) {
     if (this.state.errors[e.target.name]) {
       let errors = Object.assign({}, !!this.state.errors);
@@ -174,10 +222,20 @@ class EditEventModal extends Component {
     }
   }
 
-  handleToggleChange(e){
-      this.setState({ private: !this.state.private });
+  /**
+   * handleToggleChange Method
+   * @param { object } e
+   * @return { void }
+   * */
+  handleToggleChange(e) {
+    this.setState({ private: !this.state.private });
   }
 
+  /**
+   * updateState Method
+   * @param { object } newProps
+   * @return { void }
+   * */
   updateState(newProps) {
     if (newProps.event.editEvent) {
       let {
@@ -202,8 +260,7 @@ class EditEventModal extends Component {
         description,
         private: privateEvent
       });
-      if (!newProps.event.isLoading)
-        this.setState({ isLoading: newProps.event.isLoading });
+      if (!newProps.event.isLoading) { this.setState({ isLoading: newProps.event.isLoading }); }
     } else if (newProps.activeCenter.center) {
       this.setState({
         centerId: newProps.activeCenter.center.id,
@@ -212,6 +269,11 @@ class EditEventModal extends Component {
     }
   }
 
+  /**
+   * handleEventSubmit Method
+   * @param { object } e
+   * @return { void }
+   * */
   handleEventSubmit(e) {
     e.preventDefault();
     if (this.isValid()) {
@@ -223,6 +285,10 @@ class EditEventModal extends Component {
     }
   }
 
+  /**
+   * render Method
+   * @return { component }
+   * */
   render() {
     let {
       isLoading,
@@ -233,7 +299,7 @@ class EditEventModal extends Component {
       errors
     } = this.state;
     return (
-      <div className="row" style={{ marginTop: "20px" }}>
+      <div className="row" style={{ marginTop: '20px' }}>
         <form
           className="col s12"
           id="add-event-form"
@@ -266,7 +332,7 @@ class EditEventModal extends Component {
                 hintText="Title"
                 name="title"
                 value={title}
-                errorText={errors.title || ""}
+                errorText={errors.title || ''}
                 multiLine={false}
                 onChange={this.handleInputChange}
               />
@@ -312,15 +378,15 @@ class EditEventModal extends Component {
             </div>
           </div>
           <div className="row">
-              <div className="input-field col s12">
+            <div className="input-field col s12">
               <Toggle
-                  label="Do you want this event to be private?"
-                  name="private"
-                  defaultToggled={this.state.private}
-                  onToggle={this.handleToggleChange}
-                  labelStyle={styles.labelStyle}
-                  />
-              </div>
+                label="Do you want this event to be private?"
+                name="private"
+                defaultToggled={this.state.private}
+                onToggle={this.handleToggleChange}
+                labelStyle={styles.labelStyle}
+              />
+            </div>
           </div>
           <div className="row">
             <div className="input-field col s12">
@@ -329,13 +395,13 @@ class EditEventModal extends Component {
                 id="editEventForm"
                 name="action"
                 className="btn col s12 white-text gradient__bg btn-register waves-effect waves-light"
-                disabled={isLoading ? "disabled" : ""}
+                disabled={isLoading ? 'disabled' : ''}
               >
                 {!isLoading ? (
-                  "update event"
+                  'update event'
                 ) : (
                   <img
-                    style={{ marginTop: "10px" }}
+                    style={{ marginTop: '10px' }}
                     src="/image/loader/loading.gif"
                     alt="loading gif"
                   />
@@ -348,12 +414,6 @@ class EditEventModal extends Component {
     );
   }
 }
-
-// EditEventModal.propTypes = {
-//   activeCenter: PropTypes.object.isRequired,
-//   event: PropTypes.object.isRequired,
-//   editEventAction: PropTypes.func.isRequired
-// };
 
 const mapStateToProps = state => ({
   activeCenter: state.activeCenter,

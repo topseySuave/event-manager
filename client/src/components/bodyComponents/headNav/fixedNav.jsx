@@ -37,23 +37,52 @@ const flexContainer = {
   padding: 0
 };
 
+/**
+ * FixedNav Class Component
+ * */
 class FixedNav extends Component {
+  /**
+   * Class Constructor Method
+   * @param { object } props
+   * @returns { void }
+   * */
   constructor(props) {
     super(props);
     this.state = { open: false };
   }
 
+  /**
+   * handleToggle Method
+   * @returns { void }
+   * */
   handleToggle = () => this.setState({ open: !this.state.open });
+
+  /**
+   * handleClose Method
+   * @returns { void }
+   * */
   handleClose = () => this.setState({ open: false });
 
+  /**
+   * componentDidMount Method
+   * @returns { void }
+   * */
   componentDidMount(){
     $(".modal").modal();
   }
 
+  /**
+   * showModal Method
+   * @returns { void }
+   * */
   showModal() {
     $("#search__modal").modal("open");
   }
 
+  /**
+   * renderSidenav Method
+   * @returns { component }
+   * */
   renderSidenav() {
     return (
       <Fragment>
@@ -96,6 +125,10 @@ class FixedNav extends Component {
     );
   }
 
+  /**
+   * showAuthenticationLinks Method
+   * @returns { component }
+   * */
   showAuthenticationLinks() {
     //  Show Sign-in and Sign-up
     //  links only if user isn't signed in
@@ -144,6 +177,10 @@ class FixedNav extends Component {
     );
   }
 
+  /**
+   * showMenuItems Method
+   * @returns { component }
+   * */
   showMenuItems() {
     return (
       <Fragment>
@@ -166,6 +203,10 @@ class FixedNav extends Component {
     );
   }
 
+  /**
+   * render Method
+   * @returns { component }
+   * */
   render() {
     return (
       <AppBar

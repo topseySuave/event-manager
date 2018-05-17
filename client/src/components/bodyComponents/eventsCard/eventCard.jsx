@@ -24,7 +24,14 @@ import {
 import EditEventModal from "../../modals/eventModalForm/editEventModal";
 import { REMOVE_EVENT } from "../../../actions";
 
+/**
+   * EventCard Class Component
+   * */
 class EventCard extends Component {
+  /**
+   * Class contructor
+   * @param { object } props
+   * */
   constructor(props) {
     super(props);
     this.state = {
@@ -35,30 +42,54 @@ class EventCard extends Component {
     };
   }
 
+  /**
+   * componentWillMount method
+   * @returns { void }
+   * */
   componentWillMount() {
     $(".modal").modal();
     $(".tooltipped").tooltip();
   }
 
+  /**
+   * componentDidMount method
+   * @returns { void }
+   * */
   componentDidMount() {
     this.setState({
       event: this.props.event
     });
   }
 
+  /**
+   * handleAlertOpen method
+   * @returns { void }
+   * */
   handleAlertOpen = () => {
     this.setState({ openAlert: true });
   };
 
+  /**
+   * handleAlertClose method
+   * @returns { void }
+   * */
   handleAlertClose = () => {
     this.setState({ openAlert: false });
   };
 
+  /**
+   * handleEditOpen method
+   * @returns { void }
+   * */
   handleEditOpen = () => {
     this.props.editEventRequestAction(this.state.event);
     $("#add_event_modal").modal("open");
   };
 
+  /**
+   * handleDelete method
+   * @returns { void }
+   * */
   handleDelete(id) {
     this.props.deleteEventRequest(id).then(data => {
       if (data.type === REMOVE_EVENT) {
@@ -67,6 +98,10 @@ class EventCard extends Component {
     });
   }
 
+  /**
+   * showMenu method
+   * @returns { Component }
+   * */
   showMenu() {
     if (this.props.userState.isAuthenticated) {
       return (
@@ -96,6 +131,10 @@ class EventCard extends Component {
     }
   }
 
+  /**
+   * showStatusBars method
+   * @returns { Component }
+   * */
   showStatusBars(status, statusColor) {
     let userState = this.props.userState;
     if (
@@ -118,6 +157,10 @@ class EventCard extends Component {
     }
   }
 
+  /**
+   * showAlertModal method
+   * @returns { Component }
+   * */
   showAlertModal(id) {
     const actions = [
       <FlatButton
@@ -144,6 +187,10 @@ class EventCard extends Component {
     );
   }
 
+  /**
+   * render method
+   * @returns { Component }
+   * */
   render() {
     let shareColor = ["red", "blue", "yellow", "green"],
       floatBtnColor;

@@ -245,7 +245,7 @@ export default class Users {
                                 <li>Centers: creation, updating, deleting</li>
                             </ul>
                         `;
-                if (mailer(foundUser.email, subject, subject, htmlOutput)){
+                if (mailer(foundUser.email, subject, subject, htmlOutput)) {
                   res.status(200).send({
                     message: 'Users has been deleted successfully',
                     user: foundUser

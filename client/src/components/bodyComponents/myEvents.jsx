@@ -8,7 +8,14 @@ import FloatingActionButton from './floatingActionButton/FloatingActionButton';
 import Footer from './footer/footer';
 import Modals from './../modals';
 
+/**
+   * MyEvents Class Component
+   * */
 class MyEvents extends Component {
+  /**
+   * Class contructor
+   * @param { object } props
+   * */
   constructor(props) {
     super(props);
     this.state = {
@@ -16,26 +23,34 @@ class MyEvents extends Component {
     };
   }
 
+  /**
+   * componentWillMount method
+   * @returns { void }
+   * */
   componentWillMount() {
     if (this.props.activeState.isAuthenticated) {
       this.setState({ isAuthenticated: true });
     }
   }
 
+  /**
+   * render method
+   * @returns { Component }
+   * */
   render() {
     if (!this.state.isAuthenticated) {
-      return <Redirect to="/"/>;
+      return <Redirect to="/" />;
     }
 
     return (
       <React.Fragment>
         <div className="body__holdr">
-          <FixedNav/>
-          <MyEventCardHolder/>
-          <FloatingActionButton/>
-          <Footer/>
+          <FixedNav />
+          <MyEventCardHolder />
+          <FloatingActionButton />
+          <Footer />
         </div>
-        <Modals/>
+        <Modals />
       </React.Fragment>
     );
   }

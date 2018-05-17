@@ -1,6 +1,6 @@
 import models from '../models';
-
 import { generatePaginationMeta, isNaNValidator } from '../middleware/util';
+
 const { Op } = models.sequelize;
 const centersModel = models.Centers;
 const Event = models.Events;
@@ -259,16 +259,16 @@ export class Centers {
     const limitValue = parseInt(req.query.limit, 10) || process.env.DATA_LIMIT;
     const pageValue = req.query.next || 0;
     const order = req.query.order || 'desc';
-    const basedOn = parseInt(req.query.basedOn) || 0;
+    const basedOn = parseInt(req.query.basedOn, 10) || 0;
     const offset = (pageValue > 1) ? (pageValue * limitValue) - limitValue : pageValue;
     if (req.query.search || req.query.limit) {
       let searchBy, reqSearch;
       if (req.query.searchBy) {
-        searchBy = req.query.searchBy;
+        searchStringBy = req.query.searchBy;
       }
       const search = req.query.search.split(' ');
 
-      reqSearch = sortSearchRequest(search, searchBy);
+      reqSearch = sortSearchRequest(search, searchStringBy);
       centersModel.findAndCountAll({
         where: {
           [Op.or]: reqSearch
@@ -288,10 +288,7 @@ export class Centers {
             });
           }
 
-          const results = searchResults.rows.filter((center) => {
-            return center.id !== basedOn;
-          });
-
+          const results = searchResults.rows.filter(center => center.id !== basedOn);
           return res.status(200).send({
             statusCode: 200,
             message: 'Successful Center!',
@@ -308,13 +305,13 @@ export class Centers {
         limit: limitValue,
         offset
       })
-        .then(center => {
+        .then((center) => {
           res.status(200).send({
             statusCode: 200,
             message: 'Successful Center!',
             centers: center.rows,
             meta: generatePaginationMeta(center, limitValue, pageValue)
-          })
+          });
         });
     }
   }

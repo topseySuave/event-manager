@@ -25,7 +25,7 @@ import setAuthorizationToken from '../../components/authentication/setAuthentica
  * * */
 const api = '/api/v1/events';
 
-/**
+/* *
  *  @Event Dispatch Method
  *  @Returns Object
  * * */
@@ -76,7 +76,7 @@ const createEvent = (eventData, imgUrl) => (dispatch) => {
   setAuthorizationToken(token);
   eventData.img_url = imgUrl;
   return axios.post(api, eventData)
-    .then(({data}) => {
+    .then(({ data }) => {
       dispatch(eventsDispatchAction('add', data.event));
       Materialize.toast(data.message, 5000, 'teal');
       location.reload();
@@ -90,18 +90,18 @@ const createEvent = (eventData, imgUrl) => (dispatch) => {
     });
 };
 
-/**
+/* *
  *  Initial Create Event Request Action
  *  @Returns Promise
  * * */
-export const createEventRequest = eventData => dispatch => {
+export const createEventRequest = eventData => (dispatch) => {
   if (eventData.img_url.name) {
     let formData = new FormData();
     formData.append('file', eventData.img_url);
     formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
     setAuthorizationToken(false);
     return axios.post(CLOUDINARY_URL, formData)
-      .then(({data}) => {
+      .then(({ data }) => {
         dispatch(createEvent(eventData, data.url));
       })
       .catch((err) => {
@@ -119,35 +119,35 @@ export const createEventRequest = eventData => dispatch => {
  *  @Returns Object
  * * */
 export const fetchEventRequest = () => dispatch => axios.get(api)
-  .then(({data}) => {
+  .then(({ data }) => {
     data.loadingmore = false;
     data.loadmore = false;
     data.isLoading = false;
     dispatch(eventsDispatchAction('fetch', data));
   });
 
-export const fetchSessionEventRequest = userId => dispatch => {
-  return axios.get(`${api}?sessionEvents=${userId}`)
-    .then(({ data }) => {
-      data.isLoading = false;
-      if (data) return dispatch({
+export const fetchSessionEventRequest = userId => dispatch => axios.get(`${api}?sessionEvents=${userId}`)
+  .then(({ data }) => {
+    data.isLoading = false;
+    if (data) {
+      return dispatch({
         type: SESSION_EVENTS,
         payload: data
       });
+    }
 
-      return dispatch({
-        type: SESSION_EVENTS_FAILURE
-      });
+    return dispatch({
+      type: SESSION_EVENTS_FAILURE
     });
-};
+  });
 
-/**
+/* *
  *  @Edit Event Request Action
  *  @Returns Object
  * * */
 export const editEventRequestAction = data => dispatch => dispatch(eventsDispatchAction('edit_request', data));
 
-const editEvent = (eventData, imgUrl) => dispatch => {
+const editEvent = (eventData, imgUrl) => (dispatch) => {
   let token = localStorage.getItem('jwtToken') ? localStorage.getItem('jwtToken') : false;
   setAuthorizationToken(token);
   eventData.img_url = imgUrl;
@@ -163,18 +163,18 @@ const editEvent = (eventData, imgUrl) => dispatch => {
     });
 };
 
-/**
+/* *
  *  @Edit Event Action
  *  @Returns Object
  * * */
-export const editEventAction = eventData => dispatch => {
-  if(eventData.img_url.name){
+export const editEventAction = eventData => (dispatch) => {
+  if (eventData.img_url.name) {
     let formData = new FormData();
     formData.append('file', eventData.img_url);
     formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
     setAuthorizationToken(false);
     return axios.post(CLOUDINARY_URL, formData)
-      .then(({data}) => {
+      .then(({ data }) => {
         dispatch(editEvent(eventData, data.url));
       })
       .catch(() => {
@@ -184,14 +184,14 @@ export const editEventAction = eventData => dispatch => {
   return dispatch(editEvent(eventData, eventData.img_url));
 };
 
-/**
+/* *
  *  @Delete Event Action
  *  @Returns Object
  * * */
 export const deleteEventRequest = (id) => {
   id = parseInt(id, 10);
   return dispatch => axios.delete(`${api}/${id}`)
-    .then(({data}) => {
+    .then(({ data }) => {
       if (data.statusCode === 200) {
         Materialize.toast(data.message, 5000);
         return dispatch(eventsDispatchAction('delete', data.event));
@@ -204,7 +204,7 @@ export const deleteEventRequest = (id) => {
     });
 };
 
-/**
+/* *
  *  @Load more Event Request Action
  *  @Returns Object
  * * */
@@ -213,7 +213,7 @@ export const loadMoreEvents = offset => (dispatch) => {
     type: LOADMORE_EVENT_REQUEST
   });
   return axios.get(`${api}?next=${offset}`)
-    .then(({data}) => {
+    .then(({ data }) => {
       if (data.statusCode === 200) {
         return dispatch({
           type: LOADMORE_EVENT_SUCCESS,
@@ -226,20 +226,19 @@ export const loadMoreEvents = offset => (dispatch) => {
     });
 };
 
-/**
+/* *
  * Accept a pending event
  * */
-export const handleStatusEventAction = (eventId, status) => dispatch => {
+export const handleStatusEventAction = (eventId, status) => dispatch =>
   // send status request for event
-  return axios.post(`${api}/${eventId}?status=${status}`)
+  axios.post(`${api}/${eventId}?status=${status}`)
     .then(({ data }) => {
-      if(data.statusCode === 200){
+      if (data.statusCode === 200) {
         Materialize.toast(data.message, 5000, 'teal');
         return dispatch({
           type: EVENT_STATUS_CHANGE
         });
-      } else {
-        Materialize.toast(data.message, 5000, 'red');
       }
+      Materialize.toast(data.message, 5000, 'red');
     });
-};
+

@@ -7,7 +7,13 @@ import FloatingActionButton from './bodyComponents/floatingActionButton/Floating
 import Footer from './bodyComponents/footer/footer';
 import Modals from './modals';
 
+/**
+ * HomePage Class Component
+ * */
 class HomePage extends Component {
+  /**
+   * @returns { component }
+   * */
   render() {
     return (
       <div>

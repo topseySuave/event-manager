@@ -1,10 +1,18 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import DocumentTitle from "react-document-title";
-import Footer from "./bodyComponents/footer/footer";
-import FixedNav from "./bodyComponents/headNav/fixedNav";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import DocumentTitle from 'react-document-title';
+import Footer from './bodyComponents/footer/footer';
+import FixedNav from './bodyComponents/headNav/fixedNav';
 
+/**
+ * NoMatch Class Component
+ * If there are no route match this component is called
+ * */
 class NoMatch extends Component {
+  /**
+   * Render Method
+   * @returns { component }
+   * * */
   render() {
     return (
       <DocumentTitle title="Page not Found | Boots Events Manager">
@@ -12,16 +20,16 @@ class NoMatch extends Component {
           <FixedNav />
           <div
             className="container"
-            style={{ paddingTop: "64px", height: "92vh" }}
+            style={{ paddingTop: '64px', height: '92vh' }}
           >
-            <div className="row" style={{ marginTop: "50px" }}>
+            <div className="row" style={{ marginTop: '50px' }}>
               <div className="col s12">
                 <div className="row">
                   <div className="col s12 m6 l6">
                     <div className="center-align">
                       <h1
                         className="gradient_text"
-                        style={{ fontSize: "10em", fontWeight: "lighter" }}
+                        style={{ fontSize: '10em', fontWeight: 'lighter' }}
                       >
                         404
                       </h1>

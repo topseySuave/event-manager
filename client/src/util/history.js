@@ -2,6 +2,6 @@ import createBrowserHistory from 'history/createBrowserHistory';
 
 let history;
 
-export default history = createBrowserHistory({
+export default (history = createBrowserHistory({
   basename: '/'
-});
+}));

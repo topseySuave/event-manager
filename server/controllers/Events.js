@@ -1,14 +1,16 @@
-import models from "../models";
+import models from '../models';
 import {
   isNaNValidator,
   generatePaginationMeta,
   generatePagination
-} from "../middleware/util";
+} from '../middleware/util';
 
 const Event = models.Events;
 const CenterModel = models.Centers;
-const { Op } = models.sequelize;
-const centerAttributes = ["location"];
+const {
+  Op
+} = models.sequelize;
+const centerAttributes = ['location'];
 const attributes = ['id', 'title', 'img_url', 'description', 'startDate', 'endDate', 'status', 'centerId', 'private'];
 
 /**
@@ -28,7 +30,7 @@ export class Events {
     const eventId = parseInt(req.params.id, 10);
     if (isNaN(eventId)) return isNaNValidator(res, eventId);
 
-    Event.findById(eventId).then(event => {
+    Event.findById(eventId).then((event) => {
       if (!event) {
         return res.status(404).send({
           statusCode: 404,
@@ -53,7 +55,7 @@ export class Events {
    */
   getEvents(req, res) {
     const limitValue = parseInt(req.query.limit, 10) || process.env.DATA_LIMIT;
-    const order = req.query.order ? req.query.order : "desc";
+    const order = req.query.order ? req.query.order : 'desc';
     const pageValue = req.query.next || 0;
     if (req.query && req.query.sort) {
       if (order) {
@@ -65,29 +67,30 @@ export class Events {
               [Op.gte]: new Date().toDateString()
             }
           },
-          order: [["id", order]],
+          order: [
+            ['id', order]
+          ],
           attributes
         })
-          .then(returnedEvent => {
+          .then((returnedEvent) => {
             if (!returnedEvent) {
               return res.status(400).send({
                 statusCode: 400,
-                message: "No Event found"
+                message: 'No Event found'
               });
             }
 
             return res.status(200).send({
               statusCode: 200,
-              message: "Event(s) found",
+              message: 'Event(s) found',
               events: returnedEvent
             });
           })
           .catch(() =>
             res.status(500).send({
               statusCode: 500,
-              message: "Error searching for Events"
-            })
-          );
+              message: 'Error searching for Events'
+            }));
       }
     } else if (req.query.sessionEvents) {
       const userId = parseInt(req.query.sessionEvents, 10) || 0;
@@ -97,33 +100,34 @@ export class Events {
         where: {
           userId
         },
-        include: [
-          {
-            model: CenterModel,
-            as: "center",
-            attributes: centerAttributes
-          }
+        include: [{
+          model: CenterModel,
+          as: 'center',
+          attributes: centerAttributes
+        }],
+        order: [
+          ['id', order]
         ],
-        order: [["id", order]],
         limit: limitValue,
         attributes
-      }).then(eventsFound => {
-        if (eventsFound.count <= 0)
+      }).then((eventsFound) => {
+        if (eventsFound.count <= 0) {
           return res.status(200).send({
             statusCode: 200,
-            message: "There are no event for this user",
+            message: 'There are no event for this user',
             events: []
           });
+        }
 
         return res.status(200).send({
           statusCode: 200,
-          message: "The Events found",
+          message: 'The Events found',
           events: eventsFound.rows,
           meta: generatePaginationMeta(eventsFound, limitValue, pageValue)
         });
       });
     } else if (req.query.search || req.query.limit) {
-      const search = req.query.search.split(" ");
+      const search = req.query.search.split(' ');
 
       /**
        * Search with Title But Map first
@@ -143,26 +147,27 @@ export class Events {
           private: false,
           status: 'accepted',
         },
-        include: [
-          {
-            model: CenterModel,
-            as: "center",
-            attributes: centerAttributes
-          }
-        ],
+        include: [{
+          model: CenterModel,
+          as: 'center',
+          attributes: centerAttributes
+        }],
         attributes,
-        order: [["id", order]],
+        order: [
+          ['id', order]
+        ],
         limit: limitValue
-      }).then(searchResults => {
-        if (searchResults.count <= 0)
+      }).then((searchResults) => {
+        if (searchResults.count <= 0) {
           return res.status(400).send({
             statusCode: 400,
-            message: "Event(s) do not match your search result"
+            message: 'Event(s) do not match your search result'
           });
+        }
 
         return res.status(200).send({
           statusCode: 200,
-          message: "The Events found",
+          message: 'The Events found',
           events: searchResults.rows,
           meta: generatePaginationMeta(searchResults, limitValue, pageValue)
         });
@@ -176,29 +181,29 @@ export class Events {
           private: false,
           status: 'accepted',
         },
-        include: [
-          {
-            model: CenterModel,
-            as: "center",
-            attributes: centerAttributes
-          }
-        ],
+        include: [{
+          model: CenterModel,
+          as: 'center',
+          attributes: centerAttributes
+        }],
         attributes,
-        order: [["id", order]],
+        order: [
+          ['id', order]
+        ],
         limit: limitValue,
-        offset: pageValue > 1 ? pageValue * limitValue - limitValue : pageValue
+        offset: (pageValue > 1) ? pageValue * limitValue - limitValue : pageValue
       })
-        .then(events => {
+        .then((events) => {
           if (events.length === 0) {
             return res.status(404).send({
               statusCode: 404,
-              message: "No result found"
+              message: 'No result found'
             });
           }
 
           res.status(200).json({
             statusCode: 200,
-            message: "Successful Events!",
+            message: 'Successful Events!',
             events: events.rows,
             meta: generatePaginationMeta(events, limitValue, pageValue)
           });
@@ -233,10 +238,10 @@ export class Events {
         }
       }
     })
-      .then(result => {
+      .then((result) => {
         if (result !== null) {
           return res.send({
-            message: "Center has been booked for this date",
+            message: 'Center has been booked for this date',
             statusCode: 400
           });
         }
@@ -251,25 +256,24 @@ export class Events {
           centerId: parseInt(req.body.centerId, 10),
           userId: parseInt(req.body.userId, 10)
         })
-          .then(event => {
+          .then((event) => {
             res.status(200).send({
               statusCode: 200,
-              message: "Event has been created",
+              message: 'Event has been created',
               event
             });
           })
           .catch(err =>
             res.status(500).send({
               statusCode: 500,
-              message: "Event cannot be created",
+              message: 'Event cannot be created',
               error: err
-            })
-          );
+            }));
       })
-      .catch(err => {
+      .catch((err) => {
         res.status(500).send({
           statusCode: 500,
-          message: "Event cannot be created",
+          message: 'Event cannot be created',
           error: err
         });
       });
@@ -287,12 +291,12 @@ export class Events {
     const eventId = parseInt(req.params.id, 10);
     if (isNaN(eventId)) return isNaNValidator(res, eventId);
 
-    if(req.query){
-      let status = req.query.status;
+    if (req.query) {
+      let { status } = req.query;
       status = (status === 'accept') ? 'accepted' : 'rejected';
-        Event.findById(eventId)
-        .then(foundEvent => {
-          if(foundEvent){
+      Event.findById(eventId)
+        .then((foundEvent) => {
+          if (foundEvent) {
             Event.update({
               status
             }, {
@@ -309,7 +313,7 @@ export class Events {
           }
         });
     } else {
-      Event.findById(eventId).then(event => {
+      Event.findById(eventId).then((event) => {
         if (!event) {
           return res.status(400).send({
             statusCode: 400,
@@ -317,38 +321,33 @@ export class Events {
           });
         }
 
-        Event.update(
-          {
-            title: req.body.title || event.title,
-            img_url: req.body.img_url || event.img_url,
-            description: req.body.description || event.description,
-            startDate: req.body.startDate || event.startDate,
-            endDate: req.body.endDate || event.endDate,
-            private: req.body.private,
-            centerId: parseInt(req.body.centerId, 10) || event.centerId,
-            userId: parseInt(req.body.userId, 10) || event.userId
-          },
-          {
-            where: {
-              id: eventId
-            }
+        Event.update({
+          title: req.body.title || event.title,
+          img_url: req.body.img_url || event.img_url,
+          description: req.body.description || event.description,
+          startDate: req.body.startDate || event.startDate,
+          endDate: req.body.endDate || event.endDate,
+          private: req.body.private,
+          centerId: parseInt(req.body.centerId, 10) || event.centerId,
+          userId: parseInt(req.body.userId, 10) || event.userId
+        }, {
+          where: {
+            id: eventId
           }
-        ).then(updatedEvent => {
+        }).then((updatedEvent) => {
           if (updatedEvent) {
             Event.findById(eventId, {
-              include: [
-                {
-                  model: CenterModel,
-                  as: "center",
-                  attributes: centerAttributes
-                }
-              ],
+              include: [{
+                model: CenterModel,
+                as: 'center',
+                attributes: centerAttributes
+              }],
               attributes
-            }).then(newEvent => {
+            }).then((newEvent) => {
               if (newEvent) {
                 res.status(201).send({
                   statusCode: 201,
-                  message: "Event has been updated accordingly",
+                  message: 'Event has been updated accordingly',
                   event: newEvent
                 });
               }
@@ -372,7 +371,7 @@ export class Events {
     if (isNaN(eventId)) return isNaNValidator(res, eventId);
 
     Event.findById(eventId)
-      .then(deletedEvent => {
+      .then((deletedEvent) => {
         if (!deletedEvent) {
           return res.status(400).send({
             statusCode: 400,
@@ -386,17 +385,15 @@ export class Events {
         }).then(() =>
           res.status(200).send({
             statusCode: 200,
-            message: "This Event has been deleted",
+            message: 'This Event has been deleted',
             event: deletedEvent
-          })
-        );
+          }));
       })
       .catch(() =>
         res.status(500).send({
           statusCode: 500,
-          message: "Error deleting Event"
-        })
-      );
+          message: 'Error deleting Event'
+        }));
   }
 }
 

@@ -5,7 +5,14 @@ import AllCenters from './allCenters';
 import FloatingActionButton from '../../bodyComponents/floatingActionButton/FloatingActionButton';
 import Modals from '../../modals';
 
+/**
+ * AllCentersIndex Class Component
+ * */
 class AllCentersIndex extends Component {
+  /**
+   * render Method
+   * @returns { Component }
+   * */
   render() {
     return (
       <DocumentTitle title="Centers | Boots Events Manager">

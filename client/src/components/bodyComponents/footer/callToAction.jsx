@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+/**
+ * CallToAction Class Component
+ * */
 class CallToAction extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidMount(){
+  /**
+   * componentDidMount Method
+   * @returns { void }
+   * */
+  componentDidMount() {
     $('.parallax').parallax();
   }
 
+  /**
+   * render Method
+   * @returns { Component }
+   * */
   render() {
     return (
       <div className="parallax-container">
@@ -23,7 +30,13 @@ class CallToAction extends Component {
                 <h4>Do you want to Manage your Own Event?</h4>
                 <h5>View All Centers</h5>
                 <br />
-                <Link to="centers" className="btn waves-effect red darken-1" href="centers">Centers</Link>
+                <Link
+                  to="centers"
+                  className="btn waves-effect red darken-1"
+                  href="centers"
+                >
+                  Centers
+                </Link>
               </div>
             </div>
           </div>

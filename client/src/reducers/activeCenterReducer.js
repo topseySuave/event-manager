@@ -4,7 +4,7 @@ import {
   EDIT_CENTER,
   REMOVE_CENTER,
   EVENT_STATUS_CHANGE
-} from "../actions";
+} from '../actions';
 
 export default (state = {}, action = {}) => {
   let newState;

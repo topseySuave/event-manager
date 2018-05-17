@@ -24,7 +24,8 @@ export const searchCenterDispatch = data => ({
 
 export const fetchCentersAction = () => (dispatch) => {
   dispatch(showLoading());
-  return axios.get(api)
+  return axios
+    .get(api)
     .then(({ data }) => {
       data.loadingmore = false;
       data.loadmore = false;
@@ -33,7 +34,7 @@ export const fetchCentersAction = () => (dispatch) => {
     })
     .catch((err) => {
       Materialize.toast('Error in connection!!!', 5000, 'red');
-      throw (err);
+      throw err;
     });
 };
 
@@ -41,7 +42,8 @@ export const loadMoreCenters = offset => (dispatch) => {
   dispatch({
     type: LOADMORE_CENTER_REQUEST
   });
-  return axios.get(`${api}?next=${offset}`)
+  return axios
+    .get(`${api}?next=${offset}`)
     .then(({ data }) => {
       if (data.statusCode === 200) {
         dispatch({

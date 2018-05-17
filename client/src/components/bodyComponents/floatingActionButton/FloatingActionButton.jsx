@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+/**
+   * FloatingActionButton Class Component
+   * */
 class FloatingActionButton extends Component {
+  /**
+   * componentWillMount method
+   * @returns { void }
+   * */
   componentWillMount() {
     $('.modal').modal();
   }
 
+  /**
+   * addCenterButton method
+   * @returns { void }
+   * */
   addCenterButton() {
     return (
       <a
@@ -18,6 +29,10 @@ class FloatingActionButton extends Component {
     );
   }
 
+  /**
+   * render method
+   * @returns { Component }
+   * */
   render() {
     if (this.props.activeState.isAuthenticated) {
       let userObj = this.props.activeState.user;

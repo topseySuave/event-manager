@@ -10,7 +10,13 @@ import AllCentersIndex from './centerComponent/allCenters/index';
 import MyEvents from './bodyComponents/myEvents';
 import NoMatch from './noMatch';
 
+/**
+ * Main Class Component
+ * */
 class Main extends Component {
+  /**
+   * @returns { component }
+   * */
   render() {
     return (
       <Switch>

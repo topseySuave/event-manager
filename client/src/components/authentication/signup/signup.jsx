@@ -8,7 +8,14 @@ import AuthFooter from '../authFooter';
 import SignUpForm from './signUpForm';
 import { userSignupRequest } from '../../../actions/authActions';
 
+/**
+   * SignUp Class Component
+   * */
 class SignUp extends Component {
+  /**
+   * Class contructor
+   * @param { object } props
+   * */
   constructor(props) {
     super(props);
     this.state = {
@@ -16,12 +23,20 @@ class SignUp extends Component {
     };
   }
 
+  /**
+   * componentWillMount method
+   * @returns { void }
+   * */
   componentWillMount() {
     if (this.props.activeState.isAuthenticated) {
       this.setState({ isAuthenticated: true });
     }
   }
 
+  /**
+   * render method
+   * @returns { Component }
+   * */
   render() {
     if (this.state.isAuthenticated) {
       return <Redirect to="/" />;

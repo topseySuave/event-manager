@@ -4,7 +4,15 @@ import AuthHeader from '../AuthHeader';
 import AuthFooter from '../authFooter';
 import SignInForm from './signInForm';
 
+/**
+   * SignIn Class Component
+   * */
 class SignIn extends Component {
+  /**
+   * render method
+   * @returns { Component }
+   * @memberof SignIn
+   * */
   render() {
     return (
       <DocumentTitle title="Sign In | Boots Events Manager">
