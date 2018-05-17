@@ -3,3 +3,4 @@ server/seeders
 server/migrations
 server/test
 build
+client/public/js/**
