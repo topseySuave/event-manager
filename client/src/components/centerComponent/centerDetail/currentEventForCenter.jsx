@@ -33,7 +33,7 @@ class CurrentEventForCenter extends Component {
       <FlatButton
         label="Yes"
         primary={true}
-        onClick={() => this.props.handleStatusEventAction(eventId, "reject")}
+        onClick={() => this.props.handleStatusEventAction(eventId, "rejected")}
       />,
       <FlatButton label="No" primary={true} onClick={this.handleAlertClose} />
     ];
@@ -72,7 +72,7 @@ class CurrentEventForCenter extends Component {
               {closeButton()}
               <a
                 className="secondary-content"
-                onClick={() => this.props.handleStatusEventAction(eventId, "accept")}
+                onClick={() => this.props.handleStatusEventAction(eventId, "accepted")}
               >
                 <IconButton tooltip="Accept Event" tooltipPosition="top-center">
                   <ActionDone color="green" />

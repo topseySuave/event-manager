@@ -293,7 +293,6 @@ export class Events {
 
     if (req.query) {
       let { status } = req.query;
-      status = (status === 'accept') ? 'accepted' : 'rejected';
       Event.findById(eventId)
         .then((foundEvent) => {
           if (foundEvent) {

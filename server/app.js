@@ -50,7 +50,7 @@ app.use(express.static(path.join(__dirname, '../client/public')));
 app.set('views', path.join(__dirname, '..', 'client', 'public'));
 
 // Setup a default catch-all route that sends back the index html file.
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
   res.status(200).sendFile(path.join(__dirname, '..', 'client/public/index.html'));
 });
 
