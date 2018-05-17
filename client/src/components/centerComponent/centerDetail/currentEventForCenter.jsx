@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from "react";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
@@ -18,13 +19,16 @@ class CurrentEventForCenter extends Component {
     this.state = {
       openAlert: false
     };
+    
+    this.handleAlertOpen = this.handleAlertOpen.bind(this);
+    this.handleAlertClose = this.handleAlertClose.bind(this);
   }
 
-  handleAlertOpen = () => {
+  handleAlertOpen() {
     this.setState({ openAlert: true });
   };
 
-  handleAlertClose = () => {
+  handleAlertClose() {
     this.setState({ openAlert: false });
   };
 

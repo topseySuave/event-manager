@@ -23,6 +23,7 @@
     "react/no-unescaped-entities": 0,
     "react/prop-types": 0,
     "react/forbid-prop-types": 0,
+    "react/no-did-mount-set-state": 0,
     "react/prefer-stateless-function": 0,
     "react/no-unused-prop-types": 0,
     "react/require-default-props": 0,
@@ -49,7 +50,7 @@
     "no-shadow": [
       "error",
       {
-        "allow": ["req", "res", "err", "data", "dispatch", "centerApi"]
+        "allow": ["req", "res", "err", "data", "dispatch", "centerApi", "locations"]
       }
     ],
     "valid-jsdoc": [

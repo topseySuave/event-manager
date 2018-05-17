@@ -62,7 +62,7 @@ class CenterDetail extends Component {
     $('.tooltipped').tooltip({ delay: 50 });
     const { params } = this.props;
     this.props.fetchCenterAction(params.id);
-    if (this.props.activeUser.user.role) { 
+    if (this.props.activeUser.user.role) {
       this.setState({ isAdmin: this.props.activeUser.user.role });
     }
   }
