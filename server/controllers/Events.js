@@ -228,18 +228,18 @@ export class Events {
     Event.findOne({
       where: {
         centerId: req.body.centerId,
-        startDate: {
-          [Op.lte]: endDate,
-          [Op.lte]: startDate
-        },
-        endDate: {
-          [Op.gte]: startDate,
-          [Op.gte]: endDate
+        [Op.or]: {
+          startDate: {
+            [Op.between]: [startDate, endDate]
+          },
+          endDate: {
+            [Op.between]: [startDate, endDate]
+          }
         }
       }
     })
       .then((result) => {
-        if (result !== null) {
+        if (result) {
           return res.send({
             message: 'Center has been booked for this date',
             statusCode: 400
