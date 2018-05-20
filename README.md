@@ -5,7 +5,7 @@
 
 
 # Events Manager
-Events Manager is a full stack application, that creates a platform event center management and event booking. Event venue owners can expose their venues through this medium, allowing users to have a poll of venues when seeking for suitable venues for their events.
+Events Manager is a full stack application, that enables users administrate there own centers, An Event registration platform for all of your online and on-site event management needs and handles the entire event lifecycle from start to finish.
 
 ## Hosted Application
 https://boots-events.herokuapp.com/
