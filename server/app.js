@@ -7,12 +7,13 @@ import webpack from 'webpack';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import swagger from 'swagger-ui-express';
 import dotenv from 'dotenv';
-import swaggerDoc from './docs/swagger';
+import swaggerDoc from './docs/swagger.json';
 import event from './routes/events';
 import center from './routes/centers';
 import users from './routes/users';
 import admin from './routes/administrator';
-import config from '../webpack.config';
+// for development
+import config from '../webpack.common';
 
 dotenv.config();
 
@@ -54,12 +55,9 @@ app.get('*', (req, res) => {
   res.status(200).sendFile(path.join(__dirname, '..', 'client/public/index.html'));
 });
 
-app.use((req, res, next) => {
-  const err = res.status(404).send({
-    error: '404: Sorry Page Not Found!'
-  });
-  next(err);
-});
+app.use((req, res) => res.status(404).send({
+  error: '404: Sorry Route Not Found!'
+}));
 
 const port = parseInt(process.env.PORT, 10) || 8000;
 app.set('port', port);

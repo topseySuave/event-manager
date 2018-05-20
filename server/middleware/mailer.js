@@ -1,9 +1,9 @@
-import nodemailer from "nodemailer";
+import nodemailer from 'nodemailer';
 
 export default (to, subject, text, html, errorCallback, sucessCallBack) => {
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
-    service: "gmail",
+    service: 'gmail',
     auth: {
       user: process.env.EMAIL,
       pass: process.env.PASSWORD
@@ -13,9 +13,9 @@ export default (to, subject, text, html, errorCallback, sucessCallBack) => {
   // setup email data with unicode symbols
   let mailOptions = {
     from: '"Boots Events Manager 👻" <gabrielsuave17@gmail.com>', // sender address
-    to: to, // list of receivers
+    to, // list of receivers
     subject: `${subject} ✔`, // Subject line
-    text: text, // plain text body
+    text, // plain text body
     html: `${html}` // html body
   };
 
@@ -30,7 +30,7 @@ export default (to, subject, text, html, errorCallback, sucessCallBack) => {
   //     console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
   //     return true;
   // });
-  transporter.sendMail(mailOptions, error => {
+  transporter.sendMail(mailOptions, (error) => {
     if (error) return errorCallback();
     return sucessCallBack();
   });

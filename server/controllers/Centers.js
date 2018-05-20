@@ -1,59 +1,26 @@
+import queryString from 'query-string';
 import models from '../models';
+import { generatePaginationMeta, isNaNValidator } from '../middleware/util';
 
-import { generatePaginationMeta } from '../middleware/util';
 const { Op } = models.sequelize;
 const centersModel = models.Centers;
 const Event = models.Events;
 const attributes = ['id', 'title', 'img_url', 'location', 'description', 'facilities', 'capacity', 'price'];
-const eventAttributes = ['id', 'title', 'img_url', 'description', 'startDate', 'endDate', 'centerId'];
+const eventAttributes = ['id', 'title', 'img_url', 'description', 'startDate', 'endDate', 'status', 'private', 'centerId'];
 
-const sortSearchRequest = (search, searchBy) => {
-  let reqSearch;
-  // Search with location, title, price, capacity
-  if (searchBy === 'location') {
-    reqSearch = search.map((value) => {
-      if (value !== '') {
-        return {
-          location: {
-            [Op.iLike]: `%${value}%`
-          }
-        };
-      }
-    });
-  } else if (searchBy === 'price') {
-    reqSearch = search.map((value) => {
-      if (value !== '') {
-        value = parseInt(value, 10);
-        return {
-          price: {
-            [Op.gte]: `${value}`
-          }
-        };
-      }
-    });
-  } else if (searchBy === 'capacity') {
-    reqSearch = search.map((value) => {
-      if (value !== '') {
-        value = parseInt(value, 10);
-        return {
-          capacity: {
-            [Op.gte]: `${value}`
-          }
-        };
-      }
-    });
-  } else {
-    reqSearch = search.map((value) => {
-      if (value !== '') {
-        return {
-          title: {
-            [Op.iLike]: `%${value}%`
-          }
-        };
-      }
-    });
-  }
-  return reqSearch;
+
+/**
+   * generateSearchQuery to sort and arrange search queries
+   *
+   * @param {object} req
+   * @returns {object}
+   */
+const generateSearchQuery = (req) => {
+  let query = {};
+  if (req.query.location) query.location = { [Op.iLike]: `%${req.query.location}%` };
+  if (req.query.price) query.price = { [Op.gte]: req.query.price };
+  if (req.query.capacity) query.capacity = { [Op.gte]: req.query.capacity };
+  return query;
 };
 
 /**
@@ -123,12 +90,7 @@ export class Centers {
     const order = req.query.order || 'desc';
     const limitValue = req.query.limit || process.env.DATA_LIMIT;
     const centerId = parseInt(req.params.id, 10);
-    if (isNaN(centerId)) {
-      return res.status(400).send({
-        statusCode: 400,
-        message: 'Center id is not a number'
-      });
-    }
+    if (isNaN(centerId)) return isNaNValidator(res, centerId);
 
     centersModel.findById(centerId)
       .then((foundCenter) => {
@@ -209,12 +171,7 @@ export class Centers {
     const order = req.query.order || 'desc';
     const limitValue = req.query.limit || process.env.DATA_LIMIT;
     const centerId = parseInt(req.params.id, 10);
-    if (isNaN(centerId)) {
-      return res.status(400).send({
-        statusCode: 400,
-        message: 'Center id is not a number'
-      });
-    }
+    if (isNaN(centerId)) return isNaNValidator(res, centerId);
 
     centersModel.findOne({
       where: {
@@ -269,16 +226,12 @@ export class Centers {
     const limitValue = parseInt(req.query.limit, 10) || process.env.DATA_LIMIT;
     const pageValue = req.query.next || 0;
     const order = req.query.order || 'desc';
-    const basedOn = parseInt(req.query.basedOn) || 0;
+    const basedOn = parseInt(req.query.basedOn, 10) || 0;
     const offset = (pageValue > 1) ? (pageValue * limitValue) - limitValue : pageValue;
-    if (req.query.search || req.query.limit) {
-      let searchBy, reqSearch;
-      if (req.query.searchBy) {
-        searchBy = req.query.searchBy;
-      }
-      const search = req.query.search.split(' ');
+    if (req.query.location || req.query.price || req.query.capacity) {
+      let searchBy, reqSearch = {};
 
-      reqSearch = sortSearchRequest(search, searchBy);
+      reqSearch = generateSearchQuery(req);
       centersModel.findAndCountAll({
         where: {
           [Op.or]: reqSearch
@@ -298,10 +251,7 @@ export class Centers {
             });
           }
 
-          const results = searchResults.rows.filter((center) => {
-            return center.id !== basedOn;
-          });
-
+          const results = searchResults.rows.filter(center => center.id !== basedOn);
           return res.status(200).send({
             statusCode: 200,
             message: 'Successful Center!',
@@ -318,13 +268,13 @@ export class Centers {
         limit: limitValue,
         offset
       })
-        .then(center => {
+        .then((center) => {
           res.status(200).send({
             statusCode: 200,
             message: 'Successful Center!',
             centers: center.rows,
             meta: generatePaginationMeta(center, limitValue, pageValue)
-          })
+          });
         });
     }
   }
@@ -341,12 +291,7 @@ export class Centers {
    */
   deleteCenter(req, res) {
     const centerId = parseInt(req.params.id, 10);
-    if (isNaN(centerId)) {
-      return res.status(400).send({
-        statusCode: 400,
-        message: 'Center id is not a number'
-      });
-    }
+    if (isNaN(centerId)) return isNaNValidator(res, centerId);
 
     centersModel.findById(centerId)
       .then((deletedCenter) => {

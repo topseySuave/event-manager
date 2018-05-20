@@ -8,7 +8,14 @@ import { validateSignInInput } from '../validateInput';
 import InputForm from '../../form/formInput';
 import { userSignInRequest } from '../../../actions/authActions';
 
+/**
+   * SignIn Class Component
+   * */
 class SignInForm extends React.Component {
+  /**
+   * Class contructor
+   * @param { object } props
+   * */
   constructor(props) {
     super(props);
     this.state = {
@@ -23,6 +30,11 @@ class SignInForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  /**
+   * handleChange method
+   * @param { object } e
+   * @returns { void }
+   * */
   handleChange(e) {
     if (this.state.errors[e.target.name]) {
       let errors = Object.assign({}, !!this.state.errors);
@@ -36,6 +48,10 @@ class SignInForm extends React.Component {
     }
   }
 
+  /**
+   * isValid method
+   * @returns { object }
+   * */
   isValid() {
     const { errors, isValid } = validateSignInInput(this.state);
     if (!isValid) {
@@ -44,6 +60,11 @@ class SignInForm extends React.Component {
     return isValid;
   }
 
+  /**
+   * handleSubmit method
+   * @returns { object }
+   * @param { object } e
+   * */
   handleSubmit(e) {
     e.preventDefault();
     if (this.isValid()) {
@@ -74,6 +95,10 @@ class SignInForm extends React.Component {
     }
   }
 
+  /**
+   * render method
+   * @returns { Component }
+   * */
   render() {
     const { isLoading, errors } = this.state;
     let loading = classNames('row', { isLoading });

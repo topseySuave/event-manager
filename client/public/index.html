@@ -1,66 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#000000">
-    <link rel="manifest" href="manifest.json">
 
-    <link rel="stylesheet" href="/css/app.css">
-    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">-->
-    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">-->
-    <link rel="stylesheet" href="/css/frameworks/ghpages-materialize.css">
-    <link href="/css/frameworks/micon.css" rel="stylesheet">
-    <link href="/css/frameworks/animate.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="shortcut icon" href="/fav.ico">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+  <link rel="manifest" href="manifest.json">
 
-    <title>Boots Events Manager</title>
-  </head>
-  <body>
-    <noscript>
-      You need to enable JavaScript to run this app.
-    </noscript>
+  <link rel="stylesheet" href="/css/app.css">
+  <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">-->
+  <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">-->
+  <link rel="stylesheet" href="/css/frameworks/ghpages-materialize.css">
+  <link href="/css/frameworks/micon.css" rel="stylesheet">
+  <link href="/css/frameworks/animate.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="shortcut icon" href="/fav.ico">
 
-    <div id="root"></div>
+  <title>Boots Events Manager</title>
+</head>
 
-    <!--<script-->
-      <!--src="https://code.jquery.com/jquery-3.3.1.min.js"-->
-      <!--integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="-->
-      <!--crossorigin="anonymous">-->
-    <!--</script>-->
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>-->
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>-->
-    <script src="/js/jquery-3.2.1.min.js"></script>
-    <script src="/js/materialize.min.js"></script>
-    <script src="/js/wow.min.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/app.bundle.js"></script>
-    <script>
-        $(document).ready(function () {
-            var modal = $('.modal');
-            new WOW().init();
-            $('.parallax').parallax();
-            $('.button-collapse').sideNav();
-            $('.dropdown-button').dropdown();
-            $('.tooltipped').tooltip({delay: 50});
-            modal.modal({
-                dismissible: true, // Modal can be dismissed by clicking outside of the modal
-                opacity: .5, // Opacity of modal background
-                inDuration: 300, // Transition in duration
-                outDuration: 200, // Transition out duration
-                startingTop: '4%', // Starting top style attribute
-                endingTop: '10%', // Ending top style attribute
-                ready: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-                    $('.body__holdr').addClass('blur__fits');
-                },
-                complete: function () {
-                    $('.body__holdr').removeClass('blur__fits');
-                    $('.modal-overlay').css({'display': 'none'});
-                    modal.removeClass('search__pane');
-                } // Callback for Modal close
-            });
-        });
-    </script>
-  </body>
+<body>
+  <noscript>
+    You need to enable JavaScript to run this app.
+  </noscript>
+
+  <div id="root"></div>
+
+  <!--<script-->
+  <!--src="https://code.jquery.com/jquery-3.3.1.min.js"-->
+  <!--integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="-->
+  <!--crossorigin="anonymous">-->
+  <!--</script>-->
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>-->
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>-->
+  <script src="/js/jquery-3.2.1.min.js"></script>
+  <script src="/js/materialize.min.js"></script>
+  <script src="/js/wow.min.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/app.bundle.js"></script>
+  <script>
+    $(document).ready(function () {
+      var modal = $('.modal');
+      new WOW().init();
+      $('.parallax').parallax();
+      $('.button-collapse').sideNav();
+      $('.dropdown-button').dropdown();
+      $('.tooltipped').tooltip({
+        delay: 50
+      });
+      modal.modal({
+        dismissible: true, // Modal can be dismissed by clicking outside of the modal
+        opacity: .5, // Opacity of modal background
+        inDuration: 300, // Transition in duration
+        outDuration: 200, // Transition out duration
+        startingTop: '4%', // Starting top style attribute
+        endingTop: '10%', // Ending top style attribute
+        ready: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+          $('.body__holdr').addClass('blur__fits');
+        },
+        complete: function () {
+          $('.body__holdr').removeClass('blur__fits');
+          $('.modal-overlay').css({
+            'display': 'none'
+          });
+          modal.removeClass('search__pane');
+        }, // Callback for Modal close
+        onCloseStart: function () {
+          $('.body__holdr').removeClass('blur__fits');
+        }
+      });
+    });
+  </script>
+</body>
+
 </html>

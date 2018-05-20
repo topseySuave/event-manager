@@ -34,22 +34,22 @@ export class Validation {
       capacity = validate.errors.first('capacity'),
       price = validate.errors.first('price');
 
-    if(title) {
+    if (title) {
       error.title = title;
     }
-    if(location) {
+    if (location) {
       error.location = location;
     }
-    if(description) {
+    if (description) {
       error.description = description;
     }
-    if(facilities) {
+    if (facilities) {
       error.facilities = facilities;
     }
-    if(capacity) {
+    if (capacity) {
       error.capacity = capacity;
     }
-    if(price) {
+    if (price) {
       error.price = price;
     }
 
@@ -88,22 +88,22 @@ export class Validation {
       centerId = validate.errors.first('centerId'),
       userId = validate.errors.first('userId');
 
-    if(title) {
+    if (title) {
       error.title = title;
     }
-    if(description) {
+    if (description) {
       error.description = description;
     }
-    if(startDate) {
+    if (startDate) {
       error.startDate = startDate;
     }
-    if(endDate) {
+    if (endDate) {
       error.password = endDate;
     }
-    if(centerId) {
+    if (centerId) {
       error.centerId = centerId;
     }
-    if(userId) {
+    if (userId) {
       error.userId = userId;
     }
 
@@ -136,7 +136,7 @@ export class Validation {
     let error, email = validate.errors.first('email'),
       password = validate.errors.first('password');
 
-    if(email && password){
+    if (email && password) {
       error = 'The email and password fields are required';
     } else if (email) {
       error = email;
@@ -176,16 +176,16 @@ export class Validation {
       email = validate.errors.first('email'),
       password = validate.errors.first('password');
 
-    if(firstName) {
+    if (firstName) {
       error.firstName = firstName;
     }
-    if(lastName) {
+    if (lastName) {
       error.lastName = lastName;
     }
-    if(email) {
+    if (email) {
       error.email = email;
     }
-    if(password) {
+    if (password) {
       error.password = password;
     }
 

@@ -5,30 +5,67 @@ import { bindActionCreators } from 'redux';
 import shortid from 'shortid';
 import { PropTypes } from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
-import { fetchCentersAction, loadMoreCenters } from '../../../actions/center-actions/fetchCenterAction';
+import queryString from 'query-string';
+import {
+  fetchCentersAction,
+  loadMoreCenters
+} from '../../../actions/center-actions/fetchCenterAction';
+import { searchAction } from '../../../actions/searchAction';
 import { CircularLoader } from '../../loader';
 import Helpers from '../../../helpers';
+import history from '../../../util/history';
 import SearchFasterForm from './searchFasterForm';
 
+/**
+   * AllCenters Class Component
+   * */
 class AllCenters extends Component {
+  /**
+   * Class Constructor
+   * @param { object } props
+   * @returns { void }
+   * */
   constructor(props) {
     super(props);
     this.helper = new Helpers();
     this.state = {
       isLoading: true,
       loadmore: null,
-      loadingmore: null,
+      loadingmore: null
     };
+    this.onSearch = this.onSearch.bind(this);
   }
 
+  /**
+   * componentDidMount Method
+   * @returns { void }
+   * */
   componentDidMount() {
     $('.modal').modal();
-    this.props.fetchCentersAction();
+    return this.props.fetchCentersAction();
   }
 
+  /**
+   * componentWillReceiveProps Method
+   * @param { object } newProps
+   * @returns { void }
+   * */
   componentWillReceiveProps(newProps) {
-    let { page, pageCount, pageSize, totalCount } = newProps.centerStore.meta,
-    { loadingmore, loadmore } = newProps.centerStore;
+    let {
+        page, pageCount, pageSize, totalCount
+      } = newProps.centerStore.meta,
+      { loadingmore, loadmore } = newProps.centerStore,
+      searchQueries;
+
+    // Run search if URL changes
+    if (newProps.location.search !== this.props.location.search) {
+      searchQueries = queryString.parse(newProps.location.search);
+      this.setState({ isLoading: true });
+      this.props.searchAction(searchQueries)
+        .then((res) => {
+          if (res) this.setState({ isLoading: false });
+        });
+    }
 
     if (newProps) {
       this.setState({
@@ -43,6 +80,20 @@ class AllCenters extends Component {
     }
   }
 
+  /**
+   * onSearch Method
+   * @param { object } query
+   * @returns { void }
+   * */
+  onSearch(query) {
+    const qString = queryString.stringify(query, { arrayFormat: 'bracket' });
+    history.push(`/centers?${qString}`);
+  }
+
+  /**
+   * showCentersCard Method
+   * @returns { Component }
+   * */
   showCentersCard() {
     let { centers } = this.props.centerStore;
     return centers
@@ -52,16 +103,26 @@ class AllCenters extends Component {
         return (
           <Link key={shortid.generate()} to={to} href={to}>
             <div className="card">
-              {
-              !!center.img_url
-              &&
-              <div className="card-image center__image">
-                <img src={center.img_url} alt={center.title} />
-              </div>
-              }
+              {!!center.img_url && (
+                <div className="card-image">
+                  <img src={center.img_url} alt={center.title} />
+                </div>
+              )}
               <div className="card-content black-text">
-                <p className="bold">{center.title}</p>
-                <p className="light__font"><i className="material-icons f15">location_on</i>{center.location}</p>
+                <div className="row" style={{ marginBottom: '0' }}>
+                  <div className="col s12">
+                    <p className="bold">{center.title}</p>
+                    <p className="light__font">
+                      <i className="material-icons f15">location_on</i>
+                      {center.location}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="card-action">
+                <span className="black-text right-align">
+                  capacity of {center.capacity} Guests
+                </span>
               </div>
             </div>
           </Link>
@@ -69,6 +130,10 @@ class AllCenters extends Component {
       });
   }
 
+  /**
+   * initInfiniteScroll Method
+   * @returns { void }
+   * */
   initInfiniteScroll() {
     let winHeight, winScrollTop, docHeight, offset;
     $(window).scroll(() => {
@@ -77,29 +142,73 @@ class AllCenters extends Component {
       docHeight = $(document).height();
 
       if (docHeight - winHeight === winScrollTop) {
-        /* *
-           * make loadmore request
-           * * */
+        /**
+         * make loadmore request
+         * * */
         offset = this.state.page + 1;
-        if (this.state.loadmore) { this.props.loadMoreCenters(offset); }
+        if (this.state.loadmore) {
+          this.props.loadMoreCenters(offset);
+        }
       }
     });
   }
 
+  /**
+   * autoLoadMore Method
+   * @returns { void }
+   * */
   autoLoadMore() {
     if (this.state.loadmore) {
       this.initInfiniteScroll();
     }
   }
 
+  /**
+   * loadMore Method
+   * @returns { void }
+   * */
   loadMore() {
-    /* *
-       * make loadmore request
-       * * */
+    /**
+     * make loadmore request
+     * * */
     let offset = this.state.page + 1;
     this.props.loadMoreCenters(offset);
   }
 
+  /**
+   * showLoadMoreButton Method
+   * @returns { Component }
+   * */
+  showLoadMoreButton() {
+    const {
+      isLoading,
+      loadingmore,
+      pageCount,
+      pageSize,
+      totalCount
+    } = this.state;
+
+    if (!isLoading && pageCount >= 1) {
+      if (loadingmore) {
+        return <CircularLoader />;
+      }
+      if (pageSize !== totalCount) {
+        return (
+          <button
+            onClick={() => this.loadMore()}
+            className="col offset-s3 s6 btn waves-effect gradient__bg"
+          >
+            load more
+          </button>
+        );
+      }
+    }
+  }
+
+  /**
+   * renderNoCenter Method
+   * @returns { Component }
+   * */
   renderNoCenter() {
     let { centers } = this.props.centerStore;
     if (isEmpty(centers)) {
@@ -111,45 +220,32 @@ class AllCenters extends Component {
     }
   }
 
-  showLoadMoreButton(){
-      const {
-          isLoading, loadingmore, pageCount, pageSize, totalCount
-      } = this.state;
-
-      if(!isLoading && pageCount >= 1){
-        if(loadingmore){
-          return (
-            <CircularLoader />
-          );
-        } else {
-          if(pageSize !== totalCount){
-            return (
-              <button onClick={() => this.loadMore()} className="col offset-s3 s6 btn waves-effect gradient__bg"> load more </button>
-            );
-          }
-        }
-      }
-  }
-
+  /**
+   * render Method
+   * @returns { Component }
+   * */
   render() {
     this.autoLoadMore();
-    const {
-      isLoading
-    } = this.state;
+    const { isLoading } = this.state;
     return (
       <div className="container">
         <div className="center__holdr">
           <div className="row relative">
             <div className="col s12 l12" style={{ marginBottom: `${60}px` }}>
               <h4 className="center-align">Boots Centers</h4>
+              <div className="center-align search-faster-form full-width">
+                <SearchFasterForm onSearch={this.onSearch} />
+              </div>
               <div className="row">
-                { isLoading ? <CircularLoader /> :
-                <div className="col s12 cards-container">
-                  { this.showCentersCard() }
-                </div>
-                }
-                { (isLoading) ? '' : this.renderNoCenter()}
-                { this.showLoadMoreButton() }
+                {isLoading ? (
+                  <CircularLoader />
+                ) : (
+                  <div className="col s12 cards-container">
+                    {this.showCentersCard()}
+                  </div>
+                )}
+                {isLoading ? '' : this.renderNoCenter()}
+                {this.showLoadMoreButton()}
               </div>
             </div>
           </div>
@@ -169,6 +265,7 @@ const mapStateToProps = state => ({
   centerStore: state.centerReducer
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ fetchCentersAction, loadMoreCenters }, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ fetchCentersAction, loadMoreCenters, searchAction }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllCenters);

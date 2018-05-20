@@ -105,6 +105,12 @@ export const EDIT_EVENT_REQUEST = 'EDIT_EVENT_REQUEST';
 export const EDIT_EVENT = 'EDIT_EVENT';
 
 /**
+ * EDIT_EVENT_FAILURE action constants.
+ * To throw error when edit request could not be made.
+ * * */
+export const EDIT_EVENT_FAILURE = 'EDIT_EVENT_FAILURE';
+
+/**
  * REMOVE_EVENT action constants.
  * To remove an existing event in the database and the store.
  * * */
@@ -125,5 +131,6 @@ export const SEARCH_EVENT_TITLE = 'SEARCH_EVENT_TITLE';
 export const SEARCH_EVENT_TITLE_FAILED = 'SEARCH_EVENT_TITLE_FAILED';
 export const SESSION_EVENTS = 'SESSION_EVENTS';
 export const SESSION_EVENTS_FAILURE = 'SESSION_EVENTS_FAILURE';
+export const EVENT_STATUS_CHANGE = 'EVENT_STATUS_CHANGE';
 
 export const IMAGE_PLACEHOLDER = 'http://placehold.it/600/92c952';

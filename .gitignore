@@ -4,5 +4,6 @@
 /.nyc_output/
 /.env
 /.github/
+/build/
 /npm-debug.log*
 /client/bower_components

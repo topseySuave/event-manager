@@ -1,42 +1,22 @@
 import axios from 'axios';
 import { isEmpty } from 'lodash';
-import { showLoading, hideLoading } from 'react-redux-loading-bar';
-import { fetchCentersDispatch, searchCenterDispatch } from './center-actions/fetchCenterAction';
-import { searchEventsDispatch } from './events-actions/index';
+import queryString from 'query-string';
 import {
-  SEARCH_CENTER_TITLE_FAILED,
-  SEARCH_EVENT_TITLE_FAILED
-} from './';
+  fetchCentersDispatch,
+  searchCenterDispatch
+} from './center-actions/fetchCenterAction';
+import { searchEventsDispatch } from './events-actions/index';
+import { SEARCH_CENTER_TITLE_FAILED, SEARCH_EVENT_TITLE_FAILED } from './';
 
-const validateCenterSearchQuery = ({
-  searchBy, location, price, capacity, search
-}) => {
-  let searchApi, api;
-
-  if (searchBy) {
-    api = `/api/v1/centers?searchBy=${searchBy}&search=`;
-  } else {
-    api = '/api/v1/centers?search=';
-  }
-
-  if (!isEmpty(location) && location !== 'undefined') {
-    searchApi = `${api + location}`;
-  } else if (!isEmpty(price) && price !== 'undefined') {
-    searchApi = `${api + price}`;
-  } else if (!isEmpty(capacity) && capacity !== 'undefined') {
-    searchApi = `${api + capacity}`;
-  } else if (location && price && capacity) {
-    searchApi = `${api + location},${price},${capacity}`;
-  } else {
-    searchApi = `${api + search}`;
-  }
-
+const prepareCenterSearchQuery = (searchObject) => {
+  let searchObjectString = queryString.stringify(searchObject, {
+    arrayFormat: 'bracket'
+  });
+  searchApi = `/api/v1/centers?${searchObjectString}`;
   return searchApi;
 };
 
-const validateEventSearchQuery = ({
-  searchBy, search
-}) => {
+const validateEventSearchQuery = ({ searchBy, search }) => {
   let searchApi, api;
 
   if (searchBy) {
@@ -53,52 +33,57 @@ const validateEventSearchQuery = ({
 };
 
 export const searchAction = (data) => {
-  let searchApi = validateCenterSearchQuery(data);
-  return (dispatch) => {
-    dispatch(showLoading());
-    return axios.get(searchApi)
-      .then(({ data }) => {
-        if (data.statusCode === 200) {
-          dispatch(fetchCentersDispatch(data));
-          dispatch(hideLoading());
-        } else if (data.statusCode === 404) {
-          if (err) Materialize.toast('search result do not match center(s)', 5000, 'red');
-          dispatch(hideLoading());
+  let searchApi = prepareCenterSearchQuery(data);
+  return dispatch => axios
+    .get(searchApi)
+    .then(({ data }) => {
+      if (data.statusCode === 200) {
+        dispatch(fetchCentersDispatch(data));
+      } else if (data.statusCode === 404) {
+        if (err) {
+          Materialize.toast(
+            'search result do not match center(s)',
+            5000,
+            'red'
+          );
         }
-      })
-      .catch((err) => {
-        if (err) Materialize.toast('search result do not match center(s)', 5000, 'red');
-        dispatch(hideLoading());
-      });
-  };
+      }
+    })
+    .catch((err) => {
+      if (err) {
+        Materialize.toast(
+          'search result do not match center(s)',
+          5000,
+          'red'
+        );
+      }
+    });
 };
 
 export const filterCenterTitle = value => (dispatch) => {
   let searchApi = validateCenterSearchQuery(value);
-  return axios.get(searchApi)
-    .then(({ data }) => {
-      if (data.statusCode === 200) {
-        dispatch(searchCenterDispatch(data));
-      } else if (data.statusCode === 400) {
-        Materialize.toast(data.message, 5000, 'red');
-        dispatch({
-          type: SEARCH_CENTER_TITLE_FAILED
-        });
-      }
-    });
+  return axios.get(searchApi).then(({ data }) => {
+    if (data.statusCode === 200) {
+      dispatch(searchCenterDispatch(data));
+    } else if (data.statusCode === 400) {
+      Materialize.toast(data.message, 5000, 'red');
+      dispatch({
+        type: SEARCH_CENTER_TITLE_FAILED
+      });
+    }
+  });
 };
 
 export const filterEventTitle = value => (dispatch) => {
   let searchApi = validateEventSearchQuery(value);
-  return axios.get(searchApi)
-    .then(({ data }) => {
-      if (data.statusCode === 200) {
-        dispatch(searchEventsDispatch(data.events));
-      } else if (data.statusCode === 400) {
-        Materialize.toast(data.message, 5000, 'red');
-        dispatch({
-          type: SEARCH_EVENT_TITLE_FAILED
-        });
-      }
-    });
+  return axios.get(searchApi).then(({ data }) => {
+    if (data.statusCode === 200) {
+      dispatch(searchEventsDispatch(data.events));
+    } else if (data.statusCode === 400) {
+      Materialize.toast(data.message, 5000, 'red');
+      dispatch({
+        type: SEARCH_EVENT_TITLE_FAILED
+      });
+    }
+  });
 };

@@ -30,15 +30,15 @@ const authenticate = (req, res, next) => {
       });
     }
     User.findById(decoded.id)
-    .then((user) => {
-      if (!user) {
-        return res.send({
-          error: 'User Not Found..!!!'
-        });
-      }
-      req.currentUser = user;
-      next();
-    });
+      .then((user) => {
+        if (!user) {
+          return res.send({
+            error: 'User Not Found..!!!'
+          });
+        }
+        req.currentUser = user;
+        next();
+      });
   });
 };
 

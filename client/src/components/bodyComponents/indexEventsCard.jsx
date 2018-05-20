@@ -9,7 +9,14 @@ import { CircularLoader } from '../loader';
 import EventCard from './eventsCard/eventCard';
 import { fetchEventRequest, loadMoreEvents } from './../../actions/events-actions';
 
+/**
+   * IndexEventCardHolder Class Component
+   * */
 class IndexEventCardHolder extends Component {
+  /**
+   * Class contructor
+   * @param { object } props
+   * */
   constructor(props) {
     super(props);
     this.state = {
@@ -20,10 +27,20 @@ class IndexEventCardHolder extends Component {
     };
   }
 
+  /**
+   * componentDidMount method
+   * @returns { void }
+   * */
   componentDidMount() {
+    $('.modal').modal();
     this.props.fetchEventRequest();
   }
 
+  /**
+   * componentWillReceiveProps method
+   * @param { object } newProps
+   * @returns { void }
+   * */
   componentWillReceiveProps(newProps) {
     let {
       events, page, pageCount, pageSize, totalCount, loadingmore, loadmore
@@ -41,6 +58,10 @@ class IndexEventCardHolder extends Component {
     });
   }
 
+  /**
+   * initInfiniteScroll method
+   * @returns { void }
+   * */
   initInfiniteScroll() {
     let winHeight, winScrollTop, docHeight, offset;
     $(window).scroll(() => {
@@ -60,12 +81,20 @@ class IndexEventCardHolder extends Component {
     });
   }
 
+  /**
+   * autoLoadMore method
+   * @returns { void }
+   * */
   autoLoadMore() {
     if (this.state.loadmore) {
       this.initInfiniteScroll();
     }
   }
 
+  /**
+   * loadMore method
+   * @returns { void }
+   * */
   loadMore() {
     /**
      * make loadmore request
@@ -74,6 +103,10 @@ class IndexEventCardHolder extends Component {
     this.props.loadMoreEvents(offset);
   }
 
+  /**
+   * renderEventsCard method
+   * @returns { void }
+   * */
   renderEventsCard() {
     let { events } = this.state;
     return events.map((event, index) => (
@@ -81,6 +114,10 @@ class IndexEventCardHolder extends Component {
     ));
   }
 
+  /**
+   * renderNoEvent method
+   * @returns { void }
+   * */
   renderNoEvent() {
     let { events } = this.state;
     if (isEmpty(events)) {
@@ -92,6 +129,10 @@ class IndexEventCardHolder extends Component {
     }
   }
 
+  /**
+   * render method
+   * @returns { Component }
+   * */
   render() {
     this.autoLoadMore();
     let {
