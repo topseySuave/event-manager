@@ -22,8 +22,8 @@ module.exports = merge(common, {
         booleans: true,
       },
       comments: false,
-      sourceMap: true,
-      minimize: false
+      sourceMap: false,
+      minimize: true
     }),
   ],
 });
