@@ -1,3 +1,4 @@
+import queryString from 'query-string';
 import models from '../models';
 import { generatePaginationMeta, isNaNValidator } from '../middleware/util';
 
@@ -7,53 +8,19 @@ const Event = models.Events;
 const attributes = ['id', 'title', 'img_url', 'location', 'description', 'facilities', 'capacity', 'price'];
 const eventAttributes = ['id', 'title', 'img_url', 'description', 'startDate', 'endDate', 'status', 'private', 'centerId'];
 
-const sortSearchRequest = (search, searchBy) => {
-  let reqSearch;
-  // Search with location, title, price, capacity
-  if (searchBy === 'location') {
-    reqSearch = search.map((value) => {
-      if (value !== '') {
-        return {
-          location: {
-            [Op.iLike]: `%${value}%`
-          }
-        };
-      }
-    });
-  } else if (searchBy === 'price') {
-    reqSearch = search.map((value) => {
-      if (value !== '') {
-        value = parseInt(value, 10);
-        return {
-          price: {
-            [Op.gte]: `${value}`
-          }
-        };
-      }
-    });
-  } else if (searchBy === 'capacity') {
-    reqSearch = search.map((value) => {
-      if (value !== '') {
-        value = parseInt(value, 10);
-        return {
-          capacity: {
-            [Op.gte]: `${value}`
-          }
-        };
-      }
-    });
-  } else {
-    reqSearch = search.map((value) => {
-      if (value !== '') {
-        return {
-          title: {
-            [Op.iLike]: `%${value}%`
-          }
-        };
-      }
-    });
-  }
-  return reqSearch;
+
+/**
+   * generateSearchQuery to sort and arrange search queries
+   *
+   * @param {object} req
+   * @returns {object}
+   */
+const generateSearchQuery = (req) => {
+  let query = {};
+  if (req.query.location) query.location = { [Op.iLike]: `%${req.query.location}%` };
+  if (req.query.price) query.price = { [Op.gte]: req.query.price };
+  if (req.query.capacity) query.capacity = { [Op.gte]: req.query.capacity };
+  return query;
 };
 
 /**
@@ -261,14 +228,10 @@ export class Centers {
     const order = req.query.order || 'desc';
     const basedOn = parseInt(req.query.basedOn, 10) || 0;
     const offset = (pageValue > 1) ? (pageValue * limitValue) - limitValue : pageValue;
-    if (req.query.search || req.query.limit) {
-      let searchBy, reqSearch;
-      if (req.query.searchBy) {
-        searchStringBy = req.query.searchBy;
-      }
-      const search = req.query.search.split(' ');
+    if (req.query.location || req.query.price || req.query.capacity) {
+      let searchBy, reqSearch = {};
 
-      reqSearch = sortSearchRequest(search, searchStringBy);
+      reqSearch = generateSearchQuery(req);
       centersModel.findAndCountAll({
         where: {
           [Op.or]: reqSearch

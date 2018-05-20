@@ -5,12 +5,15 @@ import { bindActionCreators } from 'redux';
 import shortid from 'shortid';
 import { PropTypes } from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
+import queryString from 'query-string';
 import {
   fetchCentersAction,
   loadMoreCenters
 } from '../../../actions/center-actions/fetchCenterAction';
+import { searchAction } from '../../../actions/searchAction';
 import { CircularLoader } from '../../loader';
 import Helpers from '../../../helpers';
+import history from '../../../util/history';
 import SearchFasterForm from './searchFasterForm';
 
 /**
@@ -30,6 +33,7 @@ class AllCenters extends Component {
       loadmore: null,
       loadingmore: null
     };
+    this.onSearch = this.onSearch.bind(this);
   }
 
   /**
@@ -38,7 +42,7 @@ class AllCenters extends Component {
    * */
   componentDidMount() {
     $('.modal').modal();
-    this.props.fetchCentersAction();
+    return this.props.fetchCentersAction();
   }
 
   /**
@@ -50,7 +54,18 @@ class AllCenters extends Component {
     let {
         page, pageCount, pageSize, totalCount
       } = newProps.centerStore.meta,
-      { loadingmore, loadmore } = newProps.centerStore;
+      { loadingmore, loadmore } = newProps.centerStore,
+      searchQueries;
+
+    // Run search if URL changes
+    if (newProps.location.search !== this.props.location.search) {
+      searchQueries = queryString.parse(newProps.location.search);
+      this.setState({ isLoading: true });
+      this.props.searchAction(searchQueries)
+        .then((res) => {
+          if (res) this.setState({ isLoading: false });
+        });
+    }
 
     if (newProps) {
       this.setState({
@@ -63,6 +78,16 @@ class AllCenters extends Component {
         pageCount
       });
     }
+  }
+
+  /**
+   * onSearch Method
+   * @param { object } query
+   * @returns { void }
+   * */
+  onSearch(query) {
+    const qString = queryString.stringify(query, { arrayFormat: 'bracket' });
+    history.push(`/centers?${qString}`);
   }
 
   /**
@@ -79,7 +104,7 @@ class AllCenters extends Component {
           <Link key={shortid.generate()} to={to} href={to}>
             <div className="card">
               {!!center.img_url && (
-                <div className="card-image center__image">
+                <div className="card-image">
                   <img src={center.img_url} alt={center.title} />
                 </div>
               )}
@@ -208,6 +233,9 @@ class AllCenters extends Component {
           <div className="row relative">
             <div className="col s12 l12" style={{ marginBottom: `${60}px` }}>
               <h4 className="center-align">Boots Centers</h4>
+              <div className="center-align search-faster-form full-width">
+                <SearchFasterForm onSearch={this.onSearch} />
+              </div>
               <div className="row">
                 {isLoading ? (
                   <CircularLoader />
@@ -238,6 +266,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ fetchCentersAction, loadMoreCenters }, dispatch);
+  bindActionCreators({ fetchCentersAction, loadMoreCenters, searchAction }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllCenters);

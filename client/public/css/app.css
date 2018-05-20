@@ -143,8 +143,18 @@ nav ul a:hover {
   display: none;
 }
 
+.full-width{
+  width: 100%;
+}
+
 .pointer {
   cursor: pointer !important;
+}
+
+.search-faster-form{
+  margin: 10px 0;
+  padding: 20px 0;
+  display: inline-flex;
 }
 
 .search__results {

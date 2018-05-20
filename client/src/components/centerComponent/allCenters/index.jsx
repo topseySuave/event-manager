@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DocumentTitle from 'react-document-title';
 import FixedNav from '../../bodyComponents/headNav/fixedNav';
+import Footer from '../../bodyComponents/footer/footer';
 import AllCenters from './allCenters';
 import FloatingActionButton from '../../bodyComponents/floatingActionButton/FloatingActionButton';
 import Modals from '../../modals';
@@ -19,10 +20,10 @@ class AllCentersIndex extends Component {
         <div>
           <div className="body__holdr">
             <FixedNav />
-            <AllCenters />
+            <AllCenters {...this.props} />
             <FloatingActionButton />
+            <Footer />
           </div>
-
           <Modals />
         </div>
       </DocumentTitle>

@@ -12,7 +12,8 @@ import event from './routes/events';
 import center from './routes/centers';
 import users from './routes/users';
 import admin from './routes/administrator';
-import config from '../webpack.config';
+// for development
+import config from '../webpack.common';
 
 dotenv.config();
 
