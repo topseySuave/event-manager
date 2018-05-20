@@ -5,8 +5,9 @@ const common = require('./webpack.common');
 module.exports = merge(common, {
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
-      'process.env.SECRET_KEY': JSON.stringify(process.env.SECRET_KEY)
+      'process.env': {
+        SECRET_KEY: JSON.stringify(process.env.SECRET_KEY)
+      }
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
