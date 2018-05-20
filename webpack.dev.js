@@ -2,7 +2,9 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge'); // eslint-disable-line
 const common = require('./webpack.common');
+const dotenv = require('dotenv');
 
+dotenv.load();
 module.exports = merge(common, {
   devtool: 'cheap-module-source-map',
   output: {
@@ -22,7 +24,9 @@ module.exports = merge(common, {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
-      'process.env.SECRET_KEY': JSON.stringify(process.env.SECRET_KEY)
+      'process.env': {
+        SECRET_KEY: JSON.stringify(process.env.SECRET_KEY)
+      }
     }),
   ]
 });

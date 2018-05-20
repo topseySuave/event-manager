@@ -1,6 +1,6 @@
 webpackHotUpdate(0,{
 
-/***/ 309:
+/***/ 1691:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9,112 +9,101 @@ webpackHotUpdate(0,{
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.filterEventTitle = exports.filterCenterTitle = exports.searchAction = undefined;
 
-var _axios = __webpack_require__(43);
+var _createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+  };
+}();
 
-var _axios2 = _interopRequireDefault(_axios);
+var _jsonwebtoken = __webpack_require__(1692);
 
-var _lodash = __webpack_require__(1659);
+var _jsonwebtoken2 = _interopRequireDefault(_jsonwebtoken);
 
-var _queryString = __webpack_require__(310);
+var _jwtDecode = __webpack_require__(294);
 
-var _queryString2 = _interopRequireDefault(_queryString);
+var _jwtDecode2 = _interopRequireDefault(_jwtDecode);
 
-var _fetchCenterAction = __webpack_require__(311);
+var _ = __webpack_require__(207);
 
-var _index = __webpack_require__(52);
+var _setAuthenticationToken = __webpack_require__(123);
 
-var _ = __webpack_require__(28);
+var _setAuthenticationToken2 = _interopRequireDefault(_setAuthenticationToken);
+
+var _authActions = __webpack_require__(62);
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
 }
 
-var prepareCenterSearchQuery = function prepareCenterSearchQuery(searchObject) {
-  var searchObjectString = _queryString2.default.stringify(searchObject, {
-    arrayFormat: 'bracket'
-  }),
-      searchApi = '/api/v1/centers?' + searchObjectString;
-  return searchApi;
-};
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
 
-var validateEventSearchQuery = function validateEventSearchQuery(_ref) {
-  var searchBy = _ref.searchBy,
-      search = _ref.search;
-
-  var searchApi = void 0,
-      api = void 0;
-
-  if (searchBy) {
-    api = '/api/v1/events?searchBy=' + searchBy + '&search=';
-  } else {
-    api = '/api/v1/events?search=';
+/**
+ * AuthCheck Class
+ * */
+var AuthCheck = function () {
+  function AuthCheck() {
+    _classCallCheck(this, AuthCheck);
   }
 
-  if (!(0, _lodash.isEmpty)(search) && search !== 'undefined') {
-    searchApi = '' + (api + search);
-  }
+  _createClass(AuthCheck, [{
+    key: 'jwtIsSet',
 
-  return searchApi;
-};
+    /**
+     * jwtIsSet Method
+     * @return { boolean }
+     * */
+    value: function jwtIsSet() {
+      return !!localStorage.getItem('jwtToken');
+    }
 
-var searchAction = exports.searchAction = function searchAction(data) {
-  var searchApi = prepareCenterSearchQuery(data);
-  return function (dispatch) {
-    return _axios2.default.get(searchApi).then(function (_ref2) {
-      var data = _ref2.data;
+    /**
+     * isSignedIn Method
+     * @return { void }
+     * */
 
-      if (data.statusCode === 200) {
-        dispatch((0, _fetchCenterAction.fetchCentersDispatch)(data));
-      } else if (data.statusCode === 404) {
-        if (err) {
-          Materialize.toast('search result do not match center(s)', 5000, 'red');
-        }
-      }
-    }).catch(function (err) {
-      if (err) {
-        Materialize.toast('search result do not match center(s)', 5000, 'red');
-      }
-    });
-  };
-};
-
-var filterCenterTitle = exports.filterCenterTitle = function filterCenterTitle(value) {
-  return function (dispatch) {
-    var searchApi = validateCenterSearchQuery(value);
-    return _axios2.default.get(searchApi).then(function (_ref3) {
-      var data = _ref3.data;
-
-      if (data.statusCode === 200) {
-        dispatch((0, _fetchCenterAction.searchCenterDispatch)(data));
-      } else if (data.statusCode === 400) {
-        Materialize.toast(data.message, 5000, 'red');
-        dispatch({
-          type: _.SEARCH_CENTER_TITLE_FAILED
+  }, {
+    key: 'isSignedIn',
+    value: function isSignedIn() {
+      if (this.jwtIsSet()) {
+        _jsonwebtoken2.default.verify(localStorage.getItem('jwtToken'), "iamgabrieltopseysuavemicah", function (err, decoded) {
+          if (err) {
+            _.store.dispatch((0, _authActions.signOutRequest)());
+          } else {
+            (0, _setAuthenticationToken2.default)(localStorage.getItem('jwtToken'));
+            _.store.dispatch((0, _authActions.setCurrentUser)(localStorage.getItem('jwtToken')));
+          }
         });
       }
-    });
-  };
-};
+    }
 
-var filterEventTitle = exports.filterEventTitle = function filterEventTitle(value) {
-  return function (dispatch) {
-    var searchApi = validateEventSearchQuery(value);
-    return _axios2.default.get(searchApi).then(function (_ref4) {
-      var data = _ref4.data;
+    /**
+     * isAdmin Method
+     * @return { boolean }
+     * */
 
-      if (data.statusCode === 200) {
-        dispatch((0, _index.searchEventsDispatch)(data.events));
-      } else if (data.statusCode === 400) {
-        Materialize.toast(data.message, 5000, 'red');
-        dispatch({
-          type: _.SEARCH_EVENT_TITLE_FAILED
-        });
+  }, {
+    key: 'isAdmin',
+    value: function isAdmin() {
+      if (this.jwtIsSet()) {
+        if ((0, _jwtDecode2.default)(localStorage.getItem('jwtToken')).role) return true;
       }
-    });
-  };
-};
+      return false;
+    }
+  }]);
+
+  return AuthCheck;
+}();
+
+exports.default = AuthCheck;
 
 /***/ })
 
