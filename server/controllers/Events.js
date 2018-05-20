@@ -291,7 +291,7 @@ export class Events {
     const eventId = parseInt(req.params.id, 10);
     if (isNaN(eventId)) return isNaNValidator(res, eventId);
 
-    if (req.query) {
+    if (req.query.status) {
       let { status } = req.query;
       Event.findById(eventId)
         .then((foundEvent) => {

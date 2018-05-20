@@ -10,9 +10,9 @@ import { SEARCH_CENTER_TITLE_FAILED, SEARCH_EVENT_TITLE_FAILED } from './';
 
 const prepareCenterSearchQuery = (searchObject) => {
   let searchObjectString = queryString.stringify(searchObject, {
-    arrayFormat: 'bracket'
-  });
-  searchApi = `/api/v1/centers?${searchObjectString}`;
+      arrayFormat: 'bracket'
+    }),
+    searchApi = `/api/v1/centers?${searchObjectString}`;
   return searchApi;
 };
 
