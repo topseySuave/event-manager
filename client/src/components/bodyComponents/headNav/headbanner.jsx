@@ -228,7 +228,7 @@ class HeaderBanner extends Component {
             </nav>
 
             <div className="center-align header__detail">
-              <h4 className="wow fadeInLeft">Worlds Leading Events Centers</h4>
+              <h4 className="wow fadeInLeft">World's Leading Events Centers</h4>
               <p className="wow fadeInLeft">Book Events Centers In Your Area</p>
               {this.showSignUpActionButton()}
               <div
