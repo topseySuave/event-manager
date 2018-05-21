@@ -10,9 +10,6 @@ Events Manager is a full stack application, that enables users administrate ther
 ## Hosted Application
 visit the application [Event-manager](https://boots-events.herokuapp.com/) to get started
 
-## API Documentation
-Click [Here](https://boots-events.herokuapp.com/docs) to view our detailed API documentation
-
 
 ## Installation guide
 
@@ -42,14 +39,14 @@ I advise storing such credentials as environment variables for security purposes
 ```
 STEP 6: Add a `.env` file in root of project and setup the following:
 
-    ```
-    SECRET_KEY=<anyWordsOfYourChoice>
-    DATABASE_URL=<elephantSqlOnlineDatabaseLink>
-    CLOUDINARY_URL=<yourCloudinaryUrl>
-    CLOUDINARY_UPLOAD_PRESET=<yourCloudinaryUploadPreset>
-    EMAIL=<yourGmailAccount>
-    PASSWORD=<yourGmailPassword>
-    ```
+```
+SECRET_KEY=<anyWordsOfYourChoice>
+DATABASE_URL=<elephantSqlOnlineDatabaseLink>
+CLOUDINARY_URL=<yourCloudinaryUrl>
+CLOUDINARY_UPLOAD_PRESET=<yourCloudinaryUploadPreset>
+EMAIL=<yourGmailAccount>
+PASSWORD=<yourGmailPassword>
+```
 
 STEP 7: Run migration and seed the database with nesseccary data
 
@@ -91,6 +88,11 @@ The app uses:
 > - `npm run e2e` - to run end-to-end test
 
 
+## API Documentation
+Click [Here](https://boots-events.herokuapp.com/docs) to view our detailed API documentation
+
+
+
 ## Limitations
 
 
@@ -116,7 +118,7 @@ The app uses:
 * [MaterialCss](https://materialcss.com) - A modern responsive front-end framework based on Material Design
 
 ## License
-This project is licensed under MIT.
+This project is licensed under 
 [MIT](https://github.com/topseySuave/event-manager/blob/develop/LICENSE)
 
 ## Contribution
