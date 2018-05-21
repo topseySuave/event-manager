@@ -4,12 +4,11 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/2219e1701e5995fa3410/maintainability)](https://codeclimate.com/github/topseySuave/event-manager/maintainability)
 
 
-[https://raw.githubusercontent.com/topseySuave/event-manager/develop/client/public/fav.ico](https://raw.githubusercontent.com/topseySuave/event-manager/develop/client/public/fav.ico)
-# Events Manager
+# <img src="https://raw.githubusercontent.com/topseySuave/event-manager/develop/client/public/fav.ico" alt="logo" width="25px" /> Events Manager
 Events Manager is a full stack application, that enables users administrate there own centers, An Event registration platform for all of your online and on-site event management needs and handles the entire event lifecycle from start to finish.
 
 ## Hosted Application
-visit the application [Event-manager](https://boots-events.herokuapp.com/) to get started
+Visit our application [Event-Manager](https://boots-events.herokuapp.com/) to get started
 
 
 ## Installation guide
@@ -38,8 +37,8 @@ check ./config/config.json to add nesseccary database credential
 I advise storing such credentials as environment variables for security purposes
 
 ```
-STEP 6: Add a `.env` file in root of project and setup the following:
 
+STEP 6: Add a `.env` file in root of project and setup the following:
 ```
 SECRET_KEY=<anyWordsOfYourChoice>
 DATABASE_URL=<elephantSqlOnlineDatabaseLink>
@@ -88,7 +87,6 @@ The app uses:
 > - `npm run test:client` - to run test for front-end
 > - `npm run e2e` - to run end-to-end test
 
-
 ## API Documentation
 Click [Here](https://boots-events.herokuapp.com/docs) to view our API documentation
 
@@ -98,7 +96,7 @@ Click [Here](https://boots-events.herokuapp.com/docs) to view our API documentat
 
 
 * Authorization tokens are only valid for 24 hours
-* Only authenticated users can access key features such as event booking
+* Only authenticated users can access key fuetures such as event booking
 * User cannot deactivate their account
 
 ## Technologies
@@ -119,12 +117,10 @@ Click [Here](https://boots-events.herokuapp.com/docs) to view our API documentat
 * [MaterialCss](https://materialcss.com) - A modern responsive front-end framework based on Material Design
 
 ## License
-This project is licensed under 
-[MIT](https://github.com/topseySuave/event-manager/blob/develop/LICENSE)
+This project is licensed under
+[MIT](https://opensource.org/licenses/MIT)
 
 ## Contribution
-If you are interested in contributing to the development of this project,
-check the [contributing](contributing.md) file.
 When contributing to this repository, please reach out to me or other contributors via email, issue or any other means to discuss the changes you wish to make.
 
 ## Author
@@ -145,7 +141,6 @@ When contributing to this repository, please reach out to me or other contributo
 * Expressjs
 
 * Nodejs
-
 
 ## FAQ
 
