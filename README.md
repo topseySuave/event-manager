@@ -89,7 +89,7 @@ The app uses:
 
 
 ## API Documentation
-Click [Here](https://boots-events.herokuapp.com/docs) to view our detailed API documentation
+Click [Here](https://boots-events.herokuapp.com/docs) to view our API documentation
 
 
 
