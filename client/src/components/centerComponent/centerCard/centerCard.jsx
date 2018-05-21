@@ -50,11 +50,15 @@ class CenterCard extends Component {
         <Link to={this.props.to} href={this.props.to}>
           <div className="card">
             {this.showPriceBar(center.price)}
-            {!!center.img_url && (
-              <div className="card-image">
+            <div className="card-image">
+              {(center.img_url) ? (
                 <img src={center.img_url} alt={center.title} />
-              </div>
-            )}
+            ) : <img
+              src="http://www.topangacreekoutpost.com/assets/images/site/image_not_available.png"
+              alt={center.title}
+            />
+            }
+            </div>
             <div className="card-content black-text">
               <div className="row" style={{ marginBottom: '0' }}>
                 <div className="col s12">

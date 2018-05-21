@@ -17,6 +17,7 @@ import AccountCircle from 'material-ui/svg-icons/action/account-circle';
 
 import { signOutRequest } from '../../../actions/authActions';
 import history from '../../../util/history';
+import { centerBackgrounds } from '../../../util/facilities';
 import SearchFasterForm from '../../centerComponent/allCenters/searchFasterForm';
 
 const searchStyle = {
@@ -131,20 +132,17 @@ class HeaderBanner extends Component {
   }
 
   /**
-   * showSignUpActionButton method
+   * showModal method
    * @returns { void }
    * */
-  showSignUpActionButton() {
-    if (!this.props.activeState.isAuthenticated) {
-      return (
-        <Link
-          to="/signup"
-          className="btn blue lighten-2 waves-effect animated fadeInLeft"
-        >
-          Join Boots Events Manager
-        </Link>
-      );
+  changeHeaderBackground() {
+    let i = 0;
+    let el = document.getElementsByClassName('header'); // el doesn't change
+    function toggle() {
+      el[0].style.backgroundImage = `url(${centerBackgrounds[i]})`; // set the image
+      i = (i + 1) % centerBackgrounds.length; // update the counter
     }
+    setInterval(toggle, 5000);
   }
 
   /**
@@ -199,6 +197,7 @@ class HeaderBanner extends Component {
    * @memberOf MyEventCardHolder
    * */
   render() {
+    this.changeHeaderBackground();
     return (
       <div className="header">
         <div className="header__overlay">
@@ -230,7 +229,6 @@ class HeaderBanner extends Component {
             <div className="center-align header__detail">
               <h4 className="wow fadeInLeft">World's Leading Events Centers</h4>
               <p className="wow fadeInLeft">Book Events Centers In Your Area</p>
-              {this.showSignUpActionButton()}
               <div
                 className="row center-align search-faster-form full-width"
                 style={searchStyle.main}

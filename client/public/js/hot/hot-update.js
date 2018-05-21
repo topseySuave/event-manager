@@ -1,6 +1,6 @@
 webpackHotUpdate(0,{
 
-/***/ 1677:
+/***/ 678:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28,69 +28,67 @@ var _index6 = _interopRequireDefault(_index5);
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _propTypes = __webpack_require__(3);
+var _redux = __webpack_require__(22);
 
 var _reactRedux = __webpack_require__(21);
 
-var _redux = __webpack_require__(22);
+var _reactRouterDom = __webpack_require__(25);
 
-var _shortid = __webpack_require__(35);
+var _queryString = __webpack_require__(310);
 
-var _shortid2 = _interopRequireDefault(_shortid);
+var _queryString2 = _interopRequireDefault(_queryString);
 
-var _reactDocumentTitle = __webpack_require__(76);
+var _IconMenu = __webpack_require__(116);
 
-var _reactDocumentTitle2 = _interopRequireDefault(_reactDocumentTitle);
+var _IconMenu2 = _interopRequireDefault(_IconMenu);
 
-var _Dialog = __webpack_require__(51);
+var _IconButton = __webpack_require__(41);
 
-var _Dialog2 = _interopRequireDefault(_Dialog);
+var _IconButton2 = _interopRequireDefault(_IconButton);
 
-var _RaisedButton = __webpack_require__(189);
+var _moreVert = __webpack_require__(90);
 
-var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+var _moreVert2 = _interopRequireDefault(_moreVert);
+
+var _menu = __webpack_require__(91);
+
+var _menu2 = _interopRequireDefault(_menu);
+
+var _search = __webpack_require__(120);
+
+var _search2 = _interopRequireDefault(_search);
+
+var _MenuItem = __webpack_require__(61);
+
+var _MenuItem2 = _interopRequireDefault(_MenuItem);
+
+var _Divider = __webpack_require__(184);
+
+var _Divider2 = _interopRequireDefault(_Divider);
+
+var _Drawer = __webpack_require__(185);
+
+var _Drawer2 = _interopRequireDefault(_Drawer);
 
 var _FlatButton = __webpack_require__(42);
 
 var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-var _modeEdit = __webpack_require__(299);
+var _accountCircle = __webpack_require__(122);
 
-var _modeEdit2 = _interopRequireDefault(_modeEdit);
+var _accountCircle2 = _interopRequireDefault(_accountCircle);
 
-var _delete = __webpack_require__(296);
+var _authActions = __webpack_require__(62);
 
-var _delete2 = _interopRequireDefault(_delete);
+var _history = __webpack_require__(130);
 
-var _loader = __webpack_require__(92);
+var _history2 = _interopRequireDefault(_history);
 
-var _activeCenterAction = __webpack_require__(1678);
+var _facilities = __webpack_require__(307);
 
-var _deleteCenterAction = __webpack_require__(1679);
+var _searchFasterForm = __webpack_require__(1687);
 
-var _currentEventForCenter = __webpack_require__(1680);
-
-var _currentEventForCenter2 = _interopRequireDefault(_currentEventForCenter);
-
-var _RecommCenter = __webpack_require__(1681);
-
-var _RecommCenter2 = _interopRequireDefault(_RecommCenter);
-
-var _EventModal = __webpack_require__(1682);
-
-var _EventModal2 = _interopRequireDefault(_EventModal);
-
-var _editCenterForm = __webpack_require__(1683);
-
-var _editCenterForm2 = _interopRequireDefault(_editCenterForm);
-
-var _fetchCenterRelatedTo = __webpack_require__(1684);
-
-var _eventsActions = __webpack_require__(52);
-
-var _helpers = __webpack_require__(131);
-
-var _helpers2 = _interopRequireDefault(_helpers);
+var _searchFasterForm2 = _interopRequireDefault(_searchFasterForm);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -101,20 +99,20 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var _components = {
-  CenterDetail: {
-    displayName: 'CenterDetail'
+  HeaderBanner: {
+    displayName: 'HeaderBanner'
   }
 };
 
 var _UsersGabrielmicahDesktopProjectsEventManagerNode_modulesReactTransformHmrLibIndexJs2 = (0, _index6.default)({
-  filename: '/Users/gabrielmicah/Desktop/projects/event-manager/client/src/components/centerComponent/centerDetail/centerDetail.jsx',
+  filename: '/Users/gabrielmicah/Desktop/projects/event-manager/client/src/components/bodyComponents/headNav/headbanner.jsx',
   components: _components,
   locals: [module],
   imports: [_react3.default]
 });
 
 var _UsersGabrielmicahDesktopProjectsEventManagerNode_modulesReactTransformCatchErrorsLibIndexJs2 = (0, _index4.default)({
-  filename: '/Users/gabrielmicah/Desktop/projects/event-manager/client/src/components/centerComponent/centerDetail/centerDetail.jsx',
+  filename: '/Users/gabrielmicah/Desktop/projects/event-manager/client/src/components/bodyComponents/headNav/headbanner.jsx',
   components: _components,
   locals: [],
   imports: [_react3.default, _index2.default]
@@ -126,115 +124,58 @@ function _wrapComponent(id) {
   };
 }
 
-var helpers = new _helpers2.default();
+var searchStyle = {
+  main: {
+    backgroundColor: 'white',
+    borderRadius: '8px'
+  },
+  bold: {
+    fontWeight: 200
+  }
+};
 
 /**
- * CenterDetail Class Component
+ * MyEventCardHolder Class Component
  * */
 
-var CenterDetail = _wrapComponent('CenterDetail')(function (_Component) {
-  _inherits(CenterDetail, _Component);
+var HeaderBanner = _wrapComponent('HeaderBanner')(function (_Component) {
+  _inherits(HeaderBanner, _Component);
 
   /**
-   * Class constructor
+   * Class contructor
    * @param { object } props
    * */
-  function CenterDetail(props) {
-    _classCallCheck(this, CenterDetail);
+  function HeaderBanner(props) {
+    _classCallCheck(this, HeaderBanner);
 
-    var _this = _possibleConstructorReturn(this, (CenterDetail.__proto__ || Object.getPrototypeOf(CenterDetail)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (HeaderBanner.__proto__ || Object.getPrototypeOf(HeaderBanner)).call(this, props));
 
     _this.state = {
-      isLoading: true,
-      openAlert: false,
-      open: false,
-      isAdmin: false,
-      activeCenter: {
-        centr: {
-          title: 'center'
-        }
-      }
+      open: false
     };
 
-    _this.handleOpen = _this.handleOpen.bind(_this);
+    _this.handleToggle = _this.handleToggle.bind(_this);
     _this.handleClose = _this.handleClose.bind(_this);
-    _this.handleAlertOpen = _this.handleAlertOpen.bind(_this);
-    _this.handleAlertClose = _this.handleAlertClose.bind(_this);
+    _this.onSearch = _this.onSearch.bind(_this);
     return _this;
   }
 
   /**
-   * componentDidMount Method
+   * onSearch Method
+   * @param { object } query
    * @returns { void }
    * */
 
 
-  _createClass(CenterDetail, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      $('.modal').modal('close');
-      $('.tooltipped').tooltip({ delay: 50 });
-      var params = this.props.params;
-
-      this.props.fetchCenterAction(params.id);
-      if (this.props.activeUser.user.role) {
-        this.setState({ isAdmin: this.props.activeUser.user.role });
-      }
+  _createClass(HeaderBanner, [{
+    key: 'onSearch',
+    value: function onSearch(query) {
+      var qString = _queryString2.default.stringify(query, { arrayFormat: 'bracket' });
+      _history2.default.push('/centers?' + qString);
     }
 
     /**
-     * componentWillReceiveProps Method
-     * @param { object } newProps
-     * @returns { void }
-     * */
-
-  }, {
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(newProps) {
-      var centerDetails = newProps.activeCenterDetail;
-      if (centerDetails.eventStatusChange) location.reload();
-
-      if (this.props.params.id !== newProps.params.id) {
-        newProps.fetchCenterAction(newProps.params.id);
-      }
-
-      if (typeof centerDetails.center !== 'undefined') {
-        if (centerDetails.events) {
-          centerDetails.center.events = centerDetails.events;
-          delete centerDetails.events;
-        }
-        this.setState({
-          isLoading: false,
-          activeCenter: centerDetails
-        });
-      }
-    }
-
-    /**
-     * editCenter Method
-     * @returns { void }
-     * */
-
-  }, {
-    key: 'editCenter',
-    value: function editCenter() {
-      this.props.editCenterRequestAction();
-    }
-
-    /**
-     * handleOpen Method
-     * @returns { void }
-     * */
-
-  }, {
-    key: 'handleOpen',
-    value: function handleOpen() {
-      this.props.editCenterRequestAction();
-      this.setState({ open: true });
-    }
-
-    /**
-     * handleClose Method
+     * handleClose method
      * @returns { void }
      * */
 
@@ -245,420 +186,284 @@ var CenterDetail = _wrapComponent('CenterDetail')(function (_Component) {
     }
 
     /**
-     * handleAlertOpen Method
+     * handleToggle method
      * @returns { void }
      * */
 
   }, {
-    key: 'handleAlertOpen',
-    value: function handleAlertOpen() {
-      this.setState({ openAlert: true });
+    key: 'handleToggle',
+    value: function handleToggle() {
+      this.setState({ open: !this.state.open });
     }
 
     /**
-     * handleAlertClose Method
-     * @returns { void }
+     * showAuthenticationLinks method
+     * @returns { component }
      * */
 
   }, {
-    key: 'handleAlertClose',
-    value: function handleAlertClose() {
-      this.setState({ openAlert: false });
-    }
-
-    /**
-     * showEditCenterButton Method
-     * @returns { Component }
-     * */
-
-  }, {
-    key: 'showEditCenterButton',
-    value: function showEditCenterButton() {
-      var actions = [_react3.default.createElement(_FlatButton2.default, { label: 'Cancel', primary: true, onClick: this.handleClose })];
-
-      if (this.state.isAdmin) {
+    key: 'showAuthenticationLinks',
+    value: function showAuthenticationLinks() {
+      // Show Sign-in and Sign-up
+      // links only if user isn't signed in
+      if (!this.props.activeState.isAuthenticated) {
         return _react3.default.createElement(
-          'div',
+          'span',
           null,
-          _react3.default.createElement(_FlatButton2.default, {
-            label: 'Edit center',
-            icon: _react3.default.createElement(_modeEdit2.default, null),
-            onClick: this.handleOpen,
-            fullWidth: true
-          }),
           _react3.default.createElement(
-            _Dialog2.default,
-            {
-              title: 'Edit Center',
-              actions: actions,
-              modal: false,
-              open: this.state.open,
-              onRequestClose: this.handleClose,
-              autoScrollBodyContent: true,
-              style: { marginTop: '0px' }
-            },
-            _react3.default.createElement(_editCenterForm2.default, { history: this.props.history })
+            'li',
+            null,
+            _react3.default.createElement(
+              _reactRouterDom.Link,
+              { to: '/signin' },
+              'Sign In'
+            )
+          ),
+          _react3.default.createElement(
+            'li',
+            null,
+            _react3.default.createElement(
+              _reactRouterDom.Link,
+              { to: '/signup' },
+              'Sign Up'
+            )
           )
         );
       }
+
+      return _react3.default.createElement(
+        _react3.default.Fragment,
+        null,
+        _react3.default.createElement(
+          _IconMenu2.default,
+          {
+            iconButtonElement: _react3.default.createElement(
+              _IconButton2.default,
+              null,
+              _react3.default.createElement(_accountCircle2.default, { color: 'white' })
+            ),
+            anchorOrigin: { horizontal: 'left', vertical: 'top' },
+            targetOrigin: { horizontal: 'left', vertical: 'top' }
+          },
+          _react3.default.createElement(_MenuItem2.default, {
+            primaryText: 'Hello ' + this.props.activeState.user.lastName
+          }),
+          _react3.default.createElement(_MenuItem2.default, {
+            primaryText: 'My Events',
+            containerElement: _react3.default.createElement(_reactRouterDom.Link, { to: '/my-events' })
+          }),
+          _react3.default.createElement(_Divider2.default, null),
+          _react3.default.createElement(_MenuItem2.default, {
+            primaryText: 'sign out',
+            containerElement: _react3.default.createElement(_reactRouterDom.Link, { to: '/signout' })
+          })
+        )
+      );
     }
 
     /**
-     * showBookCenterButton Method
-     * @returns { Component }
-     * */
-
-  }, {
-    key: 'showBookCenterButton',
-    value: function showBookCenterButton() {
-      var isSignedIn = this.props.activeUser.isAuthenticated;
-      if (isSignedIn) {
-        return _react3.default.createElement(_EventModal2.default, null);
-      }
-    }
-
-    /**
-     * showRecommendedCenters Method
-     * @param { object } relatedCenterBasedOn
-     * @returns { Component }
-     * */
-
-  }, {
-    key: 'showRecommendedCenters',
-    value: function showRecommendedCenters(relatedCenterBasedOn) {
-      if (!this.state.isAdmin) {
-        return _react3.default.createElement(_RecommCenter2.default, {
-          relatedCenterBasedOn: relatedCenterBasedOn,
-          fetchCenterRelatedTo: _fetchCenterRelatedTo.fetchCenterRelatedTo
-        });
-      }
-    }
-
-    /**
-     * deleteCenter Method
-     * @param { string } id
+     * showModal method
      * @returns { void }
      * */
 
   }, {
-    key: 'deleteCenter',
-    value: function deleteCenter(id) {
+    key: 'showModal',
+    value: function showModal() {
+      $('#search__modal').modal('open');
+    }
+
+    /**
+     * showModal method
+     * @returns { void }
+     * */
+
+  }, {
+    key: 'changeHeaderBackground',
+    value: function changeHeaderBackground() {
+      var i = 0;
+      var el = document.getElementsByClassName('header'); // el doesn't change
+      function toggle() {
+        el[0].style.backgroundImage = 'url(' + _facilities.centerBackgrounds[i] + ')'; // set the image
+        i = (i + 1) % _facilities.centerBackgrounds.length; // update the counter
+      }
+      setInterval(toggle, 5000);
+    }
+
+    /**
+     * renderSidenav method
+     * @returns { component }
+     * */
+
+  }, {
+    key: 'renderSidenav',
+    value: function renderSidenav() {
       var _this2 = this;
 
-      this.props.deleteCenterRequest(id).then(function () {
-        if (typeof _this2.props.activeCenterDetail.center === 'undefined') {
-          Materialize.toast('Center has been Deleted', 5000, 'teal');
-          _this2.props.history.push('/centers');
-        }
-      });
-    }
-
-    /**
-     * showAlertModal Method
-     * @param { string } id
-     * @returns { component }
-     * */
-
-  }, {
-    key: 'showAlertModal',
-    value: function showAlertModal(id) {
-      var _this3 = this;
-
-      var actions = [_react3.default.createElement(_FlatButton2.default, { label: 'Yes', primary: true, onClick: function onClick() {
-          return _this3.deleteCenter(id);
-        } }), _react3.default.createElement(_FlatButton2.default, { label: 'No', primary: true, onClick: function onClick() {
-          return _this3.handleAlertClose();
-        } })];
-
-      if (this.state.isAdmin) {
-        return _react3.default.createElement(
-          'div',
-          null,
-          _react3.default.createElement(_FlatButton2.default, {
-            label: 'Delete this center',
-            secondary: true,
-            icon: _react3.default.createElement(_delete2.default, null),
-            onClick: this.handleAlertOpen
-          }),
-          _react3.default.createElement(
-            _Dialog2.default,
-            {
-              actions: actions,
-              modal: false,
-              open: this.state.openAlert,
-              onRequestClose: this.handleAlertClose
+      return _react3.default.createElement(
+        _react3.default.Fragment,
+        null,
+        _react3.default.createElement(
+          _Drawer2.default,
+          {
+            docked: false,
+            width: 200,
+            open: this.state.open,
+            onRequestChange: function onRequestChange(open) {
+              return _this2.setState({ open: open });
+            }
+          },
+          _react3.default.createElement(_MenuItem2.default, {
+            onClick: function onClick() {
+              return _this2.showModal();
             },
-            'Are you sure you want to delete this event?'
-          )
-        );
-      }
+            leftIcon: _react3.default.createElement(_search2.default, null),
+            primaryText: 'Search'
+          }),
+          _react3.default.createElement(_MenuItem2.default, {
+            primaryText: 'Hello ' + (this.props.activeState.user.lastName || 'Guest')
+          }),
+          _react3.default.createElement(_MenuItem2.default, {
+            primaryText: 'My Events',
+            containerElement: _react3.default.createElement(_reactRouterDom.Link, { to: '/my-events' })
+          }),
+          _react3.default.createElement(_Divider2.default, null),
+          !this.props.activeState.isAuthenticated ? this.showAuthenticationLinks() : _react3.default.createElement(_MenuItem2.default, {
+            primaryText: 'sign out',
+            containerElement: _react3.default.createElement(_reactRouterDom.Link, { to: '/signout' })
+          })
+        ),
+        _react3.default.createElement(_FlatButton2.default, {
+          className: 'right hide-on-med-and-up',
+          style: { margin: '10px', color: '#FFFFFF' },
+          onClick: this.handleToggle,
+          icon: _react3.default.createElement(_menu2.default, null)
+        })
+      );
     }
 
     /**
-     * renderFacilities Method
-     * @param { array } facilities
+     * render method
      * @returns { component }
-     * */
-
-  }, {
-    key: 'renderFacilities',
-    value: function renderFacilities(facilities) {
-      return facilities.map(function (facility) {
-        return _react3.default.createElement(
-          'li',
-          { key: _shortid2.default.generate() },
-          facility
-        );
-      });
-    }
-
-    /**
-     * render Method
-     * @returns { component }
+     * @memberOf MyEventCardHolder
      * */
 
   }, {
     key: 'render',
     value: function render() {
-      var _state = this.state,
-          isLoading = _state.isLoading,
-          activeCenter = _state.activeCenter,
-          isAdmin = _state.isAdmin;
+      var _this3 = this;
 
-      if (activeCenter.center) {
-        var _activeCenter$center = activeCenter.center,
-            id = _activeCenter$center.id,
-            title = _activeCenter$center.title,
-            img_url = _activeCenter$center.img_url,
-            _location = _activeCenter$center.location,
-            description = _activeCenter$center.description,
-            facilities = _activeCenter$center.facilities,
-            capacity = _activeCenter$center.capacity,
-            price = _activeCenter$center.price,
-            events = _activeCenter$center.events;
-
-
-        var relatedCenterBasedOn = {
-          id: id,
-          location: _location,
-          facilities: facilities,
-          capacity: capacity,
-          price: price
-        };
-
-        return _react3.default.createElement(
-          _reactDocumentTitle2.default,
-          { title: title + ' | Boots Events Manager' },
+      this.changeHeaderBackground();
+      return _react3.default.createElement(
+        'div',
+        { className: 'header' },
+        _react3.default.createElement(
+          'div',
+          { className: 'header__overlay' },
           _react3.default.createElement(
             'div',
             { className: 'container' },
             _react3.default.createElement(
-              'div',
-              { className: 'center__holdr', style: { minHeight: '100vh' } },
+              'nav',
+              { className: 'wow fadeInDown' },
               _react3.default.createElement(
                 'div',
-                { className: 'row' },
+                { className: 'nav-wrapper' },
                 _react3.default.createElement(
-                  'div',
-                  { className: 'col s12 l12' },
-                  isLoading && _react3.default.createElement(_loader.CircularLoader, null),
-                  !isLoading && _react3.default.createElement(
-                    'div',
-                    { className: 'center__details', 'data-center-id': id },
+                  _reactRouterDom.Link,
+                  { to: '/', className: 'brand-logo logo' },
+                  _react3.default.createElement(
+                    'p',
+                    null,
+                    'Boots EM'
+                  )
+                ),
+                this.renderSidenav(),
+                _react3.default.createElement(
+                  'ul',
+                  { id: 'nav-mobile', className: 'right hide-on-med-and-down' },
+                  _react3.default.createElement(
+                    'li',
+                    null,
                     _react3.default.createElement(
-                      'h5',
-                      { style: { fontWeight: '500' } },
-                      title
-                    ),
-                    _react3.default.createElement(
-                      'div',
-                      { className: 'slider__holdr' },
-                      _react3.default.createElement(
-                        'div',
-                        { className: 'carousel carousel-slider' },
-                        _react3.default.createElement(
-                          'a',
-                          { className: 'carousel-item', href: '#one' },
-                          _react3.default.createElement('img', { src: img_url, alt: title })
-                        )
-                      )
-                    ),
-                    _react3.default.createElement(
-                      'p',
-                      null,
+                      'a',
+                      {
+                        onClick: function onClick() {
+                          return _this3.showModal();
+                        },
+                        className: 'modal-trigger',
+                        id: 'search__view'
+                      },
                       _react3.default.createElement(
                         'i',
-                        { className: 'material-icons f15' },
-                        'location_on'
-                      ),
-                      ' ',
-                      _location
-                    ),
-                    _react3.default.createElement('div', { className: 'divider' }),
-                    _react3.default.createElement(
-                      'section',
-                      null,
-                      _react3.default.createElement(
-                        'h5',
-                        null,
-                        'About this Center'
-                      ),
-                      _react3.default.createElement(
-                        'p',
-                        null,
-                        description
-                      ),
-                      _react3.default.createElement('div', { className: 'divider' }),
-                      _react3.default.createElement(
-                        'div',
-                        { className: 'row' },
-                        _react3.default.createElement(
-                          'div',
-                          { className: 'col s12 l8' },
-                          _react3.default.createElement(
-                            'div',
-                            { className: 'row' },
-                            _react3.default.createElement(
-                              'div',
-                              { className: 'col s4' },
-                              _react3.default.createElement(
-                                'p',
-                                null,
-                                'Capacity'
-                              )
-                            ),
-                            _react3.default.createElement(
-                              'div',
-                              { className: 'col s8' },
-                              _react3.default.createElement(
-                                'p',
-                                null,
-                                capacity,
-                                ' Guests'
-                              )
-                            )
-                          ),
-                          _react3.default.createElement('div', { className: 'divider' }),
-                          _react3.default.createElement(
-                            'div',
-                            { className: 'row' },
-                            _react3.default.createElement(
-                              'div',
-                              { className: 'col s4' },
-                              _react3.default.createElement(
-                                'p',
-                                null,
-                                'Price'
-                              )
-                            ),
-                            _react3.default.createElement(
-                              'div',
-                              { className: 'col s8' },
-                              _react3.default.createElement(
-                                'p',
-                                null,
-                                _react3.default.createElement(
-                                  'span',
-                                  null,
-                                  '\u20A6',
-                                  helpers.numberWithCommas(price)
-                                ),
-                                ' per event'
-                              )
-                            )
-                          ),
-                          _react3.default.createElement('div', { className: 'divider' }),
-                          _react3.default.createElement(
-                            'div',
-                            { className: 'row' },
-                            _react3.default.createElement(
-                              'div',
-                              { className: 'col s4' },
-                              _react3.default.createElement(
-                                'p',
-                                null,
-                                'Facilities'
-                              )
-                            ),
-                            _react3.default.createElement(
-                              'div',
-                              { className: 'col s8' },
-                              _react3.default.createElement(
-                                'ul',
-                                { className: 'facility__list' },
-                                this.renderFacilities(facilities)
-                              )
-                            )
-                          )
-                        ),
-                        _react3.default.createElement(
-                          'div',
-                          { className: 'col s12 l4' },
-                          _react3.default.createElement(_currentEventForCenter2.default, {
-                            isAdmin: isAdmin,
-                            events: events
-                          })
-                        )
-                      ),
-                      _react3.default.createElement(
-                        'div',
-                        { className: 'row' },
-                        _react3.default.createElement(
-                          'div',
-                          { className: 'col s12 l2' },
-                          this.showEditCenterButton()
-                        ),
-                        _react3.default.createElement(
-                          'div',
-                          { className: 'col s12 l2' },
-                          this.showAlertModal(id)
-                        ),
-                        _react3.default.createElement(
-                          'div',
-                          { className: 'col s12 l4' },
-                          this.showBookCenterButton()
-                        )
+                        { className: 'material-icons' },
+                        'search'
                       )
                     )
-                  )
+                  ),
+                  _react3.default.createElement(
+                    'li',
+                    null,
+                    _react3.default.createElement(
+                      _reactRouterDom.Link,
+                      { to: '/centers' },
+                      'List of centers'
+                    )
+                  ),
+                  this.showAuthenticationLinks()
                 )
+              )
+            ),
+            _react3.default.createElement(
+              'div',
+              { className: 'center-align header__detail' },
+              _react3.default.createElement(
+                'h4',
+                { className: 'wow fadeInLeft' },
+                'World\'s Leading Events Centers'
               ),
-              this.showRecommendedCenters(relatedCenterBasedOn)
+              _react3.default.createElement(
+                'p',
+                { className: 'wow fadeInLeft' },
+                'Book Events Centers In Your Area'
+              ),
+              _react3.default.createElement(
+                'div',
+                {
+                  className: 'row center-align search-faster-form full-width',
+                  style: searchStyle.main
+                },
+                _react3.default.createElement(
+                  'div',
+                  { className: 'col s12' },
+                  _react3.default.createElement(
+                    'h4',
+                    { className: 'center-align gradient_text', style: searchStyle.bold },
+                    'Find and Book Event Centers'
+                  )
+                ),
+                _react3.default.createElement(_searchFasterForm2.default, { onSearch: this.onSearch })
+              )
             )
           )
-        );
-      }
-      return '';
+        )
+      );
     }
   }]);
 
-  return CenterDetail;
+  return HeaderBanner;
 }(_react2.Component));
-
-CenterDetail.propTypes = {
-  params: _propTypes.PropTypes.object.isRequired,
-  history: _propTypes.PropTypes.object.isRequired,
-  fetchCenterRelatedTo: _propTypes.PropTypes.func.isRequired
-};
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    activeCenterDetail: state.activeCenter,
-    activeUser: state.authReducer
+    activeState: state.authReducer
   };
 };
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return (0, _redux.bindActionCreators)({
-    fetchCenterAction: _activeCenterAction.fetchCenterAction,
-    editCenterRequestAction: _activeCenterAction.editCenterRequestAction,
-    deleteCenterRequest: _deleteCenterAction.deleteCenterRequest,
-    fetchCenterRelatedTo: _fetchCenterRelatedTo.fetchCenterRelatedTo,
-    handleStatusEventAction: _eventsActions.handleStatusEventAction
-  }, dispatch);
+var matchDispatchToProps = function matchDispatchToProps(dispatch) {
+  return (0, _redux.bindActionCreators)({ signOutRequest: _authActions.signOutRequest }, dispatch);
 };
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(CenterDetail);
+exports.default = (0, _reactRedux.connect)(mapStateToProps, matchDispatchToProps)(HeaderBanner);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ })
