@@ -69,7 +69,7 @@ class EditCenterForm extends Component {
    * * */
   onFileChange(e) {
     let file = e.target.files[0];
-    if (file.type.indexOf('image/') > -1) { // only image file
+    if (file && file.type.indexOf('image/') > -1) { // only image file
       if (file.size < 2000000) { // Must not be more than 2mb
         let reader = new FileReader(); // instance of the FileReader
         reader.readAsDataURL(file); // read the local file

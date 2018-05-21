@@ -8,11 +8,12 @@ import {
 import { searchEventsDispatch } from './events-actions/index';
 import { SEARCH_CENTER_TITLE_FAILED, SEARCH_EVENT_TITLE_FAILED } from './';
 
-const prepareCenterSearchQuery = (searchObject) => {
-  let searchObjectString = queryString.stringify(searchObject, {
-      arrayFormat: 'bracket'
-    }),
-    searchApi = `/api/v1/centers?${searchObjectString}`;
+const prepareCenterSearchQuery = (searchVal) => {
+  let searchObjectString, searchApi, api = '/api/v1/centers?';
+  searchObjectString = queryString.stringify(searchVal, {
+    arrayFormat: 'bracket'
+  });
+  searchApi = `${api}${searchObjectString}`;
   return searchApi;
 };
 
@@ -61,7 +62,7 @@ export const searchAction = (data) => {
 };
 
 export const filterCenterTitle = value => (dispatch) => {
-  let searchApi = validateCenterSearchQuery(value);
+  let searchApi = prepareCenterSearchQuery(value, 'title');
   return axios.get(searchApi).then(({ data }) => {
     if (data.statusCode === 200) {
       dispatch(searchCenterDispatch(data));

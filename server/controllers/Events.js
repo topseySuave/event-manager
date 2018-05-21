@@ -173,13 +173,14 @@ export class Events {
         });
       });
     } else {
+      let offset = (pageValue > 1) ? pageValue * limitValue - limitValue : pageValue;
       Event.findAndCountAll({
         where: {
           startDate: {
             [Op.gte]: new Date().toDateString()
           },
-          private: false,
-          status: 'accepted',
+          // private: false,
+          // status: 'accepted',
         },
         include: [{
           model: CenterModel,
@@ -191,7 +192,7 @@ export class Events {
           ['id', order]
         ],
         limit: limitValue,
-        offset: (pageValue > 1) ? pageValue * limitValue - limitValue : pageValue
+        offset
       })
         .then((events) => {
           if (events.length === 0) {
@@ -201,6 +202,7 @@ export class Events {
             });
           }
 
+          console.log('new events ===> ', events);
           res.status(200).json({
             statusCode: 200,
             message: 'Successful Events!',

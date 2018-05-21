@@ -23,6 +23,16 @@ export default class Helpers {
   }
 
   /**
+   * numberWithCommas Method
+   * Converts number to currency, comma seperated currency
+   * @param { string } x
+   * @returns { string }
+   * */
+  numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  /**
    * countDayDifference method
    * To count days from start Date and end Date
    * @param { string } startDate

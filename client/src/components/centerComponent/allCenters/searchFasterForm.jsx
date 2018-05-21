@@ -62,7 +62,7 @@ class SearchFasterForm extends Component {
     } = this.state;
 
     return (
-      <form className="full-width">
+      <form className="col s12 full-width">
         <div className="input-field col s12 l2">
           <label htmlFor="fast_price">Price</label>
           <input
@@ -109,6 +109,7 @@ class SearchFasterForm extends Component {
 }
 
 SearchFasterForm.propTypes = {
+  style: PropTypes.object,
   onSearch: PropTypes.func.isRequired
 };
 

@@ -80,7 +80,7 @@ class EditEventModal extends Component {
    * */
   onFileChange(e) {
     let file = e.target.files[0];
-    if (file.type.indexOf('image/') > -1) {
+    if (file && file.type.indexOf('image/') > -1) {
       // only image file
       if (file.size < 2000000) {
         let reader = new FileReader(); // instance of the FileReader

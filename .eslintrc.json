@@ -16,6 +16,8 @@
     "comma-dangle": 0,
     "jsx-a11y/anchor-is-valid": 0,
     "jsx-a11y/label-has-for": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
     "no-unused-vars": 0,
     "no-nested-ternary": 0,
     "no-multi-assign": 0,
@@ -51,7 +53,10 @@
     "no-shadow": [
       "error",
       {
-        "allow": ["req", "res", "err", "data", "dispatch", "centerApi", "locations"]
+        "allow": [
+          "req", "res", "err", "data", "facilities",
+          "dispatch", "centerApi", "locations"
+        ]
       }
     ],
     "valid-jsdoc": [

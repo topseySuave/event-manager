@@ -23,6 +23,9 @@ import EventModal from '../../modals/EventModal';
 import EditCenterForm from '../../modals/centerModalForms/editCenterForm';
 import { fetchCenterRelatedTo } from '../../../actions/center-actions/fetchCenterRelatedTo';
 import { handleStatusEventAction } from '../../../actions/events-actions';
+import Helpers from '../../../helpers/';
+
+const helpers = new Helpers();
 
 /**
  * CenterDetail Class Component
@@ -74,9 +77,7 @@ class CenterDetail extends Component {
    * */
   componentWillReceiveProps(newProps) {
     let centerDetails = newProps.activeCenterDetail;
-    if (centerDetails.eventStatusChange) {
-      location.reload();
-    }
+    if (centerDetails.eventStatusChange) location.reload();
 
     if (this.props.params.id !== newProps.params.id) {
       newProps.fetchCenterAction(newProps.params.id);
@@ -324,7 +325,7 @@ class CenterDetail extends Component {
                               </div>
                               <div className="col s8">
                                 <p>
-                                  <span>₦{price}</span> per event
+                                  <span>₦{helpers.numberWithCommas(price)}</span> per event
                                 </p>
                               </div>
                             </div>

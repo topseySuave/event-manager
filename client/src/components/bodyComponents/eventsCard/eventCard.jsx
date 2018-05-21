@@ -1,28 +1,28 @@
-import { bindActionCreators } from "redux";
-import React, { Component } from "react";
-import { PropTypes } from "prop-types";
-import shortid from "shortid";
-import { connect } from "react-redux";
-import classNames from "classnames";
+import { bindActionCreators } from 'redux';
+import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
+import shortid from 'shortid';
+import { connect } from 'react-redux';
+import classNames from 'classnames';
 
-import Dialog from "material-ui/Dialog";
-import FlatButton from "material-ui/FlatButton";
-import IconMenu from "material-ui/IconMenu";
-import MenuItem from "material-ui/MenuItem";
-import IconButton from "material-ui/IconButton";
-import MoreVertIcon from "material-ui/svg-icons/navigation/more-vert";
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import IconButton from 'material-ui/IconButton';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import {
   EditorModeEdit,
   ActionDelete,
   ImageDehaze
-} from "material-ui/svg-icons/";
+} from 'material-ui/svg-icons/';
 
 import {
   deleteEventRequest,
   editEventRequestAction
-} from "../../../actions/events-actions";
-import EditEventModal from "../../modals/eventModalForm/editEventModal";
-import { REMOVE_EVENT } from "../../../actions";
+} from '../../../actions/events-actions';
+import EditEventModal from '../../modals/eventModalForm/editEventModal';
+import { REMOVE_EVENT } from '../../../actions';
 
 /**
    * EventCard Class Component
@@ -36,10 +36,11 @@ class EventCard extends Component {
     super(props);
     this.state = {
       openAlert: false,
-      event: {},
-      location: "",
-      userId: ""
+      event: {}
     };
+
+    this.handleAlertOpen = this.handleAlertOpen.bind(this);
+    this.handleAlertClose = this.handleAlertClose.bind(this);
   }
 
   /**
@@ -47,8 +48,8 @@ class EventCard extends Component {
    * @returns { void }
    * */
   componentWillMount() {
-    $(".modal").modal();
-    $(".tooltipped").tooltip();
+    $('.modal').modal();
+    $('.tooltipped').tooltip();
   }
 
   /**
@@ -65,33 +66,34 @@ class EventCard extends Component {
    * handleAlertOpen method
    * @returns { void }
    * */
-  handleAlertOpen = () => {
+  handleAlertOpen() {
     this.setState({ openAlert: true });
-  };
+  }
 
   /**
    * handleAlertClose method
    * @returns { void }
    * */
-  handleAlertClose = () => {
+  handleAlertClose() {
     this.setState({ openAlert: false });
-  };
+  }
 
   /**
    * handleEditOpen method
    * @returns { void }
    * */
-  handleEditOpen = () => {
+  handleEditOpen() {
     this.props.editEventRequestAction(this.state.event);
-    $("#add_event_modal").modal("open");
-  };
+    $('#add_event_modal').modal('open');
+  }
 
   /**
    * handleDelete method
+   * @param {string} id
    * @returns { void }
    * */
   handleDelete(id) {
-    this.props.deleteEventRequest(id).then(data => {
+    this.props.deleteEventRequest(id).then((data) => {
       if (data.type === REMOVE_EVENT) {
         this.handleAlertClose();
       }
@@ -112,8 +114,8 @@ class EventCard extends Component {
               <MoreVertIcon />
             </IconButton>
           }
-          anchorOrigin={{ horizontal: "left", vertical: "top" }}
-          targetOrigin={{ horizontal: "left", vertical: "top" }}
+          anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
+          targetOrigin={{ horizontal: 'left', vertical: 'top' }}
         >
           <MenuItem
             primaryText="Edit"
@@ -123,7 +125,7 @@ class EventCard extends Component {
           <MenuItem
             onClick={() => this.handleAlertOpen()}
             primaryText="Delete"
-            style={{ color: "red" }}
+            style={{ color: 'red' }}
             leftIcon={<ActionDelete />}
           />
         </IconMenu>
@@ -133,10 +135,12 @@ class EventCard extends Component {
 
   /**
    * showStatusBars method
+   * @param {string} status
+   * @param {string} statusColor
    * @returns { Component }
    * */
   showStatusBars(status, statusColor) {
-    let userState = this.props.userState;
+    let { userState } = this.props;
     if (
       (userState.isAuthenticated &&
         userState.user.id === this.state.event.userId) ||
@@ -145,9 +149,9 @@ class EventCard extends Component {
       return (
         <span
           className={classNames(
-            "event-status",
-            "darken-3",
-            "white-text",
+            'status-indicator',
+            'darken-3',
+            'white-text',
             statusColor
           )}
         >
@@ -159,18 +163,19 @@ class EventCard extends Component {
 
   /**
    * showAlertModal method
+   * @param {string} id
    * @returns { Component }
    * */
   showAlertModal(id) {
     const actions = [
       <FlatButton
         label="Yes"
-        primary={true}
+        primary
         onClick={() => this.handleDelete(id)}
       />,
       <FlatButton
         label="No"
-        primary={true}
+        primary
         onClick={() => this.handleAlertClose()}
       />
     ];
@@ -192,7 +197,7 @@ class EventCard extends Component {
    * @returns { Component }
    * */
   render() {
-    let shareColor = ["red", "blue", "yellow", "green"],
+    let shareColor = ['red', 'blue', 'yellow', 'green'],
       floatBtnColor;
     floatBtnColor = shareColor[Math.floor(Math.random() * shareColor.length)];
 
@@ -212,11 +217,11 @@ class EventCard extends Component {
     endDate = new Date(endDate).toDateString();
 
     let displayDate =
-      startDate === endDate ? startDate : startDate + " - " + endDate;
+      startDate === endDate ? startDate : `${startDate} - ${endDate}`;
     let statusColor =
-      status === "pending"
+      status === 'pending'
         ? shareColor[2]
-        : status === "rejected"
+        : status === 'rejected'
           ? shareColor[0]
           : shareColor[3];
 
@@ -237,21 +242,21 @@ class EventCard extends Component {
             <span
               className="card-title bold"
               style={{
-                right: "0",
+                right: '0',
                 backgroundImage:
-                  "linear-gradient(to top, rgba(0, 0, 0, .7), rgba(0, 0, 0, .3))"
+                  'linear-gradient(to top, rgba(0, 0, 0, .7), rgba(0, 0, 0, .3))'
               }}
             >
               {title}
             </span>
             <a
               className={classNames(
-                "btn-floating",
-                "activator",
-                "halfway-fab",
-                "waves-effect",
-                "waves-light",
-                "tooltipped",
+                'btn-floating',
+                'activator',
+                'halfway-fab',
+                'waves-effect',
+                'waves-light',
+                'tooltipped',
                 floatBtnColor
               )}
               data-position="bottom"
@@ -266,7 +271,7 @@ class EventCard extends Component {
               {displayDate}
             </p>
             <div>
-              <i className="material-icons f15">location_on </i>{" "}
+              <i className="material-icons f15">location_on </i>{' '}
               {center
                 ? center.location
                 : "sorry can't get location at this time"}
@@ -282,8 +287,8 @@ class EventCard extends Component {
             </span>
             <p>{description}</p>
             <small>
-              <i className="material-icons f15">location_on</i>{" "}
-              {center ? center.location : ""}
+              <i className="material-icons f15">location_on</i>{' '}
+              {center ? center.location : ''}
             </small>
           </div>
         </div>
@@ -296,20 +301,16 @@ EventCard.propTypes = {
   event: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => {
-  return {
-    userState: state.authReducer
-  };
-};
+const mapStateToProps = state => ({
+  userState: state.authReducer
+});
 
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
-      deleteEventRequest,
-      editEventRequestAction
-    },
-    dispatch
-  );
-};
+const mapDispatchToProps = dispatch => bindActionCreators(
+  {
+    deleteEventRequest,
+    editEventRequestAction
+  },
+  dispatch
+);
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventCard);

@@ -93,6 +93,12 @@ export const FETCH_EVENTS = 'FETCH_EVENTS';
 export const ADD_EVENT = 'ADD_EVENT';
 
 /**
+ * ADD_EVENT action constants.
+ * To add a new event to the database and to the store.
+ * * */
+export const ADD_EVENT_FAILURE = 'ADD_EVENT_FAILURE';
+
+/**
  * EDIT_EVENT_REQUEST action constants.
  * To add a edit request before editing an existing event in the database and the store.
  * * */
