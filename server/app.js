@@ -61,9 +61,6 @@ app.use((req, res) => res.status(404).send({
   error: '404: Sorry Route Not Found!'
 }));
 
-app.listen(port, '0.0.0.0', (err) => {
-  if (err) return console.log(err);
-  console.log(`server listening on port ${port}`);
-});
+app.listen(port, () => console.log(`App listening on port ${port}`));
 
 export default app;
