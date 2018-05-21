@@ -1,6 +1,6 @@
 webpackHotUpdate(0,{
 
-/***/ 1652:
+/***/ 678:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28,47 +28,67 @@ var _index6 = _interopRequireDefault(_index5);
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _SelectField = __webpack_require__(191);
+var _redux = __webpack_require__(22);
 
-var _SelectField2 = _interopRequireDefault(_SelectField);
+var _reactRedux = __webpack_require__(21);
+
+var _reactRouterDom = __webpack_require__(25);
+
+var _queryString = __webpack_require__(310);
+
+var _queryString2 = _interopRequireDefault(_queryString);
+
+var _IconMenu = __webpack_require__(116);
+
+var _IconMenu2 = _interopRequireDefault(_IconMenu);
+
+var _IconButton = __webpack_require__(41);
+
+var _IconButton2 = _interopRequireDefault(_IconButton);
+
+var _moreVert = __webpack_require__(90);
+
+var _moreVert2 = _interopRequireDefault(_moreVert);
+
+var _menu = __webpack_require__(91);
+
+var _menu2 = _interopRequireDefault(_menu);
+
+var _search = __webpack_require__(120);
+
+var _search2 = _interopRequireDefault(_search);
 
 var _MenuItem = __webpack_require__(61);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
-var _shortid = __webpack_require__(35);
+var _Divider = __webpack_require__(184);
 
-var _shortid2 = _interopRequireDefault(_shortid);
+var _Divider2 = _interopRequireDefault(_Divider);
 
-var _redux = __webpack_require__(22);
+var _Drawer = __webpack_require__(185);
 
-var _reactRedux = __webpack_require__(21);
+var _Drawer2 = _interopRequireDefault(_Drawer);
 
-var _propTypes = __webpack_require__(3);
+var _FlatButton = __webpack_require__(42);
 
-var _formInput = __webpack_require__(75);
+var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-var _formInput2 = _interopRequireDefault(_formInput);
+var _accountCircle = __webpack_require__(122);
 
-var _validateInput = __webpack_require__(127);
+var _accountCircle2 = _interopRequireDefault(_accountCircle);
 
-var _facilities = __webpack_require__(307);
-
-var _facilities2 = _interopRequireDefault(_facilities);
-
-var _modalAction = __webpack_require__(308);
-
-var _helpers = __webpack_require__(131);
-
-var _helpers2 = _interopRequireDefault(_helpers);
+var _authActions = __webpack_require__(62);
 
 var _history = __webpack_require__(130);
 
 var _history2 = _interopRequireDefault(_history);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _searchFasterForm = __webpack_require__(1687);
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _searchFasterForm2 = _interopRequireDefault(_searchFasterForm);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -77,20 +97,20 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var _components = {
-  AddCenterForm: {
-    displayName: 'AddCenterForm'
+  HeaderBanner: {
+    displayName: 'HeaderBanner'
   }
 };
 
 var _UsersGabrielmicahDesktopProjectsEventManagerNode_modulesReactTransformHmrLibIndexJs2 = (0, _index6.default)({
-  filename: '/Users/gabrielmicah/Desktop/projects/event-manager/client/src/components/modals/centerModalForms/addCenterForm.jsx',
+  filename: '/Users/gabrielmicah/Desktop/projects/event-manager/client/src/components/bodyComponents/headNav/headbanner.jsx',
   components: _components,
   locals: [module],
   imports: [_react3.default]
 });
 
 var _UsersGabrielmicahDesktopProjectsEventManagerNode_modulesReactTransformCatchErrorsLibIndexJs2 = (0, _index4.default)({
-  filename: '/Users/gabrielmicah/Desktop/projects/event-manager/client/src/components/modals/centerModalForms/addCenterForm.jsx',
+  filename: '/Users/gabrielmicah/Desktop/projects/event-manager/client/src/components/bodyComponents/headNav/headbanner.jsx',
   components: _components,
   locals: [],
   imports: [_react3.default, _index2.default]
@@ -102,361 +122,328 @@ function _wrapComponent(id) {
   };
 }
 
+var searchStyle = {
+  main: {
+    backgroundColor: 'white',
+    borderRadius: '8px'
+  },
+  bold: {
+    fontWeight: 200
+  }
+};
+
 /**
-   * AllCenters Class Component
-   * */
-var AddCenterForm = _wrapComponent('AddCenterForm')(function (_Component) {
-  _inherits(AddCenterForm, _Component);
+ * MyEventCardHolder Class Component
+ * */
+
+var HeaderBanner = _wrapComponent('HeaderBanner')(function (_Component) {
+  _inherits(HeaderBanner, _Component);
 
   /**
-   * Class Constructor
+   * Class contructor
    * @param { object } props
-   * @returns { void }
    * */
-  function AddCenterForm(props) {
-    _classCallCheck(this, AddCenterForm);
+  function HeaderBanner(props) {
+    _classCallCheck(this, HeaderBanner);
 
-    var _this = _possibleConstructorReturn(this, (AddCenterForm.__proto__ || Object.getPrototypeOf(AddCenterForm)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (HeaderBanner.__proto__ || Object.getPrototypeOf(HeaderBanner)).call(this, props));
 
-    _this.helpers = new _helpers2.default();
-
-    /**
-     * @Initialize the component's state.
-     * */
     _this.state = {
-      errors: {},
-      editCenter: false,
-      isLoading: false,
-      title: '',
-      img_url: {},
-      facilities: [],
-      location: '',
-      price: '',
-      capacity: '',
-      description: ''
+      open: false
     };
 
-    _this.handleCenterChange = _this.handleCenterChange.bind(_this);
-    _this.handleSelectChange = _this.handleSelectChange.bind(_this);
-    _this.handleCenterSubmit = _this.handleCenterSubmit.bind(_this);
-    _this.onFileChange = _this.onFileChange.bind(_this);
+    _this.handleToggle = _this.handleToggle.bind(_this);
+    _this.handleClose = _this.handleClose.bind(_this);
+    _this.onSearch = _this.onSearch.bind(_this);
     return _this;
   }
 
   /**
-   * @Void: Get the image data and set the img_url in the state
-   * to the binary data url.
-   * @param {object} e
-   * @return {void}
-   * * */
+   * onSearch Method
+   * @param { object } query
+   * @returns { void }
+   * */
 
 
-  _createClass(AddCenterForm, [{
-    key: 'onFileChange',
-    value: function onFileChange(e) {
-      var file = e.target.files[0];
-      if (file && file.type.indexOf('image/') > -1) {
-        // only image file
-        if (file.size < 2000000) {
-          this.setState({
-            img_url: file
-          });
-        } else {
-          Materialize.toast('File too large', 5000, 'red');
-        }
-      } else {
-        Materialize.toast('Image files only please', 5000, 'red');
-      }
+  _createClass(HeaderBanner, [{
+    key: 'onSearch',
+    value: function onSearch(query) {
+      var qString = _queryString2.default.stringify(query, { arrayFormat: 'bracket' });
+      _history2.default.push('/centers?' + qString);
     }
 
     /**
-     * handleCenterChange Method
-     * @param {object} e
+     * handleClose method
      * @returns { void }
      * */
 
   }, {
-    key: 'handleCenterChange',
-    value: function handleCenterChange(e) {
-      if (this.state.errors[e.target.name]) {
-        var _setState;
-
-        var errors = Object.assign({}, !!this.state.errors);
-        delete errors[e.target.name];
-        this.setState((_setState = {}, _defineProperty(_setState, e.target.name, e.target.value), _defineProperty(_setState, 'errors', errors), _setState));
-      } else {
-        this.setState(_defineProperty({}, e.target.name, e.target.value));
-      }
+    key: 'handleClose',
+    value: function handleClose() {
+      this.setState({ open: false });
     }
 
     /**
-     * isValid Method
+     * handleToggle method
      * @returns { void }
      * */
 
   }, {
-    key: 'isValid',
-    value: function isValid() {
-      var _validateCenterInput = (0, _validateInput.validateCenterInput)(this.state),
-          errors = _validateCenterInput.errors,
-          isValid = _validateCenterInput.isValid;
-
-      if (!isValid) {
-        this.setState({ errors: errors });
-      }
-      return isValid;
+    key: 'handleToggle',
+    value: function handleToggle() {
+      this.setState({ open: !this.state.open });
     }
 
     /**
-     * handleSelectChange Method
-     * @param {object} event
-     * @param {object} index
-     * @param {object} facilities
-     * @returns { void }
-     * */
-
-  }, {
-    key: 'handleSelectChange',
-    value: function handleSelectChange(event, index, facilities) {
-      this.setState({ facilities: facilities });
-    }
-
-    /**
-     * menuItems Method
-     * @param {object} facilityes
+     * showAuthenticationLinks method
      * @returns { component }
      * */
 
   }, {
-    key: 'menuItems',
-    value: function menuItems(facilityes) {
-      return (0, _facilities2.default)().map(function (name) {
-        return _react3.default.createElement(_MenuItem2.default, {
-          key: _shortid2.default.generate(),
-          insetChildren: true,
-          checked: facilityes && facilityes.indexOf(name) > -1,
-          value: name,
-          primaryText: name
-        });
-      });
+    key: 'showAuthenticationLinks',
+    value: function showAuthenticationLinks() {
+      // Show Sign-in and Sign-up
+      // links only if user isn't signed in
+      if (!this.props.activeState.isAuthenticated) {
+        return _react3.default.createElement(
+          'span',
+          null,
+          _react3.default.createElement(
+            'li',
+            null,
+            _react3.default.createElement(
+              _reactRouterDom.Link,
+              { to: '/signin' },
+              'Sign In'
+            )
+          ),
+          _react3.default.createElement(
+            'li',
+            null,
+            _react3.default.createElement(
+              _reactRouterDom.Link,
+              { to: '/signup' },
+              'Sign Up'
+            )
+          )
+        );
+      }
+
+      return _react3.default.createElement(
+        _react3.default.Fragment,
+        null,
+        _react3.default.createElement(
+          _IconMenu2.default,
+          {
+            iconButtonElement: _react3.default.createElement(
+              _IconButton2.default,
+              null,
+              _react3.default.createElement(_accountCircle2.default, { color: 'white' })
+            ),
+            anchorOrigin: { horizontal: 'left', vertical: 'top' },
+            targetOrigin: { horizontal: 'left', vertical: 'top' }
+          },
+          _react3.default.createElement(_MenuItem2.default, {
+            primaryText: 'Hello ' + this.props.activeState.user.lastName
+          }),
+          _react3.default.createElement(_MenuItem2.default, {
+            primaryText: 'My Events',
+            containerElement: _react3.default.createElement(_reactRouterDom.Link, { to: '/my-events' })
+          }),
+          _react3.default.createElement(_Divider2.default, null),
+          _react3.default.createElement(_MenuItem2.default, {
+            primaryText: 'sign out',
+            containerElement: _react3.default.createElement(_reactRouterDom.Link, { to: '/signout' })
+          })
+        )
+      );
     }
 
     /**
-     * handleCenterSubmit Method
-     * @param {object} e
+     * showModal method
+     * @returns { void }
+     * */
+
+  }, {
+    key: 'showModal',
+    value: function showModal() {
+      $('#search__modal').modal('open');
+    }
+
+    /**
+     * showSignUpActionButton method
+     * @returns { void }
+     * */
+
+  }, {
+    key: 'showSignUpActionButton',
+    value: function showSignUpActionButton() {
+      if (!this.props.activeState.isAuthenticated) {
+        return _react3.default.createElement(
+          _reactRouterDom.Link,
+          {
+            to: '/signup',
+            className: 'btn blue lighten-2 waves-effect animated fadeInLeft'
+          },
+          'Join Boots Events Manager'
+        );
+      }
+    }
+
+    /**
+     * renderSidenav method
      * @returns { component }
      * */
 
   }, {
-    key: 'handleCenterSubmit',
-    value: function handleCenterSubmit(e) {
+    key: 'renderSidenav',
+    value: function renderSidenav() {
       var _this2 = this;
 
-      e.preventDefault();
-
-      if (this.isValid()) {
-        this.setState({
-          isLoading: true
-        });
-        this.props.createCenterRequest(this.state).then(function () {
-          _this2.setState({
-            errors: {},
-            editCenter: false,
-            isLoading: false,
-            title: '',
-            img_url: {},
-            facilities: [],
-            location: '',
-            price: '',
-            capacity: '',
-            description: ''
-          });
-          _history2.default.push('/centers');
-        });
-      }
+      return _react3.default.createElement(
+        _react3.default.Fragment,
+        null,
+        _react3.default.createElement(
+          _Drawer2.default,
+          {
+            docked: false,
+            width: 200,
+            open: this.state.open,
+            onRequestChange: function onRequestChange(open) {
+              return _this2.setState({ open: open });
+            }
+          },
+          _react3.default.createElement(_MenuItem2.default, {
+            onClick: function onClick() {
+              return _this2.showModal();
+            },
+            leftIcon: _react3.default.createElement(_search2.default, null),
+            primaryText: 'Search'
+          }),
+          _react3.default.createElement(_MenuItem2.default, {
+            primaryText: 'Hello ' + (this.props.activeState.user.lastName || 'Guest')
+          }),
+          _react3.default.createElement(_MenuItem2.default, {
+            primaryText: 'My Events',
+            containerElement: _react3.default.createElement(_reactRouterDom.Link, { to: '/my-events' })
+          }),
+          _react3.default.createElement(_Divider2.default, null),
+          !this.props.activeState.isAuthenticated ? this.showAuthenticationLinks() : _react3.default.createElement(_MenuItem2.default, {
+            primaryText: 'sign out',
+            containerElement: _react3.default.createElement(_reactRouterDom.Link, { to: '/signout' })
+          })
+        ),
+        _react3.default.createElement(_FlatButton2.default, {
+          className: 'right hide-on-med-and-up',
+          style: { margin: '10px', color: '#FFFFFF' },
+          onClick: this.handleToggle,
+          icon: _react3.default.createElement(_menu2.default, null)
+        })
+      );
     }
 
     /**
-     * render Method
+     * render method
      * @returns { component }
+     * @memberOf MyEventCardHolder
      * */
 
   }, {
     key: 'render',
     value: function render() {
-      var _state = this.state,
-          editCenter = _state.editCenter,
-          errors = _state.errors,
-          isLoading = _state.isLoading,
-          title = _state.title,
-          location = _state.location,
-          facilities = _state.facilities,
-          price = _state.price,
-          capacity = _state.capacity;
-
-      var modalTitle = editCenter ? 'Save changes' : 'Add center';
+      var _this3 = this;
 
       return _react3.default.createElement(
-        'form',
-        {
-          className: 'col s12',
-          id: 'edit-center-form',
-          onSubmit: this.handleCenterSubmit,
-          encType: 'multipart/form-data'
-        },
+        'div',
+        { className: 'header' },
         _react3.default.createElement(
           'div',
-          { className: 'row' },
+          { className: 'header__overlay' },
           _react3.default.createElement(
             'div',
-            { className: 'col s6' },
+            { className: 'container' },
+            _react3.default.createElement(
+              'nav',
+              { className: 'wow fadeInDown' },
+              _react3.default.createElement(
+                'div',
+                { className: 'nav-wrapper' },
+                _react3.default.createElement(
+                  _reactRouterDom.Link,
+                  { to: '/', className: 'brand-logo logo' },
+                  _react3.default.createElement(
+                    'p',
+                    null,
+                    'Boots EM'
+                  )
+                ),
+                this.renderSidenav(),
+                _react3.default.createElement(
+                  'ul',
+                  { id: 'nav-mobile', className: 'right hide-on-med-and-down' },
+                  _react3.default.createElement(
+                    'li',
+                    null,
+                    _react3.default.createElement(
+                      'a',
+                      {
+                        onClick: function onClick() {
+                          return _this3.showModal();
+                        },
+                        className: 'modal-trigger',
+                        id: 'search__view'
+                      },
+                      _react3.default.createElement(
+                        'i',
+                        { className: 'material-icons' },
+                        'search'
+                      )
+                    )
+                  ),
+                  _react3.default.createElement(
+                    'li',
+                    null,
+                    _react3.default.createElement(
+                      _reactRouterDom.Link,
+                      { to: '/centers' },
+                      'List of centers'
+                    )
+                  ),
+                  this.showAuthenticationLinks()
+                )
+              )
+            ),
             _react3.default.createElement(
               'div',
-              { className: 'file-field input-field' },
+              { className: 'center-align header__detail' },
               _react3.default.createElement(
-                'div',
-                { className: 'btn' },
-                _react3.default.createElement(
-                  'span',
-                  null,
-                  'Upload'
-                ),
-                _react3.default.createElement('input', {
-                  type: 'file',
-                  name: 'img_url',
-                  onChange: this.onFileChange,
-                  accept: 'image/jpeg,jpg,png,gif'
-                })
+                'h4',
+                { className: 'wow fadeInLeft' },
+                'Worlds Leading Events Centers'
               ),
               _react3.default.createElement(
+                'p',
+                { className: 'wow fadeInLeft' },
+                'Book Events Centers In Your Area'
+              ),
+              this.showSignUpActionButton(),
+              _react3.default.createElement(
                 'div',
-                { className: 'file-path-wrapper' },
-                _react3.default.createElement('input', {
-                  className: 'file-path validate',
-                  type: 'text',
-                  placeholder: 'Upload an image here'
-                })
+                {
+                  className: 'row center-align search-faster-form full-width',
+                  style: searchStyle.main
+                },
+                _react3.default.createElement(
+                  'div',
+                  { className: 'col s12' },
+                  _react3.default.createElement(
+                    'h4',
+                    { className: 'center-align gradient_text', style: searchStyle.bold },
+                    'Find and Book Event Centers'
+                  )
+                ),
+                _react3.default.createElement(_searchFasterForm2.default, { onSearch: this.onSearch })
               )
-            )
-          ),
-          _react3.default.createElement(
-            'div',
-            { className: 'input-field col s6' },
-            _react3.default.createElement(_formInput2.default, {
-              fieldId: 'title',
-              nameField: 'title',
-              value: title,
-              error: errors.title || '',
-              type: 'text',
-              onChange: this.handleCenterChange,
-              label: 'Title'
-            })
-          )
-        ),
-        _react3.default.createElement(
-          'div',
-          { className: 'row' },
-          _react3.default.createElement(
-            _SelectField2.default,
-            {
-              multiple: true,
-              hintText: 'Select Facilities',
-              value: facilities,
-              onChange: this.handleSelectChange
-            },
-            this.menuItems(facilities)
-          ),
-          _react3.default.createElement(
-            'div',
-            { className: 'input-field col s12' },
-            _react3.default.createElement(_formInput2.default, {
-              fieldId: 'location',
-              nameField: 'location',
-              value: location,
-              error: errors.location || '',
-              type: 'text',
-              onChange: this.handleCenterChange,
-              label: 'Location'
-            })
-          )
-        ),
-        _react3.default.createElement(
-          'div',
-          { className: 'row' },
-          _react3.default.createElement(
-            'div',
-            { className: 'input-field col s6' },
-            _react3.default.createElement(_formInput2.default, {
-              fieldId: 'price',
-              nameField: 'price',
-              value: price,
-              error: errors.price || '',
-              type: 'number',
-              onChange: this.handleCenterChange,
-              label: 'Price',
-              minValue: '100'
-            })
-          ),
-          _react3.default.createElement(
-            'div',
-            { className: 'input-field col s6' },
-            _react3.default.createElement(_formInput2.default, {
-              fieldId: 'capacity',
-              nameField: 'capacity',
-              value: capacity,
-              error: errors.capacity || '',
-              type: 'number',
-              onChange: this.handleCenterChange,
-              label: 'Capacity'
-            })
-          )
-        ),
-        _react3.default.createElement(
-          'div',
-          { className: 'row' },
-          _react3.default.createElement(
-            'div',
-            { className: 'input-field col s12' },
-            _react3.default.createElement(
-              'label',
-              { htmlFor: 'description' },
-              'Description'
-            ),
-            _react3.default.createElement('textarea', {
-              id: 'description',
-              type: 'text',
-              name: 'description',
-              onChange: this.handleCenterChange,
-              className: 'materialize-textarea validate',
-              required: true
-            }),
-            errors.description ? _react3.default.createElement(
-              'span',
-              { className: 'red-text accent-1' },
-              errors.description
-            ) : ''
-          )
-        ),
-        _react3.default.createElement(
-          'div',
-          { className: 'row' },
-          _react3.default.createElement(
-            'div',
-            { className: 'input-field col s12' },
-            _react3.default.createElement(
-              'button',
-              {
-                type: 'submit',
-                id: 'submitCenterForm',
-                name: 'action',
-                className: 'btn col s12 white-text gradient__bg btn-register waves-effect waves-light',
-                disabled: isLoading ? 'disabled' : ''
-              },
-              !isLoading ? modalTitle : _react3.default.createElement('img', {
-                style: { marginTop: '10px' },
-                src: '/image/loader/loading.gif',
-                alt: 'loader'
-              })
             )
           )
         )
@@ -464,14 +451,20 @@ var AddCenterForm = _wrapComponent('AddCenterForm')(function (_Component) {
     }
   }]);
 
-  return AddCenterForm;
+  return HeaderBanner;
 }(_react2.Component));
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return (0, _redux.bindActionCreators)({ createCenterRequest: _modalAction.createCenterRequest }, dispatch);
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    activeState: state.authReducer
+  };
 };
 
-exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(AddCenterForm);
+var matchDispatchToProps = function matchDispatchToProps(dispatch) {
+  return (0, _redux.bindActionCreators)({ signOutRequest: _authActions.signOutRequest }, dispatch);
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, matchDispatchToProps)(HeaderBanner);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ })
