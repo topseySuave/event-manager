@@ -284,7 +284,12 @@ var HeaderBanner = _wrapComponent('HeaderBanner')(function (_Component) {
       var el = document.getElementsByClassName('header'); // el doesn't change
       function toggle() {
         el[0].style.backgroundImage = 'url(' + _facilities.centerBackgrounds[i] + ')'; // set the image
-        i = (i + 1) % _facilities.centerBackgrounds.length; // update the counter
+        /* *
+          * wraps around centerBackgrounds
+          * length and update the counter,
+          * then reset when length is reached
+          * */
+        i = (i + 1) % _facilities.centerBackgrounds.length;
       }
       setInterval(toggle, 5000);
     }

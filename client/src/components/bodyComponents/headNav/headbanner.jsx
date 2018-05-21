@@ -140,7 +140,12 @@ class HeaderBanner extends Component {
     let el = document.getElementsByClassName('header'); // el doesn't change
     function toggle() {
       el[0].style.backgroundImage = `url(${centerBackgrounds[i]})`; // set the image
-      i = (i + 1) % centerBackgrounds.length; // update the counter
+      /* *
+        * wraps around centerBackgrounds
+        * length and update the counter,
+        * then reset when length is reached
+        * */
+      i = (i + 1) % centerBackgrounds.length;
     }
     setInterval(toggle, 5000);
   }
