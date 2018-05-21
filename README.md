@@ -4,6 +4,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/2219e1701e5995fa3410/maintainability)](https://codeclimate.com/github/topseySuave/event-manager/maintainability)
 
 
+[https://raw.githubusercontent.com/topseySuave/event-manager/develop/client/public/fav.ico](https://raw.githubusercontent.com/topseySuave/event-manager/develop/client/public/fav.ico)
 # Events Manager
 Events Manager is a full stack application, that enables users administrate there own centers, An Event registration platform for all of your online and on-site event management needs and handles the entire event lifecycle from start to finish.
 
