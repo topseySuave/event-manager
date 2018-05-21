@@ -11,6 +11,7 @@ import {
   loadMoreCenters
 } from '../../../actions/center-actions/fetchCenterAction';
 import { searchAction } from '../../../actions/searchAction';
+import CenterCard from '../centerCard/centerCard';
 import { CircularLoader } from '../../loader';
 import Helpers from '../../../helpers';
 import history from '../../../util/history';
@@ -101,31 +102,7 @@ class AllCenters extends Component {
       .map((center) => {
         let to = `center/${center.id}/${this.helper.sanitizeString(center.title)}`;
         return (
-          <Link key={shortid.generate()} to={to} href={to}>
-            <div className="card">
-              {!!center.img_url && (
-                <div className="card-image">
-                  <img src={center.img_url} alt={center.title} />
-                </div>
-              )}
-              <div className="card-content black-text">
-                <div className="row" style={{ marginBottom: '0' }}>
-                  <div className="col s12">
-                    <p className="bold">{center.title}</p>
-                    <p className="light__font">
-                      <i className="material-icons f15">location_on</i>
-                      {center.location}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="card-action">
-                <span className="black-text right-align">
-                  capacity of {center.capacity} Guests
-                </span>
-              </div>
-            </div>
-          </Link>
+          <CenterCard to={to} center={center} key={shortid.generate()} />
         );
       });
   }

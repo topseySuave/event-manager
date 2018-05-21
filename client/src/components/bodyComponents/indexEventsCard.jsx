@@ -1,29 +1,37 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import { PropsTypes } from 'prop-types';
-
 import shortid from 'shortid';
+import { PropTypes } from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
+import queryString from 'query-string';
+import {
+  fetchCentersAction,
+  loadMoreCenters
+} from '../../actions/center-actions/fetchCenterAction';
+import CenterCard from '../centerComponent/centerCard/centerCard';
+import { searchAction } from '../../actions/searchAction';
 import { CircularLoader } from '../loader';
-import EventCard from './eventsCard/eventCard';
-import { fetchEventRequest, loadMoreEvents } from './../../actions/events-actions';
+import Helpers from '../../helpers';
+import history from '../../util/history';
+
 
 /**
    * IndexEventCardHolder Class Component
    * */
-class IndexEventCardHolder extends Component {
+class IndexCenterCardHolder extends Component {
   /**
-   * Class contructor
-   * @param { object } props
-   * */
+     * Class contructor
+     * @param { object } props
+     * */
   constructor(props) {
     super(props);
+    this.helper = new Helpers();
     this.state = {
       isLoading: true,
       loadmore: null,
-      loadingmore: null,
-      events: []
+      loadingmore: null
     };
   }
 
@@ -33,33 +41,51 @@ class IndexEventCardHolder extends Component {
    * */
   componentDidMount() {
     $('.modal').modal();
-    this.props.fetchEventRequest();
+    this.props.fetchCentersAction();
   }
 
   /**
-   * componentWillReceiveProps method
+   * componentWillReceiveProps Method
    * @param { object } newProps
    * @returns { void }
    * */
   componentWillReceiveProps(newProps) {
     let {
-      events, page, pageCount, pageSize, totalCount, loadingmore, loadmore
-    } = newProps.allEvents;
+        page, pageCount, pageSize, totalCount
+      } = newProps.centerStore.meta,
+      { loadingmore, loadmore } = newProps.centerStore;
 
-    this.setState({
-      isLoading: false,
-      events,
-      page,
-      pageSize,
-      totalCount,
-      loadmore,
-      loadingmore,
-      pageCount
-    });
+    if (newProps) {
+      this.setState({
+        isLoading: false,
+        page,
+        pageSize,
+        totalCount,
+        loadmore,
+        loadingmore,
+        pageCount
+      });
+    }
   }
 
   /**
-   * initInfiniteScroll method
+   * showCentersCard Method
+   * @returns { Component }
+   * */
+  showCentersCard() {
+    let { centers } = this.props.centerStore;
+    return centers
+      .sort((firstObj, secObj) => secObj.id - firstObj.id)
+      .map((center) => {
+        let to = `center/${center.id}/${this.helper.sanitizeString(center.title)}`;
+        return (
+          <CenterCard to={to} center={center} key={shortid.generate()} />
+        );
+      });
+  }
+
+  /**
+   * initInfiniteScroll Method
    * @returns { void }
    * */
   initInfiniteScroll() {
@@ -70,19 +96,19 @@ class IndexEventCardHolder extends Component {
       docHeight = $(document).height();
 
       if (docHeight - winHeight === winScrollTop) {
-        /* *
+        /**
          * make loadmore request
-         * */
+         * * */
         offset = this.state.page + 1;
         if (this.state.loadmore) {
-          this.props.loadMoreEvents(offset);
+          this.props.loadMoreCenters(offset);
         }
       }
     });
   }
 
   /**
-   * autoLoadMore method
+   * autoLoadMore Method
    * @returns { void }
    * */
   autoLoadMore() {
@@ -92,38 +118,57 @@ class IndexEventCardHolder extends Component {
   }
 
   /**
-   * loadMore method
+   * loadMore Method
    * @returns { void }
    * */
   loadMore() {
     /**
      * make loadmore request
-     * */
+     * * */
     let offset = this.state.page + 1;
-    this.props.loadMoreEvents(offset);
+    this.props.loadMoreCenters(offset);
   }
 
   /**
-   * renderEventsCard method
-   * @returns { void }
+   * showLoadMoreButton Method
+   * @returns { Component }
    * */
-  renderEventsCard() {
-    let { events } = this.state;
-    return events.map((event, index) => (
-      <EventCard key={shortid.generate()} event={event} />
-    ));
+  showLoadMoreButton() {
+    const {
+      isLoading,
+      loadingmore,
+      pageCount,
+      pageSize,
+      totalCount
+    } = this.state;
+
+    if (!isLoading && pageCount >= 1) {
+      if (loadingmore) {
+        return <CircularLoader />;
+      }
+      if (pageSize !== totalCount) {
+        return (
+          <button
+            onClick={() => this.loadMore()}
+            className="col offset-s3 s6 btn waves-effect gradient__bg"
+          >
+            load more
+          </button>
+        );
+      }
+    }
   }
 
   /**
-   * renderNoEvent method
-   * @returns { void }
+   * renderNoCenter Method
+   * @returns { Component }
    * */
-  renderNoEvent() {
-    let { events } = this.state;
-    if (isEmpty(events)) {
+  renderNoCenter() {
+    let { centers } = this.props.centerStore;
+    if (isEmpty(centers)) {
       return (
         <h4 className="bold grey-text lighten-2 center-align">
-          <p>No Event Available..</p>
+          <p>No centers Available....</p>
         </h4>
       );
     }
@@ -135,9 +180,7 @@ class IndexEventCardHolder extends Component {
    * */
   render() {
     this.autoLoadMore();
-    let {
-      isLoading, loadingmore, pageCount, pageSize, totalCount
-    } = this.state;
+    const { isLoading } = this.state;
     return (
       <div className="popular__events_holdr">
         <div className="container popular__events">
@@ -148,12 +191,10 @@ class IndexEventCardHolder extends Component {
             :
             <div className="row">
               <div className="col s12 cards-container">
-                {this.renderEventsCard()}
+                {this.showCentersCard()}
               </div>
-              {this.renderNoEvent()}
-              {
-                (pageCount > 1) ? (loadingmore) ? <CircularLoader /> : (pageSize !== totalCount) ? <button onClick={() => this.loadMore()} className="col offset-s3 s6 btn waves-effect gradient__bg"> load more </button> : '' : ''
-              }
+              {isLoading ? '' : this.renderNoCenter()}
+              {this.showLoadMoreButton()}
             </div>
           }
         </div>
@@ -162,10 +203,16 @@ class IndexEventCardHolder extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ fetchEventRequest, loadMoreEvents }, dispatch);
+IndexCenterCardHolder.propTypes = {
+  fetchCentersAction: PropTypes.func.isRequired,
+  centerStore: PropTypes.object.isRequired,
+  loadMoreCenters: PropTypes.func.isRequired
+};
+
+const mapDispatchToProps = dispatch => bindActionCreators({ fetchCentersAction, loadMoreCenters, searchAction }, dispatch);
 
 const mapStateToProps = state => ({
-  allEvents: state.eventReducer
+  centerStore: state.centerReducer
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(IndexEventCardHolder);
+export default connect(mapStateToProps, mapDispatchToProps)(IndexCenterCardHolder);

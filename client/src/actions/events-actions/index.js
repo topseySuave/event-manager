@@ -15,9 +15,11 @@ import {
   SESSION_EVENTS_FAILURE,
   CLOUDINARY_URL,
   CLOUDINARY_UPLOAD_PRESET,
-  EVENT_STATUS_CHANGE
+  EVENT_STATUS_CHANGE,
+  ADD_EVENT_FAILURE
 } from '../';
 import setAuthorizationToken from '../../components/authentication/setAuthenticationToken';
+import history from '../../util/history';
 
 
 /**
@@ -61,6 +63,11 @@ const eventsDispatchAction = (type, data = {}) => {
         payload: data
       };
 
+    case 'failure':
+      return {
+        type: ADD_EVENT_FAILURE
+      };
+
     default:
       return data;
   }
@@ -77,16 +84,21 @@ const createEvent = (eventData, imgUrl) => (dispatch) => {
   eventData.img_url = imgUrl;
   return axios.post(api, eventData)
     .then(({ data }) => {
-      dispatch(eventsDispatchAction('add', data.event));
-      Materialize.toast(data.message, 5000, 'teal');
-      location.reload();
+      if (data.statusCode === 400) {
+        Materialize.toast(data.message, 5000, 'red lighten-2');
+        dispatch(eventsDispatchAction('failure'));
+      } else {
+        dispatch(eventsDispatchAction('add', data.event));
+        Materialize.toast(data.message, 5000, 'teal lighten-2');
+        history.push('/my-events');
+      }
     })
     .catch((err) => {
       console.log(err);
       dispatch({
         type: EDIT_EVENT_FAILURE
       });
-      Materialize.toast('An Error Occurred..!!!', 5000, 'red');
+      Materialize.toast('An Error Occurred..!!!', 5000, 'red lighten-2');
     });
 };
 
@@ -105,7 +117,7 @@ export const createEventRequest = eventData => (dispatch) => {
         dispatch(createEvent(eventData, data.url));
       })
       .catch((err) => {
-        Materialize.toast('Error in connection', 5000, 'red');
+        Materialize.toast('Error in connection', 5000, 'red lighten-2');
         console.log(err);
       });
   }
@@ -154,7 +166,7 @@ const editEvent = (eventData, imgUrl) => (dispatch) => {
   return axios.put(`${api}/${eventData.eventId}`, eventData)
     .then(({ data }) => {
       if (data.statusCode === 201) {
-        Materialize.toast(data.message, 5000, 'teal');
+        Materialize.toast(data.message, 5000, 'teal lighten-2');
         $('#add_event_modal').modal('close');
         $('.body__holdr').removeClass('blur__fits');
         return dispatch(eventsDispatchAction('edit', data.event));
@@ -178,7 +190,7 @@ export const editEventAction = eventData => (dispatch) => {
         dispatch(editEvent(eventData, data.url));
       })
       .catch(() => {
-        Materialize.toast('Error in connection', 5000, 'red');
+        Materialize.toast('Error in connection', 5000, 'red lighten-2');
       });
   }
   return dispatch(editEvent(eventData, eventData.img_url));
@@ -193,14 +205,11 @@ export const deleteEventRequest = (id) => {
   return dispatch => axios.delete(`${api}/${id}`)
     .then(({ data }) => {
       if (data.statusCode === 200) {
-        Materialize.toast(data.message, 5000);
+        Materialize.toast(data.message, 5000, 'teal lighten-2');
         return dispatch(eventsDispatchAction('delete', data.event));
       }
-      Materialize.toast(data.message, 5000, 'red');
+      Materialize.toast(data.message, 5000, 'red lighten-2');
       return data;
-    })
-    .catch((err) => {
-      Materialize.toast(err.message, 5000, 'red');
     });
 };
 
@@ -234,11 +243,11 @@ export const handleStatusEventAction = (eventId, status) => dispatch =>
   axios.post(`${api}/${eventId}?status=${status}`)
     .then(({ data }) => {
       if (data.statusCode === 200) {
-        Materialize.toast(data.message, 5000, 'teal');
+        Materialize.toast(data.message, 5000, 'teal lighten-2');
         return dispatch({
           type: EVENT_STATUS_CHANGE
         });
       }
-      Materialize.toast(data.message, 5000, 'red');
+      Materialize.toast(data.message, 5000, 'red lighten-2');
     });
 

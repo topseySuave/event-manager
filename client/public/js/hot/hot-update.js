@@ -86,19 +86,19 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var _components = {
   EventCard: {
-    displayName: "EventCard"
+    displayName: 'EventCard'
   }
 };
 
 var _UsersGabrielmicahDesktopProjectsEventManagerNode_modulesReactTransformHmrLibIndexJs2 = (0, _index6.default)({
-  filename: "/Users/gabrielmicah/Desktop/projects/event-manager/client/src/components/bodyComponents/eventsCard/eventCard.jsx",
+  filename: '/Users/gabrielmicah/Desktop/projects/event-manager/client/src/components/bodyComponents/eventsCard/eventCard.jsx',
   components: _components,
   locals: [module],
   imports: [_react3.default]
 });
 
 var _UsersGabrielmicahDesktopProjectsEventManagerNode_modulesReactTransformCatchErrorsLibIndexJs2 = (0, _index4.default)({
-  filename: "/Users/gabrielmicah/Desktop/projects/event-manager/client/src/components/bodyComponents/eventsCard/eventCard.jsx",
+  filename: '/Users/gabrielmicah/Desktop/projects/event-manager/client/src/components/bodyComponents/eventsCard/eventCard.jsx',
   components: _components,
   locals: [],
   imports: [_react3.default, _index2.default]
@@ -113,7 +113,7 @@ function _wrapComponent(id) {
 /**
    * EventCard Class Component
    * */
-var EventCard = _wrapComponent("EventCard")(function (_Component) {
+var EventCard = _wrapComponent('EventCard')(function (_Component) {
   _inherits(EventCard, _Component);
 
   /**
@@ -125,25 +125,13 @@ var EventCard = _wrapComponent("EventCard")(function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (EventCard.__proto__ || Object.getPrototypeOf(EventCard)).call(this, props));
 
-    _this.handleAlertOpen = function () {
-      _this.setState({ openAlert: true });
-    };
-
-    _this.handleAlertClose = function () {
-      _this.setState({ openAlert: false });
-    };
-
-    _this.handleEditOpen = function () {
-      _this.props.editEventRequestAction(_this.state.event);
-      $("#add_event_modal").modal("open");
-    };
-
     _this.state = {
       openAlert: false,
-      event: {},
-      location: "",
-      userId: ""
+      event: {}
     };
+
+    _this.handleAlertOpen = _this.handleAlertOpen.bind(_this);
+    _this.handleAlertClose = _this.handleAlertClose.bind(_this);
     return _this;
   }
 
@@ -154,10 +142,10 @@ var EventCard = _wrapComponent("EventCard")(function (_Component) {
 
 
   _createClass(EventCard, [{
-    key: "componentWillMount",
+    key: 'componentWillMount',
     value: function componentWillMount() {
-      $(".modal").modal();
-      $(".tooltipped").tooltip();
+      $('.modal').modal();
+      $('.tooltipped').tooltip();
     }
 
     /**
@@ -166,7 +154,7 @@ var EventCard = _wrapComponent("EventCard")(function (_Component) {
      * */
 
   }, {
-    key: "componentDidMount",
+    key: 'componentDidMount',
     value: function componentDidMount() {
       this.setState({
         event: this.props.event
@@ -178,12 +166,22 @@ var EventCard = _wrapComponent("EventCard")(function (_Component) {
      * @returns { void }
      * */
 
+  }, {
+    key: 'handleAlertOpen',
+    value: function handleAlertOpen() {
+      this.setState({ openAlert: true });
+    }
 
     /**
      * handleAlertClose method
      * @returns { void }
      * */
 
+  }, {
+    key: 'handleAlertClose',
+    value: function handleAlertClose() {
+      this.setState({ openAlert: false });
+    }
 
     /**
      * handleEditOpen method
@@ -191,13 +189,20 @@ var EventCard = _wrapComponent("EventCard")(function (_Component) {
      * */
 
   }, {
-    key: "handleDelete",
-
+    key: 'handleEditOpen',
+    value: function handleEditOpen() {
+      this.props.editEventRequestAction(this.state.event);
+      $('#add_event_modal').modal('open');
+    }
 
     /**
      * handleDelete method
+     * @param {string} id
      * @returns { void }
      * */
+
+  }, {
+    key: 'handleDelete',
     value: function handleDelete(id) {
       var _this2 = this;
 
@@ -214,7 +219,7 @@ var EventCard = _wrapComponent("EventCard")(function (_Component) {
      * */
 
   }, {
-    key: "showMenu",
+    key: 'showMenu',
     value: function showMenu() {
       var _this3 = this;
 
@@ -222,17 +227,17 @@ var EventCard = _wrapComponent("EventCard")(function (_Component) {
         return _react3.default.createElement(
           _IconMenu2.default,
           {
-            className: "right-align",
+            className: 'right-align',
             iconButtonElement: _react3.default.createElement(
               _IconButton2.default,
               null,
               _react3.default.createElement(_moreVert2.default, null)
             ),
-            anchorOrigin: { horizontal: "left", vertical: "top" },
-            targetOrigin: { horizontal: "left", vertical: "top" }
+            anchorOrigin: { horizontal: 'left', vertical: 'top' },
+            targetOrigin: { horizontal: 'left', vertical: 'top' }
           },
           _react3.default.createElement(_MenuItem2.default, {
-            primaryText: "Edit",
+            primaryText: 'Edit',
             leftIcon: _react3.default.createElement(_svgIcons.EditorModeEdit, null),
             onClick: function onClick() {
               return _this3.handleEditOpen();
@@ -242,8 +247,8 @@ var EventCard = _wrapComponent("EventCard")(function (_Component) {
             onClick: function onClick() {
               return _this3.handleAlertOpen();
             },
-            primaryText: "Delete",
-            style: { color: "red" },
+            primaryText: 'Delete',
+            style: { color: 'red' },
             leftIcon: _react3.default.createElement(_svgIcons.ActionDelete, null)
           })
         );
@@ -252,18 +257,21 @@ var EventCard = _wrapComponent("EventCard")(function (_Component) {
 
     /**
      * showStatusBars method
+     * @param {string} status
+     * @param {string} statusColor
      * @returns { Component }
      * */
 
   }, {
-    key: "showStatusBars",
+    key: 'showStatusBars',
     value: function showStatusBars(status, statusColor) {
       var userState = this.props.userState;
+
       if (userState.isAuthenticated && userState.user.id === this.state.event.userId || userState.user.role) {
         return _react3.default.createElement(
-          "span",
+          'span',
           {
-            className: (0, _classnames2.default)("event-status", "darken-3", "white-text", statusColor)
+            className: (0, _classnames2.default)('status-indicator', 'darken-3', 'white-text', statusColor)
           },
           status
         );
@@ -272,22 +280,23 @@ var EventCard = _wrapComponent("EventCard")(function (_Component) {
 
     /**
      * showAlertModal method
+     * @param {string} id
      * @returns { Component }
      * */
 
   }, {
-    key: "showAlertModal",
+    key: 'showAlertModal',
     value: function showAlertModal(id) {
       var _this4 = this;
 
       var actions = [_react3.default.createElement(_FlatButton2.default, {
-        label: "Yes",
+        label: 'Yes',
         primary: true,
         onClick: function onClick() {
           return _this4.handleDelete(id);
         }
       }), _react3.default.createElement(_FlatButton2.default, {
-        label: "No",
+        label: 'No',
         primary: true,
         onClick: function onClick() {
           return _this4.handleAlertClose();
@@ -302,7 +311,7 @@ var EventCard = _wrapComponent("EventCard")(function (_Component) {
           open: this.state.openAlert,
           onRequestClose: this.handleAlertClose
         },
-        "Are you sure you want to delete this event?"
+        'Are you sure you want to delete this event?'
       );
     }
 
@@ -312,9 +321,9 @@ var EventCard = _wrapComponent("EventCard")(function (_Component) {
      * */
 
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
-      var shareColor = ["red", "blue", "yellow", "green"],
+      var shareColor = ['red', 'blue', 'yellow', 'green'],
           floatBtnColor = void 0;
       floatBtnColor = shareColor[Math.floor(Math.random() * shareColor.length)];
 
@@ -333,107 +342,107 @@ var EventCard = _wrapComponent("EventCard")(function (_Component) {
       startDate = new Date(startDate).toDateString();
       endDate = new Date(endDate).toDateString();
 
-      var displayDate = startDate === endDate ? startDate : startDate + " - " + endDate;
-      var statusColor = status === "pending" ? shareColor[2] : status === "rejected" ? shareColor[0] : shareColor[3];
+      var displayDate = startDate === endDate ? startDate : startDate + ' - ' + endDate;
+      var statusColor = status === 'pending' ? shareColor[2] : status === 'rejected' ? shareColor[0] : shareColor[3];
 
       return _react3.default.createElement(
-        "div",
+        'div',
         null,
         this.showAlertModal(id),
         _react3.default.createElement(
-          "div",
-          { className: "card", "data-id": _shortid2.default.generate(id) },
+          'div',
+          { className: 'card', 'data-id': _shortid2.default.generate(id) },
           _react3.default.createElement(
-            "div",
-            { className: "card-image" },
+            'div',
+            { className: 'card-image' },
             this.showStatusBars(status, statusColor),
-            img_url ? _react3.default.createElement("img", { src: img_url, alt: title }) : _react3.default.createElement("img", {
-              src: "http://www.topangacreekoutpost.com/assets/images/site/image_not_available.png",
+            img_url ? _react3.default.createElement('img', { src: img_url, alt: title }) : _react3.default.createElement('img', {
+              src: 'http://www.topangacreekoutpost.com/assets/images/site/image_not_available.png',
               alt: title
             }),
             _react3.default.createElement(
-              "span",
+              'span',
               {
-                className: "card-title bold",
+                className: 'card-title bold',
                 style: {
-                  right: "0",
-                  backgroundImage: "linear-gradient(to top, rgba(0, 0, 0, .7), rgba(0, 0, 0, .3))"
+                  right: '0',
+                  backgroundImage: 'linear-gradient(to top, rgba(0, 0, 0, .7), rgba(0, 0, 0, .3))'
                 }
               },
               title
             ),
             _react3.default.createElement(
-              "a",
+              'a',
               {
-                className: (0, _classnames2.default)("btn-floating", "activator", "halfway-fab", "waves-effect", "waves-light", "tooltipped", floatBtnColor),
-                "data-position": "bottom",
-                "data-tooltip": "share"
+                className: (0, _classnames2.default)('btn-floating', 'activator', 'halfway-fab', 'waves-effect', 'waves-light', 'tooltipped', floatBtnColor),
+                'data-position': 'bottom',
+                'data-tooltip': 'share'
               },
               _react3.default.createElement(
-                "i",
-                { className: "material-icons" },
-                "dehaze"
+                'i',
+                { className: 'material-icons' },
+                'dehaze'
               )
             )
           ),
           _react3.default.createElement(
-            "div",
-            { className: "card-content" },
+            'div',
+            { className: 'card-content' },
             _react3.default.createElement(
-              "p",
-              { className: "small__duration" },
+              'p',
+              { className: 'small__duration' },
               _react3.default.createElement(
-                "i",
-                { className: "material-icons f15" },
-                "schedule"
+                'i',
+                { className: 'material-icons f15' },
+                'schedule'
               ),
               displayDate
             ),
             _react3.default.createElement(
-              "div",
+              'div',
               null,
               _react3.default.createElement(
-                "i",
-                { className: "material-icons f15" },
-                "location_on "
+                'i',
+                { className: 'material-icons f15' },
+                'location_on '
               ),
-              " ",
+              ' ',
               center ? center.location : "sorry can't get location at this time",
               (this.props.userState.user.id === userId || this.props.userState.user.role) && this.showMenu(id)
             )
           ),
           _react3.default.createElement(
-            "div",
-            { className: "card-reveal" },
+            'div',
+            { className: 'card-reveal' },
             _react3.default.createElement(
-              "span",
-              { className: "card-title grey-text text-darken-4" },
+              'span',
+              { className: 'card-title grey-text text-darken-4' },
               _react3.default.createElement(
-                "a",
-                { className: "bold" },
+                'a',
+                { className: 'bold' },
                 title
               ),
               _react3.default.createElement(
-                "i",
-                { className: "material-icons right" },
-                "close"
+                'i',
+                { className: 'material-icons right' },
+                'close'
               )
             ),
             _react3.default.createElement(
-              "p",
+              'p',
               null,
               description
             ),
             _react3.default.createElement(
-              "small",
+              'small',
               null,
               _react3.default.createElement(
-                "i",
-                { className: "material-icons f15" },
-                "location_on"
+                'i',
+                { className: 'material-icons f15' },
+                'location_on'
               ),
-              " ",
-              center ? center.location : ""
+              ' ',
+              center ? center.location : ''
             )
           )
         )
@@ -524,6 +533,19 @@ var Helpers = function () {
     key: 'sanitizeString',
     value: function sanitizeString(str) {
       return str.toLowerCase().replace(/[\. ,:-]+/g, '-');
+    }
+
+    /**
+     * numberWithCommas Method
+     * Converts number to currency, comma seperated currency
+     * @param { string } x
+     * @returns { string }
+     * */
+
+  }, {
+    key: 'numberWithCommas',
+    value: function numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
 
     /**
@@ -655,23 +677,27 @@ function _wrapComponent(id) {
   };
 }
 
+/**
+   * AllCenters Class Component
+   * */
 var AddCenterForm = _wrapComponent('AddCenterForm')(function (_Component) {
   _inherits(AddCenterForm, _Component);
 
+  /**
+   * Class Constructor
+   * @param { object } props
+   * @returns { void }
+   * */
   function AddCenterForm(props) {
     _classCallCheck(this, AddCenterForm);
 
     var _this = _possibleConstructorReturn(this, (AddCenterForm.__proto__ || Object.getPrototypeOf(AddCenterForm)).call(this, props));
 
-    _this.handleSelectChange = function (event, index, facilities) {
-      return _this.setState({ facilities: facilities });
-    };
-
     _this.helpers = new _helpers2.default();
 
-    /* *
+    /**
      * @Initialize the component's state.
-     **/
+     * */
     _this.state = {
       errors: {},
       editCenter: false,
@@ -692,30 +718,19 @@ var AddCenterForm = _wrapComponent('AddCenterForm')(function (_Component) {
     return _this;
   }
 
+  /**
+   * @Void: Get the image data and set the img_url in the state
+   * to the binary data url.
+   * @param {object} e
+   * @return {void}
+   * * */
+
+
   _createClass(AddCenterForm, [{
-    key: 'handleCenterChange',
-    value: function handleCenterChange(e) {
-      if (!!this.state.errors[e.target.name]) {
-        var _setState;
-
-        var errors = Object.assign({}, !!this.state.errors);
-        delete errors[e.target.name];
-        this.setState((_setState = {}, _defineProperty(_setState, e.target.name, e.target.value), _defineProperty(_setState, 'errors', errors), _setState));
-      } else {
-        this.setState(_defineProperty({}, e.target.name, e.target.value));
-      }
-    }
-
-    /**
-     * @Void: Get the image data and set the img_url in the state
-     * to the binary data url.
-     * **/
-
-  }, {
     key: 'onFileChange',
     value: function onFileChange(e) {
       var file = e.target.files[0];
-      if (file.type.indexOf('image/') > -1) {
+      if (file && file.type.indexOf('image/') > -1) {
         // only image file
         if (file.size < 2000000) {
           this.setState({
@@ -728,6 +743,32 @@ var AddCenterForm = _wrapComponent('AddCenterForm')(function (_Component) {
         Materialize.toast('Image files only please', 5000, 'red');
       }
     }
+
+    /**
+     * handleCenterChange Method
+     * @param {object} e
+     * @returns { void }
+     * */
+
+  }, {
+    key: 'handleCenterChange',
+    value: function handleCenterChange(e) {
+      if (this.state.errors[e.target.name]) {
+        var _setState;
+
+        var errors = Object.assign({}, !!this.state.errors);
+        delete errors[e.target.name];
+        this.setState((_setState = {}, _defineProperty(_setState, e.target.name, e.target.value), _defineProperty(_setState, 'errors', errors), _setState));
+      } else {
+        this.setState(_defineProperty({}, e.target.name, e.target.value));
+      }
+    }
+
+    /**
+     * isValid Method
+     * @returns { void }
+     * */
+
   }, {
     key: 'isValid',
     value: function isValid() {
@@ -740,6 +781,27 @@ var AddCenterForm = _wrapComponent('AddCenterForm')(function (_Component) {
       }
       return isValid;
     }
+
+    /**
+     * handleSelectChange Method
+     * @param {object} event
+     * @param {object} index
+     * @param {object} facilities
+     * @returns { void }
+     * */
+
+  }, {
+    key: 'handleSelectChange',
+    value: function handleSelectChange(event, index, facilities) {
+      this.setState({ facilities: facilities });
+    }
+
+    /**
+     * menuItems Method
+     * @param {object} facilityes
+     * @returns { component }
+     * */
+
   }, {
     key: 'menuItems',
     value: function menuItems(facilityes) {
@@ -753,6 +815,13 @@ var AddCenterForm = _wrapComponent('AddCenterForm')(function (_Component) {
         });
       });
     }
+
+    /**
+     * handleCenterSubmit Method
+     * @param {object} e
+     * @returns { component }
+     * */
+
   }, {
     key: 'handleCenterSubmit',
     value: function handleCenterSubmit(e) {
@@ -781,6 +850,12 @@ var AddCenterForm = _wrapComponent('AddCenterForm')(function (_Component) {
         });
       }
     }
+
+    /**
+     * render Method
+     * @returns { component }
+     * */
+
   }, {
     key: 'render',
     value: function render() {
@@ -794,11 +869,16 @@ var AddCenterForm = _wrapComponent('AddCenterForm')(function (_Component) {
           price = _state.price,
           capacity = _state.capacity;
 
-      var modalTitle = editCenter ? "Save changes" : "Add center";
+      var modalTitle = editCenter ? 'Save changes' : 'Add center';
 
       return _react3.default.createElement(
         'form',
-        { className: 'col s12', id: 'edit-center-form', onSubmit: this.handleCenterSubmit, encType: 'multipart/form-data' },
+        {
+          className: 'col s12',
+          id: 'edit-center-form',
+          onSubmit: this.handleCenterSubmit,
+          encType: 'multipart/form-data'
+        },
         _react3.default.createElement(
           'div',
           { className: 'row' },
@@ -816,13 +896,21 @@ var AddCenterForm = _wrapComponent('AddCenterForm')(function (_Component) {
                   null,
                   'Upload'
                 ),
-                _react3.default.createElement('input', { type: 'file', name: 'img_url', onChange: this.onFileChange,
-                  accept: 'image/jpeg,jpg,png,gif' })
+                _react3.default.createElement('input', {
+                  type: 'file',
+                  name: 'img_url',
+                  onChange: this.onFileChange,
+                  accept: 'image/jpeg,jpg,png,gif'
+                })
               ),
               _react3.default.createElement(
                 'div',
                 { className: 'file-path-wrapper' },
-                _react3.default.createElement('input', { className: 'file-path validate', type: 'text', placeholder: 'Upload an image here' })
+                _react3.default.createElement('input', {
+                  className: 'file-path validate',
+                  type: 'text',
+                  placeholder: 'Upload an image here'
+                })
               )
             )
           ),
@@ -939,7 +1027,11 @@ var AddCenterForm = _wrapComponent('AddCenterForm')(function (_Component) {
                 className: 'btn col s12 white-text gradient__bg btn-register waves-effect waves-light',
                 disabled: isLoading ? 'disabled' : ''
               },
-              !isLoading ? modalTitle : _react3.default.createElement('img', { style: { marginTop: "10px" }, src: '/image/loader/loading.gif' })
+              !isLoading ? modalTitle : _react3.default.createElement('img', {
+                style: { marginTop: '10px' },
+                src: '/image/loader/loading.gif',
+                alt: 'loader'
+              })
             )
           )
         )
@@ -1009,6 +1101,10 @@ var _eventCard = __webpack_require__(125);
 
 var _eventCard2 = _interopRequireDefault(_eventCard);
 
+var _centerCard = __webpack_require__(1808);
+
+var _centerCard2 = _interopRequireDefault(_centerCard);
+
 var _helpers = __webpack_require__(131);
 
 var _helpers2 = _interopRequireDefault(_helpers);
@@ -1074,13 +1170,28 @@ var SearchModal = _wrapComponent('SearchModal')(function (_Component) {
   }
 
   /**
-   * componentWillReceiveProps Life cycle Method
-   * @param { object } newProps
-   * @return { object }
+   * componentDidMount method
+   * @returns { void }
    * */
 
 
   _createClass(SearchModal, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var search__back_btn = $('.search__back_btn');
+      $('.search__back_btn').on('click', function () {
+        $('#search__modal').modal('close');
+        $('.modal-overlay').css({ display: 'none' });
+      });
+    }
+
+    /**
+     * componentWillReceiveProps Life cycle Method
+     * @param { object } newProps
+     * @return { object }
+     * */
+
+  }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(newProps) {
       if (!(0, _isEmpty2.default)(newProps.centerStore)) {
@@ -1146,38 +1257,7 @@ var SearchModal = _wrapComponent('SearchModal')(function (_Component) {
       if (!(0, _isEmpty2.default)(centers)) {
         return centers.map(function (center) {
           var to = '/center/' + center.id + '/' + _this2.helper.sanitizeString(center.title);
-          return _react3.default.createElement(
-            _reactRouterDom.Link,
-            { key: _shortid2.default.generate(), to: to, href: to },
-            _react3.default.createElement(
-              'div',
-              { className: 'card' },
-              !!center.img_url && _react3.default.createElement(
-                'div',
-                { className: 'card-image' },
-                _react3.default.createElement('img', { src: center.img_url, alt: center.title })
-              ),
-              _react3.default.createElement(
-                'div',
-                { className: 'card-content black-text' },
-                _react3.default.createElement(
-                  'p',
-                  { className: 'f__size' },
-                  center.title
-                ),
-                _react3.default.createElement(
-                  'p',
-                  null,
-                  _react3.default.createElement(
-                    'i',
-                    { className: 'material-icons f15' },
-                    'location_on'
-                  ),
-                  center.location
-                )
-              )
-            )
-          );
+          return _react3.default.createElement(_centerCard2.default, { to: to, center: center, key: _shortid2.default.generate() });
         });
       }
       return _react3.default.createElement(
@@ -1407,6 +1487,10 @@ var _fetchCenterRelatedTo = __webpack_require__(1684);
 
 var _eventsActions = __webpack_require__(52);
 
+var _helpers = __webpack_require__(131);
+
+var _helpers2 = _interopRequireDefault(_helpers);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1441,9 +1525,12 @@ function _wrapComponent(id) {
   };
 }
 
+var helpers = new _helpers2.default();
+
 /**
  * CenterDetail Class Component
  * */
+
 var CenterDetail = _wrapComponent('CenterDetail')(function (_Component) {
   _inherits(CenterDetail, _Component);
 
@@ -1504,9 +1591,7 @@ var CenterDetail = _wrapComponent('CenterDetail')(function (_Component) {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(newProps) {
       var centerDetails = newProps.activeCenterDetail;
-      if (centerDetails.eventStatusChange) {
-        location.reload();
-      }
+      if (centerDetails.eventStatusChange) location.reload();
 
       if (this.props.params.id !== newProps.params.id) {
         newProps.fetchCenterAction(newProps.params.id);
@@ -1875,7 +1960,7 @@ var CenterDetail = _wrapComponent('CenterDetail')(function (_Component) {
                                   'span',
                                   null,
                                   '\u20A6',
-                                  price
+                                  helpers.numberWithCommas(price)
                                 ),
                                 ' per event'
                               )
@@ -2051,19 +2136,19 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var _components = {
   EventModal: {
-    displayName: 'EventModal'
+    displayName: "EventModal"
   }
 };
 
 var _UsersGabrielmicahDesktopProjectsEventManagerNode_modulesReactTransformHmrLibIndexJs2 = (0, _index6.default)({
-  filename: '/Users/gabrielmicah/Desktop/projects/event-manager/client/src/components/modals/EventModal.jsx',
+  filename: "/Users/gabrielmicah/Desktop/projects/event-manager/client/src/components/modals/EventModal.jsx",
   components: _components,
   locals: [module],
   imports: [_react3.default]
 });
 
 var _UsersGabrielmicahDesktopProjectsEventManagerNode_modulesReactTransformCatchErrorsLibIndexJs2 = (0, _index4.default)({
-  filename: '/Users/gabrielmicah/Desktop/projects/event-manager/client/src/components/modals/EventModal.jsx',
+  filename: "/Users/gabrielmicah/Desktop/projects/event-manager/client/src/components/modals/EventModal.jsx",
   components: _components,
   locals: [],
   imports: [_react3.default, _index2.default]
@@ -2078,51 +2163,17 @@ function _wrapComponent(id) {
 
 var styles = {
   labelStyle: {
-    color: 'green'
+    color: "green"
   }
 };
 
-var EventModal = _wrapComponent('EventModal')(function (_Component) {
+var EventModal = _wrapComponent("EventModal")(function (_Component) {
   _inherits(EventModal, _Component);
 
   function EventModal(props) {
     _classCallCheck(this, EventModal);
 
     var _this = _possibleConstructorReturn(this, (EventModal.__proto__ || Object.getPrototypeOf(EventModal)).call(this, props));
-
-    _this.handleChangeStartDate = function (e, date) {
-      if (new Date(date) < new Date()) {
-        Materialize.toast("Date isn't correct. Should be a day after today not before", 5000, "red");
-        _this.setState({
-          startDate: {}
-        });
-      } else {
-        _this.setState({
-          startDate: date.toDateString()
-        });
-      }
-    };
-
-    _this.handleChangeEndDate = function (e, date) {
-      if (new Date(date) < new Date()) {
-        Materialize.toast("Date isn't correct. Should be a day after today not before", 5000, "red");
-        _this.setState({
-          endDate: {}
-        });
-      } else {
-        _this.setState({
-          endDate: date.toDateString()
-        });
-      }
-    };
-
-    _this.handleOpen = function () {
-      _this.setState({ open: true });
-    };
-
-    _this.handleClose = function () {
-      _this.setState({ open: false });
-    };
 
     var startDate = new Date();
     var endDate = new Date();
@@ -2151,12 +2202,15 @@ var EventModal = _wrapComponent('EventModal')(function (_Component) {
     _this.handleChangeStartDate = _this.handleChangeStartDate.bind(_this);
     _this.handleChangeEndDate = _this.handleChangeEndDate.bind(_this);
     _this.handleToggleChange = _this.handleToggleChange.bind(_this);
+    _this.handleOpen = _this.handleOpen.bind(_this);
+    _this.handleClose = _this.handleClose.bind(_this);
     return _this;
   }
 
   _createClass(EventModal, [{
-    key: 'updateProps',
+    key: "updateProps",
     value: function updateProps(newProps) {
+      if (newProps.bookedCenter) this.setState({ isLoading: false });
       if (newProps.editEvent) {
         var _newProps$eventToEdit = newProps.eventToEdit,
             title = _newProps$eventToEdit.title,
@@ -2183,17 +2237,19 @@ var EventModal = _wrapComponent('EventModal')(function (_Component) {
       }
     }
   }, {
-    key: 'componentDidMount',
+    key: "componentDidMount",
     value: function componentDidMount() {
       this.updateProps(this.props);
     }
   }, {
-    key: 'componentWillReceiveProps',
+    key: "componentWillReceiveProps",
     value: function componentWillReceiveProps(newProps) {
       if (newProps.event) this.setState({ isLoading: newProps.event.isLoading });
+      if (newProps.bookedCenter) this.setState({ isLoading: false });
+      if (newProps.event.eventCreated) location.reload();
     }
   }, {
-    key: 'isValid',
+    key: "isValid",
     value: function isValid() {
       var _validateEventInput = (0, _validateInput.validateEventInput)(this.state),
           errors = _validateEventInput.errors,
@@ -2205,28 +2261,66 @@ var EventModal = _wrapComponent('EventModal')(function (_Component) {
       return isValid;
     }
   }, {
-    key: 'handleInputChange',
+    key: "handleChangeStartDate",
+    value: function handleChangeStartDate(e, date) {
+      if (new Date(date) < new Date()) {
+        Materialize.toast("Date isn't correct. Should be a day after today not before", 5000, "red");
+        this.setState({
+          startDate: {}
+        });
+      } else {
+        this.setState({
+          startDate: date.toDateString()
+        });
+      }
+    }
+  }, {
+    key: "handleChangeEndDate",
+    value: function handleChangeEndDate(e, date) {
+      if (new Date(date) < new Date()) {
+        Materialize.toast("Date isn't correct. Should be a day after today not before", 5000, "red");
+        this.setState({
+          endDate: {}
+        });
+      } else {
+        this.setState({
+          endDate: date.toDateString()
+        });
+      }
+    }
+  }, {
+    key: "handleOpen",
+    value: function handleOpen() {
+      this.setState({ open: true });
+    }
+  }, {
+    key: "handleClose",
+    value: function handleClose() {
+      this.setState({ open: false });
+    }
+  }, {
+    key: "handleInputChange",
     value: function handleInputChange(e) {
       if (!!this.state.errors[e.target.name]) {
         var _setState;
 
         var errors = Object.assign({}, !!this.state.errors);
         delete errors[e.target.name];
-        this.setState((_setState = {}, _defineProperty(_setState, e.target.name, e.target.value), _defineProperty(_setState, 'errors', errors), _setState));
+        this.setState((_setState = {}, _defineProperty(_setState, e.target.name, e.target.value), _defineProperty(_setState, "errors", errors), _setState));
       } else {
         this.setState(_defineProperty({}, e.target.name, e.target.value));
       }
     }
   }, {
-    key: 'handleToggleChange',
+    key: "handleToggleChange",
     value: function handleToggleChange(e) {
       this.setState({ private: !this.state.private });
     }
   }, {
-    key: 'onFileChange',
+    key: "onFileChange",
     value: function onFileChange(e) {
       var file = e.target.files[0];
-      if (file.type.indexOf("image/") > -1) {
+      if (file && file.type.indexOf("image/") > -1) {
         // only image file
         if (file.size < 2000000) {
           this.setState({
@@ -2240,7 +2334,7 @@ var EventModal = _wrapComponent('EventModal')(function (_Component) {
       }
     }
   }, {
-    key: 'handleEventSubmit',
+    key: "handleEventSubmit",
     value: function handleEventSubmit(e) {
       e.preventDefault();
       if (this.isValid()) {
@@ -2251,7 +2345,7 @@ var EventModal = _wrapComponent('EventModal')(function (_Component) {
       }
     }
   }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       var _state = this.state,
           isLoading = _state.isLoading,
@@ -2262,20 +2356,20 @@ var EventModal = _wrapComponent('EventModal')(function (_Component) {
           startDate = _state.startDate,
           errors = _state.errors;
 
-      var actions = [_react3.default.createElement(_FlatButton2.default, { label: 'Cancel', primary: true, onClick: this.handleClose }), _react3.default.createElement(_FlatButton2.default, {
-        label: isLoading ? _react3.default.createElement('img', {
+      var actions = [_react3.default.createElement(_FlatButton2.default, { label: "Cancel", primary: true, onClick: this.handleClose }), _react3.default.createElement(_FlatButton2.default, {
+        label: isLoading ? _react3.default.createElement("img", {
           style: { marginTop: "10px" },
-          src: '/image/loader/loading.gif'
+          src: "/image/loader/loading.gif"
         }) : "Add Event",
         primary: true,
         keyboardFocused: true,
         onClick: this.handleEventSubmit
       })];
       return _react3.default.createElement(
-        'div',
+        "div",
         null,
         _react3.default.createElement(_RaisedButton2.default, {
-          label: 'Book this center',
+          label: "Book this center",
           primary: true,
           onClick: this.handleOpen
         }),
@@ -2291,54 +2385,54 @@ var EventModal = _wrapComponent('EventModal')(function (_Component) {
             style: { marginTop: "0px" }
           },
           _react3.default.createElement(
-            'div',
-            { className: 'row', style: { marginTop: "20px" } },
+            "div",
+            { className: "row", style: { marginTop: "20px" } },
             _react3.default.createElement(
-              'form',
-              { className: 'col s12', id: 'add-event-form' },
+              "form",
+              { className: "col s12", id: "add-event-form" },
               _react3.default.createElement(
-                'div',
-                { className: 'row' },
+                "div",
+                { className: "row" },
                 _react3.default.createElement(
-                  'div',
-                  { className: 'col s6' },
+                  "div",
+                  { className: "col s6" },
                   _react3.default.createElement(
-                    'div',
-                    { className: 'file-field input-field' },
+                    "div",
+                    { className: "file-field input-field" },
                     _react3.default.createElement(
-                      'div',
-                      { className: 'btn' },
+                      "div",
+                      { className: "btn" },
                       _react3.default.createElement(
-                        'span',
+                        "span",
                         null,
-                        'Upload'
+                        "Upload"
                       ),
-                      _react3.default.createElement('input', {
-                        type: 'file',
-                        name: 'img_url',
-                        accept: 'image/jpeg,jpg,png,gif',
+                      _react3.default.createElement("input", {
+                        type: "file",
+                        name: "img_url",
+                        accept: "image/jpeg,jpg,png,gif",
                         onChange: this.onFileChange
                       })
                     ),
                     _react3.default.createElement(
-                      'div',
-                      { className: 'file-path-wrapper' },
-                      _react3.default.createElement('input', {
-                        className: 'file-path validate',
-                        type: 'text',
-                        placeholder: 'Upload an image here'
+                      "div",
+                      { className: "file-path-wrapper" },
+                      _react3.default.createElement("input", {
+                        className: "file-path validate",
+                        type: "text",
+                        placeholder: "Upload an image here"
                       })
                     )
                   )
                 ),
                 _react3.default.createElement(
-                  'div',
-                  { className: 'input-field col s6' },
+                  "div",
+                  { className: "input-field col s6" },
                   _react3.default.createElement(_formInput2.default, {
-                    type: 'text',
-                    fieldId: 'event_title',
-                    nameField: 'title',
-                    label: 'Title',
+                    type: "text",
+                    fieldId: "event_title",
+                    nameField: "title",
+                    label: "Title",
                     value: title,
                     error: errors.title || "",
                     onChange: this.handleInputChange
@@ -2346,75 +2440,75 @@ var EventModal = _wrapComponent('EventModal')(function (_Component) {
                 )
               ),
               _react3.default.createElement(
-                'div',
-                { className: 'row' },
+                "div",
+                { className: "row" },
                 _react3.default.createElement(
-                  'div',
-                  { className: 'input-field col s6' },
+                  "div",
+                  { className: "input-field col s6" },
                   _react3.default.createElement(_DatePicker2.default, {
                     onChange: this.handleChangeStartDate,
                     autoOk: true,
-                    floatingLabelText: 'Start Date',
+                    floatingLabelText: "Start Date",
                     disableYearSelection: this.state.disableYearSelection
                   }),
                   errors.startDate && _react3.default.createElement(
-                    'span',
-                    { className: 'red-text accent-1' },
+                    "span",
+                    { className: "red-text accent-1" },
                     errors.startDate
                   )
                 ),
                 _react3.default.createElement(
-                  'div',
-                  { className: 'input-field col s6' },
+                  "div",
+                  { className: "input-field col s6" },
                   _react3.default.createElement(_DatePicker2.default, {
                     onChange: this.handleChangeEndDate,
                     autoOk: true,
-                    floatingLabelText: 'End Date',
+                    floatingLabelText: "End Date",
                     disableYearSelection: this.state.disableYearSelection
                   }),
                   errors.endDate && _react3.default.createElement(
-                    'span',
-                    { className: 'red-text accent-1' },
+                    "span",
+                    { className: "red-text accent-1" },
                     errors.endDate
                   )
                 )
               ),
               _react3.default.createElement(
-                'div',
-                { className: 'row' },
+                "div",
+                { className: "row" },
                 _react3.default.createElement(
-                  'div',
-                  { className: 'input-field col s12' },
+                  "div",
+                  { className: "input-field col s12" },
                   _react3.default.createElement(
-                    'label',
-                    { htmlFor: 'description' },
-                    'Description'
+                    "label",
+                    { htmlFor: "description" },
+                    "Description"
                   ),
-                  _react3.default.createElement('textarea', {
-                    id: 'description',
-                    type: 'text',
-                    name: 'description',
-                    className: 'materialize-textarea validate',
+                  _react3.default.createElement("textarea", {
+                    id: "description",
+                    type: "text",
+                    name: "description",
+                    className: "materialize-textarea validate",
                     required: true,
                     onChange: this.handleInputChange,
                     value: description
                   }),
                   errors.description && _react3.default.createElement(
-                    'span',
-                    { className: 'red-text accent-1' },
+                    "span",
+                    { className: "red-text accent-1" },
                     errors.description
                   )
                 )
               ),
               _react3.default.createElement(
-                'div',
-                { className: 'row' },
+                "div",
+                { className: "row" },
                 _react3.default.createElement(
-                  'div',
-                  { className: 'input-field col s12' },
+                  "div",
+                  { className: "input-field col s12" },
                   _react3.default.createElement(_Toggle2.default, {
-                    label: 'Do you want this event to be private?',
-                    name: 'private',
+                    label: "Do you want this event to be private?",
+                    name: "private",
                     defaultToggled: this.state.private,
                     onToggle: this.handleToggleChange,
                     labelStyle: styles.labelStyle
@@ -2621,7 +2715,7 @@ var EditCenterForm = _wrapComponent('EditCenterForm')(function (_Component) {
       var _this2 = this;
 
       var file = e.target.files[0];
-      if (file.type.indexOf('image/') > -1) {
+      if (file && file.type.indexOf('image/') > -1) {
         // only image file
         if (file.size < 2000000) {
           // Must not be more than 2mb
@@ -3036,6 +3130,10 @@ var _fetchCenterAction = __webpack_require__(311);
 
 var _searchAction = __webpack_require__(309);
 
+var _centerCard = __webpack_require__(1808);
+
+var _centerCard2 = _interopRequireDefault(_centerCard);
+
 var _loader = __webpack_require__(92);
 
 var _helpers = __webpack_require__(131);
@@ -3196,57 +3294,7 @@ var AllCenters = _wrapComponent('AllCenters')(function (_Component) {
         return secObj.id - firstObj.id;
       }).map(function (center) {
         var to = 'center/' + center.id + '/' + _this3.helper.sanitizeString(center.title);
-        return _react3.default.createElement(
-          _reactRouterDom.Link,
-          { key: _shortid2.default.generate(), to: to, href: to },
-          _react3.default.createElement(
-            'div',
-            { className: 'card' },
-            !!center.img_url && _react3.default.createElement(
-              'div',
-              { className: 'card-image' },
-              _react3.default.createElement('img', { src: center.img_url, alt: center.title })
-            ),
-            _react3.default.createElement(
-              'div',
-              { className: 'card-content black-text' },
-              _react3.default.createElement(
-                'div',
-                { className: 'row', style: { marginBottom: '0' } },
-                _react3.default.createElement(
-                  'div',
-                  { className: 'col s12' },
-                  _react3.default.createElement(
-                    'p',
-                    { className: 'bold' },
-                    center.title
-                  ),
-                  _react3.default.createElement(
-                    'p',
-                    { className: 'light__font' },
-                    _react3.default.createElement(
-                      'i',
-                      { className: 'material-icons f15' },
-                      'location_on'
-                    ),
-                    center.location
-                  )
-                )
-              )
-            ),
-            _react3.default.createElement(
-              'div',
-              { className: 'card-action' },
-              _react3.default.createElement(
-                'span',
-                { className: 'black-text right-align' },
-                'capacity of ',
-                center.capacity,
-                ' Guests'
-              )
-            )
-          )
-        );
+        return _react3.default.createElement(_centerCard2.default, { to: to, center: center, key: _shortid2.default.generate() });
       });
     }
 
@@ -3603,7 +3651,7 @@ var SearchFasterForm = _wrapComponent('SearchFasterForm')(function (_Component) 
 
       return _react3.default.createElement(
         'form',
-        { className: 'full-width' },
+        { className: 'col s12 full-width' },
         _react3.default.createElement(
           'div',
           { className: 'input-field col s12 l2' },
@@ -3674,6 +3722,7 @@ var SearchFasterForm = _wrapComponent('SearchFasterForm')(function (_Component) 
 }(_react2.Component));
 
 SearchFasterForm.propTypes = {
+  style: _propTypes.PropTypes.object,
   onSearch: _propTypes.PropTypes.func.isRequired
 };
 
@@ -3756,10 +3805,10 @@ exports.default = function () {
 
     case _actions.SEARCH_CENTER_TITLE:
       newState = Object.assign({}, state);
-      if (!(0, _isEmpty2.default)(action.payload)) {
+      if (!(0, _isEmpty2.default)(action.payload.centers)) {
         newState = action.payload;
       } else {
-        newState.centers = state.centers;
+        return state;
       }
       return newState;
 
@@ -3817,17 +3866,24 @@ exports.default = function () {
       return action.payload;
 
     case _actions.ADD_EVENT:
-      if (state.events) {
-        state.events.unshift(action.payload);
-        state.totalCount = state.events.length;
-        state.pageCount = Math.ceil(state.totalCount / pageLimit);
-        return state;
+      newState = Object.assign({}, state);
+      if (newState.events) {
+        newState.events.unshift(action.payload);
+        newState.totalCount = newState.events.length;
+        newState.pageCount = Math.ceil(newState.totalCount / pageLimit);
+        return newState;
       }
-      state.events = [];
-      state.events.unshift(action.payload);
-      state.totalCount = state.events.length;
-      state.pageCount = Math.ceil(state.totalCount / pageLimit);
-      return state;
+      newState.events = [];
+      newState.events.unshift(action.payload);
+      newState.totalCount = newState.events.length;
+      newState.pageCount = Math.ceil(newState.totalCount / pageLimit);
+      newState.eventCreated = true;
+      return newState;
+
+    case _actions.ADD_EVENT_FAILURE:
+      newState = Object.assign({}, state);
+      newState.bookedCenter = true;
+      return newState;
 
     case _actions.EDIT_EVENT_REQUEST:
       return _extends({}, state, {
@@ -3855,14 +3911,14 @@ exports.default = function () {
 
     case _actions.REMOVE_EVENT:
       newState = Object.assign({}, state);
-      newState.events.map(function (event, index) {
+      newState.sessEvents.events.map(function (event, index) {
         if (event.id === action.payload.id) {
-          delete newState.events[index];
+          delete newState.sessEvents.events[index];
         }
       });
-      newState.totalCount = newState.events.length;
-      newState.pageSize = newState.totalCount;
-      newState.pageCount = Math.ceil(newState.totalCount / pageLimit);
+      newState.sessEvents.meta.totalCount = newState.sessEvents.events.length;
+      newState.sessEvents.meta.pageSize = newState.sessEvents.meta.totalCount;
+      newState.sessEvents.meta.pageCount = Math.ceil(newState.sessEvents.meta.totalCount / pageLimit);
       return newState;
 
     case _actions.SESSION_EVENTS:
@@ -3888,11 +3944,11 @@ exports.default = function () {
 
     case _actions.LOADMORE_EVENT_SUCCESS:
       newState = Object.assign({}, state);
-      newState.events = newState.events.concat(action.payload);
+      newState.sessEvents.events = newState.sessEvents.events.concat(action.payload);
       newState.loadingmore = false;
-      newState.page = parseInt(newState.page + 1, 10);
-      newState.pageSize = parseInt(newState.pageSize + action.payload.length, 10);
-      if (newState.pageSize === newState.totalCount) {
+      newState.sessEvents.meta.page = parseInt(newState.sessEvents.meta.page + 1, 10);
+      newState.sessEvents.meta.pageSize = parseInt(newState.sessEvents.meta.pageSize + action.payload.length, 10);
+      if (newState.sessEvents.meta.pageSize === newState.sessEvents.meta.totalCount) {
         newState.loadmore = false;
       }
       return newState;
@@ -3919,7 +3975,209 @@ exports.default = function () {
 /***/ }),
 
 /***/ 1808:
-false,
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _index = __webpack_require__(14);
+
+var _index2 = _interopRequireDefault(_index);
+
+var _index3 = __webpack_require__(15);
+
+var _index4 = _interopRequireDefault(_index3);
+
+var _react2 = __webpack_require__(0);
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index5 = __webpack_require__(16);
+
+var _index6 = _interopRequireDefault(_index5);
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _reactRouterDom = __webpack_require__(25);
+
+var _propTypes = __webpack_require__(3);
+
+var _helpers = __webpack_require__(131);
+
+var _helpers2 = _interopRequireDefault(_helpers);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _components = {
+  CenterCard: {
+    displayName: 'CenterCard'
+  }
+};
+
+var _UsersGabrielmicahDesktopProjectsEventManagerNode_modulesReactTransformHmrLibIndexJs2 = (0, _index6.default)({
+  filename: '/Users/gabrielmicah/Desktop/projects/event-manager/client/src/components/centerComponent/centerCard/centerCard.jsx',
+  components: _components,
+  locals: [module],
+  imports: [_react3.default]
+});
+
+var _UsersGabrielmicahDesktopProjectsEventManagerNode_modulesReactTransformCatchErrorsLibIndexJs2 = (0, _index4.default)({
+  filename: '/Users/gabrielmicah/Desktop/projects/event-manager/client/src/components/centerComponent/centerCard/centerCard.jsx',
+  components: _components,
+  locals: [],
+  imports: [_react3.default, _index2.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _UsersGabrielmicahDesktopProjectsEventManagerNode_modulesReactTransformHmrLibIndexJs2(_UsersGabrielmicahDesktopProjectsEventManagerNode_modulesReactTransformCatchErrorsLibIndexJs2(Component, id), id);
+  };
+}
+
+var helpers = new _helpers2.default();
+/**
+ * CenterCard Class Component
+ * */
+
+var CenterCard = _wrapComponent('CenterCard')(function (_Component) {
+  _inherits(CenterCard, _Component);
+
+  /**
+   * class constructor
+   * @param {object} props
+   * */
+  function CenterCard(props) {
+    _classCallCheck(this, CenterCard);
+
+    var _this = _possibleConstructorReturn(this, (CenterCard.__proto__ || Object.getPrototypeOf(CenterCard)).call(this, props));
+
+    _this.helper = new _helpers2.default();
+    return _this;
+  }
+
+  /**
+   * componentWillMount Method
+   * @return {void}
+   * */
+
+
+  _createClass(CenterCard, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      $('.modal').modal();
+    }
+
+    /**
+     * showPriceBar Method
+     * @param {string} priceString
+     * @return {component}
+     * */
+
+  }, {
+    key: 'showPriceBar',
+    value: function showPriceBar(priceString) {
+      return _react3.default.createElement(
+        'span',
+        { className: 'status-indicator darken-3 transparent-status-bar white-text' },
+        '\u20A6',
+        helpers.numberWithCommas(priceString)
+      );
+    }
+
+    /**
+     * render Method
+     * @return {component}
+     * */
+
+  }, {
+    key: 'render',
+    value: function render() {
+      var center = this.props.center;
+
+      return _react3.default.createElement(
+        'div',
+        null,
+        _react3.default.createElement(
+          _reactRouterDom.Link,
+          { to: this.props.to, href: this.props.to },
+          _react3.default.createElement(
+            'div',
+            { className: 'card' },
+            this.showPriceBar(center.price),
+            _react3.default.createElement(
+              'div',
+              { className: 'card-image' },
+              center.img_url ? _react3.default.createElement('img', { src: center.img_url, alt: center.title }) : _react3.default.createElement('img', {
+                src: 'http://www.topangacreekoutpost.com/assets/images/site/image_not_available.png',
+                alt: center.title
+              })
+            ),
+            _react3.default.createElement(
+              'div',
+              { className: 'card-content black-text' },
+              _react3.default.createElement(
+                'div',
+                { className: 'row', style: { marginBottom: '0' } },
+                _react3.default.createElement(
+                  'div',
+                  { className: 'col s12' },
+                  _react3.default.createElement(
+                    'p',
+                    { className: 'bold' },
+                    center.title
+                  ),
+                  _react3.default.createElement(
+                    'p',
+                    { className: 'light__font' },
+                    _react3.default.createElement(
+                      'i',
+                      { className: 'material-icons f15' },
+                      'location_on'
+                    ),
+                    center.location
+                  )
+                )
+              )
+            ),
+            _react3.default.createElement(
+              'div',
+              { className: 'card-action' },
+              _react3.default.createElement(
+                'span',
+                { className: 'black-text right-align' },
+                'capacity of ',
+                center.capacity,
+                ' Guests'
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return CenterCard;
+}(_react2.Component));
+
+CenterCard.propTypes = {
+  center: _propTypes.PropTypes.object,
+  to: _propTypes.PropTypes.string
+};
+
+exports.default = CenterCard;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
+
+/***/ }),
 
 /***/ 27:
 /***/ (function(module, exports, __webpack_require__) {
@@ -4023,6 +4281,12 @@ var FETCH_EVENTS = exports.FETCH_EVENTS = 'FETCH_EVENTS';
  * To add a new event to the database and to the store.
  * * */
 var ADD_EVENT = exports.ADD_EVENT = 'ADD_EVENT';
+
+/**
+ * ADD_EVENT action constants.
+ * To add a new event to the database and to the store.
+ * * */
+var ADD_EVENT_FAILURE = exports.ADD_EVENT_FAILURE = 'ADD_EVENT_FAILURE';
 
 /**
  * EDIT_EVENT_REQUEST action constants.
@@ -4256,7 +4520,7 @@ var EditEventModal = _wrapComponent('EditEventModal')(function (_Component) {
       var _this2 = this;
 
       var file = e.target.files[0];
-      if (file.type.indexOf('image/') > -1) {
+      if (file && file.type.indexOf('image/') > -1) {
         // only image file
         if (file.size < 2000000) {
           var reader = new FileReader(); // instance of the FileReader
@@ -4686,6 +4950,8 @@ exports.default = function () {
   return ['Chairs', 'Security', 'Air Conditioner', 'Tables', 'Changing Room', 'Parking Space', 'Stage', 'Lighting', 'Power', 'Generator', 'Rest Room', 'Television', 'Swimming pool'];
 };
 
+var centerBackgrounds = exports.centerBackgrounds = ['https://www.propertypro.ng/blog/wp-content/uploads/2016/10/lekki-event-center-decorated2.jpg', 'https://d3el53au0d7w62.cloudfront.net/wp-content/uploads/2015/03/188388-640x427.jpg', 'https://1ycj2r3bavx920ilxq3m8nxc157p-wpengine.netdna-ssl.com/wp-content/uploads/2014/08/decor-more-Banner-980-x-450.jpg', 'http://www.landmarklagos.com/wp-content/uploads/2015/09/banner-3.jpg', 'https://aggieeventcenter.com/wp-content/uploads/2014/04/blue-room-lights.jpg', 'http://merryacres.com/wp-content/uploads/2014/01/slider7.jpg'];
+
 /***/ }),
 
 /***/ 308:
@@ -4749,7 +5015,6 @@ var createCenter = function createCenter(centerApi, centerData, imgUrl) {
     return _axios2.default.post(centerApi, centerData).then(function (_ref) {
       var data = _ref.data;
 
-      console.log('response from server =====> ', data);
       if (data.statusCode === 400) {
         Materialize.toast(data.message, 5000, 'red');
         return dispatch(addCenterPayload(data, 'failure'));
@@ -4772,7 +5037,6 @@ var createCenterRequest = exports.createCenterRequest = function createCenterReq
       return _axios2.default.post(_.CLOUDINARY_URL, formData).then(function (_ref2) {
         var data = _ref2.data;
 
-        console.log('response from cloud =====> ', data);
         dispatch(createCenter(centerApi, centerData, data.url));
       }).catch(function (err) {
         console.log(err);
@@ -4872,11 +5136,14 @@ function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
 }
 
-var prepareCenterSearchQuery = function prepareCenterSearchQuery(searchObject) {
-  var searchObjectString = _queryString2.default.stringify(searchObject, {
+var prepareCenterSearchQuery = function prepareCenterSearchQuery(searchVal) {
+  var searchObjectString = void 0,
+      searchApi = void 0,
+      api = '/api/v1/centers?';
+  searchObjectString = _queryString2.default.stringify(searchVal, {
     arrayFormat: 'bracket'
   });
-  searchApi = '/api/v1/centers?' + searchObjectString;
+  searchApi = '' + api + searchObjectString;
   return searchApi;
 };
 
@@ -4923,7 +5190,7 @@ var searchAction = exports.searchAction = function searchAction(data) {
 
 var filterCenterTitle = exports.filterCenterTitle = function filterCenterTitle(value) {
   return function (dispatch) {
-    var searchApi = validateCenterSearchQuery(value);
+    var searchApi = prepareCenterSearchQuery(value, 'title');
     return _axios2.default.get(searchApi).then(function (_ref3) {
       var data = _ref3.data;
 
@@ -4982,6 +5249,10 @@ var _setAuthenticationToken = __webpack_require__(123);
 
 var _setAuthenticationToken2 = _interopRequireDefault(_setAuthenticationToken);
 
+var _history = __webpack_require__(130);
+
+var _history2 = _interopRequireDefault(_history);
+
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
 }
@@ -5029,6 +5300,11 @@ var eventsDispatchAction = function eventsDispatchAction(type) {
         payload: data
       };
 
+    case 'failure':
+      return {
+        type: _.ADD_EVENT_FAILURE
+      };
+
     default:
       return data;
   }
@@ -5049,15 +5325,20 @@ var createEvent = function createEvent(eventData, imgUrl) {
     return _axios2.default.post(api, eventData).then(function (_ref) {
       var data = _ref.data;
 
-      dispatch(eventsDispatchAction('add', data.event));
-      Materialize.toast(data.message, 5000, 'teal');
-      location.reload();
+      if (data.statusCode === 400) {
+        Materialize.toast(data.message, 5000, 'red lighten-2');
+        dispatch(eventsDispatchAction('failure'));
+      } else {
+        dispatch(eventsDispatchAction('add', data.event));
+        Materialize.toast(data.message, 5000, 'teal lighten-2');
+        _history2.default.push('/my-events');
+      }
     }).catch(function (err) {
       console.log(err);
       dispatch({
         type: _.EDIT_EVENT_FAILURE
       });
-      Materialize.toast('An Error Occurred..!!!', 5000, 'red');
+      Materialize.toast('An Error Occurred..!!!', 5000, 'red lighten-2');
     });
   };
 };
@@ -5078,7 +5359,7 @@ var createEventRequest = exports.createEventRequest = function createEventReques
 
         dispatch(createEvent(eventData, data.url));
       }).catch(function (err) {
-        Materialize.toast('Error in connection', 5000, 'red');
+        Materialize.toast('Error in connection', 5000, 'red lighten-2');
         console.log(err);
       });
     }
@@ -5143,7 +5424,7 @@ var editEvent = function editEvent(eventData, imgUrl) {
       var data = _ref5.data;
 
       if (data.statusCode === 201) {
-        Materialize.toast(data.message, 5000, 'teal');
+        Materialize.toast(data.message, 5000, 'teal lighten-2');
         $('#add_event_modal').modal('close');
         $('.body__holdr').removeClass('blur__fits');
         return dispatch(eventsDispatchAction('edit', data.event));
@@ -5169,7 +5450,7 @@ var editEventAction = exports.editEventAction = function editEventAction(eventDa
 
         dispatch(editEvent(eventData, data.url));
       }).catch(function () {
-        Materialize.toast('Error in connection', 5000, 'red');
+        Materialize.toast('Error in connection', 5000, 'red lighten-2');
       });
     }
     return dispatch(editEvent(eventData, eventData.img_url));
@@ -5187,13 +5468,11 @@ var deleteEventRequest = exports.deleteEventRequest = function deleteEventReques
       var data = _ref7.data;
 
       if (data.statusCode === 200) {
-        Materialize.toast(data.message, 5000);
+        Materialize.toast(data.message, 5000, 'teal lighten-2');
         return dispatch(eventsDispatchAction('delete', data.event));
       }
-      Materialize.toast(data.message, 5000, 'red');
+      Materialize.toast(data.message, 5000, 'red lighten-2');
       return data;
-    }).catch(function (err) {
-      Materialize.toast(err.message, 5000, 'red');
     });
   };
 };
@@ -5234,12 +5513,12 @@ var handleStatusEventAction = exports.handleStatusEventAction = function handleS
         var data = _ref9.data;
 
         if (data.statusCode === 200) {
-          Materialize.toast(data.message, 5000, 'teal');
+          Materialize.toast(data.message, 5000, 'teal lighten-2');
           return dispatch({
             type: _.EVENT_STATUS_CHANGE
           });
         }
-        Materialize.toast(data.message, 5000, 'red');
+        Materialize.toast(data.message, 5000, 'red lighten-2');
       })
     );
   };
@@ -5280,6 +5559,10 @@ var _redux = __webpack_require__(22);
 var _reactRedux = __webpack_require__(21);
 
 var _reactRouterDom = __webpack_require__(25);
+
+var _queryString = __webpack_require__(310);
+
+var _queryString2 = _interopRequireDefault(_queryString);
 
 var _IconMenu = __webpack_require__(116);
 
@@ -5323,6 +5606,16 @@ var _accountCircle2 = _interopRequireDefault(_accountCircle);
 
 var _authActions = __webpack_require__(62);
 
+var _history = __webpack_require__(130);
+
+var _history2 = _interopRequireDefault(_history);
+
+var _facilities = __webpack_require__(307);
+
+var _searchFasterForm = __webpack_require__(1687);
+
+var _searchFasterForm2 = _interopRequireDefault(_searchFasterForm);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -5333,19 +5626,19 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var _components = {
   HeaderBanner: {
-    displayName: "HeaderBanner"
+    displayName: 'HeaderBanner'
   }
 };
 
 var _UsersGabrielmicahDesktopProjectsEventManagerNode_modulesReactTransformHmrLibIndexJs2 = (0, _index6.default)({
-  filename: "/Users/gabrielmicah/Desktop/projects/event-manager/client/src/components/bodyComponents/headNav/headbanner.jsx",
+  filename: '/Users/gabrielmicah/Desktop/projects/event-manager/client/src/components/bodyComponents/headNav/headbanner.jsx',
   components: _components,
   locals: [module],
   imports: [_react3.default]
 });
 
 var _UsersGabrielmicahDesktopProjectsEventManagerNode_modulesReactTransformCatchErrorsLibIndexJs2 = (0, _index4.default)({
-  filename: "/Users/gabrielmicah/Desktop/projects/event-manager/client/src/components/bodyComponents/headNav/headbanner.jsx",
+  filename: '/Users/gabrielmicah/Desktop/projects/event-manager/client/src/components/bodyComponents/headNav/headbanner.jsx',
   components: _components,
   locals: [],
   imports: [_react3.default, _index2.default]
@@ -5357,31 +5650,183 @@ function _wrapComponent(id) {
   };
 }
 
-var HeaderBanner = _wrapComponent("HeaderBanner")(function (_Component) {
+var searchStyle = {
+  main: {
+    backgroundColor: 'white',
+    borderRadius: '8px'
+  },
+  bold: {
+    fontWeight: 200
+  }
+};
+
+/**
+ * MyEventCardHolder Class Component
+ * */
+
+var HeaderBanner = _wrapComponent('HeaderBanner')(function (_Component) {
   _inherits(HeaderBanner, _Component);
 
+  /**
+   * Class contructor
+   * @param { object } props
+   * */
   function HeaderBanner(props) {
     _classCallCheck(this, HeaderBanner);
 
     var _this = _possibleConstructorReturn(this, (HeaderBanner.__proto__ || Object.getPrototypeOf(HeaderBanner)).call(this, props));
 
-    _this.handleToggle = function () {
-      return _this.setState({ open: !_this.state.open });
-    };
-
-    _this.handleClose = function () {
-      return _this.setState({ open: false });
-    };
-
     _this.state = {
-      value: 1,
       open: false
     };
+
+    _this.handleToggle = _this.handleToggle.bind(_this);
+    _this.handleClose = _this.handleClose.bind(_this);
+    _this.onSearch = _this.onSearch.bind(_this);
     return _this;
   }
 
+  /**
+   * onSearch Method
+   * @param { object } query
+   * @returns { void }
+   * */
+
+
   _createClass(HeaderBanner, [{
-    key: "renderSidenav",
+    key: 'onSearch',
+    value: function onSearch(query) {
+      var qString = _queryString2.default.stringify(query, { arrayFormat: 'bracket' });
+      _history2.default.push('/centers?' + qString);
+    }
+
+    /**
+     * handleClose method
+     * @returns { void }
+     * */
+
+  }, {
+    key: 'handleClose',
+    value: function handleClose() {
+      this.setState({ open: false });
+    }
+
+    /**
+     * handleToggle method
+     * @returns { void }
+     * */
+
+  }, {
+    key: 'handleToggle',
+    value: function handleToggle() {
+      this.setState({ open: !this.state.open });
+    }
+
+    /**
+     * showAuthenticationLinks method
+     * @returns { component }
+     * */
+
+  }, {
+    key: 'showAuthenticationLinks',
+    value: function showAuthenticationLinks() {
+      // Show Sign-in and Sign-up
+      // links only if user isn't signed in
+      if (!this.props.activeState.isAuthenticated) {
+        return _react3.default.createElement(
+          'span',
+          null,
+          _react3.default.createElement(
+            'li',
+            null,
+            _react3.default.createElement(
+              _reactRouterDom.Link,
+              { to: '/signin' },
+              'Sign In'
+            )
+          ),
+          _react3.default.createElement(
+            'li',
+            null,
+            _react3.default.createElement(
+              _reactRouterDom.Link,
+              { to: '/signup' },
+              'Sign Up'
+            )
+          )
+        );
+      }
+
+      return _react3.default.createElement(
+        _react3.default.Fragment,
+        null,
+        _react3.default.createElement(
+          _IconMenu2.default,
+          {
+            iconButtonElement: _react3.default.createElement(
+              _IconButton2.default,
+              null,
+              _react3.default.createElement(_accountCircle2.default, { color: 'white' })
+            ),
+            anchorOrigin: { horizontal: 'left', vertical: 'top' },
+            targetOrigin: { horizontal: 'left', vertical: 'top' }
+          },
+          _react3.default.createElement(_MenuItem2.default, {
+            primaryText: 'Hello ' + this.props.activeState.user.lastName
+          }),
+          _react3.default.createElement(_MenuItem2.default, {
+            primaryText: 'My Events',
+            containerElement: _react3.default.createElement(_reactRouterDom.Link, { to: '/my-events' })
+          }),
+          _react3.default.createElement(_Divider2.default, null),
+          _react3.default.createElement(_MenuItem2.default, {
+            primaryText: 'sign out',
+            containerElement: _react3.default.createElement(_reactRouterDom.Link, { to: '/signout' })
+          })
+        )
+      );
+    }
+
+    /**
+     * showModal method
+     * @returns { void }
+     * */
+
+  }, {
+    key: 'showModal',
+    value: function showModal() {
+      $('#search__modal').modal('open');
+    }
+
+    /**
+     * showModal method
+     * @returns { void }
+     * */
+
+  }, {
+    key: 'changeHeaderBackground',
+    value: function changeHeaderBackground() {
+      var i = 0;
+      var el = document.getElementsByClassName('header'); // el doesn't change
+      function toggle() {
+        el[0].style.backgroundImage = 'url(' + _facilities.centerBackgrounds[i] + ')'; // set the image
+        /* *
+          * wraps around centerBackgrounds
+          * length and update the counter,
+          * then reset when length is reached
+          * */
+        i = (i + 1) % _facilities.centerBackgrounds.length;
+      }
+      setInterval(toggle, 5000);
+    }
+
+    /**
+     * renderSidenav method
+     * @returns { component }
+     * */
+
+  }, {
+    key: 'renderSidenav',
     value: function renderSidenav() {
       var _this2 = this;
 
@@ -5403,166 +5848,96 @@ var HeaderBanner = _wrapComponent("HeaderBanner")(function (_Component) {
               return _this2.showModal();
             },
             leftIcon: _react3.default.createElement(_search2.default, null),
-            primaryText: "Search"
+            primaryText: 'Search'
           }),
           _react3.default.createElement(_MenuItem2.default, {
-            primaryText: "Hello " + (this.props.activeState.user.lastName || "Guest")
+            primaryText: 'Hello ' + (this.props.activeState.user.lastName || 'Guest')
           }),
           _react3.default.createElement(_MenuItem2.default, {
-            primaryText: "My Events",
-            containerElement: _react3.default.createElement(_reactRouterDom.Link, { to: "/my-events" })
+            primaryText: 'My Events',
+            containerElement: _react3.default.createElement(_reactRouterDom.Link, { to: '/my-events' })
           }),
           _react3.default.createElement(_Divider2.default, null),
           !this.props.activeState.isAuthenticated ? this.showAuthenticationLinks() : _react3.default.createElement(_MenuItem2.default, {
-            primaryText: "sign out",
-            containerElement: _react3.default.createElement(_reactRouterDom.Link, { to: "/signout" })
+            primaryText: 'sign out',
+            containerElement: _react3.default.createElement(_reactRouterDom.Link, { to: '/signout' })
           })
         ),
         _react3.default.createElement(_FlatButton2.default, {
-          className: "right hide-on-med-and-up",
-          style: { margin: "10px", color: "#FFFFFF" },
+          className: 'right hide-on-med-and-up',
+          style: { margin: '10px', color: '#FFFFFF' },
           onClick: this.handleToggle,
           icon: _react3.default.createElement(_menu2.default, null)
         })
       );
     }
-  }, {
-    key: "showAuthenticationLinks",
-    value: function showAuthenticationLinks() {
-      // Show Sign-in and Sign-up
-      // links only if user isn't signed in
-      if (!this.props.activeState.isAuthenticated) {
-        return _react3.default.createElement(
-          "span",
-          null,
-          _react3.default.createElement(
-            "li",
-            null,
-            _react3.default.createElement(
-              _reactRouterDom.Link,
-              { to: "/signin" },
-              "Sign In"
-            )
-          ),
-          _react3.default.createElement(
-            "li",
-            null,
-            _react3.default.createElement(
-              _reactRouterDom.Link,
-              { to: "/signup" },
-              "Sign Up"
-            )
-          )
-        );
-      }
 
-      return _react3.default.createElement(
-        _react3.default.Fragment,
-        null,
-        _react3.default.createElement(
-          _IconMenu2.default,
-          {
-            iconButtonElement: _react3.default.createElement(
-              _IconButton2.default,
-              null,
-              _react3.default.createElement(_accountCircle2.default, { color: "white" })
-            ),
-            anchorOrigin: { horizontal: "left", vertical: "top" },
-            targetOrigin: { horizontal: "left", vertical: "top" }
-          },
-          _react3.default.createElement(_MenuItem2.default, {
-            primaryText: "Hello " + this.props.activeState.user.lastName
-          }),
-          _react3.default.createElement(_MenuItem2.default, {
-            primaryText: "My Events",
-            containerElement: _react3.default.createElement(_reactRouterDom.Link, { to: "/my-events" })
-          }),
-          _react3.default.createElement(_Divider2.default, null),
-          _react3.default.createElement(_MenuItem2.default, {
-            primaryText: "sign out",
-            containerElement: _react3.default.createElement(_reactRouterDom.Link, { to: "/signout" })
-          })
-        )
-      );
-    }
+    /**
+     * render method
+     * @returns { component }
+     * @memberOf MyEventCardHolder
+     * */
+
   }, {
-    key: "showModal",
-    value: function showModal() {
-      $("#search__modal").modal("open");
-    }
-  }, {
-    key: "showSignUpActionButton",
-    value: function showSignUpActionButton() {
-      if (!this.props.activeState.isAuthenticated) {
-        return _react3.default.createElement(
-          _reactRouterDom.Link,
-          {
-            to: "/signup",
-            className: "btn blue lighten-2 waves-effect animated fadeInLeft"
-          },
-          "Join Boots Events Manager"
-        );
-      }
-    }
-  }, {
-    key: "render",
+    key: 'render',
     value: function render() {
       var _this3 = this;
 
+      this.changeHeaderBackground();
       return _react3.default.createElement(
-        "div",
-        { className: "header" },
+        'div',
+        { className: 'header' },
         _react3.default.createElement(
-          "div",
-          { className: "header__overlay" },
+          'div',
+          { className: 'header__overlay' },
           _react3.default.createElement(
-            "div",
-            { className: "container" },
+            'div',
+            { className: 'container' },
             _react3.default.createElement(
-              "nav",
-              { className: "wow fadeInDown" },
+              'nav',
+              { className: 'wow fadeInDown' },
               _react3.default.createElement(
-                "div",
-                { className: "nav-wrapper" },
+                'div',
+                { className: 'nav-wrapper' },
                 _react3.default.createElement(
                   _reactRouterDom.Link,
-                  { to: "/", className: "brand-logo logo" },
+                  { to: '/', className: 'brand-logo logo' },
                   _react3.default.createElement(
-                    "p",
+                    'p',
                     null,
-                    "Boots EM"
+                    'Boots EM'
                   )
                 ),
                 this.renderSidenav(),
                 _react3.default.createElement(
-                  "ul",
-                  { id: "nav-mobile", className: "right hide-on-med-and-down" },
+                  'ul',
+                  { id: 'nav-mobile', className: 'right hide-on-med-and-down' },
                   _react3.default.createElement(
-                    "li",
+                    'li',
                     null,
                     _react3.default.createElement(
-                      "a",
+                      'a',
                       {
                         onClick: function onClick() {
                           return _this3.showModal();
                         },
-                        className: "modal-trigger",
-                        id: "search__view"
+                        className: 'modal-trigger',
+                        id: 'search__view'
                       },
                       _react3.default.createElement(
-                        "i",
-                        { className: "material-icons" },
-                        "search"
+                        'i',
+                        { className: 'material-icons' },
+                        'search'
                       )
                     )
                   ),
                   _react3.default.createElement(
-                    "li",
+                    'li',
                     null,
                     _react3.default.createElement(
                       _reactRouterDom.Link,
-                      { to: "/centers" },
-                      "List of centers"
+                      { to: '/centers' },
+                      'List of centers'
                     )
                   ),
                   this.showAuthenticationLinks()
@@ -5570,19 +5945,35 @@ var HeaderBanner = _wrapComponent("HeaderBanner")(function (_Component) {
               )
             ),
             _react3.default.createElement(
-              "div",
-              { className: "center-align header__detail" },
+              'div',
+              { className: 'center-align header__detail' },
               _react3.default.createElement(
-                "h4",
-                { className: "wow fadeInLeft" },
-                "Worlds Leading Startup events"
+                'h4',
+                { className: 'wow fadeInLeft' },
+                'World\'s Leading Events Centers'
               ),
               _react3.default.createElement(
-                "p",
-                { className: "wow fadeInLeft" },
-                "Attend Events around you and Add Events."
+                'p',
+                { className: 'wow fadeInLeft' },
+                'Book Events Centers In Your Area'
               ),
-              this.showSignUpActionButton()
+              _react3.default.createElement(
+                'div',
+                {
+                  className: 'row center-align search-faster-form full-width',
+                  style: searchStyle.main
+                },
+                _react3.default.createElement(
+                  'div',
+                  { className: 'col s12' },
+                  _react3.default.createElement(
+                    'h4',
+                    { className: 'center-align gradient_text', style: searchStyle.bold },
+                    'Find and Book Event Centers'
+                  )
+                ),
+                _react3.default.createElement(_searchFasterForm2.default, { onSearch: this.onSearch })
+              )
             )
           )
         )
@@ -5638,25 +6029,41 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _reactRedux = __webpack_require__(21);
 
-var _redux = __webpack_require__(22);
+var _reactRouterDom = __webpack_require__(25);
 
-var _propTypes = __webpack_require__(3);
+var _redux = __webpack_require__(22);
 
 var _shortid = __webpack_require__(35);
 
 var _shortid2 = _interopRequireDefault(_shortid);
 
+var _propTypes = __webpack_require__(3);
+
 var _isEmpty = __webpack_require__(44);
 
 var _isEmpty2 = _interopRequireDefault(_isEmpty);
 
+var _queryString = __webpack_require__(310);
+
+var _queryString2 = _interopRequireDefault(_queryString);
+
+var _fetchCenterAction = __webpack_require__(311);
+
+var _centerCard = __webpack_require__(1808);
+
+var _centerCard2 = _interopRequireDefault(_centerCard);
+
+var _searchAction = __webpack_require__(309);
+
 var _loader = __webpack_require__(92);
 
-var _eventCard = __webpack_require__(125);
+var _helpers = __webpack_require__(131);
 
-var _eventCard2 = _interopRequireDefault(_eventCard);
+var _helpers2 = _interopRequireDefault(_helpers);
 
-var _eventsActions = __webpack_require__(52);
+var _history = __webpack_require__(130);
+
+var _history2 = _interopRequireDefault(_history);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5667,8 +6074,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var _components = {
-  IndexEventCardHolder: {
-    displayName: 'IndexEventCardHolder'
+  IndexCenterCardHolder: {
+    displayName: 'IndexCenterCardHolder'
   }
 };
 
@@ -5695,23 +6102,23 @@ function _wrapComponent(id) {
 /**
    * IndexEventCardHolder Class Component
    * */
-var IndexEventCardHolder = _wrapComponent('IndexEventCardHolder')(function (_Component) {
-  _inherits(IndexEventCardHolder, _Component);
+var IndexCenterCardHolder = _wrapComponent('IndexCenterCardHolder')(function (_Component) {
+  _inherits(IndexCenterCardHolder, _Component);
 
   /**
-   * Class contructor
-   * @param { object } props
-   * */
-  function IndexEventCardHolder(props) {
-    _classCallCheck(this, IndexEventCardHolder);
+     * Class contructor
+     * @param { object } props
+     * */
+  function IndexCenterCardHolder(props) {
+    _classCallCheck(this, IndexCenterCardHolder);
 
-    var _this = _possibleConstructorReturn(this, (IndexEventCardHolder.__proto__ || Object.getPrototypeOf(IndexEventCardHolder)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (IndexCenterCardHolder.__proto__ || Object.getPrototypeOf(IndexCenterCardHolder)).call(this, props));
 
+    _this.helper = new _helpers2.default();
     _this.state = {
       isLoading: true,
       loadmore: null,
-      loadingmore: null,
-      events: []
+      loadingmore: null
     };
     return _this;
   }
@@ -5722,15 +6129,15 @@ var IndexEventCardHolder = _wrapComponent('IndexEventCardHolder')(function (_Com
    * */
 
 
-  _createClass(IndexEventCardHolder, [{
+  _createClass(IndexCenterCardHolder, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
       $('.modal').modal();
-      this.props.fetchEventRequest();
+      this.props.fetchCentersAction();
     }
 
     /**
-     * componentWillReceiveProps method
+     * componentWillReceiveProps Method
      * @param { object } newProps
      * @returns { void }
      * */
@@ -5738,37 +6145,58 @@ var IndexEventCardHolder = _wrapComponent('IndexEventCardHolder')(function (_Com
   }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(newProps) {
-      var _newProps$allEvents = newProps.allEvents,
-          events = _newProps$allEvents.events,
-          page = _newProps$allEvents.page,
-          pageCount = _newProps$allEvents.pageCount,
-          pageSize = _newProps$allEvents.pageSize,
-          totalCount = _newProps$allEvents.totalCount,
-          loadingmore = _newProps$allEvents.loadingmore,
-          loadmore = _newProps$allEvents.loadmore;
+      var _newProps$centerStore = newProps.centerStore.meta,
+          page = _newProps$centerStore.page,
+          pageCount = _newProps$centerStore.pageCount,
+          pageSize = _newProps$centerStore.pageSize,
+          totalCount = _newProps$centerStore.totalCount,
+          _newProps$centerStore2 = newProps.centerStore,
+          loadingmore = _newProps$centerStore2.loadingmore,
+          loadmore = _newProps$centerStore2.loadmore;
 
 
-      this.setState({
-        isLoading: false,
-        events: events,
-        page: page,
-        pageSize: pageSize,
-        totalCount: totalCount,
-        loadmore: loadmore,
-        loadingmore: loadingmore,
-        pageCount: pageCount
+      if (newProps) {
+        this.setState({
+          isLoading: false,
+          page: page,
+          pageSize: pageSize,
+          totalCount: totalCount,
+          loadmore: loadmore,
+          loadingmore: loadingmore,
+          pageCount: pageCount
+        });
+      }
+    }
+
+    /**
+     * showCentersCard Method
+     * @returns { Component }
+     * */
+
+  }, {
+    key: 'showCentersCard',
+    value: function showCentersCard() {
+      var _this2 = this;
+
+      var centers = this.props.centerStore.centers;
+
+      return centers.sort(function (firstObj, secObj) {
+        return secObj.id - firstObj.id;
+      }).map(function (center) {
+        var to = 'center/' + center.id + '/' + _this2.helper.sanitizeString(center.title);
+        return _react3.default.createElement(_centerCard2.default, { to: to, center: center, key: _shortid2.default.generate() });
       });
     }
 
     /**
-     * initInfiniteScroll method
+     * initInfiniteScroll Method
      * @returns { void }
      * */
 
   }, {
     key: 'initInfiniteScroll',
     value: function initInfiniteScroll() {
-      var _this2 = this;
+      var _this3 = this;
 
       var winHeight = void 0,
           winScrollTop = void 0,
@@ -5780,19 +6208,19 @@ var IndexEventCardHolder = _wrapComponent('IndexEventCardHolder')(function (_Com
         docHeight = $(document).height();
 
         if (docHeight - winHeight === winScrollTop) {
-          /* *
+          /**
            * make loadmore request
-           * */
-          offset = _this2.state.page + 1;
-          if (_this2.state.loadmore) {
-            _this2.props.loadMoreEvents(offset);
+           * * */
+          offset = _this3.state.page + 1;
+          if (_this3.state.loadmore) {
+            _this3.props.loadMoreCenters(offset);
           }
         }
       });
     }
 
     /**
-     * autoLoadMore method
+     * autoLoadMore Method
      * @returns { void }
      * */
 
@@ -5805,7 +6233,7 @@ var IndexEventCardHolder = _wrapComponent('IndexEventCardHolder')(function (_Com
     }
 
     /**
-     * loadMore method
+     * loadMore Method
      * @returns { void }
      * */
 
@@ -5814,44 +6242,66 @@ var IndexEventCardHolder = _wrapComponent('IndexEventCardHolder')(function (_Com
     value: function loadMore() {
       /**
        * make loadmore request
-       * */
+       * * */
       var offset = this.state.page + 1;
-      this.props.loadMoreEvents(offset);
+      this.props.loadMoreCenters(offset);
     }
 
     /**
-     * renderEventsCard method
-     * @returns { void }
+     * showLoadMoreButton Method
+     * @returns { Component }
      * */
 
   }, {
-    key: 'renderEventsCard',
-    value: function renderEventsCard() {
-      var events = this.state.events;
+    key: 'showLoadMoreButton',
+    value: function showLoadMoreButton() {
+      var _this4 = this;
 
-      return events.map(function (event, index) {
-        return _react3.default.createElement(_eventCard2.default, { key: _shortid2.default.generate(), event: event });
-      });
+      var _state = this.state,
+          isLoading = _state.isLoading,
+          loadingmore = _state.loadingmore,
+          pageCount = _state.pageCount,
+          pageSize = _state.pageSize,
+          totalCount = _state.totalCount;
+
+
+      if (!isLoading && pageCount >= 1) {
+        if (loadingmore) {
+          return _react3.default.createElement(_loader.CircularLoader, null);
+        }
+        if (pageSize !== totalCount) {
+          return _react3.default.createElement(
+            'button',
+            {
+              onClick: function onClick() {
+                return _this4.loadMore();
+              },
+              className: 'col offset-s3 s6 btn waves-effect gradient__bg'
+            },
+            'load more'
+          );
+        }
+      }
     }
 
     /**
-     * renderNoEvent method
-     * @returns { void }
+     * renderNoCenter Method
+     * @returns { Component }
      * */
 
   }, {
-    key: 'renderNoEvent',
-    value: function renderNoEvent() {
-      var events = this.state.events;
+    key: 'renderNoCenter',
+    value: function renderNoCenter() {
+      var centers = this.props.centerStore.centers;
 
-      if ((0, _isEmpty2.default)(events)) {
+      if ((0, _isEmpty2.default)(centers)) {
         return _react3.default.createElement(
           'h4',
           { className: 'bold grey-text lighten-2 center-align' },
           _react3.default.createElement(
             'p',
             null,
-            'No Event Available..'
+            'No centers Available....'
           )
         );
       }
@@ -5865,15 +6315,8 @@ var IndexEventCardHolder = _wrapComponent('IndexEventCardHolder')(function (_Com
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
-
       this.autoLoadMore();
-      var _state = this.state,
-          isLoading = _state.isLoading,
-          loadingmore = _state.loadingmore,
-          pageCount = _state.pageCount,
-          pageSize = _state.pageSize,
-          totalCount = _state.totalCount;
+      var isLoading = this.state.isLoading;
 
       return _react3.default.createElement(
         'div',
@@ -5891,36 +6334,36 @@ var IndexEventCardHolder = _wrapComponent('IndexEventCardHolder')(function (_Com
             _react3.default.createElement(
               'div',
               { className: 'col s12 cards-container' },
-              this.renderEventsCard()
+              this.showCentersCard()
             ),
-            this.renderNoEvent(),
-            pageCount > 1 ? loadingmore ? _react3.default.createElement(_loader.CircularLoader, null) : pageSize !== totalCount ? _react3.default.createElement(
-              'button',
-              { onClick: function onClick() {
-                  return _this3.loadMore();
-                }, className: 'col offset-s3 s6 btn waves-effect gradient__bg' },
-              ' load more '
-            ) : '' : ''
+            isLoading ? '' : this.renderNoCenter(),
+            this.showLoadMoreButton()
           )
         )
       );
     }
   }]);
 
-  return IndexEventCardHolder;
+  return IndexCenterCardHolder;
 }(_react2.Component));
 
+IndexCenterCardHolder.propTypes = {
+  fetchCentersAction: _propTypes.PropTypes.func.isRequired,
+  centerStore: _propTypes.PropTypes.object.isRequired,
+  loadMoreCenters: _propTypes.PropTypes.func.isRequired
+};
+
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return (0, _redux.bindActionCreators)({ fetchEventRequest: _eventsActions.fetchEventRequest, loadMoreEvents: _eventsActions.loadMoreEvents }, dispatch);
+  return (0, _redux.bindActionCreators)({ fetchCentersAction: _fetchCenterAction.fetchCentersAction, loadMoreCenters: _fetchCenterAction.loadMoreCenters, searchAction: _searchAction.searchAction }, dispatch);
 };
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    allEvents: state.eventReducer
+    centerStore: state.centerReducer
   };
 };
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(IndexEventCardHolder);
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(IndexCenterCardHolder);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ })
