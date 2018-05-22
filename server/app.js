@@ -19,6 +19,8 @@ dotenv.config();
 
 // Set up the express app
 const app = express();
+const port = process.env.PORT || 8000;
+
 let compiler = webpack(config);
 
 // Init API Route string
@@ -59,12 +61,6 @@ app.use((req, res) => res.status(404).send({
   error: '404: Sorry Route Not Found!'
 }));
 
-const port = parseInt(process.env.PORT, 10) || 8000;
-app.set('port', port);
-
-app.listen(port, (err) => {
-  if (err) console.log(err);
-  console.log(`server listening on port ${port}`);
-});
+app.listen(port, () => console.log(`App listening on port ${port}`));
 
 export default app;

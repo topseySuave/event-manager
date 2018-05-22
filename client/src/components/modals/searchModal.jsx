@@ -6,6 +6,7 @@ import shortid from 'shortid';
 import isEmpty from 'lodash/isEmpty';
 import PropTypes from 'prop-types';
 import EventCard from '../bodyComponents/eventsCard/eventCard';
+import CenterCard from '../centerComponent/centerCard/centerCard';
 import Helpers from '../../helpers';
 import {
   filterCenterTitle,
@@ -31,6 +32,18 @@ class SearchModal extends Component {
   }
 
   /**
+   * componentDidMount method
+   * @returns { void }
+   * */
+  componentDidMount() {
+    let search__back_btn = $('.search__back_btn');
+    $('.search__back_btn').on('click', () => {
+      $('#search__modal').modal('close');
+      $('.modal-overlay').css({ display: 'none' });
+    });
+  }
+
+  /**
    * componentWillReceiveProps Life cycle Method
    * @param { object } newProps
    * @return { object }
@@ -52,6 +65,7 @@ class SearchModal extends Component {
    * @return { void }
    * */
   handleSearchInput(e) {
+    e.preventDefault();
     let titleString = { search: e.target.value };
     this.props.filterCenterTitle(titleString);
     this.props.filterEventTitle(titleString);
@@ -81,22 +95,7 @@ class SearchModal extends Component {
       return centers.map((center) => {
         let to = `/center/${center.id}/${this.helper.sanitizeString(center.title)}`;
         return (
-          <Link key={shortid.generate()} to={to} href={to}>
-            <div className="card">
-              {!!center.img_url && (
-                <div className="card-image">
-                  <img src={center.img_url} alt={center.title} />
-                </div>
-              )}
-              <div className="card-content black-text">
-                <p className="f__size">{center.title}</p>
-                <p>
-                  <i className="material-icons f15">location_on</i>
-                  {center.location}
-                </p>
-              </div>
-            </div>
-          </Link>
+          <CenterCard to={to} center={center} key={shortid.generate()} />
         );
       });
     }

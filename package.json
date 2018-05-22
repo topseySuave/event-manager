@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "description": "An Event Manager application to create and manage your own event.",
   "main": "./server/app.js",
+  "engines": {
+    "node": "9.11.1",
+    "npm": "5.6.0"
+    },
   "scripts": {
     "build": "npm run clean && npm run build:server && npm run build:client",
     "clean": "rm -rf build && mkdir build",
     "babel-node": "babel-node --preset=es2015",
-    "start": "npm run build:server && npm run build:client && node -- ./build/app.js",
+    "start": "npm run clean && npm run build:server && node -- ./build/app.js",
     "start:dev": "nodemon --exec babel-node -- ./server/app.js",
     "build:client": "webpack --config webpack.prod.js",
     "build:server": "babel -d ./build --copy-files ./server -s",
@@ -27,7 +31,7 @@
     "seed": "sequelize db:seed",
     "drop:test": "sequelize db:migrate:undo:all",
     "migrate:test": "sequelize db:migrate --env test",
-    "create:test": "sequelize db:create boots_test"
+    "create:test": "sequelize db:create boots_test --env test"
   },
   "nyc": {
     "exclude": [

@@ -1,22 +1,23 @@
 /* eslint-disable */
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import DatePicker from 'material-ui/DatePicker';
-import Toggle from 'material-ui/Toggle';
+import Dialog from "material-ui/Dialog";
+import FlatButton from "material-ui/FlatButton";
+import RaisedButton from "material-ui/RaisedButton";
+import DatePicker from "material-ui/DatePicker";
+import Toggle from "material-ui/Toggle";
 
-import { createEventRequest } from '../../actions/events-actions';
-import InputForm from '../../components/form/formInput';
-import { validateEventInput } from './validateInput';
-import { ADD_EVENT } from '../../actions';
+import { createEventRequest } from "../../actions/events-actions";
+import InputForm from "../../components/form/formInput";
+import { validateEventInput } from "./validateInput";
+import { ADD_EVENT } from "../../actions";
+import history from '../../util/history';
 
 const styles = {
   labelStyle: {
-    color: 'green'
+    color: "green"
   }
 };
 
@@ -51,9 +52,12 @@ class EventModal extends Component {
     this.handleChangeStartDate = this.handleChangeStartDate.bind(this);
     this.handleChangeEndDate = this.handleChangeEndDate.bind(this);
     this.handleToggleChange = this.handleToggleChange.bind(this);
+    this.handleOpen = this.handleOpen.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
   updateProps(newProps) {
+    if (newProps.bookedCenter) this.setState({ isLoading: false });
     if (newProps.editEvent) {
       let {
         title,
@@ -86,6 +90,8 @@ class EventModal extends Component {
 
   componentWillReceiveProps(newProps) {
     if (newProps.event) this.setState({ isLoading: newProps.event.isLoading });
+    if (newProps.bookedCenter) this.setState({ isLoading: false });
+    if (newProps.event.eventCreated) history.push('/my-events');
   }
 
   isValid() {
@@ -96,7 +102,7 @@ class EventModal extends Component {
     return isValid;
   }
 
-  handleChangeStartDate = (e, date) => {
+  handleChangeStartDate(e, date) {
     if (new Date(date) < new Date()) {
       Materialize.toast(
         "Date isn't correct. Should be a day after today not before",
@@ -113,7 +119,7 @@ class EventModal extends Component {
     }
   };
 
-  handleChangeEndDate = (e, date) => {
+  handleChangeEndDate(e, date) {
     if (new Date(date) < new Date()) {
       Materialize.toast(
         "Date isn't correct. Should be a day after today not before",
@@ -130,11 +136,11 @@ class EventModal extends Component {
     }
   };
 
-  handleOpen = () => {
+  handleOpen() {
     this.setState({ open: true });
   };
 
-  handleClose = () => {
+  handleClose() {
     this.setState({ open: false });
   };
 
@@ -157,7 +163,7 @@ class EventModal extends Component {
 
   onFileChange(e) {
     let file = e.target.files[0];
-    if (file.type.indexOf("image/") > -1) {
+    if (file && file.type.indexOf("image/") > -1) {
       // only image file
       if (file.size < 2000000) {
         this.setState({
@@ -334,7 +340,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
-    { createEventRequest: createEventRequest },
+    { createEventRequest },
     dispatch
   );
 };

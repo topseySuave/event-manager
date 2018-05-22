@@ -56,10 +56,10 @@ export default (state = {}, action = {}) => {
 
     case SEARCH_CENTER_TITLE:
       newState = Object.assign({}, state);
-      if (!isEmpty(action.payload)) {
+      if (!isEmpty(action.payload.centers)) {
         newState = action.payload;
       } else {
-        newState.centers = state.centers;
+        return state;
       }
       return newState;
 

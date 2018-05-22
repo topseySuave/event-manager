@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Nav from './bodyComponents/headNav/nav';
 import HeaderBanner from './bodyComponents/headNav/headbanner';
-import IndexEventCardHolder from './bodyComponents/indexEventsCard';
+import IndexCenterCardHolder from './bodyComponents/indexEventsCard';
 import CallToAction from './bodyComponents/footer/callToAction';
 import FloatingActionButton from './bodyComponents/floatingActionButton/FloatingActionButton';
 import Footer from './bodyComponents/footer/footer';
@@ -20,7 +20,7 @@ class HomePage extends Component {
         <div className="body__holdr">
           <Nav />
           <HeaderBanner />
-          <IndexEventCardHolder />
+          <IndexCenterCardHolder />
           <CallToAction />
           <FloatingActionButton />
           <Footer />

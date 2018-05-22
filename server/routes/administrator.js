@@ -9,6 +9,20 @@ const router = express.Router();
 const userController = new Users();
 const eventsController = new Events();
 
+const renderAllUsers = (req, res) => {
+  if (req.query.token) {
+    let token = jwtDecode(req.query.token);
+    if (token.role) {
+      return res.status(200).sendFile(path.join(__dirname, '../..', 'client/public/admin-users.html'));
+    }
+  }
+
+  return res.status(401).send({
+    message: 'Unauthorized access',
+    error: true
+  });
+};
+
 router.get('/', (req, res) => {
   res.status(200).sendFile(path.join(__dirname, '../..', 'client/public/admin.html'));
 })
@@ -16,20 +30,11 @@ router.get('/', (req, res) => {
     res.status(200).sendFile(path.join(__dirname, '../..', 'client/public/pending.html'));
   })
   .get('/users', (req, res) => {
-    if (req.query.token) {
-      let token = jwtDecode(req.query.token);
-      if (token.role) {
-        return res.status(200).sendFile(path.join(__dirname, '../..', 'client/public/admin-users.html'));
-      }
-    }
-
-    return res.status(401).send({
-      message: 'Unauthorized access',
-      error: true
-    });
+    renderAllUsers(req, res);
   })
   .get('/pending-events/all', eventsController.getEvents)
   .get('/users/all', userController.allUsers)
+  .post('/assign', userController.assignAdmin)
   .post('/users', userController.removeUsers);
 
 module.exports = router;

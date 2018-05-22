@@ -39,7 +39,6 @@ const createCenter = (centerApi, centerData, imgUrl) => (dispatch) => {
   dispatch(addCenterPayload(centerData, 'request'));
   return axios.post(centerApi, centerData)
     .then(({ data }) => {
-      console.log('response from server =====> ', data);
       if (data.statusCode === 400) {
         Materialize.toast(data.message, 5000, 'red');
         return dispatch(addCenterPayload(data, 'failure'));
@@ -59,7 +58,6 @@ export const createCenterRequest = centerData => (dispatch) => {
     setAuthorizationToken(false);
     return axios.post(CLOUDINARY_URL, formData)
       .then(({ data }) => {
-        console.log('response from cloud =====> ', data);
         dispatch(createCenter(centerApi, centerData, data.url));
       })
       .catch((err) => {

@@ -23,6 +23,10 @@ import EventModal from '../../modals/EventModal';
 import EditCenterForm from '../../modals/centerModalForms/editCenterForm';
 import { fetchCenterRelatedTo } from '../../../actions/center-actions/fetchCenterRelatedTo';
 import { handleStatusEventAction } from '../../../actions/events-actions';
+import Helpers from '../../../helpers/';
+import { imageNotAvailable } from '../../../util/facilities';
+
+const helpers = new Helpers();
 
 /**
  * CenterDetail Class Component
@@ -74,9 +78,7 @@ class CenterDetail extends Component {
    * */
   componentWillReceiveProps(newProps) {
     let centerDetails = newProps.activeCenterDetail;
-    if (centerDetails.eventStatusChange) {
-      location.reload();
-    }
+    if (centerDetails.eventStatusChange) location.reload();
 
     if (this.props.params.id !== newProps.params.id) {
       newProps.fetchCenterAction(newProps.params.id);
@@ -294,7 +296,14 @@ class CenterDetail extends Component {
                       <div className="slider__holdr">
                         <div className="carousel carousel-slider">
                           <a className="carousel-item" href="#one">
-                            <img src={img_url} alt={title} />
+                            {img_url ? (
+                              <img src={img_url} alt={title} />
+                            ) : (
+                              <img
+                                src={imageNotAvailable}
+                                alt={title}
+                              />
+                            )}
                           </a>
                         </div>
                       </div>
@@ -324,7 +333,10 @@ class CenterDetail extends Component {
                               </div>
                               <div className="col s8">
                                 <p>
-                                  <span>₦{price}</span> per event
+                                  <span>
+                                    ₦{helpers.numberWithCommas(price)}
+                                  </span>{' '}
+                                  per event
                                 </p>
                               </div>
                             </div>
