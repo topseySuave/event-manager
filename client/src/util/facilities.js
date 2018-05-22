@@ -22,3 +22,5 @@ export const centerBackgrounds = [
   'https://aggieeventcenter.com/wp-content/uploads/2014/04/blue-room-lights.jpg',
   'http://merryacres.com/wp-content/uploads/2014/01/slider7.jpg',
 ];
+
+export const imageNotAvailable = 'http://www.topangacreekoutpost.com/assets/images/site/image_not_available.png';

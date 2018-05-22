@@ -23,6 +23,7 @@ import {
 } from '../../../actions/events-actions';
 import EditEventModal from '../../modals/eventModalForm/editEventModal';
 import { REMOVE_EVENT } from '../../../actions';
+import { imageNotAvailable } from '../../../util/facilities';
 
 /**
    * EventCard Class Component
@@ -235,7 +236,7 @@ class EventCard extends Component {
               <img src={img_url} alt={title} />
             ) : (
               <img
-                src="http://www.topangacreekoutpost.com/assets/images/site/image_not_available.png"
+                src={imageNotAvailable}
                 alt={title}
               />
             )}
