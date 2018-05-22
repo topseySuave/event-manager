@@ -53,15 +53,15 @@ export default (state = {}, action = {}) => {
 
     case EDIT_EVENT:
       newState = Object.assign({}, state);
-      newState.events.map((event, index) => {
+      newState.sessEvents.events.map((event, index) => {
         if (event.id === action.payload.id) {
-          newState.events[index] = action.payload;
+          newState.sessEvents.events[index] = action.payload;
         }
       });
       newState.isLoading = false;
-      newState.totalCount = newState.events.length;
-      newState.pageSize = newState.totalCount;
-      newState.pageCount = Math.ceil(newState.totalCount / pageLimit);
+      newState.sessEvents.totalCount = newState.sessEvents.events.length;
+      newState.sessEvents.pageSize = newState.sessEvents.totalCount;
+      newState.sessEvents.pageCount = Math.ceil(newState.sessEvents.totalCount / pageLimit);
       return newState;
 
     case EDIT_EVENT_FAILURE:
