@@ -7,7 +7,14 @@ import isEmpty from 'lodash/isEmpty';
 import { CircularLoader } from '../../loader';
 import Helpers from '../../../helpers';
 
+/**
+ * RecommCenter Class Component
+ * */
 class RecommCenter extends Component {
+  /**
+   * RecommCenter Class Constructor
+   * @param { object } props
+   * */
   constructor(props) {
     super(props);
     this.helper = new Helpers();
@@ -21,28 +28,46 @@ class RecommCenter extends Component {
     };
   }
 
-  fetchCenter(relatedCenters){
-    this.props.fetchCenterRelatedTo(relatedCenters)
-      .then(({ data }) => {
-          this.setState({ isLoading: false, relatedCenters: data.centers });
-      })
-      .catch(() => {
-          this.setState({ isLoading: false, error: true, errorMessage: this.state.noCenter });
-      });
-  }
-
-  componentWillMount(){
+  /**
+   * componentWillMount Method
+   * @return { void }
+   * */
+  componentWillMount() {
     this.fetchCenter(this.props.relatedCenterBasedOn);
   }
 
-  componentWillReceiveProps(newProps){
+  /**
+   * componentWillReceiveProps Method
+   * @param { object } newProps
+   * @return { void }
+   * */
+  componentWillReceiveProps(newProps) {
     this.fetchCenter(newProps.relatedCenterBasedOn);
   }
 
+  /**
+   * fetchCenter Method
+   * @param { object } relatedCenters
+   * @return { void }
+   * */
+  fetchCenter(relatedCenters) {
+    this.props.fetchCenterRelatedTo(relatedCenters)
+      .then(({ data }) => {
+        this.setState({ isLoading: false, relatedCenters: data.centers });
+      })
+      .catch(() => {
+        this.setState({ isLoading: false, error: true, errorMessage: this.state.noCenter });
+      });
+  }
+
+  /**
+   * sortAndShowRecommended Method
+   * @return { component }
+   * */
   sortAndShowRecommended() {
     if (!isEmpty(this.state.relatedCenters)) {
       return this.state.relatedCenters.map((center, index) => {
-      const to = `/center/${center.id}/${this.helper.sanitizeString(center.title)}`;
+        const to = `/center/${center.id}/${this.helper.sanitizeString(center.title)}`;
         return (
           <div key={shortid.generate()} className="col s12 m6 l4">
             <Link to={to} href={to}>
@@ -69,6 +94,10 @@ class RecommCenter extends Component {
     );
   }
 
+  /**
+   * render Method
+   * @return { component }
+   * */
   render() {
     const {
       isLoading, error, errorMessage

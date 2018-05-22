@@ -5,6 +5,7 @@ import {
   ADD_EVENT,
   EDIT_EVENT,
   EDIT_EVENT_REQUEST,
+  EDIT_EVENT_FAILURE,
   REMOVE_EVENT,
   LOADMORE_EVENT_REQUEST,
   LOADMORE_EVENT_SUCCESS,
@@ -13,7 +14,9 @@ import {
   SESSION_EVENTS,
   SESSION_EVENTS_FAILURE,
   CLOUDINARY_URL,
-  CLOUDINARY_UPLOAD_PRESET
+  CLOUDINARY_UPLOAD_PRESET,
+  EVENT_STATUS_CHANGE,
+  ADD_EVENT_FAILURE
 } from '../';
 import setAuthorizationToken from '../../components/authentication/setAuthenticationToken';
 
@@ -23,7 +26,7 @@ import setAuthorizationToken from '../../components/authentication/setAuthentica
  * * */
 const api = '/api/v1/events';
 
-/**
+/* *
  *  @Event Dispatch Method
  *  @Returns Object
  * * */
@@ -59,6 +62,11 @@ const eventsDispatchAction = (type, data = {}) => {
         payload: data
       };
 
+    case 'failure':
+      return {
+        type: ADD_EVENT_FAILURE
+      };
+
     default:
       return data;
   }
@@ -74,33 +82,40 @@ const createEvent = (eventData, imgUrl) => (dispatch) => {
   setAuthorizationToken(token);
   eventData.img_url = imgUrl;
   return axios.post(api, eventData)
-    .then(({data}) => {
-      dispatch(eventsDispatchAction('add', data.event));
-      Materialize.toast(data.message, 5000, 'teal');
-      location.reload();
+    .then(({ data }) => {
+      if (data.statusCode === 400) {
+        Materialize.toast(data.message, 5000, 'red lighten-2');
+        dispatch(eventsDispatchAction('failure'));
+      } else {
+        dispatch(eventsDispatchAction('add', data.event));
+        Materialize.toast(data.message, 5000, 'teal lighten-2');
+      }
     })
     .catch((err) => {
       console.log(err);
-      Materialize.toast('An Error Occurred..!!!', 5000, 'red');
+      dispatch({
+        type: EDIT_EVENT_FAILURE
+      });
+      Materialize.toast('An Error Occurred..!!!', 5000, 'red lighten-2');
     });
 };
 
-/**
+/* *
  *  Initial Create Event Request Action
  *  @Returns Promise
  * * */
-export const createEventRequest = eventData => dispatch => {
+export const createEventRequest = eventData => (dispatch) => {
   if (eventData.img_url.name) {
     let formData = new FormData();
     formData.append('file', eventData.img_url);
     formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
     setAuthorizationToken(false);
     return axios.post(CLOUDINARY_URL, formData)
-      .then(({data}) => {
+      .then(({ data }) => {
         dispatch(createEvent(eventData, data.url));
       })
       .catch((err) => {
-        Materialize.toast('Error in connection', 5000, 'red');
+        Materialize.toast('Error in connection', 5000, 'red lighten-2');
         console.log(err);
       });
   }
@@ -114,92 +129,89 @@ export const createEventRequest = eventData => dispatch => {
  *  @Returns Object
  * * */
 export const fetchEventRequest = () => dispatch => axios.get(api)
-  .then(({data}) => {
+  .then(({ data }) => {
     data.loadingmore = false;
     data.loadmore = false;
+    data.isLoading = false;
     dispatch(eventsDispatchAction('fetch', data));
   });
 
-export const fetchSessionEventRequest = userId => dispatch => {
-  return axios.get(`${api}?sessionEvents=${userId}`)
-    .then(({ data }) => {
-      if (data) return dispatch({
-        type: SESSION_EVENTS,
-        payload: data.events
-      });
-
+export const fetchSessionEventRequest = userId => dispatch => axios.get(`${api}?sessionEvents=${userId}`)
+  .then(({ data }) => {
+    data.isLoading = false;
+    if (data) {
       return dispatch({
-        type: SESSION_EVENTS_FAILURE
+        type: SESSION_EVENTS,
+        payload: data
       });
-    });
-};
+    }
 
-/**
+    return dispatch({
+      type: SESSION_EVENTS_FAILURE
+    });
+  });
+
+/* *
  *  @Edit Event Request Action
  *  @Returns Object
  * * */
 export const editEventRequestAction = data => dispatch => dispatch(eventsDispatchAction('edit_request', data));
 
-const editEvent = (eventData, imgUrl) => dispatch => {
+const editEvent = (eventData, imgUrl) => (dispatch) => {
   let token = localStorage.getItem('jwtToken') ? localStorage.getItem('jwtToken') : false;
   setAuthorizationToken(token);
   eventData.img_url = imgUrl;
   return axios.put(`${api}/${eventData.eventId}`, eventData)
     .then(({ data }) => {
       if (data.statusCode === 201) {
-        Materialize.toast(data.message, 5000, 'teal');
+        Materialize.toast(data.message, 5000, 'teal lighten-2');
         $('#add_event_modal').modal('close');
+        $('.body__holdr').removeClass('blur__fits');
         return dispatch(eventsDispatchAction('edit', data.event));
       }
       return data;
-    })
-    .catch(() => {
-      Materialize.toast('Error in connection', 5000, 'red');
     });
 };
 
-/**
+/* *
  *  @Edit Event Action
  *  @Returns Object
  * * */
-export const editEventAction = eventData => dispatch => {
-  if(eventData.img_url.name){
+export const editEventAction = eventData => (dispatch) => {
+  if (eventData.img_url.name) {
     let formData = new FormData();
     formData.append('file', eventData.img_url);
     formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
     setAuthorizationToken(false);
     return axios.post(CLOUDINARY_URL, formData)
-      .then(({data}) => {
+      .then(({ data }) => {
         dispatch(editEvent(eventData, data.url));
       })
       .catch(() => {
-        Materialize.toast('Error in connection', 5000, 'red');
+        Materialize.toast('Error in connection', 5000, 'red lighten-2');
       });
   }
   return dispatch(editEvent(eventData, eventData.img_url));
 };
 
-/**
+/* *
  *  @Delete Event Action
  *  @Returns Object
  * * */
 export const deleteEventRequest = (id) => {
   id = parseInt(id, 10);
   return dispatch => axios.delete(`${api}/${id}`)
-    .then(({data}) => {
+    .then(({ data }) => {
       if (data.statusCode === 200) {
-        Materialize.toast(data.message, 5000);
+        Materialize.toast(data.message, 5000, 'teal lighten-2');
         return dispatch(eventsDispatchAction('delete', data.event));
       }
-      Materialize.toast(data.message, 5000, 'red');
+      Materialize.toast(data.message, 5000, 'red lighten-2');
       return data;
-    })
-    .catch((err) => {
-      Materialize.toast(err.message, 5000, 'red');
     });
 };
 
-/**
+/* *
  *  @Load more Event Request Action
  *  @Returns Object
  * * */
@@ -208,7 +220,7 @@ export const loadMoreEvents = offset => (dispatch) => {
     type: LOADMORE_EVENT_REQUEST
   });
   return axios.get(`${api}?next=${offset}`)
-    .then(({data}) => {
+    .then(({ data }) => {
       if (data.statusCode === 200) {
         return dispatch({
           type: LOADMORE_EVENT_SUCCESS,
@@ -220,3 +232,20 @@ export const loadMoreEvents = offset => (dispatch) => {
       });
     });
 };
+
+/* *
+ * Accept a pending event
+ * */
+export const handleStatusEventAction = (eventId, status) => dispatch =>
+  // send status request for event
+  axios.post(`${api}/${eventId}?status=${status}`)
+    .then(({ data }) => {
+      if (data.statusCode === 200) {
+        Materialize.toast(data.message, 5000, 'teal lighten-2');
+        return dispatch({
+          type: EVENT_STATUS_CHANGE
+        });
+      }
+      Materialize.toast(data.message, 5000, 'red lighten-2');
+    });
+

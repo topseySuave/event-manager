@@ -1,58 +1,147 @@
-import React, { Component } from 'react';
-import { PropTypes } from 'prop-types';
-import shortid from 'shortid';
-import EventCard from '../../bodyComponents/eventsCard/eventCard';
+/* eslint-disable */
+import React, { Component } from "react";
+import { PropTypes } from "prop-types";
+import { connect } from "react-redux";
+import shortid from "shortid";
+import { bindActionCreators } from "redux";
+import IconButton from "material-ui/IconButton";
+import ActionDone from "material-ui/svg-icons/action/done";
+import ContentClear from "material-ui/svg-icons/content/clear";
+import FlatButton from "material-ui/FlatButton";
+import Dialog from "material-ui/Dialog";
+
+import EventCard from "../../bodyComponents/eventsCard/eventCard";
+import { handleStatusEventAction } from "../../../actions/events-actions";
 
 class CurrentEventForCenter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hasEvent: false,
-      eventArr: []
+      openAlert: false
     };
+    
+    this.handleAlertOpen = this.handleAlertOpen.bind(this);
+    this.handleAlertClose = this.handleAlertClose.bind(this);
   }
 
-  componentWillReceiveProps(newProps) {
-    if (newProps.event) {
-      if (newProps.event.length > 0) {
-        this.setState({ hasEvent: true, eventArr: newProps });
-      }
-    }
-  }
+  handleAlertOpen() {
+    this.setState({ openAlert: true });
+  };
 
-  showEventCard() {
-    if (this.state.hasEvent) {
-      let events = this.state.eventArr.event;
-      return events.map(event => (
-        <EventCard key={shortid.generate()} event={event} />
-      ));
-    }
+  handleAlertClose() {
+    this.setState({ openAlert: false });
+  };
+
+  showAlertModal(eventId) {
+    const actions = [
+      <FlatButton
+        label="Yes"
+        primary={true}
+        onClick={() => this.props.handleStatusEventAction(eventId, "rejected")}
+      />,
+      <FlatButton label="No" primary={true} onClick={this.handleAlertClose} />
+    ];
 
     return (
-      <span>
-        <h5>No event for this center</h5>
-        <p>This center is currently open for booking</p>
-      </span>
+      <Dialog
+        actions={actions}
+        modal={false}
+        open={this.state.openAlert}
+        onRequestClose={this.handleAlertClose}
+      >
+        <h5>Are you sure you want to reject this event?</h5>
+      </Dialog>
     );
   }
 
+  renderStatusButtons(eventId, status) {
+    let closeButton = () => {
+      return (
+        <a
+          className="secondary-content red-text"
+          onClick={this.handleAlertOpen}
+        >
+          <IconButton tooltip="Reject Event" tooltipPosition="top-left">
+            <ContentClear color="red" />
+          </IconButton>
+        </a>
+      );
+    };
+
+    if (this.props.isAdmin) {
+      return (
+        <div className="status-btns">
+          {status === "pending" ? (
+            <span>
+              {closeButton()}
+              <a
+                className="secondary-content"
+                onClick={() => this.props.handleStatusEventAction(eventId, "accepted")}
+              >
+                <IconButton tooltip="Accept Event" tooltipPosition="top-center">
+                  <ActionDone color="green" />
+                </IconButton>
+              </a>
+            </span>
+          ) : status === "rejected" ? (
+            ""
+          ) : (
+            <span>{closeButton()}</span>
+          )}
+        </div>
+      );
+    }
+  }
+
   render() {
+    let centerEvents;
+    let { events } = this.props;
+
+    if (events.length > 0) {
+      centerEvents = events.map(event => {
+        return (
+          <li
+            className="collection-item"
+            key={shortid.generate()}
+            style={{ fontSize: "13px" }}
+          >
+            {new Date(event.startDate).toDateString() +
+              " - " +
+              new Date(event.endDate).toDateString()}
+            {this.renderStatusButtons(event.id, event.status)}
+            {this.showAlertModal(event.id)}
+          </li>
+        );
+      });
+    } else {
+      centerEvents = (
+        <li className="collection-item" style={{ fontSize: "13px" }}>
+          No event for this center
+        </li>
+      );
+    }
+
     return (
-      <div className="col s12 l4">
-        <section>
-          <div className="row">
-            <div className="col s12 l6">
-              { this.showEventCard() }
-            </div>
-          </div>
-        </section>
-      </div>
+      <ul className="collection with-header">
+        <li className="collection-header">
+          <h6 style={{ fontWeight: "bolder" }}>Dates booked for this Center</h6>
+        </li>
+        {centerEvents}
+      </ul>
     );
   }
 }
 
 CurrentEventForCenter.propTypes = {
-  event: PropTypes.array
+  events: PropTypes.array.isRequired
 };
 
-export default CurrentEventForCenter;
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      handleStatusEventAction
+    },
+    dispatch
+  );
+
+export default connect(null, mapDispatchToProps)(CurrentEventForCenter);

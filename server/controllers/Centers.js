@@ -1,60 +1,46 @@
+import queryString from 'query-string';
 import models from '../models';
+import { generatePaginationMeta, isNaNValidator } from '../middleware/util';
 
-import { generatePaginationMeta } from '../middleware/util';
 const { Op } = models.sequelize;
 const centersModel = models.Centers;
 const Event = models.Events;
-const attributes = ['id', 'title', 'img_url', 'location', 'description', 'facilities', 'capacity', 'price'];
-const eventAttributes = ['id', 'title', 'img_url', 'description', 'startDate', 'endDate', 'centerId'];
+const attributes = [
+  'id',
+  'title',
+  'img_url',
+  'location',
+  'description',
+  'facilities',
+  'capacity',
+  'price'
+];
+const eventAttributes = [
+  'id',
+  'title',
+  'img_url',
+  'description',
+  'startDate',
+  'endDate',
+  'status',
+  'private',
+  'centerId'
+];
 
-const sortSearchRequest = (search, searchBy) => {
-  let reqSearch;
-  // Search with location, title, price, capacity
-  if (searchBy === 'location') {
-    reqSearch = search.map((value) => {
-      if (value !== '') {
-        return {
-          location: {
-            [Op.iLike]: `%${value}%`
-          }
-        };
-      }
-    });
-  } else if (searchBy === 'price') {
-    reqSearch = search.map((value) => {
-      if (value !== '') {
-        value = parseInt(value, 10);
-        return {
-          price: {
-            [Op.gte]: `${value}`
-          }
-        };
-      }
-    });
-  } else if (searchBy === 'capacity') {
-    reqSearch = search.map((value) => {
-      if (value !== '') {
-        value = parseInt(value, 10);
-        return {
-          capacity: {
-            [Op.gte]: `${value}`
-          }
-        };
-      }
-    });
-  } else {
-    reqSearch = search.map((value) => {
-      if (value !== '') {
-        return {
-          title: {
-            [Op.iLike]: `%${value}%`
-          }
-        };
-      }
-    });
-  }
-  return reqSearch;
-};
+// /**
+//  * generateSearchQuery to sort and arrange search queries
+//  *
+//  * @param {object} req
+//  * @returns {object}
+//  */
+// const generateSearchQuery = (req) => {
+//   let query = {};
+//   if (req.query.location) { query.location = { [Op.iLike]: `%${req.query.location}%` }; }
+//   if (req.query.price) query.price = { [Op.gte]: req.query.price };
+//   if (req.query.capacity) query.capacity = { [Op.gte]: req.query.capacity };
+//   if (req.query.search) query.title = { [Op.iLike]: `%${req.query.search}%` };
+//   return query;
+// };
 
 /**
  * @export
@@ -73,12 +59,13 @@ export class Centers {
    */
   createCenter(req, res) {
     // check if center name already exist
-    return centersModel.findOne({
-      where: {
-        title: req.body.title,
-        location: req.body.location
-      }
-    })
+    return centersModel
+      .findOne({
+        where: {
+          title: req.body.title,
+          location: req.body.location
+        }
+      })
       .then((existingCenter) => {
         // return this if center name is taken
         if (existingCenter) {
@@ -88,15 +75,16 @@ export class Centers {
           });
         }
 
-        return centersModel.create({
-          title: req.body.title,
-          img_url: req.body.img_url,
-          location: req.body.location,
-          description: req.body.description,
-          facilities: req.body.facilities,
-          capacity: parseInt(req.body.capacity, 10),
-          price: parseInt(req.body.price, 10)
-        })
+        return centersModel
+          .create({
+            title: req.body.title,
+            img_url: req.body.img_url,
+            location: req.body.location,
+            description: req.body.description,
+            facilities: req.body.facilities,
+            capacity: parseInt(req.body.capacity, 10),
+            price: parseInt(req.body.price, 10)
+          })
           .then((addedCenter) => {
             if (addedCenter) {
               res.status(201).send({
@@ -123,23 +111,18 @@ export class Centers {
     const order = req.query.order || 'desc';
     const limitValue = req.query.limit || process.env.DATA_LIMIT;
     const centerId = parseInt(req.params.id, 10);
-    if (isNaN(centerId)) {
-      return res.status(400).send({
-        statusCode: 400,
-        message: 'Center id is not a number'
-      });
-    }
+    if (isNaN(centerId)) return isNaNValidator(res, centerId);
 
-    centersModel.findById(centerId)
-      .then((foundCenter) => {
-        if (!foundCenter) {
-          return res.status(404).send({
-            statusCode: 404,
-            message: `Center with the id of ${centerId} was not Found`
-          });
-        }
+    centersModel.findById(centerId).then((foundCenter) => {
+      if (!foundCenter) {
+        return res.status(404).send({
+          statusCode: 404,
+          message: `Center with the id of ${centerId} was not Found`
+        });
+      }
 
-        centersModel.update(
+      centersModel
+        .update(
           {
             title: req.body.title || foundCenter.title,
             img_url: req.body.img_url || foundCenter.img_url,
@@ -147,7 +130,7 @@ export class Centers {
             description: req.body.description || foundCenter.description,
             facilities: req.body.facilities || foundCenter.facilities,
             capacity: parseInt(req.body.capacity, 10) || foundCenter.capacity,
-            price: parseInt(req.body.price, 10) || foundCenter.price,
+            price: parseInt(req.body.price, 10) || foundCenter.price
           },
           {
             where: {
@@ -155,44 +138,43 @@ export class Centers {
             }
           }
         )
-          .then((updatedCenter) => {
-            if (updatedCenter) {
-              Event.findAndCountAll({
-                where: {
-                  centerId,
-                  startDate: {
-                    [Op.gte]: new Date().toDateString()
-                  }
-                },
-                order: [
-                  ['id', order]
-                ],
-                limit: limitValue
-              })
-                .then((event) => {
-                  foundCenter.events = event.rows;
-                  return res.status(200).send({
-                    statusCode: 200,
-                    message: 'Center has been updated',
-                    center: foundCenter,
-                    events: event.rows,
-                  });
-                })
-                .catch((err) => {
-                  if (err) {
-                    return res.status(400).send({
-                      statusCode: 400,
-                      message: 'Error getting events'
-                    });
-                  }
+        .then((updatedCenter) => {
+          if (updatedCenter) {
+            Event.findAndCountAll({
+              where: {
+                centerId,
+                startDate: {
+                  [Op.gte]: new Date().toDateString()
+                }
+              },
+              order: [['id', order]],
+              limit: limitValue
+            })
+              .then((event) => {
+                foundCenter.events = event.rows;
+                return res.status(200).send({
+                  statusCode: 200,
+                  message: 'Center has been updated',
+                  center: foundCenter,
+                  events: event.rows
                 });
-            }
-          })
-          .catch(err => res.status(400).send({
+              })
+              .catch((err) => {
+                if (err) {
+                  return res.status(400).send({
+                    statusCode: 400,
+                    message: 'Error getting events'
+                  });
+                }
+              });
+          }
+        })
+        .catch(err =>
+          res.status(400).send({
             message: 'Error Updating center',
             errorMessage: err
           }));
-      });
+    });
   }
 
   /**
@@ -209,24 +191,20 @@ export class Centers {
     const order = req.query.order || 'desc';
     const limitValue = req.query.limit || process.env.DATA_LIMIT;
     const centerId = parseInt(req.params.id, 10);
-    if (isNaN(centerId)) {
-      return res.status(400).send({
-        statusCode: 400,
-        message: 'Center id is not a number'
-      });
-    }
+    if (isNaN(centerId)) return isNaNValidator(res, centerId);
 
-    centersModel.findOne({
-      where: {
-        id: centerId
-      },
-      attributes
-    })
+    centersModel
+      .findOne({
+        where: {
+          id: centerId
+        },
+        attributes
+      })
       .then((foundCenter) => {
         if (!foundCenter) {
           return res.status(404).send({
             statusCode: 404,
-            message: `Center with id: ${centerId} does not exist`,
+            message: `Center with id: ${centerId} does not exist`
           });
         }
 
@@ -238,20 +216,17 @@ export class Centers {
             }
           },
           attributes: eventAttributes,
-          order: [
-            ['id', order]
-          ],
+          order: [['id', order]],
           limit: limitValue
-        })
-          .then((event) => {
-            foundCenter['events'] = event.rows;
-            return res.status(200).send({
-              statusCode: 200,
-              message: `Center with id: ${centerId} was found`,
-              center: foundCenter,
-              events: event.rows,
-            });
+        }).then((event) => {
+          foundCenter['events'] = event.rows;
+          return res.status(200).send({
+            statusCode: 200,
+            message: `Center with id: ${centerId} was found`,
+            center: foundCenter,
+            events: event.rows
           });
+        });
       });
   }
 
@@ -269,27 +244,44 @@ export class Centers {
     const limitValue = parseInt(req.query.limit, 10) || process.env.DATA_LIMIT;
     const pageValue = req.query.next || 0;
     const order = req.query.order || 'desc';
-    const basedOn = parseInt(req.query.basedOn) || 0;
-    const offset = (pageValue > 1) ? (pageValue * limitValue) - limitValue : pageValue;
-    if (req.query.search || req.query.limit) {
-      let searchBy, reqSearch;
-      if (req.query.searchBy) {
-        searchBy = req.query.searchBy;
-      }
-      const search = req.query.search.split(' ');
+    const basedOn = parseInt(req.query.basedOn, 10) || 0;
+    const offset =
+      pageValue > 1 ? pageValue * limitValue - limitValue : pageValue;
+    if (
+      req.query.search ||
+      req.query.location ||
+      req.query.price ||
+      req.query.capacity
+    ) {
+      let searchBy,
+        reqSearch = {},
+        search = req.query.search || req.query.location,
+        price = req.query.price || 0,
+        capacity = req.query.capacity || 0;
 
-      reqSearch = sortSearchRequest(search, searchBy);
-      centersModel.findAndCountAll({
-        where: {
-          [Op.or]: reqSearch
-        },
-        order: [
-          ['id', order]
-        ],
-        attributes,
-        limit: limitValue,
-        offset
-      })
+      centersModel
+        .findAndCountAll({
+          where: {
+            price: {
+              [Op.gte]: price
+            },
+            capacity: {
+              [Op.gte]: capacity
+            },
+            [Op.or]: {
+              title: {
+                [Op.iLike]: `%${search}%`
+              },
+              location: {
+                [Op.iLike]: `%${search}%`
+              }
+            }
+          },
+          order: [['id', order]],
+          attributes,
+          limit: limitValue,
+          offset
+        })
         .then((searchResults) => {
           if (searchResults.length <= 0) {
             return res.status(404).send({
@@ -298,10 +290,7 @@ export class Centers {
             });
           }
 
-          const results = searchResults.rows.filter((center) => {
-            return center.id !== basedOn;
-          });
-
+          const results = searchResults.rows.filter(center => center.id !== basedOn);
           return res.status(200).send({
             statusCode: 200,
             message: 'Successful Center!',
@@ -310,21 +299,20 @@ export class Centers {
           });
         });
     } else {
-      centersModel.findAndCountAll({
-        order: [
-          ['id', order]
-        ],
-        attributes,
-        limit: limitValue,
-        offset
-      })
-        .then(center => {
+      centersModel
+        .findAndCountAll({
+          order: [['id', order]],
+          attributes,
+          limit: limitValue,
+          offset
+        })
+        .then((center) => {
           res.status(200).send({
             statusCode: 200,
             message: 'Successful Center!',
             centers: center.rows,
             meta: generatePaginationMeta(center, limitValue, pageValue)
-          })
+          });
         });
     }
   }
@@ -341,14 +329,10 @@ export class Centers {
    */
   deleteCenter(req, res) {
     const centerId = parseInt(req.params.id, 10);
-    if (isNaN(centerId)) {
-      return res.status(400).send({
-        statusCode: 400,
-        message: 'Center id is not a number'
-      });
-    }
+    if (isNaN(centerId)) return isNaNValidator(res, centerId);
 
-    centersModel.findById(centerId)
+    centersModel
+      .findById(centerId)
       .then((deletedCenter) => {
         if (!deletedCenter) {
           return res.status(404).send({
@@ -360,14 +344,15 @@ export class Centers {
         centersModel
           .destroy({
             where: {
-              id: centerId,
+              id: centerId
             }
           })
-          .then(() => res.status(200).send({
-            statusCode: 200,
-            message: 'This Center has been deleted',
-            center: deletedCenter
-          }));
+          .then(() =>
+            res.status(200).send({
+              statusCode: 200,
+              message: 'This Center has been deleted',
+              center: deletedCenter
+            }));
       })
       .catch((err) => {
         res.status(400).send({

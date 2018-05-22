@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+/**
+ * AuthHeader Class Component
+ * */
 class AuthHeader extends Component {
+  /**
+   * @return { component }
+   * */
   render() {
     return (
       <nav className="wow fadeInDown black-text gradient__bg">

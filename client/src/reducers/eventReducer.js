@@ -3,6 +3,7 @@ import {
   ADD_EVENT,
   EDIT_EVENT,
   EDIT_EVENT_REQUEST,
+  EDIT_EVENT_FAILURE,
   FETCH_EVENTS,
   REMOVE_EVENT,
   LOADMORE_EVENT_REQUEST,
@@ -11,7 +12,8 @@ import {
   SEARCH_EVENT_TITLE,
   SEARCH_EVENT_TITLE_FAILED,
   SESSION_EVENTS,
-  SESSION_EVENTS_FAILURE
+  SESSION_EVENTS_FAILURE,
+  ADD_EVENT_FAILURE
 } from '../actions';
 
 const pageLimit = process.env.DATA_LIMIT;
@@ -23,17 +25,24 @@ export default (state = {}, action = {}) => {
       return action.payload;
 
     case ADD_EVENT:
-      if (state.events) {
-        state.events.unshift(action.payload);
-        state.totalCount = state.events.length;
-        state.pageCount = Math.ceil(state.totalCount / pageLimit);
-        return state;
+      newState = Object.assign({}, state);
+      if (newState.events) {
+        newState.events.unshift(action.payload);
+        newState.totalCount = newState.events.length;
+        newState.pageCount = Math.ceil(newState.totalCount / pageLimit);
+        return newState;
       }
-      state.events = [];
-      state.events.unshift(action.payload);
-      state.totalCount = state.events.length;
-      state.pageCount = Math.ceil(state.totalCount / pageLimit);
-      return state;
+      newState.events = [];
+      newState.events.unshift(action.payload);
+      newState.totalCount = newState.events.length;
+      newState.pageCount = Math.ceil(newState.totalCount / pageLimit);
+      newState.eventCreated = true;
+      return newState;
+
+    case ADD_EVENT_FAILURE:
+      newState = Object.assign({}, state);
+      newState.bookedCenter = true;
+      return newState;
 
     case EDIT_EVENT_REQUEST:
       return {
@@ -44,26 +53,33 @@ export default (state = {}, action = {}) => {
 
     case EDIT_EVENT:
       newState = Object.assign({}, state);
-      newState.events.map((event, index) => {
+      newState.sessEvents.events.map((event, index) => {
         if (event.id === action.payload.id) {
-          newState.events[index] = action.payload;
+          newState.sessEvents.events[index] = action.payload;
         }
       });
-      newState.totalCount = newState.events.length;
-      newState.pageSize = newState.totalCount;
-      newState.pageCount = Math.ceil(newState.totalCount / pageLimit);
+      newState.isLoading = false;
+      newState.sessEvents.totalCount = newState.sessEvents.events.length;
+      newState.sessEvents.pageSize = newState.sessEvents.totalCount;
+      newState.sessEvents.pageCount = Math.ceil(newState.sessEvents.totalCount / pageLimit);
+      return newState;
+
+    case EDIT_EVENT_FAILURE:
+      newState = Object.assign({}, state);
+      newState.isLoading = false;
       return newState;
 
     case REMOVE_EVENT:
       newState = Object.assign({}, state);
-      newState.events.map((event, index) => {
+      newState.sessEvents.events.map((event, index) => {
         if (event.id === action.payload.id) {
-          delete newState.events[index];
+          delete newState.sessEvents.events[index];
         }
       });
-      newState.totalCount = newState.events.length;
-      newState.pageSize = newState.totalCount;
-      newState.pageCount = Math.ceil(newState.totalCount / pageLimit);
+      newState.sessEvents.meta.totalCount = newState.sessEvents.events.length;
+      newState.sessEvents.meta.pageSize = newState.sessEvents.meta.totalCount;
+      newState.sessEvents.meta.pageCount =
+        Math.ceil(newState.sessEvents.meta.totalCount / pageLimit);
       return newState;
 
     case SESSION_EVENTS:
@@ -77,23 +93,34 @@ export default (state = {}, action = {}) => {
       return newState;
 
     case LOADMORE_EVENT_FAILURE:
-      return { ...state,
+      return {
+        ...state,
         loadingmore: false
       };
 
     case LOADMORE_EVENT_REQUEST:
-      return { ...state,
+      return {
+        ...state,
         loadmore: true,
         loadingmore: true
       };
 
     case LOADMORE_EVENT_SUCCESS:
       newState = Object.assign({}, state);
-      newState.events = newState.events.concat(action.payload);
+      newState.sessEvents.events = newState.sessEvents.events.concat(action.payload);
       newState.loadingmore = false;
-      newState.page = parseInt(newState.page + 1, 10);
-      newState.pageSize = parseInt(newState.pageSize + action.payload.length, 10);
-      if (newState.pageSize === newState.totalCount) {
+      newState.sessEvents.meta.page = parseInt(
+        newState.sessEvents.meta.page + 1,
+        10
+      );
+      newState.sessEvents.meta.pageSize = parseInt(
+        newState.sessEvents.meta.pageSize + action.payload.length,
+        10
+      );
+      if (
+        newState.sessEvents.meta.pageSize ===
+        newState.sessEvents.meta.totalCount
+      ) {
         newState.loadmore = false;
       }
       return newState;

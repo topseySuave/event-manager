@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import {PropTypes} from 'prop-types';
+import { PropTypes } from 'prop-types';
 import classNames from 'classnames';
 import { validateSignUpInput } from '../validateInput';
 import InputForm from '../../form/formInput';
 
+/**
+ * SignUpForm Class Component
+ * */
 class SignUpForm extends Component {
+  /**
+   * Class contructor
+   * @param { object } props
+   * */
   constructor(props) {
     super(props);
     this.state = {
@@ -26,6 +33,11 @@ class SignUpForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  /**
+   * handleChange method
+   * @param { object } e
+   * @returns { void }
+   * */
   handleChange(e) {
     if (this.state.errors[e.target.name]) {
       let errors = Object.assign({}, !!this.state.errors);
@@ -39,14 +51,23 @@ class SignUpForm extends Component {
     }
   }
 
+  /**
+   * isValid method
+   * @returns { object }
+   * */
   isValid() {
-    const {errors, isValid} = validateSignUpInput(this.state);
+    const { errors, isValid } = validateSignUpInput(this.state);
     if (!isValid) {
       this.setState({ errors });
     }
     return isValid;
   }
 
+  /**
+   * handleSubmit method
+   * @param { object } e
+   * @returns { void }
+   * */
   handleSubmit(e) {
     e.preventDefault();
 
@@ -84,29 +105,36 @@ class SignUpForm extends Component {
     }
   }
 
+  /**
+   * render method
+   * @returns { Component }
+   * */
   render() {
     const {
       isLoading, errors, redirect, exists, interval
     } = this.state;
     let to = '/signin';
     if (redirect) {
-      return <Redirect to={to}/>;
+      return <Redirect to={to} />;
     }
 
-    let loading = classNames('row', {isLoading});
+    let loading = classNames('row', { isLoading });
     return (
       <div>
-        <div className={classNames('col', 's12', {hidden: !this.state.signedUp})}>
+        <div className={classNames('col', 's12', { hidden: !this.state.signedUp })}>
           <div className="card-panel teal lighten-3">
-            <h3 className="white-text" style={{marginTop: '0px'}}>You're Welcome!!!</h3>
+            <h3 className="white-text" style={{ marginTop: '0px' }}>You're Welcome!!!</h3>
             <span className="white-text">{this.state.resMessage}</span>
-            <br/>
+            <br />
             <span className="white-text">Redirecting to signin in {interval} seconds</span>
           </div>
         </div>
 
-        <form className={classNames('col s12', {hidden: this.state.signedUp})} id="reg-form"
-              onSubmit={this.handleSubmit}>
+        <form
+          className={classNames('col s12', { hidden: this.state.signedUp })}
+          id="reg-form"
+          onSubmit={this.handleSubmit}
+        >
           <div className={loading}>
             <InputForm
               fieldId="first_name"
@@ -169,7 +197,7 @@ class SignUpForm extends Component {
                 type="submit"
                 name="action"
                 disabled={isLoading ? 'disabled' : ''}
-              >{!isLoading ? 'Register' : <img src="/image/loader/loading.gif" alt="submin-loader"/>}
+              >{!isLoading ? 'Register' : <img src="/image/loader/loading.gif" alt="submin-loader" />}
               </button>
             </div>
 

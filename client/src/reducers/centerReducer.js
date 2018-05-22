@@ -45,7 +45,10 @@ export default (state = {}, action = {}) => {
       newState.centers = newState.centers.concat(action.payload);
       newState.loadingmore = false;
       newState.meta.page = parseInt(newState.meta.page + 1, 10);
-      newState.meta.pageSize = parseInt(newState.meta.pageSize + action.payload.length, 10);
+      newState.meta.pageSize = parseInt(
+        newState.meta.pageSize + action.payload.length,
+        10
+      );
       if (newState.meta.pageSize === newState.meta.totalCount) {
         newState.loadmore = false;
       }
@@ -53,10 +56,10 @@ export default (state = {}, action = {}) => {
 
     case SEARCH_CENTER_TITLE:
       newState = Object.assign({}, state);
-      if (!isEmpty(action.payload)) {
+      if (!isEmpty(action.payload.centers)) {
         newState = action.payload;
       } else {
-        newState.centers = state.centers;
+        return state;
       }
       return newState;
 

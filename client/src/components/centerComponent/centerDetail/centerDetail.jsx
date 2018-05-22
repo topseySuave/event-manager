@@ -12,15 +12,30 @@ import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
 import Delete from 'material-ui/svg-icons/action/delete';
 
 import { CircularLoader } from '../../loader';
-import { fetchCenterAction, editCenterRequestAction } from '../../../actions/center-actions/activeCenterAction';
+import {
+  fetchCenterAction,
+  editCenterRequestAction
+} from '../../../actions/center-actions/activeCenterAction';
 import { deleteCenterRequest } from '../../../actions/center-actions/deleteCenterAction';
 import CurrentEventForCenter from './currentEventForCenter';
 import RecommCenter from './RecommCenter';
 import EventModal from '../../modals/EventModal';
 import EditCenterForm from '../../modals/centerModalForms/editCenterForm';
 import { fetchCenterRelatedTo } from '../../../actions/center-actions/fetchCenterRelatedTo';
+import { handleStatusEventAction } from '../../../actions/events-actions';
+import Helpers from '../../../helpers/';
+import { imageNotAvailable } from '../../../util/facilities';
 
+const helpers = new Helpers();
+
+/**
+ * CenterDetail Class Component
+ * */
 class CenterDetail extends Component {
+  /**
+   * Class constructor
+   * @param { object } props
+   * */
   constructor(props) {
     super(props);
 
@@ -28,7 +43,7 @@ class CenterDetail extends Component {
       isLoading: true,
       openAlert: false,
       open: false,
-      openCenterEvents: false,
+      isAdmin: false,
       activeCenter: {
         centr: {
           title: 'center'
@@ -40,71 +55,98 @@ class CenterDetail extends Component {
     this.handleClose = this.handleClose.bind(this);
     this.handleAlertOpen = this.handleAlertOpen.bind(this);
     this.handleAlertClose = this.handleAlertClose.bind(this);
-    this.handleEventsOpen = this.handleEventsOpen.bind(this);
-    this.handleEventsClose = this.handleEventsClose.bind(this);
   }
 
-  componentWillMount() {
+  /**
+   * componentDidMount Method
+   * @returns { void }
+   * */
+  componentDidMount() {
     $('.modal').modal('close');
     $('.tooltipped').tooltip({ delay: 50 });
     const { params } = this.props;
     this.props.fetchCenterAction(params.id);
+    if (this.props.activeUser.user.role) {
+      this.setState({ isAdmin: this.props.activeUser.user.role });
+    }
   }
 
+  /**
+   * componentWillReceiveProps Method
+   * @param { object } newProps
+   * @returns { void }
+   * */
   componentWillReceiveProps(newProps) {
+    let centerDetails = newProps.activeCenterDetail;
+    if (centerDetails.eventStatusChange) location.reload();
+
     if (this.props.params.id !== newProps.params.id) {
       newProps.fetchCenterAction(newProps.params.id);
     }
 
-    if (typeof newProps.activeCenterDetail.center !== 'undefined') {
-      newProps.activeCenterDetail.center.events = newProps.activeCenterDetail.events;
-      if (newProps.activeCenterDetail.center.events) {
-        delete newProps.activeCenterDetail.events;
+    if (typeof centerDetails.center !== 'undefined') {
+      if (centerDetails.events) {
+        centerDetails.center.events = centerDetails.events;
+        delete centerDetails.events;
       }
-      this.setState({ isLoading: false, activeCenter: newProps.activeCenterDetail });
+      this.setState({
+        isLoading: false,
+        activeCenter: centerDetails
+      });
     }
   }
 
+  /**
+   * editCenter Method
+   * @returns { void }
+   * */
   editCenter() {
     this.props.editCenterRequestAction();
   }
 
+  /**
+   * handleOpen Method
+   * @returns { void }
+   * */
   handleOpen() {
     this.props.editCenterRequestAction();
     this.setState({ open: true });
   }
 
+  /**
+   * handleClose Method
+   * @returns { void }
+   * */
   handleClose() {
     this.setState({ open: false });
   }
 
+  /**
+   * handleAlertOpen Method
+   * @returns { void }
+   * */
   handleAlertOpen() {
     this.setState({ openAlert: true });
   }
 
+  /**
+   * handleAlertClose Method
+   * @returns { void }
+   * */
   handleAlertClose() {
     this.setState({ openAlert: false });
   }
 
-  handleEventsOpen() {
-    this.setState({ openCenterEvents: true });
-  }
-
-  handleEventsClose() {
-    this.setState({ openCenterEvents: false });
-  }
-
+  /**
+   * showEditCenterButton Method
+   * @returns { Component }
+   * */
   showEditCenterButton() {
-    let isAdmin = this.props.activeUser.user.role;
     const actions = [
-      <FlatButton
-        label="Cancel"
-        primary
-        onClick={this.handleClose}
-      />
+      <FlatButton label="Cancel" primary onClick={this.handleClose} />
     ];
 
-    if (isAdmin) {
+    if (this.state.isAdmin) {
       return (
         <div>
           <FlatButton
@@ -122,91 +164,66 @@ class CenterDetail extends Component {
             autoScrollBodyContent
             style={{ marginTop: '0px' }}
           >
-            <EditCenterForm history={this.props.history}/>
+            <EditCenterForm history={this.props.history} />
           </Dialog>
         </div>
       );
     }
   }
 
-  showCenterEventsButton(events) {
-    const actions = [
-      <FlatButton
-        label="close"
-        primary
-        onClick={this.handleEventsClose}
-      />
-    ];
-
-    return (
-      <div>
-        <RaisedButton
-          label="view Events"
-          onClick={this.handleEventsOpen}
-          fullWidth
-        />
-        <Dialog
-          title="Events Held by this center"
-          actions={actions}
-          modal={false}
-          open={this.state.openCenterEvents}
-          onRequestClose={this.handleEventsClose}
-          autoScrollBodyContent
-          style={{ marginTop: '-100px' }}
-        >
-          <CurrentEventForCenter event={events} />
-        </Dialog>
-      </div>
-    );
-  }
-
+  /**
+   * showBookCenterButton Method
+   * @returns { Component }
+   * */
   showBookCenterButton() {
     const isSignedIn = this.props.activeUser.isAuthenticated;
     if (isSignedIn) {
-      return (
-        <EventModal />
-      );
+      return <EventModal />;
     }
   }
 
-  showRecommendedCenters(relatedCenterBasedOn){
-    const isAdmin = this.props.activeUser.user.role;
-    if (!isAdmin) {
+  /**
+   * showRecommendedCenters Method
+   * @param { object } relatedCenterBasedOn
+   * @returns { Component }
+   * */
+  showRecommendedCenters(relatedCenterBasedOn) {
+    if (!this.state.isAdmin) {
       return (
         <RecommCenter
-           relatedCenterBasedOn={relatedCenterBasedOn}
-           fetchCenterRelatedTo={fetchCenterRelatedTo}
+          relatedCenterBasedOn={relatedCenterBasedOn}
+          fetchCenterRelatedTo={fetchCenterRelatedTo}
         />
       );
     }
   }
 
+  /**
+   * deleteCenter Method
+   * @param { string } id
+   * @returns { void }
+   * */
   deleteCenter(id) {
-    this.props.deleteCenterRequest(id)
-      .then(() => {
-        if (typeof this.props.activeCenterDetail.center === 'undefined') {
-          Materialize.toast('Center has been Deleted', 5000, 'teal');
-          this.props.history.push('/centers');
-        }
-      });
+    this.props.deleteCenterRequest(id).then(() => {
+      if (typeof this.props.activeCenterDetail.center === 'undefined') {
+        Materialize.toast('Center has been Deleted', 5000, 'teal');
+        this.props.history.push('/centers');
+      }
+    });
   }
 
+  /**
+   * showAlertModal Method
+   * @param { string } id
+   * @returns { component }
+   * */
   showAlertModal(id) {
-    let isAdmin = this.props.activeUser.user.role;
     const actions = [
-      <FlatButton
-        label="Yes"
-        primary
-        onClick={() => this.deleteCenter(id)}
-      />,
-      <FlatButton
-        label="No"
-        primary
-        onClick={() => this.handleAlertClose()}
-      />,
+      <FlatButton label="Yes" primary onClick={() => this.deleteCenter(id)} />,
+      <FlatButton label="No" primary onClick={() => this.handleAlertClose()} />
     ];
 
-    if (isAdmin) {
+    if (this.state.isAdmin) {
       return (
         <div>
           <FlatButton
@@ -221,24 +238,41 @@ class CenterDetail extends Component {
             open={this.state.openAlert}
             onRequestClose={this.handleAlertClose}
           >
-                        Are you sure you want to delete this event?
+            Are you sure you want to delete this event?
           </Dialog>
         </div>
       );
     }
   }
 
+  /**
+   * renderFacilities Method
+   * @param { array } facilities
+   * @returns { component }
+   * */
   renderFacilities(facilities) {
     return facilities.map(facility => (
       <li key={shortid.generate()}>{facility}</li>
     ));
   }
 
+  /**
+   * render Method
+   * @returns { component }
+   * */
   render() {
-    let { isLoading, activeCenter } = this.state;
+    let { isLoading, activeCenter, isAdmin } = this.state;
     if (activeCenter.center) {
       const {
-        id, title, img_url, location, description, facilities, capacity, price, events
+        id,
+        title,
+        img_url,
+        location,
+        description,
+        facilities,
+        capacity,
+        price,
+        events
       } = activeCenter.center;
 
       let relatedCenterBasedOn = {
@@ -249,73 +283,99 @@ class CenterDetail extends Component {
         price
       };
 
-      if (events) {
-        events.map((event) => {
-          event.center = relatedCenterBasedOn;
-        });
-      }
-
       return (
         <DocumentTitle title={`${title} | Boots Events Manager`}>
           <div className="container">
             <div className="center__holdr" style={{ minHeight: '100vh' }}>
               <div className="row">
                 <div className="col s12 l12">
-                  { isLoading && <CircularLoader /> }
-                  { !isLoading &&
-                  <div className="center__details" data-center-id={id}>
-                    <h5 style={{ fontWeight: '500' }}>{title}</h5>
-                    <div className="slider__holdr">
-                      <div className="carousel carousel-slider">
-                        <a className="carousel-item" href="#one"><img src={img_url} alt={title} /></a>
+                  {isLoading && <CircularLoader />}
+                  {!isLoading && (
+                    <div className="center__details" data-center-id={id}>
+                      <h5 style={{ fontWeight: '500' }}>{title}</h5>
+                      <div className="slider__holdr">
+                        <div className="carousel carousel-slider">
+                          <a className="carousel-item" href="#one">
+                            {img_url ? (
+                              <img src={img_url} alt={title} />
+                            ) : (
+                              <img
+                                src={imageNotAvailable}
+                                alt={title}
+                              />
+                            )}
+                          </a>
+                        </div>
                       </div>
+                      <p>
+                        <i className="material-icons f15">location_on</i>{' '}
+                        {location}
+                      </p>
+                      <div className="divider" />
+                      <section>
+                        <h5>About this Center</h5>
+                        <p>{description}</p>
+                        <div className="divider" />
+                        <div className="row">
+                          <div className="col s12 l8">
+                            <div className="row">
+                              <div className="col s4">
+                                <p>Capacity</p>
+                              </div>
+                              <div className="col s8">
+                                <p>{capacity} Guests</p>
+                              </div>
+                            </div>
+                            <div className="divider" />
+                            <div className="row">
+                              <div className="col s4">
+                                <p>Price</p>
+                              </div>
+                              <div className="col s8">
+                                <p>
+                                  <span>
+                                    ₦{helpers.numberWithCommas(price)}
+                                  </span>{' '}
+                                  per event
+                                </p>
+                              </div>
+                            </div>
+                            <div className="divider" />
+                            <div className="row">
+                              <div className="col s4">
+                                <p>Facilities</p>
+                              </div>
+                              <div className="col s8">
+                                <ul className="facility__list">
+                                  {this.renderFacilities(facilities)}
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="col s12 l4">
+                            <CurrentEventForCenter
+                              isAdmin={isAdmin}
+                              events={events}
+                            />
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col s12 l2">
+                            {this.showEditCenterButton()}
+                          </div>
+                          <div className="col s12 l2">
+                            {this.showAlertModal(id)}
+                          </div>
+                          <div className="col s12 l4">
+                            {this.showBookCenterButton()}
+                          </div>
+                        </div>
+                      </section>
                     </div>
-                    <p><i className="material-icons f15">location_on</i> {location}</p>
-                    <div className="divider" />
-                    <section>
-                      <h5>About this Center</h5>
-                      <p>{description}</p>
-                      <div className="divider" />
-                      <div className="row">
-                        <div className="col s4">
-                          <p>Capacity</p>
-                        </div>
-                        <div className="col s8">
-                          <p>{capacity} Guests</p>
-                        </div>
-                      </div>
-                      <div className="divider" />
-                      <div className="row">
-                        <div className="col s4">
-                          <p>Price</p>
-                        </div>
-                        <div className="col s8">
-                          <p><span>₦{price}</span> per event</p>
-                        </div>
-                      </div>
-                      <div className="divider" />
-                      <div className="row">
-                        <div className="col s4">
-                          <p>Facilities</p>
-                        </div>
-                        <div className="col s8">
-                          <ul className="facility__list">
-                            {this.renderFacilities(facilities)}
-                          </ul>
-                        </div>
-                      </div>
-                      <div className="row">
-                        <div className="col s12 l2">{ this.showEditCenterButton() }</div>
-                        <div className="col s12 l2">{ this.showAlertModal(id) }</div>
-                        <div className="col s12 l4">{ this.showBookCenterButton() }</div>
-                        <div className="col s12 l3">{ this.showCenterEventsButton(events) }</div>
-                      </div>
-                    </section>
-                  </div>
-                                    }
+                  )}
                 </div>
               </div>
-              { this.showRecommendedCenters(relatedCenterBasedOn) }
+              {this.showRecommendedCenters(relatedCenterBasedOn)}
             </div>
           </div>
         </DocumentTitle>
@@ -336,11 +396,16 @@ const mapStateToProps = state => ({
   activeUser: state.authReducer
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchCenterAction,
-  editCenterRequestAction,
-  deleteCenterRequest,
-  fetchCenterRelatedTo
-}, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      fetchCenterAction,
+      editCenterRequestAction,
+      deleteCenterRequest,
+      fetchCenterRelatedTo,
+      handleStatusEventAction
+    },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps)(CenterDetail);

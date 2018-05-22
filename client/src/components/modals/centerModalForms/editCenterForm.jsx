@@ -20,13 +20,19 @@ const styles = {
   }
 };
 
+/**
+ * EditCenterForm Class Component
+ * */
 class EditCenterForm extends Component {
+  /**
+   * EditCenterForm Class Constructor
+   * @param { object } props
+   * */
   constructor(props) {
     super(props);
-
     /**
-         * @Initialize the component's state.
-         * */
+     * @Initialize the component's state.
+     * */
     this.state = {
       errors: {},
       editCenter: false,
@@ -46,20 +52,24 @@ class EditCenterForm extends Component {
     this.onFileChange = this.onFileChange.bind(this);
   }
 
-  /* *
-     * @Send activeCenter details to updateState method
-     * */
+  /**
+    * componentDidMount Method
+    * @Send activeCenter details to updateState method
+    * @return { void }
+    * */
   componentDidMount() {
     this.updateState(this.props.activeCenter);
   }
 
-  /* *
-     * @Void: Get the image data and set the img_url in the state
-     * to the binary data url.
-     * * */
+  /**
+   * @Void: Get the image data and set the img_url in the state
+   * to the binary data url.
+   * @param { object } e
+   * @return { void }
+   * * */
   onFileChange(e) {
     let file = e.target.files[0];
-    if (file.type.indexOf('image/') > -1) { // only image file
+    if (file && file.type.indexOf('image/') > -1) { // only image file
       if (file.size < 2000000) { // Must not be more than 2mb
         let reader = new FileReader(); // instance of the FileReader
         reader.readAsDataURL(file); // read the local file
@@ -76,11 +86,14 @@ class EditCenterForm extends Component {
     }
   }
 
-  /* *
-     * @Check if edit center is set to true.
-     * and get the keys from center object and populate the state
-     * with its appropriate values.
-     * */
+  /**
+    * @Check if edit center is set to true.
+    * and get the keys from center object and populate the state
+    * with its appropriate values.
+    * updateState Method
+    * @param { object } props
+    * @return { void }
+    * */
   updateState(props) {
     if (props.editCenter) {
       let {
@@ -100,6 +113,11 @@ class EditCenterForm extends Component {
     }
   }
 
+  /**
+    * handleCenterChange Method
+    * @param { object } e
+    * @return { void }
+    * */
   handleCenterChange(e) {
     if (this.state.errors[e.target.name]) {
       let errors = Object.assign({}, !!this.state.errors);
@@ -113,6 +131,10 @@ class EditCenterForm extends Component {
     }
   }
 
+  /**
+    * isValid Method
+    * @return { void }
+    * */
   isValid() {
     const { errors, isValid } = validateCenterInput(this.state);
     if (!isValid) {
@@ -121,10 +143,22 @@ class EditCenterForm extends Component {
     return isValid;
   }
 
+  /**
+    * handleSelectChange Method
+    * @param { object } event
+    * @param { string } index
+    * @param { array } facilities
+    * @return { void }
+    * */
   handleSelectChange(event, index, facilities) {
     this.setState({ facilities });
   }
 
+  /**
+    * menuItems Method
+    * @param { object } facilityes
+    * @return { void }
+    * */
   menuItems(facilityes) {
     return facilitiesDB().map(name => (
       <MenuItem
@@ -137,6 +171,11 @@ class EditCenterForm extends Component {
     ));
   }
 
+  /**
+    * handleCenterSubmit Method
+    * @param { object } e
+    * @return { void }
+    * */
   handleCenterSubmit(e) {
     e.preventDefault();
 
@@ -146,23 +185,27 @@ class EditCenterForm extends Component {
       });
 
       this.props.updateCenterRequest(this.state);
-        // .then((res) => {
-        //   console.log(res);
-        //   this.setState({ isLoading: false });
-        //   if (res.type === EDIT_CENTER) {
-        //     Materialize.toast('Center has been updated successfully!!', 5000, 'teal');
-        //     location.reload();
-        //   } else {
-        //     Materialize.toast('Houston, we have a problem! We are working on it', 5000, 'red');
-        //   }
-        // })
-        // .catch(() => {
-        //   this.setState({ isLoading: false });
-        //   Materialize.toast('Error creating center..!!', 5000, 'red');
-        // });
+      // .then((res) => {
+      //   console.log(res);
+      //   this.setState({ isLoading: false });
+      //   if (res.type === EDIT_CENTER) {
+      //     Materialize.toast('Center has been updated successfully!!', 5000, 'teal');
+      //     location.reload();
+      //   } else {
+      //     Materialize.toast('Houston, we have a problem! We are working on it', 5000, 'red');
+      //   }
+      // })
+      // .catch(() => {
+      //   this.setState({ isLoading: false });
+      //   Materialize.toast('Error creating center..!!', 5000, 'red');
+      // });
     }
   }
 
+  /**
+    * render Method
+    * @return { component }
+    * */
   render() {
     const {
       editCenter, errors, isLoading, title, location, facilities, price, capacity, description

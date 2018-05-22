@@ -120,72 +120,74 @@ export default class Users {
     });
   }
 
-  // /**
-  //  * Assign a Users as admin
-  //  *
-  //  * @param {object} req - HTTP Request
-  //  * @param {object} res - HTTP Response
-  //  * @returns {object} Class instance
-  //  * @memberof Users
-  //  */
-  // assignAdmin(req, res) {
-  //   const { email, password } = req.body;
-  //   userModel.findOne({
-  //     where: {
-  //       email: {
-  //         [Op.iLike]: email
-  //       }
-  //     }
-  //   })
-  //     .then((foundUser) => {
-  //       if (!foundUser) {
-  //         return res.status(404).send({
-  //           statusCode: 404,
-  //           message: 'User Not Found! Please Sign Up'
-  //         });
-  //       } else if (bcrypt.compareSync(password, foundUser.password)) {
-  //         // update user role to true...
-  //         userModel.update({ role: true }, {
-  //           where: {
-  //             id: foundUser.id
-  //           }
-  //         })
-  //           .then((updatedUser) => {
-  //             const subject = 'Boots Events Manager: Administrator Assignment';
-  //             let htmlOutput = `
-  //                           <h6>Boots Events Manager: Administrator Assignment</h6>
-  //                           <p>Dear, ${foundUser.firstName} ${foundUser.lastName} you have been Assigned as Administrator</p>
-  //                           <br />
-  //                           <ul>
-  //                               <li>First Name: ${foundUser.firstName}</li>
-  //                               <li>Last Name: ${foundUser.lastName}</li>
-  //                               <li>Email: ${foundUser.email}</li>
-  //                           </ul>
-  //                           <br />
-  //                           <h6>Admin Privileges</h6>
-  //                           <ul>
-  //                               <li>Centers: creation, updating, deleting</li>
-  //                           </ul>
-  //                       `;
+  /**
+   * Assign a Users as admin
+   *
+   * @param {object} req - HTTP Request
+   * @param {object} res - HTTP Response
+   * @returns {object} Class instance
+   * @memberof Users
+   */
+  assignAdmin(req, res) {
+    const { email, password } = req.body;
+    userModel.findOne({
+      where: {
+        email: {
+          [Op.iLike]: email
+        }
+      }
+    })
+      .then((foundUser) => {
+        if (!foundUser) {
+          return res.status(404).send({
+            statusCode: 404,
+            message: 'User Not Found! Please Sign Up'
+          });
+        } else if (bcrypt.compareSync(password, foundUser.password)) {
+          // update user role to true...
+          userModel.update({ role: true }, {
+            where: {
+              id: foundUser.id
+            }
+          })
+            .then((updatedUser) => {
+              const subject = 'Boots Events Manager: Administrator Assignment';
+              let htmlOutput = `
+                            <h6>Boots Events Manager: Administrator Assignment</h6>
+                            <p>Dear, ${foundUser.firstName} ${foundUser.lastName} you have been Assigned as Administrator</p>
+                            <br />
+                            <ul>
+                                <li>First Name: ${foundUser.firstName}</li>
+                                <li>Last Name: ${foundUser.lastName}</li>
+                                <li>Email: ${foundUser.email}</li>
+                            </ul>
+                            <br />
+                            <h6>Admin Privileges</h6>
+                            <ul>
+                                <li>Centers: creation, updating, deleting</li>
+                            </ul>
+                        `;
 
-  //             mailer(foundUser.email, subject, subject, htmlOutput, () => res.status(400).send({
-  //               statusCode: 400,
-  //               message: `${foundUser.firstName} could not be notified`
-  //             }),
-  //             () => res.status(200).send({
-  //               statusCode: 200,
-  //               message: `${foundUser.firstName} has been notified`
-  //             }));
-  //           });
-  //       } else {
-  //         return res.status(401).send({
-  //           statusCode: 401,
-  //           message: 'Wrong password'
-  //         });
-  //       }
-  //     })
-  //     .catch(error => res.status(500).send(error));
-  // }
+              mailer(
+                foundUser.email, subject, subject, htmlOutput, () => res.status(400).send({
+                  statusCode: 400,
+                  message: `${foundUser.firstName} could not be notified`
+                }),
+                () => res.status(200).send({
+                  statusCode: 200,
+                  message: `${foundUser.firstName} has been notified`
+                })
+              );
+            });
+        } else {
+          return res.status(401).send({
+            statusCode: 401,
+            message: 'Wrong password'
+          });
+        }
+      })
+      .catch(error => res.status(500).send(error));
+  }
 
   /**
    * GETS all Users record
@@ -245,7 +247,7 @@ export default class Users {
                                 <li>Centers: creation, updating, deleting</li>
                             </ul>
                         `;
-                if (mailer(foundUser.email, subject, subject, htmlOutput)){
+                if (mailer(foundUser.email, subject, subject, htmlOutput)) {
                   res.status(200).send({
                     message: 'Users has been deleted successfully',
                     user: foundUser

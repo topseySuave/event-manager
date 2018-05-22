@@ -26,8 +26,8 @@ const signOutRequest = () => {
 
 const userSignupRequest = userData => axios.post(api, userData);
 
-const userSignInRequest = userData => dispatch => axios.post(`${api}/authentication`, userData)
-  .then((res) => {
+const userSignInRequest = userData => dispatch =>
+  axios.post(`${api}/authentication`, userData).then((res) => {
     if (res.data.statusCode === 200) {
       const { token } = res.data;
       localStorage.setItem('jwtToken', token);
