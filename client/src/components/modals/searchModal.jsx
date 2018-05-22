@@ -65,6 +65,7 @@ class SearchModal extends Component {
    * @return { void }
    * */
   handleSearchInput(e) {
+    e.preventDefault();
     let titleString = { search: e.target.value };
     this.props.filterCenterTitle(titleString);
     this.props.filterEventTitle(titleString);
