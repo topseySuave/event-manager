@@ -7,6 +7,7 @@ const dotenv = require('dotenv');
 dotenv.load();
 
 module.exports = merge(common, {
+  devtool: 'source-map',
   plugins: [
     new UglifyJSPlugin(),
     new webpack.DefinePlugin({
