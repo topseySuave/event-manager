@@ -4,14 +4,11 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/2219e1701e5995fa3410/maintainability)](https://codeclimate.com/github/topseySuave/event-manager/maintainability)
 
 
-# Events Manager
+# <img src="https://raw.githubusercontent.com/topseySuave/event-manager/develop/client/public/fav.ico" alt="logo" width="25px" /> Events Manager
 Events Manager is a full stack application, that enables users administrate there own centers, An Event registration platform for all of your online and on-site event management needs and handles the entire event lifecycle from start to finish.
 
 ## Hosted Application
-https://boots-events.herokuapp.com/
-
-## API Documentation
-https://boots-events.herokuapp.com/docs
+Visit our application [Event-Manager](https://boots-events.herokuapp.com/) to get started
 
 
 ## Installation guide
@@ -41,19 +38,29 @@ I advise storing such credentials as environment variables for security purposes
 
 ```
 
-STEP 6: Run migration and seed the database with nesseccary data
+STEP 6: Add a `.env` file in root of project and setup the following:
+```
+SECRET_KEY=<anyWordsOfYourChoice>
+DATABASE_URL=<elephantSqlOnlineDatabaseLink>
+CLOUDINARY_URL=<yourCloudinaryUrl>
+CLOUDINARY_UPLOAD_PRESET=<yourCloudinaryUploadPreset>
+EMAIL=<yourGmailAccount>
+PASSWORD=<yourGmailPassword>
+```
+
+STEP 7: Run migration and seed the database with nesseccary data
 
 ```
 $ sequelize db:migrate && sequelize db:seed:all
 ```
 
-STEP 7: Start the application
+STEP 8: Start the application
 
 ```
 $ npm run start:dev
 ```
 
-STEP 8: Navigate to application on your browser
+STEP 9: Navigate to application on your browser
 
 ```
 localhost:8000
@@ -71,12 +78,19 @@ localhost:8000
 * Users can search for center by name or location, price, facilities and capacity
 
 ## Testing
+The app uses: 
+* `Mocha/Chai` and `Super-Test` for backend testing.
+* `Enzyme` and `Jest` for frontend testing
+* `NightWatch` for End-2-End testing
 
-`chai` and `chai-http` are used for backend testing
+> - `npm test` - to run test and display code coverage for back-end
+> - `npm run test:client` - to run test for front-end
+> - `npm run e2e` - to run end-to-end test
 
-```
-$ npm run test
-```
+## API Documentation
+Click [Here](https://boots-events.herokuapp.com/docs) to view our API documentation
+
+
 
 ## Limitations
 
@@ -103,8 +117,8 @@ $ npm run test
 * [MaterialCss](https://materialcss.com) - A modern responsive front-end framework based on Material Design
 
 ## License
-This project is licensed under MIT.
-[https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT)
+This project is licensed under
+[MIT](https://opensource.org/licenses/MIT)
 
 ## Contribution
 When contributing to this repository, please reach out to me or other contributors via email, issue or any other means to discuss the changes you wish to make.
@@ -127,3 +141,38 @@ When contributing to this repository, please reach out to me or other contributo
 * Expressjs
 
 * Nodejs
+
+## FAQ
+
+### Is this an Open-Source Application?
+
+```
+Yes it is, and contributing to the development of this application is by raising PRs.
+```
+
+### Who can contribute?
+
+```
+Anyone! This application is open to all those who want to contribute to open-source 
+development and are willing to follow set standards for contributing.
+```
+
+### Is there a set standard for PRs to this repository?
+
+```
+Yes, there are set conventions for PRs to this repository and can be found in the 
+project wiki.
+```
+
+### What language was used to develop this application?
+
+```
+This project is a full stack Javascript application.
+```
+
+### Can I clone this application for personal use?
+
+```
+Yes! This application is licensed under MIT, and is open for whatever you may choose 
+to use it for.
+```
