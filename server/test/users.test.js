@@ -182,12 +182,12 @@ describe('Test user API', () => {
       done();
     });
 
-    it('should return 201 response for creaqting another user', (done) => {
+    it('should return 201 response for creating another user', (done) => {
       request.post(testConstants.usersApiRoute)
         .send({
           firstName,
           lastName,
-          email: testConstants.constMailAddr,
+          email: testConstants.demoUserEmail,
           password: testConstants.constPass
         })
         .end((err, res) => {

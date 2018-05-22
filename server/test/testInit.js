@@ -23,6 +23,7 @@ export default class testInit {
     this.demoUserPassword = faker.internet.password();
     this.adminEmailAddr = 'topse@gmail.com';
     this.constMailAddr = 'gabriel@gmail.com';
+    this.constExtraMailAddr = 'foster@gmail.com';
     this.constPass = '123456789';
 
     this.firstName = faker.name.firstName();

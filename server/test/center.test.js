@@ -257,8 +257,8 @@ describe("Test center API", () => {
         expect(res.body)
           .to.haveOwnProperty("message")
           .to.equal("Successful Center!");
-        let rand5 = Math.floor(Math.random() * res.body.centers.length + 1);
-        centerId = rand5;
+        let rand5 = Math.floor(Math.random() * res.body.centers.length);
+        centerId = res.body.centers[rand5].id;
         done();
       });
     });
@@ -351,8 +351,8 @@ describe("Test center API", () => {
           expect(res.body)
             .to.haveOwnProperty("message")
             .to.equal(`Center with id: ${centerId} was found`);
-          done();
         });
+      done();
     });
 
     it('should return 404 response with "center not found" for trying to updating a center', done => {
@@ -396,7 +396,7 @@ describe("Test center API", () => {
           expect(res.body).to.be.an("object");
           expect(res.body)
             .to.haveOwnProperty("message")
-            .to.equal("Center id is not a number");
+            .to.equal("the id specified is not a number");
           done();
         });
     });

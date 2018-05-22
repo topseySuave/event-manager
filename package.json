@@ -31,7 +31,7 @@
     "seed": "sequelize db:seed",
     "drop:test": "sequelize db:migrate:undo:all",
     "migrate:test": "sequelize db:migrate --env test",
-    "create:test": "sequelize db:create boots_test"
+    "create:test": "sequelize db:create boots_test --env test"
   },
   "nyc": {
     "exclude": [
