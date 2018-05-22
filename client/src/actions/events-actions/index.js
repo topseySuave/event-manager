@@ -19,7 +19,6 @@ import {
   ADD_EVENT_FAILURE
 } from '../';
 import setAuthorizationToken from '../../components/authentication/setAuthenticationToken';
-import history from '../../util/history';
 
 
 /**
@@ -90,7 +89,6 @@ const createEvent = (eventData, imgUrl) => (dispatch) => {
       } else {
         dispatch(eventsDispatchAction('add', data.event));
         Materialize.toast(data.message, 5000, 'teal lighten-2');
-        history.push('/my-events');
       }
     })
     .catch((err) => {

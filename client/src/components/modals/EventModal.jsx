@@ -13,6 +13,7 @@ import { createEventRequest } from "../../actions/events-actions";
 import InputForm from "../../components/form/formInput";
 import { validateEventInput } from "./validateInput";
 import { ADD_EVENT } from "../../actions";
+import history from '../../util/history';
 
 const styles = {
   labelStyle: {
@@ -90,7 +91,7 @@ class EventModal extends Component {
   componentWillReceiveProps(newProps) {
     if (newProps.event) this.setState({ isLoading: newProps.event.isLoading });
     if (newProps.bookedCenter) this.setState({ isLoading: false });
-    if (newProps.event.eventCreated) location.reload();
+    if (newProps.event.eventCreated) history.push('/my-events');
   }
 
   isValid() {
