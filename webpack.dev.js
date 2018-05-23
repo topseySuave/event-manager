@@ -1,11 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
-const merge = require('webpack-merge'); // eslint-disable-line
+const merge = require('webpack-merge');
 const common = require('./webpack.common');
-const dotenv = require('dotenv');
+require('dotenv').load();
 
-dotenv.load();
 module.exports = merge(common, {
+  mode: 'development',
   devtool: 'cheap-module-source-map',
   output: {
     hotUpdateChunkFilename: './hot/hot-update.js',
@@ -25,7 +25,7 @@ module.exports = merge(common, {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        SECRET_KEY: JSON.stringify(process.env.SECRET_KEY)
+        NODE_ENV: JSON.stringify('production')
       }
     }),
   ]

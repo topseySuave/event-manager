@@ -11,7 +11,7 @@ const {
   Op
 } = models.sequelize;
 const centerAttributes = ['location'];
-const attributes = ['id', 'title', 'img_url', 'description', 'startDate', 'endDate', 'status', 'centerId', 'private'];
+const attributes = ['id', 'title', 'img_url', 'description', 'startDate', 'endDate', 'status', 'centerId', 'userId', 'private'];
 
 /**
  * @export
@@ -178,9 +178,7 @@ export class Events {
         where: {
           startDate: {
             [Op.gte]: new Date().toDateString()
-          },
-          // private: false,
-          // status: 'accepted',
+          }
         },
         include: [{
           model: CenterModel,
@@ -202,7 +200,6 @@ export class Events {
             });
           }
 
-          console.log('new events ===> ', events);
           res.status(200).json({
             statusCode: 200,
             message: 'Successful Events!',
@@ -230,14 +227,24 @@ export class Events {
     Event.findOne({
       where: {
         centerId: req.body.centerId,
-        [Op.or]: {
-          startDate: {
-            [Op.between]: [startDate, endDate]
-          },
-          endDate: {
-            [Op.between]: [startDate, endDate]
+        [Op.or]: [
+          {
+            startDate: {
+              [Op.between]: [startDate, endDate]
+            }
+          }, {
+            endDate: {
+              [Op.between]: [startDate, endDate]
+            }
+          }, {
+            startDate: {
+              [Op.lte]: startDate
+            },
+            endDate: {
+              [Op.gte]: endDate
+            }
           }
-        }
+        ]
       }
     })
       .then((result) => {

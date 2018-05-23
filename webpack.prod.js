@@ -2,17 +2,15 @@ const merge = require('webpack-merge'); // eslint-disable-line
 const webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const common = require('./webpack.common');
-const dotenv = require('dotenv');
-
-dotenv.load();
+require('dotenv').load();
 
 module.exports = merge(common, {
-  devtool: 'source-map',
+  mode: 'production',
   plugins: [
     new UglifyJSPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        SECRET_KEY: JSON.stringify(process.env.SECRET_KEY)
+        NODE_ENV: JSON.stringify('production')
       }
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),

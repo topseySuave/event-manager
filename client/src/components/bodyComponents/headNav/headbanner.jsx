@@ -50,6 +50,15 @@ class HeaderBanner extends Component {
   }
 
   /**
+   * componentDidMount Method
+   * @returns { void }
+   * */
+  componentDidMount() {
+    this.changeHeaderBackground();
+    this.onScrollToShowNav();
+  }
+
+  /**
    * onSearch Method
    * @param { object } query
    * @returns { void }
@@ -57,6 +66,27 @@ class HeaderBanner extends Component {
   onSearch(query) {
     const qString = queryString.stringify(query, { arrayFormat: 'bracket' });
     history.push(`/centers?${qString}`);
+  }
+
+  /**
+   * onScrollToShowNav method
+   * @returns { void }
+   * */
+  onScrollToShowNav() {
+    let popularEventsHolderTop, homeNav = $('.home__nav');
+    let popularEventsHolder = $('.popular__events_holdr');
+    $(window).scroll(() => {
+      popularEventsHolderTop = popularEventsHolder.offset().top;
+      let scrollTop = $(document).scrollTop();
+
+      // when scroll top is greater than the event holder show navbar
+      // if not remove it
+      if (scrollTop > popularEventsHolderTop) {
+        homeNav.css({ display: 'block' });
+      } else {
+        homeNav.css({ display: 'none' });
+      }
+    });
   }
 
   /**
@@ -128,7 +158,9 @@ class HeaderBanner extends Component {
    * @returns { void }
    * */
   showModal() {
-    $('#search__modal').modal('open');
+    let searchModal = $('#search__modal');
+    searchModal.addClass('search__pane');
+    searchModal.modal('open');
   }
 
   /**
@@ -137,9 +169,9 @@ class HeaderBanner extends Component {
    * */
   changeHeaderBackground() {
     let i = 0;
-    let el = document.getElementsByClassName('header'); // el doesn't change
+    let el = $('.header'); // el doesn't change
     function toggle() {
-      el[0].style.backgroundImage = `url(${centerBackgrounds[i]})`; // set the image
+      el.css({ backgroundImage: `url(${centerBackgrounds[i]})` }); // set the image
       /* *
         * wraps around centerBackgrounds
         * length and update the counter,
@@ -202,7 +234,6 @@ class HeaderBanner extends Component {
    * @memberOf MyEventCardHolder
    * */
   render() {
-    this.changeHeaderBackground();
     return (
       <div className="header">
         <div className="header__overlay">

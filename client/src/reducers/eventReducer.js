@@ -41,7 +41,7 @@ export default (state = {}, action = {}) => {
 
     case ADD_EVENT_FAILURE:
       newState = Object.assign({}, state);
-      newState.bookedCenter = true;
+      newState.centerIsBooked = true;
       return newState;
 
     case EDIT_EVENT_REQUEST:

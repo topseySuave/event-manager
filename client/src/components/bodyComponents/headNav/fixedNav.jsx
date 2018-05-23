@@ -1,39 +1,38 @@
-import React, { Component, Fragment } from "react";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import React, { Component, Fragment } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import IconMenu from "material-ui/IconMenu";
-import IconButton from "material-ui/IconButton";
+import IconMenu from 'material-ui/IconMenu';
+import IconButton from 'material-ui/IconButton';
 
-import MoreVertIcon from "material-ui/svg-icons/navigation/more-vert";
-import NavigationMenu from "material-ui/svg-icons/navigation/menu";
-import ActionSearch from "material-ui/svg-icons/action/search";
-import SocialGroup from "material-ui/svg-icons/social/group";
-import NavigationClose from "material-ui/svg-icons/navigation/close";
-import AccountCircle from "material-ui/svg-icons/action/account-circle";
-import CloseIcon from "material-ui/svg-icons/navigation/close";
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
+import ActionSearch from 'material-ui/svg-icons/action/search';
+import SocialGroup from 'material-ui/svg-icons/social/group';
+import { NavigationClose, CloseIcon } from 'material-ui/svg-icons/navigation/close';
+import AccountCircle from 'material-ui/svg-icons/action/account-circle';
 
-import MenuItem from "material-ui/MenuItem";
-import Divider from "material-ui/Divider";
-import Drawer from "material-ui/Drawer";
-import FlatButton from "material-ui/FlatButton";
-import Dialog from "material-ui/Dialog";
+import MenuItem from 'material-ui/MenuItem';
+import Divider from 'material-ui/Divider';
+import Drawer from 'material-ui/Drawer';
+import FlatButton from 'material-ui/FlatButton';
+import Dialog from 'material-ui/Dialog';
 
-import AppBar from "material-ui/AppBar";
-import Toggle from "material-ui/Toggle";
-import { green300 } from "material-ui/styles/colors";
-import List, { ListItem, ListItemText } from "material-ui/List";
+import AppBar from 'material-ui/AppBar';
+import Toggle from 'material-ui/Toggle';
+import { green300 } from 'material-ui/styles/colors';
+import List, { ListItem, ListItemText } from 'material-ui/List';
 
-import { signOutRequest } from "../../../actions/authActions";
+import { signOutRequest } from '../../../actions/authActions';
 
 const appBarStyle = {
-  position: "fixed",
-  backgroundImage: "linear-gradient(to left, #4884b3, #90ec92)"
+  position: 'fixed',
+  backgroundImage: 'linear-gradient(to left, #4884b3, #90ec92)'
 };
 const flexContainer = {
-  display: "flex",
-  flexDirection: "row",
+  display: 'flex',
+  flexDirection: 'row',
   padding: 0
 };
 
@@ -52,23 +51,27 @@ class FixedNav extends Component {
   }
 
   /**
+   * componentDidMount Method
+   * @returns { void }
+   * */
+  componentDidMount() {
+    $('.modal').modal();
+  }
+
+  /**
    * handleToggle Method
    * @returns { void }
    * */
-  handleToggle = () => this.setState({ open: !this.state.open });
+  handleToggle() {
+    this.setState({ open: !this.state.open });
+  }
 
   /**
    * handleClose Method
    * @returns { void }
    * */
-  handleClose = () => this.setState({ open: false });
-
-  /**
-   * componentDidMount Method
-   * @returns { void }
-   * */
-  componentDidMount(){
-    $(".modal").modal();
+  handleClose() {
+    this.setState({ open: false });
   }
 
   /**
@@ -76,51 +79,33 @@ class FixedNav extends Component {
    * @returns { void }
    * */
   showModal() {
-    $("#search__modal").modal("open");
+    let searchModal = $('#search__modal');
+    searchModal.addClass('search__pane');
+    searchModal.modal('open');
   }
 
   /**
-   * renderSidenav Method
+   * showMenuItems Method
    * @returns { component }
    * */
-  renderSidenav() {
+  showMenuItems() {
     return (
       <Fragment>
-        <Drawer
-          docked={false}
-          width={200}
-          open={this.state.open}
-          onRequestChange={open => this.setState({ open })}
-        >
-          <MenuItem
+        <List style={flexContainer}>
+          <IconButton
             onClick={() => this.showModal()}
-            leftIcon={<ActionSearch />}
-            primaryText="Search"
+            id="search__view"
+            tooltip="search"
+          >
+            <ActionSearch color="#FFFFFF" />
+          </IconButton>
+          <ListItem
+            style={{ color: '#FFFFFF' }}
+            primaryText="list of centers"
+            containerElement={<Link to="/centers" />}
           />
-          <MenuItem
-            primaryText={`Hello ${this.props.activeState.user.lastName ||
-              "Guest"}`}
-          />
-          <MenuItem
-            primaryText="My Events"
-            containerElement={<Link to="/my-events" />}
-          />
-          <Divider />
-          {!this.props.activeState.isAuthenticated ? (
-            this.showAuthenticationLinks()
-          ) : (
-            <MenuItem
-              primaryText="sign out"
-              containerElement={<Link to="/signout" />}
-            />
-          )}
-        </Drawer>
-        <FlatButton
-          className="right hide-on-med-and-up"
-          style={{ margin: "10px", color: "#FFFFFF" }}
-          onClick={this.handleToggle}
-          icon={<NavigationMenu />}
-        />
+          {this.showAuthenticationLinks()}
+        </List>
       </Fragment>
     );
   }
@@ -157,8 +142,8 @@ class FixedNav extends Component {
               <AccountCircle color="white" />
             </IconButton>
           }
-          anchorOrigin={{ horizontal: "left", vertical: "top" }}
-          targetOrigin={{ horizontal: "left", vertical: "top" }}
+          anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
+          targetOrigin={{ horizontal: 'left', vertical: 'top' }}
         >
           <MenuItem
             primaryText={`Hello ${this.props.activeState.user.lastName}`}
@@ -178,27 +163,47 @@ class FixedNav extends Component {
   }
 
   /**
-   * showMenuItems Method
+   * renderSidenav Method
    * @returns { component }
    * */
-  showMenuItems() {
+  renderSidenav() {
     return (
       <Fragment>
-        <List style={flexContainer}>
-          <IconButton
+        <Drawer
+          docked={false}
+          width={200}
+          open={this.state.open}
+          onRequestChange={open => this.setState({ open })}
+        >
+          <MenuItem
             onClick={() => this.showModal()}
-            id="search__view"
-            tooltip="search"
-          >
-            <ActionSearch color="#FFFFFF" />
-          </IconButton>
-          <ListItem
-            style={{ color: "#FFFFFF" }}
-            primaryText="list of centers"
-            containerElement={<Link to="/centers" />}
+            leftIcon={<ActionSearch />}
+            primaryText="Search"
           />
-          {this.showAuthenticationLinks()}
-        </List>
+          <MenuItem
+            primaryText={`Hello ${this.props.activeState.user.lastName ||
+              'Guest'}`}
+          />
+          <MenuItem
+            primaryText="My Events"
+            containerElement={<Link to="/my-events" />}
+          />
+          <Divider />
+          {!this.props.activeState.isAuthenticated ? (
+            this.showAuthenticationLinks()
+          ) : (
+            <MenuItem
+              primaryText="sign out"
+              containerElement={<Link to="/signout" />}
+            />
+          )}
+        </Drawer>
+        <FlatButton
+          className="right hide-on-med-and-up"
+          style={{ margin: '10px', color: '#FFFFFF' }}
+          onClick={this.handleToggle}
+          icon={<NavigationMenu />}
+        />
       </Fragment>
     );
   }
@@ -214,16 +219,16 @@ class FixedNav extends Component {
         title={
           <Link
             className="brand-logo"
-            style={{ color: "#FFFFFF" }}
+            style={{ color: '#FFFFFF' }}
             to="/"
             href="/"
           >
             <img
               style={{
-                width: "250px",
-                backgroundSize: "contain",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "60%"
+                width: '250px',
+                backgroundSize: 'contain',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: '60%'
               }}
               src="/image/logo2.png"
               alt="brand-logo"

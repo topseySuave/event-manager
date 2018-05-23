@@ -5,9 +5,7 @@ import {
   ADD_CENTER_REQUEST,
   ADD_CENTER_FAlLURE,
   EDIT_CENTER,
-  EDIT_CENTER_FAILURE,
-  CLOUDINARY_URL,
-  CLOUDINARY_UPLOAD_PRESET
+  EDIT_CENTER_FAILURE
 } from './';
 import history from '../util/history';
 
@@ -54,9 +52,9 @@ export const createCenterRequest = centerData => (dispatch) => {
   if (centerData.img_url.name) {
     let formData = new FormData();
     formData.append('file', centerData.img_url);
-    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+    formData.append('upload_preset', process.env.CLOUDINARY_UPLOAD_PRESET);
     setAuthorizationToken(false);
-    return axios.post(CLOUDINARY_URL, formData)
+    return axios.post(process.env.CLOUDINARY_URL, formData)
       .then(({ data }) => {
         dispatch(createCenter(centerApi, centerData, data.url));
       })
@@ -106,9 +104,9 @@ export const updateCenterRequest = centerData => (dispatch) => {
   if (centerData.img_url.name) {
     let formData = new FormData();
     formData.append('file', centerData.img_url);
-    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+    formData.append('upload_preset', process.env.CLOUDINARY_UPLOAD_PRESET);
     setAuthorizationToken(false);
-    return axios.post(CLOUDINARY_URL, formData)
+    return axios.post(process.env.CLOUDINARY_URL, formData)
       .then(({ data }) => {
         dispatch(editCenter(`${centerApi}/${centerData.id}`, centerData, data.url));
       })

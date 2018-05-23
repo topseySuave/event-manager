@@ -31,7 +31,6 @@ class AllCenters extends Component {
     this.helper = new Helpers();
     this.state = {
       isLoading: true,
-      loadmore: null,
       loadingmore: null
     };
     this.onSearch = this.onSearch.bind(this);
@@ -74,7 +73,6 @@ class AllCenters extends Component {
         page,
         pageSize,
         totalCount,
-        loadmore,
         loadingmore,
         pageCount
       });
@@ -105,39 +103,6 @@ class AllCenters extends Component {
           <CenterCard to={to} center={center} key={shortid.generate()} />
         );
       });
-  }
-
-  /**
-   * initInfiniteScroll Method
-   * @returns { void }
-   * */
-  initInfiniteScroll() {
-    let winHeight, winScrollTop, docHeight, offset;
-    $(window).scroll(() => {
-      winHeight = $(window).height();
-      winScrollTop = $(window).scrollTop();
-      docHeight = $(document).height();
-
-      if (docHeight - winHeight === winScrollTop) {
-        /**
-         * make loadmore request
-         * * */
-        offset = this.state.page + 1;
-        if (this.state.loadmore) {
-          this.props.loadMoreCenters(offset);
-        }
-      }
-    });
-  }
-
-  /**
-   * autoLoadMore Method
-   * @returns { void }
-   * */
-  autoLoadMore() {
-    if (this.state.loadmore) {
-      this.initInfiniteScroll();
-    }
   }
 
   /**
@@ -202,7 +167,6 @@ class AllCenters extends Component {
    * @returns { Component }
    * */
   render() {
-    this.autoLoadMore();
     const { isLoading } = this.state;
     return (
       <div className="container">

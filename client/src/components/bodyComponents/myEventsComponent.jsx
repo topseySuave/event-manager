@@ -26,7 +26,6 @@ class MyEventCardHolder extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      loadmore: null,
       loadingmore: null,
       events: []
     };
@@ -59,45 +58,11 @@ class MyEventCardHolder extends Component {
         page,
         pageSize,
         totalCount,
-        loadmore,
         loadingmore,
         pageCount
       });
     } else {
       this.setState({ isLoading: false });
-    }
-  }
-
-  /**
-   * initInfiniteScroll method
-   * @returns { void }
-   * */
-  initInfiniteScroll() {
-    let winHeight, winScrollTop, docHeight, offset;
-    $(window).scroll(() => {
-      winHeight = $(window).height();
-      winScrollTop = $(window).scrollTop();
-      docHeight = $(document).height();
-
-      if (docHeight - winHeight === winScrollTop) {
-        /**
-         * make loadmore request
-         * */
-        offset = this.state.page + 1;
-        if (this.state.loadmore) {
-          this.props.loadMoreEvents(offset);
-        }
-      }
-    });
-  }
-
-  /**
-   * autoLoadMore method
-   * @returns { void }
-   * */
-  autoLoadMore() {
-    if (this.state.loadmore) {
-      this.initInfiniteScroll();
     }
   }
 
@@ -147,7 +112,6 @@ class MyEventCardHolder extends Component {
    * @memberOf MyEventCardHolder
    * */
   render() {
-    this.autoLoadMore();
     let {
       isLoading, loadingmore, pageCount, pageSize, totalCount
     } = this.state;

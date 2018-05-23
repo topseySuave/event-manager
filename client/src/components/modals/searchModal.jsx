@@ -36,8 +36,8 @@ class SearchModal extends Component {
    * @returns { void }
    * */
   componentDidMount() {
-    let search__back_btn = $('.search__back_btn');
-    $('.search__back_btn').on('click', () => {
+    let searchBackBtn = $('.search__back_btn');
+    searchBackBtn.on('click', () => {
       $('#search__modal').modal('close');
       $('.modal-overlay').css({ display: 'none' });
     });
