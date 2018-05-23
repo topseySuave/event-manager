@@ -30,7 +30,9 @@ app.set('superSecret', process.env.SECRET_KEY); // secret variable
 
 // Parse incoming requests data (https://github.com/expressjs/body-parser)
 app.use(bodyParser.json({ limit: '10mb' }));
-app.use(bodyParser.urlencoded({ limit: '10mb', extended: true, parameterLimit: 10000 }));
+app.use(bodyParser.urlencoded({
+  limit: '10mb', extended: true, parameterLimit: 10000
+}));
 
 // Log requests to the console.
 app.use(logger('dev'));
@@ -54,7 +56,8 @@ app.set('views', path.join(__dirname, '..', 'client', 'public'));
 
 // Setup a default catch-all route that sends back the index html file.
 app.get('*', (req, res) => {
-  res.status(200).sendFile(path.join(__dirname, '..', 'client/public/index.html'));
+  res.status(200)
+    .sendFile(path.join(__dirname, '..', 'client/public/index.html'));
 });
 
 app.use((req, res) => res.status(404).send({

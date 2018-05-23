@@ -201,6 +201,8 @@ class EventCard extends Component {
     let shareColor = ['red', 'blue', 'yellow', 'green'],
       floatBtnColor;
     floatBtnColor = shareColor[Math.floor(Math.random() * shareColor.length)];
+    const bgColor =
+      'linear-gradient(to top, rgba(0, 0, 0, .7), rgba(0, 0, 0, .3))';
 
     let {
       id,
@@ -244,8 +246,7 @@ class EventCard extends Component {
               className="card-title bold"
               style={{
                 right: '0',
-                backgroundImage:
-                  'linear-gradient(to top, rgba(0, 0, 0, .7), rgba(0, 0, 0, .3))'
+                backgroundImage: bgColor
               }}
             >
               {title}

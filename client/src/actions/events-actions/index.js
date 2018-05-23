@@ -16,7 +16,8 @@ import {
   EVENT_STATUS_CHANGE,
   ADD_EVENT_FAILURE
 } from '../';
-import setAuthorizationToken from '../../components/authentication/setAuthenticationToken';
+import setAuthorizationToken from
+  '../../components/authentication/setAuthenticationToken';
 
 
 /**
@@ -76,7 +77,8 @@ export const searchEventsDispatch = data => ({
 });
 
 const createEvent = (eventData, imgUrl) => (dispatch) => {
-  let token = localStorage.getItem('jwtToken') ? localStorage.getItem('jwtToken') : false;
+  let token = localStorage.getItem('jwtToken') ? localStorage
+    .getItem('jwtToken') : false;
   setAuthorizationToken(token);
   eventData.img_url = imgUrl;
   return axios.post(api, eventData)
@@ -134,7 +136,8 @@ export const fetchEventRequest = () => dispatch => axios.get(api)
     dispatch(eventsDispatchAction('fetch', data));
   });
 
-export const fetchSessionEventRequest = userId => dispatch => axios.get(`${api}?sessionEvents=${userId}`)
+export const fetchSessionEventRequest = userId => dispatch => axios
+  .get(`${api}?sessionEvents=${userId}`)
   .then(({ data }) => {
     data.isLoading = false;
     if (data) {
@@ -153,10 +156,12 @@ export const fetchSessionEventRequest = userId => dispatch => axios.get(`${api}?
  *  @Edit Event Request Action
  *  @Returns Object
  * * */
-export const editEventRequestAction = data => dispatch => dispatch(eventsDispatchAction('edit_request', data));
+export const editEventRequestAction = data => dispatch =>
+  dispatch(eventsDispatchAction('edit_request', data));
 
 const editEvent = (eventData, imgUrl) => (dispatch) => {
-  let token = localStorage.getItem('jwtToken') ? localStorage.getItem('jwtToken') : false;
+  let token = localStorage.getItem('jwtToken') ? localStorage
+    .getItem('jwtToken') : false;
   setAuthorizationToken(token);
   eventData.img_url = imgUrl;
   return axios.put(`${api}/${eventData.eventId}`, eventData)

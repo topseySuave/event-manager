@@ -25,7 +25,7 @@ export default (state = {}, action = {}) => {
       return action.payload;
 
     case ADD_EVENT:
-      newState = Object.assign({}, state);
+      newState = { ...state };
       if (newState.events) {
         newState.events.unshift(action.payload);
         newState.totalCount = newState.events.length;
@@ -61,7 +61,8 @@ export default (state = {}, action = {}) => {
       newState.isLoading = false;
       newState.sessEvents.totalCount = newState.sessEvents.events.length;
       newState.sessEvents.pageSize = newState.sessEvents.totalCount;
-      newState.sessEvents.pageCount = Math.ceil(newState.sessEvents.totalCount / pageLimit);
+      newState.sessEvents.pageCount = Math
+        .ceil(newState.sessEvents.totalCount / pageLimit);
       return newState;
 
     case EDIT_EVENT_FAILURE:
@@ -107,7 +108,8 @@ export default (state = {}, action = {}) => {
 
     case LOADMORE_EVENT_SUCCESS:
       newState = Object.assign({}, state);
-      newState.sessEvents.events = newState.sessEvents.events.concat(action.payload);
+      newState.sessEvents.events = newState.sessEvents.events
+        .concat(action.payload);
       newState.loadingmore = false;
       newState.sessEvents.meta.page = parseInt(
         newState.sessEvents.meta.page + 1,

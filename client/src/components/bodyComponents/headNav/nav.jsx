@@ -16,7 +16,10 @@ import Dialog from 'material-ui/Dialog';
 import AppBar from 'material-ui/AppBar';
 import Toggle from 'material-ui/Toggle';
 import { green300 } from 'material-ui/styles/colors';
-import { NavigationClose, CloseIcon } from 'material-ui/svg-icons/navigation/close';
+import {
+  NavigationClose,
+  CloseIcon
+} from 'material-ui/svg-icons/navigation/close';
 import AccountCircle from 'material-ui/svg-icons/action/account-circle';
 
 import List, { ListItem, ListItemText } from 'material-ui/List';

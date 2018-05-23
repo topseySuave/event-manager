@@ -10,7 +10,10 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import ActionSearch from 'material-ui/svg-icons/action/search';
 import SocialGroup from 'material-ui/svg-icons/social/group';
-import { NavigationClose, CloseIcon } from 'material-ui/svg-icons/navigation/close';
+import {
+  NavigationClose,
+  CloseIcon
+} from 'material-ui/svg-icons/navigation/close';
 import AccountCircle from 'material-ui/svg-icons/action/account-circle';
 
 import MenuItem from 'material-ui/MenuItem';

@@ -9,8 +9,8 @@ import InputForm from '../../form/formInput';
 import { userSignInRequest } from '../../../actions/authActions';
 
 /**
-   * SignIn Class Component
-   * */
+ * SignIn Class Component
+ * */
 class SignInForm extends React.Component {
   /**
    * Class contructor
@@ -69,7 +69,8 @@ class SignInForm extends React.Component {
     e.preventDefault();
     if (this.isValid()) {
       this.setState({ errors: {}, isLoading: true });
-      this.props.userSignInRequest(this.state)
+      this.props
+        .userSignInRequest(this.state)
         .then((res) => {
           if (res) {
             this.setState({
@@ -109,7 +110,10 @@ class SignInForm extends React.Component {
 
     return (
       <div>
-        <div style={{ marginBottom: '20px' }} className={classNames('col', 's12', { hidden: !this.state.errored })}>
+        <div
+          style={{ marginBottom: '20px' }}
+          className={classNames('col', 's12', { hidden: !this.state.errored })}
+        >
           <div className="card-panel red lighten-3">
             <span className="white-text">{this.state.resMessage}</span>
           </div>
@@ -147,19 +151,35 @@ class SignInForm extends React.Component {
           <div className="row">
             <div className="input-field col s12 center-align">
               <button
-                className="btn col s12 white-text gradient__bg btn-register waves-effect waves-light"
+                className={
+                  'btn col s12 white-text' +
+                  ' gradient__bg btn-register waves-effect waves-light'
+                }
                 type="submit"
                 name="action"
                 disabled={isLoading ? 'disabled' : ''}
-              >{ !isLoading ? 'Sign In' : <img style={{ marginTop: '10px' }} src="/image/loader/loading.gif" alt="submit-loader" /> }
+              >
+                {!isLoading ? (
+                  'Sign In'
+                ) : (
+                  <img
+                    style={{ marginTop: '10px' }}
+                    src="/image/loader/loading.gif"
+                    alt="submit-loader"
+                  />
+                )}
               </button>
             </div>
 
             <p className="center-align">
-              <span>Don't Have an Account? Sign Up <Link to="signup" href="signup">here</Link></span>
+              <span>
+                Don't Have an Account? Sign Up{' '}
+                <Link to="signup" href="signup">
+                  here
+                </Link>
+              </span>
             </p>
           </div>
-
         </form>
       </div>
     );
@@ -170,6 +190,7 @@ const mapStateToProps = state => ({
   activeState: state.authReducer
 });
 
-const matchDispatchToProps = dispatch => bindActionCreators({ userSignInRequest }, dispatch);
+const matchDispatchToProps = dispatch =>
+  bindActionCreators({ userSignInRequest }, dispatch);
 
 export default connect(mapStateToProps, matchDispatchToProps)(SignInForm);

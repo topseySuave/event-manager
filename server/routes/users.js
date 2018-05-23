@@ -8,7 +8,11 @@ const userController = new Users();
 const validate = new Validation();
 
 router.post('/users', validate.validateSignUp, userController.createUser)
-  .post('/users/authentication', validate.validateLogin, userController.loginUser)
+  .post(
+    '/users/authentication',
+    validate.validateLogin,
+    userController.loginUser
+  )
   .get('/users/signed', authenticate, userController.currUser);
 
 module.exports = router;

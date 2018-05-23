@@ -99,7 +99,11 @@ class SearchFasterForm extends Component {
           />
         </div>
         <div className="input-field col s12 l2">
-          <button onClick={this.handleSearchStart} className="btn gradient__bg" type="submit">
+          <button
+            onClick={this.handleSearchStart}
+            className="btn gradient__bg"
+            type="submit"
+          >
             search
           </button>
         </div>

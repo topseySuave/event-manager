@@ -153,8 +153,12 @@ export default class Users {
             .then((updatedUser) => {
               const subject = 'Boots Events Manager: Administrator Assignment';
               let htmlOutput = `
-                            <h6>Boots Events Manager: Administrator Assignment</h6>
-                            <p>Dear, ${foundUser.firstName} ${foundUser.lastName} you have been Assigned as Administrator</p>
+                            <h6>
+                            Boots Events Manager: Administrator Assignment</h6>
+                            <p>
+                              Dear, ${foundUser.firstName} ${foundUser.lastName}
+                              you have been Assigned as Administrator
+                            </p>
                             <br />
                             <ul>
                                 <li>First Name: ${foundUser.firstName}</li>
@@ -169,7 +173,8 @@ export default class Users {
                         `;
 
               mailer(
-                foundUser.email, subject, subject, htmlOutput, () => res.status(400).send({
+                foundUser.email, subject, subject, htmlOutput,
+                () => res.status(400).send({
                   statusCode: 400,
                   message: `${foundUser.firstName} could not be notified`
                 }),
@@ -231,10 +236,16 @@ export default class Users {
           })
             .then((deletedUser) => {
               if (deletedUser) {
-                const subject = 'Dropped as Administrator: Boots Events Manager';
+                const subject =
+                  'Dropped as Administrator: Boots Events Manager';
                 let htmlOutput = `
-                            <h6>Dropped as Administrator: Boots Events Manager</h6>
-                            <p>Dear, ${foundUser.firstName} ${foundUser.lastName} you have been Dropped as Administrator</p>
+                            <h6>
+                              Dropped as Administrator: Boots Events Manager
+                            </h6>
+                            <p>
+                              Dear, ${foundUser.firstName} ${foundUser.lastName}
+                              you have been Dropped as Administrator
+                            </p>
                             <br />
                             <ul>
                                 <li>First Name: ${foundUser.firstName}</li>

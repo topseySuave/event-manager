@@ -3,7 +3,8 @@ import Nav from './bodyComponents/headNav/nav';
 import HeaderBanner from './bodyComponents/headNav/headbanner';
 import IndexCenterCardHolder from './bodyComponents/indexEventsCard';
 import CallToAction from './bodyComponents/footer/callToAction';
-import FloatingActionButton from './bodyComponents/floatingActionButton/FloatingActionButton';
+import FloatingActionButton from
+  './bodyComponents/floatingActionButton/FloatingActionButton';
 import Footer from './bodyComponents/footer/footer';
 import Modals from './modals';
 

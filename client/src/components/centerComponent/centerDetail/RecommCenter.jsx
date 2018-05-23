@@ -23,8 +23,7 @@ class RecommCenter extends Component {
       error: false,
       noCenter: 'There are no related centers',
       errorMessage: '',
-      relatedCenters: [],
-      currentCenterId: this.props.relatedCenterBasedOn.id
+      relatedCenters: []
     };
   }
 
@@ -56,7 +55,11 @@ class RecommCenter extends Component {
         this.setState({ isLoading: false, relatedCenters: data.centers });
       })
       .catch(() => {
-        this.setState({ isLoading: false, error: true, errorMessage: this.state.noCenter });
+        this.setState({
+          isLoading: false,
+          error: true,
+          errorMessage: this.state.noCenter
+        });
       });
   }
 
@@ -67,7 +70,8 @@ class RecommCenter extends Component {
   sortAndShowRecommended() {
     if (!isEmpty(this.state.relatedCenters)) {
       return this.state.relatedCenters.map((center, index) => {
-        const to = `/center/${center.id}/${this.helper.sanitizeString(center.title)}`;
+        const to = `/center/${center.id}/${this.helper
+          .sanitizeString(center.title)}`;
         return (
           <div key={shortid.generate()} className="col s12 m6 l4">
             <Link to={to} href={to}>
@@ -81,7 +85,11 @@ class RecommCenter extends Component {
                 }
                 <div className="card-content black-text">
                   <p className="bold">{center.title}</p>
-                  <p className="light__font"><i className="material-icons f15">location_on</i>{center.location}</p>
+                  <p className="light__font">
+                    <i className="material-icons f15">
+                      location_on
+                    </i>{center.location}
+                  </p>
                 </div>
               </div>
             </Link>
@@ -109,7 +117,8 @@ class RecommCenter extends Component {
         <h5 style={{ marginLeft: '10px' }}>Recommended Center</h5>
         { isLoading ? <CircularLoader /> : (
           <div className="row">
-            { (error) ? errorMessage : (isEmpty(eachCenter)) ? this.state.noCenter : eachCenter }
+            { (error) ? errorMessage :
+              (isEmpty(eachCenter)) ? this.state.noCenter : eachCenter }
           </div>
         )
         }

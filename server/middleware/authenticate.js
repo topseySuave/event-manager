@@ -7,9 +7,14 @@ const { User } = model;
 
 const authenticate = (req, res, next) => {
   /* * *
-     * Check if token is provided in request body or query param or request Headers
+     * Check if token is provided in
+     * request body or query param or request Headers
      ** */
-  const token = req.body.token || req.query.token || req.headers['x-access-token'] || req.headers.authorization;
+  const token =
+    req.body.token ||
+    req.query.token ||
+    req.headers['x-access-token'] ||
+    req.headers.authorization;
 
   if (!token) {
     return res.status(401).send({

@@ -12,7 +12,8 @@ export default (to, subject, text, html, errorCallback, sucessCallBack) => {
 
   // setup email data with unicode symbols
   let mailOptions = {
-    from: '"Boots Events Manager 👻" <gabrielsuave17@gmail.com>', // sender address
+    // sender address
+    from: '"Boots Events Manager 👻" <gabrielsuave17@gmail.com>',
     to, // list of receivers
     subject: `${subject} ✔`, // Subject line
     text, // plain text body

@@ -98,7 +98,8 @@ class AllCenters extends Component {
     return centers
       .sort((firstObj, secObj) => secObj.id - firstObj.id)
       .map((center) => {
-        let to = `center/${center.id}/${this.helper.sanitizeString(center.title)}`;
+        let to = `center/${center.id}/${this.helper
+          .sanitizeString(center.title)}`;
         return (
           <CenterCard to={to} center={center} key={shortid.generate()} />
         );
@@ -207,6 +208,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ fetchCentersAction, loadMoreCenters, searchAction }, dispatch);
+  bindActionCreators({
+    fetchCentersAction,
+    loadMoreCenters,
+    searchAction
+  }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllCenters);

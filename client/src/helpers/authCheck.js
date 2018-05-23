@@ -1,7 +1,8 @@
 import jwt from 'jsonwebtoken';
 import jwtDecode from 'jwt-decode';
 import { store } from '../';
-import setAuthorizationToken from '../components/authentication/setAuthenticationToken';
+import setAuthorizationToken from
+  '../components/authentication/setAuthenticationToken';
 import { setCurrentUser, signOutRequest } from '../actions/authActions';
 
 /**

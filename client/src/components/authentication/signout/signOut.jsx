@@ -31,6 +31,7 @@ const mapStateToProps = state => ({
   auth: state.authReducer
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ signOutRequest }, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ signOutRequest }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignOut);
