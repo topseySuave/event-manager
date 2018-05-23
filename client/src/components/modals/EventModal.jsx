@@ -90,7 +90,7 @@ class EventModal extends Component {
 
   componentWillReceiveProps(newProps) {
     if (newProps.event) this.setState({ isLoading: newProps.event.isLoading });
-    if (newProps.bookedCenter) this.setState({ isLoading: false });
+    if (newProps.centerIsBooked) this.setState({ isLoading: false });
     if (newProps.event.eventCreated) history.push('/my-events');
   }
 

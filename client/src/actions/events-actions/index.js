@@ -13,8 +13,6 @@ import {
   SEARCH_EVENT_TITLE,
   SESSION_EVENTS,
   SESSION_EVENTS_FAILURE,
-  CLOUDINARY_URL,
-  CLOUDINARY_UPLOAD_PRESET,
   EVENT_STATUS_CHANGE,
   ADD_EVENT_FAILURE
 } from '../';
@@ -108,9 +106,9 @@ export const createEventRequest = eventData => (dispatch) => {
   if (eventData.img_url.name) {
     let formData = new FormData();
     formData.append('file', eventData.img_url);
-    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+    formData.append('upload_preset', process.env.CLOUDINARY_UPLOAD_PRESET);
     setAuthorizationToken(false);
-    return axios.post(CLOUDINARY_URL, formData)
+    return axios.post(process.env.CLOUDINARY_URL, formData)
       .then(({ data }) => {
         dispatch(createEvent(eventData, data.url));
       })
@@ -181,9 +179,9 @@ export const editEventAction = eventData => (dispatch) => {
   if (eventData.img_url.name) {
     let formData = new FormData();
     formData.append('file', eventData.img_url);
-    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+    formData.append('upload_preset', process.env.CLOUDINARY_UPLOAD_PRESET);
     setAuthorizationToken(false);
-    return axios.post(CLOUDINARY_URL, formData)
+    return axios.post(process.env.CLOUDINARY_URL, formData)
       .then(({ data }) => {
         dispatch(editEvent(eventData, data.url));
       })

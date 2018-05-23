@@ -1,4 +1,7 @@
 const path = require('path');
+require('dotenv').load();
+const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: [
@@ -11,7 +14,7 @@ module.exports = {
     filename: 'app.bundle.js',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.(js|jsx|es6)$/,
         loader: 'babel-loader',
@@ -22,7 +25,11 @@ module.exports = {
       },
       {
         test: /\.(scss|css)$/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader'],
+        loaders: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader'
+        ],
       },
       {
         test: /\.html$/,
@@ -48,6 +55,19 @@ module.exports = {
       { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=image/svg+xml' },
     ]
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: './css/[name].css',
+      chunkFilename: './css/[id].css',
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        CLOUDINARY_UPLOAD_PRESET: JSON.stringify(process.env.CLOUDINARY_UPLOAD_PRESET),
+        CLOUDINARY_URL: JSON.stringify(process.env.CLOUDINARY_URL),
+        SECRET_KEY: JSON.stringify(process.env.SECRET_KEY)
+      }
+    }),
+  ],
   resolve: {
     extensions: ['.js', '.jsx'],
   }
