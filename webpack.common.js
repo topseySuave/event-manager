@@ -27,6 +27,7 @@ module.exports = {
         test: /\.(scss|css)$/,
         loaders: [
           MiniCssExtractPlugin.loader,
+          'style-loader',
           'css-loader',
           'sass-loader'
         ],
@@ -72,8 +73,8 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: './css/[name].css',
-      chunkFilename: './css/[id].css',
+      filename: '[name].css',
+      chunkFilename: '[id].css',
     }),
     new webpack.DefinePlugin({
       'process.env': {

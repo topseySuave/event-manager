@@ -16,12 +16,12 @@ let newCenter;
 export default (state = {}, action = {}) => {
   switch (action.type) {
     case ADD_CENTER_SUCCESS:
-      newState = Object.assign({}, state);
+      newState = { ...state };
       newState.centers = newState.centers.concat(action.center);
       return newState;
 
     case ADD_CENTER_FAlLURE:
-      newCenter = Object.assign({}, action.center);
+      newCenter = { ...action.center };
       return newCenter;
 
     case FETCH_CENTERS:
@@ -41,9 +41,11 @@ export default (state = {}, action = {}) => {
       };
 
     case LOADMORE_CENTER_SUCCESS:
-      newState = Object.assign({}, state);
+      newState = {
+        ...state,
+        loadingmore: false
+      };
       newState.centers = newState.centers.concat(action.payload);
-      newState.loadingmore = false;
       newState.meta.page = parseInt(newState.meta.page + 1, 10);
       newState.meta.pageSize = parseInt(
         newState.meta.pageSize + action.payload.length,
@@ -55,18 +57,17 @@ export default (state = {}, action = {}) => {
       return newState;
 
     case SEARCH_CENTER_TITLE:
-      newState = Object.assign({}, state);
       if (!isEmpty(action.payload.centers)) {
-        newState = action.payload;
-      } else {
-        return state;
+        return { ...action.payload };
       }
-      return newState;
+      return state;
+
 
     case SEARCH_CENTER_TITLE_FAILED:
-      newState = Object.assign({}, state);
-      newState.searchFailure = true;
-      return newState;
+      return {
+        ...state,
+        searchFailure: true,
+      };
 
     default:
       return state;

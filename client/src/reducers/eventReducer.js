@@ -40,8 +40,10 @@ export default (state = {}, action = {}) => {
       return newState;
 
     case ADD_EVENT_FAILURE:
-      newState = Object.assign({}, state);
-      newState.centerIsBooked = true;
+      newState = {
+        ...state,
+        centerIsBooked: true
+      };
       return newState;
 
     case EDIT_EVENT_REQUEST:
@@ -52,13 +54,15 @@ export default (state = {}, action = {}) => {
       };
 
     case EDIT_EVENT:
-      newState = Object.assign({}, state);
+      newState = {
+        ...state,
+        isLoading: false,
+      };
       newState.sessEvents.events.map((event, index) => {
         if (event.id === action.payload.id) {
           newState.sessEvents.events[index] = action.payload;
         }
       });
-      newState.isLoading = false;
       newState.sessEvents.totalCount = newState.sessEvents.events.length;
       newState.sessEvents.pageSize = newState.sessEvents.totalCount;
       newState.sessEvents.pageCount = Math
@@ -66,12 +70,14 @@ export default (state = {}, action = {}) => {
       return newState;
 
     case EDIT_EVENT_FAILURE:
-      newState = Object.assign({}, state);
-      newState.isLoading = false;
+      newState = {
+        ...state,
+        isLoading: false
+      };
       return newState;
 
     case REMOVE_EVENT:
-      newState = Object.assign({}, state);
+      newState = { ...state };
       newState.sessEvents.events.map((event, index) => {
         if (event.id === action.payload.id) {
           delete newState.sessEvents.events[index];
@@ -84,13 +90,16 @@ export default (state = {}, action = {}) => {
       return newState;
 
     case SESSION_EVENTS:
-      newState = Object.assign({}, state);
-      newState.sessEvents = action.payload;
-      return newState;
+      return {
+        ...state,
+        sessEvents: action.payload
+      };
 
     case SESSION_EVENTS_FAILURE:
-      newState = Object.assign({}, state);
-      newState.sessEvents = [];
+      newState = {
+        ...state,
+        sessEvents: []
+      };
       return newState;
 
     case LOADMORE_EVENT_FAILURE:
@@ -107,10 +116,9 @@ export default (state = {}, action = {}) => {
       };
 
     case LOADMORE_EVENT_SUCCESS:
-      newState = Object.assign({}, state);
+      newState = { ...state, loadingmore: false };
       newState.sessEvents.events = newState.sessEvents.events
         .concat(action.payload);
-      newState.loadingmore = false;
       newState.sessEvents.meta.page = parseInt(
         newState.sessEvents.meta.page + 1,
         10
@@ -128,7 +136,7 @@ export default (state = {}, action = {}) => {
       return newState;
 
     case SEARCH_EVENT_TITLE:
-      newState = Object.assign({}, state);
+      newState = { ...state };
       if (!isEmpty(action.events)) {
         newState.events = action.events;
       } else {
@@ -137,9 +145,7 @@ export default (state = {}, action = {}) => {
       return newState;
 
     case SEARCH_EVENT_TITLE_FAILED:
-      newState = Object.assign({}, state);
-      newState.searchFailure = true;
-      return newState;
+      return { ...state, searchFailure: true };
 
     default:
       return state;
