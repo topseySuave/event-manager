@@ -25,6 +25,14 @@ const localStorage = () => {
   };
 };
 
+// Init Materializecss toast function
+const Materialize = () => {
+  const params = {};
+  return {
+    toast: (a, b, c, d) => {}
+  };
+};
+
 const jQueryMock = {
   modal(action) {
     return action;
@@ -41,6 +49,7 @@ global.scrollTo = () => {};
 global.localStorage = localStorage();
 global.window = window;
 global.document = document;
+global.Materialize = Materialize;
 global.setTimeout = (callback) => {
   callback();
 };
