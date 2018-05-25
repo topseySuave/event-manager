@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../server/test/index.js"],"names":[],"mappings":";;AAEA;;;;AACA;;;;AACA","file":"index.js","sourcesContent":["/* eslint-disable no-unused-vars */\n\nimport users from './users.test';\nimport centers from './center.test';\nimport events from './event.test';\n"]}

@@ -31,22 +31,4 @@ export default class Helpers {
   numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
-
-  /**
-   * countDayDifference method
-   * To count days from start Date and end Date
-   * @param { string } startDate
-   * @param { string } endDate
-   * @return { string }
-   * */
-  countDayDifference(startDate, endDate) {
-    // hours * minutes * seconds * milliseconds
-    let oneDay = 24 * 60 * 60 * 1000;
-    let firstDate = new Date(startDate);
-    let secondDate = new Date(endDate);
-
-    let diffDays = Math
-      .round(Math.abs((firstDate.getTime() - secondDate.getTime()) / oneDay));
-    return diffDays;
-  }
 }
