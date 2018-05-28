@@ -1,6 +1,7 @@
 import isEmpty from 'lodash/isEmpty';
 import {
   ADD_CENTER_SUCCESS,
+  ADD_CENTER_REQUEST,
   ADD_CENTER_FAlLURE,
   FETCH_CENTERS,
   LOADMORE_CENTER_REQUEST,
@@ -12,12 +13,20 @@ import {
 
 let newState;
 let newCenter;
+const initialState = {
+  centers: []
+};
 
-export default (state = {}, action = {}) => {
+export default (state = initialState, action = {}) => {
   switch (action.type) {
     case ADD_CENTER_SUCCESS:
       newState = { ...state };
       newState.centers = newState.centers.concat(action.center);
+      return newState;
+
+    case ADD_CENTER_REQUEST:
+      newState = { ...state };
+      newState.startAddingCenter = true;
       return newState;
 
     case ADD_CENTER_FAlLURE:

@@ -29,7 +29,7 @@ const api = '/api/v1/events';
  *  @Event Dispatch Method
  *  @Returns Object
  * * */
-const eventsDispatchAction = (type, data = {}) => {
+export const eventsDispatchAction = (type, data = {}) => {
   switch (type) {
     case 'edit':
       return {
@@ -66,6 +66,43 @@ const eventsDispatchAction = (type, data = {}) => {
         type: ADD_EVENT_FAILURE
       };
 
+    case 'EDIT_EVENT_FAILURE':
+      return {
+        type: EDIT_EVENT_FAILURE
+      };
+
+    case 'SESSION_EVENTS':
+      return {
+        type: SESSION_EVENTS,
+        payload: data
+      };
+
+    case 'SESSION_EVENTS_FAILURE':
+      return {
+        type: SESSION_EVENTS_FAILURE
+      };
+
+    case 'EVENT_STATUS_CHANGE':
+      return {
+        type: EVENT_STATUS_CHANGE
+      };
+
+    case 'LOADMORE_EVENT_REQUEST':
+      return {
+        type: LOADMORE_EVENT_REQUEST
+      };
+
+    case 'LOADMORE_EVENT_SUCCESS':
+      return {
+        type: LOADMORE_EVENT_SUCCESS,
+        payload: data
+      };
+
+    case 'LOADMORE_EVENT_FAILURE':
+      return {
+        type: LOADMORE_EVENT_FAILURE
+      };
+
     default:
       return data;
   }
@@ -93,9 +130,7 @@ const createEvent = (eventData, imgUrl) => (dispatch) => {
     })
     .catch((err) => {
       console.log(err);
-      dispatch({
-        type: EDIT_EVENT_FAILURE
-      });
+      dispatch(eventsDispatchAction('EDIT_EVENT_FAILURE'));
       Materialize.toast('An Error Occurred..!!!', 5000, 'red lighten-2');
     });
 };
@@ -141,15 +176,9 @@ export const fetchSessionEventRequest = userId => dispatch => axios
   .then(({ data }) => {
     data.isLoading = false;
     if (data) {
-      return dispatch({
-        type: SESSION_EVENTS,
-        payload: data
-      });
+      return dispatch(eventsDispatchAction('SESSION_EVENTS', data));
     }
-
-    return dispatch({
-      type: SESSION_EVENTS_FAILURE
-    });
+    return dispatch(eventsDispatchAction('SESSION_EVENTS_FAILURE'));
   });
 
 /* *
@@ -219,20 +248,14 @@ export const deleteEventRequest = (id) => {
  *  @Returns Object
  * * */
 export const loadMoreEvents = offset => (dispatch) => {
-  dispatch({
-    type: LOADMORE_EVENT_REQUEST
-  });
+  dispatch(eventsDispatchAction('LOADMORE_EVENT_REQUEST'));
   return axios.get(`${api}?next=${offset}`)
     .then(({ data }) => {
       if (data.statusCode === 200) {
-        return dispatch({
-          type: LOADMORE_EVENT_SUCCESS,
-          payload: data.events
-        });
+        return dispatch(eventsDispatchAction('LOADMORE_EVENT_SUCCESS', data
+          .events));
       }
-      return dispatch({
-        type: LOADMORE_EVENT_FAILURE
-      });
+      return dispatch(eventsDispatchAction('LOADMORE_EVENT_FAILURE'));
     });
 };
 
@@ -245,9 +268,7 @@ export const handleStatusEventAction = (eventId, status) => dispatch =>
     .then(({ data }) => {
       if (data.statusCode === 200) {
         Materialize.toast(data.message, 5000, 'teal lighten-2');
-        return dispatch({
-          type: EVENT_STATUS_CHANGE
-        });
+        return dispatch(eventsDispatchAction('EVENT_STATUS_CHANGE'));
       }
       Materialize.toast(data.message, 5000, 'red lighten-2');
     });

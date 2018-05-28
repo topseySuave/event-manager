@@ -6,13 +6,10 @@ import { SET_USER, REMOVE_USER } from './index';
 
 const api = 'api/v1/users';
 
-const removeCurrentUser = () => {
-  window.history.back();
-  return {
-    type: REMOVE_USER,
-    payload: {}
-  };
-};
+const removeCurrentUser = () => ({
+  type: REMOVE_USER,
+  payload: {}
+});
 
 const setCurrentUser = token => ({
   type: SET_USER,
@@ -22,7 +19,8 @@ const setCurrentUser = token => ({
 const signOutRequest = () => {
   localStorage.removeItem('jwtToken');
   setAuthorizationToken(false);
-  return removeCurrentUser();
+  removeCurrentUser();
+  return window.history.back();
 };
 
 const userSignupRequest = userData => axios.post(api, userData);
@@ -43,5 +41,6 @@ module.exports = {
   userSignupRequest,
   userSignInRequest,
   signOutRequest,
-  setCurrentUser
+  setCurrentUser,
+  removeCurrentUser
 };

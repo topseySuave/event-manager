@@ -68,9 +68,7 @@ export const filterCenterTitle = value => (dispatch) => {
       dispatch(searchCenterDispatch(data));
     } else if (data.statusCode === 400) {
       Materialize.toast(data.message, 5000, 'red');
-      dispatch({
-        type: SEARCH_CENTER_TITLE_FAILED
-      });
+      dispatch(searchCenterDispatch(null, 'SEARCH_CENTER_TITLE_FAILED'));
     }
   });
 };

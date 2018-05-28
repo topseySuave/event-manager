@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import jwtDecode from 'jwt-decode';
-import { store } from '../';
+import { store } from '../rootReducer';
 import setAuthorizationToken from
   '../components/authentication/setAuthenticationToken';
 import { setCurrentUser, signOutRequest } from '../actions/authActions';

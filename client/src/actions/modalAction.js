@@ -12,7 +12,7 @@ import history from '../util/history';
 
 const centerApi = '/api/v1/centers';
 
-const addCenterPayload = (payload, response = null) => {
+export const addCenterPayload = (payload, response = null) => {
   if (response === 'success') {
     return {
       type: ADD_CENTER_SUCCESS,
@@ -70,15 +70,10 @@ export const createCenterRequest = centerData => (dispatch) => {
 /* *
  * update center payload sorter
  * ** */
-const updateCenterPayload = (data, res) => {
+export const updateCenterPayload = (data, res) => {
   if (res === 'success') {
     return {
       type: EDIT_CENTER,
-      payload: data
-    };
-  } else if (res === 'failure') {
-    return {
-      type: EDIT_CENTER_FAILURE,
       payload: data
     };
   }

@@ -2,23 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
-import { createStore, applyMiddleware, compose } from 'redux';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { cyan500, teal300, green300, black } from 'material-ui/styles/colors';
 import App from './components/App';
 import AuthCheck from './helpers/authCheck';
-import rootReducer from './rootReducer';
+import { store } from './rootReducer';
 import history from '../src/util/history';
-
 import registerServiceWorker from './registerServiceWorker';
-
-export const store = compose(
-  applyMiddleware(thunk),
-  window.devToolsExtension ? window.devToolsExtension() : f => f
-)(createStore)(rootReducer);
 
 new AuthCheck().isSignedIn();
 

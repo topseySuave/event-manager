@@ -1,8 +1,7 @@
 {
   "name": "boots-event-manager",
   "version": "1.0.0",
-  "description":
-    "An Event Manager application to create and manage your own event.",
+  "description": "An Event Manager application to create and manage your own event.",
   "main": "./server/app.js",
   "engines": {
     "node": "9.11.1",
@@ -21,14 +20,11 @@
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "pretest": "NODE_ENV=test npm run migrate:test",
-    "test:local":
-      "npm run create:test && npm run migrate:test && npm run test:server",
+    "test:local": "npm run create:test && npm run migrate:test && npm run test:server",
     "test": "npm run test:server",
-    "test:client": "jest ./client/__tests__/**/** --coverage",
-    "test:server":
-      "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --timeout 20000 --exit --require babel-core/register server/test/index.js",
-    "test:dev:server":
-      "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha ./server/test/index.js --exit --require babel-node/register --reporter spec",
+    "test:client": "jest --coverage --watch",
+    "test:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --timeout 20000 --exit --require babel-core/register server/test/index.js",
+    "test:dev:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha ./server/test/index.js --exit --require babel-node/register --reporter spec",
     "test:dev": "npm test && npm run coverage",
     "webpack": "webpack --config webpack.dev.js --watch",
     "migrate": "sequelize db:migrate",
@@ -58,12 +54,18 @@
   },
   "homepage": "https://github.com/topseysuave/event-manager#readme",
   "nodemonConfig": {
-    "ignore": ["client/*"]
+    "ignore": [
+      "client/*"
+    ]
   },
   "jest": {
+    "testRegex": "client/__tests__/.*\\.test\\.(js|jsx)$",
     "setupTestFrameworkScriptFile": "./client/__tests__/setup.js",
     "collectCoverage": true,
-    "collectCoverageFrom": ["client/src/**", "!client/src/index.jsx"],
+    "collectCoverageFrom": [
+      "client/src/**",
+      "!client/src/index.jsx"
+    ],
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "/server/",
@@ -72,6 +74,9 @@
       "/client/src/rootReducer.js",
       "/client/src/util/",
       "/client/src/helpers/authCheck.js"
+    ],
+    "testPathIgnorePatterns": [
+      "/client/__tests__/__mocks__/"
     ]
   },
   "dependencies": {
@@ -102,7 +107,6 @@
     "css-loader": "^0.28.7",
     "dotenv": "^4.0.0",
     "es6-promise": "^4.1.1",
-    "expect": "^21.2.1",
     "express": "^4.16.2",
     "faker": "*",
     "fetch-ie8": "^1.5.0",
@@ -173,12 +177,15 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.6.1",
+    "expect": "^21.2.1",
     "faker": "^4.1.0",
     "jest": "^22.3.0",
     "jsdom": "^11.11.0",
     "mocha": "^4.0.1",
     "mocha-lcov-reporter": "^1.3.0",
+    "moxios": "^0.4.0",
     "react-test-renderer": "^16.2.0",
+    "redux-mock-store": "^1.5.1",
     "webpack-cli": "^2.1.3",
     "webpack-dev-server": "^3.1.4"
   }

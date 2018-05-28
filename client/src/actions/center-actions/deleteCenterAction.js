@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { REMOVE_CENTER } from '../';
 
-const deleteAction = data => ({
+export const deleteAction = data => ({
   type: REMOVE_CENTER,
   payload: data
 });
