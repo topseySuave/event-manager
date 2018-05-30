@@ -19,8 +19,7 @@ const setCurrentUser = token => ({
 const signOutRequest = () => {
   localStorage.removeItem('jwtToken');
   setAuthorizationToken(false);
-  removeCurrentUser();
-  return window.history.back();
+  return removeCurrentUser();
 };
 
 const userSignupRequest = userData => axios.post(api, userData);

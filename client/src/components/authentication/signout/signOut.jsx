@@ -6,13 +6,24 @@ import { signOutRequest } from '../../../actions/authActions';
 /**
    * SignOut Class Component
    * */
-class SignOut extends Component {
+export class SignOut extends Component {
   /**
    * componentWillMount method
    * @returns { void }
    * */
   componentWillMount() {
     this.props.signOutRequest();
+  }
+
+  /**
+   * componentWillReceiveProps method
+   * @param {object} newProps
+   * @returns { void }
+   * */
+  componentWillReceiveProps(newProps) {
+    if (newProps.auth.redirect) {
+      window.history.back();
+    }
   }
 
   /**
@@ -31,7 +42,7 @@ const mapStateToProps = state => ({
   auth: state.authReducer
 });
 
-const mapDispatchToProps = dispatch =>
+export const mapDispatchToProps = dispatch =>
   bindActionCreators({ signOutRequest }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignOut);

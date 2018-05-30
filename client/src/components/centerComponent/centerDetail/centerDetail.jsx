@@ -33,7 +33,7 @@ const helpers = new Helpers();
 /**
  * CenterDetail Class Component
  * */
-class CenterDetail extends Component {
+export class CenterDetail extends Component {
   /**
    * Class constructor
    * @param { object } props

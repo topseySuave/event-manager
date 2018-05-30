@@ -11,7 +11,7 @@ import { userSignInRequest } from '../../../actions/authActions';
 /**
  * SignIn Class Component
  * */
-class SignInForm extends React.Component {
+export class SignInForm extends React.Component {
   /**
    * Class contructor
    * @param { object } props
@@ -190,7 +190,7 @@ const mapStateToProps = state => ({
   activeState: state.authReducer
 });
 
-const matchDispatchToProps = dispatch =>
+export const matchDispatchToProps = dispatch =>
   bindActionCreators({ userSignInRequest }, dispatch);
 
 export default connect(mapStateToProps, matchDispatchToProps)(SignInForm);

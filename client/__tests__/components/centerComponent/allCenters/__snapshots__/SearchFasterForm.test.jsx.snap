@@ -1,0 +1,583 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchFasterForm component Should have a snapshot of the component 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <SearchFasterForm
+    onSearch={[MockFunction]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <div
+          className="input-field col s12 l2"
+        >
+          <label
+            htmlFor="fast_price"
+          >
+            Price
+          </label>
+          <input
+            className="validate"
+            id="fast_price"
+            min="100"
+            name="price"
+            onChange={[Function]}
+            type="number"
+            value={100000}
+          />
+        </div>,
+        <div
+          className="input-field col s12 l4"
+        >
+          <label
+            htmlFor="fast_capacity"
+          >
+            Capacity
+          </label>
+          <input
+            className="validate"
+            id="fast_capacity"
+            min="0"
+            name="capacity"
+            onChange={[Function]}
+            type="number"
+            value={500}
+          />
+        </div>,
+        <div
+          className="input-field col s12 l4"
+        >
+          <label
+            htmlFor="fast_capacity"
+          >
+            Location
+          </label>
+          <input
+            className="validate"
+            id="fast_location"
+            name="location"
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+        </div>,
+        <div
+          className="input-field col s12 l2"
+        >
+          <button
+            className="btn gradient__bg"
+            onClick={[Function]}
+            type="submit"
+          >
+            search
+          </button>
+        </div>,
+      ],
+      "className": "col s12 full-width",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <label
+              htmlFor="fast_price"
+            >
+              Price
+            </label>,
+            <input
+              className="validate"
+              id="fast_price"
+              min="100"
+              name="price"
+              onChange={[Function]}
+              type="number"
+              value={100000}
+            />,
+          ],
+          "className": "input-field col s12 l2",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Price",
+              "htmlFor": "fast_price",
+            },
+            "ref": null,
+            "rendered": "Price",
+            "type": "label",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "className": "validate",
+              "id": "fast_price",
+              "min": "100",
+              "name": "price",
+              "onChange": [Function],
+              "type": "number",
+              "value": 100000,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "input",
+          },
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <label
+              htmlFor="fast_capacity"
+            >
+              Capacity
+            </label>,
+            <input
+              className="validate"
+              id="fast_capacity"
+              min="0"
+              name="capacity"
+              onChange={[Function]}
+              type="number"
+              value={500}
+            />,
+          ],
+          "className": "input-field col s12 l4",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Capacity",
+              "htmlFor": "fast_capacity",
+            },
+            "ref": null,
+            "rendered": "Capacity",
+            "type": "label",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "className": "validate",
+              "id": "fast_capacity",
+              "min": "0",
+              "name": "capacity",
+              "onChange": [Function],
+              "type": "number",
+              "value": 500,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "input",
+          },
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <label
+              htmlFor="fast_capacity"
+            >
+              Location
+            </label>,
+            <input
+              className="validate"
+              id="fast_location"
+              name="location"
+              onChange={[Function]}
+              type="text"
+              value=""
+            />,
+          ],
+          "className": "input-field col s12 l4",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Location",
+              "htmlFor": "fast_capacity",
+            },
+            "ref": null,
+            "rendered": "Location",
+            "type": "label",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "className": "validate",
+              "id": "fast_location",
+              "name": "location",
+              "onChange": [Function],
+              "type": "text",
+              "value": "",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "input",
+          },
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <button
+            className="btn gradient__bg"
+            onClick={[Function]}
+            type="submit"
+          >
+            search
+          </button>,
+          "className": "input-field col s12 l2",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "search",
+            "className": "btn gradient__bg",
+            "onClick": [Function],
+            "type": "submit",
+          },
+          "ref": null,
+          "rendered": "search",
+          "type": "button",
+        },
+        "type": "div",
+      },
+    ],
+    "type": "form",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div
+            className="input-field col s12 l2"
+          >
+            <label
+              htmlFor="fast_price"
+            >
+              Price
+            </label>
+            <input
+              className="validate"
+              id="fast_price"
+              min="100"
+              name="price"
+              onChange={[Function]}
+              type="number"
+              value={100000}
+            />
+          </div>,
+          <div
+            className="input-field col s12 l4"
+          >
+            <label
+              htmlFor="fast_capacity"
+            >
+              Capacity
+            </label>
+            <input
+              className="validate"
+              id="fast_capacity"
+              min="0"
+              name="capacity"
+              onChange={[Function]}
+              type="number"
+              value={500}
+            />
+          </div>,
+          <div
+            className="input-field col s12 l4"
+          >
+            <label
+              htmlFor="fast_capacity"
+            >
+              Location
+            </label>
+            <input
+              className="validate"
+              id="fast_location"
+              name="location"
+              onChange={[Function]}
+              type="text"
+              value=""
+            />
+          </div>,
+          <div
+            className="input-field col s12 l2"
+          >
+            <button
+              className="btn gradient__bg"
+              onClick={[Function]}
+              type="submit"
+            >
+              search
+            </button>
+          </div>,
+        ],
+        "className": "col s12 full-width",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <label
+                htmlFor="fast_price"
+              >
+                Price
+              </label>,
+              <input
+                className="validate"
+                id="fast_price"
+                min="100"
+                name="price"
+                onChange={[Function]}
+                type="number"
+                value={100000}
+              />,
+            ],
+            "className": "input-field col s12 l2",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Price",
+                "htmlFor": "fast_price",
+              },
+              "ref": null,
+              "rendered": "Price",
+              "type": "label",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "validate",
+                "id": "fast_price",
+                "min": "100",
+                "name": "price",
+                "onChange": [Function],
+                "type": "number",
+                "value": 100000,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "input",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <label
+                htmlFor="fast_capacity"
+              >
+                Capacity
+              </label>,
+              <input
+                className="validate"
+                id="fast_capacity"
+                min="0"
+                name="capacity"
+                onChange={[Function]}
+                type="number"
+                value={500}
+              />,
+            ],
+            "className": "input-field col s12 l4",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Capacity",
+                "htmlFor": "fast_capacity",
+              },
+              "ref": null,
+              "rendered": "Capacity",
+              "type": "label",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "validate",
+                "id": "fast_capacity",
+                "min": "0",
+                "name": "capacity",
+                "onChange": [Function],
+                "type": "number",
+                "value": 500,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "input",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <label
+                htmlFor="fast_capacity"
+              >
+                Location
+              </label>,
+              <input
+                className="validate"
+                id="fast_location"
+                name="location"
+                onChange={[Function]}
+                type="text"
+                value=""
+              />,
+            ],
+            "className": "input-field col s12 l4",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Location",
+                "htmlFor": "fast_capacity",
+              },
+              "ref": null,
+              "rendered": "Location",
+              "type": "label",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "validate",
+                "id": "fast_location",
+                "name": "location",
+                "onChange": [Function],
+                "type": "text",
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "input",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <button
+              className="btn gradient__bg"
+              onClick={[Function]}
+              type="submit"
+            >
+              search
+            </button>,
+            "className": "input-field col s12 l2",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "search",
+              "className": "btn gradient__bg",
+              "onClick": [Function],
+              "type": "submit",
+            },
+            "ref": null,
+            "rendered": "search",
+            "type": "button",
+          },
+          "type": "div",
+        },
+      ],
+      "type": "form",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

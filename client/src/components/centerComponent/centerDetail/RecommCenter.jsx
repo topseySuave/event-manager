@@ -6,6 +6,7 @@ import isEmpty from 'lodash/isEmpty';
 
 import { CircularLoader } from '../../loader';
 import Helpers from '../../../helpers';
+import CenterCard from '../centerCard/centerCard';
 
 /**
  * RecommCenter Class Component
@@ -73,27 +74,7 @@ class RecommCenter extends Component {
         const to = `/center/${center.id}/${this.helper
           .sanitizeString(center.title)}`;
         return (
-          <div key={shortid.generate()} className="col s12 m6 l4">
-            <Link to={to} href={to}>
-              <div className="card">
-                {
-                  !!center.img_url
-                  &&
-                  <div className="card-image center__image">
-                    <img src={center.img_url} alt={center.title} />
-                  </div>
-                }
-                <div className="card-content black-text">
-                  <p className="bold">{center.title}</p>
-                  <p className="light__font">
-                    <i className="material-icons f15">
-                      location_on
-                    </i>{center.location}
-                  </p>
-                </div>
-              </div>
-            </Link>
-          </div>
+          <CenterCard to={to} center={center} key={shortid.generate()} />
         );
       });
     }

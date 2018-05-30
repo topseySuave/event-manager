@@ -28,6 +28,7 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         isAuthenticated: false,
+        redirect: true,
         user: action.payload
       };
 

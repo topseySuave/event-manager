@@ -21,7 +21,7 @@ const styles = {
   }
 };
 
-class EventModal extends Component {
+export class EventModal extends Component {
   constructor(props) {
     super(props);
 

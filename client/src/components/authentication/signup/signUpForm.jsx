@@ -8,7 +8,7 @@ import InputForm from '../../form/formInput';
 /**
  * SignUpForm Class Component
  * */
-class SignUpForm extends Component {
+export class SignUpForm extends Component {
   /**
    * Class contructor
    * @param { object } props

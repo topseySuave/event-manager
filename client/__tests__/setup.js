@@ -11,6 +11,8 @@ virtualConsole.sendTo(console);
 
 const { window } = new JSDOM('', { virtualConsole });
 
+window.history.back = () => {};
+
 const { document } = window;
 
 // mock localStorage function
@@ -37,6 +39,9 @@ const jQueryMock = {
   modal(action) {
     return action;
   },
+  tooltip(action) {
+    return action;
+  },
 };
 
 const $ = () => jQueryMock;
@@ -50,6 +55,6 @@ global.localStorage = localStorage();
 global.window = window;
 global.document = document;
 global.Materialize = Materialize;
-global.setTimeout = (callback) => {
-  callback();
-};
+// global.setTimeout = (callback) => {
+//   callback();
+// };
