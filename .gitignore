@@ -7,3 +7,6 @@
 /build/
 /npm-debug.log*
 /client/bower_components
+package-lock.json
+reports/
+selenium-debug.log

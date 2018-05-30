@@ -27,5 +27,6 @@ describe('CenterDetail component', () => {
     () => {
       instance.componentWillReceiveProps(props);
       expect(wrapper.state().isAdmin).toBeFalsy();
-    });
+    }
+  );
 });
