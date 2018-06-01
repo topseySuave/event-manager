@@ -14,13 +14,12 @@ import { searchAction } from '../../../actions/searchAction';
 import CenterCard from '../centerCard/centerCard';
 import { CircularLoader } from '../../loader';
 import Helpers from '../../../helpers';
-import history from '../../../util/history';
 import SearchFasterForm from './searchFasterForm';
 
 /**
    * AllCenters Class Component
    * */
-class AllCenters extends Component {
+export class AllCenters extends Component {
   /**
    * Class Constructor
    * @param { object } props
@@ -86,7 +85,7 @@ class AllCenters extends Component {
    * */
   onSearch(query) {
     const qString = queryString.stringify(query, { arrayFormat: 'bracket' });
-    history.push(`/centers?${qString}`);
+    this.props.history.push(`/centers?${qString}`);
   }
 
   /**
@@ -200,7 +199,8 @@ class AllCenters extends Component {
 AllCenters.propTypes = {
   fetchCentersAction: PropTypes.func.isRequired,
   centerStore: PropTypes.object.isRequired,
-  loadMoreCenters: PropTypes.func.isRequired
+  loadMoreCenters: PropTypes.func.isRequired,
+  history: PropTypes.object
 };
 
 const mapStateToProps = state => ({

@@ -362,13 +362,13 @@ export class CenterDetail extends Component {
                           </div>
                         </div>
                         <div className="row">
-                          <div className="col s12 l2">
+                          <div className="col s12 l2" id="showEditCenterButton">
                             {this.showEditCenterButton()}
                           </div>
-                          <div className="col s12 l2">
+                          <div className="col s12 l2" id="showAlertModal">
                             {this.showAlertModal(id)}
                           </div>
-                          <div className="col s12 l4">
+                          <div className="col s12 l4" id="showBookCenterButton">
                             {this.showBookCenterButton()}
                           </div>
                         </div>

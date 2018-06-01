@@ -28,7 +28,7 @@ import { imageNotAvailable } from '../../../util/facilities';
 /**
    * EventCard Class Component
    * */
-class EventCard extends Component {
+export class EventCard extends Component {
   /**
    * Class contructor
    * @param { object } props

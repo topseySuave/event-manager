@@ -54,9 +54,8 @@ describe('Sign In form component', () => {
     () => {
       props.isAuthenticated = false;
       let wrapper = mountComp(props, userSignInRequest, history);
-      const instance = wrapper.instance();
       wrapper.setState({ email: '', password: '' });
-      wrapper.find('#email').simulate(
+      wrapper.find('#email').at(0).simulate(
         'change',
         {
           target:
@@ -64,7 +63,7 @@ describe('Sign In form component', () => {
         }
       );
 
-      wrapper.find('#password').simulate(
+      wrapper.find('#password').at(0).simulate(
         'change',
         {
           target:
@@ -72,14 +71,14 @@ describe('Sign In form component', () => {
         }
       );
 
-      wrapper.find('#signin-form').simulate(
+      wrapper.find('#signin-form').at(0).simulate(
         'submit',
         { preventDefault() {} }
       );
 
       expect(wrapper.state().errors.email).toBe('Email is invalid');
       expect(wrapper.state().errors.password)
-        .toBe('Password is too short, Must be more than 6 characters');
+        .toBe('This field is required');
     }
   );
 });

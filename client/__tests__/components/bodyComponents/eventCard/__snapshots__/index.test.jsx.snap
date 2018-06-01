@@ -1,0 +1,2350 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EventCard component EventCard component should mount 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <EventCard
+    deleteEventRequest={[MockFunction]}
+    editEventRequestAction={[Function]}
+    event={
+      Object {
+        "center": Object {
+          "location": "ikeja",
+        },
+        "description": "a brief description",
+        "endDate": "Fri Jun 01 2018 20:41:10 GMT+0100 (WAT)10",
+        "id": 1,
+        "img_url": "",
+        "startDate": "Fri Jun 01 2018 20:41:10 GMT+0100 (WAT)1",
+        "status": "pending",
+        "title": "this is us",
+        "userId": 1,
+      }
+    }
+    userState={
+      Object {
+        "isAuthenticated": true,
+        "user": Object {
+          "id": 1,
+          "role": false,
+        },
+      }
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <Dialog
+          actions={
+            Array [
+              <FlatButton
+                disabled={false}
+                fullWidth={false}
+                label="Yes"
+                labelPosition="after"
+                labelStyle={Object {}}
+                onClick={[Function]}
+                onKeyboardFocus={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+                onTouchStart={[Function]}
+                primary={true}
+                secondary={false}
+              />,
+              <FlatButton
+                disabled={false}
+                fullWidth={false}
+                label="No"
+                labelPosition="after"
+                labelStyle={Object {}}
+                onClick={[Function]}
+                onKeyboardFocus={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+                onTouchStart={[Function]}
+                primary={true}
+                secondary={false}
+              />,
+            ]
+          }
+          autoDetectWindowHeight={true}
+          autoScrollBodyContent={false}
+          modal={false}
+          onRequestClose={[Function]}
+          open={false}
+          repositionOnUpdate={true}
+        >
+          Are you sure you want to delete this event?
+        </Dialog>,
+        <div
+          className="card"
+          data-id="S1lAI-m1xm"
+        >
+          <div
+            className="card-image"
+          >
+            <span
+              className="status-indicator darken-3 white-text yellow"
+            >
+              pending
+            </span>
+            <img
+              alt="this is us"
+              src="http://www.topangacreekoutpost.com/assets/images/site/image_not_available.png"
+            />
+            <span
+              className="card-title bold"
+              style={
+                Object {
+                  "backgroundImage": "linear-gradient(to top, rgba(0, 0, 0, .7), rgba(0, 0, 0, .3))",
+                  "right": "0",
+                }
+              }
+            >
+              this is us
+            </span>
+            <a
+              className="btn-floating activator halfway-fab waves-effect waves-light tooltipped blue"
+              data-position="bottom"
+              data-tooltip="share"
+            >
+              <i
+                className="material-icons"
+              >
+                dehaze
+              </i>
+            </a>
+          </div>
+          <div
+            className="card-content"
+          >
+            <p
+              className="small__duration"
+            >
+              <i
+                className="material-icons f15"
+              >
+                schedule
+              </i>
+              Fri Jun 01 2018
+            </p>
+            <div>
+              <i
+                className="material-icons f15"
+              >
+                location_on 
+              </i>
+               
+              ikeja
+              <IconMenu
+                anchorOrigin={
+                  Object {
+                    "horizontal": "left",
+                    "vertical": "top",
+                  }
+                }
+                animated={true}
+                className="right-align"
+                clickCloseDelay={200}
+                iconButtonElement={
+                  <IconButton
+                    disableTouchRipple={false}
+                    disabled={false}
+                    iconStyle={Object {}}
+                    tooltipPosition="bottom-center"
+                    touch={false}
+                  >
+                    <NavigationMoreVert />
+                  </IconButton>
+                }
+                multiple={false}
+                onClick={[Function]}
+                onItemClick={[Function]}
+                onKeyboardFocus={[Function]}
+                onMouseDown={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+                onMouseUp={[Function]}
+                onRequestChange={[Function]}
+                open={null}
+                targetOrigin={
+                  Object {
+                    "horizontal": "left",
+                    "vertical": "top",
+                  }
+                }
+                useLayerForClickAway={false}
+              >
+                <MenuItem
+                  anchorOrigin={
+                    Object {
+                      "horizontal": "right",
+                      "vertical": "top",
+                    }
+                  }
+                  checked={false}
+                  desktop={false}
+                  disabled={false}
+                  focusState="none"
+                  insetChildren={false}
+                  leftIcon={<EditorModeEdit />}
+                  onClick={[Function]}
+                  primaryText="Edit"
+                  targetOrigin={
+                    Object {
+                      "horizontal": "left",
+                      "vertical": "top",
+                    }
+                  }
+                />
+                <MenuItem
+                  anchorOrigin={
+                    Object {
+                      "horizontal": "right",
+                      "vertical": "top",
+                    }
+                  }
+                  checked={false}
+                  desktop={false}
+                  disabled={false}
+                  focusState="none"
+                  insetChildren={false}
+                  leftIcon={<ActionDelete />}
+                  onClick={[Function]}
+                  primaryText="Delete"
+                  style={
+                    Object {
+                      "color": "red",
+                    }
+                  }
+                  targetOrigin={
+                    Object {
+                      "horizontal": "left",
+                      "vertical": "top",
+                    }
+                  }
+                />
+              </IconMenu>
+            </div>
+          </div>
+          <div
+            className="card-reveal"
+          >
+            <span
+              className="card-title grey-text text-darken-4"
+            >
+              <a
+                className="bold"
+              >
+                this is us
+              </a>
+              <i
+                className="material-icons right"
+              >
+                close
+              </i>
+            </span>
+            <p>
+              a brief description
+            </p>
+            <small>
+              <i
+                className="material-icons f15"
+              >
+                location_on
+              </i>
+               
+              ikeja
+            </small>
+          </div>
+        </div>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "actions": Array [
+            <FlatButton
+              disabled={false}
+              fullWidth={false}
+              label="Yes"
+              labelPosition="after"
+              labelStyle={Object {}}
+              onClick={[Function]}
+              onKeyboardFocus={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onTouchStart={[Function]}
+              primary={true}
+              secondary={false}
+            />,
+            <FlatButton
+              disabled={false}
+              fullWidth={false}
+              label="No"
+              labelPosition="after"
+              labelStyle={Object {}}
+              onClick={[Function]}
+              onKeyboardFocus={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onTouchStart={[Function]}
+              primary={true}
+              secondary={false}
+            />,
+          ],
+          "autoDetectWindowHeight": true,
+          "autoScrollBodyContent": false,
+          "children": "Are you sure you want to delete this event?",
+          "modal": false,
+          "onRequestClose": [Function],
+          "open": false,
+          "repositionOnUpdate": true,
+        },
+        "ref": null,
+        "rendered": "Are you sure you want to delete this event?",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <div
+              className="card-image"
+            >
+              <span
+                className="status-indicator darken-3 white-text yellow"
+              >
+                pending
+              </span>
+              <img
+                alt="this is us"
+                src="http://www.topangacreekoutpost.com/assets/images/site/image_not_available.png"
+              />
+              <span
+                className="card-title bold"
+                style={
+                  Object {
+                    "backgroundImage": "linear-gradient(to top, rgba(0, 0, 0, .7), rgba(0, 0, 0, .3))",
+                    "right": "0",
+                  }
+                }
+              >
+                this is us
+              </span>
+              <a
+                className="btn-floating activator halfway-fab waves-effect waves-light tooltipped blue"
+                data-position="bottom"
+                data-tooltip="share"
+              >
+                <i
+                  className="material-icons"
+                >
+                  dehaze
+                </i>
+              </a>
+            </div>,
+            <div
+              className="card-content"
+            >
+              <p
+                className="small__duration"
+              >
+                <i
+                  className="material-icons f15"
+                >
+                  schedule
+                </i>
+                Fri Jun 01 2018
+              </p>
+              <div>
+                <i
+                  className="material-icons f15"
+                >
+                  location_on 
+                </i>
+                 
+                ikeja
+                <IconMenu
+                  anchorOrigin={
+                    Object {
+                      "horizontal": "left",
+                      "vertical": "top",
+                    }
+                  }
+                  animated={true}
+                  className="right-align"
+                  clickCloseDelay={200}
+                  iconButtonElement={
+                    <IconButton
+                      disableTouchRipple={false}
+                      disabled={false}
+                      iconStyle={Object {}}
+                      tooltipPosition="bottom-center"
+                      touch={false}
+                    >
+                      <NavigationMoreVert />
+                    </IconButton>
+                  }
+                  multiple={false}
+                  onClick={[Function]}
+                  onItemClick={[Function]}
+                  onKeyboardFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onRequestChange={[Function]}
+                  open={null}
+                  targetOrigin={
+                    Object {
+                      "horizontal": "left",
+                      "vertical": "top",
+                    }
+                  }
+                  useLayerForClickAway={false}
+                >
+                  <MenuItem
+                    anchorOrigin={
+                      Object {
+                        "horizontal": "right",
+                        "vertical": "top",
+                      }
+                    }
+                    checked={false}
+                    desktop={false}
+                    disabled={false}
+                    focusState="none"
+                    insetChildren={false}
+                    leftIcon={<EditorModeEdit />}
+                    onClick={[Function]}
+                    primaryText="Edit"
+                    targetOrigin={
+                      Object {
+                        "horizontal": "left",
+                        "vertical": "top",
+                      }
+                    }
+                  />
+                  <MenuItem
+                    anchorOrigin={
+                      Object {
+                        "horizontal": "right",
+                        "vertical": "top",
+                      }
+                    }
+                    checked={false}
+                    desktop={false}
+                    disabled={false}
+                    focusState="none"
+                    insetChildren={false}
+                    leftIcon={<ActionDelete />}
+                    onClick={[Function]}
+                    primaryText="Delete"
+                    style={
+                      Object {
+                        "color": "red",
+                      }
+                    }
+                    targetOrigin={
+                      Object {
+                        "horizontal": "left",
+                        "vertical": "top",
+                      }
+                    }
+                  />
+                </IconMenu>
+              </div>
+            </div>,
+            <div
+              className="card-reveal"
+            >
+              <span
+                className="card-title grey-text text-darken-4"
+              >
+                <a
+                  className="bold"
+                >
+                  this is us
+                </a>
+                <i
+                  className="material-icons right"
+                >
+                  close
+                </i>
+              </span>
+              <p>
+                a brief description
+              </p>
+              <small>
+                <i
+                  className="material-icons f15"
+                >
+                  location_on
+                </i>
+                 
+                ikeja
+              </small>
+            </div>,
+          ],
+          "className": "card",
+          "data-id": "S1lAI-m1xm",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <span
+                  className="status-indicator darken-3 white-text yellow"
+                >
+                  pending
+                </span>,
+                <img
+                  alt="this is us"
+                  src="http://www.topangacreekoutpost.com/assets/images/site/image_not_available.png"
+                />,
+                <span
+                  className="card-title bold"
+                  style={
+                    Object {
+                      "backgroundImage": "linear-gradient(to top, rgba(0, 0, 0, .7), rgba(0, 0, 0, .3))",
+                      "right": "0",
+                    }
+                  }
+                >
+                  this is us
+                </span>,
+                <a
+                  className="btn-floating activator halfway-fab waves-effect waves-light tooltipped blue"
+                  data-position="bottom"
+                  data-tooltip="share"
+                >
+                  <i
+                    className="material-icons"
+                  >
+                    dehaze
+                  </i>
+                </a>,
+              ],
+              "className": "card-image",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "pending",
+                  "className": "status-indicator darken-3 white-text yellow",
+                },
+                "ref": null,
+                "rendered": "pending",
+                "type": "span",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "alt": "this is us",
+                  "src": "http://www.topangacreekoutpost.com/assets/images/site/image_not_available.png",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "img",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "this is us",
+                  "className": "card-title bold",
+                  "style": Object {
+                    "backgroundImage": "linear-gradient(to top, rgba(0, 0, 0, .7), rgba(0, 0, 0, .3))",
+                    "right": "0",
+                  },
+                },
+                "ref": null,
+                "rendered": "this is us",
+                "type": "span",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <i
+                    className="material-icons"
+                  >
+                    dehaze
+                  </i>,
+                  "className": "btn-floating activator halfway-fab waves-effect waves-light tooltipped blue",
+                  "data-position": "bottom",
+                  "data-tooltip": "share",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "dehaze",
+                    "className": "material-icons",
+                  },
+                  "ref": null,
+                  "rendered": "dehaze",
+                  "type": "i",
+                },
+                "type": "a",
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <p
+                  className="small__duration"
+                >
+                  <i
+                    className="material-icons f15"
+                  >
+                    schedule
+                  </i>
+                  Fri Jun 01 2018
+                </p>,
+                <div>
+                  <i
+                    className="material-icons f15"
+                  >
+                    location_on 
+                  </i>
+                   
+                  ikeja
+                  <IconMenu
+                    anchorOrigin={
+                      Object {
+                        "horizontal": "left",
+                        "vertical": "top",
+                      }
+                    }
+                    animated={true}
+                    className="right-align"
+                    clickCloseDelay={200}
+                    iconButtonElement={
+                      <IconButton
+                        disableTouchRipple={false}
+                        disabled={false}
+                        iconStyle={Object {}}
+                        tooltipPosition="bottom-center"
+                        touch={false}
+                      >
+                        <NavigationMoreVert />
+                      </IconButton>
+                    }
+                    multiple={false}
+                    onClick={[Function]}
+                    onItemClick={[Function]}
+                    onKeyboardFocus={[Function]}
+                    onMouseDown={[Function]}
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseUp={[Function]}
+                    onRequestChange={[Function]}
+                    open={null}
+                    targetOrigin={
+                      Object {
+                        "horizontal": "left",
+                        "vertical": "top",
+                      }
+                    }
+                    useLayerForClickAway={false}
+                  >
+                    <MenuItem
+                      anchorOrigin={
+                        Object {
+                          "horizontal": "right",
+                          "vertical": "top",
+                        }
+                      }
+                      checked={false}
+                      desktop={false}
+                      disabled={false}
+                      focusState="none"
+                      insetChildren={false}
+                      leftIcon={<EditorModeEdit />}
+                      onClick={[Function]}
+                      primaryText="Edit"
+                      targetOrigin={
+                        Object {
+                          "horizontal": "left",
+                          "vertical": "top",
+                        }
+                      }
+                    />
+                    <MenuItem
+                      anchorOrigin={
+                        Object {
+                          "horizontal": "right",
+                          "vertical": "top",
+                        }
+                      }
+                      checked={false}
+                      desktop={false}
+                      disabled={false}
+                      focusState="none"
+                      insetChildren={false}
+                      leftIcon={<ActionDelete />}
+                      onClick={[Function]}
+                      primaryText="Delete"
+                      style={
+                        Object {
+                          "color": "red",
+                        }
+                      }
+                      targetOrigin={
+                        Object {
+                          "horizontal": "left",
+                          "vertical": "top",
+                        }
+                      }
+                    />
+                  </IconMenu>
+                </div>,
+              ],
+              "className": "card-content",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <i
+                      className="material-icons f15"
+                    >
+                      schedule
+                    </i>,
+                    "Fri Jun 01 2018",
+                  ],
+                  "className": "small__duration",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "schedule",
+                      "className": "material-icons f15",
+                    },
+                    "ref": null,
+                    "rendered": "schedule",
+                    "type": "i",
+                  },
+                  "Fri Jun 01 2018",
+                ],
+                "type": "p",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <i
+                      className="material-icons f15"
+                    >
+                      location_on 
+                    </i>,
+                    " ",
+                    "ikeja",
+                    <IconMenu
+                      anchorOrigin={
+                        Object {
+                          "horizontal": "left",
+                          "vertical": "top",
+                        }
+                      }
+                      animated={true}
+                      className="right-align"
+                      clickCloseDelay={200}
+                      iconButtonElement={
+                        <IconButton
+                          disableTouchRipple={false}
+                          disabled={false}
+                          iconStyle={Object {}}
+                          tooltipPosition="bottom-center"
+                          touch={false}
+                        >
+                          <NavigationMoreVert />
+                        </IconButton>
+                      }
+                      multiple={false}
+                      onClick={[Function]}
+                      onItemClick={[Function]}
+                      onKeyboardFocus={[Function]}
+                      onMouseDown={[Function]}
+                      onMouseEnter={[Function]}
+                      onMouseLeave={[Function]}
+                      onMouseUp={[Function]}
+                      onRequestChange={[Function]}
+                      open={null}
+                      targetOrigin={
+                        Object {
+                          "horizontal": "left",
+                          "vertical": "top",
+                        }
+                      }
+                      useLayerForClickAway={false}
+                    >
+                      <MenuItem
+                        anchorOrigin={
+                          Object {
+                            "horizontal": "right",
+                            "vertical": "top",
+                          }
+                        }
+                        checked={false}
+                        desktop={false}
+                        disabled={false}
+                        focusState="none"
+                        insetChildren={false}
+                        leftIcon={<EditorModeEdit />}
+                        onClick={[Function]}
+                        primaryText="Edit"
+                        targetOrigin={
+                          Object {
+                            "horizontal": "left",
+                            "vertical": "top",
+                          }
+                        }
+                      />
+                      <MenuItem
+                        anchorOrigin={
+                          Object {
+                            "horizontal": "right",
+                            "vertical": "top",
+                          }
+                        }
+                        checked={false}
+                        desktop={false}
+                        disabled={false}
+                        focusState="none"
+                        insetChildren={false}
+                        leftIcon={<ActionDelete />}
+                        onClick={[Function]}
+                        primaryText="Delete"
+                        style={
+                          Object {
+                            "color": "red",
+                          }
+                        }
+                        targetOrigin={
+                          Object {
+                            "horizontal": "left",
+                            "vertical": "top",
+                          }
+                        }
+                      />
+                    </IconMenu>,
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "location_on ",
+                      "className": "material-icons f15",
+                    },
+                    "ref": null,
+                    "rendered": "location_on ",
+                    "type": "i",
+                  },
+                  " ",
+                  "ikeja",
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "anchorOrigin": Object {
+                        "horizontal": "left",
+                        "vertical": "top",
+                      },
+                      "animated": true,
+                      "children": Array [
+                        <MenuItem
+                          anchorOrigin={
+                            Object {
+                              "horizontal": "right",
+                              "vertical": "top",
+                            }
+                          }
+                          checked={false}
+                          desktop={false}
+                          disabled={false}
+                          focusState="none"
+                          insetChildren={false}
+                          leftIcon={<EditorModeEdit />}
+                          onClick={[Function]}
+                          primaryText="Edit"
+                          targetOrigin={
+                            Object {
+                              "horizontal": "left",
+                              "vertical": "top",
+                            }
+                          }
+                        />,
+                        <MenuItem
+                          anchorOrigin={
+                            Object {
+                              "horizontal": "right",
+                              "vertical": "top",
+                            }
+                          }
+                          checked={false}
+                          desktop={false}
+                          disabled={false}
+                          focusState="none"
+                          insetChildren={false}
+                          leftIcon={<ActionDelete />}
+                          onClick={[Function]}
+                          primaryText="Delete"
+                          style={
+                            Object {
+                              "color": "red",
+                            }
+                          }
+                          targetOrigin={
+                            Object {
+                              "horizontal": "left",
+                              "vertical": "top",
+                            }
+                          }
+                        />,
+                      ],
+                      "className": "right-align",
+                      "clickCloseDelay": 200,
+                      "iconButtonElement": <IconButton
+                        disableTouchRipple={false}
+                        disabled={false}
+                        iconStyle={Object {}}
+                        tooltipPosition="bottom-center"
+                        touch={false}
+                      >
+                        <NavigationMoreVert />
+                      </IconButton>,
+                      "multiple": false,
+                      "onClick": [Function],
+                      "onItemClick": [Function],
+                      "onKeyboardFocus": [Function],
+                      "onMouseDown": [Function],
+                      "onMouseEnter": [Function],
+                      "onMouseLeave": [Function],
+                      "onMouseUp": [Function],
+                      "onRequestChange": [Function],
+                      "open": null,
+                      "targetOrigin": Object {
+                        "horizontal": "left",
+                        "vertical": "top",
+                      },
+                      "useLayerForClickAway": false,
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "anchorOrigin": Object {
+                            "horizontal": "right",
+                            "vertical": "top",
+                          },
+                          "checked": false,
+                          "desktop": false,
+                          "disabled": false,
+                          "focusState": "none",
+                          "insetChildren": false,
+                          "leftIcon": <EditorModeEdit />,
+                          "onClick": [Function],
+                          "primaryText": "Edit",
+                          "targetOrigin": Object {
+                            "horizontal": "left",
+                            "vertical": "top",
+                          },
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "anchorOrigin": Object {
+                            "horizontal": "right",
+                            "vertical": "top",
+                          },
+                          "checked": false,
+                          "desktop": false,
+                          "disabled": false,
+                          "focusState": "none",
+                          "insetChildren": false,
+                          "leftIcon": <ActionDelete />,
+                          "onClick": [Function],
+                          "primaryText": "Delete",
+                          "style": Object {
+                            "color": "red",
+                          },
+                          "targetOrigin": Object {
+                            "horizontal": "left",
+                            "vertical": "top",
+                          },
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                    ],
+                    "type": [Function],
+                  },
+                ],
+                "type": "div",
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <span
+                  className="card-title grey-text text-darken-4"
+                >
+                  <a
+                    className="bold"
+                  >
+                    this is us
+                  </a>
+                  <i
+                    className="material-icons right"
+                  >
+                    close
+                  </i>
+                </span>,
+                <p>
+                  a brief description
+                </p>,
+                <small>
+                  <i
+                    className="material-icons f15"
+                  >
+                    location_on
+                  </i>
+                   
+                  ikeja
+                </small>,
+              ],
+              "className": "card-reveal",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <a
+                      className="bold"
+                    >
+                      this is us
+                    </a>,
+                    <i
+                      className="material-icons right"
+                    >
+                      close
+                    </i>,
+                  ],
+                  "className": "card-title grey-text text-darken-4",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "this is us",
+                      "className": "bold",
+                    },
+                    "ref": null,
+                    "rendered": "this is us",
+                    "type": "a",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "close",
+                      "className": "material-icons right",
+                    },
+                    "ref": null,
+                    "rendered": "close",
+                    "type": "i",
+                  },
+                ],
+                "type": "span",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "a brief description",
+                },
+                "ref": null,
+                "rendered": "a brief description",
+                "type": "p",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <i
+                      className="material-icons f15"
+                    >
+                      location_on
+                    </i>,
+                    " ",
+                    "ikeja",
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "location_on",
+                      "className": "material-icons f15",
+                    },
+                    "ref": null,
+                    "rendered": "location_on",
+                    "type": "i",
+                  },
+                  " ",
+                  "ikeja",
+                ],
+                "type": "small",
+              },
+            ],
+            "type": "div",
+          },
+        ],
+        "type": "div",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Dialog
+            actions={
+              Array [
+                <FlatButton
+                  disabled={false}
+                  fullWidth={false}
+                  label="Yes"
+                  labelPosition="after"
+                  labelStyle={Object {}}
+                  onClick={[Function]}
+                  onKeyboardFocus={[Function]}
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
+                  onTouchStart={[Function]}
+                  primary={true}
+                  secondary={false}
+                />,
+                <FlatButton
+                  disabled={false}
+                  fullWidth={false}
+                  label="No"
+                  labelPosition="after"
+                  labelStyle={Object {}}
+                  onClick={[Function]}
+                  onKeyboardFocus={[Function]}
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
+                  onTouchStart={[Function]}
+                  primary={true}
+                  secondary={false}
+                />,
+              ]
+            }
+            autoDetectWindowHeight={true}
+            autoScrollBodyContent={false}
+            modal={false}
+            onRequestClose={[Function]}
+            open={false}
+            repositionOnUpdate={true}
+          >
+            Are you sure you want to delete this event?
+          </Dialog>,
+          <div
+            className="card"
+            data-id="S1lAI-m1xm"
+          >
+            <div
+              className="card-image"
+            >
+              <span
+                className="status-indicator darken-3 white-text yellow"
+              >
+                pending
+              </span>
+              <img
+                alt="this is us"
+                src="http://www.topangacreekoutpost.com/assets/images/site/image_not_available.png"
+              />
+              <span
+                className="card-title bold"
+                style={
+                  Object {
+                    "backgroundImage": "linear-gradient(to top, rgba(0, 0, 0, .7), rgba(0, 0, 0, .3))",
+                    "right": "0",
+                  }
+                }
+              >
+                this is us
+              </span>
+              <a
+                className="btn-floating activator halfway-fab waves-effect waves-light tooltipped blue"
+                data-position="bottom"
+                data-tooltip="share"
+              >
+                <i
+                  className="material-icons"
+                >
+                  dehaze
+                </i>
+              </a>
+            </div>
+            <div
+              className="card-content"
+            >
+              <p
+                className="small__duration"
+              >
+                <i
+                  className="material-icons f15"
+                >
+                  schedule
+                </i>
+                Fri Jun 01 2018
+              </p>
+              <div>
+                <i
+                  className="material-icons f15"
+                >
+                  location_on 
+                </i>
+                 
+                ikeja
+                <IconMenu
+                  anchorOrigin={
+                    Object {
+                      "horizontal": "left",
+                      "vertical": "top",
+                    }
+                  }
+                  animated={true}
+                  className="right-align"
+                  clickCloseDelay={200}
+                  iconButtonElement={
+                    <IconButton
+                      disableTouchRipple={false}
+                      disabled={false}
+                      iconStyle={Object {}}
+                      tooltipPosition="bottom-center"
+                      touch={false}
+                    >
+                      <NavigationMoreVert />
+                    </IconButton>
+                  }
+                  multiple={false}
+                  onClick={[Function]}
+                  onItemClick={[Function]}
+                  onKeyboardFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onRequestChange={[Function]}
+                  open={null}
+                  targetOrigin={
+                    Object {
+                      "horizontal": "left",
+                      "vertical": "top",
+                    }
+                  }
+                  useLayerForClickAway={false}
+                >
+                  <MenuItem
+                    anchorOrigin={
+                      Object {
+                        "horizontal": "right",
+                        "vertical": "top",
+                      }
+                    }
+                    checked={false}
+                    desktop={false}
+                    disabled={false}
+                    focusState="none"
+                    insetChildren={false}
+                    leftIcon={<EditorModeEdit />}
+                    onClick={[Function]}
+                    primaryText="Edit"
+                    targetOrigin={
+                      Object {
+                        "horizontal": "left",
+                        "vertical": "top",
+                      }
+                    }
+                  />
+                  <MenuItem
+                    anchorOrigin={
+                      Object {
+                        "horizontal": "right",
+                        "vertical": "top",
+                      }
+                    }
+                    checked={false}
+                    desktop={false}
+                    disabled={false}
+                    focusState="none"
+                    insetChildren={false}
+                    leftIcon={<ActionDelete />}
+                    onClick={[Function]}
+                    primaryText="Delete"
+                    style={
+                      Object {
+                        "color": "red",
+                      }
+                    }
+                    targetOrigin={
+                      Object {
+                        "horizontal": "left",
+                        "vertical": "top",
+                      }
+                    }
+                  />
+                </IconMenu>
+              </div>
+            </div>
+            <div
+              className="card-reveal"
+            >
+              <span
+                className="card-title grey-text text-darken-4"
+              >
+                <a
+                  className="bold"
+                >
+                  this is us
+                </a>
+                <i
+                  className="material-icons right"
+                >
+                  close
+                </i>
+              </span>
+              <p>
+                a brief description
+              </p>
+              <small>
+                <i
+                  className="material-icons f15"
+                >
+                  location_on
+                </i>
+                 
+                ikeja
+              </small>
+            </div>
+          </div>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "actions": Array [
+              <FlatButton
+                disabled={false}
+                fullWidth={false}
+                label="Yes"
+                labelPosition="after"
+                labelStyle={Object {}}
+                onClick={[Function]}
+                onKeyboardFocus={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+                onTouchStart={[Function]}
+                primary={true}
+                secondary={false}
+              />,
+              <FlatButton
+                disabled={false}
+                fullWidth={false}
+                label="No"
+                labelPosition="after"
+                labelStyle={Object {}}
+                onClick={[Function]}
+                onKeyboardFocus={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+                onTouchStart={[Function]}
+                primary={true}
+                secondary={false}
+              />,
+            ],
+            "autoDetectWindowHeight": true,
+            "autoScrollBodyContent": false,
+            "children": "Are you sure you want to delete this event?",
+            "modal": false,
+            "onRequestClose": [Function],
+            "open": false,
+            "repositionOnUpdate": true,
+          },
+          "ref": null,
+          "rendered": "Are you sure you want to delete this event?",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <div
+                className="card-image"
+              >
+                <span
+                  className="status-indicator darken-3 white-text yellow"
+                >
+                  pending
+                </span>
+                <img
+                  alt="this is us"
+                  src="http://www.topangacreekoutpost.com/assets/images/site/image_not_available.png"
+                />
+                <span
+                  className="card-title bold"
+                  style={
+                    Object {
+                      "backgroundImage": "linear-gradient(to top, rgba(0, 0, 0, .7), rgba(0, 0, 0, .3))",
+                      "right": "0",
+                    }
+                  }
+                >
+                  this is us
+                </span>
+                <a
+                  className="btn-floating activator halfway-fab waves-effect waves-light tooltipped blue"
+                  data-position="bottom"
+                  data-tooltip="share"
+                >
+                  <i
+                    className="material-icons"
+                  >
+                    dehaze
+                  </i>
+                </a>
+              </div>,
+              <div
+                className="card-content"
+              >
+                <p
+                  className="small__duration"
+                >
+                  <i
+                    className="material-icons f15"
+                  >
+                    schedule
+                  </i>
+                  Fri Jun 01 2018
+                </p>
+                <div>
+                  <i
+                    className="material-icons f15"
+                  >
+                    location_on 
+                  </i>
+                   
+                  ikeja
+                  <IconMenu
+                    anchorOrigin={
+                      Object {
+                        "horizontal": "left",
+                        "vertical": "top",
+                      }
+                    }
+                    animated={true}
+                    className="right-align"
+                    clickCloseDelay={200}
+                    iconButtonElement={
+                      <IconButton
+                        disableTouchRipple={false}
+                        disabled={false}
+                        iconStyle={Object {}}
+                        tooltipPosition="bottom-center"
+                        touch={false}
+                      >
+                        <NavigationMoreVert />
+                      </IconButton>
+                    }
+                    multiple={false}
+                    onClick={[Function]}
+                    onItemClick={[Function]}
+                    onKeyboardFocus={[Function]}
+                    onMouseDown={[Function]}
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseUp={[Function]}
+                    onRequestChange={[Function]}
+                    open={null}
+                    targetOrigin={
+                      Object {
+                        "horizontal": "left",
+                        "vertical": "top",
+                      }
+                    }
+                    useLayerForClickAway={false}
+                  >
+                    <MenuItem
+                      anchorOrigin={
+                        Object {
+                          "horizontal": "right",
+                          "vertical": "top",
+                        }
+                      }
+                      checked={false}
+                      desktop={false}
+                      disabled={false}
+                      focusState="none"
+                      insetChildren={false}
+                      leftIcon={<EditorModeEdit />}
+                      onClick={[Function]}
+                      primaryText="Edit"
+                      targetOrigin={
+                        Object {
+                          "horizontal": "left",
+                          "vertical": "top",
+                        }
+                      }
+                    />
+                    <MenuItem
+                      anchorOrigin={
+                        Object {
+                          "horizontal": "right",
+                          "vertical": "top",
+                        }
+                      }
+                      checked={false}
+                      desktop={false}
+                      disabled={false}
+                      focusState="none"
+                      insetChildren={false}
+                      leftIcon={<ActionDelete />}
+                      onClick={[Function]}
+                      primaryText="Delete"
+                      style={
+                        Object {
+                          "color": "red",
+                        }
+                      }
+                      targetOrigin={
+                        Object {
+                          "horizontal": "left",
+                          "vertical": "top",
+                        }
+                      }
+                    />
+                  </IconMenu>
+                </div>
+              </div>,
+              <div
+                className="card-reveal"
+              >
+                <span
+                  className="card-title grey-text text-darken-4"
+                >
+                  <a
+                    className="bold"
+                  >
+                    this is us
+                  </a>
+                  <i
+                    className="material-icons right"
+                  >
+                    close
+                  </i>
+                </span>
+                <p>
+                  a brief description
+                </p>
+                <small>
+                  <i
+                    className="material-icons f15"
+                  >
+                    location_on
+                  </i>
+                   
+                  ikeja
+                </small>
+              </div>,
+            ],
+            "className": "card",
+            "data-id": "S1lAI-m1xm",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <span
+                    className="status-indicator darken-3 white-text yellow"
+                  >
+                    pending
+                  </span>,
+                  <img
+                    alt="this is us"
+                    src="http://www.topangacreekoutpost.com/assets/images/site/image_not_available.png"
+                  />,
+                  <span
+                    className="card-title bold"
+                    style={
+                      Object {
+                        "backgroundImage": "linear-gradient(to top, rgba(0, 0, 0, .7), rgba(0, 0, 0, .3))",
+                        "right": "0",
+                      }
+                    }
+                  >
+                    this is us
+                  </span>,
+                  <a
+                    className="btn-floating activator halfway-fab waves-effect waves-light tooltipped blue"
+                    data-position="bottom"
+                    data-tooltip="share"
+                  >
+                    <i
+                      className="material-icons"
+                    >
+                      dehaze
+                    </i>
+                  </a>,
+                ],
+                "className": "card-image",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "pending",
+                    "className": "status-indicator darken-3 white-text yellow",
+                  },
+                  "ref": null,
+                  "rendered": "pending",
+                  "type": "span",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "alt": "this is us",
+                    "src": "http://www.topangacreekoutpost.com/assets/images/site/image_not_available.png",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "img",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "this is us",
+                    "className": "card-title bold",
+                    "style": Object {
+                      "backgroundImage": "linear-gradient(to top, rgba(0, 0, 0, .7), rgba(0, 0, 0, .3))",
+                      "right": "0",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": "this is us",
+                  "type": "span",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <i
+                      className="material-icons"
+                    >
+                      dehaze
+                    </i>,
+                    "className": "btn-floating activator halfway-fab waves-effect waves-light tooltipped blue",
+                    "data-position": "bottom",
+                    "data-tooltip": "share",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "dehaze",
+                      "className": "material-icons",
+                    },
+                    "ref": null,
+                    "rendered": "dehaze",
+                    "type": "i",
+                  },
+                  "type": "a",
+                },
+              ],
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <p
+                    className="small__duration"
+                  >
+                    <i
+                      className="material-icons f15"
+                    >
+                      schedule
+                    </i>
+                    Fri Jun 01 2018
+                  </p>,
+                  <div>
+                    <i
+                      className="material-icons f15"
+                    >
+                      location_on 
+                    </i>
+                     
+                    ikeja
+                    <IconMenu
+                      anchorOrigin={
+                        Object {
+                          "horizontal": "left",
+                          "vertical": "top",
+                        }
+                      }
+                      animated={true}
+                      className="right-align"
+                      clickCloseDelay={200}
+                      iconButtonElement={
+                        <IconButton
+                          disableTouchRipple={false}
+                          disabled={false}
+                          iconStyle={Object {}}
+                          tooltipPosition="bottom-center"
+                          touch={false}
+                        >
+                          <NavigationMoreVert />
+                        </IconButton>
+                      }
+                      multiple={false}
+                      onClick={[Function]}
+                      onItemClick={[Function]}
+                      onKeyboardFocus={[Function]}
+                      onMouseDown={[Function]}
+                      onMouseEnter={[Function]}
+                      onMouseLeave={[Function]}
+                      onMouseUp={[Function]}
+                      onRequestChange={[Function]}
+                      open={null}
+                      targetOrigin={
+                        Object {
+                          "horizontal": "left",
+                          "vertical": "top",
+                        }
+                      }
+                      useLayerForClickAway={false}
+                    >
+                      <MenuItem
+                        anchorOrigin={
+                          Object {
+                            "horizontal": "right",
+                            "vertical": "top",
+                          }
+                        }
+                        checked={false}
+                        desktop={false}
+                        disabled={false}
+                        focusState="none"
+                        insetChildren={false}
+                        leftIcon={<EditorModeEdit />}
+                        onClick={[Function]}
+                        primaryText="Edit"
+                        targetOrigin={
+                          Object {
+                            "horizontal": "left",
+                            "vertical": "top",
+                          }
+                        }
+                      />
+                      <MenuItem
+                        anchorOrigin={
+                          Object {
+                            "horizontal": "right",
+                            "vertical": "top",
+                          }
+                        }
+                        checked={false}
+                        desktop={false}
+                        disabled={false}
+                        focusState="none"
+                        insetChildren={false}
+                        leftIcon={<ActionDelete />}
+                        onClick={[Function]}
+                        primaryText="Delete"
+                        style={
+                          Object {
+                            "color": "red",
+                          }
+                        }
+                        targetOrigin={
+                          Object {
+                            "horizontal": "left",
+                            "vertical": "top",
+                          }
+                        }
+                      />
+                    </IconMenu>
+                  </div>,
+                ],
+                "className": "card-content",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <i
+                        className="material-icons f15"
+                      >
+                        schedule
+                      </i>,
+                      "Fri Jun 01 2018",
+                    ],
+                    "className": "small__duration",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "schedule",
+                        "className": "material-icons f15",
+                      },
+                      "ref": null,
+                      "rendered": "schedule",
+                      "type": "i",
+                    },
+                    "Fri Jun 01 2018",
+                  ],
+                  "type": "p",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <i
+                        className="material-icons f15"
+                      >
+                        location_on 
+                      </i>,
+                      " ",
+                      "ikeja",
+                      <IconMenu
+                        anchorOrigin={
+                          Object {
+                            "horizontal": "left",
+                            "vertical": "top",
+                          }
+                        }
+                        animated={true}
+                        className="right-align"
+                        clickCloseDelay={200}
+                        iconButtonElement={
+                          <IconButton
+                            disableTouchRipple={false}
+                            disabled={false}
+                            iconStyle={Object {}}
+                            tooltipPosition="bottom-center"
+                            touch={false}
+                          >
+                            <NavigationMoreVert />
+                          </IconButton>
+                        }
+                        multiple={false}
+                        onClick={[Function]}
+                        onItemClick={[Function]}
+                        onKeyboardFocus={[Function]}
+                        onMouseDown={[Function]}
+                        onMouseEnter={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseUp={[Function]}
+                        onRequestChange={[Function]}
+                        open={null}
+                        targetOrigin={
+                          Object {
+                            "horizontal": "left",
+                            "vertical": "top",
+                          }
+                        }
+                        useLayerForClickAway={false}
+                      >
+                        <MenuItem
+                          anchorOrigin={
+                            Object {
+                              "horizontal": "right",
+                              "vertical": "top",
+                            }
+                          }
+                          checked={false}
+                          desktop={false}
+                          disabled={false}
+                          focusState="none"
+                          insetChildren={false}
+                          leftIcon={<EditorModeEdit />}
+                          onClick={[Function]}
+                          primaryText="Edit"
+                          targetOrigin={
+                            Object {
+                              "horizontal": "left",
+                              "vertical": "top",
+                            }
+                          }
+                        />
+                        <MenuItem
+                          anchorOrigin={
+                            Object {
+                              "horizontal": "right",
+                              "vertical": "top",
+                            }
+                          }
+                          checked={false}
+                          desktop={false}
+                          disabled={false}
+                          focusState="none"
+                          insetChildren={false}
+                          leftIcon={<ActionDelete />}
+                          onClick={[Function]}
+                          primaryText="Delete"
+                          style={
+                            Object {
+                              "color": "red",
+                            }
+                          }
+                          targetOrigin={
+                            Object {
+                              "horizontal": "left",
+                              "vertical": "top",
+                            }
+                          }
+                        />
+                      </IconMenu>,
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "location_on ",
+                        "className": "material-icons f15",
+                      },
+                      "ref": null,
+                      "rendered": "location_on ",
+                      "type": "i",
+                    },
+                    " ",
+                    "ikeja",
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "anchorOrigin": Object {
+                          "horizontal": "left",
+                          "vertical": "top",
+                        },
+                        "animated": true,
+                        "children": Array [
+                          <MenuItem
+                            anchorOrigin={
+                              Object {
+                                "horizontal": "right",
+                                "vertical": "top",
+                              }
+                            }
+                            checked={false}
+                            desktop={false}
+                            disabled={false}
+                            focusState="none"
+                            insetChildren={false}
+                            leftIcon={<EditorModeEdit />}
+                            onClick={[Function]}
+                            primaryText="Edit"
+                            targetOrigin={
+                              Object {
+                                "horizontal": "left",
+                                "vertical": "top",
+                              }
+                            }
+                          />,
+                          <MenuItem
+                            anchorOrigin={
+                              Object {
+                                "horizontal": "right",
+                                "vertical": "top",
+                              }
+                            }
+                            checked={false}
+                            desktop={false}
+                            disabled={false}
+                            focusState="none"
+                            insetChildren={false}
+                            leftIcon={<ActionDelete />}
+                            onClick={[Function]}
+                            primaryText="Delete"
+                            style={
+                              Object {
+                                "color": "red",
+                              }
+                            }
+                            targetOrigin={
+                              Object {
+                                "horizontal": "left",
+                                "vertical": "top",
+                              }
+                            }
+                          />,
+                        ],
+                        "className": "right-align",
+                        "clickCloseDelay": 200,
+                        "iconButtonElement": <IconButton
+                          disableTouchRipple={false}
+                          disabled={false}
+                          iconStyle={Object {}}
+                          tooltipPosition="bottom-center"
+                          touch={false}
+                        >
+                          <NavigationMoreVert />
+                        </IconButton>,
+                        "multiple": false,
+                        "onClick": [Function],
+                        "onItemClick": [Function],
+                        "onKeyboardFocus": [Function],
+                        "onMouseDown": [Function],
+                        "onMouseEnter": [Function],
+                        "onMouseLeave": [Function],
+                        "onMouseUp": [Function],
+                        "onRequestChange": [Function],
+                        "open": null,
+                        "targetOrigin": Object {
+                          "horizontal": "left",
+                          "vertical": "top",
+                        },
+                        "useLayerForClickAway": false,
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "class",
+                          "props": Object {
+                            "anchorOrigin": Object {
+                              "horizontal": "right",
+                              "vertical": "top",
+                            },
+                            "checked": false,
+                            "desktop": false,
+                            "disabled": false,
+                            "focusState": "none",
+                            "insetChildren": false,
+                            "leftIcon": <EditorModeEdit />,
+                            "onClick": [Function],
+                            "primaryText": "Edit",
+                            "targetOrigin": Object {
+                              "horizontal": "left",
+                              "vertical": "top",
+                            },
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": [Function],
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "class",
+                          "props": Object {
+                            "anchorOrigin": Object {
+                              "horizontal": "right",
+                              "vertical": "top",
+                            },
+                            "checked": false,
+                            "desktop": false,
+                            "disabled": false,
+                            "focusState": "none",
+                            "insetChildren": false,
+                            "leftIcon": <ActionDelete />,
+                            "onClick": [Function],
+                            "primaryText": "Delete",
+                            "style": Object {
+                              "color": "red",
+                            },
+                            "targetOrigin": Object {
+                              "horizontal": "left",
+                              "vertical": "top",
+                            },
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": [Function],
+                        },
+                      ],
+                      "type": [Function],
+                    },
+                  ],
+                  "type": "div",
+                },
+              ],
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <span
+                    className="card-title grey-text text-darken-4"
+                  >
+                    <a
+                      className="bold"
+                    >
+                      this is us
+                    </a>
+                    <i
+                      className="material-icons right"
+                    >
+                      close
+                    </i>
+                  </span>,
+                  <p>
+                    a brief description
+                  </p>,
+                  <small>
+                    <i
+                      className="material-icons f15"
+                    >
+                      location_on
+                    </i>
+                     
+                    ikeja
+                  </small>,
+                ],
+                "className": "card-reveal",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <a
+                        className="bold"
+                      >
+                        this is us
+                      </a>,
+                      <i
+                        className="material-icons right"
+                      >
+                        close
+                      </i>,
+                    ],
+                    "className": "card-title grey-text text-darken-4",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "this is us",
+                        "className": "bold",
+                      },
+                      "ref": null,
+                      "rendered": "this is us",
+                      "type": "a",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "close",
+                        "className": "material-icons right",
+                      },
+                      "ref": null,
+                      "rendered": "close",
+                      "type": "i",
+                    },
+                  ],
+                  "type": "span",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "a brief description",
+                  },
+                  "ref": null,
+                  "rendered": "a brief description",
+                  "type": "p",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <i
+                        className="material-icons f15"
+                      >
+                        location_on
+                      </i>,
+                      " ",
+                      "ikeja",
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "location_on",
+                        "className": "material-icons f15",
+                      },
+                      "ref": null,
+                      "rendered": "location_on",
+                      "type": "i",
+                    },
+                    " ",
+                    "ikeja",
+                  ],
+                  "type": "small",
+                },
+              ],
+              "type": "div",
+            },
+          ],
+          "type": "div",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

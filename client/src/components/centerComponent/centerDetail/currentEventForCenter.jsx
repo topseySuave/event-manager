@@ -13,7 +13,7 @@ import Dialog from "material-ui/Dialog";
 import EventCard from "../../bodyComponents/eventsCard/eventCard";
 import { handleStatusEventAction } from "../../../actions/events-actions";
 
-class CurrentEventForCenter extends Component {
+export class CurrentEventForCenter extends Component {
   constructor(props) {
     super(props);
     this.state = {

@@ -11,7 +11,7 @@ import Modals from './../modals';
 /**
    * MyEvents Class Component
    * */
-class MyEvents extends Component {
+export class MyEvents extends Component {
   /**
    * Class contructor
    * @param { object } props

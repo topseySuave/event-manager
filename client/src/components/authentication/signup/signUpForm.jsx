@@ -144,7 +144,7 @@ export class SignUpForm extends Component {
         >
           <div className={loading}>
             <InputForm
-              fieldId="first_name"
+              id="first_name"
               nameField="firstName"
               value={this.state.firstName}
               error={errors.firstName || ''}
@@ -155,7 +155,7 @@ export class SignUpForm extends Component {
           </div>
           <div className={loading}>
             <InputForm
-              fieldId="last_name"
+              id="last_name"
               nameField="lastName"
               value={this.state.lastName}
               error={errors.lastName || ''}
@@ -166,7 +166,7 @@ export class SignUpForm extends Component {
           </div>
           <div className={loading}>
             <InputForm
-              fieldId="email"
+              id="email"
               nameField="email"
               value={this.state.email}
               error={exists ? errors.message : errors.email || ''}
@@ -177,7 +177,7 @@ export class SignUpForm extends Component {
           </div>
           <div className={loading}>
             <InputForm
-              fieldId="password"
+              id="password"
               nameField="password"
               value={this.state.password}
               error={errors.password || ''}
@@ -188,7 +188,7 @@ export class SignUpForm extends Component {
           </div>
           <div className={loading}>
             <InputForm
-              fieldId="confirm_password"
+              id="confirm_password"
               nameField="confirmPassword"
               value={this.state.confirmPassword}
               error={errors.confirmPassword || ''}

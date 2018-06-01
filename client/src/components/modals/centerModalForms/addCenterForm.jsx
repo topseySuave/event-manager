@@ -205,7 +205,7 @@ class AddCenterForm extends Component {
           </div>
           <div className="input-field col s6">
             <InputForm
-              fieldId="title"
+              id="title"
               nameField="title"
               value={title}
               error={errors.title || ''}
@@ -227,7 +227,7 @@ class AddCenterForm extends Component {
 
           <div className="input-field col s12">
             <InputForm
-              fieldId="location"
+              id="location"
               nameField="location"
               value={location}
               error={errors.location || ''}
@@ -240,7 +240,7 @@ class AddCenterForm extends Component {
         <div className="row">
           <div className="input-field col s6">
             <InputForm
-              fieldId="price"
+              id="price"
               nameField="price"
               value={price}
               error={errors.price || ''}
@@ -252,7 +252,7 @@ class AddCenterForm extends Component {
           </div>
           <div className="input-field col s6">
             <InputForm
-              fieldId="capacity"
+              id="capacity"
               nameField="capacity"
               value={capacity}
               error={errors.capacity || ''}

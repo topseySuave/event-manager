@@ -198,7 +198,7 @@ export class EventModal extends Component {
       errors
     } = this.state;
     const actions = [
-      <FlatButton label="Cancel" primary={true} onClick={this.handleClose} />,
+      <FlatButton id="closeBookCenter" label="Cancel" primary={true} onClick={this.handleClose} />,
       <FlatButton
         label={
           isLoading ? (
@@ -210,6 +210,7 @@ export class EventModal extends Component {
             "Add Event"
           )
         }
+        id="submitEvent"
         primary={true}
         keyboardFocused={true}
         onClick={this.handleEventSubmit}
@@ -219,6 +220,7 @@ export class EventModal extends Component {
       <div>
         <RaisedButton
           label="Book this center"
+          id="openBookCenter"
           primary={true}
           onClick={this.handleOpen}
         />
@@ -257,7 +259,7 @@ export class EventModal extends Component {
                 <div className="input-field col s6">
                   <InputForm
                     type="text"
-                    fieldId="event_title"
+                    id="event_title"
                     nameField="title"
                     label="Title"
                     value={title}
@@ -269,8 +271,10 @@ export class EventModal extends Component {
               <div className="row">
                 <div className="input-field col s6">
                   <DatePicker
+                    id="eventStartDate"
                     onChange={this.handleChangeStartDate}
                     autoOk={true}
+                    name="startDate"
                     floatingLabelText="Start Date"
                     disableYearSelection={this.state.disableYearSelection}
                   />
@@ -282,8 +286,10 @@ export class EventModal extends Component {
                 </div>
                 <div className="input-field col s6">
                   <DatePicker
+                    id="eventEndDate"
                     onChange={this.handleChangeEndDate}
                     autoOk={true}
+                    name="endDate"
                     floatingLabelText="End Date"
                     disableYearSelection={this.state.disableYearSelection}
                   />

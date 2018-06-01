@@ -6,6 +6,7 @@ import AllCenters from './allCenters';
 import FloatingActionButton from
   '../../bodyComponents/floatingActionButton/FloatingActionButton';
 import Modals from '../../modals';
+import history from '../../../util/history';
 
 /**
  * AllCentersIndex Class Component
@@ -21,7 +22,7 @@ class AllCentersIndex extends Component {
         <div>
           <div className="body__holdr">
             <FixedNav />
-            <AllCenters {...this.props} />
+            <AllCenters {...this.props} history={history} />
             <FloatingActionButton />
             <Footer />
           </div>

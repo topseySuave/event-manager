@@ -123,7 +123,7 @@ export class SignInForm extends React.Component {
           <div className={loading}>
             <div className="input-field col s12">
               <InputForm
-                fieldId="email"
+                id="email"
                 nameField="email"
                 value={this.state.email}
                 error={errors.email || ''}
@@ -137,7 +137,7 @@ export class SignInForm extends React.Component {
           <div className={loading}>
             <div className="input-field col s12">
               <InputForm
-                fieldId="password"
+                id="password"
                 nameField="password"
                 value={this.state.password}
                 error={errors.password || ''}

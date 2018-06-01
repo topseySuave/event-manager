@@ -22,7 +22,28 @@ ShallowWrapper {
           className="body__holdr"
         >
           <Connect(FixedNav) />
-          <Connect(AllCenters) />
+          <Connect(AllCenters)
+            history={
+              Object {
+                "action": "POP",
+                "block": [Function],
+                "createHref": [Function],
+                "go": [Function],
+                "goBack": [Function],
+                "goForward": [Function],
+                "length": 1,
+                "listen": [Function],
+                "location": Object {
+                  "hash": "",
+                  "pathname": "blank",
+                  "search": "",
+                  "state": undefined,
+                },
+                "push": [Function],
+                "replace": [Function],
+              }
+            }
+          />
           <Connect(FloatingActionButton) />
           <Footer />
         </div>
@@ -41,7 +62,28 @@ ShallowWrapper {
             className="body__holdr"
           >
             <Connect(FixedNav) />
-            <Connect(AllCenters) />
+            <Connect(AllCenters)
+              history={
+                Object {
+                  "action": "POP",
+                  "block": [Function],
+                  "createHref": [Function],
+                  "go": [Function],
+                  "goBack": [Function],
+                  "goForward": [Function],
+                  "length": 1,
+                  "listen": [Function],
+                  "location": Object {
+                    "hash": "",
+                    "pathname": "blank",
+                    "search": "",
+                    "state": undefined,
+                  },
+                  "push": [Function],
+                  "replace": [Function],
+                }
+              }
+            />
             <Connect(FloatingActionButton) />
             <Footer />
           </div>,
@@ -57,7 +99,28 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <Connect(FixedNav) />,
-              <Connect(AllCenters) />,
+              <Connect(AllCenters)
+                history={
+                  Object {
+                    "action": "POP",
+                    "block": [Function],
+                    "createHref": [Function],
+                    "go": [Function],
+                    "goBack": [Function],
+                    "goForward": [Function],
+                    "length": 1,
+                    "listen": [Function],
+                    "location": Object {
+                      "hash": "",
+                      "pathname": "blank",
+                      "search": "",
+                      "state": undefined,
+                    },
+                    "push": [Function],
+                    "replace": [Function],
+                  }
+                }
+              />,
               <Connect(FloatingActionButton) />,
               <Footer />,
             ],
@@ -78,7 +141,26 @@ ShallowWrapper {
               "instance": null,
               "key": undefined,
               "nodeType": "class",
-              "props": Object {},
+              "props": Object {
+                "history": Object {
+                  "action": "POP",
+                  "block": [Function],
+                  "createHref": [Function],
+                  "go": [Function],
+                  "goBack": [Function],
+                  "goForward": [Function],
+                  "length": 1,
+                  "listen": [Function],
+                  "location": Object {
+                    "hash": "",
+                    "pathname": "blank",
+                    "search": "",
+                    "state": undefined,
+                  },
+                  "push": [Function],
+                  "replace": [Function],
+                },
+              },
               "ref": null,
               "rendered": null,
               "type": [Function],
@@ -129,7 +211,28 @@ ShallowWrapper {
             className="body__holdr"
           >
             <Connect(FixedNav) />
-            <Connect(AllCenters) />
+            <Connect(AllCenters)
+              history={
+                Object {
+                  "action": "POP",
+                  "block": [Function],
+                  "createHref": [Function],
+                  "go": [Function],
+                  "goBack": [Function],
+                  "goForward": [Function],
+                  "length": 1,
+                  "listen": [Function],
+                  "location": Object {
+                    "hash": "",
+                    "pathname": "blank",
+                    "search": "",
+                    "state": undefined,
+                  },
+                  "push": [Function],
+                  "replace": [Function],
+                }
+              }
+            />
             <Connect(FloatingActionButton) />
             <Footer />
           </div>
@@ -148,7 +251,28 @@ ShallowWrapper {
               className="body__holdr"
             >
               <Connect(FixedNav) />
-              <Connect(AllCenters) />
+              <Connect(AllCenters)
+                history={
+                  Object {
+                    "action": "POP",
+                    "block": [Function],
+                    "createHref": [Function],
+                    "go": [Function],
+                    "goBack": [Function],
+                    "goForward": [Function],
+                    "length": 1,
+                    "listen": [Function],
+                    "location": Object {
+                      "hash": "",
+                      "pathname": "blank",
+                      "search": "",
+                      "state": undefined,
+                    },
+                    "push": [Function],
+                    "replace": [Function],
+                  }
+                }
+              />
               <Connect(FloatingActionButton) />
               <Footer />
             </div>,
@@ -164,7 +288,28 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 <Connect(FixedNav) />,
-                <Connect(AllCenters) />,
+                <Connect(AllCenters)
+                  history={
+                    Object {
+                      "action": "POP",
+                      "block": [Function],
+                      "createHref": [Function],
+                      "go": [Function],
+                      "goBack": [Function],
+                      "goForward": [Function],
+                      "length": 1,
+                      "listen": [Function],
+                      "location": Object {
+                        "hash": "",
+                        "pathname": "blank",
+                        "search": "",
+                        "state": undefined,
+                      },
+                      "push": [Function],
+                      "replace": [Function],
+                    }
+                  }
+                />,
                 <Connect(FloatingActionButton) />,
                 <Footer />,
               ],
@@ -185,7 +330,26 @@ ShallowWrapper {
                 "instance": null,
                 "key": undefined,
                 "nodeType": "class",
-                "props": Object {},
+                "props": Object {
+                  "history": Object {
+                    "action": "POP",
+                    "block": [Function],
+                    "createHref": [Function],
+                    "go": [Function],
+                    "goBack": [Function],
+                    "goForward": [Function],
+                    "length": 1,
+                    "listen": [Function],
+                    "location": Object {
+                      "hash": "",
+                      "pathname": "blank",
+                      "search": "",
+                      "state": undefined,
+                    },
+                    "push": [Function],
+                    "replace": [Function],
+                  },
+                },
                 "ref": null,
                 "rendered": null,
                 "type": [Function],

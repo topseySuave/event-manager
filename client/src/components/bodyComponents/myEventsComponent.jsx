@@ -17,7 +17,7 @@ import {
   /**
    * MyEventCardHolder Class Component
    * */
-class MyEventCardHolder extends Component {
+export class MyEventCardHolder extends Component {
   /**
    * Class contructor
    * @param { object } props

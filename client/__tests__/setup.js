@@ -42,6 +42,16 @@ const jQueryMock = {
   tooltip(action) {
     return action;
   },
+  on(event, cb) {
+    return cb(event);
+  },
+  css(props) {
+    return props;
+  },
+  toDateString() {
+    return jest.fn();
+  },
+  parallax() {}
 };
 
 const $ = () => jQueryMock;
@@ -54,7 +64,9 @@ global.scrollTo = () => {};
 global.localStorage = localStorage();
 global.window = window;
 global.document = document;
+// global.Date = jest.fn();
 global.Materialize = Materialize;
+global.Materialize.toast = () => {};
 // global.setTimeout = (callback) => {
 //   callback();
 // };

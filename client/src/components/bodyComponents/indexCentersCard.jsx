@@ -20,7 +20,7 @@ import history from '../../util/history';
 /**
    * IndexEventCardHolder Class Component
    * */
-class IndexCenterCardHolder extends Component {
+export class IndexCenterCardHolder extends Component {
   /**
      * Class contructor
      * @param { object } props
@@ -174,14 +174,14 @@ IndexCenterCardHolder.propTypes = {
   loadMoreCenters: PropTypes.func.isRequired
 };
 
-const mapDispatchToProps = dispatch =>
+export const mapDispatchToProps = dispatch =>
   bindActionCreators({
     fetchCentersAction,
     loadMoreCenters,
     searchAction
   }, dispatch);
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   centerStore: state.centerReducer
 });
 

@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const InputForm = ({
-  fieldId, nameField, value, error, type, onChange, label, minValue = null
+  id, nameField, value, error, type, onChange, label, minValue = null
 }) => (
   <div className="input-field col s12">
     <input
-      id={fieldId}
+      id={id}
       name={nameField}
       type={type}
       defaultValue={value}
@@ -15,7 +15,7 @@ const InputForm = ({
       min={minValue || ''}
       required
     />
-    <label htmlFor={fieldId}>{label}</label>
+    <label htmlFor={id}>{label}</label>
 
     { error && <span className="red-text accent-1">{error}</span> }
   </div>
@@ -30,7 +30,7 @@ InputForm.propTypes = {
      * Field Identification Required,
      * Type: String
      * */
-  fieldId: requiredPropTypeString,
+  id: requiredPropTypeString,
 
   /**
      * Name field Required,
