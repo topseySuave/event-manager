@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { store } from '../../../../src/rootReducer';
-import { CenterDetail } from
+import { CenterDetail, mapStateToProps, mapDispatchToProps } from
   '../../../../src/components/centerComponent/centerDetail/centerDetail';
 import { fetchCenterAction, editCenterRequestAction } from
   '../../../../src/actions/center-actions/activeCenterAction';
@@ -14,25 +14,37 @@ describe('CenterDetail component', () => {
   const props = {
     params: {},
     history: {},
-    activeUser: { isAuthenticated: true, user: { role: false } },
+    activeUser: { isAuthenticated: true, user: { role: true } },
     fetchCenterRelatedTo: jest.fn(),
     fetchCenterAction,
     editCenterRequestAction,
-    deleteCenterRequest: jest.fn(),
+    deleteCenterRequest: jest.fn().mockImplementation(() => Promise.resolve()),
     activeCenterDetail: {
       id: 2,
       title: 'this is us',
-    }
+      eventStatusChange: true,
+    },
   };
+  const deleteCenterSpy = jest.spyOn(CenterDetail.prototype, 'deleteCenter');
+  const showAlertModalSpy = jest.spyOn(CenterDetail.prototype, 'showAlertModal');
 
   const wrapper = shallow(<CenterDetail {...props} />);
   const instance = wrapper.instance();
   test(
     'should aways receive new properties and admin status should be false',
     () => {
+      wrapper.setProps({
+        activeCenterDetail: {
+          centerDetails: {
+            center: { id: 1 }
+          }
+        }
+      });
       instance.componentWillReceiveProps(props);
       instance.editCenter();
-      expect(wrapper.state().isAdmin).toBeFalsy();
+      mapStateToProps({});
+      mapDispatchToProps(jest.fn());
+      expect(wrapper.state().isAdmin).toBeTruthy();
     }
   );
 
@@ -65,6 +77,16 @@ describe('CenterDetail component', () => {
   test('should have the book center button', () => {
     instance.showBookCenterButton();
     // expect(wrapper.props().activeUser.isAuthenticated).toBeTruthy();
+  });
+
+  test('should be able to delete', () => {
+    instance.deleteCenter(2);
+    expect(deleteCenterSpy).toBeCalled();
+  });
+
+  test('should be able to show alert subcomponent', () => {
+    instance.showAlertModal(2);
+    expect(showAlertModalSpy).toBeCalled();
   });
 
   test('should show recommended centers if not admin', () => {

@@ -136,7 +136,7 @@ CurrentEventForCenter.propTypes = {
   events: PropTypes.array.isRequired
 };
 
-const mapDispatchToProps = dispatch =>
+export const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       handleStatusEventAction

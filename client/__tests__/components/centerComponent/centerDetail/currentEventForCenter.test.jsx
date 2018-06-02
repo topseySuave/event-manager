@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { CurrentEventForCenter } from
+import { CurrentEventForCenter, mapDispatchToProps } from
   '../../../../src/components/centerComponent/centerDetail/CurrentEventForCenter';
 import { allEvents } from '../../../__mocks__/actions/eventsMock';
 import { handleStatusEventAction } from
@@ -9,13 +9,15 @@ import { handleStatusEventAction } from
 describe('CurrentEventForCenter component', () => {
   let props = {
     events: allEvents.events,
-    handleStatusEventAction
+    handleStatusEventAction,
+    isAdmin: true
   };
 
-  const wrapper = shallow(<CurrentEventForCenter {...props} />);
+  let wrapper = shallow(<CurrentEventForCenter {...props} />);
   let instance = wrapper.instance();
 
   test('component should mount', () => {
+    mapDispatchToProps({});
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -33,5 +35,20 @@ describe('CurrentEventForCenter component', () => {
     let h5 = wrapper.find('h5');
     expect(h5.length).toBe(4);
     instance.showAlertModal(5);
+  });
+
+  test('should render status button', () => {
+    let h5 = wrapper.find('h5');
+    expect(h5.length).toBe(4);
+    instance.renderStatusButtons(5, 'rejected');
+  });
+
+  test('should set centerEvents to "No event for this center"', () => {
+    props = {
+      events: [],
+      handleStatusEventAction,
+      isAdmin: true
+    };
+    wrapper = shallow(<CurrentEventForCenter {...props} />);
   });
 });

@@ -38,6 +38,7 @@ ShallowWrapper {
       ]
     }
     handleStatusEventAction={[Function]}
+    isAdmin={true}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -75,6 +76,29 @@ ShallowWrapper {
             }
           >
             Invalid Date - Invalid Date
+            <div
+              className="status-btns"
+            >
+              <span>
+                <a
+                  className="secondary-content red-text"
+                  onClick={[Function]}
+                >
+                  <IconButton
+                    disableTouchRipple={false}
+                    disabled={false}
+                    iconStyle={Object {}}
+                    tooltip="Reject Event"
+                    tooltipPosition="top-left"
+                    touch={false}
+                  >
+                    <ContentClear
+                      color="red"
+                    />
+                  </IconButton>
+                </a>
+              </span>
+            </div>
             <Dialog
               actions={
                 Array [
@@ -129,6 +153,29 @@ ShallowWrapper {
             }
           >
             Invalid Date - Invalid Date
+            <div
+              className="status-btns"
+            >
+              <span>
+                <a
+                  className="secondary-content red-text"
+                  onClick={[Function]}
+                >
+                  <IconButton
+                    disableTouchRipple={false}
+                    disabled={false}
+                    iconStyle={Object {}}
+                    tooltip="Reject Event"
+                    tooltipPosition="top-left"
+                    touch={false}
+                  >
+                    <ContentClear
+                      color="red"
+                    />
+                  </IconButton>
+                </a>
+              </span>
+            </div>
             <Dialog
               actions={
                 Array [
@@ -183,6 +230,29 @@ ShallowWrapper {
             }
           >
             Invalid Date - Invalid Date
+            <div
+              className="status-btns"
+            >
+              <span>
+                <a
+                  className="secondary-content red-text"
+                  onClick={[Function]}
+                >
+                  <IconButton
+                    disableTouchRipple={false}
+                    disabled={false}
+                    iconStyle={Object {}}
+                    tooltip="Reject Event"
+                    tooltipPosition="top-left"
+                    touch={false}
+                  >
+                    <ContentClear
+                      color="red"
+                    />
+                  </IconButton>
+                </a>
+              </span>
+            </div>
             <Dialog
               actions={
                 Array [
@@ -237,6 +307,29 @@ ShallowWrapper {
             }
           >
             Invalid Date - Invalid Date
+            <div
+              className="status-btns"
+            >
+              <span>
+                <a
+                  className="secondary-content red-text"
+                  onClick={[Function]}
+                >
+                  <IconButton
+                    disableTouchRipple={false}
+                    disabled={false}
+                    iconStyle={Object {}}
+                    tooltip="Reject Event"
+                    tooltipPosition="top-left"
+                    touch={false}
+                  >
+                    <ContentClear
+                      color="red"
+                    />
+                  </IconButton>
+                </a>
+              </span>
+            </div>
             <Dialog
               actions={
                 Array [
@@ -323,12 +416,34 @@ ShallowWrapper {
       },
       Object {
         "instance": null,
-        "key": "ryF8bXJxX",
+        "key": "SyGm7vJlX",
         "nodeType": "host",
         "props": Object {
           "children": Array [
             "Invalid Date - Invalid Date",
-            undefined,
+            <div
+              className="status-btns"
+            >
+              <span>
+                <a
+                  className="secondary-content red-text"
+                  onClick={[Function]}
+                >
+                  <IconButton
+                    disableTouchRipple={false}
+                    disabled={false}
+                    iconStyle={Object {}}
+                    tooltip="Reject Event"
+                    tooltipPosition="top-left"
+                    touch={false}
+                  >
+                    <ContentClear
+                      color="red"
+                    />
+                  </IconButton>
+                </a>
+              </span>
+            </div>,
             <Dialog
               actions={
                 Array [
@@ -382,7 +497,113 @@ ShallowWrapper {
         "ref": null,
         "rendered": Array [
           "Invalid Date - Invalid Date",
-          undefined,
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <span>
+                <a
+                  className="secondary-content red-text"
+                  onClick={[Function]}
+                >
+                  <IconButton
+                    disableTouchRipple={false}
+                    disabled={false}
+                    iconStyle={Object {}}
+                    tooltip="Reject Event"
+                    tooltipPosition="top-left"
+                    touch={false}
+                  >
+                    <ContentClear
+                      color="red"
+                    />
+                  </IconButton>
+                </a>
+              </span>,
+              "className": "status-btns",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <a
+                  className="secondary-content red-text"
+                  onClick={[Function]}
+                >
+                  <IconButton
+                    disableTouchRipple={false}
+                    disabled={false}
+                    iconStyle={Object {}}
+                    tooltip="Reject Event"
+                    tooltipPosition="top-left"
+                    touch={false}
+                  >
+                    <ContentClear
+                      color="red"
+                    />
+                  </IconButton>
+                </a>,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <IconButton
+                    disableTouchRipple={false}
+                    disabled={false}
+                    iconStyle={Object {}}
+                    tooltip="Reject Event"
+                    tooltipPosition="top-left"
+                    touch={false}
+                  >
+                    <ContentClear
+                      color="red"
+                    />
+                  </IconButton>,
+                  "className": "secondary-content red-text",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <ContentClear
+                      color="red"
+                    />,
+                    "disableTouchRipple": false,
+                    "disabled": false,
+                    "iconStyle": Object {},
+                    "tooltip": "Reject Event",
+                    "tooltipPosition": "top-left",
+                    "touch": false,
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "color": "red",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+                "type": "a",
+              },
+              "type": "span",
+            },
+            "type": "div",
+          },
           Object {
             "instance": null,
             "key": undefined,
@@ -447,12 +668,34 @@ ShallowWrapper {
       },
       Object {
         "instance": null,
-        "key": "B1xt8Z71gX",
+        "key": "SkeG7QDyxm",
         "nodeType": "host",
         "props": Object {
           "children": Array [
             "Invalid Date - Invalid Date",
-            undefined,
+            <div
+              className="status-btns"
+            >
+              <span>
+                <a
+                  className="secondary-content red-text"
+                  onClick={[Function]}
+                >
+                  <IconButton
+                    disableTouchRipple={false}
+                    disabled={false}
+                    iconStyle={Object {}}
+                    tooltip="Reject Event"
+                    tooltipPosition="top-left"
+                    touch={false}
+                  >
+                    <ContentClear
+                      color="red"
+                    />
+                  </IconButton>
+                </a>
+              </span>
+            </div>,
             <Dialog
               actions={
                 Array [
@@ -506,7 +749,113 @@ ShallowWrapper {
         "ref": null,
         "rendered": Array [
           "Invalid Date - Invalid Date",
-          undefined,
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <span>
+                <a
+                  className="secondary-content red-text"
+                  onClick={[Function]}
+                >
+                  <IconButton
+                    disableTouchRipple={false}
+                    disabled={false}
+                    iconStyle={Object {}}
+                    tooltip="Reject Event"
+                    tooltipPosition="top-left"
+                    touch={false}
+                  >
+                    <ContentClear
+                      color="red"
+                    />
+                  </IconButton>
+                </a>
+              </span>,
+              "className": "status-btns",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <a
+                  className="secondary-content red-text"
+                  onClick={[Function]}
+                >
+                  <IconButton
+                    disableTouchRipple={false}
+                    disabled={false}
+                    iconStyle={Object {}}
+                    tooltip="Reject Event"
+                    tooltipPosition="top-left"
+                    touch={false}
+                  >
+                    <ContentClear
+                      color="red"
+                    />
+                  </IconButton>
+                </a>,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <IconButton
+                    disableTouchRipple={false}
+                    disabled={false}
+                    iconStyle={Object {}}
+                    tooltip="Reject Event"
+                    tooltipPosition="top-left"
+                    touch={false}
+                  >
+                    <ContentClear
+                      color="red"
+                    />
+                  </IconButton>,
+                  "className": "secondary-content red-text",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <ContentClear
+                      color="red"
+                    />,
+                    "disableTouchRipple": false,
+                    "disabled": false,
+                    "iconStyle": Object {},
+                    "tooltip": "Reject Event",
+                    "tooltipPosition": "top-left",
+                    "touch": false,
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "color": "red",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+                "type": "a",
+              },
+              "type": "span",
+            },
+            "type": "div",
+          },
           Object {
             "instance": null,
             "key": undefined,
@@ -571,12 +920,34 @@ ShallowWrapper {
       },
       Object {
         "instance": null,
-        "key": "Bybt8Z7ylX",
+        "key": "rkWf7Qw1e7",
         "nodeType": "host",
         "props": Object {
           "children": Array [
             "Invalid Date - Invalid Date",
-            undefined,
+            <div
+              className="status-btns"
+            >
+              <span>
+                <a
+                  className="secondary-content red-text"
+                  onClick={[Function]}
+                >
+                  <IconButton
+                    disableTouchRipple={false}
+                    disabled={false}
+                    iconStyle={Object {}}
+                    tooltip="Reject Event"
+                    tooltipPosition="top-left"
+                    touch={false}
+                  >
+                    <ContentClear
+                      color="red"
+                    />
+                  </IconButton>
+                </a>
+              </span>
+            </div>,
             <Dialog
               actions={
                 Array [
@@ -630,7 +1001,113 @@ ShallowWrapper {
         "ref": null,
         "rendered": Array [
           "Invalid Date - Invalid Date",
-          undefined,
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <span>
+                <a
+                  className="secondary-content red-text"
+                  onClick={[Function]}
+                >
+                  <IconButton
+                    disableTouchRipple={false}
+                    disabled={false}
+                    iconStyle={Object {}}
+                    tooltip="Reject Event"
+                    tooltipPosition="top-left"
+                    touch={false}
+                  >
+                    <ContentClear
+                      color="red"
+                    />
+                  </IconButton>
+                </a>
+              </span>,
+              "className": "status-btns",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <a
+                  className="secondary-content red-text"
+                  onClick={[Function]}
+                >
+                  <IconButton
+                    disableTouchRipple={false}
+                    disabled={false}
+                    iconStyle={Object {}}
+                    tooltip="Reject Event"
+                    tooltipPosition="top-left"
+                    touch={false}
+                  >
+                    <ContentClear
+                      color="red"
+                    />
+                  </IconButton>
+                </a>,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <IconButton
+                    disableTouchRipple={false}
+                    disabled={false}
+                    iconStyle={Object {}}
+                    tooltip="Reject Event"
+                    tooltipPosition="top-left"
+                    touch={false}
+                  >
+                    <ContentClear
+                      color="red"
+                    />
+                  </IconButton>,
+                  "className": "secondary-content red-text",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <ContentClear
+                      color="red"
+                    />,
+                    "disableTouchRipple": false,
+                    "disabled": false,
+                    "iconStyle": Object {},
+                    "tooltip": "Reject Event",
+                    "tooltipPosition": "top-left",
+                    "touch": false,
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "color": "red",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+                "type": "a",
+              },
+              "type": "span",
+            },
+            "type": "div",
+          },
           Object {
             "instance": null,
             "key": undefined,
@@ -695,12 +1172,34 @@ ShallowWrapper {
       },
       Object {
         "instance": null,
-        "key": "HyztLZXJl7",
+        "key": "rkfz7Xw1em",
         "nodeType": "host",
         "props": Object {
           "children": Array [
             "Invalid Date - Invalid Date",
-            undefined,
+            <div
+              className="status-btns"
+            >
+              <span>
+                <a
+                  className="secondary-content red-text"
+                  onClick={[Function]}
+                >
+                  <IconButton
+                    disableTouchRipple={false}
+                    disabled={false}
+                    iconStyle={Object {}}
+                    tooltip="Reject Event"
+                    tooltipPosition="top-left"
+                    touch={false}
+                  >
+                    <ContentClear
+                      color="red"
+                    />
+                  </IconButton>
+                </a>
+              </span>
+            </div>,
             <Dialog
               actions={
                 Array [
@@ -754,7 +1253,113 @@ ShallowWrapper {
         "ref": null,
         "rendered": Array [
           "Invalid Date - Invalid Date",
-          undefined,
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <span>
+                <a
+                  className="secondary-content red-text"
+                  onClick={[Function]}
+                >
+                  <IconButton
+                    disableTouchRipple={false}
+                    disabled={false}
+                    iconStyle={Object {}}
+                    tooltip="Reject Event"
+                    tooltipPosition="top-left"
+                    touch={false}
+                  >
+                    <ContentClear
+                      color="red"
+                    />
+                  </IconButton>
+                </a>
+              </span>,
+              "className": "status-btns",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <a
+                  className="secondary-content red-text"
+                  onClick={[Function]}
+                >
+                  <IconButton
+                    disableTouchRipple={false}
+                    disabled={false}
+                    iconStyle={Object {}}
+                    tooltip="Reject Event"
+                    tooltipPosition="top-left"
+                    touch={false}
+                  >
+                    <ContentClear
+                      color="red"
+                    />
+                  </IconButton>
+                </a>,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <IconButton
+                    disableTouchRipple={false}
+                    disabled={false}
+                    iconStyle={Object {}}
+                    tooltip="Reject Event"
+                    tooltipPosition="top-left"
+                    touch={false}
+                  >
+                    <ContentClear
+                      color="red"
+                    />
+                  </IconButton>,
+                  "className": "secondary-content red-text",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <ContentClear
+                      color="red"
+                    />,
+                    "disableTouchRipple": false,
+                    "disabled": false,
+                    "iconStyle": Object {},
+                    "tooltip": "Reject Event",
+                    "tooltipPosition": "top-left",
+                    "touch": false,
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "color": "red",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+                "type": "a",
+              },
+              "type": "span",
+            },
+            "type": "div",
+          },
           Object {
             "instance": null,
             "key": undefined,
@@ -850,6 +1455,29 @@ ShallowWrapper {
               }
             >
               Invalid Date - Invalid Date
+              <div
+                className="status-btns"
+              >
+                <span>
+                  <a
+                    className="secondary-content red-text"
+                    onClick={[Function]}
+                  >
+                    <IconButton
+                      disableTouchRipple={false}
+                      disabled={false}
+                      iconStyle={Object {}}
+                      tooltip="Reject Event"
+                      tooltipPosition="top-left"
+                      touch={false}
+                    >
+                      <ContentClear
+                        color="red"
+                      />
+                    </IconButton>
+                  </a>
+                </span>
+              </div>
               <Dialog
                 actions={
                   Array [
@@ -904,6 +1532,29 @@ ShallowWrapper {
               }
             >
               Invalid Date - Invalid Date
+              <div
+                className="status-btns"
+              >
+                <span>
+                  <a
+                    className="secondary-content red-text"
+                    onClick={[Function]}
+                  >
+                    <IconButton
+                      disableTouchRipple={false}
+                      disabled={false}
+                      iconStyle={Object {}}
+                      tooltip="Reject Event"
+                      tooltipPosition="top-left"
+                      touch={false}
+                    >
+                      <ContentClear
+                        color="red"
+                      />
+                    </IconButton>
+                  </a>
+                </span>
+              </div>
               <Dialog
                 actions={
                   Array [
@@ -958,6 +1609,29 @@ ShallowWrapper {
               }
             >
               Invalid Date - Invalid Date
+              <div
+                className="status-btns"
+              >
+                <span>
+                  <a
+                    className="secondary-content red-text"
+                    onClick={[Function]}
+                  >
+                    <IconButton
+                      disableTouchRipple={false}
+                      disabled={false}
+                      iconStyle={Object {}}
+                      tooltip="Reject Event"
+                      tooltipPosition="top-left"
+                      touch={false}
+                    >
+                      <ContentClear
+                        color="red"
+                      />
+                    </IconButton>
+                  </a>
+                </span>
+              </div>
               <Dialog
                 actions={
                   Array [
@@ -1012,6 +1686,29 @@ ShallowWrapper {
               }
             >
               Invalid Date - Invalid Date
+              <div
+                className="status-btns"
+              >
+                <span>
+                  <a
+                    className="secondary-content red-text"
+                    onClick={[Function]}
+                  >
+                    <IconButton
+                      disableTouchRipple={false}
+                      disabled={false}
+                      iconStyle={Object {}}
+                      tooltip="Reject Event"
+                      tooltipPosition="top-left"
+                      touch={false}
+                    >
+                      <ContentClear
+                        color="red"
+                      />
+                    </IconButton>
+                  </a>
+                </span>
+              </div>
               <Dialog
                 actions={
                   Array [
@@ -1098,12 +1795,34 @@ ShallowWrapper {
         },
         Object {
           "instance": null,
-          "key": "ryF8bXJxX",
+          "key": "SyGm7vJlX",
           "nodeType": "host",
           "props": Object {
             "children": Array [
               "Invalid Date - Invalid Date",
-              undefined,
+              <div
+                className="status-btns"
+              >
+                <span>
+                  <a
+                    className="secondary-content red-text"
+                    onClick={[Function]}
+                  >
+                    <IconButton
+                      disableTouchRipple={false}
+                      disabled={false}
+                      iconStyle={Object {}}
+                      tooltip="Reject Event"
+                      tooltipPosition="top-left"
+                      touch={false}
+                    >
+                      <ContentClear
+                        color="red"
+                      />
+                    </IconButton>
+                  </a>
+                </span>
+              </div>,
               <Dialog
                 actions={
                   Array [
@@ -1157,7 +1876,113 @@ ShallowWrapper {
           "ref": null,
           "rendered": Array [
             "Invalid Date - Invalid Date",
-            undefined,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <span>
+                  <a
+                    className="secondary-content red-text"
+                    onClick={[Function]}
+                  >
+                    <IconButton
+                      disableTouchRipple={false}
+                      disabled={false}
+                      iconStyle={Object {}}
+                      tooltip="Reject Event"
+                      tooltipPosition="top-left"
+                      touch={false}
+                    >
+                      <ContentClear
+                        color="red"
+                      />
+                    </IconButton>
+                  </a>
+                </span>,
+                "className": "status-btns",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <a
+                    className="secondary-content red-text"
+                    onClick={[Function]}
+                  >
+                    <IconButton
+                      disableTouchRipple={false}
+                      disabled={false}
+                      iconStyle={Object {}}
+                      tooltip="Reject Event"
+                      tooltipPosition="top-left"
+                      touch={false}
+                    >
+                      <ContentClear
+                        color="red"
+                      />
+                    </IconButton>
+                  </a>,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <IconButton
+                      disableTouchRipple={false}
+                      disabled={false}
+                      iconStyle={Object {}}
+                      tooltip="Reject Event"
+                      tooltipPosition="top-left"
+                      touch={false}
+                    >
+                      <ContentClear
+                        color="red"
+                      />
+                    </IconButton>,
+                    "className": "secondary-content red-text",
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <ContentClear
+                        color="red"
+                      />,
+                      "disableTouchRipple": false,
+                      "disabled": false,
+                      "iconStyle": Object {},
+                      "tooltip": "Reject Event",
+                      "tooltipPosition": "top-left",
+                      "touch": false,
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "color": "red",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                  "type": "a",
+                },
+                "type": "span",
+              },
+              "type": "div",
+            },
             Object {
               "instance": null,
               "key": undefined,
@@ -1222,12 +2047,34 @@ ShallowWrapper {
         },
         Object {
           "instance": null,
-          "key": "B1xt8Z71gX",
+          "key": "SkeG7QDyxm",
           "nodeType": "host",
           "props": Object {
             "children": Array [
               "Invalid Date - Invalid Date",
-              undefined,
+              <div
+                className="status-btns"
+              >
+                <span>
+                  <a
+                    className="secondary-content red-text"
+                    onClick={[Function]}
+                  >
+                    <IconButton
+                      disableTouchRipple={false}
+                      disabled={false}
+                      iconStyle={Object {}}
+                      tooltip="Reject Event"
+                      tooltipPosition="top-left"
+                      touch={false}
+                    >
+                      <ContentClear
+                        color="red"
+                      />
+                    </IconButton>
+                  </a>
+                </span>
+              </div>,
               <Dialog
                 actions={
                   Array [
@@ -1281,7 +2128,113 @@ ShallowWrapper {
           "ref": null,
           "rendered": Array [
             "Invalid Date - Invalid Date",
-            undefined,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <span>
+                  <a
+                    className="secondary-content red-text"
+                    onClick={[Function]}
+                  >
+                    <IconButton
+                      disableTouchRipple={false}
+                      disabled={false}
+                      iconStyle={Object {}}
+                      tooltip="Reject Event"
+                      tooltipPosition="top-left"
+                      touch={false}
+                    >
+                      <ContentClear
+                        color="red"
+                      />
+                    </IconButton>
+                  </a>
+                </span>,
+                "className": "status-btns",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <a
+                    className="secondary-content red-text"
+                    onClick={[Function]}
+                  >
+                    <IconButton
+                      disableTouchRipple={false}
+                      disabled={false}
+                      iconStyle={Object {}}
+                      tooltip="Reject Event"
+                      tooltipPosition="top-left"
+                      touch={false}
+                    >
+                      <ContentClear
+                        color="red"
+                      />
+                    </IconButton>
+                  </a>,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <IconButton
+                      disableTouchRipple={false}
+                      disabled={false}
+                      iconStyle={Object {}}
+                      tooltip="Reject Event"
+                      tooltipPosition="top-left"
+                      touch={false}
+                    >
+                      <ContentClear
+                        color="red"
+                      />
+                    </IconButton>,
+                    "className": "secondary-content red-text",
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <ContentClear
+                        color="red"
+                      />,
+                      "disableTouchRipple": false,
+                      "disabled": false,
+                      "iconStyle": Object {},
+                      "tooltip": "Reject Event",
+                      "tooltipPosition": "top-left",
+                      "touch": false,
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "color": "red",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                  "type": "a",
+                },
+                "type": "span",
+              },
+              "type": "div",
+            },
             Object {
               "instance": null,
               "key": undefined,
@@ -1346,12 +2299,34 @@ ShallowWrapper {
         },
         Object {
           "instance": null,
-          "key": "Bybt8Z7ylX",
+          "key": "rkWf7Qw1e7",
           "nodeType": "host",
           "props": Object {
             "children": Array [
               "Invalid Date - Invalid Date",
-              undefined,
+              <div
+                className="status-btns"
+              >
+                <span>
+                  <a
+                    className="secondary-content red-text"
+                    onClick={[Function]}
+                  >
+                    <IconButton
+                      disableTouchRipple={false}
+                      disabled={false}
+                      iconStyle={Object {}}
+                      tooltip="Reject Event"
+                      tooltipPosition="top-left"
+                      touch={false}
+                    >
+                      <ContentClear
+                        color="red"
+                      />
+                    </IconButton>
+                  </a>
+                </span>
+              </div>,
               <Dialog
                 actions={
                   Array [
@@ -1405,7 +2380,113 @@ ShallowWrapper {
           "ref": null,
           "rendered": Array [
             "Invalid Date - Invalid Date",
-            undefined,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <span>
+                  <a
+                    className="secondary-content red-text"
+                    onClick={[Function]}
+                  >
+                    <IconButton
+                      disableTouchRipple={false}
+                      disabled={false}
+                      iconStyle={Object {}}
+                      tooltip="Reject Event"
+                      tooltipPosition="top-left"
+                      touch={false}
+                    >
+                      <ContentClear
+                        color="red"
+                      />
+                    </IconButton>
+                  </a>
+                </span>,
+                "className": "status-btns",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <a
+                    className="secondary-content red-text"
+                    onClick={[Function]}
+                  >
+                    <IconButton
+                      disableTouchRipple={false}
+                      disabled={false}
+                      iconStyle={Object {}}
+                      tooltip="Reject Event"
+                      tooltipPosition="top-left"
+                      touch={false}
+                    >
+                      <ContentClear
+                        color="red"
+                      />
+                    </IconButton>
+                  </a>,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <IconButton
+                      disableTouchRipple={false}
+                      disabled={false}
+                      iconStyle={Object {}}
+                      tooltip="Reject Event"
+                      tooltipPosition="top-left"
+                      touch={false}
+                    >
+                      <ContentClear
+                        color="red"
+                      />
+                    </IconButton>,
+                    "className": "secondary-content red-text",
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <ContentClear
+                        color="red"
+                      />,
+                      "disableTouchRipple": false,
+                      "disabled": false,
+                      "iconStyle": Object {},
+                      "tooltip": "Reject Event",
+                      "tooltipPosition": "top-left",
+                      "touch": false,
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "color": "red",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                  "type": "a",
+                },
+                "type": "span",
+              },
+              "type": "div",
+            },
             Object {
               "instance": null,
               "key": undefined,
@@ -1470,12 +2551,34 @@ ShallowWrapper {
         },
         Object {
           "instance": null,
-          "key": "HyztLZXJl7",
+          "key": "rkfz7Xw1em",
           "nodeType": "host",
           "props": Object {
             "children": Array [
               "Invalid Date - Invalid Date",
-              undefined,
+              <div
+                className="status-btns"
+              >
+                <span>
+                  <a
+                    className="secondary-content red-text"
+                    onClick={[Function]}
+                  >
+                    <IconButton
+                      disableTouchRipple={false}
+                      disabled={false}
+                      iconStyle={Object {}}
+                      tooltip="Reject Event"
+                      tooltipPosition="top-left"
+                      touch={false}
+                    >
+                      <ContentClear
+                        color="red"
+                      />
+                    </IconButton>
+                  </a>
+                </span>
+              </div>,
               <Dialog
                 actions={
                   Array [
@@ -1529,7 +2632,113 @@ ShallowWrapper {
           "ref": null,
           "rendered": Array [
             "Invalid Date - Invalid Date",
-            undefined,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <span>
+                  <a
+                    className="secondary-content red-text"
+                    onClick={[Function]}
+                  >
+                    <IconButton
+                      disableTouchRipple={false}
+                      disabled={false}
+                      iconStyle={Object {}}
+                      tooltip="Reject Event"
+                      tooltipPosition="top-left"
+                      touch={false}
+                    >
+                      <ContentClear
+                        color="red"
+                      />
+                    </IconButton>
+                  </a>
+                </span>,
+                "className": "status-btns",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <a
+                    className="secondary-content red-text"
+                    onClick={[Function]}
+                  >
+                    <IconButton
+                      disableTouchRipple={false}
+                      disabled={false}
+                      iconStyle={Object {}}
+                      tooltip="Reject Event"
+                      tooltipPosition="top-left"
+                      touch={false}
+                    >
+                      <ContentClear
+                        color="red"
+                      />
+                    </IconButton>
+                  </a>,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <IconButton
+                      disableTouchRipple={false}
+                      disabled={false}
+                      iconStyle={Object {}}
+                      tooltip="Reject Event"
+                      tooltipPosition="top-left"
+                      touch={false}
+                    >
+                      <ContentClear
+                        color="red"
+                      />
+                    </IconButton>,
+                    "className": "secondary-content red-text",
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <ContentClear
+                        color="red"
+                      />,
+                      "disableTouchRipple": false,
+                      "disabled": false,
+                      "iconStyle": Object {},
+                      "tooltip": "Reject Event",
+                      "tooltipPosition": "top-left",
+                      "touch": false,
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "color": "red",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                  "type": "a",
+                },
+                "type": "span",
+              },
+              "type": "div",
+            },
             Object {
               "instance": null,
               "key": undefined,

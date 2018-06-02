@@ -42,7 +42,7 @@ const flexContainer = {
 /**
  * FixedNav Class Component
  * */
-class FixedNav extends Component {
+export class FixedNav extends Component {
   /**
    * Class Constructor Method
    * @param { object } props
@@ -245,11 +245,11 @@ class FixedNav extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   activeState: state.authReducer
 });
 
-const matchDispatchToProps = dispatch =>
+export const matchDispatchToProps = dispatch =>
   bindActionCreators({ signOutRequest }, dispatch);
 
 export default connect(mapStateToProps, { matchDispatchToProps })(FixedNav);

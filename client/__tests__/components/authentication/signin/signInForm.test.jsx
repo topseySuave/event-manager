@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import ReactRouterEnzymeContext from 'react-router-enzyme-context';
-import { SignInForm, matchDispatchToProps } from
+import { SignInForm, mapStateToProps, matchDispatchToProps } from
   '../../../../src/components/authentication/signin/SignInForm';
 import { userSignInRequest } from '../../../../src/actions/authActions';
 
@@ -18,6 +18,8 @@ const mountComp = (props, userSignInReq, history) => {
   return wrapper;
 };
 
+const handleChangeSpy = jest.spyOn(SignInForm.prototype, 'handleChange');
+
 describe('Sign In form component', () => {
   const locations = [];
   const history = {
@@ -31,6 +33,7 @@ describe('Sign In form component', () => {
 
   test('should required field exist', () => {
     let wrapper = mountComp(props, userSignInRequest, history);
+    mapStateToProps({});
     const instance = wrapper.instance();
     const email = wrapper.find('#email');
     const password = wrapper.find('#password');
@@ -81,4 +84,38 @@ describe('Sign In form component', () => {
         .toBe('This field is required');
     }
   );
+
+  test('should handle changes in the form', () => {
+    let wrapper = mountComp(props, userSignInRequest, history);
+    wrapper.setState({
+      errors: {
+        email: 'this field is required'
+      }
+    });
+    const instance = wrapper.instance();
+    const e = {
+      target: {
+        name: 'email',
+        value: 'gabriel@micah.com'
+      }
+    };
+    instance.handleChange(e);
+    expect(handleChangeSpy).toBeCalled();
+  });
+
+  test('should set fiels value in state', () => {
+    let wrapper = mountComp(props, userSignInRequest, history);
+    wrapper.setState({
+      errors: {}
+    });
+    const instance = wrapper.instance();
+    const e = {
+      target: {
+        name: 'email',
+        value: 'gabriel@micah.com'
+      }
+    };
+    instance.handleChange(e);
+    expect(handleChangeSpy).toBeCalled();
+  });
 });

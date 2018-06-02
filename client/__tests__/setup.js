@@ -51,7 +51,17 @@ const jQueryMock = {
   toDateString() {
     return jest.fn();
   },
-  parallax() {}
+  parallax() {},
+  addClass() {},
+  scroll(cb) {
+    return cb();
+  },
+  offset() {
+    let top = () => {};
+    return top;
+  },
+  scrollTop() {},
+  top: {}
 };
 
 const $ = () => jQueryMock;
@@ -64,9 +74,8 @@ global.scrollTo = () => {};
 global.localStorage = localStorage();
 global.window = window;
 global.document = document;
-// global.Date = jest.fn();
 global.Materialize = Materialize;
 global.Materialize.toast = () => {};
-// global.setTimeout = (callback) => {
-//   callback();
-// };
+global.location = {
+  reload() {}
+};

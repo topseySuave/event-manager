@@ -393,12 +393,12 @@ CenterDetail.propTypes = {
   fetchCenterRelatedTo: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   activeCenterDetail: state.activeCenter,
   activeUser: state.authReducer
 });
 
-const mapDispatchToProps = dispatch =>
+export const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       fetchCenterAction,

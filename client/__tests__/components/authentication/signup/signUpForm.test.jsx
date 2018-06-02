@@ -61,4 +61,15 @@ describe('Authentication Sign Up Component', () => {
     instance.handleSubmit(event);
     expect(divs.length).toBe(10);
   });
+
+  test('component rendered again with redirect', () => {
+    const renderSpy = jest
+      .spyOn(SignUpForm.prototype, 'render');
+    wrapper.setState({
+      redirect: true
+    });
+    const instance = wrapper.instance();
+    instance.render();
+    expect(renderSpy).toHaveBeenCalled();
+  });
 });

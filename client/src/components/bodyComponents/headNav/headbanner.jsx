@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
 import queryString from 'query-string';
 
 import IconMenu from 'material-ui/IconMenu';
@@ -34,7 +35,7 @@ const searchStyle = {
 /**
  * MyEventCardHolder Class Component
  * */
-class HeaderBanner extends Component {
+export class HeaderBanner extends Component {
   /**
    * Class contructor
    * @param { object } props
@@ -66,7 +67,7 @@ class HeaderBanner extends Component {
    * */
   onSearch(query) {
     const qString = queryString.stringify(query, { arrayFormat: 'bracket' });
-    history.push(`/centers?${qString}`);
+    this.props.history.push(`/centers?${qString}`);
   }
 
   /**
@@ -289,11 +290,16 @@ class HeaderBanner extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  activeState: state.authReducer
+HeaderBanner.propTypes = {
+  history: PropTypes.object
+};
+
+export const mapStateToProps = state => ({
+  activeState: state.authReducer,
+  history
 });
 
-const matchDispatchToProps = dispatch =>
+export const matchDispatchToProps = dispatch =>
   bindActionCreators({ signOutRequest }, dispatch);
 
 export default connect(mapStateToProps, matchDispatchToProps)(HeaderBanner);

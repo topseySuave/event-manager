@@ -186,7 +186,7 @@ export class SignInForm extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   activeState: state.authReducer
 });
 
