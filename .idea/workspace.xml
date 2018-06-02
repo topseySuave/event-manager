@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f051bbcc-4e3a-4837-a5f5-ffa0a54f7bfb" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/__tests__/__mocks__/actions/centerActionMock.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/__tests__/__mocks__/actions/centerActionMock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/__tests__/actions/centerAction.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/__tests__/actions/centerAction.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/__tests__/components/bodyComponents/eventCard/__snapshots__/index.test.jsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/client/__tests__/components/bodyComponents/eventCard/__snapshots__/index.test.jsx.snap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/__tests__/components/centerComponent/centerDetail/__snapshots__/currentEventForCenter.test.jsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/client/__tests__/components/centerComponent/centerDetail/__snapshots__/currentEventForCenter.test.jsx.snap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/__tests__/components/modals/__snapshots__/EventModal.test.jsx.snap" beforeDir="false" afterPath="$PROJECT_DIR$/client/__tests__/components/modals/__snapshots__/EventModal.test.jsx.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -82,8 +81,8 @@
           <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/client/src/actions/events-actions/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2254">
-                  <caret line="180" column="7" selection-start-line="180" selection-start-column="7" selection-end-line="180" selection-end-column="7" />
+                <state relative-caret-position="2226">
+                  <caret line="178" column="7" selection-start-line="178" selection-start-column="7" selection-end-line="178" selection-end-column="7" />
                 </state>
               </provider>
             </entry>
@@ -1218,8 +1217,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/actions/events-actions/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2254">
-          <caret line="180" column="7" selection-start-line="180" selection-start-column="7" selection-end-line="180" selection-end-column="7" />
+        <state relative-caret-position="2226">
+          <caret line="178" column="7" selection-start-line="178" selection-start-column="7" selection-end-line="178" selection-end-column="7" />
         </state>
       </provider>
     </entry>

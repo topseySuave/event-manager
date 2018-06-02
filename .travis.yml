@@ -7,6 +7,8 @@ cache:
   - node_modules
 addons:
 - postgresql: "9.4"
+env:
+  - CODECOV_TOKEN=911c9d3c-a567-4ce0-a32c-9a715830f02e
 services:
 - postgresql
 global:
