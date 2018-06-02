@@ -26,7 +26,8 @@ describe('CenterDetail component', () => {
     },
   };
   const deleteCenterSpy = jest.spyOn(CenterDetail.prototype, 'deleteCenter');
-  const showAlertModalSpy = jest.spyOn(CenterDetail.prototype, 'showAlertModal');
+  const showAlertModalSpy = jest
+    .spyOn(CenterDetail.prototype, 'showAlertModal');
 
   const wrapper = shallow(<CenterDetail {...props} />);
   const instance = wrapper.instance();
