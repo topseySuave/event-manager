@@ -16,6 +16,6 @@ export const deleteCenterRequest = (id) => {
       })
       .catch((err) => {
         Materialize.toast('Center could not be deleted!!!', 5000);
-        console.log(err);
+        return err;
       });
 };

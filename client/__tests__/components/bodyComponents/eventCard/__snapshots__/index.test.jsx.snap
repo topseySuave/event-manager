@@ -13,10 +13,10 @@ ShallowWrapper {
           "location": "ikeja",
         },
         "description": "a brief description",
-        "endDate": "Sat Jun 02 2018 01:25:16 GMT+0100 (WAT)10",
+        "endDate": "Sat Jun 02 2018 19:04:43 GMT+0100 (WAT)10",
         "id": 1,
         "img_url": "",
-        "startDate": "Sat Jun 02 2018 01:25:16 GMT+0100 (WAT)1",
+        "startDate": "Sat Jun 02 2018 19:04:43 GMT+0100 (WAT)1",
         "status": "pending",
         "title": "this is us",
         "userId": 1,
@@ -89,7 +89,7 @@ ShallowWrapper {
         </Dialog>,
         <div
           className="card"
-          data-id="rkg4g4vJl7"
+          data-id="SJeES38xxQ"
         >
           <div
             className="card-image"
@@ -505,7 +505,7 @@ ShallowWrapper {
             </div>,
           ],
           "className": "card",
-          "data-id": "rkg4g4vJl7",
+          "data-id": "SJeES38xxQ",
         },
         "ref": null,
         "rendered": Array [
@@ -1239,7 +1239,7 @@ ShallowWrapper {
           </Dialog>,
           <div
             className="card"
-            data-id="rkg4g4vJl7"
+            data-id="SJeES38xxQ"
           >
             <div
               className="card-image"
@@ -1655,7 +1655,7 @@ ShallowWrapper {
               </div>,
             ],
             "className": "card",
-            "data-id": "rkg4g4vJl7",
+            "data-id": "SJeES38xxQ",
           },
           "ref": null,
           "rendered": Array [

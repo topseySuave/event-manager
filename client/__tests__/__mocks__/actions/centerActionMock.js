@@ -22,6 +22,28 @@ export const MakeCenterRequest = {
   startAddingCenter: true
 };
 
+export const expectedActions = [
+  {
+    payload:
+    {
+      scope: 'default'
+    },
+    type: 'loading-bar/SHOW'
+  }, {
+    payload: {
+      data: { centers: [{ id: 1 }] },
+      loadingmore: false,
+      loadmore: false
+    },
+    type: 'FETCH_CENTERS'
+  }, {
+    payload: {
+      scope: 'default'
+    },
+    type: 'loading-bar/HIDE'
+  }
+];
+
 export const centers = {
   meta: {
     page: 2,

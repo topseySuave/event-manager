@@ -3,7 +3,8 @@ import {
   EDIT_CENTER_REQUEST,
   EDIT_CENTER,
   REMOVE_CENTER,
-  EVENT_STATUS_CHANGE
+  EVENT_STATUS_CHANGE,
+  NOT_FOUND
 } from '../actions';
 
 export default (state = {}, action = {}) => {
@@ -37,6 +38,9 @@ export default (state = {}, action = {}) => {
         eventStatusChange: true
       };
       return newState;
+
+    case NOT_FOUND:
+      return { ...state, centerNotFound: true };
 
     default:
       return state;

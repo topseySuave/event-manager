@@ -81,6 +81,7 @@ export class CenterDetail extends Component {
   componentWillReceiveProps(newProps) {
     let centerDetails = newProps.activeCenterDetail;
     if (centerDetails.eventStatusChange) location.reload();
+    if (centerDetails.centerNotFound) this.props.history.push('/404');
 
     if (this.props.params.id !== newProps.params.id) {
       newProps.fetchCenterAction(newProps.params.id);

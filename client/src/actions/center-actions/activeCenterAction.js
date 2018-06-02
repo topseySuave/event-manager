@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_CENTER_DETAIL, EDIT_CENTER_REQUEST } from '../';
+import { FETCH_CENTER_DETAIL, EDIT_CENTER_REQUEST, NOT_FOUND } from '../';
 
 const api = '/api/v1/centers';
 
@@ -14,6 +14,11 @@ export const fetchCenterDispatch = (data, actionCase = null) => {
     case 'EDIT_CENTER_REQUEST':
       return {
         type: EDIT_CENTER_REQUEST
+      };
+
+    case NOT_FOUND:
+      return {
+        type: NOT_FOUND
       };
 
     default:
@@ -31,8 +36,7 @@ export const fetchCenterAction = (id) => {
       })
       .catch((err) => {
         Materialize.toast('Page Not Found!!!', 5000, 'red lighten-4');
-        window.location.href = '/404';
-        throw err;
+        return dispatch(fetchCenterDispatch(null, NOT_FOUND));
       });
 };
 

@@ -77,6 +77,9 @@
       "/client/src/registerServiceWorker.js",
       "/client/src/rootReducer.js",
       "/client/src/util/",
+      "/client/src/actions/modalAction.js",
+      "/client/src/actions/searchAction.js",
+      "/client/src/actions/events-actions/index.js",
       "/client/src/helpers/authCheck.js"
     ],
     "testPathIgnorePatterns": [

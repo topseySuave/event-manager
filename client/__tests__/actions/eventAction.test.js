@@ -1,16 +1,86 @@
 import expect from 'expect';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import moxios from 'moxios';
 import * as actionTypes from '../../src/actions';
 import { store } from '../../src/rootReducer';
 import {
   eventsDispatchAction,
-  searchEventsDispatch
+  searchEventsDispatch,
+  createEvent,
+  createEventRequest,
+  fetchEventRequest
 } from '../../src/actions/events-actions';
 
 import * as eventActionMock from '../__mocks__/actions/eventsMock';
 
 let newState;
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
 
 describe('Events Actions', () => {
+  describe('events async actions', () => {
+    test('should be able to create an event', () => {
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request.respondWith({
+          status: 200,
+          response: {
+            data: {
+              statusCode: 200,
+              center: { id: 1 }
+            }
+          },
+        });
+      });
+      const mockedStore = mockStore({ posts: {} });
+      const eventData = { title: 'this is us' };
+      let expectedActions = [{ type: 'EDIT_EVENT_FAILURE' }];
+      return mockedStore.dispatch(createEvent(eventData, '')).then(() => {
+        // return of async actions
+        expect(mockedStore.getActions()).toEqual(expectedActions);
+      });
+    });
+
+    test('should make a image upload request with image', () => {
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request.respondWith({
+          status: 200,
+          response: {
+            data: {}
+          },
+        });
+      });
+      const mockedStore = mockStore({ posts: {} });
+      const eventData = { title: 'this is us', img_url: { name: '2.jpg' } };
+      let expectedActions = [];
+      return mockedStore.dispatch(createEventRequest(eventData)).then(() => {
+        // return of async actions
+        expect(mockedStore.getActions()).toEqual(expectedActions);
+      });
+    });
+
+    test('should make a image upload request without image', () => {
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request.respondWith({
+          status: 200,
+          response: {
+            data: {}
+          },
+        });
+      });
+      const mockedStore = mockStore({ posts: {} });
+      const eventData = { title: 'this is us', img_url: {} };
+      let expectedActions = [{ type: 'EDIT_EVENT_FAILURE' }];
+      return mockedStore.dispatch(createEventRequest(eventData)).then(() => {
+        // return of async actions
+        expect(mockedStore.getActions()).toEqual(expectedActions);
+      });
+    });
+  });
+
   test('should make an edit event request', () => {
     store.dispatch(eventsDispatchAction('edit_request', eventActionMock
       .oneEvent));

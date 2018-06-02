@@ -113,7 +113,7 @@ export const searchEventsDispatch = data => ({
   events: data
 });
 
-const createEvent = (eventData, imgUrl) => (dispatch) => {
+export const createEvent = (eventData, imgUrl) => (dispatch) => {
   let token = localStorage.getItem('jwtToken') ? localStorage
     .getItem('jwtToken') : false;
   setAuthorizationToken(token);
@@ -129,7 +129,6 @@ const createEvent = (eventData, imgUrl) => (dispatch) => {
       }
     })
     .catch((err) => {
-      console.log(err);
       dispatch(eventsDispatchAction('EDIT_EVENT_FAILURE'));
       Materialize.toast('An Error Occurred..!!!', 5000, 'red lighten-2');
     });
@@ -151,7 +150,6 @@ export const createEventRequest = eventData => (dispatch) => {
       })
       .catch((err) => {
         Materialize.toast('Error in connection', 5000, 'red lighten-2');
-        console.log(err);
       });
   }
 

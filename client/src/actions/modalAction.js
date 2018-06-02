@@ -31,7 +31,7 @@ export const addCenterPayload = (payload, response = null) => {
   }
 };
 
-const createCenter = (centerApi, centerData, imgUrl) => (dispatch) => {
+export const createCenter = (centerApi, centerData, imgUrl) => (dispatch) => {
   let token = localStorage.getItem('jwtToken') ? localStorage
     .getItem('jwtToken') : false;
   setAuthorizationToken(token);
@@ -83,7 +83,7 @@ export const updateCenterPayload = (data, res) => {
  * update center method
  * requester to local server
  * ** */
-const editCenter = (centerApi, centerData, imgUrl) => (dispatch) => {
+export const editCenter = (centerApi, centerData, imgUrl) => (dispatch) => {
   let token = localStorage.getItem('jwtToken') ? localStorage
     .getItem('jwtToken') : false;
   setAuthorizationToken(token);

@@ -13,7 +13,9 @@ import { facilitiesResources } from
 describe('CenterDetail component', () => {
   const props = {
     params: {},
-    history: {},
+    history: {
+      push() {}
+    },
     activeUser: { isAuthenticated: true, user: { role: true } },
     fetchCenterRelatedTo: jest.fn(),
     fetchCenterAction,
@@ -23,6 +25,9 @@ describe('CenterDetail component', () => {
       id: 2,
       title: 'this is us',
       eventStatusChange: true,
+      centerNotFound: true,
+      center: '',
+      event: []
     },
   };
   const deleteCenterSpy = jest.spyOn(CenterDetail.prototype, 'deleteCenter');

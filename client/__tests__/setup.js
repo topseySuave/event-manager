@@ -13,7 +13,7 @@ const { window } = new JSDOM('', { virtualConsole });
 
 window.history.back = () => {};
 
-const { document } = window;
+let { document } = window;
 
 // mock localStorage function
 const localStorage = () => {
@@ -77,5 +77,6 @@ global.document = document;
 global.Materialize = Materialize;
 global.Materialize.toast = () => {};
 global.location = {
+  href: '',
   reload() {}
 };

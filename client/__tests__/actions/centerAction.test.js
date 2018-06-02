@@ -1,25 +1,232 @@
 import expect from 'expect';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import moxios from 'moxios';
 import * as actionTypes from '../../src/actions';
 import { store } from '../../src/rootReducer';
 
 // import active center actions
-import { fetchCenterDispatch } from
+import {
+  fetchCenterDispatch,
+  fetchCenterAction,
+  editCenterRequestAction
+} from
   '../../src/actions/center-actions/activeCenterAction';
 import {
   addCenterPayload,
-  updateCenterPayload
+  updateCenterPayload,
+  createCenter
 } from '../../src/actions/modalAction';
 import {
   fetchCentersDispatch,
-  searchCenterDispatch
+  searchCenterDispatch,
+  fetchCentersAction,
+  loadMoreCenters
 } from '../../src/actions/center-actions/fetchCenterAction';
-import { deleteAction } from
+import { deleteAction, deleteCenterRequest } from
   '../../src/actions/center-actions/deleteCenterAction';
 import * as centerActionMock from '../__mocks__/actions/centerActionMock';
 
-let newState;
+let newState, centerApi;
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
 
 describe('Center actions', () => {
+  beforeEach(() => {
+    moxios.install();
+    centerApi = '/api/v1/centers';
+  });
+
+  afterEach(() => {
+    moxios.uninstall();
+  });
+
+  describe('async actions', () => {
+    test('should fetch centers from server successfully', () => {
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request.respondWith({
+          status: 200,
+          response: {
+            data: {
+              centers: [{ id: 1 }]
+            }
+          },
+        });
+      });
+      const mockedStore = mockStore({ posts: {} });
+      return mockedStore.dispatch(fetchCentersAction()).then(() => {
+        // return of async actions
+        expect(mockedStore.getActions()).toEqual(centerActionMock
+          .expectedActions);
+      });
+    });
+
+    test('should load more centers successfully', () => {
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request.respondWith({
+          status: 200,
+          response: {
+            data: {
+              statusCode: 200,
+              centers: [{ id: 1 }]
+            }
+          },
+        });
+      });
+      const mockedStore = mockStore({ posts: {} });
+      let expectedActions = [{
+        type: 'LOADMORE_CENTER_REQUEST'
+      }, {
+        type: 'LOADMORE_CENTER_FAILURE'
+      }];
+      return mockedStore.dispatch(loadMoreCenters(2)).then(() => {
+        // return of async actions
+        expect(mockedStore.getActions()).toEqual(expectedActions);
+      });
+    });
+
+    test('should load more centers fail', () => {
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request.respondWith({
+          status: 400,
+          response: {
+            data: {
+              statusCode: 400,
+              centers: []
+            }
+          },
+        });
+      });
+      const mockedStore = mockStore({ posts: {} });
+      let expectedActions = [{
+        type: 'LOADMORE_CENTER_REQUEST'
+      }, {
+        type: 'LOADMORE_CENTER_FAILURE'
+      }];
+      return mockedStore.dispatch(loadMoreCenters(2)).then(() => {
+        // return of async actions
+        expect(mockedStore.getActions()).toEqual(expectedActions);
+      });
+    });
+
+    test('should delete a center', () => {
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request.respondWith({
+          status: 200,
+          response: {
+            data: {
+              statusCode: 200,
+              center: { id: 2 }
+            }
+          },
+        });
+      });
+      const mockedStore = mockStore({ posts: {} });
+      let expectedActions = [{
+        payload: {
+          data: {
+            center: { id: 2 },
+            statusCode: 200
+          }
+        },
+        type: 'REMOVE_CENTER'
+      }];
+      return mockedStore.dispatch(deleteCenterRequest(2)).then(() => {
+        // return of async actions
+        expect(mockedStore.getActions()).toEqual(expectedActions);
+      });
+    });
+
+    test('should deleting a center fail', () => {
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request.respondWith({
+          status: 500,
+          response: {
+            data: {
+              statusCode: 200,
+              center: { id: 2 }
+            }
+          },
+        });
+      });
+      const mockedStore = mockStore({ posts: {} });
+      let expectedActions = [];
+      return mockedStore.dispatch(deleteCenterRequest()).then(() => {
+        // return of async actions
+        expect(mockedStore.getActions()).toEqual(expectedActions);
+      });
+    });
+
+    test('should the id specified be wrong', () => {
+      let response = fetchCenterAction(null);
+      expect(response).toBe('id is required for the request to be successful');
+    });
+
+    test('should make an edit center request', () => {
+      const mockedStore = mockStore({ posts: {} });
+      let expectedResponse = { type: 'EDIT_CENTER_REQUEST' };
+      let response = mockedStore.dispatch(editCenterRequestAction());
+      expect(response).toEqual(expectedResponse);
+    });
+
+    test('should fetch a center successfully', () => {
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request.respondWith({
+          status: 200,
+          response: {
+            data: {
+              statusCode: 200,
+              center: { id: 2 }
+            }
+          },
+        });
+      });
+      const mockedStore = mockStore({ posts: {} });
+      let expectedActions = [{
+        center: {
+          data: {
+            center: {
+              id: 2
+            },
+            statusCode: 200
+          }
+        },
+        type: 'FETCH_CENTER_DETAIL'
+      }];
+      return mockedStore.dispatch(fetchCenterAction(2)).then(() => {
+        // return of async actions
+        expect(mockedStore.getActions()).toEqual(expectedActions);
+      });
+    });
+
+    test('should fetching a center fail', () => {
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request.respondWith({
+          status: 400,
+          response: {
+            data: {
+              statusCode: 400,
+              center: {}
+            }
+          },
+        });
+      });
+      const mockedStore = mockStore({ posts: {} });
+      let expectedActions = [{ type: 'NOT_FOUND' }];
+      return mockedStore.dispatch(fetchCenterAction(2)).then(() => {
+        // return of async actions
+        expect(mockedStore.getActions()).toEqual(expectedActions);
+      });
+    });
+  });
+
   describe('dealing with the general centers actions', () => {
     test('should make a request action to reducer', () => {
       store

@@ -22,7 +22,7 @@ const signOutRequest = () => {
   return removeCurrentUser();
 };
 
-const userSignupRequest = userData => axios.post(api, userData);
+const userSignupRequest = userData => dispatch => axios.post(api, userData);
 
 const userSignInRequest = userData => dispatch =>
   axios.post(`${api}/authentication`, userData).then((res) => {
