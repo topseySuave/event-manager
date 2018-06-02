@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import SearchFasterForm from
-  '../../../../src/components/centerComponent/allCenters/SearchFasterForm';
+  '../../../../src/components/centerComponent/allCenters/searchFasterForm';
 
 describe('SearchFasterForm component', () => {
   let props = {

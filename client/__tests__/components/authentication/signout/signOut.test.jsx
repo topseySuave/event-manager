@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { SignOut, mapDispatchToProps } from
-  '../../../../src/components/authentication/signout/SignOut';
+  '../../../../src/components/authentication/signout/signOut';
 import { signOutRequest } from
   '../../../../src/actions/authActions';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { HeaderBanner, mapStateToProps, matchDispatchToProps } from
-  '../../../../src/components/bodyComponents/headNav/headBanner';
+  '../../../../src/components/bodyComponents/headNav/headbanner';
 
 let wrapper, instance, mounted;
 let store, comProps;
