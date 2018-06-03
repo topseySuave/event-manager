@@ -42,13 +42,10 @@ export const searchAction = (searchQueries) => {
   return dispatch => axios
     .get(searchApi)
     .then(({ data }) => {
-      console.log('data ===> ', data);
       if (data.statusCode === 200) {
         return dispatch(fetchCentersDispatch(data, FETCH_CENTERS));
       } else if (data.statusCode === 404) {
-        console.log('error dey 404');
         if (err) {
-          console.log('has error');
           Materialize.toast(
             'search result do not match center(s)',
             5000,
@@ -59,7 +56,6 @@ export const searchAction = (searchQueries) => {
     })
     .catch((err) => {
       if (err) {
-        console.log('error dey oooo');
         Materialize.toast(
           'search result do not match center(s)',
           5000,

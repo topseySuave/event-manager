@@ -72,19 +72,15 @@ var searchAction = exports.searchAction = function searchAction(searchQueries) {
     return _axios2.default.get(searchApi).then(function (_ref2) {
       var data = _ref2.data;
 
-      console.log('data ===> ', data);
       if (data.statusCode === 200) {
         return dispatch((0, _fetchCenterAction.fetchCentersDispatch)(data, _.FETCH_CENTERS));
       } else if (data.statusCode === 404) {
-        console.log('error dey 404');
         if (err) {
-          console.log('has error');
           Materialize.toast('search result do not match center(s)', 5000, 'red');
         }
       }
     }).catch(function (err) {
       if (err) {
-        console.log('error dey oooo');
         Materialize.toast('search result do not match center(s)', 5000, 'red');
       }
     });
