@@ -13,7 +13,7 @@ import {
 // init api route string
 const api = '/api/v1/centers';
 
-export const fetchCentersDispatch = (data, actionCase) => {
+export const fetchCentersDispatch = (data, actionCase = null) => {
   switch (actionCase) {
     case 'FETCH_CENTERS':
       return {

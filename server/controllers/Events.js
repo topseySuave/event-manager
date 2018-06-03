@@ -160,9 +160,9 @@ export class Events {
         ],
         limit: limitValue
       }).then((searchResults) => {
-        if (searchResults.count <= 0) {
-          return res.status(400).send({
-            statusCode: 400,
+        if (searchResults.length <= 0) {
+          return res.status(404).send({
+            statusCode: 404,
             message: 'Event(s) do not match your search result'
           });
         }

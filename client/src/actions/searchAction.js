@@ -6,7 +6,11 @@ import {
   searchCenterDispatch
 } from './center-actions/fetchCenterAction';
 import { searchEventsDispatch } from './events-actions/index';
-import { SEARCH_CENTER_TITLE_FAILED, SEARCH_EVENT_TITLE_FAILED } from './';
+import {
+  SEARCH_CENTER_TITLE_FAILED,
+  SEARCH_EVENT_TITLE_FAILED,
+  FETCH_CENTERS
+} from './';
 
 const prepareCenterSearchQuery = (searchVal) => {
   let searchObjectString, searchApi, api = '/api/v1/centers?';
@@ -33,15 +37,18 @@ const validateEventSearchQuery = ({ searchBy, search }) => {
   return searchApi;
 };
 
-export const searchAction = (data) => {
-  let searchApi = prepareCenterSearchQuery(data);
+export const searchAction = (searchQueries) => {
+  let searchApi = prepareCenterSearchQuery(searchQueries);
   return dispatch => axios
     .get(searchApi)
     .then(({ data }) => {
+      console.log('data ===> ', data);
       if (data.statusCode === 200) {
-        dispatch(fetchCentersDispatch(data));
+        return dispatch(fetchCentersDispatch(data, FETCH_CENTERS));
       } else if (data.statusCode === 404) {
+        console.log('error dey 404');
         if (err) {
+          console.log('has error');
           Materialize.toast(
             'search result do not match center(s)',
             5000,
@@ -52,6 +59,7 @@ export const searchAction = (data) => {
     })
     .catch((err) => {
       if (err) {
+        console.log('error dey oooo');
         Materialize.toast(
           'search result do not match center(s)',
           5000,
@@ -66,7 +74,7 @@ export const filterCenterTitle = value => (dispatch) => {
   return axios.get(searchApi).then(({ data }) => {
     if (data.statusCode === 200) {
       dispatch(searchCenterDispatch(data));
-    } else if (data.statusCode === 400) {
+    } else if (data.statusCode === 404) {
       Materialize.toast(data.message, 5000, 'red');
       dispatch(searchCenterDispatch(null, 'SEARCH_CENTER_TITLE_FAILED'));
     }
