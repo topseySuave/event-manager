@@ -48,7 +48,7 @@ export class SignUp extends Component {
           <div className="signin__card_holdr wow fadeInUp">
             <div className="container">
               <div className="row">
-                <SignUpForm userSignupRequest={userSignupRequest} />
+                <SignUpForm userSignupRequest={this.props.userSignupRequest} />
               </div>
             </div>
           </div>

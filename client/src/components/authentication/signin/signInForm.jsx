@@ -53,7 +53,7 @@ export class SignInForm extends React.Component {
    * @returns { object }
    * */
   isValid() {
-    const { errors, isValid } = validateSignInInput(this.state);
+    const { state: { errors }, isValid } = validateSignInInput(this.state);
     if (!isValid) {
       this.setState({ errors });
     }
@@ -144,6 +144,7 @@ export class SignInForm extends React.Component {
                 type="password"
                 onChange={this.handleChange}
                 label="Password"
+                minValue="6"
               />
             </div>
           </div>

@@ -43,7 +43,6 @@ export class CenterDetail extends Component {
 
     this.state = {
       isLoading: true,
-      openAlert: false,
       open: false,
       isAdmin: false,
       activeCenter: {
@@ -55,8 +54,6 @@ export class CenterDetail extends Component {
 
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
-    this.handleAlertOpen = this.handleAlertOpen.bind(this);
-    this.handleAlertClose = this.handleAlertClose.bind(this);
   }
 
   /**
@@ -154,6 +151,7 @@ export class CenterDetail extends Component {
         <div>
           <FlatButton
             label="Edit center"
+            id="editCenterBtn"
             icon={<EditIcon />}
             onClick={this.handleOpen}
             fullWidth
@@ -197,53 +195,6 @@ export class CenterDetail extends Component {
           relatedCenterBasedOn={relatedCenterBasedOn}
           fetchCenterRelatedTo={fetchCenterRelatedTo}
         />
-      );
-    }
-  }
-
-  /**
-   * deleteCenter Method
-   * @param { string } id
-   * @returns { void }
-   * */
-  deleteCenter(id) {
-    this.props.deleteCenterRequest(id).then(() => {
-      if (typeof this.props.activeCenterDetail.center === 'undefined') {
-        Materialize.toast('Center has been Deleted', 5000, 'teal');
-        this.props.history.push('/centers');
-      }
-    });
-  }
-
-  /**
-   * showAlertModal Method
-   * @param { string } id
-   * @returns { component }
-   * */
-  showAlertModal(id) {
-    const actions = [
-      <FlatButton label="Yes" primary onClick={() => this.deleteCenter(id)} />,
-      <FlatButton label="No" primary onClick={() => this.handleAlertClose()} />
-    ];
-
-    if (this.state.isAdmin) {
-      return (
-        <div>
-          <FlatButton
-            label="Delete this center"
-            secondary
-            icon={<Delete />}
-            onClick={this.handleAlertOpen}
-          />
-          <Dialog
-            actions={actions}
-            modal={false}
-            open={this.state.openAlert}
-            onRequestClose={this.handleAlertClose}
-          >
-            Are you sure you want to delete this event?
-          </Dialog>
-        </div>
       );
     }
   }
@@ -363,13 +314,10 @@ export class CenterDetail extends Component {
                           </div>
                         </div>
                         <div className="row">
-                          <div className="col s12 l2" id="showEditCenterButton">
+                          <div className="col s12 l3" id="showEditCenterButton">
                             {this.showEditCenterButton()}
                           </div>
-                          <div className="col s12 l2" id="showAlertModal">
-                            {this.showAlertModal(id)}
-                          </div>
-                          <div className="col s12 l4" id="showBookCenterButton">
+                          <div className="col s12 l6" id="showBookCenterButton">
                             {this.showBookCenterButton()}
                           </div>
                         </div>

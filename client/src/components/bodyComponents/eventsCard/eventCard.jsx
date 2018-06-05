@@ -111,7 +111,9 @@ export class EventCard extends Component {
         <IconMenu
           className="right-align"
           iconButtonElement={
-            <IconButton>
+            <IconButton
+              id="accountModBtn"
+            >
               <MoreVertIcon />
             </IconButton>
           }
@@ -120,10 +122,12 @@ export class EventCard extends Component {
         >
           <MenuItem
             primaryText="Edit"
+            id="editBtnItem"
             leftIcon={<EditorModeEdit />}
             onClick={() => this.handleEditOpen()}
           />
           <MenuItem
+            id="deleteBtnItem"
             onClick={() => this.handleAlertOpen()}
             primaryText="Delete"
             style={{ color: 'red' }}
@@ -170,11 +174,13 @@ export class EventCard extends Component {
   showAlertModal(id) {
     const actions = [
       <FlatButton
+        id="yesDelete"
         label="Yes"
         primary
         onClick={() => this.handleDelete(id)}
       />,
       <FlatButton
+        id="noDelete"
         label="No"
         primary
         onClick={() => this.handleAlertClose()}
@@ -183,6 +189,7 @@ export class EventCard extends Component {
 
     return (
       <Dialog
+        className="alertModal"
         actions={actions}
         modal={false}
         open={this.state.openAlert}

@@ -91,7 +91,7 @@ export class EventModal extends Component {
   componentWillReceiveProps(newProps) {
     if (newProps.event) this.setState({ isLoading: newProps.event.isLoading });
     if (newProps.centerIsBooked) this.setState({ isLoading: false });
-    if (newProps.event.eventCreated) history.push('/my-events');
+    if (newProps.event.sessEvents.eventCreated) history.push('/my-events');
   }
 
   isValid() {
@@ -226,6 +226,7 @@ export class EventModal extends Component {
         />
         <Dialog
           title={editEvent ? "Edit Event" : "Create Event"}
+          id="creatEventModal"
           actions={actions}
           modal={false}
           open={this.state.open}
@@ -302,7 +303,7 @@ export class EventModal extends Component {
                 <div className="input-field col s12">
                   <label htmlFor="description">Description</label>
                   <textarea
-                    id="description"
+                    id="eventDescription"
                     type="text"
                     name="description"
                     className="materialize-textarea validate"
@@ -336,7 +337,7 @@ export class EventModal extends Component {
   }
 }
 
-const mapStateToProps = state => {
+export const mapStateToProps = state => {
   return {
     activeCenter: state.activeCenter,
     event: state.eventReducer,
@@ -344,7 +345,7 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+export const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     { createEventRequest },
     dispatch

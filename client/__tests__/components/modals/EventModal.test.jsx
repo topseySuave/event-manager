@@ -1,6 +1,10 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import { EventModal } from '../../../src/components/modals/EventModal.jsx';
+import {
+  EventModal,
+  mapStateToProps,
+  mapDispatchToProps
+} from '../../../src/components/modals/EventModal';
 import { createEventRequest } from '../../../src/actions/events-actions/index';
 
 let wrapper, instance, mounted;
@@ -10,7 +14,7 @@ const getComponent = () => {
   if (!mounted) {
     props = {
       activeCenter: { center: { id: 3, title: 'this is me' } },
-      event: { eventCreated: false },
+      event: { sessEvents: { eventCreated: false } },
       actUser: { isAuthenticated: true, user: { id: 3 } },
       bookedCenter: true,
       centerIsBooked: true,
@@ -41,6 +45,8 @@ describe('EventModal component', () => {
   });
 
   test('component should receive props and update state', () => {
+    mapDispatchToProps(jest.fn());
+    mapStateToProps({});
     wrapper.instance().componentWillReceiveProps(props);
     expect(wrapper.state('isLoading')).toBeFalsy();
   });
@@ -78,7 +84,7 @@ describe('EventModal component', () => {
         description: 'this field is required'
       }
     });
-    wrapper.find('#description').simulate('change', {
+    wrapper.find('#eventDescription').simulate('change', {
       target: {
         name: 'description',
         value: 'a brief description of this center'

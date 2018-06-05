@@ -8,20 +8,22 @@ describe('Client Input Validator', () => {
   describe('Sign In Validator', () => {
     it('should check for email and password requirments', () => {
       let inputValues = {
+        errors: {},
         email: '',
         password: ''
       };
-      let { errors, isValid } = validateSignInInput(inputValues);
+      let { state: { errors }, isValid } = validateSignInInput(inputValues);
       expect(errors.email).toBe('Email is invalid');
       expect(errors.password).toBe('This field is required');
     });
 
     it('should check for wrong email and password', () => {
       let inputValues = {
+        errors: {},
         email: 'thisiswrong',
         password: '53'
       };
-      let { errors, isValid } = validateSignInInput(inputValues);
+      let { state: { errors }, isValid } = validateSignInInput(inputValues);
       expect(errors.email).toBe('Email is invalid');
       expect(errors.password)
         .toBe('Password is too short, Must be more than 6 characters');
@@ -31,13 +33,14 @@ describe('Client Input Validator', () => {
   describe('Sign Up Validator', () => {
     it('should check for email and password requirments', () => {
       let inputValues = {
+        errors: {},
         email: '',
         password: '',
         firstName: '',
         lastName: '',
         confirmPassword: ''
       };
-      let { errors, isValid } = validateSignUpInput(inputValues);
+      let { state: { errors }, isValid } = validateSignUpInput(inputValues);
       expect(errors.email).toBe('Email is Invalid');
       expect(errors.firstName).toBe('This field is required');
       expect(errors.lastName).toBe('This field is required');
@@ -46,13 +49,15 @@ describe('Client Input Validator', () => {
 
     it('should check for wrong email and password', () => {
       let inputValues = {
+        errors: {},
         email: '',
         password: '53',
         firstName: 'j',
         lastName: 'm',
         confirmPassword: '28'
       };
-      let { errors, isValid } = validateSignUpInput(inputValues);
+      let { state: { errors }, isValid } = validateSignUpInput(inputValues);
+      console.log('error ===> ', errors);
       expect(errors.email).toBe('Email is Invalid');
       expect(errors.firstName)
         .toBe('First Name is too short, Must be more than 2 characters');

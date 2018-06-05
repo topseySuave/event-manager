@@ -27,15 +27,17 @@ ShallowWrapper {
     editEvent={true}
     event={
       Object {
-        "eventCreated": false,
+        "sessEvents": Object {
+          "eventCreated": false,
+        },
       }
     }
     eventToEdit={
       Object {
         "description": "we put the goog in the good life",
-        "endDate": "Sat Jun 02 2018 21:01:23 GMT+0100 (WAT)20",
+        "endDate": "Tue Jun 05 2018 23:15:36 GMT+0100 (WAT)20",
         "img_url": "",
-        "startDate": "Sat Jun 02 2018 21:01:23 GMT+0100 (WAT)10",
+        "startDate": "Tue Jun 05 2018 23:15:36 GMT+0100 (WAT)10",
         "title": "we put the goog in the good life",
       }
     }
@@ -101,6 +103,7 @@ ShallowWrapper {
           }
           autoDetectWindowHeight={true}
           autoScrollBodyContent={true}
+          id="creatEventModal"
           modal={false}
           onRequestClose={[Function]}
           open={false}
@@ -224,7 +227,7 @@ ShallowWrapper {
                   </label>
                   <textarea
                     className="materialize-textarea validate"
-                    id="description"
+                    id="eventDescription"
                     name="description"
                     onChange={[Function]}
                     required={true}
@@ -431,7 +434,7 @@ ShallowWrapper {
                   </label>
                   <textarea
                     className="materialize-textarea validate"
-                    id="description"
+                    id="eventDescription"
                     name="description"
                     onChange={[Function]}
                     required={true}
@@ -463,6 +466,7 @@ ShallowWrapper {
               </div>
             </form>
           </div>,
+          "id": "creatEventModal",
           "modal": false,
           "onRequestClose": [Function],
           "open": false,
@@ -582,7 +586,7 @@ ShallowWrapper {
                   </label>
                   <textarea
                     className="materialize-textarea validate"
-                    id="description"
+                    id="eventDescription"
                     name="description"
                     onChange={[Function]}
                     required={true}
@@ -725,7 +729,7 @@ ShallowWrapper {
                     </label>
                     <textarea
                       className="materialize-textarea validate"
-                      id="description"
+                      id="eventDescription"
                       name="description"
                       onChange={[Function]}
                       required={true}
@@ -1171,7 +1175,7 @@ ShallowWrapper {
                     </label>
                     <textarea
                       className="materialize-textarea validate"
-                      id="description"
+                      id="eventDescription"
                       name="description"
                       onChange={[Function]}
                       required={true}
@@ -1195,7 +1199,7 @@ ShallowWrapper {
                       </label>,
                       <textarea
                         className="materialize-textarea validate"
-                        id="description"
+                        id="eventDescription"
                         name="description"
                         onChange={[Function]}
                         required={true}
@@ -1226,7 +1230,7 @@ ShallowWrapper {
                       "nodeType": "host",
                       "props": Object {
                         "className": "materialize-textarea validate",
-                        "id": "description",
+                        "id": "eventDescription",
                         "name": "description",
                         "onChange": [Function],
                         "required": true,
@@ -1377,6 +1381,7 @@ ShallowWrapper {
             }
             autoDetectWindowHeight={true}
             autoScrollBodyContent={true}
+            id="creatEventModal"
             modal={false}
             onRequestClose={[Function]}
             open={false}
@@ -1500,7 +1505,7 @@ ShallowWrapper {
                     </label>
                     <textarea
                       className="materialize-textarea validate"
-                      id="description"
+                      id="eventDescription"
                       name="description"
                       onChange={[Function]}
                       required={true}
@@ -1707,7 +1712,7 @@ ShallowWrapper {
                     </label>
                     <textarea
                       className="materialize-textarea validate"
-                      id="description"
+                      id="eventDescription"
                       name="description"
                       onChange={[Function]}
                       required={true}
@@ -1739,6 +1744,7 @@ ShallowWrapper {
                 </div>
               </form>
             </div>,
+            "id": "creatEventModal",
             "modal": false,
             "onRequestClose": [Function],
             "open": false,
@@ -1858,7 +1864,7 @@ ShallowWrapper {
                     </label>
                     <textarea
                       className="materialize-textarea validate"
-                      id="description"
+                      id="eventDescription"
                       name="description"
                       onChange={[Function]}
                       required={true}
@@ -2001,7 +2007,7 @@ ShallowWrapper {
                       </label>
                       <textarea
                         className="materialize-textarea validate"
-                        id="description"
+                        id="eventDescription"
                         name="description"
                         onChange={[Function]}
                         required={true}
@@ -2447,7 +2453,7 @@ ShallowWrapper {
                       </label>
                       <textarea
                         className="materialize-textarea validate"
-                        id="description"
+                        id="eventDescription"
                         name="description"
                         onChange={[Function]}
                         required={true}
@@ -2471,7 +2477,7 @@ ShallowWrapper {
                         </label>,
                         <textarea
                           className="materialize-textarea validate"
-                          id="description"
+                          id="eventDescription"
                           name="description"
                           onChange={[Function]}
                           required={true}
@@ -2502,7 +2508,7 @@ ShallowWrapper {
                         "nodeType": "host",
                         "props": Object {
                           "className": "materialize-textarea validate",
-                          "id": "description",
+                          "id": "eventDescription",
                           "name": "description",
                           "onChange": [Function],
                           "required": true,

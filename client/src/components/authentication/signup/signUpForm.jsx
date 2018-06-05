@@ -40,11 +40,11 @@ export class SignUpForm extends Component {
    * */
   handleChange(e) {
     if (this.state.errors[e.target.name]) {
-      let errors = Object.assign({}, !!this.state.errors);
+      let errors = Object.assign({}, this.state.errors);
       delete errors[e.target.name];
       this.setState({
         [e.target.name]: e.target.value,
-        errors
+        errors: {}
       });
     } else {
       this.setState({ [e.target.name]: e.target.value });
@@ -56,7 +56,7 @@ export class SignUpForm extends Component {
    * @returns { object }
    * */
   isValid() {
-    const { errors, isValid } = validateSignUpInput(this.state);
+    const { state: { errors }, isValid } = validateSignUpInput(this.state);
     if (!isValid) {
       this.setState({ errors });
     }
@@ -151,6 +151,7 @@ export class SignUpForm extends Component {
               type="text"
               onChange={this.handleChange}
               label="First Name"
+              minValue="4"
             />
           </div>
           <div className={loading}>
@@ -162,6 +163,7 @@ export class SignUpForm extends Component {
               type="text"
               onChange={this.handleChange}
               label="Last Name"
+              minValue="4"
             />
           </div>
           <div className={loading}>
@@ -184,6 +186,7 @@ export class SignUpForm extends Component {
               type="password"
               onChange={this.handleChange}
               label="Password"
+              minValue="6"
             />
           </div>
           <div className={loading}>
@@ -195,6 +198,7 @@ export class SignUpForm extends Component {
               type="password"
               onChange={this.handleChange}
               label="Confirm Password"
+              minValue="6"
             />
           </div>
           <div className="row">

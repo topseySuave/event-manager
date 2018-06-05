@@ -129,6 +129,7 @@ export class FixedNav extends Component {
             containerElement={<Link to="/signin" />}
           />
           <MenuItem
+            id="signOutBtn"
             primaryText="sign up"
             style={{ color: '#FFFFFF' }}
             containerElement={<Link to="/signup" />}
@@ -141,7 +142,9 @@ export class FixedNav extends Component {
       <Fragment>
         <IconMenu
           iconButtonElement={
-            <IconButton>
+            <IconButton
+              id="accountBtn"
+            >
               <AccountCircle color="white" />
             </IconButton>
           }
@@ -157,6 +160,7 @@ export class FixedNav extends Component {
           />
           <Divider />
           <MenuItem
+            id="signOutBtn"
             primaryText="sign out"
             containerElement={<Link to="/signout" />}
           />

@@ -1,9 +1,9 @@
 webpackHotUpdate("main",{
 
-/***/ "./client/src/actions/searchAction.js":
-/*!********************************************!*\
-  !*** ./client/src/actions/searchAction.js ***!
-  \********************************************/
+/***/ "./client/src/components/authentication/validateInput.js":
+/*!***************************************************************!*\
+  !*** ./client/src/components/authentication/validateInput.js ***!
+  \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13,113 +13,94 @@ webpackHotUpdate("main",{
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.filterEventTitle = exports.filterCenterTitle = exports.searchAction = undefined;
+exports.validateSignUpInput = validateSignUpInput;
+exports.validateSignInInput = validateSignInInput;
 
-var _axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+var _isEmpty = __webpack_require__(/*! lodash/isEmpty */ "./node_modules/lodash/isEmpty.js");
 
-var _axios2 = _interopRequireDefault(_axios);
+var _isEmpty2 = _interopRequireDefault(_isEmpty);
 
-var _lodash = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+var _isEmail = __webpack_require__(/*! validator/lib/isEmail */ "./node_modules/validator/lib/isEmail.js");
 
-var _queryString = __webpack_require__(/*! query-string */ "./node_modules/query-string/index.js");
-
-var _queryString2 = _interopRequireDefault(_queryString);
-
-var _fetchCenterAction = __webpack_require__(/*! ./center-actions/fetchCenterAction */ "./client/src/actions/center-actions/fetchCenterAction.js");
-
-var _index = __webpack_require__(/*! ./events-actions/index */ "./client/src/actions/events-actions/index.js");
-
-var _ = __webpack_require__(/*! ./ */ "./client/src/actions/index.js");
+var _isEmail2 = _interopRequireDefault(_isEmail);
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
 }
 
-var prepareCenterSearchQuery = function prepareCenterSearchQuery(searchVal) {
-  var searchObjectString = void 0,
-      searchApi = void 0,
-      api = '/api/v1/centers?';
-  searchObjectString = _queryString2.default.stringify(searchVal, {
-    arrayFormat: 'bracket'
-  });
-  searchApi = '' + api + searchObjectString;
-  return searchApi;
-};
+// const errors = {};
+/* eslint-disable */
+var minLength = 2;
+var passMinLength = 6;
 
-var validateEventSearchQuery = function validateEventSearchQuery(_ref) {
-  var searchBy = _ref.searchBy,
-      search = _ref.search;
+function validateSignUpInput(stateInput) {
+  var errors = stateInput.errors;
 
-  var searchApi = void 0,
-      api = void 0;
-
-  if (searchBy) {
-    api = '/api/v1/events?searchBy=' + searchBy + '&search=';
-  } else {
-    api = '/api/v1/events?search=';
+  errors = {};
+  if ((0, _isEmpty2.default)(stateInput.email)) {
+    errors.email = "This field is required";
+  }
+  if (!(0, _isEmail2.default)(stateInput.email)) {
+    errors.email = "Email is Invalid";
   }
 
-  if (!(0, _lodash.isEmpty)(search) && search !== 'undefined') {
-    searchApi = '' + (api + search);
+  if ((0, _isEmpty2.default)(stateInput.firstName)) {
+    errors.firstName = "This field is required";
+  } else if (stateInput.firstName.length < 2) {
+    errors.firstName = 'First Name is too short, Must be more than 2 characters';
   }
 
-  return searchApi;
-};
+  if ((0, _isEmpty2.default)(stateInput.lastName)) {
+    errors.lastName = "This field is required";
+  } else if (stateInput.lastName.length < 2) {
+    errors.lastName = 'Last Name is too short, Must be more than 2 characters';
+  }
 
-var searchAction = exports.searchAction = function searchAction(searchQueries) {
-  var searchApi = prepareCenterSearchQuery(searchQueries);
-  return function (dispatch) {
-    return _axios2.default.get(searchApi).then(function (_ref2) {
-      var data = _ref2.data;
+  if ((0, _isEmpty2.default)(stateInput.password)) {
+    errors.password = "This field is required";
+  } else if (stateInput.password.length < passMinLength) {
+    errors.password = "Password is too short, Must be more than " + passMinLength + " characters";
+  }
 
-      if (data.statusCode === 200) {
-        return dispatch((0, _fetchCenterAction.fetchCentersDispatch)(data, _.FETCH_CENTERS));
-      } else if (data.statusCode === 404) {
-        if (err) {
-          Materialize.toast('search result do not match center(s)', 5000, 'red');
-        }
-      }
-    }).catch(function (err) {
-      if (err) {
-        Materialize.toast('search result do not match center(s)', 5000, 'red');
-      }
-    });
+  if ((0, _isEmpty2.default)(stateInput.confirmPassword)) {
+    errors.confirmPassword = "This field is required";
+  }
+
+  if (stateInput.password !== stateInput.confirmPassword) {
+    errors.confirmPassword = "Password must match";
+  }
+  stateInput.errors = errors;
+
+  return {
+    state: stateInput,
+    isValid: (0, _isEmpty2.default)(stateInput.errors)
   };
-};
+}
 
-var filterCenterTitle = exports.filterCenterTitle = function filterCenterTitle(value) {
-  return function (dispatch) {
-    var searchApi = prepareCenterSearchQuery(value, 'title');
-    return _axios2.default.get(searchApi).then(function (_ref3) {
-      var data = _ref3.data;
+function validateSignInInput(stateInput) {
+  var errors = stateInput.errors;
 
-      if (data.statusCode === 200) {
-        dispatch((0, _fetchCenterAction.searchCenterDispatch)(data));
-      } else if (data.statusCode === 404) {
-        Materialize.toast(data.message, 5000, 'red');
-        dispatch((0, _fetchCenterAction.searchCenterDispatch)(null, 'SEARCH_CENTER_TITLE_FAILED'));
-      }
-    });
+  errors = {};
+  if ((0, _isEmpty2.default)(stateInput.email)) {
+    errors.email = "This field is required";
+  }
+
+  if (!(0, _isEmail2.default)(stateInput.email)) {
+    errors.email = "Email is invalid";
+  }
+
+  if ((0, _isEmpty2.default)(stateInput.password)) {
+    errors.password = "This field is required";
+  } else if (stateInput.password.length < passMinLength) {
+    errors.password = "Password is too short, Must be more than " + passMinLength + " characters";
+  }
+  stateInput.errors = errors;
+
+  return {
+    state: stateInput,
+    isValid: (0, _isEmpty2.default)(stateInput.errors)
   };
-};
-
-var filterEventTitle = exports.filterEventTitle = function filterEventTitle(value) {
-  return function (dispatch) {
-    var searchApi = validateEventSearchQuery(value);
-    return _axios2.default.get(searchApi).then(function (_ref4) {
-      var data = _ref4.data;
-
-      if (data.statusCode === 200) {
-        dispatch((0, _index.searchEventsDispatch)(data.events));
-      } else if (data.statusCode === 400) {
-        Materialize.toast(data.message, 5000, 'red');
-        dispatch({
-          type: _.SEARCH_EVENT_TITLE_FAILED
-        });
-      }
-    });
-  };
-};
+}
 
 /***/ })
 

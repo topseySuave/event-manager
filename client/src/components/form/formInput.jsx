@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const InputForm = ({
-  id, nameField, value, error, type, onChange, label, minValue = null
+  id, nameField, value, error, type, onChange, label, minValue = null, required
 }) => (
   <div className="input-field col s12">
     <input
@@ -13,11 +13,10 @@ const InputForm = ({
       onChange={onChange}
       className="validate"
       min={minValue || ''}
-      required
     />
     <label htmlFor={id}>{label}</label>
 
-    { error && <span className="red-text accent-1">{error}</span> }
+    { error && <span id={id} className="red-text accent-1">{error}</span> }
   </div>
 );
 
@@ -48,7 +47,7 @@ InputForm.propTypes = {
      * Error field Required,
      * Type: String
      * */
-  error: requiredPropTypeString,
+  error: propsTypeNotRequired,
 
   /**
      * Field Type Required,

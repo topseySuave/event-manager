@@ -35,11 +35,17 @@ export class CurrentEventForCenter extends Component {
   showAlertModal(eventId) {
     const actions = [
       <FlatButton
+        id="yesRejectEvent"
         label="Yes"
         primary={true}
         onClick={() => this.props.handleStatusEventAction(eventId, "rejected")}
       />,
-      <FlatButton label="No" primary={true} onClick={this.handleAlertClose} />
+      <FlatButton 
+        id="noRejectEvent"
+        label="No"
+        primary={true}
+        onClick={this.handleAlertClose}
+      />
     ];
 
     return (
@@ -54,14 +60,18 @@ export class CurrentEventForCenter extends Component {
     );
   }
 
-  renderStatusButtons(eventId, status) {
+  renderStatusButtons(eventId, status, index) {
     let closeButton = () => {
       return (
         <a
           className="secondary-content red-text"
           onClick={this.handleAlertOpen}
         >
-          <IconButton tooltip="Reject Event" tooltipPosition="top-left">
+          <IconButton
+            tooltip="Reject Event"
+            tooltipPosition="top-left"
+            id={`rejectEvent-${index}`}
+          >
             <ContentClear color="red" />
           </IconButton>
         </a>
@@ -78,7 +88,11 @@ export class CurrentEventForCenter extends Component {
                 className="secondary-content"
                 onClick={() => this.props.handleStatusEventAction(eventId, "accepted")}
               >
-                <IconButton tooltip="Accept Event" tooltipPosition="top-center">
+                <IconButton
+                  tooltip="Accept Event"
+                  tooltipPosition="top-center"
+                  id={`acceptEvent-${index}`}
+                >
                   <ActionDone color="green" />
                 </IconButton>
               </a>
@@ -98,9 +112,10 @@ export class CurrentEventForCenter extends Component {
     let { events } = this.props;
 
     if (events.length > 0) {
-      centerEvents = events.map(event => {
+      centerEvents = events.map((event, index) => {
         return (
           <li
+            id={`collection-item-${index}`}
             className="collection-item"
             key={shortid.generate()}
             style={{ fontSize: "13px" }}
@@ -108,7 +123,7 @@ export class CurrentEventForCenter extends Component {
             {new Date(event.startDate).toDateString() +
               " - " +
               new Date(event.endDate).toDateString()}
-            {this.renderStatusButtons(event.id, event.status)}
+            {this.renderStatusButtons(event.id, event.status, index)}
             {this.showAlertModal(event.id)}
           </li>
         );

@@ -41,11 +41,13 @@ export const createCenter = (centerApi, centerData, imgUrl) => (dispatch) => {
     .then(({ data }) => {
       if (data.statusCode === 400) {
         Materialize.toast(data.message, 5000, 'red');
+        document.getElementById('edit-center-form').reset();
+        $('#edit_center_modal').modal('close');
         return dispatch(addCenterPayload(data, 'failure'));
       }
       Materialize.toast(data.message, 5000, 'teal');
       document.getElementById('edit-center-form').reset();
-      $('.modal').modal('close');
+      $('#edit_center_modal').modal('close');
       return dispatch(addCenterPayload(data.center, 'success'));
     });
 };

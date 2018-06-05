@@ -1,6 +1,4 @@
 const path = require('path');
-require('dotenv').load();
-const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
@@ -24,17 +22,16 @@ module.exports = {
         }
       },
       {
-        test: /\.(scss|css)$/,
-        loaders: [
+        test: /\.(sass|scss|css)$/,
+        use: [
           MiniCssExtractPlugin.loader,
-          'style-loader',
           'css-loader',
           'sass-loader'
         ],
       },
       {
         test: /\.html$/,
-        loader: 'file-loader?name=[name].[ext]'
+        use: 'file-loader?name=[name].[ext]'
       },
       {
         test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'
@@ -45,44 +42,36 @@ module.exports = {
           loader: 'file-loader',
           options: {
             limit: 700000, // Convert images < 8kb to base64 strings
-            name: 'images/[name].[ext]'
+            name: '../image/[name].[ext]'
           }
         }]
       },
       {
         test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+        use: 'url-loader?limit=10000&mimetype=application/font-woff'
       },
       {
         test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader?limit=10000&mimetype=application/font-woff2'
+        use: 'url-loader?limit=10000&mimetype=application/font-woff2'
       },
       {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
+        use: 'url-loader?limit=10000&mimetype=application/octet-stream'
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'file-loader'
+        use: 'file-loader'
       },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
+        use: 'url-loader?limit=10000&mimetype=image/svg+xml'
       },
     ]
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[id].css',
-    }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        CLOUDINARY_UPLOAD_PRESET: JSON
-          .stringify(process.env.CLOUDINARY_UPLOAD_PRESET),
-        CLOUDINARY_URL: JSON.stringify(process.env.CLOUDINARY_URL),
-        SECRET_KEY: JSON.stringify(process.env.SECRET_KEY)
-      }
+      filename: '../css/[name].css',
+      chunkFilename: '../css/[id].css',
     }),
   ],
   resolve: {

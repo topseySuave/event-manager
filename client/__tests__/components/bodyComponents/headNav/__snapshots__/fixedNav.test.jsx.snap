@@ -100,6 +100,7 @@ ShallowWrapper {
                   disableTouchRipple={false}
                   disabled={false}
                   iconStyle={Object {}}
+                  id="accountBtn"
                   tooltipPosition="bottom-center"
                   touch={false}
                 >
@@ -192,6 +193,7 @@ ShallowWrapper {
                 desktop={false}
                 disabled={false}
                 focusState="none"
+                id="signOutBtn"
                 insetChildren={false}
                 primaryText="sign out"
                 targetOrigin={
@@ -315,6 +317,7 @@ ShallowWrapper {
                     disableTouchRipple={false}
                     disabled={false}
                     iconStyle={Object {}}
+                    id="accountBtn"
                     tooltipPosition="bottom-center"
                     touch={false}
                   >
@@ -407,6 +410,7 @@ ShallowWrapper {
                   desktop={false}
                   disabled={false}
                   focusState="none"
+                  id="signOutBtn"
                   insetChildren={false}
                   primaryText="sign out"
                   targetOrigin={
