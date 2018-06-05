@@ -11,22 +11,23 @@ const initialState = {
 };
 
 export default (state = initialState, action = {}) => {
+  let newState;
   let isAuthenticated;
   switch (action.type) {
     case ADD_USER:
       return action.payload;
 
     case SET_USER:
-      isAuthenticated = state.isAuthenticated = true;
       return {
-        isAuthenticated,
+        ...state,
+        isAuthenticated: true,
         user: action.payload
       };
 
     case REMOVE_USER:
-      isAuthenticated = state.isAuthenticated = false;
       return {
-        isAuthenticated,
+        ...state,
+        isAuthenticated: false,
         user: action.payload
       };
 

@@ -9,8 +9,22 @@ const validate = new Validation();
 
 router.get('/centers', centersController.getCenters)
   .get('/centers/:id', centersController.getCenter)
-  .post('/centers', authenticate, validate.validateCenter, centersController.createCenter)
-  .put('/centers/:id', authenticate, validate.validateCenter, centersController.updateCenter)
-  .delete('/centers/:id', authenticate, centersController.deleteCenter);
+  .post(
+    '/centers',
+    authenticate,
+    validate.validateCenter,
+    centersController.createCenter
+  )
+  .put(
+    '/centers/:id',
+    authenticate,
+    validate.validateCenter,
+    centersController.updateCenter
+  )
+  .delete(
+    '/centers/:id',
+    authenticate,
+    centersController.deleteCenter
+  );
 
 module.exports = router;

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 
 import Helpers from '../../../helpers';
+import imageNotAvailable from '../../../util/facilities';
 
 const helpers = new Helpers();
 /**
@@ -33,7 +34,9 @@ class CenterCard extends Component {
    * */
   showPriceBar(priceString) {
     return (
-      <span className="status-indicator darken-3 transparent-status-bar white-text">
+      <span
+        className="status-indicator darken-3 transparent-status-bar white-text"
+      >
         ₦{helpers.numberWithCommas(priceString)}
       </span>
     );
@@ -54,7 +57,7 @@ class CenterCard extends Component {
               {(center.img_url) ? (
                 <img src={center.img_url} alt={center.title} />
             ) : <img
-              src="http://www.topangacreekoutpost.com/assets/images/site/image_not_available.png"
+              src={imageNotAvailable}
               alt={center.title}
             />
             }

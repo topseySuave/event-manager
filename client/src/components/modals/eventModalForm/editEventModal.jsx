@@ -260,7 +260,9 @@ class EditEventModal extends Component {
         description,
         private: privateEvent
       });
-      if (!newProps.event.isLoading) { this.setState({ isLoading: newProps.event.isLoading }); }
+      if (!newProps.event.isLoading) {
+        this.setState({ isLoading: newProps.event.isLoading });
+      }
     } else if (newProps.activeCenter.center) {
       this.setState({
         centerId: newProps.activeCenter.center.id,
@@ -394,7 +396,8 @@ class EditEventModal extends Component {
                 type="submit"
                 id="editEventForm"
                 name="action"
-                className="btn col s12 white-text gradient__bg btn-register waves-effect waves-light"
+                className={'btn col s12 white-text gradient__bg' +
+                  'btn-register waves-effect waves-light'}
                 disabled={isLoading ? 'disabled' : ''}
               >
                 {!isLoading ? (

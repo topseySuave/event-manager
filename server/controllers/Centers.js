@@ -27,21 +27,6 @@ const eventAttributes = [
   'centerId'
 ];
 
-// /**
-//  * generateSearchQuery to sort and arrange search queries
-//  *
-//  * @param {object} req
-//  * @returns {object}
-//  */
-// const generateSearchQuery = (req) => {
-//   let query = {};
-//   if (req.query.location) { query.location = { [Op.iLike]: `%${req.query.location}%` }; }
-//   if (req.query.price) query.price = { [Op.gte]: req.query.price };
-//   if (req.query.capacity) query.capacity = { [Op.gte]: req.query.capacity };
-//   if (req.query.search) query.title = { [Op.iLike]: `%${req.query.search}%` };
-//   return query;
-// };
-
 /**
  * @export
  * @class Centers
@@ -233,7 +218,8 @@ export class Centers {
   /**
    * Get Center record
    *
-   * @API GET request '/api/v1/centers[?search=<search-query>&limit=<limit>&order=<desc || asc>]'
+   * @API GET request
+   * '/api/v1/centers[?search=<search-query>&limit=<limit>&order=<desc || asc>]'
    *
    * @param {object} req - HTTP Request
    * @param {object} res - HTTP Response
@@ -290,7 +276,8 @@ export class Centers {
             });
           }
 
-          const results = searchResults.rows.filter(center => center.id !== basedOn);
+          const results = searchResults.rows
+            .filter(center => center.id !== basedOn);
           return res.status(200).send({
             statusCode: 200,
             message: 'Successful Center!',

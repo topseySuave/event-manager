@@ -1,5 +1,6 @@
 import axios from 'axios';
-import setAuthorizationToken from '../components/authentication/setAuthenticationToken';
+import setAuthorizationToken from
+  '../components/authentication/setAuthenticationToken';
 import {
   ADD_CENTER_SUCCESS,
   ADD_CENTER_REQUEST,
@@ -31,7 +32,8 @@ const addCenterPayload = (payload, response = null) => {
 };
 
 const createCenter = (centerApi, centerData, imgUrl) => (dispatch) => {
-  let token = localStorage.getItem('jwtToken') ? localStorage.getItem('jwtToken') : false;
+  let token = localStorage.getItem('jwtToken') ? localStorage
+    .getItem('jwtToken') : false;
   setAuthorizationToken(token);
   centerData.img_url = imgUrl;
   dispatch(addCenterPayload(centerData, 'request'));
@@ -87,7 +89,8 @@ const updateCenterPayload = (data, res) => {
  * requester to local server
  * ** */
 const editCenter = (centerApi, centerData, imgUrl) => (dispatch) => {
-  let token = localStorage.getItem('jwtToken') ? localStorage.getItem('jwtToken') : false;
+  let token = localStorage.getItem('jwtToken') ? localStorage
+    .getItem('jwtToken') : false;
   setAuthorizationToken(token);
   centerData.img_url = imgUrl;
   return axios.put(centerApi, centerData)
@@ -108,11 +111,19 @@ export const updateCenterRequest = centerData => (dispatch) => {
     setAuthorizationToken(false);
     return axios.post(process.env.CLOUDINARY_URL, formData)
       .then(({ data }) => {
-        dispatch(editCenter(`${centerApi}/${centerData.id}`, centerData, data.url));
+        dispatch(editCenter(
+          `${centerApi}/${centerData.id}`,
+          centerData,
+          data.url
+        ));
       })
       .catch((err) => {
         console.log(err);
       });
   }
-  return dispatch(editCenter(`${centerApi}/${centerData.id}`, centerData, centerData.img_url));
+  return dispatch(editCenter(
+    `${centerApi}/${centerData.id}`,
+    centerData,
+    centerData.img_url
+  ));
 };

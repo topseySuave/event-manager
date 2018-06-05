@@ -75,7 +75,8 @@ class IndexCenterCardHolder extends Component {
     return centers
       .sort((firstObj, secObj) => secObj.id - firstObj.id)
       .map((center) => {
-        let to = `center/${center.id}/${this.helper.sanitizeString(center.title)}`;
+        let to = `center/${center.id}/${this.helper
+          .sanitizeString(center.title)}`;
         return (
           <CenterCard to={to} center={center} key={shortid.generate()} />
         );
@@ -173,10 +174,18 @@ IndexCenterCardHolder.propTypes = {
   loadMoreCenters: PropTypes.func.isRequired
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators({ fetchCentersAction, loadMoreCenters, searchAction }, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({
+    fetchCentersAction,
+    loadMoreCenters,
+    searchAction
+  }, dispatch);
 
 const mapStateToProps = state => ({
   centerStore: state.centerReducer
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(IndexCenterCardHolder);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(IndexCenterCardHolder);

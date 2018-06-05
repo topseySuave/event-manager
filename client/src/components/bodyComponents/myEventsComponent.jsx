@@ -117,7 +117,10 @@ class MyEventCardHolder extends Component {
     } = this.state;
     return (
       <React.Fragment>
-        <div style={{ minHeight: '90vh', paddingTop: '64px' }} className="container popular__events">
+        <div
+          style={{ minHeight: '90vh', paddingTop: '64px' }}
+          className="container popular__events"
+        >
           <h4 className="center-align">My Events</h4>
           { (isLoading) ?
             <div style={{ height: '500px', marginTop: '100px' }}>
@@ -133,7 +136,10 @@ class MyEventCardHolder extends Component {
                 (pageCount > 1) ?
                   (loadingmore) ? <CircularLoader /> :
                   (pageSize !== totalCount) ?
-                    <button onClick={() => this.loadMore()} className="col offset-s3 s6 btn waves-effect gradient__bg">
+                    <button
+                      onClick={() => this.loadMore()}
+                      className="col offset-s3 s6 btn waves-effect gradient__bg"
+                    >
                       load more
                     </button> : '' : ''
               }

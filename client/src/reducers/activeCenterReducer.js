@@ -19,19 +19,23 @@ export default (state = {}, action = {}) => {
       };
 
     case EDIT_CENTER:
-      newState = Object.assign({}, state);
-      newState.editCenter = false;
-      newState.centr = action.payload;
+      newState = {
+        ...state,
+        editCenter: false,
+        centr: action.payload
+      };
       return newState;
 
     case REMOVE_CENTER:
-      newState = Object.assign({}, state);
+      newState = { ...state };
       delete { ...newState };
       return {};
 
     case EVENT_STATUS_CHANGE:
-      newState = Object.assign({}, state);
-      newState.eventStatusChange = true;
+      newState = {
+        ...state,
+        eventStatusChange: true
+      };
       return newState;
 
     default:

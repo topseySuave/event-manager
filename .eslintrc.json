@@ -32,7 +32,7 @@
     "import/no-named-as-default": 0,
     "import/no-named-as-default-member": 0,
     "import/prefer-default-export": 0,
-    "max-len": 0,
+    "max-len": [1, 80],
     "no-dupe-keys": 0,
     "no-restricted-globals": 0,
     "no-useless-escape": 0,

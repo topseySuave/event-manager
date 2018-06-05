@@ -17,19 +17,22 @@ export const REMOVE_USER = 'REMOVE_USER';
 
 /**
  * ADD_CENTER_SUCCESS action Constant,
- * To add a success request action when a new center is being added to the database
+ * To add a success request action when a
+ * new center is being added to the database
  * * */
 export const ADD_CENTER_SUCCESS = 'ADD_CENTER_SUCCESS';
 
 /**
  * ADD_CENTER_FAlLURE action Constant,
- * To add a failure request action when a new center is being added to the database
+ * To add a failure request action when a
+ * new center is being added to the database
  * * */
 export const ADD_CENTER_FAlLURE = 'ADD_CENTER_FAlLURE';
 
 /**
  * ADD_CENTER_REQUEST action Constant,
- * To add a request action when a new center is being sent to the database
+ * To add a request action when a
+ * new center is being sent to the database
  * * */
 export const ADD_CENTER_REQUEST = 'ADD_CENTER_REQUEST';
 
@@ -53,7 +56,8 @@ export const REMOVE_CENTER = 'REMOVE_CENTER';
 
 /**
  * FETCH_RELATED_CENTERS action Constant,
- * To fetch a centers related centers from the database then add to the store.
+ * To fetch a centers related centers
+ * from the database then add to the store.
  * * */
 export const FETCH_RELATED_CENTERS = 'FETCH_RELATED_CENTERS';
 
@@ -96,7 +100,8 @@ export const ADD_EVENT_FAILURE = 'ADD_EVENT_FAILURE';
 
 /**
  * EDIT_EVENT_REQUEST action constants.
- * To add a edit request before editing an existing event in the database and the store.
+ * To add a edit request before editing
+ * an existing event in the database and the store.
  * * */
 export const EDIT_EVENT_REQUEST = 'EDIT_EVENT_REQUEST';
 

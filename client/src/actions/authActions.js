@@ -1,6 +1,7 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
-import setAuthorizationToken from '../components/authentication/setAuthenticationToken';
+import setAuthorizationToken from
+  '../components/authentication/setAuthenticationToken';
 import { SET_USER, REMOVE_USER } from './index';
 
 const api = 'api/v1/users';

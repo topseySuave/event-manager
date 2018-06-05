@@ -16,12 +16,14 @@ import {
   fetchCenterAction,
   editCenterRequestAction
 } from '../../../actions/center-actions/activeCenterAction';
-import { deleteCenterRequest } from '../../../actions/center-actions/deleteCenterAction';
+import { deleteCenterRequest } from
+  '../../../actions/center-actions/deleteCenterAction';
 import CurrentEventForCenter from './currentEventForCenter';
 import RecommCenter from './RecommCenter';
 import EventModal from '../../modals/EventModal';
 import EditCenterForm from '../../modals/centerModalForms/editCenterForm';
-import { fetchCenterRelatedTo } from '../../../actions/center-actions/fetchCenterRelatedTo';
+import { fetchCenterRelatedTo } from
+  '../../../actions/center-actions/fetchCenterRelatedTo';
 import { handleStatusEventAction } from '../../../actions/events-actions';
 import Helpers from '../../../helpers/';
 import { imageNotAvailable } from '../../../util/facilities';

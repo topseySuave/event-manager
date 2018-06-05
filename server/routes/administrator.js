@@ -13,7 +13,10 @@ const renderAllUsers = (req, res) => {
   if (req.query.token) {
     let token = jwtDecode(req.query.token);
     if (token.role) {
-      return res.status(200).sendFile(path.join(__dirname, '../..', 'client/public/admin-users.html'));
+      return res
+        .status(200)
+        .sendFile(path
+          .join(__dirname, '../..', 'client/public/admin-users.html'));
     }
   }
 
@@ -23,11 +26,16 @@ const renderAllUsers = (req, res) => {
   });
 };
 
-router.get('/', (req, res) => {
-  res.status(200).sendFile(path.join(__dirname, '../..', 'client/public/admin.html'));
-})
+router
+  .get('/', (req, res) => {
+    res
+      .status(200)
+      .sendFile(path.join(__dirname, '../..', 'client/public/admin.html'));
+  })
   .get('/pending-events', (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, '../..', 'client/public/pending.html'));
+    res
+      .status(200)
+      .sendFile(path.join(__dirname, '../..', 'client/public/pending.html'));
   })
   .get('/users', (req, res) => {
     renderAllUsers(req, res);

@@ -77,7 +77,8 @@ class SignUpForm extends Component {
         isLoading: true
       });
 
-      this.props.userSignupRequest(this.state)
+      this.props
+        .userSignupRequest(this.state)
         .then(({ data }) => {
           this.setState({
             resMessage: data.message,
@@ -121,12 +122,18 @@ class SignUpForm extends Component {
     let loading = classNames('row', { isLoading });
     return (
       <div>
-        <div className={classNames('col', 's12', { hidden: !this.state.signedUp })}>
+        <div
+          className={classNames('col', 's12', { hidden: !this.state.signedUp })}
+        >
           <div className="card-panel teal lighten-3">
-            <h3 className="white-text" style={{ marginTop: '0px' }}>You're Welcome!!!</h3>
+            <h3 className="white-text" style={{ marginTop: '0px' }}>
+              You're Welcome!!!
+            </h3>
             <span className="white-text">{this.state.resMessage}</span>
             <br />
-            <span className="white-text">Redirecting to signin in {interval} seconds</span>
+            <span className="white-text">
+              Redirecting to signin in {interval} seconds
+            </span>
           </div>
         </div>
 
@@ -193,16 +200,27 @@ class SignUpForm extends Component {
           <div className="row">
             <div className="input-field col s12 center-align">
               <button
-                className="col s12 white-text btn waves-effect gradient__bg waves-light"
+                className={'col s12 white-text btn' +
+                ' waves-effect gradient__bg waves-light'}
                 type="submit"
                 name="action"
                 disabled={isLoading ? 'disabled' : ''}
-              >{!isLoading ? 'Register' : <img src="/image/loader/loading.gif" alt="submin-loader" />}
+              >
+                {!isLoading ? (
+                  'Register'
+                ) : (
+                  <img src="/image/loader/loading.gif" alt="submin-loader" />
+                )}
               </button>
             </div>
 
             <p className="center-align">
-              <span>Already signed Up? Login <Link to="signin" href="signin">here</Link></span>
+              <span>
+                Already signed Up? Login{' '}
+                <Link to="signin" href="signin">
+                  here
+                </Link>
+              </span>
             </p>
           </div>
         </form>

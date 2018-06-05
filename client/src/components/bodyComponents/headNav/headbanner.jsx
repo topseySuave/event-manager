@@ -18,7 +18,8 @@ import AccountCircle from 'material-ui/svg-icons/action/account-circle';
 import { signOutRequest } from '../../../actions/authActions';
 import history from '../../../util/history';
 import { centerBackgrounds } from '../../../util/facilities';
-import SearchFasterForm from '../../centerComponent/allCenters/searchFasterForm';
+import SearchFasterForm from
+  '../../centerComponent/allCenters/searchFasterForm';
 
 const searchStyle = {
   main: {
@@ -171,7 +172,8 @@ class HeaderBanner extends Component {
     let i = 0;
     let el = $('.header'); // el doesn't change
     function toggle() {
-      el.css({ backgroundImage: `url(${centerBackgrounds[i]})` }); // set the image
+      // set the image
+      el.css({ backgroundImage: `url(${centerBackgrounds[i]})` });
       /* *
         * wraps around centerBackgrounds
         * length and update the counter,
@@ -270,7 +272,10 @@ class HeaderBanner extends Component {
                 style={searchStyle.main}
               >
                 <div className="col s12">
-                  <h4 className="center-align gradient_text" style={searchStyle.bold}>
+                  <h4
+                    className="center-align gradient_text"
+                    style={searchStyle.bold}
+                  >
                     Find and Book Event Centers
                   </h4>
                 </div>

@@ -53,10 +53,10 @@ class EditCenterForm extends Component {
   }
 
   /**
-    * componentDidMount Method
-    * @Send activeCenter details to updateState method
-    * @return { void }
-    * */
+   * componentDidMount Method
+   * @Send activeCenter details to updateState method
+   * @return { void }
+   * */
   componentDidMount() {
     this.updateState(this.props.activeCenter);
   }
@@ -69,8 +69,10 @@ class EditCenterForm extends Component {
    * * */
   onFileChange(e) {
     let file = e.target.files[0];
-    if (file && file.type.indexOf('image/') > -1) { // only image file
-      if (file.size < 2000000) { // Must not be more than 2mb
+    if (file && file.type.indexOf('image/') > -1) {
+      // only image file
+      if (file.size < 2000000) {
+        // Must not be more than 2mb
         let reader = new FileReader(); // instance of the FileReader
         reader.readAsDataURL(file); // read the local file
         reader.onloadend = () => {
@@ -87,17 +89,24 @@ class EditCenterForm extends Component {
   }
 
   /**
-    * @Check if edit center is set to true.
-    * and get the keys from center object and populate the state
-    * with its appropriate values.
-    * updateState Method
-    * @param { object } props
-    * @return { void }
-    * */
+   * @Check if edit center is set to true.
+   * and get the keys from center object and populate the state
+   * with its appropriate values.
+   * updateState Method
+   * @param { object } props
+   * @return { void }
+   * */
   updateState(props) {
     if (props.editCenter) {
       let {
-        id, title, img_url, facilities, location, price, capacity, description
+        id,
+        title,
+        img_url,
+        facilities,
+        location,
+        price,
+        capacity,
+        description
       } = props.center;
       this.setState({
         editCenter: true,
@@ -114,10 +123,10 @@ class EditCenterForm extends Component {
   }
 
   /**
-    * handleCenterChange Method
-    * @param { object } e
-    * @return { void }
-    * */
+   * handleCenterChange Method
+   * @param { object } e
+   * @return { void }
+   * */
   handleCenterChange(e) {
     if (this.state.errors[e.target.name]) {
       let errors = Object.assign({}, !!this.state.errors);
@@ -132,9 +141,9 @@ class EditCenterForm extends Component {
   }
 
   /**
-    * isValid Method
-    * @return { void }
-    * */
+   * isValid Method
+   * @return { void }
+   * */
   isValid() {
     const { errors, isValid } = validateCenterInput(this.state);
     if (!isValid) {
@@ -144,21 +153,21 @@ class EditCenterForm extends Component {
   }
 
   /**
-    * handleSelectChange Method
-    * @param { object } event
-    * @param { string } index
-    * @param { array } facilities
-    * @return { void }
-    * */
+   * handleSelectChange Method
+   * @param { object } event
+   * @param { string } index
+   * @param { array } facilities
+   * @return { void }
+   * */
   handleSelectChange(event, index, facilities) {
     this.setState({ facilities });
   }
 
   /**
-    * menuItems Method
-    * @param { object } facilityes
-    * @return { void }
-    * */
+   * menuItems Method
+   * @param { object } facilityes
+   * @return { void }
+   * */
   menuItems(facilityes) {
     return facilitiesDB().map(name => (
       <MenuItem
@@ -172,10 +181,10 @@ class EditCenterForm extends Component {
   }
 
   /**
-    * handleCenterSubmit Method
-    * @param { object } e
-    * @return { void }
-    * */
+   * handleCenterSubmit Method
+   * @param { object } e
+   * @return { void }
+   * */
   handleCenterSubmit(e) {
     e.preventDefault();
 
@@ -185,34 +194,33 @@ class EditCenterForm extends Component {
       });
 
       this.props.updateCenterRequest(this.state);
-      // .then((res) => {
-      //   console.log(res);
-      //   this.setState({ isLoading: false });
-      //   if (res.type === EDIT_CENTER) {
-      //     Materialize.toast('Center has been updated successfully!!', 5000, 'teal');
-      //     location.reload();
-      //   } else {
-      //     Materialize.toast('Houston, we have a problem! We are working on it', 5000, 'red');
-      //   }
-      // })
-      // .catch(() => {
-      //   this.setState({ isLoading: false });
-      //   Materialize.toast('Error creating center..!!', 5000, 'red');
-      // });
     }
   }
 
   /**
-    * render Method
-    * @return { component }
-    * */
+   * render Method
+   * @return { component }
+   * */
   render() {
     const {
-      editCenter, errors, isLoading, title, location, facilities, price, capacity, description
+      editCenter,
+      errors,
+      isLoading,
+      title,
+      location,
+      facilities,
+      price,
+      capacity,
+      description
     } = this.state;
 
     return (
-      <form style={{ marginTop: '20px' }} className="col s12" id="edit-center-form" onSubmit={this.handleCenterSubmit}>
+      <form
+        style={{ marginTop: '20px' }}
+        className="col s12"
+        id="edit-center-form"
+        onSubmit={this.handleCenterSubmit}
+      >
         <div className="row">
           <div className="col s12 m6">
             <div className="file-field input-field">
@@ -226,7 +234,11 @@ class EditCenterForm extends Component {
                 />
               </div>
               <div className="file-path-wrapper">
-                <input className="file-path validate" type="text" placeholder="Upload an image here" />
+                <input
+                  className="file-path validate"
+                  type="text"
+                  placeholder="Upload an image here"
+                />
               </div>
             </div>
           </div>
@@ -318,11 +330,19 @@ class EditCenterForm extends Component {
               type="submit"
               id="submitCenterForm"
               name="action"
-              className="btn col s12 white-text gradient__bg btn-register waves-effect waves-light"
+              className={'btn col s12 white-text gradient__bg' +
+                'btn-register waves-effect waves-light'}
               disabled={isLoading ? 'disabled' : ''}
             >
-              { !isLoading ? 'Save Changes' :
-              <img style={{ marginTop: '10px' }} src="/image/loader/loading.gif" alt="save-changes-loader" /> }
+              {!isLoading ? (
+                'Save Changes'
+              ) : (
+                <img
+                  style={{ marginTop: '10px' }}
+                  src="/image/loader/loading.gif"
+                  alt="save-changes-loader"
+                />
+              )}
             </button>
           </div>
         </div>
@@ -339,6 +359,7 @@ const mapStateToProps = state => ({
   activeCenter: state.activeCenter
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ updateCenterRequest }, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ updateCenterRequest }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditCenterForm);

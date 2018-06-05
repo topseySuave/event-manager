@@ -11,7 +11,9 @@ const {
   Op
 } = models.sequelize;
 const centerAttributes = ['location'];
-const attributes = ['id', 'title', 'img_url', 'description', 'startDate', 'endDate', 'status', 'centerId', 'userId', 'private'];
+const attributes =
+  ['id', 'title', 'img_url', 'description', 'startDate',
+    'endDate', 'status', 'centerId', 'userId', 'private'];
 
 /**
  * @export
@@ -173,7 +175,8 @@ export class Events {
         });
       });
     } else {
-      let offset = (pageValue > 1) ? pageValue * limitValue - limitValue : pageValue;
+      let offset = (pageValue > 1) ? pageValue * limitValue - limitValue :
+        pageValue;
       Event.findAndCountAll({
         where: {
           startDate: {

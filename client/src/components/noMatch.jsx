@@ -40,7 +40,8 @@ class NoMatch extends Component {
                     <div className="center-align">
                       <img
                         width="100%"
-                        src="https://cdn.dribbble.com/users/252114/screenshots/3840347/mong03b.gif"
+                        src={'https://cdn.dribbble.com/users/' +
+                          '252114/screenshots/3840347/mong03b.gif'}
                         alt="404 not found"
                       />
                       <h5 className="gradient_text">

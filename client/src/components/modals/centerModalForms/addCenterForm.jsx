@@ -286,7 +286,8 @@ class AddCenterForm extends Component {
               type="submit"
               id="submitCenterForm"
               name="action"
-              className="btn col s12 white-text gradient__bg btn-register waves-effect waves-light"
+              className={'btn col s12 white-text gradient__bg' +
+                'btn-register waves-effect waves-light'}
               disabled={isLoading ? 'disabled' : ''}
             >
               {!isLoading ? (
@@ -306,6 +307,7 @@ class AddCenterForm extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ createCenterRequest }, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ createCenterRequest }, dispatch);
 
 export default connect(null, mapDispatchToProps)(AddCenterForm);

@@ -40,11 +40,13 @@ export default class Helpers {
    * @return { string }
    * */
   countDayDifference(startDate, endDate) {
-    let oneDay = 24 * 60 * 60 * 1000; // hours * minutes * seconds * milliseconds
+    // hours * minutes * seconds * milliseconds
+    let oneDay = 24 * 60 * 60 * 1000;
     let firstDate = new Date(startDate);
     let secondDate = new Date(endDate);
 
-    let diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / oneDay));
+    let diffDays = Math
+      .round(Math.abs((firstDate.getTime() - secondDate.getTime()) / oneDay));
     return diffDays;
   }
 }

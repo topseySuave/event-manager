@@ -66,9 +66,12 @@ class SearchModal extends Component {
    * */
   handleSearchInput(e) {
     e.preventDefault();
-    let titleString = { search: e.target.value };
-    this.props.filterCenterTitle(titleString);
-    this.props.filterEventTitle(titleString);
+    let { value } = e.target;
+    if (value.length >= 3) {
+      let titleString = { search: e.target.value };
+      this.props.filterCenterTitle(titleString);
+      this.props.filterEventTitle(titleString);
+    }
   }
 
   /**
@@ -93,7 +96,8 @@ class SearchModal extends Component {
     let { centers } = this.state;
     if (!isEmpty(centers)) {
       return centers.map((center) => {
-        let to = `/center/${center.id}/${this.helper.sanitizeString(center.title)}`;
+        let to = `/center/${center.id}/${this.helper
+          .sanitizeString(center.title)}`;
         return (
           <CenterCard to={to} center={center} key={shortid.generate()} />
         );
