@@ -52,6 +52,7 @@ module.exports = {
       .setValue('.input-field.col.s12 > textarea[type="text"]', '')
       .pause(800)
       .click('#submitCenterForm')
+      .pause(1000)
 
       // set actual data
       .setValue('#title', `The Lighthouse Event Centre ${rand}`)
