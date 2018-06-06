@@ -2,7 +2,7 @@ const merge = require('webpack-merge'); // eslint-disable-line
 const webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const common = require('./webpack.common');
-require('dotenv').load();
+require('dotenv').config();
 
 module.exports = merge(common, {
   mode: 'production',
