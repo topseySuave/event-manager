@@ -1,9 +1,9 @@
 webpackHotUpdate("main",{
 
-/***/ "./client/src/reducers/eventReducer.js":
-/*!*********************************************!*\
-  !*** ./client/src/reducers/eventReducer.js ***!
-  \*********************************************/
+/***/ "./client/src/components/authentication/validateInput.js":
+/*!***************************************************************!*\
+  !*** ./client/src/components/authentication/validateInput.js ***!
+  \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13,145 +13,94 @@ webpackHotUpdate("main",{
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _extends = Object.assign || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }return target;
-};
+exports.validateSignUpInput = validateSignUpInput;
+exports.validateSignInInput = validateSignInInput;
 
 var _isEmpty = __webpack_require__(/*! lodash/isEmpty */ "./node_modules/lodash/isEmpty.js");
 
 var _isEmpty2 = _interopRequireDefault(_isEmpty);
 
-var _actions = __webpack_require__(/*! ../actions */ "./client/src/actions/index.js");
+var _isEmail = __webpack_require__(/*! validator/lib/isEmail */ "./node_modules/validator/lib/isEmail.js");
+
+var _isEmail2 = _interopRequireDefault(_isEmail);
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
 }
 
-var pageLimit = Object({"CLOUDINARY_UPLOAD_PRESET":"z3nqw1ue","CLOUDINARY_URL":"https://api.cloudinary.com/v1_1/dcbqn1c10/upload","SECRET_KEY":"iamgabrieltopseysuavemicah"}).DATA_LIMIT;
-var newState = void 0;
+// const errors = {};
+/* eslint-disable */
+var minLength = 2;
+var passMinLength = 6;
 
-exports.default = function () {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+function validateSignUpInput(stateInput) {
+  var errors = stateInput.errors;
 
-  switch (action.type) {
-    case _actions.FETCH_EVENTS:
-      return action.payload;
-
-    case _actions.ADD_EVENT:
-      newState = _extends({}, state);
-      if (newState.events) {
-        newState.events.unshift(action.payload);
-        newState.totalCount = newState.events.length;
-        newState.pageCount = Math.ceil(newState.totalCount / pageLimit);
-        return newState;
-      }
-      newState.events = [];
-      newState.events.unshift(action.payload);
-      newState.totalCount = newState.events.length;
-      newState.pageCount = Math.ceil(newState.totalCount / pageLimit);
-      newState.eventCreated = true;
-      return newState;
-
-    case _actions.ADD_EVENT_FAILURE:
-      newState = _extends({}, state, {
-        centerIsBooked: true
-      });
-      return newState;
-
-    case _actions.EDIT_EVENT_REQUEST:
-      return _extends({}, state, {
-        eventToEdit: action.payload,
-        editEvent: true
-      });
-
-    case _actions.EDIT_EVENT:
-      newState = _extends({}, state, {
-        isLoading: false
-      });
-      newState.sessEvents.events.map(function (event, index) {
-        if (event.id === action.payload.id) {
-          newState.sessEvents.events[index] = action.payload;
-        }
-      });
-      newState.sessEvents.totalCount = newState.sessEvents.events.length;
-      newState.sessEvents.pageSize = newState.sessEvents.totalCount;
-      newState.sessEvents.pageCount = Math.ceil(newState.sessEvents.totalCount / pageLimit);
-      return newState;
-
-    case _actions.EDIT_EVENT_FAILURE:
-      newState = _extends({}, state, {
-        isLoading: false
-      });
-      return newState;
-
-    case _actions.REMOVE_EVENT:
-      newState = _extends({}, state);
-      newState.sessEvents.events.map(function (event, index) {
-        if (event.id === action.payload.id) {
-          delete newState.sessEvents.events[index];
-        }
-      });
-      newState.sessEvents.meta.totalCount = newState.sessEvents.events.length;
-      newState.sessEvents.meta.pageSize = newState.sessEvents.meta.totalCount;
-      newState.sessEvents.meta.pageCount = Math.ceil(newState.sessEvents.meta.totalCount / pageLimit);
-      return newState;
-
-    case _actions.SESSION_EVENTS:
-      return _extends({}, state, {
-        sessEvents: action.payload
-      });
-
-    case _actions.SESSION_EVENTS_FAILURE:
-      newState = _extends({}, state, {
-        sessEvents: []
-      });
-      return newState;
-
-    case _actions.LOADMORE_EVENT_FAILURE:
-      return _extends({}, state, {
-        loadingmore: false
-      });
-
-    case _actions.LOADMORE_EVENT_REQUEST:
-      return _extends({}, state, {
-        loadmore: true,
-        loadingmore: true
-      });
-
-    case _actions.LOADMORE_EVENT_SUCCESS:
-      newState = _extends({}, state, { loadingmore: false });
-      newState.sessEvents.events = newState.sessEvents.events.concat(action.payload);
-      newState.sessEvents.meta.page = parseInt(newState.sessEvents.meta.page + 1, 10);
-      newState.sessEvents.meta.pageSize = parseInt(newState.sessEvents.meta.pageSize + action.payload.length, 10);
-      if (newState.sessEvents.meta.pageSize === newState.sessEvents.meta.totalCount) {
-        newState.loadmore = false;
-      }
-      return newState;
-
-    case _actions.SEARCH_EVENT_TITLE:
-      newState = _extends({}, state);
-      if (!(0, _isEmpty2.default)(action.events)) {
-        newState.events = action.events;
-      } else {
-        newState.events = state.events;
-      }
-      return newState;
-
-    case _actions.SEARCH_EVENT_TITLE_FAILED:
-      return _extends({}, state, { searchFailure: true });
-
-    default:
-      return state;
+  errors = {};
+  if ((0, _isEmpty2.default)(stateInput.email)) {
+    errors.email = "This field is required";
   }
-};
+  if (!(0, _isEmail2.default)(stateInput.email)) {
+    errors.email = "Email is Invalid";
+  }
+
+  if ((0, _isEmpty2.default)(stateInput.firstName)) {
+    errors.firstName = "This field is required";
+  } else if (stateInput.firstName.length < 2) {
+    errors.firstName = 'First Name is too short, Must be more than 2 characters';
+  }
+
+  if ((0, _isEmpty2.default)(stateInput.lastName)) {
+    errors.lastName = "This field is required";
+  } else if (stateInput.lastName.length < 2) {
+    errors.lastName = 'Last Name is too short, Must be more than 2 characters';
+  }
+
+  if ((0, _isEmpty2.default)(stateInput.password)) {
+    errors.password = "This field is required";
+  } else if (stateInput.password.length < passMinLength) {
+    errors.password = "Password is too short, Must be more than " + passMinLength + " characters";
+  }
+
+  if ((0, _isEmpty2.default)(stateInput.confirmPassword)) {
+    errors.confirmPassword = "This field is required";
+  }
+
+  if (stateInput.password !== stateInput.confirmPassword) {
+    errors.confirmPassword = "Password must match";
+  }
+  stateInput.errors = errors;
+
+  return {
+    state: stateInput,
+    isValid: (0, _isEmpty2.default)(stateInput.errors)
+  };
+}
+
+function validateSignInInput(stateInput) {
+  var errors = stateInput.errors;
+
+  errors = {};
+  if ((0, _isEmpty2.default)(stateInput.email)) {
+    errors.email = "This field is required";
+  }
+
+  if (!(0, _isEmail2.default)(stateInput.email)) {
+    errors.email = "Email is invalid";
+  }
+
+  if ((0, _isEmpty2.default)(stateInput.password)) {
+    errors.password = "This field is required";
+  } else if (stateInput.password.length < passMinLength) {
+    errors.password = "Password is too short, Must be more than " + passMinLength + " characters";
+  }
+  stateInput.errors = errors;
+
+  return {
+    state: stateInput,
+    isValid: (0, _isEmpty2.default)(stateInput.errors)
+  };
+}
 
 /***/ })
 

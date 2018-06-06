@@ -12,17 +12,17 @@
     "clean": "rm -rf build && mkdir build",
     "babel-node": "babel-node --preset=es2015",
     "start": "npm run clean && npm run build:server && node -- ./build/app.js",
-    "start:dev": "nodemon --exec babel-node -- ./server/app.js",
+    "start:dev": "npm run start:client & nodemon --exec babel-node -- ./server/app.js",
     "build:client": "webpack --config webpack.prod.js",
     "build:server": "babel -d ./build --copy-files ./server -s",
     "start:client": "npm run webpack",
-    "start:server": "nodemon --exec npm run start",
+    "start:server": "nodemon --exec babel-node -- ./server/app.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "pretest": "NODE_ENV=test npm run migrate:test",
     "test:local": "npm run create:test && npm run migrate:test && npm run test:server",
-    "test": "npm run test:server",
-    "test:client": "jest --coverage",
+    "test": "npm run test:server && npm run test:client",
+    "test:client": "jest -u ./client/__tests__/**/** --coverage && codecov",
     "test:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --timeout 20000 --exit --require babel-core/register server/test/index.js",
     "test:dev:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha ./server/test/index.js --exit --require babel-node/register --reporter spec",
     "test:dev": "npm test && npm run coverage",
@@ -31,7 +31,8 @@
     "seed": "sequelize db:seed",
     "drop:test": "sequelize db:migrate:undo:all",
     "migrate:test": "sequelize db:migrate --env test",
-    "create:test": "sequelize db:create boots_test --env test"
+    "create:test": "sequelize db:create boots_test --env test",
+    "e2e": "nightwatch"
   },
   "nyc": {
     "exclude": [
@@ -58,7 +59,35 @@
       "client/*"
     ]
   },
+  "jest": {
+    "verbose": true,
+    "testRegex": "client/__tests__/.*\\.test\\.(js|jsx)$",
+    "setupTestFrameworkScriptFile": "./client/__tests__/setup.js",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "client/src/**",
+      "!client/src/index.jsx",
+      "!client/src/components/modals/centerModalForms/*.*",
+      "!client/src/components/modals/eventModalForm/*.*"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/server/",
+      "/build/",
+      "/client/src/registerServiceWorker.js",
+      "/client/src/rootReducer.js",
+      "/client/src/util/",
+      "/client/src/actions/modalAction.js",
+      "/client/src/actions/searchAction.js",
+      "/client/src/actions/events-actions/index.js",
+      "/client/src/helpers/authCheck.js"
+    ],
+    "testPathIgnorePatterns": [
+      "/client/__tests__/__mocks__/"
+    ]
+  },
   "dependencies": {
+    "animate.css": "^3.6.1",
     "axios": "^0.16.2",
     "babel-cli": "^6.26.0",
     "babel-core": "*",
@@ -86,7 +115,6 @@
     "css-loader": "^0.28.7",
     "dotenv": "^4.0.0",
     "es6-promise": "^4.1.1",
-    "expect": "^21.2.1",
     "express": "^4.16.2",
     "faker": "*",
     "fetch-ie8": "^1.5.0",
@@ -100,6 +128,7 @@
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.4",
     "material-ui": "^0.20.0",
+    "materialize-css": "^0.100.2",
     "mini-css-extract-plugin": "^0.4.0",
     "moment": "^2.19.3",
     "morgan": "^1.9.0",
@@ -143,6 +172,7 @@
     "validator": "^9.2.0",
     "validatorjs": "^3.13.5",
     "webpack": "^4.4.1",
+    "webpack-cli": "^2.1.3",
     "webpack-config": "^7.5.0",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.19.1",
@@ -157,12 +187,16 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.6.1",
+    "expect": "^21.2.1",
     "faker": "^4.1.0",
     "jest": "^22.3.0",
+    "jsdom": "^11.11.0",
     "mocha": "^4.0.1",
     "mocha-lcov-reporter": "^1.3.0",
+    "moxios": "^0.4.0",
+    "react-router-enzyme-context": "^1.2.0",
     "react-test-renderer": "^16.2.0",
-    "webpack-cli": "^2.1.3",
+    "redux-mock-store": "^1.5.1",
     "webpack-dev-server": "^3.1.4"
   }
 }

@@ -33,7 +33,7 @@ import { signOutRequest } from '../../../actions/authActions';
 /**
  * Nav Class Component
  * */
-class Nav extends Component {
+export class Nav extends Component {
   /**
    * Class Constructor Method
    * @param { object } props
@@ -205,11 +205,11 @@ class Nav extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   activeState: state.authReducer
 });
 
-const matchDispatchToProps = dispatch =>
+export const matchDispatchToProps = dispatch =>
   bindActionCreators({ signOutRequest }, dispatch);
 
 export default connect(mapStateToProps, { matchDispatchToProps })(Nav);

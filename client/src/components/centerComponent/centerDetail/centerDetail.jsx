@@ -33,7 +33,7 @@ const helpers = new Helpers();
 /**
  * CenterDetail Class Component
  * */
-class CenterDetail extends Component {
+export class CenterDetail extends Component {
   /**
    * Class constructor
    * @param { object } props
@@ -43,7 +43,6 @@ class CenterDetail extends Component {
 
     this.state = {
       isLoading: true,
-      openAlert: false,
       open: false,
       isAdmin: false,
       activeCenter: {
@@ -55,8 +54,6 @@ class CenterDetail extends Component {
 
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
-    this.handleAlertOpen = this.handleAlertOpen.bind(this);
-    this.handleAlertClose = this.handleAlertClose.bind(this);
   }
 
   /**
@@ -81,6 +78,7 @@ class CenterDetail extends Component {
   componentWillReceiveProps(newProps) {
     let centerDetails = newProps.activeCenterDetail;
     if (centerDetails.eventStatusChange) location.reload();
+    if (centerDetails.centerNotFound) this.props.history.push('/404');
 
     if (this.props.params.id !== newProps.params.id) {
       newProps.fetchCenterAction(newProps.params.id);
@@ -153,6 +151,7 @@ class CenterDetail extends Component {
         <div>
           <FlatButton
             label="Edit center"
+            id="editCenterBtn"
             icon={<EditIcon />}
             onClick={this.handleOpen}
             fullWidth
@@ -196,53 +195,6 @@ class CenterDetail extends Component {
           relatedCenterBasedOn={relatedCenterBasedOn}
           fetchCenterRelatedTo={fetchCenterRelatedTo}
         />
-      );
-    }
-  }
-
-  /**
-   * deleteCenter Method
-   * @param { string } id
-   * @returns { void }
-   * */
-  deleteCenter(id) {
-    this.props.deleteCenterRequest(id).then(() => {
-      if (typeof this.props.activeCenterDetail.center === 'undefined') {
-        Materialize.toast('Center has been Deleted', 5000, 'teal');
-        this.props.history.push('/centers');
-      }
-    });
-  }
-
-  /**
-   * showAlertModal Method
-   * @param { string } id
-   * @returns { component }
-   * */
-  showAlertModal(id) {
-    const actions = [
-      <FlatButton label="Yes" primary onClick={() => this.deleteCenter(id)} />,
-      <FlatButton label="No" primary onClick={() => this.handleAlertClose()} />
-    ];
-
-    if (this.state.isAdmin) {
-      return (
-        <div>
-          <FlatButton
-            label="Delete this center"
-            secondary
-            icon={<Delete />}
-            onClick={this.handleAlertOpen}
-          />
-          <Dialog
-            actions={actions}
-            modal={false}
-            open={this.state.openAlert}
-            onRequestClose={this.handleAlertClose}
-          >
-            Are you sure you want to delete this event?
-          </Dialog>
-        </div>
       );
     }
   }
@@ -362,13 +314,10 @@ class CenterDetail extends Component {
                           </div>
                         </div>
                         <div className="row">
-                          <div className="col s12 l2">
+                          <div className="col s12 l3" id="showEditCenterButton">
                             {this.showEditCenterButton()}
                           </div>
-                          <div className="col s12 l2">
-                            {this.showAlertModal(id)}
-                          </div>
-                          <div className="col s12 l4">
+                          <div className="col s12 l6" id="showBookCenterButton">
                             {this.showBookCenterButton()}
                           </div>
                         </div>
@@ -393,12 +342,12 @@ CenterDetail.propTypes = {
   fetchCenterRelatedTo: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   activeCenterDetail: state.activeCenter,
   activeUser: state.authReducer
 });
 
-const mapDispatchToProps = dispatch =>
+export const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       fetchCenterAction,

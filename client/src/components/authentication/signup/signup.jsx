@@ -11,7 +11,7 @@ import { userSignupRequest } from '../../../actions/authActions';
 /**
    * SignUp Class Component
    * */
-class SignUp extends Component {
+export class SignUp extends Component {
   /**
    * Class contructor
    * @param { object } props
@@ -48,7 +48,7 @@ class SignUp extends Component {
           <div className="signin__card_holdr wow fadeInUp">
             <div className="container">
               <div className="row">
-                <SignUpForm userSignupRequest={userSignupRequest} />
+                <SignUpForm userSignupRequest={this.props.userSignupRequest} />
               </div>
             </div>
           </div>
@@ -66,7 +66,7 @@ const mapStateToProps = state => ({
   activeState: state.authReducer
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
+export const mapDispatchToProps = dispatch => bindActionCreators({
   userSignupRequest
 }, dispatch);
 

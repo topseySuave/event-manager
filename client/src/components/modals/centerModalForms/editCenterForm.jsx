@@ -311,6 +311,7 @@ class EditCenterForm extends Component {
           <div className="input-field col s12">
             <TextField
               hintText="Description"
+              id="center_description"
               value={description}
               name="description"
               errorText={errors.description || ''}
@@ -328,7 +329,7 @@ class EditCenterForm extends Component {
           <div className="input-field col s12">
             <button
               type="submit"
-              id="submitCenterForm"
+              id="submitEditCenterForm"
               name="action"
               className={'btn col s12 white-text gradient__bg' +
                 'btn-register waves-effect waves-light'}

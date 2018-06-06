@@ -6,21 +6,54 @@ import {
   LOADMORE_CENTER_REQUEST,
   LOADMORE_CENTER_SUCCESS,
   LOADMORE_CENTER_FAILURE,
-  SEARCH_CENTER_TITLE
+  SEARCH_CENTER_TITLE,
+  SEARCH_CENTER_TITLE_FAILED
 } from '../';
 
 // init api route string
 const api = '/api/v1/centers';
 
-export const fetchCentersDispatch = data => ({
-  type: FETCH_CENTERS,
-  payload: data
-});
+export const fetchCentersDispatch = (data, actionCase = null) => {
+  switch (actionCase) {
+    case 'FETCH_CENTERS':
+      return {
+        type: FETCH_CENTERS,
+        payload: data
+      };
 
-export const searchCenterDispatch = data => ({
-  type: SEARCH_CENTER_TITLE,
-  payload: data
-});
+    case 'LOADMORE_CENTER_REQUEST':
+      return {
+        type: LOADMORE_CENTER_REQUEST,
+      };
+
+    case 'LOADMORE_CENTER_SUCCESS':
+      return {
+        type: LOADMORE_CENTER_SUCCESS,
+        payload: data.centers
+      };
+
+    case 'LOADMORE_CENTER_FAILURE':
+      return {
+        type: LOADMORE_CENTER_FAILURE
+      };
+
+    default:
+      return data;
+  }
+};
+
+export const searchCenterDispatch = (moreCenters, actionCase = null) => {
+  switch (actionCase) {
+    case 'SEARCH_CENTER_TITLE_FAILED':
+      return { type: SEARCH_CENTER_TITLE_FAILED };
+
+    default:
+      return {
+        type: SEARCH_CENTER_TITLE,
+        payload: moreCenters
+      };
+  }
+};
 
 export const fetchCentersAction = () => (dispatch) => {
   dispatch(showLoading());
@@ -29,7 +62,7 @@ export const fetchCentersAction = () => (dispatch) => {
     .then(({ data }) => {
       data.loadingmore = false;
       data.loadmore = false;
-      dispatch(fetchCentersDispatch(data));
+      dispatch(fetchCentersDispatch(data, 'FETCH_CENTERS'));
       dispatch(hideLoading());
     })
     .catch((err) => {
@@ -39,28 +72,19 @@ export const fetchCentersAction = () => (dispatch) => {
 };
 
 export const loadMoreCenters = offset => (dispatch) => {
-  dispatch({
-    type: LOADMORE_CENTER_REQUEST
-  });
+  dispatch(fetchCentersDispatch(null, 'LOADMORE_CENTER_REQUEST'));
   return axios
     .get(`${api}?next=${offset}`)
     .then(({ data }) => {
       if (data.statusCode === 200) {
-        dispatch({
-          type: LOADMORE_CENTER_SUCCESS,
-          payload: data.centers
-        });
+        dispatch(fetchCentersDispatch(data, 'LOADMORE_CENTER_SUCCESS'));
       } else {
-        dispatch({
-          type: LOADMORE_CENTER_FAILURE
-        });
+        dispatch(fetchCentersDispatch(null, 'LOADMORE_CENTER_FAILURE'));
       }
     })
     .catch((err) => {
       if (err) {
-        dispatch({
-          type: LOADMORE_CENTER_FAILURE
-        });
+        dispatch(fetchCentersDispatch(null, 'LOADMORE_CENTER_FAILURE'));
       }
     });
 };

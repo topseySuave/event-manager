@@ -1,0 +1,531 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CallToAction component CallToAction component should mount 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <CallToAction />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <div
+          className="parallax"
+        >
+          <img
+            alt="parallax-img"
+            src="image/5.jpg"
+          />
+        </div>,
+        <div
+          className="container"
+        >
+          <div
+            className="center-align"
+          >
+            <div
+              className="row"
+            >
+              <div
+                className="col s12"
+              >
+                <h4>
+                  Do you want to Manage your Own Event?
+                </h4>
+                <h5>
+                  View All Centers
+                </h5>
+                <br />
+                <Link
+                  className="btn waves-effect red darken-1"
+                  href="centers"
+                  replace={false}
+                  to="centers"
+                >
+                  Centers
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>,
+      ],
+      "className": "parallax-container",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <img
+            alt="parallax-img"
+            src="image/5.jpg"
+          />,
+          "className": "parallax",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "alt": "parallax-img",
+            "src": "image/5.jpg",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "img",
+        },
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <div
+            className="center-align"
+          >
+            <div
+              className="row"
+            >
+              <div
+                className="col s12"
+              >
+                <h4>
+                  Do you want to Manage your Own Event?
+                </h4>
+                <h5>
+                  View All Centers
+                </h5>
+                <br />
+                <Link
+                  className="btn waves-effect red darken-1"
+                  href="centers"
+                  replace={false}
+                  to="centers"
+                >
+                  Centers
+                </Link>
+              </div>
+            </div>
+          </div>,
+          "className": "container",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <div
+              className="row"
+            >
+              <div
+                className="col s12"
+              >
+                <h4>
+                  Do you want to Manage your Own Event?
+                </h4>
+                <h5>
+                  View All Centers
+                </h5>
+                <br />
+                <Link
+                  className="btn waves-effect red darken-1"
+                  href="centers"
+                  replace={false}
+                  to="centers"
+                >
+                  Centers
+                </Link>
+              </div>
+            </div>,
+            "className": "center-align",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <div
+                className="col s12"
+              >
+                <h4>
+                  Do you want to Manage your Own Event?
+                </h4>
+                <h5>
+                  View All Centers
+                </h5>
+                <br />
+                <Link
+                  className="btn waves-effect red darken-1"
+                  href="centers"
+                  replace={false}
+                  to="centers"
+                >
+                  Centers
+                </Link>
+              </div>,
+              "className": "row",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <h4>
+                    Do you want to Manage your Own Event?
+                  </h4>,
+                  <h5>
+                    View All Centers
+                  </h5>,
+                  <br />,
+                  <Link
+                    className="btn waves-effect red darken-1"
+                    href="centers"
+                    replace={false}
+                    to="centers"
+                  >
+                    Centers
+                  </Link>,
+                ],
+                "className": "col s12",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Do you want to Manage your Own Event?",
+                  },
+                  "ref": null,
+                  "rendered": "Do you want to Manage your Own Event?",
+                  "type": "h4",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "View All Centers",
+                  },
+                  "ref": null,
+                  "rendered": "View All Centers",
+                  "type": "h5",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {},
+                  "ref": null,
+                  "rendered": null,
+                  "type": "br",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Centers",
+                    "className": "btn waves-effect red darken-1",
+                    "href": "centers",
+                    "replace": false,
+                    "to": "centers",
+                  },
+                  "ref": null,
+                  "rendered": "Centers",
+                  "type": [Function],
+                },
+              ],
+              "type": "div",
+            },
+            "type": "div",
+          },
+          "type": "div",
+        },
+        "type": "div",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div
+            className="parallax"
+          >
+            <img
+              alt="parallax-img"
+              src="image/5.jpg"
+            />
+          </div>,
+          <div
+            className="container"
+          >
+            <div
+              className="center-align"
+            >
+              <div
+                className="row"
+              >
+                <div
+                  className="col s12"
+                >
+                  <h4>
+                    Do you want to Manage your Own Event?
+                  </h4>
+                  <h5>
+                    View All Centers
+                  </h5>
+                  <br />
+                  <Link
+                    className="btn waves-effect red darken-1"
+                    href="centers"
+                    replace={false}
+                    to="centers"
+                  >
+                    Centers
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>,
+        ],
+        "className": "parallax-container",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <img
+              alt="parallax-img"
+              src="image/5.jpg"
+            />,
+            "className": "parallax",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "alt": "parallax-img",
+              "src": "image/5.jpg",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "img",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <div
+              className="center-align"
+            >
+              <div
+                className="row"
+              >
+                <div
+                  className="col s12"
+                >
+                  <h4>
+                    Do you want to Manage your Own Event?
+                  </h4>
+                  <h5>
+                    View All Centers
+                  </h5>
+                  <br />
+                  <Link
+                    className="btn waves-effect red darken-1"
+                    href="centers"
+                    replace={false}
+                    to="centers"
+                  >
+                    Centers
+                  </Link>
+                </div>
+              </div>
+            </div>,
+            "className": "container",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <div
+                className="row"
+              >
+                <div
+                  className="col s12"
+                >
+                  <h4>
+                    Do you want to Manage your Own Event?
+                  </h4>
+                  <h5>
+                    View All Centers
+                  </h5>
+                  <br />
+                  <Link
+                    className="btn waves-effect red darken-1"
+                    href="centers"
+                    replace={false}
+                    to="centers"
+                  >
+                    Centers
+                  </Link>
+                </div>
+              </div>,
+              "className": "center-align",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <div
+                  className="col s12"
+                >
+                  <h4>
+                    Do you want to Manage your Own Event?
+                  </h4>
+                  <h5>
+                    View All Centers
+                  </h5>
+                  <br />
+                  <Link
+                    className="btn waves-effect red darken-1"
+                    href="centers"
+                    replace={false}
+                    to="centers"
+                  >
+                    Centers
+                  </Link>
+                </div>,
+                "className": "row",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <h4>
+                      Do you want to Manage your Own Event?
+                    </h4>,
+                    <h5>
+                      View All Centers
+                    </h5>,
+                    <br />,
+                    <Link
+                      className="btn waves-effect red darken-1"
+                      href="centers"
+                      replace={false}
+                      to="centers"
+                    >
+                      Centers
+                    </Link>,
+                  ],
+                  "className": "col s12",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Do you want to Manage your Own Event?",
+                    },
+                    "ref": null,
+                    "rendered": "Do you want to Manage your Own Event?",
+                    "type": "h4",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "View All Centers",
+                    },
+                    "ref": null,
+                    "rendered": "View All Centers",
+                    "type": "h5",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": "br",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": "Centers",
+                      "className": "btn waves-effect red darken-1",
+                      "href": "centers",
+                      "replace": false,
+                      "to": "centers",
+                    },
+                    "ref": null,
+                    "rendered": "Centers",
+                    "type": [Function],
+                  },
+                ],
+                "type": "div",
+              },
+              "type": "div",
+            },
+            "type": "div",
+          },
+          "type": "div",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

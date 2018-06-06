@@ -6,13 +6,10 @@ import { SET_USER, REMOVE_USER } from './index';
 
 const api = 'api/v1/users';
 
-const removeCurrentUser = () => {
-  window.history.back();
-  return {
-    type: REMOVE_USER,
-    payload: {}
-  };
-};
+const removeCurrentUser = () => ({
+  type: REMOVE_USER,
+  payload: {}
+});
 
 const setCurrentUser = token => ({
   type: SET_USER,
@@ -25,7 +22,7 @@ const signOutRequest = () => {
   return removeCurrentUser();
 };
 
-const userSignupRequest = userData => axios.post(api, userData);
+const userSignupRequest = userData => dispatch => axios.post(api, userData);
 
 const userSignInRequest = userData => dispatch =>
   axios.post(`${api}/authentication`, userData).then((res) => {
@@ -43,5 +40,6 @@ module.exports = {
   userSignupRequest,
   userSignInRequest,
   signOutRequest,
-  setCurrentUser
+  setCurrentUser,
+  removeCurrentUser
 };

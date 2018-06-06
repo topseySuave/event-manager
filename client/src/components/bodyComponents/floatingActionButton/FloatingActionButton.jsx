@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 /**
    * FloatingActionButton Class Component
    * */
-class FloatingActionButton extends Component {
+export class FloatingActionButton extends Component {
   /**
    * componentWillMount method
    * @returns { void }
@@ -49,7 +49,7 @@ class FloatingActionButton extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   activeState: state.authReducer
 });
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 
 import Helpers from '../../../helpers';
-import imageNotAvailable from '../../../util/facilities';
+import { imageNotAvailable } from '../../../util/facilities';
 
 const helpers = new Helpers();
 /**
@@ -54,7 +54,7 @@ class CenterCard extends Component {
           <div className="card">
             {this.showPriceBar(center.price)}
             <div className="card-image">
-              {(center.img_url) ? (
+              {(center.img_url !== '') ? (
                 <img src={center.img_url} alt={center.title} />
             ) : <img
               src={imageNotAvailable}

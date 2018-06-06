@@ -12,7 +12,7 @@ import history from '../util/history';
 
 const centerApi = '/api/v1/centers';
 
-const addCenterPayload = (payload, response = null) => {
+export const addCenterPayload = (payload, response = null) => {
   if (response === 'success') {
     return {
       type: ADD_CENTER_SUCCESS,
@@ -31,7 +31,7 @@ const addCenterPayload = (payload, response = null) => {
   }
 };
 
-const createCenter = (centerApi, centerData, imgUrl) => (dispatch) => {
+export const createCenter = (centerApi, centerData, imgUrl) => (dispatch) => {
   let token = localStorage.getItem('jwtToken') ? localStorage
     .getItem('jwtToken') : false;
   setAuthorizationToken(token);
@@ -41,11 +41,13 @@ const createCenter = (centerApi, centerData, imgUrl) => (dispatch) => {
     .then(({ data }) => {
       if (data.statusCode === 400) {
         Materialize.toast(data.message, 5000, 'red');
+        document.getElementById('edit-center-form').reset();
+        $('#edit_center_modal').modal('close');
         return dispatch(addCenterPayload(data, 'failure'));
       }
       Materialize.toast(data.message, 5000, 'teal');
       document.getElementById('edit-center-form').reset();
-      $('.modal').modal('close');
+      $('#edit_center_modal').modal('close');
       return dispatch(addCenterPayload(data.center, 'success'));
     });
 };
@@ -70,15 +72,10 @@ export const createCenterRequest = centerData => (dispatch) => {
 /* *
  * update center payload sorter
  * ** */
-const updateCenterPayload = (data, res) => {
+export const updateCenterPayload = (data, res) => {
   if (res === 'success') {
     return {
       type: EDIT_CENTER,
-      payload: data
-    };
-  } else if (res === 'failure') {
-    return {
-      type: EDIT_CENTER_FAILURE,
       payload: data
     };
   }
@@ -88,7 +85,7 @@ const updateCenterPayload = (data, res) => {
  * update center method
  * requester to local server
  * ** */
-const editCenter = (centerApi, centerData, imgUrl) => (dispatch) => {
+export const editCenter = (centerApi, centerData, imgUrl) => (dispatch) => {
   let token = localStorage.getItem('jwtToken') ? localStorage
     .getItem('jwtToken') : false;
   setAuthorizationToken(token);

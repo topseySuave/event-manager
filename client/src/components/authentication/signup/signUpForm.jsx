@@ -8,7 +8,7 @@ import InputForm from '../../form/formInput';
 /**
  * SignUpForm Class Component
  * */
-class SignUpForm extends Component {
+export class SignUpForm extends Component {
   /**
    * Class contructor
    * @param { object } props
@@ -40,11 +40,11 @@ class SignUpForm extends Component {
    * */
   handleChange(e) {
     if (this.state.errors[e.target.name]) {
-      let errors = Object.assign({}, !!this.state.errors);
+      let errors = Object.assign({}, this.state.errors);
       delete errors[e.target.name];
       this.setState({
         [e.target.name]: e.target.value,
-        errors
+        errors: {}
       });
     } else {
       this.setState({ [e.target.name]: e.target.value });
@@ -56,7 +56,7 @@ class SignUpForm extends Component {
    * @returns { object }
    * */
   isValid() {
-    const { errors, isValid } = validateSignUpInput(this.state);
+    const { state: { errors }, isValid } = validateSignUpInput(this.state);
     if (!isValid) {
       this.setState({ errors });
     }
@@ -144,29 +144,31 @@ class SignUpForm extends Component {
         >
           <div className={loading}>
             <InputForm
-              fieldId="first_name"
+              id="first_name"
               nameField="firstName"
               value={this.state.firstName}
               error={errors.firstName || ''}
               type="text"
               onChange={this.handleChange}
               label="First Name"
+              minValue="4"
             />
           </div>
           <div className={loading}>
             <InputForm
-              fieldId="last_name"
+              id="last_name"
               nameField="lastName"
               value={this.state.lastName}
               error={errors.lastName || ''}
               type="text"
               onChange={this.handleChange}
               label="Last Name"
+              minValue="4"
             />
           </div>
           <div className={loading}>
             <InputForm
-              fieldId="email"
+              id="email"
               nameField="email"
               value={this.state.email}
               error={exists ? errors.message : errors.email || ''}
@@ -177,24 +179,26 @@ class SignUpForm extends Component {
           </div>
           <div className={loading}>
             <InputForm
-              fieldId="password"
+              id="password"
               nameField="password"
               value={this.state.password}
               error={errors.password || ''}
               type="password"
               onChange={this.handleChange}
               label="Password"
+              minValue="6"
             />
           </div>
           <div className={loading}>
             <InputForm
-              fieldId="confirm_password"
+              id="confirm_password"
               nameField="confirmPassword"
               value={this.state.confirmPassword}
               error={errors.confirmPassword || ''}
               type="password"
               onChange={this.handleChange}
               label="Confirm Password"
+              minValue="6"
             />
           </div>
           <div className="row">

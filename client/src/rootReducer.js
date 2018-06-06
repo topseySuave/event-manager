@@ -1,10 +1,12 @@
-import { combineReducers } from 'redux';
+import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+
 import AuthReducer from './reducers/authReducer';
 import centerReducer from './reducers/centerReducer';
 import activeCenterReducer from './reducers/activeCenterReducer';
 import eventReducer from './reducers/eventReducer';
 
-export default combineReducers({
+export const rootReducer = combineReducers({
   /**
      * @Authentication reducer for user validation
      * * */
@@ -25,3 +27,8 @@ export default combineReducers({
      * * */
   eventReducer
 });
+
+export const store = compose(
+  applyMiddleware(thunk),
+  window.devToolsExtension ? window.devToolsExtension() : f => f
+)(createStore)(rootReducer);

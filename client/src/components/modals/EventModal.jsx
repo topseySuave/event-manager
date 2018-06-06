@@ -21,7 +21,7 @@ const styles = {
   }
 };
 
-class EventModal extends Component {
+export class EventModal extends Component {
   constructor(props) {
     super(props);
 
@@ -91,7 +91,7 @@ class EventModal extends Component {
   componentWillReceiveProps(newProps) {
     if (newProps.event) this.setState({ isLoading: newProps.event.isLoading });
     if (newProps.centerIsBooked) this.setState({ isLoading: false });
-    if (newProps.event.eventCreated) history.push('/my-events');
+    if (newProps.event.sessEvents.eventCreated) history.push('/my-events');
   }
 
   isValid() {
@@ -198,7 +198,7 @@ class EventModal extends Component {
       errors
     } = this.state;
     const actions = [
-      <FlatButton label="Cancel" primary={true} onClick={this.handleClose} />,
+      <FlatButton id="closeBookCenter" label="Cancel" primary={true} onClick={this.handleClose} />,
       <FlatButton
         label={
           isLoading ? (
@@ -210,6 +210,7 @@ class EventModal extends Component {
             "Add Event"
           )
         }
+        id="submitEvent"
         primary={true}
         keyboardFocused={true}
         onClick={this.handleEventSubmit}
@@ -219,11 +220,13 @@ class EventModal extends Component {
       <div>
         <RaisedButton
           label="Book this center"
+          id="openBookCenter"
           primary={true}
           onClick={this.handleOpen}
         />
         <Dialog
           title={editEvent ? "Edit Event" : "Create Event"}
+          id="creatEventModal"
           actions={actions}
           modal={false}
           open={this.state.open}
@@ -257,7 +260,7 @@ class EventModal extends Component {
                 <div className="input-field col s6">
                   <InputForm
                     type="text"
-                    fieldId="event_title"
+                    id="event_title"
                     nameField="title"
                     label="Title"
                     value={title}
@@ -269,8 +272,10 @@ class EventModal extends Component {
               <div className="row">
                 <div className="input-field col s6">
                   <DatePicker
+                    id="eventStartDate"
                     onChange={this.handleChangeStartDate}
                     autoOk={true}
+                    name="startDate"
                     floatingLabelText="Start Date"
                     disableYearSelection={this.state.disableYearSelection}
                   />
@@ -282,8 +287,10 @@ class EventModal extends Component {
                 </div>
                 <div className="input-field col s6">
                   <DatePicker
+                    id="eventEndDate"
                     onChange={this.handleChangeEndDate}
                     autoOk={true}
+                    name="endDate"
                     floatingLabelText="End Date"
                     disableYearSelection={this.state.disableYearSelection}
                   />
@@ -296,7 +303,7 @@ class EventModal extends Component {
                 <div className="input-field col s12">
                   <label htmlFor="description">Description</label>
                   <textarea
-                    id="description"
+                    id="eventDescription"
                     type="text"
                     name="description"
                     className="materialize-textarea validate"
@@ -330,7 +337,7 @@ class EventModal extends Component {
   }
 }
 
-const mapStateToProps = state => {
+export const mapStateToProps = state => {
   return {
     activeCenter: state.activeCenter,
     event: state.eventReducer,
@@ -338,7 +345,7 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+export const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     { createEventRequest },
     dispatch

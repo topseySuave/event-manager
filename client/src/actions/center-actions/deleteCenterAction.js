@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { REMOVE_CENTER } from '../';
 
-const deleteAction = data => ({
+export const deleteAction = data => ({
   type: REMOVE_CENTER,
   payload: data
 });
@@ -16,6 +16,6 @@ export const deleteCenterRequest = (id) => {
       })
       .catch((err) => {
         Materialize.toast('Center could not be deleted!!!', 5000);
-        console.log(err);
+        return err;
       });
 };

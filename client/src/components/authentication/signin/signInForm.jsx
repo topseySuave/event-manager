@@ -11,7 +11,7 @@ import { userSignInRequest } from '../../../actions/authActions';
 /**
  * SignIn Class Component
  * */
-class SignInForm extends React.Component {
+export class SignInForm extends React.Component {
   /**
    * Class contructor
    * @param { object } props
@@ -53,7 +53,7 @@ class SignInForm extends React.Component {
    * @returns { object }
    * */
   isValid() {
-    const { errors, isValid } = validateSignInInput(this.state);
+    const { state: { errors }, isValid } = validateSignInInput(this.state);
     if (!isValid) {
       this.setState({ errors });
     }
@@ -123,7 +123,7 @@ class SignInForm extends React.Component {
           <div className={loading}>
             <div className="input-field col s12">
               <InputForm
-                fieldId="email"
+                id="email"
                 nameField="email"
                 value={this.state.email}
                 error={errors.email || ''}
@@ -137,13 +137,14 @@ class SignInForm extends React.Component {
           <div className={loading}>
             <div className="input-field col s12">
               <InputForm
-                fieldId="password"
+                id="password"
                 nameField="password"
                 value={this.state.password}
                 error={errors.password || ''}
                 type="password"
                 onChange={this.handleChange}
                 label="Password"
+                minValue="6"
               />
             </div>
           </div>
@@ -186,11 +187,11 @@ class SignInForm extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   activeState: state.authReducer
 });
 
-const matchDispatchToProps = dispatch =>
+export const matchDispatchToProps = dispatch =>
   bindActionCreators({ userSignInRequest }, dispatch);
 
 export default connect(mapStateToProps, matchDispatchToProps)(SignInForm);

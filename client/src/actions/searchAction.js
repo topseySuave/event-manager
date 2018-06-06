@@ -6,7 +6,11 @@ import {
   searchCenterDispatch
 } from './center-actions/fetchCenterAction';
 import { searchEventsDispatch } from './events-actions/index';
-import { SEARCH_CENTER_TITLE_FAILED, SEARCH_EVENT_TITLE_FAILED } from './';
+import {
+  SEARCH_CENTER_TITLE_FAILED,
+  SEARCH_EVENT_TITLE_FAILED,
+  FETCH_CENTERS
+} from './';
 
 const prepareCenterSearchQuery = (searchVal) => {
   let searchObjectString, searchApi, api = '/api/v1/centers?';
@@ -33,13 +37,13 @@ const validateEventSearchQuery = ({ searchBy, search }) => {
   return searchApi;
 };
 
-export const searchAction = (data) => {
-  let searchApi = prepareCenterSearchQuery(data);
+export const searchAction = (searchQueries) => {
+  let searchApi = prepareCenterSearchQuery(searchQueries);
   return dispatch => axios
     .get(searchApi)
     .then(({ data }) => {
       if (data.statusCode === 200) {
-        dispatch(fetchCentersDispatch(data));
+        return dispatch(fetchCentersDispatch(data, FETCH_CENTERS));
       } else if (data.statusCode === 404) {
         if (err) {
           Materialize.toast(
@@ -66,11 +70,9 @@ export const filterCenterTitle = value => (dispatch) => {
   return axios.get(searchApi).then(({ data }) => {
     if (data.statusCode === 200) {
       dispatch(searchCenterDispatch(data));
-    } else if (data.statusCode === 400) {
+    } else if (data.statusCode === 404) {
       Materialize.toast(data.message, 5000, 'red');
-      dispatch({
-        type: SEARCH_CENTER_TITLE_FAILED
-      });
+      dispatch(searchCenterDispatch(null, 'SEARCH_CENTER_TITLE_FAILED'));
     }
   });
 };

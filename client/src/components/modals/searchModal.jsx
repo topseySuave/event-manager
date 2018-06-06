@@ -16,7 +16,7 @@ import {
 /**
  * SearchModal Class Component
  * */
-class SearchModal extends Component {
+export class SearchModal extends Component {
   /**
    * SearchModal Class Constructor
    * @param { object } props

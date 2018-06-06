@@ -18,25 +18,34 @@ import {
 
 const pageLimit = process.env.DATA_LIMIT;
 let newState;
+let initialState = {
+  sessEvents: {
+    events: [],
+    meta: {}
+  }
+};
 
-export default (state = {}, action = {}) => {
+export default (state = initialState, action = {}) => {
   switch (action.type) {
     case FETCH_EVENTS:
-      return action.payload;
+      newState.sessEvents = action.payload;
+      return newState;
 
     case ADD_EVENT:
       newState = { ...state };
-      if (newState.events) {
-        newState.events.unshift(action.payload);
-        newState.totalCount = newState.events.length;
-        newState.pageCount = Math.ceil(newState.totalCount / pageLimit);
+      if (newState.sessEvents.events.length > 0) {
+        newState.sessEvents.events.unshift(action.payload);
+        newState.sessEvents.meta.totalCount = newState.sessEvents.events.length;
+        newState.sessEvents.meta.pageCount = Math
+          .ceil(newState.sessEvents.meta.totalCount / pageLimit);
+        newState.sessEvents.eventCreated = true;
         return newState;
       }
-      newState.events = [];
-      newState.events.unshift(action.payload);
-      newState.totalCount = newState.events.length;
-      newState.pageCount = Math.ceil(newState.totalCount / pageLimit);
-      newState.eventCreated = true;
+      newState.sessEvents.events.unshift(action.payload);
+      newState.sessEvents.meta.totalCount = newState.sessEvents.events.length;
+      newState.sessEvents.meta.pageCount = Math
+        .ceil(newState.sessEvents.meta.totalCount / pageLimit);
+      newState.sessEvents.eventCreated = true;
       return newState;
 
     case ADD_EVENT_FAILURE:

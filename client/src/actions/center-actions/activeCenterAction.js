@@ -1,12 +1,30 @@
 import axios from 'axios';
-import { FETCH_CENTER_DETAIL, EDIT_CENTER_REQUEST } from '../';
+import { FETCH_CENTER_DETAIL, EDIT_CENTER_REQUEST, NOT_FOUND } from '../';
 
 const api = '/api/v1/centers';
 
-const fetchCenterDispatch = data => ({
-  type: FETCH_CENTER_DETAIL,
-  center: data
-});
+export const fetchCenterDispatch = (data, actionCase = null) => {
+  switch (actionCase) {
+    case 'FETCH_CENTER_DETAIL':
+      return {
+        type: FETCH_CENTER_DETAIL,
+        center: data
+      };
+
+    case 'EDIT_CENTER_REQUEST':
+      return {
+        type: EDIT_CENTER_REQUEST
+      };
+
+    case NOT_FOUND:
+      return {
+        type: NOT_FOUND
+      };
+
+    default:
+      return data;
+  }
+};
 
 export const fetchCenterAction = (id) => {
   if (!id) return 'id is required for the request to be successful';
@@ -14,16 +32,13 @@ export const fetchCenterAction = (id) => {
     axios
       .get(`${api}/${id}`)
       .then(({ data }) => {
-        dispatch(fetchCenterDispatch(data));
+        dispatch(fetchCenterDispatch(data, 'FETCH_CENTER_DETAIL'));
       })
       .catch((err) => {
         Materialize.toast('Page Not Found!!!', 5000, 'red lighten-4');
-        window.location.href = '/404';
-        throw err;
+        return dispatch(fetchCenterDispatch(null, NOT_FOUND));
       });
 };
 
 export const editCenterRequestAction = () => dispatch =>
-  dispatch({
-    type: EDIT_CENTER_REQUEST
-  });
+  dispatch(fetchCenterDispatch(null, 'EDIT_CENTER_REQUEST'));
