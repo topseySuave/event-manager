@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { FloatingActionButton, mapStateToProps } from
-  '../../../../src/components/bodyComponents/floatingActionButton/FloatingActionButton';
+  '../../../../src/components/bodyComponents/floatingActionButton/FloatingActionButton'; // eslint-disable-line
 
 let wrapper, instance, mounted;
 let store, comProps;

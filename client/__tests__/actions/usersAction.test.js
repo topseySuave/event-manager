@@ -11,6 +11,7 @@ import {
   userSignupRequest,
   userSignInRequest
 } from '../../src/actions/authActions';
+
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
