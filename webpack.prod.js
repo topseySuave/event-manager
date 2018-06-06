@@ -17,7 +17,6 @@ module.exports = merge(common, {
         SECRET_KEY: JSON.stringify(process.env.SECRET_KEY)
       }
     }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.optimize.OccurrenceOrderPlugin()
   ],
 });
