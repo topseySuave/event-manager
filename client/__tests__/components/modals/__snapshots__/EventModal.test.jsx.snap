@@ -35,9 +35,9 @@ ShallowWrapper {
     eventToEdit={
       Object {
         "description": "we put the goog in the good life",
-        "endDate": "Wed Jun 06 2018 19:55:38 GMT+0100 (WAT)20",
+        "endDate": "Wed Jun 06 2018 20:51:30 GMT+0100 (WAT)20",
         "img_url": "",
-        "startDate": "Wed Jun 06 2018 19:55:38 GMT+0100 (WAT)10",
+        "startDate": "Wed Jun 06 2018 20:51:30 GMT+0100 (WAT)10",
         "title": "we put the goog in the good life",
       }
     }
