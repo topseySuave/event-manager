@@ -85,6 +85,13 @@
     ],
     "testPathIgnorePatterns": [
       "/client/__tests__/__mocks__/"
+    ],
+    "coverageReporters": [
+      "json",
+      "html",
+      "text",
+      "lcov",
+      "clover"
     ]
   },
   "dependencies": {
