@@ -3,7 +3,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: [
-    'webpack-hot-middleware/client',
     path.join(__dirname, 'client/src/index.jsx')
   ],
   output: {
