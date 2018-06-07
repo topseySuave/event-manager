@@ -114,7 +114,6 @@ var RecommCenter = function (_Component) {
       this.props.fetchCenterRelatedTo(relatedCenters).then(function (_ref) {
         var data = _ref.data;
 
-        console.log('data ====> ', data);
         _this2.setState({ isLoading: false, relatedCenters: data.centers });
       }).catch(function () {
         _this2.setState({

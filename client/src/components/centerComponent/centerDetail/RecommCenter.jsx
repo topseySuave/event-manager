@@ -53,7 +53,6 @@ class RecommCenter extends Component {
   fetchCenter(relatedCenters) {
     this.props.fetchCenterRelatedTo(relatedCenters)
       .then(({ data }) => {
-        console.log('data ====> ', data);
         this.setState({ isLoading: false, relatedCenters: data.centers });
       })
       .catch(() => {
