@@ -277,7 +277,7 @@ export class HeaderBanner extends Component {
                     className="center-align gradient_text"
                     style={searchStyle.bold}
                   >
-                    Find and Book Event Centers
+                    Find and Book Event Center
                   </h4>
                 </div>
                 <SearchFasterForm onSearch={this.onSearch} />
