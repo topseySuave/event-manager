@@ -4,10 +4,10 @@
   "description": "An Event Manager application to create and manage your own event.",
   "main": "./server/app.js",
   "scripts": {
-    "build": "npm run clean && npm run build:server && npm run build:client",
+    "heroku-postbuild": "npm run clean && npm run build:server && npm run build:client",
     "clean": "rm -rf build && mkdir build",
     "babel-node": "babel-node --preset=es2015",
-    "start": "npm run clean && npm run build:server && npm run build:client && node -- ./build/app.js",
+    "start": "node -- ./build/app.js",
     "start:dev": "npm run start:client & nodemon --exec babel-node -- ./server/app.js",
     "build:client": "webpack --config webpack.prod.js",
     "build:server": "babel -d ./build --copy-files ./server -s",
