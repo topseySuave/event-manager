@@ -18,7 +18,7 @@
     "pretest": "NODE_ENV=test npm run drop:db && npm run create:db && npm run migrate:test",
     "test:local": "npm run pretest && npm run test:server",
     "test": "npm run test:server && npm run test:client",
-    "test:client": "jest --coverage -u --maxWorkers=4",
+    "test:client": "jest -u --maxWorkers=4 && codecov",
     "test:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --timeout 20000 --exit --require babel-core/register server/test/index.js",
     "test:dev:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha ./server/test/index.js --exit --require babel-node/register --reporter spec",
     "test:dev": "npm test && npm run coverage",
@@ -60,6 +60,7 @@
     "verbose": true,
     "testRegex": "/client/__tests__/.*\\.test\\.(js|jsx)$",
     "setupTestFrameworkScriptFile": "./client/__tests__/setup.js",
+    "coverageDirectory": "./coverage/",
     "collectCoverage": true,
     "collectCoverageFrom": [
       "client/src/**",
@@ -81,13 +82,6 @@
     ],
     "testPathIgnorePatterns": [
       "/client/__tests__/__mocks__/"
-    ],
-    "coverageReporters": [
-      "json",
-      "html",
-      "text",
-      "lcov",
-      "clover"
     ]
   },
   "dependencies": {
