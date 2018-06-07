@@ -33,14 +33,6 @@ export default (state = initialState, action = {}) => {
 
     case ADD_EVENT:
       newState = { ...state };
-      if (newState.sessEvents.events.length > 0) {
-        newState.sessEvents.events.unshift(action.payload);
-        newState.sessEvents.meta.totalCount = newState.sessEvents.events.length;
-        newState.sessEvents.meta.pageCount = Math
-          .ceil(newState.sessEvents.meta.totalCount / pageLimit);
-        newState.sessEvents.eventCreated = true;
-        return newState;
-      }
       newState.sessEvents.events.unshift(action.payload);
       newState.sessEvents.meta.totalCount = newState.sessEvents.events.length;
       newState.sessEvents.meta.pageCount = Math
