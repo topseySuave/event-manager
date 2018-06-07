@@ -53,6 +53,7 @@ class RecommCenter extends Component {
   fetchCenter(relatedCenters) {
     this.props.fetchCenterRelatedTo(relatedCenters)
       .then(({ data }) => {
+        console.log('data ====> ', data);
         this.setState({ isLoading: false, relatedCenters: data.centers });
       })
       .catch(() => {
@@ -74,7 +75,9 @@ class RecommCenter extends Component {
         const to = `/center/${center.id}/${this.helper
           .sanitizeString(center.title)}`;
         return (
-          <CenterCard to={to} center={center} key={shortid.generate()} />
+          <div className="col s12 l4" key={shortid.generate()}>
+            <CenterCard to={to} center={center} />
+          </div>
         );
       });
     }

@@ -243,26 +243,36 @@ export class Centers {
         reqSearch = {},
         search = req.query.search || req.query.location,
         price = req.query.price || 0,
-        capacity = req.query.capacity || 0;
+        capacity = req.query.capacity || 0, where;
+
+      if (basedOn) {
+        where = {
+          location: {
+            [Op.iLike]: `%${search}%`
+          }
+        };
+      } else {
+        where = {
+          price: {
+            [Op.gte]: price
+          },
+          capacity: {
+            [Op.gte]: capacity
+          },
+          [Op.or]: {
+            title: {
+              [Op.iLike]: `%${search}%`
+            },
+            location: {
+              [Op.iLike]: `%${search}%`
+            }
+          }
+        };
+      }
 
       centersModel
         .findAndCountAll({
-          where: {
-            price: {
-              [Op.gte]: price
-            },
-            capacity: {
-              [Op.gte]: capacity
-            },
-            [Op.or]: {
-              title: {
-                [Op.iLike]: `%${search}%`
-              },
-              location: {
-                [Op.iLike]: `%${search}%`
-              }
-            }
-          },
+          where,
           order: [['id', order]],
           attributes,
           limit: limitValue,
