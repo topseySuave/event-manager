@@ -40,7 +40,8 @@
       "server/controllers/**",
       "server/app.js",
       "server/routes/administrator.js"
-    ]
+    ],
+    "sourceMap": true
   },
   "repository": {
     "type": "git",
@@ -58,11 +59,11 @@
     ]
   },
   "jest": {
-    "verbose": true,
+    "verbose": false,
     "testRegex": "/client/__tests__/.*\\.test\\.(js|jsx)$",
     "setupTestFrameworkScriptFile": "./client/__tests__/setup.js",
-    "coverageDirectory": "./coverage/",
-    "collectCoverage": true,
+    "coverageDirectory": "./coverage/client",
+    "collectCoverage": false,
     "collectCoverageFrom": [
       "client/src/**",
       "!client/src/index.jsx",

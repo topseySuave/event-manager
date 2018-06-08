@@ -59,6 +59,8 @@ export class Events {
     const limitValue = parseInt(req.query.limit, 10) || process.env.DATA_LIMIT;
     const order = req.query.order ? req.query.order : 'desc';
     const pageValue = req.query.next || 0;
+    let offset = (pageValue > 1) ? pageValue * limitValue - limitValue :
+      pageValue;
     if (req.query && req.query.sort) {
       if (order) {
         Event.findAll({
@@ -111,7 +113,8 @@ export class Events {
           ['id', order]
         ],
         limit: limitValue,
-        attributes
+        attributes,
+        offset
       }).then((eventsFound) => {
         if (eventsFound.count <= 0) {
           return res.status(200).send({
@@ -175,8 +178,6 @@ export class Events {
         });
       });
     } else {
-      let offset = (pageValue > 1) ? pageValue * limitValue - limitValue :
-        pageValue;
       Event.findAndCountAll({
         where: {
           startDate: {

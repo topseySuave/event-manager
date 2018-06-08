@@ -8,7 +8,11 @@ import {
   LoadEventsPage,
   SignOut
 } from '../_test_files_/signin.test';
-import { LandingPage, EndE2ETest } from '../_test_files_/landing-page.test';
+import {
+  LandingPage,
+  FourOhFour,
+  EndE2ETest
+} from '../_test_files_/landing-page.test';
 import {
   SearchAndViewCenter,
   RejectEvent,
@@ -63,6 +67,10 @@ module.exports = {
   // should not see the add center button not signed in
   'should not see the add center button if not signed in': browser =>
     NoAddCenterButton(browser),
+
+  // load 404 page
+  'should load 404 page when url specified is incorrect': browser =>
+    FourOhFour(browser),
 
   // end test
   'end tests': browser => EndE2ETest(browser)

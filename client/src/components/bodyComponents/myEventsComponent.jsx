@@ -75,7 +75,7 @@ export class MyEventCardHolder extends Component {
      * make loadmore request
      * */
     let offset = this.state.page + 1;
-    this.props.loadMoreEvents(offset);
+    this.props.loadMoreEvents(this.props.activeUser.user.id, offset);
   }
 
   /**

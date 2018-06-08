@@ -33,7 +33,13 @@ class NoMatch extends Component {
                       >
                         404
                       </h1>
-                      <h5>Error page</h5>
+                      <h5 className="gradient_text">
+                        <b>Houston we have a problem!!!</b>
+                      </h5>
+                      <h5>Either you or this page is lost</h5>
+                      <h6>
+                        we were unable to find the page you are looking for...
+                      </h6>
                     </div>
                   </div>
                   <div className="col s12 m6 l6">
@@ -44,12 +50,6 @@ class NoMatch extends Component {
                           '252114/screenshots/3840347/mong03b.gif'}
                         alt="404 not found"
                       />
-                      <h5 className="gradient_text">
-                        <b>Houston we have a problem!!!</b>
-                      </h5>
-                      <h6>
-                        we were unable to find the page you are looking for...
-                      </h6>
                     </div>
                   </div>
                 </div>
