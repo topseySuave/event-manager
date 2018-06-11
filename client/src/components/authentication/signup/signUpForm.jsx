@@ -234,7 +234,7 @@ export class SignUpForm extends Component {
 }
 
 SignUpForm.propTypes = {
-  userSignupRequest: PropTypes.func.isRequired
+  userSignupRequest: PropTypes.func
 };
 
 export default SignUpForm;

@@ -111,7 +111,7 @@ class RecommCenter extends Component {
 }
 
 RecommCenter.propTypes = {
-  relatedCenterBasedOn: PropTypes.object.isRequired,
+  relatedCenterBasedOn: PropTypes.object,
   fetchCenterRelatedTo: PropTypes.func.isRequired
 };
 

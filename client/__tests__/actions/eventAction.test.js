@@ -138,7 +138,7 @@ describe('Events Actions', () => {
     let { sessEvents: { events } } = newState.eventReducer;
     // console.log('newSate ==> ', newState);
     expect(events).toBeTruthy();
-    expect(events.length).toBe(4);
+    expect(events.length).toBe(3);
   });
 
   test('should editing an event fail', () => {
@@ -158,7 +158,7 @@ describe('Events Actions', () => {
     let { sessEvents: { events } } = newState.eventReducer;
     // console.log('newSate ==> ', newState);
     expect(events).toBeTruthy();
-    expect(events.length).toBe(4);
+    expect(events.length).toBe(3);
   });
 
   test('should storing all events as session events fail', () => {
@@ -197,7 +197,7 @@ describe('Events Actions', () => {
     newState = store.getState();
     let { loadingmore, sessEvents: { events } } = newState.eventReducer;
     expect(loadingmore).toBeFalsy();
-    expect(events.length).toBe(5);
+    expect(events.length).toBe(4);
   });
 
   test('should load more events fail', () => {
@@ -208,7 +208,7 @@ describe('Events Actions', () => {
     newState = store.getState();
     let { loadingmore, sessEvents: { events } } = newState.eventReducer;
     expect(loadingmore).toBeFalsy();
-    expect(events.length).toBe(5);
+    expect(events.length).toBe(4);
   });
 
   test('should search for an event', () => {
@@ -217,6 +217,6 @@ describe('Events Actions', () => {
     newState = store.getState();
     let { loadingmore, sessEvents: { events } } = newState.eventReducer;
     expect(loadingmore).toBeFalsy();
-    expect(events.length).toBe(5);
+    expect(events.length).toBe(4);
   });
 });

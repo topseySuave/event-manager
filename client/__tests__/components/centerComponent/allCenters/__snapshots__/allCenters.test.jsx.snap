@@ -32,7 +32,7 @@ ShallowWrapper {
         },
       }
     }
-    searchAction={[MockFunction]}
+    searchAction={[Function]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],

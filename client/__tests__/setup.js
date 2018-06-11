@@ -1,3 +1,4 @@
+import 'raf/polyfill';
 import jsdom from 'jsdom';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -79,4 +80,7 @@ global.Materialize.toast = () => {};
 global.location = {
   href: '',
   reload() {}
+};
+global.requestAnimationFrame = (callback) => {
+  setTimeout(callback, 0);
 };
