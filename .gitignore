@@ -6,7 +6,11 @@
 /.github/
 /build/
 /npm-debug.log*
-/client/bower_components
+./client/bower_components
+./client/public/js/hot/*
+./client/public/js/app.bundle.js
+./client/public/js/app.bundle.js.map
+
 package-lock.json
 reports/
 selenium-debug.log
