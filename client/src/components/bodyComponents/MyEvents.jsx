@@ -3,9 +3,9 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import FixedNav from './headNav/fixedNav';
-import MyEventCardHolder from './myEventsComponent';
+import MyEventCardHolder from './MyEventCardHolder';
 import FloatingActionButton from './floatingActionButton/FloatingActionButton';
-import Footer from './footer/footer';
+import Footer from './footer/Footer';
 import Modals from './../modals';
 
 /**

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 /**
- * CallToAction Class Component
+ * Footer Class Component
  * */
 class Footer extends Component {
   /**

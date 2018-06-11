@@ -4,8 +4,8 @@ import DocumentTitle from 'react-document-title';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import AuthHeader from '../AuthHeader';
-import AuthFooter from '../authFooter';
-import SignUpForm from './signUpForm';
+import AuthFooter from '../AuthFooter';
+import SignUpForm from './SignUpForm';
 import { userSignupRequest } from '../../../actions/authActions';
 
 /**

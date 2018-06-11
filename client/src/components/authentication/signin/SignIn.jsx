@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import DocumentTitle from 'react-document-title';
 import AuthHeader from '../AuthHeader';
-import AuthFooter from '../authFooter';
-import SignInForm from './signInForm';
+import AuthFooter from '../AuthFooter';
+import SignInForm from './SignInForm';
 
 /**
    * SignIn Class Component

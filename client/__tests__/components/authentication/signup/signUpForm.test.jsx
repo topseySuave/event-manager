@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { SignUpForm } from
-  '../../../../src/components/authentication/signup/signUpForm';
+  '../../../../src/components/authentication/signup/SignUpForm';
 import { userSignupRequest } from '../../../../src/actions/authActions';
 
 describe('Authentication Sign Up Component', () => {

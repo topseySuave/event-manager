@@ -14,7 +14,7 @@ import Helpers from '../../../helpers';
 import history from '../../../util/history';
 
 /**
-   * AllCenters Class Component
+   * AddCenterForm Class Component
    * */
 class AddCenterForm extends Component {
   /**

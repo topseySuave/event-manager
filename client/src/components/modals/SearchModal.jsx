@@ -5,8 +5,8 @@ import { bindActionCreators } from 'redux';
 import shortid from 'shortid';
 import isEmpty from 'lodash/isEmpty';
 import PropTypes from 'prop-types';
-import EventCard from '../bodyComponents/eventsCard/eventCard';
-import CenterCard from '../centerComponent/centerCard/centerCard';
+import EventCard from '../bodyComponents/eventsCard/EventCard';
+import CenterCard from '../centerComponent/centerCard/CenterCard';
 import Helpers from '../../helpers';
 import {
   filterCenterTitle,

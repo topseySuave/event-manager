@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import AuthFooter from
-  '../../../src/components/authentication/authFooter';
+  '../../../src/components/authentication/AuthFooter';
 
 describe('Authentication footer Component', () => {
   const wrapper = shallow(<AuthFooter />);

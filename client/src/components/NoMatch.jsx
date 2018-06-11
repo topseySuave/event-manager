@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import DocumentTitle from 'react-document-title';
-import Footer from './bodyComponents/footer/footer';
+import Footer from './bodyComponents/footer/Footer';
 import FixedNav from './bodyComponents/headNav/fixedNav';
 
 /**

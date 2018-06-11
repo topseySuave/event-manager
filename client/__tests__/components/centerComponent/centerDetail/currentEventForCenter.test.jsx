@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { CurrentEventForCenter, mapDispatchToProps } from
-  '../../../../src/components/centerComponent/centerDetail/currentEventForCenter'; // eslint-disable-line
+  '../../../../src/components/centerComponent/centerDetail/CurrentEventForCenter'; // eslint-disable-line
 import { allEvents } from '../../../__mocks__/actions/eventsMock';
 import { handleStatusEventAction } from
   '../../../../src/actions/events-actions/';

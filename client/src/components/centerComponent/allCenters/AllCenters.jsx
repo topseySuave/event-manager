@@ -11,10 +11,10 @@ import {
   loadMoreCenters
 } from '../../../actions/center-actions/fetchCenterAction';
 import { searchAction } from '../../../actions/searchAction';
-import CenterCard from '../centerCard/centerCard';
+import CenterCard from '../centerCard/CenterCard';
 import { CircularLoader } from '../../loader';
 import Helpers from '../../../helpers';
-import SearchFasterForm from './searchFasterForm';
+import SearchFasterForm from './SearchFasterForm';
 
 /**
    * AllCenters Class Component

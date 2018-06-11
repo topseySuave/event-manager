@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import { SearchModal } from '../../../src/components/modals/searchModal';
+import { SearchModal } from '../../../src/components/modals/SearchModal';
 import { createEventRequest } from '../../../src/actions/events-actions/index';
 import {
   filterCenterTitle,

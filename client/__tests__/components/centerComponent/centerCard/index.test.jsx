@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import CenterCard from
-  '../../../../src/components/centerComponent/centerCard/centerCard';
+  '../../../../src/components/centerComponent/centerCard/CenterCard';
 
 describe('CenterCard component', () => {
   let props = {

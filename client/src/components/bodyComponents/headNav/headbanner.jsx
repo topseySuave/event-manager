@@ -20,7 +20,7 @@ import { signOutRequest } from '../../../actions/authActions';
 import history from '../../../util/history';
 import { centerBackgrounds } from '../../../util/facilities';
 import SearchFasterForm from
-  '../../centerComponent/allCenters/searchFasterForm';
+  '../../centerComponent/allCenters/SearchFasterForm';
 
 const searchStyle = {
   main: {
@@ -33,7 +33,7 @@ const searchStyle = {
 };
 
 /**
- * MyEventCardHolder Class Component
+ * HeaderBanner Class Component
  * */
 export class HeaderBanner extends Component {
   /**
@@ -234,7 +234,7 @@ export class HeaderBanner extends Component {
   /**
    * render method
    * @returns { component }
-   * @memberOf MyEventCardHolder
+   * @memberOf HeaderBanner
    * */
   render() {
     return (

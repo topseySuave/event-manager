@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { AllCenters } from
-  '../../../../src/components/centerComponent/allCenters/allCenters';
+  '../../../../src/components/centerComponent/allCenters/AllCenters';
 import {
   fetchCentersAction,
   loadMoreCenters

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { EventCard } from
-  '../../../../src/components/bodyComponents/eventsCard/eventCard';
+  '../../../../src/components/bodyComponents/eventsCard/EventCard';
 import {
   deleteEventRequest,
   editEventRequestAction

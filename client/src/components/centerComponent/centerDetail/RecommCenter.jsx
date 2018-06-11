@@ -6,7 +6,7 @@ import isEmpty from 'lodash/isEmpty';
 
 import { CircularLoader } from '../../loader';
 import Helpers from '../../../helpers';
-import CenterCard from '../centerCard/centerCard';
+import CenterCard from '../centerCard/CenterCard';
 
 /**
  * RecommCenter Class Component

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import EditEventModal from './eventModalForm/editEventModal';
+import EditEventModal from './eventModalForm/EditEventModal';
 import CenterModal from './CenterModal';
-import SearchModal from './searchModal';
+import SearchModal from './SearchModal';
 
 /**
  * Modals Class Component

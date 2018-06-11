@@ -10,7 +10,7 @@ import {
   fetchCentersAction,
   loadMoreCenters
 } from '../../actions/center-actions/fetchCenterAction';
-import CenterCard from '../centerComponent/centerCard/centerCard';
+import CenterCard from '../centerComponent/centerCard/CenterCard';
 import { searchAction } from '../../actions/searchAction';
 import { CircularLoader } from '../loader';
 import Helpers from '../../helpers';

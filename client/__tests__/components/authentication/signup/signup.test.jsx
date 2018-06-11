@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { SignUp, mapDispatchToProps } from
-  '../../../../src/components/authentication/signup/signup';
+  '../../../../src/components/authentication/signup/SignUp';
 import { userSignupRequest } from '../../../../src/actions/authActions';
 
 describe('SignUp component', () => {

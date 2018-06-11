@@ -6,7 +6,7 @@ import { PropsTypes } from 'prop-types';
 import shortid from 'shortid';
 import isEmpty from 'lodash/isEmpty';
 import { CircularLoader } from '../loader';
-import EventCard from './eventsCard/eventCard';
+import EventCard from './eventsCard/EventCard';
 import {
   fetchEventRequest,
   loadMoreEvents,

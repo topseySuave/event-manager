@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Nav from './bodyComponents/headNav/nav';
 import HeaderBanner from './bodyComponents/headNav/headbanner';
-import IndexCenterCardHolder from './bodyComponents/indexCentersCard';
-import CallToAction from './bodyComponents/footer/callToAction';
+import IndexCenterCardHolder from './bodyComponents/IndexCenterCardHolder';
+import CallToAction from './bodyComponents/footer/CallToAction';
 import FloatingActionButton from
   './bodyComponents/floatingActionButton/FloatingActionButton';
-import Footer from './bodyComponents/footer/footer';
+import Footer from './bodyComponents/footer/Footer';
 import Modals from './modals';
 
 /**

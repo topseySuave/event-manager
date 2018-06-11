@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import SignIn from
-  '../../../../src/components/authentication/signin/signin';
+  '../../../../src/components/authentication/signin/SignIn';
 
 describe('Authentication Sign In Component', () => {
   const wrapper = shallow(<SignIn />);

@@ -21,7 +21,7 @@ import {
   deleteEventRequest,
   editEventRequestAction
 } from '../../../actions/events-actions';
-import EditEventModal from '../../modals/eventModalForm/editEventModal';
+import EditEventModal from '../../modals/eventModalForm/EditEventModal';
 import { REMOVE_EVENT } from '../../../actions';
 import { imageNotAvailable } from '../../../util/facilities';
 

@@ -18,10 +18,10 @@ import {
 } from '../../../actions/center-actions/activeCenterAction';
 import { deleteCenterRequest } from
   '../../../actions/center-actions/deleteCenterAction';
-import CurrentEventForCenter from './currentEventForCenter';
+import CurrentEventForCenter from './CurrentEventForCenter';
 import RecommCenter from './RecommCenter';
 import EventModal from '../../modals/EventModal';
-import EditCenterForm from '../../modals/centerModalForms/editCenterForm';
+import EditCenterForm from '../../modals/centerModalForms/EditCenterForm';
 import { fetchCenterRelatedTo } from
   '../../../actions/center-actions/fetchCenterRelatedTo';
 import { handleStatusEventAction } from '../../../actions/events-actions';

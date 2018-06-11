@@ -10,7 +10,7 @@ import ContentClear from "material-ui/svg-icons/content/clear";
 import FlatButton from "material-ui/FlatButton";
 import Dialog from "material-ui/Dialog";
 
-import EventCard from "../../bodyComponents/eventsCard/eventCard";
+import EventCard from "../../bodyComponents/eventsCard/EventCard";
 import { handleStatusEventAction } from "../../../actions/events-actions";
 
 export class CurrentEventForCenter extends Component {
