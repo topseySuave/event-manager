@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { IndexCenterCardHolder, mapStateToProps, mapDispatchToProps } from
-  '../../../src/components/bodyComponents/indexCentersCard';
+  '../../../src/components/bodyComponents/IndexCenterCardHolder';
 import {
   fetchCentersAction,
   loadMoreCenters

@@ -57,7 +57,6 @@ describe('Client Input Validator', () => {
         confirmPassword: '28'
       };
       let { state: { errors }, isValid } = validateSignUpInput(inputValues);
-      console.log('error ===> ', errors);
       expect(errors.email).toBe('Email is Invalid');
       expect(errors.firstName)
         .toBe('First Name is too short, Must be more than 2 characters');

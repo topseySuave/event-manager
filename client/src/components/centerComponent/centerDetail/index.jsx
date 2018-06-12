@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import DocumentTitle from 'react-document-title';
 import FixedNav from '../../bodyComponents/headNav/fixedNav';
-import CenterDetail from './centerDetail';
+import CenterDetail from './CenterDetail';
 import FloatingActionButton from
   '../../bodyComponents/floatingActionButton/FloatingActionButton';
-import Footer from '../../bodyComponents/footer/footer';
+import Footer from '../../bodyComponents/footer/Footer';
 import Modals from '../../modals';
 
 /**

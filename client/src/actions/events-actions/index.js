@@ -245,9 +245,9 @@ export const deleteEventRequest = (id) => {
  *  @Load more Event Request Action
  *  @Returns Object
  * * */
-export const loadMoreEvents = offset => (dispatch) => {
+export const loadMoreEvents = (userId, offset) => (dispatch) => {
   dispatch(eventsDispatchAction('LOADMORE_EVENT_REQUEST'));
-  return axios.get(`${api}?next=${offset}`)
+  return axios.get(`${api}?sessionEvents=${userId}&next=${offset}`)
     .then(({ data }) => {
       if (data.statusCode === 200) {
         return dispatch(eventsDispatchAction('LOADMORE_EVENT_SUCCESS', data

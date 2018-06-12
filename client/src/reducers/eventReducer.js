@@ -33,15 +33,8 @@ export default (state = initialState, action = {}) => {
 
     case ADD_EVENT:
       newState = { ...state };
-      if (newState.sessEvents.events.length > 0) {
-        newState.sessEvents.events.unshift(action.payload);
-        newState.sessEvents.meta.totalCount = newState.sessEvents.events.length;
-        newState.sessEvents.meta.pageCount = Math
-          .ceil(newState.sessEvents.meta.totalCount / pageLimit);
-        newState.sessEvents.eventCreated = true;
-        return newState;
-      }
-      newState.sessEvents.events.unshift(action.payload);
+      newState.sessEvents
+        .events = [action.payload, ...newState.sessEvents.events];
       newState.sessEvents.meta.totalCount = newState.sessEvents.events.length;
       newState.sessEvents.meta.pageCount = Math
         .ceil(newState.sessEvents.meta.totalCount / pageLimit);
@@ -87,11 +80,8 @@ export default (state = initialState, action = {}) => {
 
     case REMOVE_EVENT:
       newState = { ...state };
-      newState.sessEvents.events.map((event, index) => {
-        if (event.id === action.payload.id) {
-          delete newState.sessEvents.events[index];
-        }
-      });
+      newState.sessEvents.events = newState.sessEvents.events
+        .filter(event => event.id !== action.payload.id);
       newState.sessEvents.meta.totalCount = newState.sessEvents.events.length;
       newState.sessEvents.meta.pageSize = newState.sessEvents.meta.totalCount;
       newState.sessEvents.meta.pageCount =

@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import ReactRouterEnzymeContext from 'react-router-enzyme-context';
 import { SignInForm, mapStateToProps, matchDispatchToProps } from
-  '../../../../src/components/authentication/signin/signInForm';
+  '../../../../src/components/authentication/signin/SignInForm';
 import { userSignInRequest } from '../../../../src/actions/authActions';
 
 const mountComp = (props, userSignInReq, history) => {

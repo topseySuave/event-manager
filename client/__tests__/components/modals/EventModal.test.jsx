@@ -22,8 +22,8 @@ const getComponent = () => {
       eventToEdit: {
         title: 'we put the goog in the good life',
         img_url: '',
-        startDate: new Date() + 10,
-        endDate: new Date() + 20,
+        startDate: 'Tue Jun 20 2018',
+        endDate: 'Tue Jun 21 2018',
         description: 'we put the goog in the good life'
       },
       centerIsBooked: true,

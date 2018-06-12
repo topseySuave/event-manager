@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { EventCard } from
-  '../../../../src/components/bodyComponents/eventsCard/eventCard';
+  '../../../../src/components/bodyComponents/eventsCard/EventCard';
 import {
   deleteEventRequest,
   editEventRequestAction
@@ -29,8 +29,8 @@ describe('EventCard component', () => {
         title: 'this is us',
         img_url: '',
         description: 'a brief description',
-        startDate: new Date() + 1,
-        endDate: new Date() + 10,
+        startDate: 'Tue Jun 12 2018',
+        endDate: 'Tue Jun 18 2018',
         userId: 1,
         center: { location: 'ikeja' },
         status: 'pending'

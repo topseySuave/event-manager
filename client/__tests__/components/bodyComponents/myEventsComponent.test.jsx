@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { MyEventCardHolder } from
-  '../../../src/components/bodyComponents/myEventsComponent';
+  '../../../src/components/bodyComponents/MyEventCardHolder';
 import {
   fetchEventRequest,
   loadMoreEvents,

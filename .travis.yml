@@ -2,9 +2,7 @@ language: node_js
 node_js:
   - 9
   - 6
-cache:
-  directories:
-  - node_modules
+cache: false
 addons:
 - postgresql: "9.4"
 env:
@@ -22,5 +20,5 @@ script:
   - npm run test
   - codecov
 after_success:
-  - codeclimate-test-reporter < coverage/lcov.info
+  - codeclimate-test-reporter < cat ./coverage/lcov.info
   - npm run coverage

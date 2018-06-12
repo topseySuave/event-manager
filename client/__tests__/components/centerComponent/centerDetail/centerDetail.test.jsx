@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { store } from '../../../../src/rootReducer';
 import { CenterDetail, mapStateToProps, mapDispatchToProps } from
-  '../../../../src/components/centerComponent/centerDetail/centerDetail';
+  '../../../../src/components/centerComponent/centerDetail/CenterDetail';
 import { fetchCenterAction, editCenterRequestAction } from
   '../../../../src/actions/center-actions/activeCenterAction';
 import { facilitiesResources } from

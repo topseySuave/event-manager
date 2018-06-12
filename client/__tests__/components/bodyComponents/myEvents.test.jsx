@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { MyEvents } from
-  '../../../src/components/bodyComponents/myEvents';
+  '../../../src/components/bodyComponents/MyEvents';
 
 let wrapper, instance, mounted;
 let store, comProps;

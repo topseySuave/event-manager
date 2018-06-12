@@ -5,7 +5,7 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <EventCard
-    deleteEventRequest={[MockFunction]}
+    deleteEventRequest={[Function]}
     editEventRequestAction={[Function]}
     event={
       Object {
@@ -13,10 +13,10 @@ ShallowWrapper {
           "location": "ikeja",
         },
         "description": "a brief description",
-        "endDate": "Thu Jun 07 2018 06:53:31 GMT+0100 (WAT)10",
+        "endDate": "Tue Jun 18 2018",
         "id": 1,
         "img_url": "",
-        "startDate": "Thu Jun 07 2018 06:53:31 GMT+0100 (WAT)1",
+        "startDate": "Tue Jun 12 2018",
         "status": "pending",
         "title": "this is us",
         "userId": 1,
@@ -92,7 +92,7 @@ ShallowWrapper {
         </Dialog>,
         <div
           className="card"
-          data-id="SkxEvdrIxX"
+          data-id="S1enXEF3gm"
         >
           <div
             className="card-image"
@@ -118,7 +118,7 @@ ShallowWrapper {
               this is us
             </span>
             <a
-              className="btn-floating activator halfway-fab waves-effect waves-light tooltipped blue"
+              className="btn-floating activator halfway-fab waves-effect waves-light tooltipped yellow"
               data-position="bottom"
               data-tooltip="share"
             >
@@ -140,7 +140,7 @@ ShallowWrapper {
               >
                 schedule
               </i>
-              Thu Jun 07 2018
+              Tue Jun 12 2018 - Mon Jun 18 2018
             </p>
             <div>
               <i
@@ -359,7 +359,7 @@ ShallowWrapper {
                 this is us
               </span>
               <a
-                className="btn-floating activator halfway-fab waves-effect waves-light tooltipped blue"
+                className="btn-floating activator halfway-fab waves-effect waves-light tooltipped yellow"
                 data-position="bottom"
                 data-tooltip="share"
               >
@@ -381,7 +381,7 @@ ShallowWrapper {
                 >
                   schedule
                 </i>
-                Thu Jun 07 2018
+                Tue Jun 12 2018 - Mon Jun 18 2018
               </p>
               <div>
                 <i
@@ -517,7 +517,7 @@ ShallowWrapper {
             </div>,
           ],
           "className": "card",
-          "data-id": "SkxEvdrIxX",
+          "data-id": "S1enXEF3gm",
         },
         "ref": null,
         "rendered": Array [
@@ -548,7 +548,7 @@ ShallowWrapper {
                   this is us
                 </span>,
                 <a
-                  className="btn-floating activator halfway-fab waves-effect waves-light tooltipped blue"
+                  className="btn-floating activator halfway-fab waves-effect waves-light tooltipped yellow"
                   data-position="bottom"
                   data-tooltip="share"
                 >
@@ -613,7 +613,7 @@ ShallowWrapper {
                   >
                     dehaze
                   </i>,
-                  "className": "btn-floating activator halfway-fab waves-effect waves-light tooltipped blue",
+                  "className": "btn-floating activator halfway-fab waves-effect waves-light tooltipped yellow",
                   "data-position": "bottom",
                   "data-tooltip": "share",
                 },
@@ -649,7 +649,7 @@ ShallowWrapper {
                   >
                     schedule
                   </i>
-                  Thu Jun 07 2018
+                  Tue Jun 12 2018 - Mon Jun 18 2018
                 </p>,
                 <div>
                   <i
@@ -768,7 +768,7 @@ ShallowWrapper {
                     >
                       schedule
                     </i>,
-                    "Thu Jun 07 2018",
+                    "Tue Jun 12 2018 - Mon Jun 18 2018",
                   ],
                   "className": "small__duration",
                 },
@@ -786,7 +786,7 @@ ShallowWrapper {
                     "rendered": "schedule",
                     "type": "i",
                   },
-                  "Thu Jun 07 2018",
+                  "Tue Jun 12 2018 - Mon Jun 18 2018",
                 ],
                 "type": "p",
               },
@@ -1265,7 +1265,7 @@ ShallowWrapper {
           </Dialog>,
           <div
             className="card"
-            data-id="SkxEvdrIxX"
+            data-id="S1enXEF3gm"
           >
             <div
               className="card-image"
@@ -1291,7 +1291,7 @@ ShallowWrapper {
                 this is us
               </span>
               <a
-                className="btn-floating activator halfway-fab waves-effect waves-light tooltipped blue"
+                className="btn-floating activator halfway-fab waves-effect waves-light tooltipped yellow"
                 data-position="bottom"
                 data-tooltip="share"
               >
@@ -1313,7 +1313,7 @@ ShallowWrapper {
                 >
                   schedule
                 </i>
-                Thu Jun 07 2018
+                Tue Jun 12 2018 - Mon Jun 18 2018
               </p>
               <div>
                 <i
@@ -1532,7 +1532,7 @@ ShallowWrapper {
                   this is us
                 </span>
                 <a
-                  className="btn-floating activator halfway-fab waves-effect waves-light tooltipped blue"
+                  className="btn-floating activator halfway-fab waves-effect waves-light tooltipped yellow"
                   data-position="bottom"
                   data-tooltip="share"
                 >
@@ -1554,7 +1554,7 @@ ShallowWrapper {
                   >
                     schedule
                   </i>
-                  Thu Jun 07 2018
+                  Tue Jun 12 2018 - Mon Jun 18 2018
                 </p>
                 <div>
                   <i
@@ -1690,7 +1690,7 @@ ShallowWrapper {
               </div>,
             ],
             "className": "card",
-            "data-id": "SkxEvdrIxX",
+            "data-id": "S1enXEF3gm",
           },
           "ref": null,
           "rendered": Array [
@@ -1721,7 +1721,7 @@ ShallowWrapper {
                     this is us
                   </span>,
                   <a
-                    className="btn-floating activator halfway-fab waves-effect waves-light tooltipped blue"
+                    className="btn-floating activator halfway-fab waves-effect waves-light tooltipped yellow"
                     data-position="bottom"
                     data-tooltip="share"
                   >
@@ -1786,7 +1786,7 @@ ShallowWrapper {
                     >
                       dehaze
                     </i>,
-                    "className": "btn-floating activator halfway-fab waves-effect waves-light tooltipped blue",
+                    "className": "btn-floating activator halfway-fab waves-effect waves-light tooltipped yellow",
                     "data-position": "bottom",
                     "data-tooltip": "share",
                   },
@@ -1822,7 +1822,7 @@ ShallowWrapper {
                     >
                       schedule
                     </i>
-                    Thu Jun 07 2018
+                    Tue Jun 12 2018 - Mon Jun 18 2018
                   </p>,
                   <div>
                     <i
@@ -1941,7 +1941,7 @@ ShallowWrapper {
                       >
                         schedule
                       </i>,
-                      "Thu Jun 07 2018",
+                      "Tue Jun 12 2018 - Mon Jun 18 2018",
                     ],
                     "className": "small__duration",
                   },
@@ -1959,7 +1959,7 @@ ShallowWrapper {
                       "rendered": "schedule",
                       "type": "i",
                     },
-                    "Thu Jun 07 2018",
+                    "Tue Jun 12 2018 - Mon Jun 18 2018",
                   ],
                   "type": "p",
                 },

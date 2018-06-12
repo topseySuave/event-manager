@@ -6,7 +6,7 @@ import isEmpty from 'lodash/isEmpty';
 
 import { CircularLoader } from '../../loader';
 import Helpers from '../../../helpers';
-import CenterCard from '../centerCard/centerCard';
+import CenterCard from '../centerCard/CenterCard';
 
 /**
  * RecommCenter Class Component
@@ -74,7 +74,9 @@ class RecommCenter extends Component {
         const to = `/center/${center.id}/${this.helper
           .sanitizeString(center.title)}`;
         return (
-          <CenterCard to={to} center={center} key={shortid.generate()} />
+          <div className="col s12 l4" key={shortid.generate()}>
+            <CenterCard to={to} center={center} />
+          </div>
         );
       });
     }
@@ -109,7 +111,7 @@ class RecommCenter extends Component {
 }
 
 RecommCenter.propTypes = {
-  relatedCenterBasedOn: PropTypes.object.isRequired,
+  relatedCenterBasedOn: PropTypes.object,
   fetchCenterRelatedTo: PropTypes.func.isRequired
 };
 
