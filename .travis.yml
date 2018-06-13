@@ -20,5 +20,5 @@ script:
   - npm run test
   - codecov
 after_success:
-  - codeclimate-test-reporter < cat ./coverage/lcov.info
+  - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN codeclimate-test-reporter < cat ./coverage/lcov.info
   - npm run coverage
