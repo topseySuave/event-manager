@@ -50,12 +50,6 @@ app.get('*', (req, res) => {
     .sendFile(path.join(__dirname, '..', 'client/public/index.html'));
 });
 
-// support service worker registration
-app.get('/service-worker.js', (req, res) => {
-  res.sendFile(path
-    .resolve(__dirname, '../client/src/registerServiceWorker.js'));
-});
-
 app.use((req, res) => res.status(404).send({
   error: '404: Sorry Route Not Found!'
 }));
