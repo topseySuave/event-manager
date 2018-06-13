@@ -114,7 +114,7 @@ Click [Here](https://boots-events.herokuapp.com/docs) to view our API documentat
 
 * [Material-ui](https://material-ui.com) - React components that implement Google's Material Design.
 
-* [MaterialCss](https://materialcss.com) - A modern responsive front-end framework based on Material Design
+* [MaterializeCss](https://materializecss.com) - A modern responsive front-end framework based on Material Design
 
 ## License
 This project is licensed under
