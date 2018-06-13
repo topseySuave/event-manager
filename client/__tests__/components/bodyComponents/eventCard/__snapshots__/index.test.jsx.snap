@@ -92,7 +92,7 @@ ShallowWrapper {
         </Dialog>,
         <div
           className="card"
-          data-id="S1enXEF3gm"
+          data-id="ByxYs2pReQ"
         >
           <div
             className="card-image"
@@ -104,7 +104,7 @@ ShallowWrapper {
             </span>
             <img
               alt="this is us"
-              src="http://www.topangacreekoutpost.com/assets/images/site/image_not_available.png"
+              src="https://www.topangacreekoutpost.com/assets/images/site/image_not_available.png"
             />
             <span
               className="card-title bold"
@@ -118,7 +118,7 @@ ShallowWrapper {
               this is us
             </span>
             <a
-              className="btn-floating activator halfway-fab waves-effect waves-light tooltipped yellow"
+              className="btn-floating activator halfway-fab waves-effect waves-light tooltipped blue"
               data-position="bottom"
               data-tooltip="share"
             >
@@ -345,7 +345,7 @@ ShallowWrapper {
               </span>
               <img
                 alt="this is us"
-                src="http://www.topangacreekoutpost.com/assets/images/site/image_not_available.png"
+                src="https://www.topangacreekoutpost.com/assets/images/site/image_not_available.png"
               />
               <span
                 className="card-title bold"
@@ -359,7 +359,7 @@ ShallowWrapper {
                 this is us
               </span>
               <a
-                className="btn-floating activator halfway-fab waves-effect waves-light tooltipped yellow"
+                className="btn-floating activator halfway-fab waves-effect waves-light tooltipped blue"
                 data-position="bottom"
                 data-tooltip="share"
               >
@@ -517,7 +517,7 @@ ShallowWrapper {
             </div>,
           ],
           "className": "card",
-          "data-id": "S1enXEF3gm",
+          "data-id": "ByxYs2pReQ",
         },
         "ref": null,
         "rendered": Array [
@@ -534,7 +534,7 @@ ShallowWrapper {
                 </span>,
                 <img
                   alt="this is us"
-                  src="http://www.topangacreekoutpost.com/assets/images/site/image_not_available.png"
+                  src="https://www.topangacreekoutpost.com/assets/images/site/image_not_available.png"
                 />,
                 <span
                   className="card-title bold"
@@ -548,7 +548,7 @@ ShallowWrapper {
                   this is us
                 </span>,
                 <a
-                  className="btn-floating activator halfway-fab waves-effect waves-light tooltipped yellow"
+                  className="btn-floating activator halfway-fab waves-effect waves-light tooltipped blue"
                   data-position="bottom"
                   data-tooltip="share"
                 >
@@ -581,7 +581,7 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "alt": "this is us",
-                  "src": "http://www.topangacreekoutpost.com/assets/images/site/image_not_available.png",
+                  "src": "https://www.topangacreekoutpost.com/assets/images/site/image_not_available.png",
                 },
                 "ref": null,
                 "rendered": null,
@@ -613,7 +613,7 @@ ShallowWrapper {
                   >
                     dehaze
                   </i>,
-                  "className": "btn-floating activator halfway-fab waves-effect waves-light tooltipped yellow",
+                  "className": "btn-floating activator halfway-fab waves-effect waves-light tooltipped blue",
                   "data-position": "bottom",
                   "data-tooltip": "share",
                 },
@@ -1265,7 +1265,7 @@ ShallowWrapper {
           </Dialog>,
           <div
             className="card"
-            data-id="S1enXEF3gm"
+            data-id="ByxYs2pReQ"
           >
             <div
               className="card-image"
@@ -1277,7 +1277,7 @@ ShallowWrapper {
               </span>
               <img
                 alt="this is us"
-                src="http://www.topangacreekoutpost.com/assets/images/site/image_not_available.png"
+                src="https://www.topangacreekoutpost.com/assets/images/site/image_not_available.png"
               />
               <span
                 className="card-title bold"
@@ -1291,7 +1291,7 @@ ShallowWrapper {
                 this is us
               </span>
               <a
-                className="btn-floating activator halfway-fab waves-effect waves-light tooltipped yellow"
+                className="btn-floating activator halfway-fab waves-effect waves-light tooltipped blue"
                 data-position="bottom"
                 data-tooltip="share"
               >
@@ -1518,7 +1518,7 @@ ShallowWrapper {
                 </span>
                 <img
                   alt="this is us"
-                  src="http://www.topangacreekoutpost.com/assets/images/site/image_not_available.png"
+                  src="https://www.topangacreekoutpost.com/assets/images/site/image_not_available.png"
                 />
                 <span
                   className="card-title bold"
@@ -1532,7 +1532,7 @@ ShallowWrapper {
                   this is us
                 </span>
                 <a
-                  className="btn-floating activator halfway-fab waves-effect waves-light tooltipped yellow"
+                  className="btn-floating activator halfway-fab waves-effect waves-light tooltipped blue"
                   data-position="bottom"
                   data-tooltip="share"
                 >
@@ -1690,7 +1690,7 @@ ShallowWrapper {
               </div>,
             ],
             "className": "card",
-            "data-id": "S1enXEF3gm",
+            "data-id": "ByxYs2pReQ",
           },
           "ref": null,
           "rendered": Array [
@@ -1707,7 +1707,7 @@ ShallowWrapper {
                   </span>,
                   <img
                     alt="this is us"
-                    src="http://www.topangacreekoutpost.com/assets/images/site/image_not_available.png"
+                    src="https://www.topangacreekoutpost.com/assets/images/site/image_not_available.png"
                   />,
                   <span
                     className="card-title bold"
@@ -1721,7 +1721,7 @@ ShallowWrapper {
                     this is us
                   </span>,
                   <a
-                    className="btn-floating activator halfway-fab waves-effect waves-light tooltipped yellow"
+                    className="btn-floating activator halfway-fab waves-effect waves-light tooltipped blue"
                     data-position="bottom"
                     data-tooltip="share"
                   >
@@ -1754,7 +1754,7 @@ ShallowWrapper {
                   "nodeType": "host",
                   "props": Object {
                     "alt": "this is us",
-                    "src": "http://www.topangacreekoutpost.com/assets/images/site/image_not_available.png",
+                    "src": "https://www.topangacreekoutpost.com/assets/images/site/image_not_available.png",
                   },
                   "ref": null,
                   "rendered": null,
@@ -1786,7 +1786,7 @@ ShallowWrapper {
                     >
                       dehaze
                     </i>,
-                    "className": "btn-floating activator halfway-fab waves-effect waves-light tooltipped yellow",
+                    "className": "btn-floating activator halfway-fab waves-effect waves-light tooltipped blue",
                     "data-position": "bottom",
                     "data-tooltip": "share",
                   },
