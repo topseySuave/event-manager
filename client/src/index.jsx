@@ -10,7 +10,6 @@ import App from './components/App';
 import AuthCheck from './helpers/authCheck';
 import { store } from './rootReducer';
 import history from '../src/util/history';
-import registerServiceWorker from './registerServiceWorker';
 
 new AuthCheck().isSignedIn();
 
@@ -57,5 +56,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
-
-registerServiceWorker();
