@@ -21,11 +21,11 @@ export const centerBackgrounds = [
     'wp-content/uploads/2015/03/188388-640x427.jpg',
   'https://1ycj2r3bavx920ilxq3m8nxc157p-wpengine.netdna-ssl.com/' +
     'wp-content/uploads/2014/08/decor-more-Banner-980-x-450.jpg',
-  'http://www.landmarklagos.com/wp-content/uploads/2015/09/banner-3.jpg',
+  'https://www.landmarklagos.com/wp-content/uploads/2015/09/banner-3.jpg',
   'https://aggieeventcenter.com/' +
     'wp-content/uploads/2014/04/blue-room-lights.jpg',
-  'http://merryacres.com/wp-content/uploads/2014/01/slider7.jpg',
+  'https://merryacres.com/wp-content/uploads/2014/01/slider7.jpg',
 ];
 
-export const imageNotAvailable = 'http://www.topangacreekoutpost.com/' +
+export const imageNotAvailable = 'https://www.topangacreekoutpost.com/' +
   'assets/images/site/image_not_available.png';

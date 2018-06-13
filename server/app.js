@@ -4,7 +4,6 @@ import bodyParser from 'body-parser';
 import http from 'http';
 import path from 'path';
 import webpack from 'webpack';
-import webpackHotMiddleware from 'webpack-hot-middleware';
 import swagger from 'swagger-ui-express';
 import dotenv from 'dotenv';
 import swaggerDoc from './docs/swagger.json';
@@ -42,15 +41,6 @@ app.use(apiRoute, event);
 app.use('/admin', admin);
 app.use('/docs', swagger.serve, swagger.setup(swaggerDoc));
 
-app.use(webpackHotMiddleware(compiler, {
-  hot: true,
-  publicPath: config.output.publicPath,
-  noInfo: true,
-  log: console.log,
-  path: '/__webpack_hmr',
-  heartbeat: 10 * 1000
-}));
-
 app.use(express.static(path.join(__dirname, '../client/public')));
 app.set('views', path.join(__dirname, '..', 'client', 'public'));
 
@@ -58,6 +48,12 @@ app.set('views', path.join(__dirname, '..', 'client', 'public'));
 app.get('*', (req, res) => {
   res.status(200)
     .sendFile(path.join(__dirname, '..', 'client/public/index.html'));
+});
+
+// support service worker registration
+app.get('/service-worker.js', (req, res) => {
+  res.sendFile(path
+    .resolve(__dirname, '../client/src/registerServiceWorker.js'));
 });
 
 app.use((req, res) => res.status(404).send({
