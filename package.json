@@ -62,7 +62,7 @@
     "testRegex": "./client/__tests__/.*\\.test\\.(js|jsx)$",
     "setupTestFrameworkScriptFile": "./client/__tests__/setup.js",
     "collectCoverageFrom": [
-      "client/src/**",
+      "client/src/**/*.{js,jsx}",
       "!client/src/index.jsx",
       "!client/src/components/modals/centerModalForms/*.*",
       "!client/src/components/modals/eventModalForm/*.*"
