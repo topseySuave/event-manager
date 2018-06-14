@@ -33,31 +33,7 @@
     "e2e": "nightwatch"
   },
   "nyc": {
-    "include": [
-      "client/src/**",
-      "server/**"
-    ],
-    "reporter": [
-      "lcov",
-      "text",
-      "html"
-    ],
-    "extension": [
-      ".js",
-      ".jsx"
-    ],
-    "report-dir": "./coverage",
     "exclude": [
-      "client/src/index.jsx",
-      "client/src/registerServiceWorker.js",
-      "client/src/rootReducer.js",
-      "client/src/util/",
-      "client/src/actions/modalAction.js",
-      "client/src/actions/searchAction.js",
-      "client/src/actions/events-actions/index.js",
-      "client/src/helpers/AuthCheck.js",
-      "client/src/components/modals/centerModalForms/*.*",
-      "client/src/components/modals/eventModalForm/*.*",
       "server/middleware/imageUploader.js",
       "server/middleware/mailer.js",
       "server/models/**",
@@ -83,7 +59,7 @@
   },
   "jest": {
     "verbose": false,
-    "testRegex": "/client/__tests__/.*\\.test\\.(js|jsx)$",
+    "testRegex": "./client/__tests__/.*\\.test\\.(js|jsx)$",
     "setupTestFrameworkScriptFile": "./client/__tests__/setup.js",
     "collectCoverageFrom": [
       "client/src/**",
