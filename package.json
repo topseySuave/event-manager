@@ -19,7 +19,7 @@
     "test:local": "npm run pretest && npm run test:server",
     "test": "nyc --reporter=html --reporter=text npm run test:client && npm run test:server",
     "test:client": "jest -u --maxWorkers=4 --coverage",
-    "test:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --timeout 20000 --exit --require babel-core/register server/test/index.js",
+    "test:server": "cross-env NODE_ENV=test mocha --timeout 20000 --exit --require babel-core/register server/test/index.js",
     "test:dev:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha ./server/test/index.js --exit --require babel-node/register --reporter spec",
     "test:dev": "npm test && npm run coverage",
     "webpack": "webpack --config webpack.dev.js --watch",
@@ -33,15 +33,38 @@
     "e2e": "nightwatch"
   },
   "nyc": {
+    "include": [
+      "client/src/**",
+      "server/**"
+    ],
+    "reporter": [
+      "lcov",
+      "text",
+      "html"
+    ],
+    "extension": [
+      ".js",
+      ".jsx"
+    ],
+    "report-dir": "./coverage",
     "exclude": [
+      "client/src/index.jsx",
+      "client/src/registerServiceWorker.js",
+      "client/src/rootReducer.js",
+      "client/src/util/",
+      "client/src/actions/modalAction.js",
+      "client/src/actions/searchAction.js",
+      "client/src/actions/events-actions/index.js",
+      "client/src/helpers/AuthCheck.js",
+      "client/src/components/modals/centerModalForms/*.*",
+      "client/src/components/modals/eventModalForm/*.*",
       "server/middleware/imageUploader.js",
       "server/middleware/mailer.js",
       "server/models/**",
       "server/controllers/**",
       "server/app.js",
       "server/routes/administrator.js"
-    ],
-    "sourceMap": true
+    ]
   },
   "repository": {
     "type": "git",
