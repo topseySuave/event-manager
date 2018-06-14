@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/topseySuave/event-manager.svg?branch=develop)](https://travis-ci.org/topseySuave/event-manager)
 [![Coverage Status](https://coveralls.io/repos/github/topseySuave/event-manager/badge.svg?branch=develop)](https://coveralls.io/github/topseySuave/event-manager?branch=develop)
 [![Maintainability](https://api.codeclimate.com/v1/badges/2219e1701e5995fa3410/maintainability)](https://codeclimate.com/github/topseySuave/event-manager/maintainability)
-
+[![codecov](https://codecov.io/gh/topseySuave/event-manager/branch/develop/graph/badge.svg)](https://codecov.io/gh/topseySuave/event-manager)
 
 # <img src="https://raw.githubusercontent.com/topseySuave/event-manager/develop/client/public/fav.ico" alt="logo" width="25px" /> Events Manager
 Events Manager is a full stack application, that enables users administrate there own centers, An Event registration platform for all of your online and on-site event management needs and handles the entire event lifecycle from start to finish.
