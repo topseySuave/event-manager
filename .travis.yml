@@ -5,8 +5,6 @@ node_js:
 cache: false
 addons:
 - postgresql: "9.4"
-env:
-  - CODECOV_TOKEN=911c9d3c-a567-4ce0-a32c-9a715830f02e
 services:
 - postgresql
 global:
@@ -18,7 +16,8 @@ install:
   - npm install -g codecov
 script:
   - npm run test
-  - codecov
 after_success:
-  - codeclimate-test-reporter < cat ./coverage/lcov.info
+  - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN codeclimate-test-reporter < cat ./coverage/lcov.info
+  - CODECOV_TOKEN=$CODECOV_TOKEN
   - npm run coverage
+  

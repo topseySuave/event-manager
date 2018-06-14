@@ -17,8 +17,8 @@
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "pretest": "NODE_ENV=test npm run drop:db && npm run create:db && npm run migrate:test",
     "test:local": "npm run pretest && npm run test:server",
-    "test": "npm run test:server && npm run test:client",
-    "test:client": "jest -u --maxWorkers=4 && codecov",
+    "test": "npm run test:client && npm run test:server",
+    "test:client": "jest -u --maxWorkers=4 --coverage && codecov",
     "test:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --timeout 20000 --exit --require babel-core/register server/test/index.js",
     "test:dev:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha ./server/test/index.js --exit --require babel-node/register --reporter spec",
     "test:dev": "npm test && npm run coverage",
@@ -40,8 +40,7 @@
       "server/controllers/**",
       "server/app.js",
       "server/routes/administrator.js"
-    ],
-    "sourceMap": true
+    ]
   },
   "repository": {
     "type": "git",
@@ -60,12 +59,12 @@
   },
   "jest": {
     "verbose": false,
-    "testRegex": "/client/__tests__/.*\\.test\\.(js|jsx)$",
+    "testRegex": "client/__tests__/.*\\.test\\.(js|jsx)$",
     "setupTestFrameworkScriptFile": "./client/__tests__/setup.js",
-    "coverageDirectory": "./coverage/client",
     "collectCoverage": true,
+    "coverageDirectory": "coverage",
     "collectCoverageFrom": [
-      "client/src/**",
+      "client/src/**/*.{js,jsx}",
       "!client/src/index.jsx",
       "!client/src/components/modals/centerModalForms/*.*",
       "!client/src/components/modals/eventModalForm/*.*"
