@@ -19,7 +19,7 @@
     "test:local": "npm run pretest && npm run test:server",
     "test": "npm run test:client && npm run test:server",
     "test:client": "jest -u --maxWorkers=4 && codecov",
-    "test:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --timeout 20000 --exit --require babel-core/register server/test/index.js",
+    "test:server": "cross-env NODE_ENV=test mocha --timeout 20000 --exit --require babel-core/register server/test/index.js",
     "test:dev:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha ./server/test/index.js --exit --require babel-node/register --reporter spec",
     "test:dev": "npm test && npm run coverage",
     "webpack": "webpack --config webpack.dev.js --watch",
@@ -62,7 +62,7 @@
     "verbose": false,
     "testRegex": "/client/__tests__/.*\\.test\\.(js|jsx)$",
     "setupTestFrameworkScriptFile": "./client/__tests__/setup.js",
-    "coverageDirectory": "coverage",
+    "coverageDirectory": "/coverage/",
     "collectCoverage": true,
     "collectCoverageFrom": [
       "client/src/**",
