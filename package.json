@@ -62,7 +62,7 @@
     "verbose": false,
     "testRegex": "/client/__tests__/.*\\.test\\.(js|jsx)$",
     "setupTestFrameworkScriptFile": "./client/__tests__/setup.js",
-    "coverageDirectory": "./coverage/client",
+    "coverageDirectory": "coverage",
     "collectCoverage": true,
     "collectCoverageFrom": [
       "client/src/**",
