@@ -3,6 +3,7 @@ import logger from 'morgan';
 import bodyParser from 'body-parser';
 import http from 'http';
 import path from 'path';
+import cors from 'cors';
 import webpack from 'webpack';
 import swagger from 'swagger-ui-express';
 import dotenv from 'dotenv';
@@ -40,6 +41,7 @@ app.use(apiRoute, users);
 app.use(apiRoute, event);
 app.use('/admin', admin);
 app.use('/docs', swagger.serve, swagger.setup(swaggerDoc));
+app.use(cors()); // enable cors requests
 
 app.use(express.static(path.join(__dirname, '../client/public')));
 app.set('views', path.join(__dirname, '..', 'client', 'public'));
