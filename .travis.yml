@@ -20,5 +20,7 @@ script:
   - npm run test
   - codecov
 after_success:
-  - codeclimate-test-reporter < cat ./coverage/lcov.info
+  - codeclimate-test-reporter > cat ./coverage/lcov.info
+  - bash <(curl -s https://codecov.io/bash) -e TRAVIS_NODE_VERSION
+  - cat ./coverage/lcov.info
   - npm run coverage
