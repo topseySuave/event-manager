@@ -35,13 +35,13 @@
   "nyc": {
     "include": ["client/src/**"],
     "exclude": [
-      "./client/src/registerServiceWorker.js",
-      "./client/src/rootReducer.js",
-      "./client/src/util/",
-      "./client/src/actions/modalAction.js",
-      "./client/src/actions/searchAction.js",
-      "./client/src/actions/events-actions/index.js",
-      "./client/src/helpers/AuthCheck.js"
+      "client/src/registerServiceWorker.js",
+      "client/src/rootReducer.js",
+      "client/src/util/",
+      "client/src/actions/modalAction.js",
+      "client/src/actions/searchAction.js",
+      "client/src/actions/events-actions/index.js",
+      "client/src/helpers/AuthCheck.js"
     ],
     "sourceMap": true
   },
@@ -75,13 +75,13 @@
       "node_modules/",
       "server/",
       "build/",
-      "./client/src/registerServiceWorker.js",
-      "./client/src/rootReducer.js",
-      "./client/src/util/",
-      "./client/src/actions/modalAction.js",
-      "./client/src/actions/searchAction.js",
-      "./client/src/actions/events-actions/index.js",
-      "./client/src/helpers/AuthCheck.js"
+      "client/src/rootReducer.js",
+      "client/src/registerServiceWorker.js",
+      "client/src/util/",
+      "client/src/actions/modalAction.js",
+      "client/src/actions/searchAction.js",
+      "client/src/actions/events-actions/index.js",
+      "client/src/helpers/AuthCheck.js"
     ],
     "testPathIgnorePatterns": [
       "client/__tests__/__mocks__/"
