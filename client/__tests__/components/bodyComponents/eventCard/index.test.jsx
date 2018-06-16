@@ -40,7 +40,6 @@ describe('EventCard component', () => {
   });
 
   test('EventCard component should mount', () => {
-    expect(wrapper).toMatchSnapshot();
     expect(wrapper.state('event')).toBeTruthy();
   });
 

@@ -18,8 +18,8 @@
     "pretest": "NODE_ENV=test npm run drop:db && npm run create:db && npm run migrate:test",
     "test:local": "npm run pretest && npm run test:server",
     "test": "npm run test:client && npm run test:server",
-    "test:client": "jest -u --maxWorkers=4 && codecov",
-    "test:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --timeout 20000 --exit --require babel-core/register server/test/index.js",
+    "test:client": "nyc --reporter=html --reporter=text jest",
+    "test:server": "cross-env NODE_ENV=test mocha --timeout 20000 --exit --require babel-core/register server/test/index.js && codecov",
     "test:dev:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha ./server/test/index.js --exit --require babel-node/register --reporter spec",
     "test:dev": "npm test && npm run coverage",
     "webpack": "webpack --config webpack.dev.js --watch",
@@ -33,13 +33,15 @@
     "e2e": "nightwatch"
   },
   "nyc": {
+    "include": ["client/src/**"],
     "exclude": [
-      "server/middleware/imageUploader.js",
-      "server/middleware/mailer.js",
-      "server/models/**",
-      "server/controllers/**",
-      "server/app.js",
-      "server/routes/administrator.js"
+      "./client/src/registerServiceWorker.js",
+      "./client/src/rootReducer.js",
+      "./client/src/util/",
+      "./client/src/actions/modalAction.js",
+      "./client/src/actions/searchAction.js",
+      "./client/src/actions/events-actions/index.js",
+      "./client/src/helpers/AuthCheck.js"
     ],
     "sourceMap": true
   },
@@ -62,7 +64,6 @@
     "verbose": false,
     "testRegex": "./client/__tests__/.*\\.test\\.(js|jsx)$",
     "setupTestFrameworkScriptFile": "./client/__tests__/setup.js",
-    "coverageDirectory": "coverage/",
     "collectCoverage": true,
     "collectCoverageFrom": [
       "client/src/**",
@@ -74,13 +75,13 @@
       "node_modules/",
       "server/",
       "build/",
-      "client/src/registerServiceWorker.js",
-      "client/src/rootReducer.js",
-      "client/src/util/",
-      "client/src/actions/modalAction.js",
-      "client/src/actions/searchAction.js",
-      "client/src/actions/events-actions/index.js",
-      "client/src/helpers/AuthCheck.js"
+      "./client/src/registerServiceWorker.js",
+      "./client/src/rootReducer.js",
+      "./client/src/util/",
+      "./client/src/actions/modalAction.js",
+      "./client/src/actions/searchAction.js",
+      "./client/src/actions/events-actions/index.js",
+      "./client/src/helpers/AuthCheck.js"
     ],
     "testPathIgnorePatterns": [
       "client/__tests__/__mocks__/"
