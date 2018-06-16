@@ -18,8 +18,8 @@
     "pretest": "NODE_ENV=test npm run drop:db && npm run create:db && npm run migrate:test",
     "test:local": "npm run pretest && npm run test:server",
     "test": "npm run test:client && npm run test:server",
-    "test:client": " nyc --reporter=html --reporter=text jest -u --maxWorkers=4",
-    "test:server": "cross-env NODE_ENV=test mocha --timeout 20000 --exit --require babel-core/register server/test/index.js",
+    "test:client": "jest -u --maxWorkers=4 && codecov",
+    "test:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --timeout 20000 --exit --require babel-core/register server/test/index.js",
     "test:dev:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha ./server/test/index.js --exit --require babel-node/register --reporter spec",
     "test:dev": "npm test && npm run coverage",
     "webpack": "webpack --config webpack.dev.js --watch",
@@ -60,7 +60,7 @@
   },
   "jest": {
     "verbose": false,
-    "testRegex": "/client/__tests__/.*\\.test\\.(js|jsx)$",
+    "testRegex": "./client/__tests__/.*\\.test\\.(js|jsx)$",
     "setupTestFrameworkScriptFile": "./client/__tests__/setup.js",
     "coverageDirectory": "coverage/",
     "collectCoverage": true,
@@ -71,19 +71,19 @@
       "!client/src/components/modals/eventModalForm/*.*"
     ],
     "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "/server/",
-      "/build/",
-      "/client/src/registerServiceWorker.js",
-      "/client/src/rootReducer.js",
-      "/client/src/util/",
-      "/client/src/actions/modalAction.js",
-      "/client/src/actions/searchAction.js",
-      "/client/src/actions/events-actions/index.js",
-      "/client/src/helpers/AuthCheck.js"
+      "node_modules/",
+      "server/",
+      "build/",
+      "client/src/registerServiceWorker.js",
+      "client/src/rootReducer.js",
+      "client/src/util/",
+      "client/src/actions/modalAction.js",
+      "client/src/actions/searchAction.js",
+      "client/src/actions/events-actions/index.js",
+      "client/src/helpers/AuthCheck.js"
     ],
     "testPathIgnorePatterns": [
-      "/client/__tests__/__mocks__/"
+      "client/__tests__/__mocks__/"
     ]
   },
   "dependencies": {
