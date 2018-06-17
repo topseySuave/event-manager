@@ -17,9 +17,9 @@
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "pretest": "NODE_ENV=test npm run drop:db && npm run create:db && npm run migrate:test",
     "test:local": "npm run pretest && npm run test:server",
-    "test": "npm run test:server && npm run test:client",
-    "test:client": "nyc --reporter=html --reporter=text jest --maxWorkers=4 --coverage",
-    "test:server": "cross-env NODE_ENV=test mocha --timeout 20000 --exit --require babel-core/register server/test/index.js && codecov -t 911c9d3c-a567-4ce0-a32c-9a715830f02e",
+    "test": "npm run test:client && npm run test:server",
+    "test:client": "jest --maxWorkers=4 --coverage && codecov -t 911c9d3c-a567-4ce0-a32c-9a715830f02e",
+    "test:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --timeout 20000 --exit --require babel-core/register server/test/index.js",
     "test:dev:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha ./server/test/index.js --exit --require babel-node/register --reporter spec",
     "test:dev": "npm test && npm run coverage",
     "webpack": "webpack --config webpack.dev.js --watch",
@@ -33,6 +33,12 @@
     "e2e": "nightwatch"
   },
   "nyc": {
+    "exclude": [
+      "server/middleware/imageUploader.js",
+      "server/middleware/mailer.js",
+      "server/controllers/Events.js",
+      "server/controllers/Users.js"
+    ]
   },
   "repository": {
     "type": "git",
@@ -52,6 +58,7 @@
   "jest": {
     "verbose": false,
     "testRegex": "/client/__tests__/.*\\.test\\.(js|jsx)$",
+    "roots": ["client/__tests__/"],
     "setupTestFrameworkScriptFile": "./client/__tests__/setup.js",
     "coverageDirectory": "./coverage/",
     "collectCoverageFrom": [

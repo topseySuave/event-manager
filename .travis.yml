@@ -17,6 +17,7 @@ before_script:
 install:
   - npm install -g codecov
 script:
+  - ls
   - npm run test
   - codecov
 after_success:
@@ -24,3 +25,4 @@ after_success:
   - bash <(curl -s https://codecov.io/bash) -f coverage/lcov.info
   - cat coverage/lcov.info
   - npm run coverage
+  - ls
