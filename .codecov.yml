@@ -3,6 +3,8 @@ coverage:
   parsers:
     javascript:
       enable_partials: no
+codecov:
+  max_report_age: off      
 fixes:
   - "coverage/-*::coverage/lcov-report"
 services:
