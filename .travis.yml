@@ -7,16 +7,11 @@ addons:
 - postgresql: "9.4"
 env:
   - CODECOV_TOKEN=911c9d3c-a567-4ce0-a32c-9a715830f02e
-  global:
-    - CC_TEST_REPORTER_ID=b4a04779db27f3d51a3b23b0f4902671100bd49ca3f7c17fe2194b90a0bb88f0
 services:
 - postgresql
 global:
   - export NODE_ENV=test
 before_script:
-- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-- chmod +x ./cc-test-reporter
-- ./cc-test-reporter before-build
 - psql -c "CREATE DATABASE \"boots_test\";" -U postgres
 - npm install
 install:
@@ -25,7 +20,7 @@ script:
   - npm run test
   - codecov
 after_success:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-  # - codeclimate-test-reporter > cat coverage/lcov.info
-  # - bash <(curl -s https://codecov.io/bash) -f coverage/lcov.info
+  - codeclimate-test-reporter > cat coverage/lcov.info
+  - bash <(curl -s https://codecov.io/bash) -f coverage/lcov.info
+  - cat coverage/lcov.info
   - npm run coverage
