@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">86.67% </span>
+        <span class="strong">83.81% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>91/105</span>
+        <span class='fraction'>88/105</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">87.1% </span>
+        <span class="strong">90.32% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>27/31</span>
+        <span class='fraction'>28/31</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">86.67% </span>
+        <span class="strong">83.81% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>91/105</span>
+        <span class='fraction'>88/105</span>
       </div>
     </div>
   </div>
@@ -475,11 +475,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -600,24 +600,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -805,11 +805,11 @@ describe("/api/v1/events Route Test API Endpoints", () =&gt; {
       })
       .end((err, res) =&gt; {
         expect(res.status).to.be.equal(400);
-        expect(res.body).to.be.an("object");
-        expect(res.body)
+<span class="cstat-no" title="statement not covered" >        expect(res.body).to.be.an("object");</span>
+<span class="cstat-no" title="statement not covered" >        expect(res.body)</span>
           .to.haveOwnProperty("message")
           .to.equal("a required field is missing");
-        expect(res.body.error)
+<span class="cstat-no" title="statement not covered" >        expect(res.body.error)</span>
           .to.haveOwnProperty("description")
           .to.equal("The description field is required.");
       });
@@ -929,10 +929,10 @@ describe("/api/v1/events Route Test API Endpoints", () =&gt; {
         centerId,
         userId
       })
-      .end(<span class="fstat-no" title="function not covered" >(</span>err, res) =&gt; {
-<span class="cstat-no" title="statement not covered" >        expect(res.status).to.deep.equal(200);</span>
-<span class="cstat-no" title="statement not covered" >        expect(res.body).to.be.an("object");</span>
-<span class="cstat-no" title="statement not covered" >        expect(res.body)</span>
+      .end((err, res) =&gt; {
+        expect(res.status).to.deep.equal(200);
+        expect(res.body).to.be.an("object");
+        expect(res.body)
           .to.haveOwnProperty("message")
           .to.equal("Event has been created");
       });
@@ -943,11 +943,11 @@ describe("/api/v1/events Route Test API Endpoints", () =&gt; {
   it("should return 200 response with all events in the database", done =&gt; {
     request.get(testConstants.eventsApiRoute).end((err, res) =&gt; {
       expect(res.status).to.deep.equal(200);
-      expect(res.body).to.be.an("object");
-      expect(res.body)
+<span class="cstat-no" title="statement not covered" >      expect(res.body).to.be.an("object");</span>
+<span class="cstat-no" title="statement not covered" >      expect(res.body)</span>
         .to.have.ownProperty("message")
         .to.be.equal("Successful Events!");
-      expect(res.body)
+<span class="cstat-no" title="statement not covered" >      expect(res.body)</span>
         .to.have.ownProperty("events")
         .to.be.an("object");
 <span class="cstat-no" title="statement not covered" >      expect(res.body)</span>
@@ -1039,7 +1039,7 @@ describe("/api/v1/events Route Test API Endpoints", () =&gt; {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Jun 17 2018 01:00:49 GMT+0100 (WAT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Jun 17 2018 08:55:03 GMT+0100 (WAT)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

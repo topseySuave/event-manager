@@ -18,7 +18,7 @@
     "pretest": "NODE_ENV=test npm run drop:db && npm run create:db && npm run migrate:test",
     "test:local": "npm run pretest && npm run test:server",
     "test": "npm run test:client && npm run test:server",
-    "test:client": "jest -w --coverage && codecov",
+    "test:client": "jest --maxWorkers=4 --coverage && codecov",
     "test:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --timeout 20000 --exit --require babel-core/register server/test/index.js",
     "test:dev:server": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha ./server/test/index.js --exit --require babel-node/register --reporter spec",
     "test:dev": "npm test && npm run coverage",
@@ -63,7 +63,7 @@
     "testRegex": "/client/__tests__/.*\\.test\\.(js|jsx)$",
     "setupTestFrameworkScriptFile": "./client/__tests__/setup.js",
     "collectCoverageFrom": [
-      "client/src/**",
+      "**/src/**",
       "!client/src/index.jsx",
       "!client/src/components/modals/centerModalForms/*.*",
       "!client/src/components/modals/eventModalForm/*.*"
