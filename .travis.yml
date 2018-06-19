@@ -14,14 +14,10 @@ global:
 before_script:
 - psql -c "CREATE DATABASE \"boots_test\";" -U postgres
 - npm install
-install:
-  - npm install -g codecov
 script:
-  - ls
   - npm run test
-  - codecov
+after_success:
   - codeclimate-test-reporter > cat coverage/lcov.info
   - bash <(curl -s https://codecov.io/bash) -f coverage/lcov.info
   - cat coverage/lcov.info
   - npm run coverage
-  - ls
