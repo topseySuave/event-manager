@@ -31,7 +31,7 @@ describe('CenterDetail component', () => {
   const wrapper = shallow(<CenterDetail {...props} />);
   const instance = wrapper.instance();
   test(
-    'should aways receive new properties and admin status should be false',
+    'should be able to receive new properties and expect admin is true',
     () => {
       wrapper.setProps({
         activeCenterDetail: {
@@ -48,12 +48,15 @@ describe('CenterDetail component', () => {
     }
   );
 
-  test('should open the edit center modal', () => {
-    instance.handleOpen();
-    expect(wrapper.state('open')).toBeTruthy();
-  });
+  test(
+    'should set the open state true when handleOpen method is called',
+    () => {
+      instance.handleOpen();
+      expect(wrapper.state('open')).toBeTruthy();
+    }
+  );
 
-  test('should close the edit center modal', () => {
+  test('should set the open state false', () => {
     instance.handleClose();
     expect(wrapper.state('open')).toBeFalsy();
   });

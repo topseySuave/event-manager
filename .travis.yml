@@ -20,7 +20,6 @@ script:
   - ls
   - npm run test
   - codecov
-after_success:
   - codeclimate-test-reporter > cat coverage/lcov.info
   - bash <(curl -s https://codecov.io/bash) -f coverage/lcov.info
   - cat coverage/lcov.info

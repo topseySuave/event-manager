@@ -3,9 +3,9 @@ import { mount, shallow } from 'enzyme';
 import NoMatch from
   '../../src/components/NoMatch';
 
-describe('Loader Component', () => {
+describe('Loader', () => {
   const wrapper = shallow(<NoMatch />);
-  test('make a snapshot of the NoMatch component', () => {
+  test('should have a snapshot of the NoMatch component', () => {
     expect(wrapper).toMatchSnapshot();
   });
 });

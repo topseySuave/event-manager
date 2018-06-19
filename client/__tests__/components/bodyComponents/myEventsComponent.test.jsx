@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { MyEventCardHolder } from
   '../../../src/components/bodyComponents/MyEventCardHolder';
 import {
@@ -9,7 +9,7 @@ import {
 } from './../../../src/actions/events-actions';
 
 let wrapper, instance, mounted;
-let store, comProps;
+let store, componentProps;
 
 const getComponent = (props) => {
   mounted = shallow(<MyEventCardHolder {...props} />);
@@ -22,21 +22,21 @@ let loadMoreSpy = jest
   .spyOn(MyEventCardHolder.prototype, 'loadMore');
 
 describe('MyEventCardHolder component', () => {
-  test('MyEventCardHolder component should mount', () => {
-    comProps = {
+  test('should mount', () => {
+    componentProps = {
       fetchSessionEventRequest,
       activeUser: {
         isAuthenticated: true,
         user: { id: 1 }
       }
     };
-    wrapper = getComponent(comProps);
+    wrapper = getComponent(componentProps);
     expect(wrapper).toMatchSnapshot();
     expect(componentDidMountSpy).toBeCalled();
   });
 
-  test('component should update props', () => {
-    wrapper = getComponent(comProps);
+  test('should update when props change', () => {
+    wrapper = getComponent(componentProps);
     let newProps = {
       allEvents: {
         sessEvents: {
@@ -56,8 +56,8 @@ describe('MyEventCardHolder component', () => {
     expect(wrapper.state('isLoading')).toBeFalsy();
   });
 
-  test('should set isLoading to false if there are no events', () => {
-    wrapper = getComponent(comProps);
+  test('should set isLoading state to false if there are no events', () => {
+    wrapper = getComponent(componentProps);
     let newProps = {
       allEvents: {
         sessEvents: {
@@ -69,8 +69,8 @@ describe('MyEventCardHolder component', () => {
     expect(wrapper.state('isLoading')).toBeFalsy();
   });
 
-  test('should be to load more', () => {
-    wrapper = getComponent(comProps);
+  test('when loadmore button is clicked', () => {
+    wrapper = getComponent(componentProps);
     let newProps = {
       loadMoreEvents,
       allEvents: {

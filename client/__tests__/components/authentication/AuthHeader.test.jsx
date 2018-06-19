@@ -5,7 +5,7 @@ import AuthHeader from
 
 describe('Authentication Header Component', () => {
   const wrapper = shallow(<AuthHeader />);
-  test('make a snapshot of the AuthHeader component', () => {
+  test('should make a snapshot of the AuthHeader component', () => {
     expect(wrapper).toMatchSnapshot();
   });
 });

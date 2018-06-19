@@ -30,7 +30,7 @@ describe('FixedNav component', () => {
     };
     wrapper = getComponent(props);
   });
-  test('component should mount', () => {
+  test('should mount', () => {
     mapStateToProps({});
     matchDispatchToProps(jest.fn());
     expect(wrapper).toMatchSnapshot();
@@ -41,7 +41,7 @@ describe('FixedNav component', () => {
     expect(wrapper.state('open')).toBeTruthy();
   });
 
-  test('handleClose side nav close', () => {
+  test('should handleClose side nav close', () => {
     wrapper.instance().handleClose();
     expect(wrapper.state('open')).toBeFalsy();
   });

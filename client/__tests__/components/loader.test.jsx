@@ -6,11 +6,11 @@ import { CircularLoader, IndeterminateLoader } from
 describe('Loader Component', () => {
   const circularLoader = shallow(<CircularLoader />);
   const indeterminateLoader = shallow(<IndeterminateLoader />);
-  test('make a snapshot of the CircularLoader component', () => {
+  test('should make a snapshot of the CircularLoader component', () => {
     expect(circularLoader).toMatchSnapshot();
   });
 
-  test('make a snapshot of the IndeterminateLoader component', () => {
+  test('should make a snapshot of the IndeterminateLoader component', () => {
     expect(indeterminateLoader).toMatchSnapshot();
   });
 });

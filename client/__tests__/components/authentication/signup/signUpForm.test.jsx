@@ -4,7 +4,7 @@ import { SignUpForm } from
   '../../../../src/components/authentication/signup/SignUpForm';
 import { userSignupRequest } from '../../../../src/actions/authActions';
 
-describe('Authentication Sign Up Component', () => {
+describe('Authentication Sign Up form', () => {
   const wrapper = shallow(<SignUpForm userSignupRequest={userSignupRequest} />);
   const event = {
     preventDefault: jest.fn(),
@@ -14,12 +14,24 @@ describe('Authentication Sign Up Component', () => {
     }
   };
 
-  test('component rendered', () => {
+  test('component should render to the dom', () => {
+    const divs = wrapper.find('div');
     const renderSpy = jest
       .spyOn(SignUpForm.prototype, 'render');
     const instance = wrapper.instance();
     instance.render();
+    expect(divs.length).toBeGreaterThan(5);
     expect(renderSpy).toHaveBeenCalled();
+  });
+
+  test('elements should be present', () => {
+    const form = wrapper.find('form');
+    expect(form.length).toEqual(1);
+  });
+
+  test('should render all input fields', () => {
+    const InputForm = wrapper.find('InputForm');
+    expect(InputForm.length).toEqual(5);
   });
 
   test(

@@ -21,13 +21,17 @@ describe('SearchFasterForm component', () => {
     capacity: 500
   });
   let instance = wrapper.instance();
+
   test('Should have a snapshot of the component', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  test('handleSearchChange should set the state an appropiate field', () => {
-    instance.handleSearchChange(event);
-  });
+  test(
+    'should handleSearchChange and set the state of appropiate fields',
+    () => {
+      instance.handleSearchChange(event);
+    }
+  );
 
   test('handleSearchStart should start search if all field are filled', () => {
     instance.handleSearchStart(event);

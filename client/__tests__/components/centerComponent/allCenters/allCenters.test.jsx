@@ -49,7 +49,7 @@ describe('AllCenters component', () => {
   let loadMoreSpy = jest.spyOn(AllCenters.prototype, 'loadMore');
   let renderNoCenterSpy = jest.spyOn(AllCenters.prototype, 'renderNoCenter');
 
-  test('that component mounted successfully', () => {
+  test('should be mounted successfully', () => {
     searchAction({ location: 'ikeja', price: 10000 });
     expect(wrapper).toMatchSnapshot();
   });

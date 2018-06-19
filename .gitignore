@@ -11,6 +11,7 @@ client/bower_components
 client/public/js/hot/*
 client/public/js/app.bundle.js
 client/public/js/app.bundle.js.map
+client/__tests__/components/**/__snapshots__
 
 package-lock.json
 reports/

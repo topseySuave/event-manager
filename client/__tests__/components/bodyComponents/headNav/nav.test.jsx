@@ -4,55 +4,53 @@ import { Nav, mapStateToProps, matchDispatchToProps } from
   '../../../../src/components/bodyComponents/headNav/nav';
 
 let wrapper, instance, mounted;
-let store, comProps;
+let store, componentProps;
 
 const getComponent = (props) => {
   mounted = shallow(<Nav {...props} />);
   return mounted;
 };
 
-const componentDidMountSpy = jest.spyOn(Nav.prototype, 'componentDidMount');
-
 describe('Nav component', () => {
   beforeEach(() => {
-    comProps = {
+    componentProps = {
       activeState: {
         isAuthenticated: true,
         user: { lastname: 'thomas' }
       }
     };
-    wrapper = getComponent(comProps);
+    wrapper = getComponent(componentProps);
   });
-  test('Nav component should mount', () => {
+
+  test('should have a snapshot of the component', () => {
     mapStateToProps({});
     matchDispatchToProps(jest.fn());
     expect(wrapper).toMatchSnapshot();
-    expect(componentDidMountSpy).toBeCalled();
   });
 
-  test('render should be called', () => {
+  test('on render open state should be false', () => {
     expect(wrapper.state('open')).toBeFalsy();
   });
 
-  test('should handle sidenav toggle', () => {
+  test('should open sidenav toggle when state `open` is true', () => {
     wrapper.instance().handleToggle();
     expect(wrapper.state('open')).toBeTruthy();
   });
 
-  test('should handle sidenav close and show modal', () => {
+  test('sidenav should be closed when state `open` is false', () => {
     wrapper.instance().handleClose();
     wrapper.instance().showModal();
     expect(wrapper.state('open')).toBeFalsy();
   });
 
   test('should show showAuthenticationLinks when not logged in', () => {
-    comProps = {
+    componentProps = {
       activeState: {
         isAuthenticated: false,
         user: { }
       }
     };
-    wrapper = getComponent(comProps);
+    wrapper = getComponent(componentProps);
     wrapper.instance().showAuthenticationLinks();
     expect(wrapper.state('open')).toBeFalsy();
   });

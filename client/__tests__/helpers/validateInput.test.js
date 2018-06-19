@@ -4,9 +4,9 @@ import { validateEventInput, validateCenterInput } from
   '../../src/components/modals/validateInput';
 import * as userMock from '../__mocks__/actions/userMock';
 
-describe('Client Input Validator', () => {
-  describe('Sign In Validator', () => {
-    it('should check for email and password requirments', () => {
+describe('Client form should', () => {
+  describe('validate sign in input', () => {
+    it('which checks for email and password requirments', () => {
       let inputValues = {
         errors: {},
         email: '',
@@ -17,7 +17,7 @@ describe('Client Input Validator', () => {
       expect(errors.password).toBe('This field is required');
     });
 
-    it('should check for wrong email and password', () => {
+    it('which checks for wrong email and password when signin in', () => {
       let inputValues = {
         errors: {},
         email: 'thisiswrong',
@@ -30,8 +30,8 @@ describe('Client Input Validator', () => {
     });
   });
 
-  describe('Sign Up Validator', () => {
-    it('should check for email and password requirments', () => {
+  describe('validate sign up input', () => {
+    it('which checks for all field requirments', () => {
       let inputValues = {
         errors: {},
         email: '',
@@ -47,7 +47,7 @@ describe('Client Input Validator', () => {
       expect(errors.password).toBe('This field is required');
     });
 
-    it('should check for wrong email and password', () => {
+    it('which checks for wrong email and password when signin up', () => {
       let inputValues = {
         errors: {},
         email: '',

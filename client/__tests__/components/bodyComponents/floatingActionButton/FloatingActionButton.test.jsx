@@ -4,7 +4,7 @@ import { FloatingActionButton, mapStateToProps } from
   '../../../../src/components/bodyComponents/floatingActionButton/FloatingActionButton'; // eslint-disable-line
 
 let wrapper, instance, mounted;
-let store, comProps;
+let store, componentProps;
 
 const getComponent = (props) => {
   mounted = shallow(<FloatingActionButton {...props} />);
@@ -15,25 +15,26 @@ const componentWillMountSpy = jest
   .spyOn(FloatingActionButton.prototype, 'componentWillMount');
 
 describe('FloatingActionButton component', () => {
-  test('FloatingActionButton component should mount', () => {
-    comProps = {
+  test('should mount', () => {
+    componentProps = {
       activeState: {
         isAuthenticated: true,
         user: { id: 1, role: true }
       }
     };
-    wrapper = getComponent(comProps);
+    wrapper = getComponent(componentProps);
     expect(wrapper).toMatchSnapshot();
     expect(componentWillMountSpy).toBeCalled();
   });
 
-  test('should render nothing', () => {
-    comProps = {
+  test('should render nothing when user not authenticated', () => {
+    componentProps = {
       activeState: {
         isAuthenticated: false
       }
     };
-    wrapper = getComponent(comProps);
+    wrapper = getComponent(componentProps);
     mapStateToProps({});
+    expect(wrapper.html()).toBeFalsy();
   });
 });

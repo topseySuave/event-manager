@@ -8,7 +8,7 @@ import {
 } from '../../../src/actions/center-actions/fetchCenterAction';
 
 let wrapper, instance, mounted;
-let store, comProps;
+let store, componentProps;
 
 const getComponent = (props) => {
   mounted = shallow(<IndexCenterCardHolder {...props} />);
@@ -18,20 +18,20 @@ const getComponent = (props) => {
 let LoadMoreSpy = jest.spyOn(IndexCenterCardHolder.prototype, 'loadMore');
 
 describe('IndexCenterCardHolder component', () => {
-  test('IndexCenterCardHolder component should mount', () => {
-    comProps = {
+  test('should mount', () => {
+    componentProps = {
       fetchCentersAction,
       centerStore: {
         centers: [],
       },
       loadMoreCenters
     };
-    wrapper = getComponent(comProps);
+    wrapper = getComponent(componentProps);
     expect(wrapper).toMatchSnapshot();
   });
 
-  test('component should update', () => {
-    comProps.centerStore = {
+  test('should update when new properties a provided', () => {
+    componentProps.centerStore = {
       centers: [],
       loadingmore: true,
       loadmore: true,
@@ -42,13 +42,13 @@ describe('IndexCenterCardHolder component', () => {
         totalCount: 6
       }
     };
-    wrapper = getComponent(comProps);
-    wrapper.setProps(comProps);
+    wrapper = getComponent(componentProps);
+    wrapper.setProps(componentProps);
     expect(wrapper.state('isLoading')).toBeFalsy();
   });
 
   test('should show the loadmore button', () => {
-    wrapper = getComponent(comProps);
+    wrapper = getComponent(componentProps);
     wrapper.setState({
       isLoading: false,
       pageCount: 2
@@ -57,7 +57,7 @@ describe('IndexCenterCardHolder component', () => {
   });
 
   test('should be able to loadmore', () => {
-    wrapper = getComponent(comProps);
+    wrapper = getComponent(componentProps);
     mapDispatchToProps(jest.fn());
     mapStateToProps({});
     wrapper.instance().loadMore();

@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { SignOut, mapDispatchToProps } from
   '../../../../src/components/authentication/signout/SignOut';
 import { signOutRequest } from
@@ -7,9 +7,14 @@ import { signOutRequest } from
 
 let wrapper;
 
-describe('SignOut component', () => {
+describe('Signout component', () => {
   beforeEach(() => {
-    wrapper = shallow(<SignOut signOutRequest={signOutRequest} />);
+    wrapper = mount(<SignOut signOutRequest={signOutRequest} />);
+  });
+
+  test('should always render when mounted', () => {
+    const calledProps = wrapper.find('p');
+    expect(calledProps.length).toBe(1);
   });
 
   test('is rendered', () => {
@@ -21,7 +26,7 @@ describe('SignOut component', () => {
     expect(renderSpy).toHaveBeenCalled();
   });
 
-  test('should call componentWillReceiveProps', () => {
+  test('should receive new properties', () => {
     let props = { auth: { redirect: true } };
     const componentWillReceivePropsSpy = jest
       .spyOn(SignOut.prototype, 'componentWillReceiveProps');
