@@ -14,6 +14,7 @@ global:
 before_script:
 - psql -c "CREATE DATABASE \"boots_test\";" -U postgres
 - npm install
+- npm install -g codecov
 script:
   - npm run test
 after_success:
