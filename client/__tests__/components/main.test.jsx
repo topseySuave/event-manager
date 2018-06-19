@@ -5,7 +5,7 @@ import Main from
 
 describe('Main Routing Component', () => {
   const wrapper = shallow(<Main />);
-  test('make a snapshot of the routing component', () => {
+  test('have make a snapshot of the routing component', () => {
     expect(wrapper).toMatchSnapshot();
   });
 });

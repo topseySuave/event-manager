@@ -5,7 +5,7 @@ import Modals from
 
 describe('Modals component', () => {
   const wrapper = shallow(<Modals />);
-  test('component should mount', () => {
+  test('should have a snaphot of the component', () => {
     expect(wrapper).toMatchSnapshot();
   });
 });

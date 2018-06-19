@@ -33,33 +33,33 @@ describe('HeaderBanner component', () => {
     };
     wrapper = getComponent(props);
   });
-  test('component should mount', () => {
+  test('should have a snpashot', () => {
     mapStateToProps({});
     matchDispatchToProps(jest.fn());
     expect(wrapper).toMatchSnapshot();
   });
 
-  test('onSearch is called', () => {
+  test('when onSearch is called', () => {
     const query = { location: 'ikeja' };
     wrapper.instance().onSearch(query);
   });
 
-  test('onScrollToShowNavSpy is called', () => {
+  test('when onScrollToShowNav is called', () => {
     wrapper.instance().onScrollToShowNav();
     expect(onScrollToShowNavSpy).toBeCalled();
   });
 
-  test('handleClose side nav close', () => {
+  test('should set open state false', () => {
     wrapper.instance().handleClose();
     expect(wrapper.state('open')).toBeFalsy();
   });
 
-  test('should toggle side bar', () => {
+  test('should set open state true', () => {
     wrapper.instance().handleToggle();
     expect(wrapper.state('open')).toBeTruthy();
   });
 
-  test('should be able to show modal', () => {
+  test('should be able to call showModal method', () => {
     wrapper.instance().showModal();
     expect(showModalSpy).toBeCalled();
   });

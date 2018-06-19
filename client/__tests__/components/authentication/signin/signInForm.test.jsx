@@ -31,7 +31,7 @@ describe('Sign In form component', () => {
     isAuthenticated: false
   };
 
-  test('should required field exist', () => {
+  test('should check if required fields exist', () => {
     let wrapper = mountComp(props, userSignInRequest, history);
     mapStateToProps({});
     const instance = wrapper.instance();
@@ -53,7 +53,7 @@ describe('Sign In form component', () => {
   });
 
   test(
-    'should test for invalid inputs and set the state to have errors',
+    'should check for invalid inputs',
     () => {
       props.isAuthenticated = false;
       let wrapper = mountComp(props, userSignInRequest, history);
@@ -85,7 +85,7 @@ describe('Sign In form component', () => {
     }
   );
 
-  test('should handle changes in the form', () => {
+  test('should set fields value in state', () => {
     let wrapper = mountComp(props, userSignInRequest, history);
     wrapper.setState({
       errors: {
@@ -103,7 +103,7 @@ describe('Sign In form component', () => {
     expect(handleChangeSpy).toBeCalled();
   });
 
-  test('should set fiels value in state', () => {
+  test('should handle changes in the form', () => {
     let wrapper = mountComp(props, userSignInRequest, history);
     wrapper.setState({
       errors: {}

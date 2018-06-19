@@ -6,7 +6,7 @@ describe('Helpers', () => {
     helpers = new Helpers();
   });
 
-  it('equals function: check if two values are the same', () => {
+  it('equals function checks if two values are the same', () => {
     expect(helpers.equals(5, 5)).toBe(true);
     expect(helpers.equals('gabriel', 'gabriel')).toBe(true);
   });

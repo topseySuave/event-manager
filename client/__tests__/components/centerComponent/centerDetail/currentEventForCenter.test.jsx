@@ -16,16 +16,12 @@ describe('CurrentEventForCenter component', () => {
   let wrapper = shallow(<CurrentEventForCenter {...props} />);
   let instance = wrapper.instance();
 
-  test('component should mount', () => {
-    mapDispatchToProps({});
-  });
-
-  test('should open alert modal when decline button is clicked', () => {
+  test('should set opeAlert state true', () => {
     instance.handleAlertOpen();
     expect(wrapper.state('openAlert')).toBeTruthy();
   });
 
-  test('should close alert modal when decline is cancelled', () => {
+  test('should set opeAlert to false when decline is cancelled', () => {
     instance.handleAlertClose();
     expect(wrapper.state('openAlert')).toBeFalsy();
   });
@@ -49,5 +45,8 @@ describe('CurrentEventForCenter component', () => {
       isAdmin: true
     };
     wrapper = shallow(<CurrentEventForCenter {...props} />);
+    const collectionItem = wrapper.find('.collection-item');
+    expect(collectionItem.exists()).toBeTruthy();
+    expect(collectionItem.text()).toBe('No event for this center');
   });
 });

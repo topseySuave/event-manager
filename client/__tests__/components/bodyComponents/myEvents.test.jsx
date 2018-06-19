@@ -4,7 +4,7 @@ import { MyEvents } from
   '../../../src/components/bodyComponents/MyEvents';
 
 let wrapper, instance, mounted;
-let store, comProps;
+let store, componentProps;
 
 const getComponent = (props) => {
   mounted = shallow(<MyEvents {...props} />);
@@ -12,24 +12,24 @@ const getComponent = (props) => {
 };
 
 describe('MyEvents component', () => {
-  test('MyEvents component should mount', () => {
-    comProps = {
+  test('should be mounted when a user is authenticated', () => {
+    componentProps = {
       activeState: {
         isAuthenticated: true
       }
     };
-    wrapper = getComponent(comProps);
+    wrapper = getComponent(componentProps);
     expect(wrapper).toMatchSnapshot();
     expect(wrapper.state('isAuthenticated')).toBeTruthy();
   });
 
-  test('render should be called', () => {
-    comProps = {
+  test('shoukld expect unauthorized user', () => {
+    componentProps = {
       activeState: {
         isAuthenticated: false
       }
     };
-    wrapper = getComponent(comProps);
+    wrapper = getComponent(componentProps);
     expect(wrapper.state('isAuthenticated')).toBeFalsy();
   });
 });

@@ -5,7 +5,7 @@ import CallToAction from
 
 describe('CallToAction component', () => {
   const wrapper = shallow(<CallToAction />);
-  test('CallToAction component should mount', () => {
+  test('should have a snapshot', () => {
     expect(wrapper).toMatchSnapshot();
   });
 });

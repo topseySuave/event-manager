@@ -5,7 +5,7 @@ import { SignUp, mapDispatchToProps } from
 import { userSignupRequest } from '../../../../src/actions/authActions';
 
 describe('SignUp component', () => {
-  test('Is authenticated', () => {
+  test('when user is authenticated', () => {
     let props = { isAuthenticated: true };
     const wrapper = shallow(<SignUp activeState={props} />);
     const renderSpy = jest
@@ -17,7 +17,7 @@ describe('SignUp component', () => {
     expect(renderSpy).toHaveBeenCalled();
   });
 
-  test('is rendered', () => {
+  test('when user is not authenticatedd', () => {
     let props = { isAuthenticated: false };
     const wrapper = shallow(<SignUp activeState={props} />);
     const renderSpy = jest

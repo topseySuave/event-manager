@@ -5,7 +5,7 @@ import Footer from
 
 describe('Footer component', () => {
   const wrapper = shallow(<Footer />);
-  test('Footer component should mount', () => {
+  test('should have a snapshot for unexpected change', () => {
     expect(wrapper).toMatchSnapshot();
   });
 });

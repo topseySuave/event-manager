@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { EventCard } from
   '../../../../src/components/bodyComponents/eventsCard/EventCard';
 import {
@@ -8,7 +8,7 @@ import {
 } from '../../../../src/actions/events-actions';
 
 let wrapper, instance, mounted;
-let store, comProps;
+let store, componentProps;
 
 const getComponent = (props) => {
   mounted = shallow(<EventCard {...props} />);
@@ -17,7 +17,7 @@ const getComponent = (props) => {
 
 describe('EventCard component', () => {
   beforeEach(() => {
-    comProps = {
+    componentProps = {
       userState: {
         isAuthenticated: true,
         user: { id: 1, role: false }
@@ -36,32 +36,32 @@ describe('EventCard component', () => {
         status: 'pending'
       }
     };
-    wrapper = getComponent(comProps);
+    wrapper = getComponent(componentProps);
   });
 
-  test('EventCard component should mount', () => {
-    expect(wrapper.state('event')).toBeTruthy();
+  test('should always mount', () => {
+    expect(wrapper.exists()).toBeTruthy();
   });
 
-  test('should open alert modal', () => {
-    wrapper = getComponent(comProps);
+  test('should set the openAlert state true', () => {
+    wrapper = getComponent(componentProps);
     wrapper.instance().handleAlertOpen();
     expect(wrapper.state('openAlert')).toBeTruthy();
   });
 
-  test('should close alert modal', () => {
-    wrapper = getComponent(comProps);
+  test('should set the openAlert state false', () => {
+    wrapper = getComponent(componentProps);
     wrapper.instance().handleAlertClose();
     expect(wrapper.state('openAlert')).toBeFalsy();
   });
 
   test('should be able to open edit event modal', () => {
-    wrapper = getComponent(comProps);
+    wrapper = getComponent(componentProps);
     wrapper.instance().handleEditOpen();
   });
 
   test('should be able to delete an event', () => {
-    wrapper = getComponent(comProps);
+    wrapper = getComponent(componentProps);
     wrapper.instance().handleDelete(1);
   });
 });

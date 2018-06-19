@@ -16,7 +16,7 @@ describe('RecommCenter component', () => {
   let instance = wrapper.instance();
 
   test(
-    'componentWillReceiveProps should fetch center related to the current one',
+    'should receive new props',
     () => {
       instance.componentWillReceiveProps(props);
     }

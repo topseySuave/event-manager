@@ -31,7 +31,7 @@ describe('SearchModal component', () => {
   let handleSearchInputSpy = jest
     .spyOn(SearchModal.prototype, 'handleSearchInput');
 
-  test('that component mounted successfully', () => {
+  test('should have a snapshot of the component', () => {
     expect(wrapper).toMatchSnapshot();
   });
 

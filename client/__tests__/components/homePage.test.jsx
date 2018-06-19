@@ -5,7 +5,7 @@ import HomePage from
 
 describe('HomePage Component', () => {
   const wrapper = shallow(<HomePage />);
-  test('make a snapshot of the component', () => {
+  test('should make a snapshot of the component', () => {
     expect(wrapper).toMatchSnapshot();
   });
 });

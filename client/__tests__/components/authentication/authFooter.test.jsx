@@ -5,7 +5,7 @@ import AuthFooter from
 
 describe('Authentication footer Component', () => {
   const wrapper = shallow(<AuthFooter />);
-  test('make a snapshot of the AuthFooter component', () => {
+  test('should make a snapshot of the AuthFooter component', () => {
     expect(wrapper).toMatchSnapshot();
   });
 });

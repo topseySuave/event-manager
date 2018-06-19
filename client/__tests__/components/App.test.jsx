@@ -5,7 +5,7 @@ import AppComponent from
 
 describe('App component', () => {
   const wrapper = shallow(<AppComponent />);
-  test('App component should mount', () => {
+  test('should have a snapshot', () => {
     expect(wrapper).toMatchSnapshot();
   });
 });
